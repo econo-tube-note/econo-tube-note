@@ -15,7 +15,7 @@ import urllib.request
 from pathlib import Path
 
 # 모델 이름은 여기(또는 워크플로 파일의 GEMINI_MODEL)에서 바꾼다.
-MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
 DATA = Path(__file__).resolve().parent.parent / "videos.js"
 HEADER = "/* 영상 목록. 자동화(scripts/summarize.py)가 갱신하는 파일이다. 직접 고칠 때는 JSON 형식을 지킨다. */\n"
 TIME_RE = re.compile(r"^\d{1,2}:\d{2}(:\d{2})?$")
@@ -87,10 +87,13 @@ def call_gemini(video_url):
                 ),
             )
             return json.loads(resp.text)
-        except Exception as e:  # 한도 초과 등은 잠깐 쉬고 다시 시도
+        except Exception as e:
             last = e
             print(f"  제미나이 호출 실패({attempt + 1}/3): {e}")
-            time.sleep(30)
+            # 모델 이름이나 키 문제는 다시 해도 소용없으니 바로 멈춘다
+            if any(c in str(e) for c in ("404", "403", "401", "400", "NOT_FOUND", "PERMISSION_DENIED", "INVALID_ARGUMENT")):
+                break
+            time.sleep(30)  # 한도 초과 등은 잠깐 쉬고 다시 시도
     raise RuntimeError(f"제미나이 호출 실패: {last}")
 
 
