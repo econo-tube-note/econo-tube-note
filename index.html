@@ -79,7 +79,7 @@ function render(){
 }
 function open(i){
  const v=VIDEOS[i],id=vid(v.url),base=id?`https://www.youtube.com/watch?v=${id}`:"";
- const tl=t=>base?`<a href="${base}&t=${sec(t)}s" target="_blank" rel="noopener">${t}</a>`:`<b>${t}</b>`;
+ const tl=t=>!t?"":base?`<a href="${base}&t=${sec(t)}s" target="_blank" rel="noopener">${t}</a>`:`<b>${t}</b>`;
  const parts=(v.parts||[]).map(p=>`<h3>${esc(p.t)}</h3><ul>${p.items.map(([t,x])=>`<li>${tl(t)} ${esc(x)}</li>`).join("")}</ul>`).join("");
  const stocks=(v.stocks||[]).length?`<h3>언급된 종목</h3><ul>${v.stocks.map(([t,n,x])=>`<li>${tl(t)} <b>${esc(n)}</b> ${esc(x)}</li>`).join("")}</ul>`:"";
  const nums=(v.numbers||[]).length?`<h3>주요 숫자</h3><ul>${v.numbers.map(([t,n,x])=>`<li>${tl(t)} <b>${esc(n)}</b> ${esc(x)}</li>`).join("")}</ul>`:"";
