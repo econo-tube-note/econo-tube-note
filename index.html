@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>경제 유튜브 요약</title>
+<style>
+:root{--bg:#f4f5f8;--card:#fff;--ink:#14181f;--sub:#5d6573;--line:#e1e4ea;--accent:#2457f5;--chip:#eef1f7}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1217;--card:#181c24;--ink:#eef1f6;--sub:#9aa3b2;--line:#272d38;--accent:#7b99ff;--chip:#222833}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.6}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 20px 56px}
+h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
+.lead{color:var(--sub);margin:0 0 24px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+.bar input{flex:1 1 220px;max-width:340px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:7px 14px;border:1px solid var(--line);border-radius:99px;background:var(--card);color:var(--ink);font:inherit;font-size:.9rem;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column}
+.card:hover{border-color:var(--accent)}
+.thumb{aspect-ratio:16/9;background:linear-gradient(135deg,#dbe3f4,#b9c6e6);overflow:hidden}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px}
+.meta{display:flex;gap:10px;font-size:.85rem;color:var(--sub)}
+.meta b{color:var(--accent);font-weight:700}
+.card h2{font-size:1.02rem;line-height:1.4;margin:0;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card p{margin:0;color:var(--ink);font-size:.97rem;font-weight:600;line-height:1.55;background:var(--chip);border-left:3px solid var(--accent);padding:10px 12px;border-radius:0 8px 8px 0}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.tags span{background:var(--chip);padding:2px 10px;border-radius:99px;font-size:.8rem}
+.empty{color:var(--sub);padding:40px 0;text-align:center}
+.more{grid-column:1/-1;text-align:center;padding:8px 0}
+dialog{width:min(720px,94vw);max-height:90vh;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);padding:0}
+dialog::backdrop{background:rgba(10,14,22,.55)}
+.dlg{padding:24px 26px 28px}
+.dlg h2{font-size:1.3rem;line-height:1.4;margin:6px 0 12px}
+.dlg h3{font-size:1rem;margin:22px 0 6px}
+.dlg ul{margin:0;padding-left:18px}
+.dlg li{margin:6px 0}
+.dlg a{color:var(--accent);font-weight:600;text-decoration:none;margin-right:4px}
+.dlg a:hover{text-decoration:underline}
+.concl{background:var(--chip);padding:12px 14px;border-radius:10px;margin:0}
+.actions{display:flex;gap:10px;margin-top:24px}
+.btn{display:inline-block;padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;cursor:pointer;text-decoration:none}
+.dlg a.btn.main{background:var(--accent);border-color:var(--accent);color:#fff;margin:0}
+.note{color:var(--sub);font-size:.82rem;margin-top:40px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>경제 유튜브 요약</h1>
+  <p class="lead">인기 경제 채널의 영상을 AI가 요약해 한곳에 모았다. 카드를 누르면 상세 요약과 장면별 시간을 볼 수 있다.</p>
+  <div class="bar">
+    <input id="q" type="search" placeholder="제목, 키워드로 검색" aria-label="검색">
+    <div class="chips" id="chips"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <p class="note">AI가 요약한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
+</div>
+<dialog id="dlg"></dialog>
+<script src="videos.js"></script>
+<script>
+/* ===== 여기부터는 건드리지 않아도 된다 ===== */
+VIDEOS.sort((a,b)=>b.date.localeCompare(a.date));
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const vid=u=>(u.match(/(?:v=|youtu\.be\/)([\w-]{11})/)||[])[1];
+const sec=t=>t.split(":").reduce((a,b)=>a*60+ +b,0);
+let ch="전체",q="",shown=12;const PAGE=12;
+const chans=["전체",...new Set(VIDEOS.map(v=>v.channel))];
+function chips(){$("#chips").innerHTML=chans.map(c=>`<button class="chip" aria-pressed="${c===ch}" data-c="${esc(c)}">${esc(c)}</button>`).join("")}
+function thumb(v){const id=vid(v.url);return id?`<img src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">`:""}
+function card(i,f){const v=VIDEOS[i];return `<article class="card${f?" feature":""}" tabindex="0" data-i="${i}"><div class="thumb">${thumb(v)}</div><div class="body"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span></div><h2>${esc(v.title)}</h2><p>${esc(v.conclusion)}</p><div class="tags">${v.tags.map(t=>`<span>${esc(t)}</span>`).join("")}</div></div></article>`}
+function render(){
+ const idx=VIDEOS.map((v,i)=>i).filter(i=>{const v=VIDEOS[i];return (ch==="전체"||v.channel===ch)&&(!q||(v.title+v.conclusion+v.tags.join(" ")).toLowerCase().includes(q))});
+ $("#grid").innerHTML=idx.length?idx.slice(0,shown).map(i=>card(i)).join("")+(idx.length>shown?`<div class="more"><button class="btn" id="more">더 보기 (${idx.length-shown}편 남음)</button></div>`:""):`<div class="empty">조건에 맞는 영상이 없다. 다른 키워드나 채널을 골라보자.</div>`;
+}
+function open(i){
+ const v=VIDEOS[i],id=vid(v.url),base=id?`https://www.youtube.com/watch?v=${id}`:"";
+ const tl=t=>base?`<a href="${base}&t=${sec(t)}s" target="_blank" rel="noopener">${t}</a>`:`<b>${t}</b>`;
+ const parts=(v.parts||[]).map(p=>`<h3>${esc(p.t)}</h3><ul>${p.items.map(([t,x])=>`<li>${tl(t)} ${esc(x)}</li>`).join("")}</ul>`).join("");
+ const stocks=(v.stocks||[]).length?`<h3>언급된 종목</h3><ul>${v.stocks.map(([t,n,x])=>`<li>${tl(t)} <b>${esc(n)}</b> ${esc(x)}</li>`).join("")}</ul>`:"";
+ const nums=(v.numbers||[]).length?`<h3>주요 숫자</h3><ul>${v.numbers.map(([t,n,x])=>`<li>${tl(t)} <b>${esc(n)}</b> ${esc(x)}</li>`).join("")}</ul>`:"";
+ const body=parts+stocks+nums||`<p class="empty">상세 요약은 아직 준비 중이다.</p>`;
+ $("#dlg").innerHTML=`<div class="dlg"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span>${v.people?`<span>출연 ${esc(v.people)}</span>`:""}</div><h2>${esc(v.title)}</h2><p class="concl">${esc(v.conclusion)}</p>${body}<div class="actions">${base?`<a class="btn main" href="${base}" target="_blank" rel="noopener">원본 영상 보기</a>`:""}<button class="btn" id="x">닫기</button></div></div>`;
+ $("#dlg").showModal();$("#x").onclick=()=>$("#dlg").close();
+}
+$("#q").oninput=e=>{q=e.target.value.trim().toLowerCase();shown=PAGE;render()};
+$("#chips").onclick=e=>{const b=e.target.closest(".chip");if(b){ch=b.dataset.c;shown=PAGE;chips();render()}};
+$("#grid").onclick=e=>{if(e.target.id==="more"){shown+=PAGE;render();return}const c=e.target.closest(".card");if(c)open(+c.dataset.i)};
+$("#grid").onkeydown=e=>{if(e.key==="Enter"){const c=e.target.closest(".card");if(c)open(+c.dataset.i)}};
+$("#dlg").onclick=e=>{if(e.target===$("#dlg"))$("#dlg").close()};
+chips();render();
+</script>
+</body>
+</html>
