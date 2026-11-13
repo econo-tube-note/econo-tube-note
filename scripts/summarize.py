@@ -9,13 +9,20 @@ import json
 import os
 import re
 import sys
+import threading
 import time
 import urllib.parse
 import urllib.request
 from pathlib import Path
 
 # 모델 이름은 여기(또는 워크플로 파일의 GEMINI_MODEL)에서 바꾼다.
+try:
+    sys.stdout.reconfigure(line_buffering=True)  # 로그가 바로바로 보이게 한다
+except Exception:
+    pass
+
 MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
+CALL_TIMEOUT = int(os.environ.get("GEMINI_TIMEOUT", "300"))  # 제미나이 응답을 기다리는 최대 시간(초)
 DATA = Path(__file__).resolve().parent.parent / "videos.js"
 HEADER = "/* 영상 목록. 자동화(scripts/summarize.py)가 갱신하는 파일이다. 직접 고칠 때는 JSON 형식을 지킨다. */\n"
 TIME_RE = re.compile(r"^\d{1,2}:\d{2}(:\d{2})?$")
@@ -34,6 +41,27 @@ PROMPT = """너는 한국 경제·투자 유튜브 영상을 요약하는 편집
 - time: 해당 내용이 영상에서 나오는 시간. 링크나 주소 없이 '분:초' 글자만 적는다. 예: 06:34 (1시간이 넘으면 1:05:30). 확실하지 않으면 빈 문자열로 둔다.
 - 영상에 없는 내용은 쓰지 않는다. 네가 아는 정보로 영상 내용의 사실 여부를 판단하거나 정정하지 않는다. 추측하지 않는다.
 """
+
+
+# ---------- 제한 시간 ----------
+def run_with_timeout(fn, seconds):
+    """fn을 실행하되 seconds초 안에 안 끝나면 TimeoutError를 낸다."""
+    box = {}
+
+    def target():
+        try:
+            box["v"] = fn()
+        except BaseException as e:
+            box["e"] = e
+
+    t = threading.Thread(target=target, daemon=True)
+    t.start()
+    t.join(seconds)
+    if t.is_alive():
+        raise TimeoutError(f"{seconds}초 안에 응답이 없다")
+    if "e" in box:
+        raise box["e"]
+    return box["v"]
 
 
 # ---------- 제미나이 호출 (이 함수만 외부 라이브러리를 쓴다) ----------
@@ -77,22 +105,30 @@ def call_gemini(video_url):
     for model in models:
         for attempt in range(3):
             try:
-                resp = client.models.generate_content(
-                    model=model,
-                    contents=types.Content(
-                        parts=[
-                            types.Part(file_data=types.FileData(file_uri=video_url)),
-                            types.Part(text=PROMPT),
-                        ]
-                    ),
-                    config=types.GenerateContentConfig(
-                        response_mime_type="application/json",
-                        response_schema=Summary,
-                        temperature=0.2,
-                    ),
-                )
+                def ask(model=model):
+                    return client.models.generate_content(
+                        model=model,
+                        contents=types.Content(
+                            parts=[
+                                types.Part(file_data=types.FileData(file_uri=video_url)),
+                                types.Part(text=PROMPT),
+                            ]
+                        ),
+                        config=types.GenerateContentConfig(
+                            response_mime_type="application/json",
+                            response_schema=Summary,
+                            temperature=0.2,
+                        ),
+                    )
+
+                print(f"  [{model}] 요청 보냄 (최대 {CALL_TIMEOUT}초 기다림)")
+                resp = run_with_timeout(ask, CALL_TIMEOUT)
                 print(f"  사용한 모델: {model}")
                 return json.loads(resp.text)
+            except TimeoutError as e:
+                last = e
+                print(f"  [{model}] {e} -> 다음 모델로 넘어간다")
+                break
             except Exception as e:
                 last = e
                 print(f"  [{model}] 호출 실패({attempt + 1}/3): {str(e)[:200]}")
