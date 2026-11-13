@@ -69,31 +69,36 @@ def call_gemini(video_url):
         numbers: list[Num]
 
     client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+    # 첫 번째 모델이 바쁘거나(503) 없으면(404) 다음 모델로 넘어간다
+    fallbacks = os.environ.get("GEMINI_FALLBACKS", "gemini-3.7-flash,gemini-3.5-flash-lite")
+    models = [MODEL] + [m.strip() for m in fallbacks.split(",") if m.strip() and m.strip() != MODEL]
+    permanent = ("NOT_FOUND", "PERMISSION_DENIED", "INVALID_ARGUMENT", "UNAUTHENTICATED")
     last = None
-    for attempt in range(3):
-        try:
-            resp = client.models.generate_content(
-                model=MODEL,
-                contents=types.Content(
-                    parts=[
-                        types.Part(file_data=types.FileData(file_uri=video_url)),
-                        types.Part(text=PROMPT),
-                    ]
-                ),
-                config=types.GenerateContentConfig(
-                    response_mime_type="application/json",
-                    response_schema=Summary,
-                    temperature=0.2,
-                ),
-            )
-            return json.loads(resp.text)
-        except Exception as e:
-            last = e
-            print(f"  제미나이 호출 실패({attempt + 1}/3): {e}")
-            # 모델 이름이나 키 문제는 다시 해도 소용없으니 바로 멈춘다
-            if any(c in str(e) for c in ("404", "403", "401", "400", "NOT_FOUND", "PERMISSION_DENIED", "INVALID_ARGUMENT")):
-                break
-            time.sleep(30)  # 한도 초과 등은 잠깐 쉬고 다시 시도
+    for model in models:
+        for attempt in range(3):
+            try:
+                resp = client.models.generate_content(
+                    model=model,
+                    contents=types.Content(
+                        parts=[
+                            types.Part(file_data=types.FileData(file_uri=video_url)),
+                            types.Part(text=PROMPT),
+                        ]
+                    ),
+                    config=types.GenerateContentConfig(
+                        response_mime_type="application/json",
+                        response_schema=Summary,
+                        temperature=0.2,
+                    ),
+                )
+                print(f"  사용한 모델: {model}")
+                return json.loads(resp.text)
+            except Exception as e:
+                last = e
+                print(f"  [{model}] 호출 실패({attempt + 1}/3): {str(e)[:200]}")
+                if any(c in str(e) for c in permanent):
+                    break  # 이 모델은 다시 해도 소용없으니 다음 모델로
+                time.sleep(20 * (attempt + 1))  # 바쁠 때는 조금씩 더 쉬고 다시 시도
     raise RuntimeError(f"제미나이 호출 실패: {last}")
 
 
