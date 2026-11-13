@@ -38,7 +38,7 @@ jobs:
         if: ${{ github.event.inputs.urls != '' }}
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: gemini-3.1-pro-preview
+          GEMINI_MODEL: gemini-3.8-flash
           URLS: ${{ github.event.inputs.urls }}
         run: |
           pip install google-genai
