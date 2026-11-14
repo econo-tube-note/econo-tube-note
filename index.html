@@ -25,8 +25,6 @@ h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
 .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px}
 .meta{display:flex;gap:10px;font-size:.85rem;color:var(--sub)}
 .meta b{color:var(--accent);font-weight:700}
-.card h2{font-size:1.02rem;line-height:1.4;margin:0;font-weight:700;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.card p{margin:0;color:var(--ink);font-size:.97rem;font-weight:600;line-height:1.55;background:var(--chip);border-left:3px solid var(--accent);padding:10px 12px;border-radius:0 8px 8px 0}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
 .tags span{background:var(--chip);padding:2px 10px;border-radius:99px;font-size:.8rem}
 .empty{color:var(--sub);padding:40px 0;text-align:center}
@@ -34,13 +32,29 @@ h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
 dialog{width:min(720px,94vw);max-height:90vh;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);padding:0}
 dialog::backdrop{background:rgba(10,14,22,.55)}
 .dlg{padding:24px 26px 28px}
-.dlg h2{font-size:1.3rem;line-height:1.4;margin:6px 0 12px}
-.dlg h3{font-size:1rem;margin:22px 0 6px}
-.dlg ul{margin:0;padding-left:18px}
-.dlg li{margin:6px 0}
-.dlg a{color:var(--accent);font-weight:600;text-decoration:none;margin-right:4px}
-.dlg a:hover{text-decoration:underline}
-.concl{background:var(--chip);padding:12px 14px;border-radius:10px;margin:0}
+.card p{margin:0;color:var(--ink);font-size:1.12rem;font-weight:800;line-height:1.5;letter-spacing:-.01em;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.card h2{font-size:.85rem;line-height:1.45;margin:0;font-weight:400;color:var(--sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.dlg .concl{font-size:1.3rem;font-weight:800;line-height:1.45;letter-spacing:-.01em;margin:10px 0 6px}
+.dlg .dtitle{font-size:.88rem;color:var(--sub);line-height:1.45;margin:0 0 18px}
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:2;background:var(--card);margin:0 -26px;padding:0 22px}
+.tab{padding:10px 16px;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;background:none;color:var(--sub);font:inherit;font-weight:700;cursor:pointer}
+.tab.on{color:var(--ink);border-bottom-color:var(--accent)}
+.pane h3{font-size:1.08rem;font-weight:800;margin:26px 0 8px;padding-left:10px;border-left:4px solid var(--accent)}
+.pane h3.first{margin-top:18px}
+.pane ul{list-style:none;margin:0;padding:0}
+.pane li{display:grid;grid-template-columns:minmax(0,1fr) 78px;gap:12px;align-items:start;padding:9px 0;line-height:1.65}
+.pane li .tm{margin:3px 0 0;justify-self:end}
+.sec{scroll-margin-top:56px}
+.sec+.sec{margin-top:34px;padding-top:6px;border-top:1px solid var(--line)}
+@media(max-width:480px){.pane li{grid-template-columns:minmax(0,1fr) 70px;gap:8px}}
+.tm{display:inline-block;margin-left:6px;padding:1px 9px;border-radius:99px;background:var(--chip);color:var(--sub);font-size:.78rem;font-weight:600;text-decoration:none;white-space:nowrap;vertical-align:1px}
+a.tm:hover{color:var(--accent)}
+.sgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:12px}
+.sc{background:var(--chip);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.sc b{font-size:1.02rem}
+.sc p{margin:0;font-size:.9rem;color:var(--sub);line-height:1.55}
+.sc .tm{align-self:flex-start;margin:4px 0 0;background:var(--card)}
+.sc .big{font-size:1.45rem;font-weight:800;color:var(--accent);line-height:1.25}
 .actions{display:flex;gap:10px;margin-top:24px}
 .btn{display:inline-block;padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;cursor:pointer;text-decoration:none}
 .dlg a.btn.main{background:var(--accent);border-color:var(--accent);color:#fff;margin:0}
@@ -63,6 +77,7 @@ dialog::backdrop{background:rgba(10,14,22,.55)}
 <script src="videos.js"></script>
 <script>
 /* ===== 여기부터는 건드리지 않아도 된다 ===== */
+if(typeof VIDEOS==="undefined"){document.querySelector("#grid").innerHTML='<div class="empty">영상 목록(videos.js)을 불러오지 못했다. index.html과 videos.js가 같은 폴더에 있는지 확인해야 한다.</div>';throw new Error("videos.js를 찾을 수 없다")}
 VIDEOS.sort((a,b)=>b.date.localeCompare(a.date));
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -72,26 +87,30 @@ let ch="전체",q="",shown=12;const PAGE=12;
 const chans=["전체",...new Set(VIDEOS.map(v=>v.channel))];
 function chips(){$("#chips").innerHTML=chans.map(c=>`<button class="chip" aria-pressed="${c===ch}" data-c="${esc(c)}">${esc(c)}</button>`).join("")}
 function thumb(v){const id=vid(v.url);return id?`<img src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">`:""}
-function card(i,f){const v=VIDEOS[i];return `<article class="card${f?" feature":""}" tabindex="0" data-i="${i}"><div class="thumb">${thumb(v)}</div><div class="body"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span></div><h2>${esc(v.title)}</h2><p>${esc(v.conclusion)}</p><div class="tags">${v.tags.map(t=>`<span>${esc(t)}</span>`).join("")}</div></div></article>`}
+function card(i,f){const v=VIDEOS[i];return `<article class="card${f?" feature":""}" tabindex="0" data-i="${i}"><div class="thumb">${thumb(v)}</div><div class="body"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span></div><p>${esc(v.conclusion)}</p><h2>${esc(v.title)}</h2><div class="tags">${v.tags.map(t=>`<span>${esc(t)}</span>`).join("")}</div></div></article>`}
 function render(){
  const idx=VIDEOS.map((v,i)=>i).filter(i=>{const v=VIDEOS[i];return (ch==="전체"||v.channel===ch)&&(!q||(v.title+v.conclusion+v.tags.join(" ")).toLowerCase().includes(q))});
  $("#grid").innerHTML=idx.length?idx.slice(0,shown).map(i=>card(i)).join("")+(idx.length>shown?`<div class="more"><button class="btn" id="more">더 보기 (${idx.length-shown}편 남음)</button></div>`:""):`<div class="empty">조건에 맞는 영상이 없다. 다른 키워드나 채널을 골라보자.</div>`;
 }
 function open(i){
  const v=VIDEOS[i],id=vid(v.url),base=id?`https://www.youtube.com/watch?v=${id}`:"";
- const tl=t=>!t?"":base?`<a href="${base}&t=${sec(t)}s" target="_blank" rel="noopener">${t}</a>`:`<b>${t}</b>`;
- const parts=(v.parts||[]).map(p=>`<h3>${esc(p.t)}</h3><ul>${p.items.map(([t,x])=>`<li>${tl(t)} ${esc(x)}</li>`).join("")}</ul>`).join("");
- const stocks=(v.stocks||[]).length?`<h3>언급된 종목</h3><ul>${v.stocks.map(([t,n,x])=>`<li>${tl(t)} <b>${esc(n)}</b> ${esc(x)}</li>`).join("")}</ul>`:"";
- const nums=(v.numbers||[]).length?`<h3>주요 숫자</h3><ul>${v.numbers.map(([t,n,x])=>`<li>${tl(t)} <b>${esc(n)}</b> ${esc(x)}</li>`).join("")}</ul>`:"";
- const body=parts+stocks+nums||`<p class="empty">상세 요약은 아직 준비 중이다.</p>`;
- $("#dlg").innerHTML=`<div class="dlg"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span>${v.people?`<span>출연 ${esc(v.people)}</span>`:""}</div><h2>${esc(v.title)}</h2><p class="concl">${esc(v.conclusion)}</p>${body}<div class="actions">${base?`<a class="btn main" href="${base}" target="_blank" rel="noopener">원본 영상 보기</a>`:""}<button class="btn" id="x">닫기</button></div></div>`;
- $("#dlg").showModal();$("#x").onclick=()=>$("#dlg").close();
+ const tm=t=>!t?"":base?`<a class="tm" href="${base}&t=${sec(t)}s" target="_blank" rel="noopener">▶ ${t}</a>`:`<span class="tm">${t}</span>`;
+ const item=(t,x)=>{const k=x.search(/[:：]/),h=k>0&&k<40;return `<li><span>${h?`<b>${esc(x.slice(0,k+1))}</b> ${esc(x.slice(k+1).trim())}`:esc(x)}</span>${tm(t)}</li>`};
+ const p1=(v.parts||[]).map((p,n)=>`<h3${n?"":' class="first"'}>${esc(p.t)}</h3><ul>${p.items.map(([t,x])=>item(t,x)).join("")}</ul>`).join("")||`<p class="empty">상세 요약은 아직 준비 중이다.</p>`;
+ const st=(v.stocks||[]).map(([t,n,x])=>`<div class="sc"><b>${esc(n)}</b><p>${esc(x)}</p>${tm(t)}</div>`).join("");
+ const nu=(v.numbers||[]).map(([t,n,x])=>`<div class="sc"><span class="big">${esc(n)}</span><p>${esc(x)}</p>${tm(t)}</div>`).join("");
+ const p2=(st?`<h3 class="first">언급된 종목</h3><div class="sgrid">${st}</div>`:"")+(nu?`<h3${st?"":' class="first"'}>주요 숫자</h3><div class="sgrid">${nu}</div>`:"");
+ $("#dlg").innerHTML=`<div class="dlg"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span>${v.people?`<span>출연 ${esc(v.people)}</span>`:""}</div><p class="concl">${esc(v.conclusion)}</p><p class="dtitle">${esc(v.title)}</p>${p2?`<div class="tabs" role="tablist"><button class="tab on" role="tab" data-p="0">요약</button><button class="tab" role="tab" data-p="1">종목·숫자</button></div>`:""}<section class="pane sec" id="s0">${p1}</section>${p2?`<section class="pane sec" id="s1">${p2}</section>`:""}<div class="actions">${base?`<a class="btn main" href="${base}" target="_blank" rel="noopener">원본 영상 보기</a>`:""}<button class="btn" id="x">닫기</button></div></div>`;
+ $("#dlg").showModal();$("#dlg").scrollTop=0;$("#dlg").onscroll=spy;$("#x").onclick=()=>$("#dlg").close();
 }
+function mark(n){$('.tab[data-p="0"]').className="tab"+(n===0?" on":"");$('.tab[data-p="1"]').className="tab"+(n===1?" on":"")}
+function spy(){const d=$("#dlg"),s1=$("#s1");if(!s1)return;const atEnd=d.scrollTop+d.clientHeight>=d.scrollHeight-4;mark(atEnd||s1.getBoundingClientRect().top-d.getBoundingClientRect().top<140?1:0)}
+function tab(n){mark(n);const t=$("#s"+n);if(t&&t.scrollIntoView)t.scrollIntoView({behavior:"smooth",block:"start"})}
 $("#q").oninput=e=>{q=e.target.value.trim().toLowerCase();shown=PAGE;render()};
 $("#chips").onclick=e=>{const b=e.target.closest(".chip");if(b){ch=b.dataset.c;shown=PAGE;chips();render()}};
 $("#grid").onclick=e=>{if(e.target.id==="more"){shown+=PAGE;render();return}const c=e.target.closest(".card");if(c)open(+c.dataset.i)};
 $("#grid").onkeydown=e=>{if(e.key==="Enter"){const c=e.target.closest(".card");if(c)open(+c.dataset.i)}};
-$("#dlg").onclick=e=>{if(e.target===$("#dlg"))$("#dlg").close()};
+$("#dlg").onclick=e=>{const b=e.target.closest&&e.target.closest(".tab");if(b){tab(+b.dataset.p);return}if(e.target===$("#dlg"))$("#dlg").close()};
 chips();render();
 </script>
 </body>
