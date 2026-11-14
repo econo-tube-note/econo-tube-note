@@ -1,10 +1,13 @@
 name: 영상 요약 추가 및 사이트 배포
 
 on:
+  schedule:
+    # 한국 시간 07:30, 12:30, 18:30, 23:30 (GitHub는 UTC 기준이라 9시간 뺀 시각)
+    - cron: "30 22,3,9,14 * * *"
   workflow_dispatch:
     inputs:
       urls:
-        description: "요약할 유튜브 영상 주소 (여러 개는 공백으로 구분, 비워 두면 사이트만 다시 배포)"
+        description: "요약할 유튜브 영상 주소 (여러 개는 공백으로 구분). 비워 두면 5개 채널에서 새 영상을 찾아 요약한다."
         required: false
         default: ""
   push:
@@ -23,7 +26,7 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 100
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -31,38 +34,55 @@ jobs:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
-        if: ${{ github.event.inputs.urls != '' }}
+        if: ${{ github.event_name != 'push' }}
         with:
           python-version: "3.12"
 
       - name: 영상 요약 만들기
-        if: ${{ github.event.inputs.urls != '' }}
-        timeout-minutes: 25
+        id: summarize
+        if: ${{ github.event_name != 'push' }}
+        timeout-minutes: 80
         env:
           PYTHONUNBUFFERED: "1"
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: gemini-3.8-flash
           URLS: ${{ github.event.inputs.urls }}
+          # ---- 조절할 수 있는 값 ----
+          DAILY_BUDGET_MIN: "450"   # 하루에 요약할 영상 시간의 합(분). 무료 한도(하루 8시간)보다 조금 적게
+          MAX_VIDEO_MIN: "90"       # 이 길이(분)보다 긴 영상은 건너뛴다
+          MAX_AGE_DAYS: "2"         # 올라온 지 이 일수가 지난 영상은 처리하지 않는다
+          MAX_PER_RUN: "6"          # 한 번 실행에서 최대로 요약할 영상 수
         run: |
           pip install google-genai
           python scripts/summarize.py $URLS
 
       - name: 변경사항 저장
-        if: ${{ github.event.inputs.urls != '' }}
+        id: commit
+        if: ${{ !cancelled() && github.event_name != 'push' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add videos.js
+          for f in videos.js state.json archive.json channels.json; do
+            if [ -f "$f" ]; then git add "$f"; fi
+          done
+          if git diff --cached --quiet -- videos.js; then
+            echo "videos=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "videos=true" >> "$GITHUB_OUTPUT"
+          fi
           if ! git diff --cached --quiet; then
-            git commit -m "영상 요약 추가"
+            git commit -m "영상 요약 자동 갱신"
             git push
           fi
 
       - uses: actions/configure-pages@v5
+        if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.commit.outputs.videos == 'true' }}
 
       - uses: actions/upload-pages-artifact@v3
+        if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.commit.outputs.videos == 'true' }}
         with:
           path: .
 
       - id: deployment
         uses: actions/deploy-pages@v4
+        if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.commit.outputs.videos == 'true' }}
