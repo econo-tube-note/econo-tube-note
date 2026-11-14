@@ -1,7 +1,27 @@
 [
- {"name": "삼프로TV", "handle": "@3protv", "id": ""},
- {"name": "815머니톡", "handle": "@815moneytalk", "id": ""},
- {"name": "전인구경제연구소", "handle": "@moneydo", "id": ""},
- {"name": "김작가TV", "handle": "@lucky_tv", "id": ""},
- {"name": "머니인사이드", "handle": "@moneyinside7", "id": ""}
+ {
+  "name": "삼프로TV",
+  "handle": "@3protv",
+  "id": "UChlv4GSd7OQl3js-jkLOnFA"
+ },
+ {
+  "name": "815머니톡",
+  "handle": "@815moneytalk",
+  "id": "UCCG6BEYjfQMGzypJw2EJCDQ"
+ },
+ {
+  "name": "전인구경제연구소",
+  "handle": "@moneydo",
+  "id": "UCznImSIaxZR7fdLCICLdgaQ"
+ },
+ {
+  "name": "김작가TV",
+  "handle": "@lucky_tv",
+  "id": "UCvil4OAt-zShzkKHsg9EQAw"
+ },
+ {
+  "name": "머니인사이드",
+  "handle": "@moneyinside7",
+  "id": "UCxfko2YOD6DODYRGzeOPhIQ"
+ }
 ]
