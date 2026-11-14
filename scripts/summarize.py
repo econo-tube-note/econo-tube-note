@@ -27,6 +27,8 @@ except Exception:
 
 MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
 CALL_TIMEOUT = int(os.environ.get("GEMINI_TIMEOUT", "300"))  # 제미나이 응답을 기다리는 최대 시간(초)
+STATS = []   # (모델, 결과) 기록. 결과는 ok / busy / dead
+DEAD = set()  # 이번 실행에서 쓸 수 없다고 확인된 모델
 DATA = Path(__file__).resolve().parent.parent / "videos.js"
 HEADER = "/* 영상 목록. 자동화(scripts/summarize.py)가 갱신하는 파일이다. 직접 고칠 때는 JSON 형식을 지킨다. */\n"
 TIME_RE = re.compile(r"^\d{1,2}:\d{2}(:\d{2})?$")
@@ -101,44 +103,60 @@ def call_gemini(video_url):
         numbers: list[Num]
 
     client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-    # 첫 번째 모델이 바쁘거나(503) 없으면(404) 다음 모델로 넘어간다
-    fallbacks = os.environ.get("GEMINI_FALLBACKS", "gemini-3.7-flash,gemini-3.5-flash-lite")
+    # 모델을 차례로 한 번씩 시도한다. 한 모델이 바쁘면 바로 다음 모델로 넘어가고, 전부 바쁘면 잠깐 쉬었다가 처음부터 다시 돌린다.
+    fallbacks = os.environ.get("GEMINI_FALLBACKS", "gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash-lite,gemini-3.1-flash-lite")
     models = [MODEL] + [m.strip() for m in fallbacks.split(",") if m.strip() and m.strip() != MODEL]
     permanent = ("NOT_FOUND", "PERMISSION_DENIED", "INVALID_ARGUMENT", "UNAUTHENTICATED")
+    slow = set()  # 이번 영상에서 응답이 멈춘 모델
     last = None
-    for model in models:
-        for attempt in range(3):
-            try:
-                def ask(model=model):
-                    return client.models.generate_content(
-                        model=model,
-                        contents=types.Content(
-                            parts=[
-                                types.Part(file_data=types.FileData(file_uri=video_url)),
-                                types.Part(text=PROMPT),
-                            ]
-                        ),
-                        config=types.GenerateContentConfig(
-                            response_mime_type="application/json",
-                            response_schema=Summary,
-                            temperature=0.2,
-                        ),
-                    )
+    for rnd in range(3):
+        for model in models:
+            if model in DEAD or model in slow:
+                continue
 
+            def ask(model=model):
+                return client.models.generate_content(
+                    model=model,
+                    contents=types.Content(
+                        parts=[
+                            types.Part(file_data=types.FileData(file_uri=video_url)),
+                            types.Part(text=PROMPT),
+                        ]
+                    ),
+                    config=types.GenerateContentConfig(
+                        response_mime_type="application/json",
+                        response_schema=Summary,
+                        temperature=0.2,
+                    ),
+                )
+
+            try:
                 print(f"  [{model}] 요청 보냄 (최대 {CALL_TIMEOUT}초 기다림)")
                 resp = run_with_timeout(ask, CALL_TIMEOUT)
+                out = json.loads(resp.text)
+                STATS.append((model, "ok"))
                 print(f"  사용한 모델: {model}")
-                return json.loads(resp.text)
+                return out
             except TimeoutError as e:
                 last = e
-                print(f"  [{model}] {e} -> 다음 모델로 넘어간다")
-                break
+                slow.add(model)
+                STATS.append((model, "busy"))
+                print(f"  [{model}] {e} -> 이 영상에서는 다음 모델로 넘어간다")
             except Exception as e:
                 last = e
-                print(f"  [{model}] 호출 실패({attempt + 1}/3): {str(e)[:200]}")
                 if any(c in str(e) for c in permanent):
-                    break  # 이 모델은 다시 해도 소용없으니 다음 모델로
-                time.sleep(20 * (attempt + 1))  # 바쁠 때는 조금씩 더 쉬고 다시 시도
+                    DEAD.add(model)  # 모델 이름이 없거나 권한이 없다. 이번 실행 동안은 다시 안 쓴다
+                    STATS.append((model, "dead"))
+                    print(f"  [{model}] 쓸 수 없는 모델: {str(e)[:120]}")
+                else:
+                    STATS.append((model, "busy"))
+                    print(f"  [{model}] 바쁨/오류: {str(e)[:120]}")
+        if all(m in DEAD or m in slow for m in models):
+            break
+        if rnd < 2:
+            wait = 30 * (rnd + 1)
+            print(f"  모든 모델이 바빠서 {wait}초 쉰다 ({rnd + 1}/3)")
+            time.sleep(wait)
     raise RuntimeError(f"제미나이 호출 실패: {last}")
 
 
@@ -391,7 +409,7 @@ def auto():
         print("channels.json이 없거나 비어 있다.")
         return 1
     state = read_json(STATE, {})
-    for k in ("skipped", "failed", "spent"):
+    for k in ("skipped", "failed", "spent", "models"):
         state.setdefault(k, {})
     now = datetime.datetime.now(datetime.timezone.utc)
     today = now.astimezone(KST).strftime("%Y-%m-%d")
@@ -464,6 +482,7 @@ def auto():
         try:
             entry = clean(call_gemini(url), url, e["title"], e["channel"],
                           e["published"].astimezone(KST).strftime("%Y-%m-%d"))
+            entry["model"] = next((m for m, o in reversed(STATS) if o == "ok"), "")  # 어느 모델이 요약했는지 기록
             videos.insert(0, entry)
             have.add(vid)
             state["failed"].pop(vid, None)
@@ -473,13 +492,21 @@ def auto():
             save(videos)
             print(f"  완료: {e['title']}")
         except Exception as ex:
-            n = state["failed"].get(vid, 0) + 1
-            state["failed"][vid] = n
             bad_streak += 1
-            print(f"  실패({n}번째): {str(ex)[:200]}")
-            if n >= 5:
-                state["skipped"][vid] = "요약 5번 실패"
-                state["failed"].pop(vid, None)
+            busy = any(c in str(ex) for c in ("503", "UNAVAILABLE", "429", "RESOURCE_EXHAUSTED", "응답이 없다"))
+            if busy:
+                # 구글이 혼잡해서 생긴 일시적인 실패는 포기 횟수에 세지 않는다. (올라온 지 이틀이 지나면 자연히 대상에서 빠진다)
+                print(f"  혼잡으로 실패, 다음 실행 때 다시 시도한다: {str(ex)[:150]}")
+            else:
+                n = state["failed"].get(vid, 0) + 1
+                state["failed"][vid] = n
+                print(f"  실패({n}번째): {str(ex)[:200]}")
+                if n >= 5:
+                    state["skipped"][vid] = "요약 5번 실패"
+                    state["failed"].pop(vid, None)
+        while STATS:
+            m, o = STATS.pop()
+            state["models"].setdefault(m, {"ok": 0, "busy": 0, "dead": 0})[o] += 1
         write_json(STATE, state)
         if bad_streak >= 2:
             print("연속으로 실패해서 이번 실행은 여기서 멈춘다. (구글이 혼잡할 수 있다. 다음 실행 때 다시 시도한다.)")
@@ -487,6 +514,8 @@ def auto():
         time.sleep(5)
 
     write_json(STATE, state)
+    for m, c in state["models"].items():
+        print(f"모델 누적 기록: {m} -> 성공 {c['ok']}, 바쁨 {c['busy']}, 사용불가 {c['dead']}")
     print(f"\n이번 실행: 성공 {done}편 | 오늘 사용한 영상 시간 {spent // 60}분 / 예산 {budget // 60}분")
     return 0
 
