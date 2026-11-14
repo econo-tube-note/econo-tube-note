@@ -23,6 +23,7 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 40
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -36,7 +37,9 @@ jobs:
 
       - name: 영상 요약 만들기
         if: ${{ github.event.inputs.urls != '' }}
+        timeout-minutes: 25
         env:
+          PYTHONUNBUFFERED: "1"
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: gemini-3.8-flash
           URLS: ${{ github.event.inputs.urls }}
