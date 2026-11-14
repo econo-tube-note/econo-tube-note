@@ -1,8 +1,26 @@
 {
- "skipped": {},
- "failed": {
-  "8C9UKITrtLc": 1,
-  "PZLLj9tHYlQ": 1
+ "skipped": {
+  "_qtDqYc6syQ": "쇼츠"
  },
- "spent": {}
+ "failed": {},
+ "spent": {
+  "2026-11-14": 10800
+ },
+ "models": {
+  "gemini-3.6-flash": {
+   "ok": 6,
+   "busy": 0,
+   "dead": 0
+  },
+  "gemini-3.7-flash": {
+   "ok": 0,
+   "busy": 6,
+   "dead": 0
+  },
+  "gemini-3.8-flash": {
+   "ok": 0,
+   "busy": 6,
+   "dead": 0
+  }
+ }
 }
