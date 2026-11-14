@@ -29,6 +29,8 @@ MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
 CALL_TIMEOUT = int(os.environ.get("GEMINI_TIMEOUT", "300"))  # 제미나이 응답을 기다리는 최대 시간(초)
 STATS = []   # (모델, 결과) 기록. 결과는 ok / busy / dead
 DEAD = set()  # 이번 실행에서 쓸 수 없다고 확인된 모델
+MODEL_STATS = {}  # 모델별 누적 기록 (state.json의 models). 잘 되는 모델을 먼저 쓰는 데 쓴다
+
 DATA = Path(__file__).resolve().parent.parent / "videos.js"
 HEADER = "/* 영상 목록. 자동화(scripts/summarize.py)가 갱신하는 파일이다. 직접 고칠 때는 JSON 형식을 지킨다. */\n"
 TIME_RE = re.compile(r"^\d{1,2}:\d{2}(:\d{2})?$")
@@ -70,6 +72,11 @@ def run_with_timeout(fn, seconds):
     return box["v"]
 
 
+def model_rate(m):
+    c = MODEL_STATS.get(m, {})
+    return (c.get("ok", 0) + 1) / (c.get("ok", 0) + c.get("busy", 0) + 2)
+
+
 # ---------- 제미나이 호출 (이 함수만 외부 라이브러리를 쓴다) ----------
 def call_gemini(video_url):
     from google import genai
@@ -106,6 +113,7 @@ def call_gemini(video_url):
     # 모델을 차례로 한 번씩 시도한다. 한 모델이 바쁘면 바로 다음 모델로 넘어가고, 전부 바쁘면 잠깐 쉬었다가 처음부터 다시 돌린다.
     fallbacks = os.environ.get("GEMINI_FALLBACKS", "gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash-lite,gemini-3.1-flash-lite")
     models = [MODEL] + [m.strip() for m in fallbacks.split(",") if m.strip() and m.strip() != MODEL]
+    models.sort(key=lambda m: -model_rate(m))  # 지금까지 성공률이 높은 모델부터 (기록이 같으면 원래 순서)
     permanent = ("NOT_FOUND", "PERMISSION_DENIED", "INVALID_ARGUMENT", "UNAUTHENTICATED")
     slow = set()  # 이번 영상에서 응답이 멈춘 모델
     last = None
@@ -375,14 +383,36 @@ def fetch_entries(cid):
     raise RuntimeError(f"목록을 가져오지 못했다: {str(last)[:120]}")
 
 
+_WARNED = set()
+
+
+def warn_once(key, msg):
+    if key not in _WARNED:
+        _WARNED.add(key)
+        print(msg)
+
+
 def get_info(vid):
     try:
         html = http_get(f"https://www.youtube.com/watch?v={vid}")
-    except Exception:
+    except Exception as e:
+        warn_once("http", f"  영상 길이 확인 실패(영상 페이지를 못 읽음): {str(e)[:100]}")
         return {}
-    m = re.search(r'"lengthSeconds":"(\d+)"', html)
-    return {"length": int(m.group(1)) if m else 0,
-            "live": '"isLive":true' in html, "upcoming": '"isUpcoming":true' in html}
+    length = 0
+    m = re.search(r'"lengthSeconds":\s*"(\d+)"', html)
+    if m:
+        length = int(m.group(1))
+    if not length:
+        m = re.search(r'itemprop="duration"\s+content="(PT[^"]+)"', html)
+        if m:
+            length = parse_iso_duration(m.group(1))
+    if not length:
+        m = re.search(r'"approxDurationMs":\s*"(\d+)"', html)
+        if m:
+            length = int(m.group(1)) // 1000
+    if not length:
+        warn_once("parse", "  영상 길이를 페이지에서 찾지 못했다. (유튜브 화면 구조가 다르거나 접근이 제한됨) 이 경우 영상마다 30분으로 계산한다. 정확하게 하려면 YOUTUBE_API_KEY를 쓰는 편이 좋다.")
+    return {"length": length, "live": '"isLive":true' in html, "upcoming": '"isUpcoming":true' in html}
 
 
 def interleave(lists):
@@ -411,6 +441,7 @@ def auto():
     state = read_json(STATE, {})
     for k in ("skipped", "failed", "spent", "models"):
         state.setdefault(k, {})
+    MODEL_STATS.update(state["models"])
     now = datetime.datetime.now(datetime.timezone.utc)
     today = now.astimezone(KST).strftime("%Y-%m-%d")
     week_ago = (now.astimezone(KST) - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
@@ -506,7 +537,11 @@ def auto():
                     state["failed"].pop(vid, None)
         while STATS:
             m, o = STATS.pop()
-            state["models"].setdefault(m, {"ok": 0, "busy": 0, "dead": 0})[o] += 1
+            c = state["models"].setdefault(m, {"ok": 0, "busy": 0, "dead": 0})
+            c[o] += 1
+            if c["ok"] + c["busy"] > 40:  # 오래된 기록의 영향이 줄어들게 절반으로 줄인다
+                c["ok"], c["busy"] = c["ok"] // 2, c["busy"] // 2
+            MODEL_STATS[m] = c
         write_json(STATE, state)
         if bad_streak >= 2:
             print("연속으로 실패해서 이번 실행은 여기서 멈춘다. (구글이 혼잡할 수 있다. 다음 실행 때 다시 시도한다.)")
