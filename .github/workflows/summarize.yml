@@ -2,12 +2,12 @@ name: 영상 요약 추가 및 사이트 배포
 
 on:
   schedule:
-    # 한국 시간 07:30, 12:30, 18:30, 23:30 (GitHub는 UTC 기준이라 9시간 뺀 시각)
-    - cron: "30 22,3,9,14 * * *"
+    # 2시간마다 한 번 (하루 12번). 구글이 혼잡해서 실패한 영상을 다음 실행에서 다시 시도하기 위해 자주 돌린다.
+    - cron: "15 */2 * * *"
   workflow_dispatch:
     inputs:
       urls:
-        description: "요약할 유튜브 영상 주소 (여러 개는 공백으로 구분). 비워 두면 5개 채널에서 새 영상을 찾아 요약한다."
+        description: "영상 주소를 넣으면 그 영상을 요약한다(여러 개는 공백으로 구분). 비워 두면 5개 채널에서 새 영상을 찾아 요약한다. 지우려면 삭제:영상주소 또는 삭제:제목에들어간단어"
         required: false
         default: ""
   push:
@@ -53,6 +53,8 @@ jobs:
           MAX_VIDEO_MIN: "90"       # 이 길이(분)보다 긴 영상은 건너뛴다
           MAX_AGE_DAYS: "2"         # 올라온 지 이 일수가 지난 영상은 처리하지 않는다
           MAX_PER_RUN: "6"          # 한 번 실행에서 최대로 요약할 영상 수
+          TOPIC_FILTER: "1"         # 1이면 경제와 관련 없는 영상은 제외한다 (0이면 모두 요약)
+          TOPIC_STRICT: "1"         # 1이면 분명히 관련 있을 때만 포함, 0이면 애매한 영상도 포함
         run: |
           pip install google-genai
           python scripts/summarize.py $URLS
