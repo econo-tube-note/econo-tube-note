@@ -13,6 +13,7 @@ import re
 import sys
 import threading
 import time
+import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
@@ -146,8 +147,12 @@ def http_get(url, timeout=20):
     req = urllib.request.Request(
         url, headers={"User-Agent": "Mozilla/5.0", "Accept-Language": "ko,en;q=0.8"}
     )
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return r.read().decode("utf-8", "replace")
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            return r.read().decode("utf-8", "replace")
+    except urllib.error.HTTPError as e:
+        body = e.read().decode("utf-8", "replace")[:200].replace("\n", " ")
+        raise RuntimeError(f"HTTP {e.code} {e.reason}: {body}") from None
 
 
 def get_meta(vid):
@@ -269,8 +274,7 @@ def resolve_channel_id(handle):
     return ""
 
 
-def fetch_feed(channel_id):
-    xml = http_get(f"https://www.youtube.com/feeds/videos.xml?channel_id={channel_id}")
+def parse_feed(xml):
     root = ET.fromstring(xml.encode("utf-8"))
     author = (root.findtext("a:author/a:name", default="", namespaces=NS) or "").strip()
     out = []
@@ -288,6 +292,69 @@ def fetch_feed(channel_id):
             "short": "/shorts/" in href,
         })
     return author, out  # 피드는 최신순
+
+
+def parse_iso_duration(v):
+    m = re.fullmatch(r"P(?:(\d+)D)?T?(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?", v or "")
+    if not m:
+        return 0
+    d, h, mi, sec = [int(x or 0) for x in m.groups()]
+    return d * 86400 + h * 3600 + mi * 60 + sec
+
+
+def fetch_via_api(cid, key):
+    """유튜브 공식 API(YouTube Data API)로 최근 영상을 가져온다. 길이와 생방송 여부도 같이 온다."""
+    base = "https://www.googleapis.com/youtube/v3/"
+    pl = json.loads(http_get(f"{base}playlistItems?part=contentDetails&maxResults=15&playlistId=UU{cid[2:]}&key={key}"))
+    ids = [i["contentDetails"]["videoId"] for i in pl.get("items", [])]
+    if not ids:
+        return "", []
+    vd = json.loads(http_get(f"{base}videos?part=contentDetails,snippet&id={','.join(ids)}&key={key}"))
+    meta = {v["id"]: v for v in vd.get("items", [])}
+    author, out = "", []
+    for vid in ids:  # 재생목록은 최신순
+        v = meta.get(vid)
+        if not v:
+            continue
+        sn = v["snippet"]
+        author = author or sn.get("channelTitle", "")
+        live = sn.get("liveBroadcastContent", "none")
+        out.append({
+            "id": vid,
+            "title": sn.get("title", "").strip(),
+            "published": datetime.datetime.fromisoformat(sn["publishedAt"].replace("Z", "+00:00")),
+            "short": False,
+            "length": parse_iso_duration(v["contentDetails"].get("duration", "")),
+            "live": live == "live",
+            "upcoming": live == "upcoming",
+        })
+    return author, out
+
+
+def fetch_entries(cid):
+    """채널의 최근 영상 목록. 공식 API 키가 있으면 먼저 쓰고, 안 되면 RSS 주소를 여러 방법으로 시도한다."""
+    key = os.environ.get("YOUTUBE_API_KEY", "")
+    if key:
+        try:
+            return fetch_via_api(cid, key)
+        except Exception as e:
+            print(f"  공식 API 실패: {str(e)[:200]}")
+    plan = [
+        (f"channel_id={cid}", 3),         # 일반 채널 피드
+        (f"playlist_id=UULF{cid[2:]}", 2),  # 쇼츠·생방송을 뺀 업로드 목록
+        (f"playlist_id=UU{cid[2:]}", 1),    # 전체 업로드 목록
+    ]
+    last = None
+    for query, tries in plan:
+        for i in range(tries):
+            try:
+                return parse_feed(http_get("https://www.youtube.com/feeds/videos.xml?" + query))
+            except Exception as e:
+                last = e
+                print(f"  피드 실패 ({query.split('=')[0]}, {i + 1}/{tries}): {str(e)[:120]}")
+                if i < tries - 1:
+                    time.sleep(15)
+    raise RuntimeError(f"목록을 가져오지 못했다: {str(last)[:120]}")
 
 
 def get_info(vid):
@@ -337,18 +404,22 @@ def auto():
 
     lists, ids_changed = [], False
     for ch in channels:
-        try:
-            if not ch.get("id"):
+        if not ch.get("id"):
+            try:
                 ch["id"] = resolve_channel_id(ch["handle"])
-                ids_changed = ids_changed or bool(ch["id"])
-                if not ch["id"]:
-                    print(f"채널 ID를 못 찾았다: {ch['name']} ({ch['handle']}). channels.json의 id에 직접 넣어야 한다.")
-                    continue
-            author, entries = fetch_feed(ch["id"])
-            print(f"채널 확인: {ch['name']} -> {author} ({ch['id']}), 피드 {len(entries)}편")
+            except Exception as e:
+                print(f"채널 ID 찾기 실패: {ch['name']} ({ch['handle']}): {str(e)[:150]}")
+                continue
+            if not ch["id"]:
+                print(f"채널 ID를 못 찾았다: {ch['name']} ({ch['handle']}). channels.json의 id에 직접 넣어야 한다.")
+                continue
+            ids_changed = True
+        try:
+            author, entries = fetch_entries(ch["id"])
         except Exception as e:
-            print(f"채널 처리 실패: {ch.get('name')}: {e}")
+            print(f"채널 영상 목록 실패: {ch['name']}: {e}")
             continue
+        print(f"채널 확인: {ch['name']} -> {author} ({ch['id']}), 최근 영상 {len(entries)}편")
         fresh = []
         for e in entries:
             if e["id"] in have or e["id"] in state["skipped"]:
@@ -360,6 +431,8 @@ def auto():
         lists.append(fresh)
     if ids_changed:
         write_json(CHANNELS, channels)
+    if not lists:
+        print("어느 채널의 영상 목록도 가져오지 못했다. (유튜브 쪽 일시 오류일 수 있다. 다음 실행 때 다시 시도한다.)")
 
     done, bad_streak = 0, 0
     for e in interleave(lists):
@@ -370,7 +443,7 @@ def auto():
         if e["short"]:
             state["skipped"][vid] = "쇼츠"
             continue
-        info = get_info(vid)
+        info = {"length": e["length"], "live": e["live"], "upcoming": e["upcoming"]} if "length" in e else get_info(vid)
         if info.get("live") or info.get("upcoming"):
             print(f"생방송 중이거나 예정된 영상이라 다음에 처리한다: {e['title']}")
             continue
