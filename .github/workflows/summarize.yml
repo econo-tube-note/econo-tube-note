@@ -46,6 +46,7 @@ jobs:
           PYTHONUNBUFFERED: "1"
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GEMINI_MODEL: gemini-3.8-flash
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}   # 없어도 된다 (유튜브 RSS가 계속 막힐 때만 사용)
           URLS: ${{ github.event.inputs.urls }}
           # ---- 조절할 수 있는 값 ----
           DAILY_BUDGET_MIN: "450"   # 하루에 요약할 영상 시간의 합(분). 무료 한도(하루 8시간)보다 조금 적게
