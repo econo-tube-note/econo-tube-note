@@ -54,7 +54,7 @@ jobs:
           MAX_AGE_DAYS: "2"         # 올라온 지 이 일수가 지난 영상은 처리하지 않는다
           MAX_PER_RUN: "6"          # 한 번 실행에서 최대로 요약할 영상 수
           TOPIC_FILTER: "1"         # 1이면 경제와 관련 없는 영상은 제외한다 (0이면 모두 요약)
-          TOPIC_STRICT: "1"         # 1이면 분명히 관련 있을 때만 포함, 0이면 애매한 영상도 포함
+          TOPIC_STRICT: "0"         # 1이면 분명히 관련 있을 때만 포함, 0이면 애매한 영상도 포함
         run: |
           pip install google-genai
           python scripts/summarize.py $URLS
