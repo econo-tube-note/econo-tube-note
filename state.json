@@ -1,15 +1,19 @@
 {
  "skipped": {
   "_qtDqYc6syQ": "쇼츠",
-  "SV2dnGG6HSk": "쇼츠"
+  "SV2dnGG6HSk": "쇼츠",
+  "Wu_p9_3Gur0": "쇼츠",
+  "jRqfWa8YVes": "쇼츠",
+  "KdlkkiGmDpA": "쇼츠",
+  "bZTmbYED690": "쇼츠"
  },
  "failed": {},
  "spent": {
-  "2026-11-14": 21600
+  "2026-11-14": 27000
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 10,
+   "ok": 13,
    "busy": 0,
    "dead": 0
   },
