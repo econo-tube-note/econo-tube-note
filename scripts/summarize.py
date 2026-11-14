@@ -268,7 +268,7 @@ ROOT = DATA.parent
 CHANNELS = ROOT / "channels.json"
 STATE = ROOT / "state.json"
 ARCHIVE = ROOT / "archive.json"
-NS = {"a": "http://www.w3.org/2005/Atom", "yt": "http://www.youtube.com/xml/schemas/2015"}
+NS = {"a": "http://www.w3.org/2005/Atom", "yt": "http://www.youtube.com/xml/schemas/2015", "media": "http://search.yahoo.com/mrss/"}
 KST = datetime.timezone(datetime.timedelta(hours=9))
 
 
@@ -316,6 +316,7 @@ def parse_feed(xml):
             "title": (e.findtext("a:title", default="", namespaces=NS) or "").strip(),
             "published": ts,
             "short": "/shorts/" in href,
+            "desc": " ".join((e.findtext("media:group/media:description", default="", namespaces=NS) or "").split())[:300],
         })
     return author, out  # 피드는 최신순
 
@@ -350,6 +351,7 @@ def fetch_via_api(cid, key):
             "title": sn.get("title", "").strip(),
             "published": datetime.datetime.fromisoformat(sn["publishedAt"].replace("Z", "+00:00")),
             "short": False,
+            "desc": " ".join((sn.get("description") or "").split())[:300],
             "length": parse_iso_duration(v["contentDetails"].get("duration", "")),
             "live": live == "live",
             "upcoming": live == "upcoming",
@@ -415,6 +417,72 @@ def get_info(vid):
     return {"length": length, "live": '"isLive":true' in html, "upcoming": '"isUpcoming":true' in html}
 
 
+# ---------- 주제 분류: 제목만 보고 경제 관련 영상인지 가려낸다 ----------
+TOPIC_PROMPT = """너는 경제·투자 유튜브 채널의 영상을 분류하는 편집자다. 아래 영상들의 제목(과 설명 일부)만 보고, 각 영상이 다음 주제에 해당하는지 판단해라.
+
+해당 주제: 경제(거시경제, 금리, 환율, 물가, 무역), 주식, 투자(코인·채권·펀드 포함), 산업·기업 분석, 부동산, 재테크(저축, 연금, 세금, 대출 등).
+
+규칙
+- {rule}
+- 정치·외교·안보 이야기라도 제목이나 설명에 환율, 관세, 증시, 산업 영향처럼 경제적 관점이 분명히 드러나면 해당한다.
+- 음식, 여행, 건강, 연예, 사회 이슈, 일상, 안보 자체를 다루는 영상은 경제적 관점이 분명하지 않으면 해당하지 않는다.
+- reason에는 판단 근거를 한 줄로 쓴다.
+- 입력의 id를 그대로 돌려준다. 모든 영상에 대해 답한다.
+
+영상 목록(JSON):
+"""
+
+
+def call_gemini_text(prompt):
+    from google import genai
+    from google.genai import types
+    from pydantic import BaseModel
+
+    class Verdict(BaseModel):
+        id: str
+        related: bool
+        reason: str
+
+    class Verdicts(BaseModel):
+        items: list[Verdict]
+
+    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+    models = [m.strip() for m in os.environ.get("TOPIC_MODELS", "gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-3.6-flash").split(",") if m.strip()]
+    last = None
+    for rnd in range(2):
+        for model in models:
+            if model in DEAD:
+                continue
+            try:
+                resp = run_with_timeout(
+                    lambda m=model: client.models.generate_content(
+                        model=m, contents=prompt,
+                        config=types.GenerateContentConfig(response_mime_type="application/json", response_schema=Verdicts, temperature=0)),
+                    90)
+                return json.loads(resp.text)
+            except Exception as e:
+                last = e
+                if any(c in str(e) for c in ("NOT_FOUND", "PERMISSION_DENIED", "INVALID_ARGUMENT", "UNAUTHENTICATED")):
+                    DEAD.add(model)
+        if rnd == 0:
+            time.sleep(20)
+    raise RuntimeError(f"주제 분류 호출 실패: {str(last)[:150]}")
+
+
+def classify(items):
+    """{영상id: (경제 관련 여부, 이유)}를 돌려준다. 호출이 실패하면 None."""
+    strict = cfg("TOPIC_STRICT", 1)
+    rule = ("분명히 해당할 때만 related=true로 한다. 조금이라도 애매하면 false로 한다." if strict
+            else "분명히 해당하지 않을 때만 false로 한다. 애매하면 true로 한다.")
+    payload = [{"id": e["id"], "channel": e["channel"], "title": e["title"], "description": e.get("desc", "")} for e in items]
+    try:
+        data = call_gemini_text(TOPIC_PROMPT.replace("{rule}", rule) + json.dumps(payload, ensure_ascii=False))
+    except Exception as ex:
+        print(f"  {ex}")
+        return None
+    return {str(i.get("id")): (bool(i.get("related")), str(i.get("reason", ""))[:80]) for i in data.get("items", [])}
+
+
 def interleave(lists):
     """채널마다 최신 영상부터 한 편씩 번갈아 꺼낸다. (한 채널이 예산을 다 쓰지 않게)"""
     out = []
@@ -439,7 +507,7 @@ def auto():
         print("channels.json이 없거나 비어 있다.")
         return 1
     state = read_json(STATE, {})
-    for k in ("skipped", "failed", "spent", "models"):
+    for k in ("skipped", "failed", "spent", "models", "topic"):
         state.setdefault(k, {})
     MODEL_STATS.update(state["models"])
     now = datetime.datetime.now(datetime.timezone.utc)
@@ -483,15 +551,39 @@ def auto():
     if not lists:
         print("어느 채널의 영상 목록도 가져오지 못했다. (유튜브 쪽 일시 오류일 수 있다. 다음 실행 때 다시 시도한다.)")
 
+    use_topic = cfg("TOPIC_FILTER", 1)
+    if use_topic:
+        pending = [e for e in interleave(lists) if not e["short"] and e["id"] not in state["topic"] and e["id"] not in state["skipped"]]
+        for i in range(0, len(pending), 30):
+            chunk = pending[i:i + 30]
+            verdict = classify(chunk)
+            if verdict is None:
+                print("제목 분류에 실패해서 분류하지 못한 영상은 이번 실행에서 건너뛴다. (다음 실행 때 다시 분류한다)")
+                break
+            for e in chunk:
+                v = verdict.get(e["id"])
+                if v is None:
+                    continue  # 응답에서 빠진 영상은 다음 실행 때 다시 분류한다
+                if v[0]:
+                    state["topic"][e["id"]] = True
+                else:
+                    state["skipped"][e["id"]] = "경제 무관: " + v[1]
+                    print(f"경제와 무관해서 제외: [{e['channel']}] {e['title']} ({v[1]})")
+        write_json(STATE, state)
+
     done, bad_streak = 0, 0
     for e in interleave(lists):
         if done >= per_run or time.time() > deadline:
             print("이번 실행에서 처리할 수 있는 한도에 도달했다.")
             break
         vid = e["id"]
+        if vid in state["skipped"]:
+            continue
         if e["short"]:
             state["skipped"][vid] = "쇼츠"
             continue
+        if use_topic and not state["topic"].get(vid):
+            continue  # 아직 경제 관련인지 확인되지 않은 영상
         info = {"length": e["length"], "live": e["live"], "upcoming": e["upcoming"]} if "length" in e else get_info(vid)
         if info.get("live") or info.get("upcoming"):
             print(f"생방송 중이거나 예정된 영상이라 다음에 처리한다: {e['title']}")
@@ -517,6 +609,7 @@ def auto():
             videos.insert(0, entry)
             have.add(vid)
             state["failed"].pop(vid, None)
+            state["topic"].pop(vid, None)
             spent += est
             state["spent"][today] = spent
             done, bad_streak = done + 1, 0
@@ -555,9 +648,42 @@ def auto():
     return 0
 
 
+def remove_videos(targets):
+    """사이트에서 영상을 지운다. 대상은 영상 주소(또는 ID), 또는 제목에 들어간 단어다. 지운 영상은 다시 요약하지 않는다."""
+    videos = load()
+    state = read_json(STATE, {})
+    state.setdefault("skipped", {})
+    removed = []
+    for t in targets:
+        vid = video_id(t) or (t if re.fullmatch(r"[A-Za-z0-9_-]{11}", t) else None)
+        hits = [v for v in videos if video_id(v.get("url")) == vid] if vid else [v for v in videos if t in v.get("title", "")]
+        if len(hits) != 1:
+            print(f"삭제하지 않았다: '{t}'에 맞는 영상이 {len(hits)}편이라 하나로 정해지지 않는다.")
+            for v in hits[:5]:
+                print(f"  - {v.get('title')}")
+            continue
+        v = hits[0]
+        videos.remove(v)
+        state["skipped"][video_id(v.get("url"))] = "직접 삭제"
+        removed.append(v.get("title"))
+    if removed:
+        save(videos)
+        write_json(STATE, state)
+    for r in removed:
+        print(f"삭제함: {r}")
+    print(f"삭제 {len(removed)}편")
+    return 0
+
+
 # ---------- 실행 ----------
 def main(argv):
-    urls = [u for u in re.split(r"[\s,]+", " ".join(argv)) if u]
+    tokens = [u for u in re.split(r"[\s,]+", " ".join(argv)) if u]
+    removals = [t.split(":", 1)[1] for t in tokens if t.startswith(("삭제:", "remove:")) and t.split(":", 1)[1]]
+    urls = [t for t in tokens if not t.startswith(("삭제:", "remove:"))]
+    if removals:
+        code = remove_videos(removals)
+        if not urls:
+            return code
     if not urls:
         return auto()
     if not os.environ.get("GEMINI_API_KEY"):
