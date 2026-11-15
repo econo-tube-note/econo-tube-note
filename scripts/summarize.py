@@ -483,6 +483,208 @@ def classify(items):
     return {str(i.get("id")): (bool(i.get("related")), str(i.get("reason", ""))[:80]) for i in data.get("items", [])}
 
 
+# ---------- 종합 브리핑: 그날의 영상 요약들을 모아 교차 분석 ----------
+BRIEFS = ROOT / "briefs.js"
+BRIEF_PROMPT = """너는 한국 경제 유튜브 영상들의 요약을 종합하는 편집자다. 아래 영상 요약들을 읽고 하루치 종합 브리핑을 JSON으로 만들어라.
+
+규칙
+- 아래 영상 요약에 있는 내용만 쓴다. 네가 아는 정보로 사실 여부를 판단하거나 내용을 보태지 않는다.
+- 전망이나 의견은 '~라고 본다', '~라고 주장한다'처럼 출연자의 말이라는 것이 드러나게 쓴다. 특정 종목을 사거나 팔라고 권하는 표현은 쓰지 않는다.
+- 문체는 모두 '~다'로 통일한다. 숫자는 영상에서 말한 단위와 기준 그대로 쓰고, 단위가 불명확하면 '(단위 불명확)'을 붙인다.
+- refs와 ref에는 근거가 된 영상 번호(입력의 n)를 넣는다. 입력에 있는 번호만 쓴다.
+- headline: 오늘 영상들을 관통하는 시장 분위기를 한 문장으로 쓴다.
+- overview: 3~4문장으로 종합한다.
+- themes: 핵심 주제 2~4개. title은 짧게, summary는 2~3문장.
+- agreements: 둘 이상의 영상이 공통으로 말한 것 2~4개. point와 refs(2개 이상).
+- disagreements: 영상마다 의견이 엇갈린 주제 0~3개. 없으면 빈 목록. topic과 views(각각 view, ref).
+- stocks: 둘 이상의 영상에서 언급된 종목 최대 8개. name과 mentions(각각 view: 그 영상에서의 평가나 맥락 한 줄, ref). 한 영상에서만 나온 종목은 넣지 않는다.
+
+영상 요약(JSON):
+"""
+
+
+def call_json(prompt, make_schema, models_env, default_models, timeout):
+    from google import genai
+    from google.genai import types
+
+    schema = make_schema()
+    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+    models = [m.strip() for m in os.environ.get(models_env, default_models).split(",") if m.strip()]
+    models.sort(key=lambda m: -model_rate(m))
+    last = None
+    for rnd in range(2):
+        for model in models:
+            if model in DEAD:
+                continue
+            try:
+                resp = run_with_timeout(
+                    lambda m=model: client.models.generate_content(
+                        model=m, contents=prompt,
+                        config=types.GenerateContentConfig(response_mime_type="application/json", response_schema=schema, temperature=0.3)),
+                    timeout)
+                print(f"  사용한 모델: {model}")
+                return json.loads(resp.text)
+            except Exception as e:
+                last = e
+                if any(c in str(e) for c in ("NOT_FOUND", "PERMISSION_DENIED", "INVALID_ARGUMENT", "UNAUTHENTICATED")):
+                    DEAD.add(model)
+        if rnd == 0:
+            time.sleep(20)
+    raise RuntimeError(f"호출 실패: {str(last)[:150]}")
+
+
+def brief_schema():
+    from pydantic import BaseModel
+
+    class Theme(BaseModel):
+        title: str
+        summary: str
+        refs: list[int]
+
+    class Agree(BaseModel):
+        point: str
+        refs: list[int]
+
+    class View(BaseModel):
+        view: str
+        ref: int
+
+    class Disagree(BaseModel):
+        topic: str
+        views: list[View]
+
+    class StockB(BaseModel):
+        name: str
+        mentions: list[View]
+
+    class Brief(BaseModel):
+        headline: str
+        overview: str
+        themes: list[Theme]
+        agreements: list[Agree]
+        disagreements: list[Disagree]
+        stocks: list[StockB]
+
+    return Brief
+
+
+def build_brief(date, vids):
+    payload = []
+    for n, v in enumerate(vids):
+        payload.append({
+            "n": n, "channel": v["channel"], "title": v["title"], "conclusion": v["conclusion"],
+            "points": [x[1] for p in v.get("parts", []) for x in p["items"]],
+            "stocks": [[x[1], x[2]] for x in v.get("stocks", [])],
+            "numbers": [[x[1], x[2]] for x in v.get("numbers", [])],
+        })
+    data = call_json(BRIEF_PROMPT + json.dumps(payload, ensure_ascii=False), brief_schema,
+                     "BRIEF_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.8-flash,gemini-3.5-flash-lite", 240)
+    ids = [video_id(v["url"]) for v in vids]
+    chans = [v["channel"] for v in vids]
+
+    def ok(r):
+        return isinstance(r, int) and 0 <= r < len(ids)
+
+    def refs(rs):
+        return [ids[r] for r in dict.fromkeys(rs or []) if ok(r)]
+
+    def txt(x):
+        return (x or "").strip()
+
+    themes = [{"title": txt(t.get("title")), "summary": txt(t.get("summary")), "refs": refs(t.get("refs"))}
+              for t in data.get("themes") or [] if txt(t.get("title")) and txt(t.get("summary"))]
+    agreements = [{"point": txt(a.get("point")), "refs": refs(a.get("refs"))}
+                  for a in data.get("agreements") or [] if txt(a.get("point")) and len(refs(a.get("refs"))) >= 2]
+    disagreements = []
+    for d in data.get("disagreements") or []:
+        views = [{"channel": chans[v["ref"]], "view": txt(v.get("view")), "ref": ids[v["ref"]]}
+                 for v in d.get("views") or [] if ok(v.get("ref")) and txt(v.get("view"))]
+        if txt(d.get("topic")) and len({v["ref"] for v in views}) >= 2:
+            disagreements.append({"topic": txt(d["topic"]), "views": views})
+    stocks = []
+    for s_ in data.get("stocks") or []:
+        ms = [{"channel": chans[m["ref"]], "view": txt(m.get("view")), "ref": ids[m["ref"]]}
+              for m in s_.get("mentions") or [] if ok(m.get("ref")) and txt(m.get("view"))]
+        if txt(s_.get("name")) and len({m["ref"] for m in ms}) >= 2:
+            stocks.append({"name": txt(s_["name"]), "count": len({m["ref"] for m in ms}), "mentions": ms})
+    stocks.sort(key=lambda x: -x["count"])
+    if not txt(data.get("headline")) or not txt(data.get("overview")) or not themes:
+        raise ValueError("브리핑에 헤드라인, 종합, 주제가 비어 있다")
+    return {"date": date, "count": len(vids), "sources": ids, "headline": txt(data["headline"]),
+            "overview": txt(data["overview"]), "themes": themes, "agreements": agreements,
+            "disagreements": disagreements, "stocks": stocks}
+
+
+def load_briefs():
+    try:
+        s_ = BRIEFS.read_text(encoding="utf-8")
+        s_ = s_[s_.index("const BRIEFS=") + len("const BRIEFS="):]
+        return json.loads(s_[s_.index("["): s_.rindex("]") + 1])
+    except Exception:
+        return []
+
+
+def save_briefs(briefs):
+    briefs = sorted(briefs, key=lambda b: b["date"], reverse=True)[:cfg("BRIEF_KEEP", 60)]
+    BRIEFS.write_text("/* 종합 브리핑. 자동화(scripts/summarize.py)가 갱신하는 파일이다. */\nconst BRIEFS=" +
+                      json.dumps(briefs, ensure_ascii=False, indent=1) + ";\n", encoding="utf-8")
+
+
+def put_brief(brief):
+    briefs = [b for b in load_briefs() if b["date"] != brief["date"]]
+    briefs.append(brief)
+    save_briefs(briefs)
+
+
+def update_briefs(state, videos):
+    """영상이 충분히 모인 날의 브리핑을 만들거나 새 영상이 늘면 다시 만든다. 한 번 실행에 한 개만 만든다."""
+    if not cfg("BRIEF", 1):
+        return
+    today = datetime.datetime.now(KST).strftime("%Y-%m-%d")
+    state.setdefault("brief_final", {})
+    by_date = {b["date"]: b for b in load_briefs()}
+    groups = {}
+    for v in videos:
+        groups.setdefault(v["date"], []).append(v)
+    min_videos, min_new = cfg("BRIEF_MIN_VIDEOS", 3), cfg("BRIEF_MIN_NEW", 3)
+    for date in sorted(groups, reverse=True)[:3]:
+        vids, b = groups[date], by_date.get(date)
+        n, prev = len(vids), (b["count"] if b else 0)
+        if n < min_videos:
+            continue
+        final_due = date < today and not state["brief_final"].get(date) and n > prev
+        if not (b is None or n - prev >= min_new or final_due):
+            continue
+        print(f"종합 브리핑 만드는 중: {date} (영상 {n}편)")
+        try:
+            put_brief(build_brief(date, vids))
+        except Exception as e:
+            print(f"  브리핑 실패: {str(e)[:200]}")
+            continue
+        if date < today:
+            state["brief_final"][date] = True
+        print("  브리핑 완료")
+        return
+
+
+def force_brief(date):
+    if not os.environ.get("GEMINI_API_KEY"):
+        print("GEMINI_API_KEY가 없다.")
+        return 1
+    videos = load()
+    date = date or max((v["date"] for v in videos), default="")
+    vids = [v for v in videos if v["date"] == date]
+    if not vids:
+        print(f"{date}에 올라온 영상이 없어서 브리핑을 만들 수 없다.")
+        return 0
+    try:
+        put_brief(build_brief(date, vids))
+        print(f"브리핑 완료: {date} (영상 {len(vids)}편)")
+    except Exception as e:
+        print(f"브리핑 실패: {str(e)[:200]}")
+    return 0
+
+
 def interleave(lists):
     """채널마다 최신 영상부터 한 편씩 번갈아 꺼낸다. (한 채널이 예산을 다 쓰지 않게)"""
     out = []
@@ -507,7 +709,7 @@ def auto():
         print("channels.json이 없거나 비어 있다.")
         return 1
     state = read_json(STATE, {})
-    for k in ("skipped", "failed", "spent", "models", "topic"):
+    for k in ("skipped", "failed", "spent", "models", "topic", "brief_final"):
         state.setdefault(k, {})
     MODEL_STATS.update(state["models"])
     now = datetime.datetime.now(datetime.timezone.utc)
@@ -641,6 +843,10 @@ def auto():
             break
         time.sleep(5)
 
+    try:
+        update_briefs(state, videos)
+    except Exception as e:
+        print(f"브리핑 단계에서 오류: {str(e)[:150]}")
     write_json(STATE, state)
     for m, c in state["models"].items():
         print(f"모델 누적 기록: {m} -> 성공 {c['ok']}, 바쁨 {c['busy']}, 사용불가 {c['dead']}")
@@ -679,7 +885,10 @@ def remove_videos(targets):
 def main(argv):
     tokens = [u for u in re.split(r"[\s,]+", " ".join(argv)) if u]
     removals = [t.split(":", 1)[1] for t in tokens if t.startswith(("삭제:", "remove:")) and t.split(":", 1)[1]]
-    urls = [t for t in tokens if not t.startswith(("삭제:", "remove:"))]
+    briefing = [t for t in tokens if t.startswith("브리핑")]
+    urls = [t for t in tokens if not t.startswith(("삭제:", "remove:", "브리핑"))]
+    if briefing and not urls and not removals:
+        return force_brief(briefing[0].split(":", 1)[1] if ":" in briefing[0] else "")
     if removals:
         code = remove_videos(removals)
         if not urls:
