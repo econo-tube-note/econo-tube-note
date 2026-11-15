@@ -41,11 +41,11 @@ PROMPT = """너는 한국 경제·투자 유튜브 영상을 요약하는 편집
 규칙
 - 문체는 모두 '~다'로 통일한다.
 - people: 출연자 이름을 쉼표로 적는다. 모르면 빈 문자열.
-- conclusion: 영상의 한 줄 결론 (한 문장).
+- conclusion: 영상의 핵심 결론. 짧게 쓴다. 공백 포함 55자 안팎으로, 최대 두 문장까지 허용한다. 한 문장에 정보를 여러 개 쉼표로 이어 붙이지 말고 핵심 하나만 담는다.
 - tags: 키워드 3개. '하락장', '외국인수급', '반도체', '금리', '환율'처럼 짧고 흔한 말을 우선 쓴다.
 - parts: 영상 내용을 주제별로 2~4개 파트로 나눈다. 파트 제목(title)은 네가 정한다. 각 파트에 핵심 항목을 3~4개 넣는다. 항목 text는 '소제목: 설명' 형식으로 쓴다. 출연자의 전망이나 의견은 '~라고 본다', '~라고 주장한다'처럼 출연자의 말이라는 것이 드러나게 쓴다.
 - stocks: 중요하게 다룬 종목 최대 7개. name에는 종목명만 쓰고 괄호로 다른 이름을 덧붙이지 않는다. note에는 출연자가 그 종목에 대해 어떤 평가를 했는지(긍정, 부정, 이유)를 한 줄로 쓴다. '언급됐다'만 쓰지 않는다.
-- numbers: 가장 중요한 숫자 4~5개만. value는 영상에서 말한 단위와 기준 그대로 적고, 단위나 기준이 분명하지 않으면 '(단위 불명확)'을 붙인다. note에는 숫자의 의미를 한 줄로 쓴다.
+- numbers: 가장 중요한 숫자 4~5개만. label은 그 숫자가 가리키는 지표 이름을 짧은 명사구로 쓴다(예: 코스닥 지수, 미국 국채 금리, 원/달러 환율, 신용잔고). 지표라고 하기 어려우면 '기타'로 쓴다. value는 영상에서 말한 단위와 기준 그대로 적고, 단위나 기준이 분명하지 않으면 '(단위 불명확)'을 붙인다. note에는 숫자의 의미를 한 줄로 쓴다.
 - time: 해당 내용이 영상에서 나오는 시간. 링크나 주소 없이 '분:초' 글자만 적는다. 예: 06:34 (1시간이 넘으면 1:05:30). 확실하지 않으면 빈 문자열로 둔다.
 - 영상에 없는 내용은 쓰지 않는다. 네가 아는 정보로 영상 내용의 사실 여부를 판단하거나 정정하지 않는다. 추측하지 않는다.
 """
@@ -98,6 +98,7 @@ def call_gemini(video_url):
 
     class Num(BaseModel):
         time: str
+        label: str
         value: str
         note: str
 
@@ -226,7 +227,7 @@ def clean(s, vid_url, title, channel, date):
 
     stocks = [[tm(x.get("time")), (x.get("name") or "").strip(), (x.get("note") or "").strip()]
               for x in (s.get("stocks") or [])[:7] if (x.get("name") or "").strip()]
-    numbers = [[tm(x.get("time")), (x.get("value") or "").strip(), (x.get("note") or "").strip()]
+    numbers = [[tm(x.get("time")), (x.get("value") or "").strip(), (x.get("note") or "").strip(), (x.get("label") or "").strip()[:20] or "기타"]
                for x in (s.get("numbers") or [])[:6] if (x.get("value") or "").strip()]
     tags = [t.strip() for t in (s.get("tags") or []) if t.strip()][:3]
 
@@ -483,18 +484,74 @@ def classify(items):
     return {str(i.get("id")): (bool(i.get("related")), str(i.get("reason", ""))[:80]) for i in data.get("items", [])}
 
 
+def norm_name(n):
+    """종목 이름을 비교하기 쉽게 정리한다. (공백과 기호를 없애고 대문자로)"""
+    return re.sub(r"[\s·・\-_.()（）]", "", n or "").upper()
+
+
+# ---------- 직접 쓰는 한마디 코멘트 (notes.js) ----------
+NOTES = ROOT / "notes.js"
+
+
+def load_notes():
+    try:
+        return _read_const(NOTES.read_text(encoding="utf-8"), "NOTES") or {}
+    except Exception:
+        return {}
+
+
+def save_notes(n):
+    NOTES.write_text("/* 직접 쓰는 한마디 코멘트. 키: 날짜(일간), week:월요일날짜(주간), 영상ID. 자동화로 바꾸거나 직접 고칠 수 있다. */\nconst NOTES=" +
+                     json.dumps(n, ensure_ascii=False, indent=1) + ";\n", encoding="utf-8")
+
+
+def week_start(date_str):
+    d = datetime.date.fromisoformat(date_str)
+    return d - datetime.timedelta(days=d.weekday())  # 그 주의 월요일
+
+
+def norm_note_key(k):
+    k = (k or "").strip()
+    m = re.fullmatch(r"(?:주간|week)[: ]?(\d{4}-\d{2}-\d{2})", k)
+    if m:
+        return "week:" + week_start(m.group(1)).isoformat()
+    if re.fullmatch(r"\d{4}-\d{2}-\d{2}", k):
+        return k
+    return video_id(k) or (k if re.fullmatch(r"[A-Za-z0-9_-]{11}", k) else None)
+
+
+def set_note(key, text):
+    k = norm_note_key(key)
+    if not k:
+        print(f"코멘트를 달 대상을 알 수 없다: '{key}'. 날짜(2026-11-14), 주간:날짜, 또는 영상 주소를 쓴다.")
+        return 1
+    notes = load_notes()
+    text = (text or "").strip()
+    if text:
+        notes[k] = text
+        print(f"코멘트를 저장했다: {k} -> {text[:60]}")
+    elif k in notes:
+        del notes[k]
+        print(f"코멘트를 지웠다: {k}")
+    else:
+        print("지울 코멘트가 없다.")
+    save_notes(notes)
+    return 0
+
+
 # ---------- 종합 브리핑: 그날의 영상 요약들을 모아 교차 분석 ----------
 BRIEFS = ROOT / "briefs.js"
 BRIEF_PROMPT = """너는 한국 경제 유튜브 영상들의 요약을 종합하는 편집자다. 아래 영상 요약들을 읽고 하루치 종합 브리핑을 JSON으로 만들어라.
 
 규칙
+- 문장은 짧게 쓴다. 한 문장에 정보를 여러 개 이어 붙이지 않는다.
 - 아래 영상 요약에 있는 내용만 쓴다. 네가 아는 정보로 사실 여부를 판단하거나 내용을 보태지 않는다.
 - 전망이나 의견은 '~라고 본다', '~라고 주장한다'처럼 출연자의 말이라는 것이 드러나게 쓴다. 특정 종목을 사거나 팔라고 권하는 표현은 쓰지 않는다.
 - 문체는 모두 '~다'로 통일한다. 숫자는 영상에서 말한 단위와 기준 그대로 쓰고, 단위가 불명확하면 '(단위 불명확)'을 붙인다.
 - refs와 ref에는 근거가 된 영상 번호(입력의 n)를 넣는다. 입력에 있는 번호만 쓴다.
-- headline: 오늘 영상들을 관통하는 시장 분위기를 한 문장으로 쓴다.
-- overview: 3~4문장으로 종합한다.
-- themes: 핵심 주제 2~4개. title은 짧게, summary는 2~3문장.
+- headline: 오늘 영상들을 관통하는 시장 분위기를 공백 포함 45자 안팎의 짧은 한 문장으로 쓴다.
+- keypoints: 오늘의 핵심 3~4줄. 각 줄은 공백 포함 40자 안팎의 짧은 문장 하나이고, 정보를 하나씩만 담는다.
+- themes: 핵심 주제 2~4개. title은 짧게, summary는 두 문장 이내의 짧은 문장으로 쓴다.
 - agreements: 둘 이상의 영상이 공통으로 말한 것 2~4개. point와 refs(2개 이상).
 - disagreements: 영상마다 의견이 엇갈린 주제 0~3개. 없으면 빈 목록. topic과 views(각각 view, ref).
 - stocks: 둘 이상의 영상에서 언급된 종목 최대 8개. name과 mentions(각각 view: 그 영상에서의 평가나 맥락 한 줄, ref). 한 영상에서만 나온 종목은 넣지 않는다.
@@ -559,7 +616,7 @@ def brief_schema():
 
     class Brief(BaseModel):
         headline: str
-        overview: str
+        keypoints: list[str]
         themes: list[Theme]
         agreements: list[Agree]
         disagreements: list[Disagree]
@@ -608,26 +665,54 @@ def build_brief(date, vids):
         if txt(s_.get("name")) and len({m["ref"] for m in ms}) >= 2:
             stocks.append({"name": txt(s_["name"]), "count": len({m["ref"] for m in ms}), "mentions": ms})
     stocks.sort(key=lambda x: -x["count"])
-    if not txt(data.get("headline")) or not txt(data.get("overview")) or not themes:
-        raise ValueError("브리핑에 헤드라인, 종합, 주제가 비어 있다")
+    kp = [txt(x) for x in data.get("keypoints") or [] if txt(x)][:4]
+    if not txt(data.get("headline")) or not kp or not themes:
+        raise ValueError("브리핑에 헤드라인, 핵심 줄, 주제가 비어 있다")
     return {"date": date, "count": len(vids), "sources": ids, "headline": txt(data["headline"]),
-            "overview": txt(data["overview"]), "themes": themes, "agreements": agreements,
+            "keypoints": kp, "themes": themes, "agreements": agreements,
             "disagreements": disagreements, "stocks": stocks}
 
 
-def load_briefs():
+def _read_const(text, name):
+    i = text.find(f"const {name}=")
+    if i < 0:
+        return None
     try:
-        s_ = BRIEFS.read_text(encoding="utf-8")
-        s_ = s_[s_.index("const BRIEFS=") + len("const BRIEFS="):]
-        return json.loads(s_[s_.index("["): s_.rindex("]") + 1])
+        return json.JSONDecoder().raw_decode(text[i + len(f"const {name}="):].lstrip())[0]
     except Exception:
-        return []
+        return None
+
+
+def _load_briefs_file():
+    try:
+        t = BRIEFS.read_text(encoding="utf-8")
+    except Exception:
+        return [], []
+    return (_read_const(t, "BRIEFS") or []), (_read_const(t, "WEEKLY") or [])
+
+
+def _save_briefs_file(briefs, weekly):
+    BRIEFS.write_text("/* 종합 브리핑(일간 BRIEFS, 주간 WEEKLY). 자동화(scripts/summarize.py)가 갱신하는 파일이다. */\nconst BRIEFS=" +
+                      json.dumps(briefs, ensure_ascii=False, indent=1) + ";\nconst WEEKLY=" +
+                      json.dumps(weekly, ensure_ascii=False, indent=1) + ";\n", encoding="utf-8")
+
+
+def load_briefs():
+    return _load_briefs_file()[0]
+
+
+def load_weekly():
+    return _load_briefs_file()[1]
 
 
 def save_briefs(briefs):
-    briefs = sorted(briefs, key=lambda b: b["date"], reverse=True)[:cfg("BRIEF_KEEP", 60)]
-    BRIEFS.write_text("/* 종합 브리핑. 자동화(scripts/summarize.py)가 갱신하는 파일이다. */\nconst BRIEFS=" +
-                      json.dumps(briefs, ensure_ascii=False, indent=1) + ";\n", encoding="utf-8")
+    w = load_weekly()
+    _save_briefs_file(sorted(briefs, key=lambda b: b["date"], reverse=True)[:cfg("BRIEF_KEEP", 60)], w)
+
+
+def save_weekly(weekly):
+    b = load_briefs()
+    _save_briefs_file(b, sorted(weekly, key=lambda x: x["week"], reverse=True)[:26])
 
 
 def put_brief(brief):
@@ -685,6 +770,144 @@ def force_brief(date):
     return 0
 
 
+# ---------- 주간 브리핑: 일간 브리핑들을 모아 한 주의 흐름을 정리 ----------
+WEEK_PROMPT = """너는 한 주 동안의 일간 브리핑들을 모아 '주간 브리핑'을 쓰는 편집자다. 아래 JSON에는 하루 단위 브리핑(days)과, 그 주 영상들에서 언급된 종목 표(stocks)가 있다. 규칙대로 JSON으로 답해라.
+
+규칙
+- 문장은 짧게 쓴다. 한 문장에 정보를 여러 개 이어 붙이지 않는다. 문체는 '~다'로 통일한다.
+- 입력에 있는 내용만 쓴다. 네가 아는 정보로 사실 여부를 판단하거나 내용을 보태지 않는다. 특정 종목을 사거나 팔라고 권하는 표현은 쓰지 않는다.
+- headline: 이번 주 흐름을 공백 포함 45자 안팎의 짧은 한 문장으로 쓴다.
+- keypoints: 이번 주 핵심 3~4줄. 각 줄은 공백 포함 40자 안팎의 짧은 문장 하나다.
+- flow: 날짜별로 하루 한 줄. date는 입력의 날짜 그대로, point는 40자 안팎의 짧은 문장.
+- recurring: 이틀 이상에 걸쳐 이어서 나온 주제 2~4개. title은 짧게, summary는 두 문장 이내, dates는 입력의 날짜 2개 이상.
+- stocks: 입력 stocks 표에 있는 종목만. name은 표의 이름 그대로, note는 그 주에 이 종목에 대한 언급이 어떻게 이어졌는지 한 문장.
+
+입력(JSON):
+"""
+
+
+def weekly_schema():
+    from pydantic import BaseModel
+
+    class Flow(BaseModel):
+        date: str
+        point: str
+
+    class Rec(BaseModel):
+        title: str
+        summary: str
+        dates: list[str]
+
+    class SNote(BaseModel):
+        name: str
+        note: str
+
+    class Week(BaseModel):
+        headline: str
+        keypoints: list[str]
+        flow: list[Flow]
+        recurring: list[Rec]
+        stocks: list[SNote]
+
+    return Week
+
+
+def build_weekly(ws, days, videos):
+    end = (datetime.date.fromisoformat(ws) + datetime.timedelta(days=6)).isoformat()
+    in_week = [v for v in videos if ws <= v.get("date", "") <= end]
+    table = {}
+    for v in in_week:
+        vid = video_id(v["url"])
+        for row in v.get("stocks") or []:
+            k = norm_name(row[1])
+            if k:
+                t = table.setdefault(k, {"name": row[1], "vids": set(), "days": set()})
+                t["vids"].add(vid)
+                t["days"].add(v["date"])
+    multi = [t for t in table.values() if len(t["vids"]) >= 2]
+    ranked = sorted(multi or sorted(table.values(), key=lambda t: -len(t["vids"]))[:3], key=lambda t: -len(t["vids"]))[:8]
+    payload = {
+        "days": [{"date": b["date"], "headline": b.get("headline", ""), "keypoints": b.get("keypoints") or [b.get("overview", "")],
+                  "themes": [{"title": t["title"], "summary": t["summary"]} for t in b.get("themes", [])],
+                  "disagreements": [d["topic"] for d in b.get("disagreements", [])]} for b in days],
+        "stocks": [{"name": t["name"], "videos": len(t["vids"]), "days": sorted(t["days"])} for t in ranked],
+    }
+    data = call_json(WEEK_PROMPT + json.dumps(payload, ensure_ascii=False), weekly_schema,
+                     "BRIEF_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.8-flash,gemini-3.5-flash-lite", 240)
+    dates = [b["date"] for b in days]
+
+    def txt(x):
+        return (x or "").strip()
+
+    kp = [txt(x) for x in data.get("keypoints") or [] if txt(x)][:4]
+    flow = [{"date": f["date"], "point": txt(f.get("point"))} for f in data.get("flow") or [] if f.get("date") in dates and txt(f.get("point"))]
+    flow.sort(key=lambda f: f["date"])
+    rec = []
+    for r in data.get("recurring") or []:
+        ds = sorted({d for d in r.get("dates") or [] if d in dates})
+        if txt(r.get("title")) and txt(r.get("summary")) and len(ds) >= 2:
+            rec.append({"title": txt(r["title"]), "summary": txt(r["summary"]), "dates": ds})
+    names = {norm_name(t["name"]): t for t in ranked}
+    stocks = []
+    for x in data.get("stocks") or []:
+        t = names.get(norm_name(x.get("name")))
+        if t and txt(x.get("note")):
+            stocks.append({"name": t["name"], "videos": len(t["vids"]), "days": sorted(t["days"]), "note": txt(x["note"])})
+    stocks.sort(key=lambda x: -x["videos"])
+    if not txt(data.get("headline")) or not kp or not (flow or rec):
+        raise ValueError("주간 브리핑에 헤드라인, 핵심 줄, 흐름이 비어 있다")
+    return {"week": ws, "end": end, "days": dates, "sig": [f"{b['date']}:{b['count']}" for b in days],
+            "gen_date": datetime.datetime.now(KST).strftime("%Y-%m-%d"), "videos": len(in_week),
+            "headline": txt(data["headline"]), "keypoints": kp, "flow": flow, "recurring": rec[:4], "stocks": stocks[:8]}
+
+
+def update_weekly(videos, force_date=None):
+    if not force_date and not cfg("WEEKLY", 1):
+        return
+    briefs, weekly = load_briefs(), load_weekly()
+    groups = {}
+    for b in briefs:
+        groups.setdefault(week_start(b["date"]).isoformat(), []).append(b)
+    today = datetime.datetime.now(KST).strftime("%Y-%m-%d")
+    cur_week = week_start(today).isoformat()
+    min_days = 1 if force_date else cfg("WEEKLY_MIN_DAYS", 3)
+    targets = [week_start(force_date).isoformat()] if force_date else sorted(groups, reverse=True)[:2]
+    for ws in targets:
+        days = sorted(groups.get(ws, []), key=lambda b: b["date"])
+        if len(days) < min_days:
+            continue
+        sig = [f"{b['date']}:{b['count']}" for b in days]
+        cur = next((w for w in weekly if w["week"] == ws), None)
+        if not force_date and cur:
+            if cur.get("sig") == sig:
+                continue
+            if ws == cur_week and cur.get("gen_date") == today:
+                continue  # 진행 중인 주는 하루에 한 번만 다시 만든다
+        print(f"주간 브리핑 만드는 중: {ws} 주 (일간 브리핑 {len(days)}개)")
+        try:
+            w = build_weekly(ws, days, videos)
+        except Exception as e:
+            print(f"  주간 브리핑 실패: {str(e)[:200]}")
+            continue
+        weekly = [x for x in weekly if x["week"] != ws] + [w]
+        save_weekly(weekly)
+        print("  주간 브리핑 완료")
+        return
+
+
+def force_weekly(date):
+    if not os.environ.get("GEMINI_API_KEY"):
+        print("GEMINI_API_KEY가 없다.")
+        return 1
+    briefs = load_briefs()
+    date = date or max((b["date"] for b in briefs), default="")
+    if not date:
+        print("일간 브리핑이 아직 없어서 주간 브리핑을 만들 수 없다. 먼저 '브리핑'을 실행해라.")
+        return 0
+    update_weekly(load(), force_date=date)
+    return 0
+
+
 def interleave(lists):
     """채널마다 최신 영상부터 한 편씩 번갈아 꺼낸다. (한 채널이 예산을 다 쓰지 않게)"""
     out = []
@@ -739,14 +962,20 @@ def auto():
             print(f"채널 영상 목록 실패: {ch['name']}: {e}")
             continue
         print(f"채널 확인: {ch['name']} -> {author} ({ch['id']}), 최근 영상 {len(entries)}편")
-        fresh = []
+        win = int(ch.get("max_age_days") or max_age)  # channels.json에서 채널마다 기간을 따로 정할 수 있다
+        fresh, known, old = [], 0, 0
         for e in entries:
             if e["id"] in have or e["id"] in state["skipped"]:
+                known += 1
                 continue
-            if (now - e["published"]).total_seconds() > max_age * 86400:
+            if (now - e["published"]).total_seconds() > win * 86400:
+                old += 1
                 continue
             e["channel"] = author or ch["name"]
             fresh.append(e)
+        newest = max((e["published"] for e in entries), default=None)
+        ago = f"{(now - newest).days}일 전" if newest else "알 수 없음"
+        print(f"  [{ch['name']}] 가장 최근 영상 {ago} | 기간({win}일) 안의 새 영상 {len(fresh)}편 | 이미 처리했거나 제외한 영상 {known}편 | 기간이 지난 영상 {old}편")
         lists.append(fresh)
     if ids_changed:
         write_json(CHANNELS, channels)
@@ -845,6 +1074,7 @@ def auto():
 
     try:
         update_briefs(state, videos)
+        update_weekly(videos)
     except Exception as e:
         print(f"브리핑 단계에서 오류: {str(e)[:150]}")
     write_json(STATE, state)
@@ -881,12 +1111,151 @@ def remove_videos(targets):
     return 0
 
 
+# ---------- 기존 영상 정리: 긴 결론을 짧게, 숫자에 지표 이름 붙이기 ----------
+def tidy_schemas():
+    from pydantic import BaseModel
+
+    class Cn(BaseModel):
+        id: str
+        conclusion: str
+
+    class Cns(BaseModel):
+        items: list[Cn]
+
+    class Lb(BaseModel):
+        key: str
+        label: str
+
+    class Lbs(BaseModel):
+        items: list[Lb]
+
+    return Cns, Lbs
+
+
+def tidy():
+    if not os.environ.get("GEMINI_API_KEY"):
+        print("GEMINI_API_KEY가 없다.")
+        return 1
+    Cns, Lbs = tidy_schemas()
+    videos = load()
+    max_len = cfg("TIDY_MAX_LEN", 70)
+    models = ("TIDY_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.8-flash,gemini-3.5-flash-lite")
+
+    # 1) 긴 결론 다시 쓰기
+    longs = [v for v in videos if len(v.get("conclusion", "")) > max_len]
+    print(f"결론이 {max_len}자보다 긴 영상: {len(longs)}편")
+    changed = 0
+    for i in range(0, len(longs), 15):
+        chunk = longs[i:i + 15]
+        payload = [{"id": video_id(v["url"]), "title": v["title"], "conclusion": v["conclusion"]} for v in chunk]
+        prompt = ("아래는 영상 제목과 현재의 한 줄 결론이다. 결론을 읽기 쉽게 다시 쓴다.\n"
+                  "규칙: 공백 포함 55자 안팎, 최대 두 문장(한 문장이 자연스러우면 한 문장). 쉼표로 정보를 이어 붙이지 않고 핵심 하나만 담는다. "
+                  "현재 결론과 제목에 있는 내용만 쓴다. '~다' 문체. id는 그대로 돌려준다.\n입력(JSON):\n" + json.dumps(payload, ensure_ascii=False))
+        try:
+            data = call_json(prompt, lambda: Cns, *models, 180)
+        except Exception as e:
+            print(f"  결론 다시 쓰기 실패: {str(e)[:150]}")
+            break
+        new = {str(x.get("id")): (x.get("conclusion") or "").strip() for x in data.get("items", [])}
+        for v in chunk:
+            n = new.get(video_id(v["url"]))
+            if n and len(n) < len(v["conclusion"]):
+                v["conclusion"] = n
+                changed += 1
+        save(videos)
+    print(f"결론을 줄인 영상: {changed}편")
+
+    # 2) 숫자에 지표 이름 붙이기
+    todo = []
+    for v in videos:
+        for j, n in enumerate(v.get("numbers") or []):
+            if len(n) < 4 or not n[3]:
+                todo.append((v, j))
+    print(f"지표 이름이 없는 숫자: {len(todo)}개")
+    labeled = 0
+    for i in range(0, len(todo), 40):
+        chunk = todo[i:i + 40]
+        payload = [{"key": f"{video_id(v['url'])}:{j}", "title": v["title"], "value": v["numbers"][j][1], "note": v["numbers"][j][2]} for v, j in chunk]
+        prompt = ("아래는 영상에서 나온 숫자와 그 설명이다. 각 숫자가 가리키는 지표 이름(label)을 짧은 명사구로 붙인다.\n"
+                  "규칙: 같은 지표는 항상 같은 이름으로 쓴다(예: 코스닥 지수, 코스피 지수, 미국 국채 금리, 원/달러 환율, 신용잔고, 외국인 순매도). "
+                  "지표라고 하기 어려우면 '기타'로 쓴다. key는 그대로 돌려준다.\n입력(JSON):\n" + json.dumps(payload, ensure_ascii=False))
+        try:
+            data = call_json(prompt, lambda: Lbs, *models, 180)
+        except Exception as e:
+            print(f"  지표 이름 붙이기 실패: {str(e)[:150]}")
+            break
+        lab = {str(x.get("key")): (x.get("label") or "").strip()[:20] for x in data.get("items", [])}
+        for v, j in chunk:
+            n = v["numbers"][j]
+            l = lab.get(f"{video_id(v['url'])}:{j}") or "기타"
+            v["numbers"][j] = (n[:3] + [l]) if len(n) >= 3 else n
+            labeled += 1
+        save(videos)
+    print(f"지표 이름을 붙인 숫자: {labeled}개")
+    return 0
+
+
+def diagnose():
+    """채널별로 최근 영상이 왜 수집되었는지/안 되었는지 보여 준다. (제미나이를 부르지 않는다)"""
+    channels = read_json(CHANNELS, [])
+    state = read_json(STATE, {})
+    skipped, failed, topic = state.get("skipped", {}), state.get("failed", {}), state.get("topic", {})
+    have = {video_id(v.get("url")) for v in load() + read_json(ARCHIVE, [])}
+    now = datetime.datetime.now(datetime.timezone.utc)
+    max_age = cfg("MAX_AGE_DAYS", 2)
+    for ch in channels:
+        print(f"\n== {ch.get('name')} ({ch.get('handle')}) ==")
+        cid = ch.get("id")
+        try:
+            cid = cid or resolve_channel_id(ch["handle"])
+            author, entries = fetch_entries(cid)
+        except Exception as e:
+            print(f"  영상 목록을 가져오지 못했다: {str(e)[:150]}")
+            continue
+        if not entries:
+            print("  피드가 비어 있다.")
+            continue
+        newest = (now - entries[0]["published"]).total_seconds() / 3600
+        print(f"  채널 이름 {author} | 피드 {len(entries)}편 | 가장 최신 영상: {newest:.0f}시간 전 | 최근 {max_age}일 이내: "
+              f"{sum(1 for e in entries if (now - e['published']).total_seconds() <= max_age * 86400)}편")
+        for e in entries[:8]:
+            hrs = (now - e["published"]).total_seconds() / 3600
+            age = f"{hrs:.0f}시간 전" if hrs < 48 else f"{hrs / 24:.0f}일 전"
+            vid = e["id"]
+            if vid in have:
+                st = "요약되어 사이트에 있음"
+            elif vid in skipped:
+                st = "제외됨: " + skipped[vid]
+            elif e["short"]:
+                st = "쇼츠라서 제외"
+            elif hrs > max_age * 24:
+                st = f"올라온 지 {max_age}일이 지나 대상 아님"
+            elif vid in failed:
+                st = f"요약에 {failed[vid]}번 실패, 다시 시도 예정"
+            elif topic.get(vid):
+                st = "후보 (주제 통과, 처리 순서 대기)"
+            else:
+                st = "후보 (아직 주제 판단 전이거나 예산 때문에 대기)"
+            print(f"  {age:>8} | {st} | {e['title'][:45]}")
+    return 0
+
+
 # ---------- 실행 ----------
 def main(argv):
+    if os.environ.get("NOTE_KEY"):
+        return set_note(os.environ["NOTE_KEY"], os.environ.get("NOTE_TEXT", ""))
     tokens = [u for u in re.split(r"[\s,]+", " ".join(argv)) if u]
     removals = [t.split(":", 1)[1] for t in tokens if t.startswith(("삭제:", "remove:")) and t.split(":", 1)[1]]
     briefing = [t for t in tokens if t.startswith("브리핑")]
-    urls = [t for t in tokens if not t.startswith(("삭제:", "remove:", "브리핑"))]
+    weekly_t = [t for t in tokens if t.startswith("주간")]
+    tidy_t = [t for t in tokens if t == "정리"]
+    if any(t == "진단" for t in tokens) and len(tokens) == 1:
+        return diagnose()
+    urls = [t for t in tokens if not t.startswith(("삭제:", "remove:", "브리핑", "주간")) and t != "정리"]
+    if tidy_t and not urls and not removals:
+        return tidy()
+    if weekly_t and not urls and not removals:
+        return force_weekly(weekly_t[0].split(":", 1)[1] if ":" in weekly_t[0] else "")
     if briefing and not urls and not removals:
         return force_brief(briefing[0].split(":", 1)[1] if ":" in briefing[0] else "")
     if removals:
