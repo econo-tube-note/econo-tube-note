@@ -11,11 +11,15 @@
 body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.6}
 .wrap{max-width:1080px;margin:0 auto;padding:40px 20px 56px}
 h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
-.lead{color:var(--sub);margin:0 0 24px}
+.lead{color:var(--sub);margin:0 0 20px}
+button{font:inherit;color:inherit}
+.nav{display:flex;gap:4px;margin:0 0 24px;border-bottom:1px solid var(--line)}
+.nav button{border:0;background:none;padding:10px 16px;font-weight:700;color:var(--sub);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
+.nav button.on{color:var(--ink);border-bottom-color:var(--accent)}
 .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
-.bar input{flex:1 1 220px;max-width:340px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}
+.bar input,.vbar input{flex:1 1 220px;max-width:340px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{padding:7px 14px;border:1px solid var(--line);border-radius:99px;background:var(--card);color:var(--ink);font:inherit;font-size:.9rem;cursor:pointer}
+.chip{padding:7px 14px;border:1px solid var(--line);border-radius:99px;background:var(--card);color:var(--ink);font-size:.9rem;cursor:pointer}
 .chip[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column}
@@ -23,21 +27,80 @@ h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
 .thumb{aspect-ratio:16/9;background:linear-gradient(135deg,#dbe3f4,#b9c6e6);overflow:hidden}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px}
-.meta{display:flex;gap:10px;font-size:.85rem;color:var(--sub)}
+.meta{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:.85rem;color:var(--sub)}
 .meta b{color:var(--accent);font-weight:700}
+.card h2{font-size:.85rem;line-height:1.45;margin:0;font-weight:400;color:var(--sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card p{margin:0;color:var(--ink);font-size:1.12rem;font-weight:800;line-height:1.5;letter-spacing:-.01em;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
 .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
 .tags span{background:var(--chip);padding:2px 10px;border-radius:99px;font-size:.8rem}
 .empty{color:var(--sub);padding:40px 0;text-align:center}
 .more{grid-column:1/-1;text-align:center;padding:8px 0}
+.btn{display:inline-block;padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;text-decoration:none}
+/* ----- 브리핑 ----- */
+.brief{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 22px 18px;margin:0 0 30px}
+.bhead{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;font-size:.85rem;color:var(--sub)}
+.bhead>b{color:var(--accent);font-weight:800;font-size:.95rem}
+.bmode{display:flex;gap:4px}
+.bmode button,.bdates button,#btog{border:1px solid var(--line);background:none;color:var(--sub);border-radius:99px;padding:3px 11px;font-size:.8rem;cursor:pointer}
+.bmode button.on,.bdates button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.bdates{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.brief h2{font-size:1.5rem;line-height:1.4;font-weight:800;letter-spacing:-.02em;margin:14px 0 10px}
+.kp{margin:0 0 4px;padding:0;list-style:none}
+.kp li{position:relative;padding:3px 0 3px 18px;line-height:1.65;font-size:1.02rem}
+.kp li:before{content:"";position:absolute;left:3px;top:.85em;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.enote{margin:14px 0 0;padding:10px 14px;border-left:4px solid var(--accent);background:var(--chip);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.65}
+.enote b{color:var(--accent);margin-right:6px;font-size:.82rem}
+.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px;margin-top:24px}
+.bb{margin-top:24px}.bgrid .bb{margin-top:0}
+.bb h3{font-size:.95rem;font-weight:800;margin:0 0 12px;padding-left:10px;border-left:4px solid var(--accent)}
+.bi{margin:0 0 18px}
+.bi b{display:block;font-size:1rem;margin-bottom:3px}
+.bi p,.sk p{margin:0 0 6px;line-height:1.6;font-size:.93rem}
+.rel{margin-top:4px;border:1px solid var(--line);background:none;color:var(--sub);border-radius:99px;padding:2px 11px;font-size:.78rem;font-weight:600;cursor:pointer}
+.rel:hover{color:var(--accent);border-color:var(--accent)}
+.relp{margin-top:8px;display:grid;gap:8px}
+.hv{border:0;background:var(--chip);color:var(--sub);border-radius:99px;padding:1px 9px;font-size:.76rem;font-weight:600;cursor:pointer;white-space:nowrap;vertical-align:1px}
+.hv:hover{color:var(--accent)}
+.skg{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.sk{background:var(--chip);border-radius:12px;padding:14px}
+.skh{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+.skh b{font-size:1.02rem}.skh small{color:var(--sub);font-size:.78rem}
+.tl{display:grid;grid-template-columns:64px minmax(0,1fr);gap:4px 12px;margin:0}
+.tl dt{color:var(--accent);font-weight:700;font-size:.88rem}
+.tl dd{margin:0 0 8px;font-size:.95rem;line-height:1.6}
+.bnote{color:var(--sub);font-size:.78rem;margin:20px 0 0}
+.vc{display:grid;grid-template-columns:118px minmax(0,1fr);gap:12px;align-items:start;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer}
+.vc:hover{border-color:var(--accent)}
+.vth{aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:linear-gradient(135deg,#dbe3f4,#b9c6e6)}
+.vth img{width:100%;height:100%;object-fit:cover;display:block}
+.vm{font-size:.76rem;color:var(--sub)}.vm b{color:var(--accent)}
+.vtx p{margin:2px 0 0;font-size:.9rem;font-weight:700;line-height:1.5;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.pop{position:fixed;z-index:50;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.22);padding:6px}
+.pop .vc{border:0}
+@media(max-width:480px){.vc{grid-template-columns:96px minmax(0,1fr)}}
+/* ----- 종목·숫자 페이지 ----- */
+.vbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.skr{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:10px}
+.skrh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;width:100%;text-align:left;background:none;border:0;padding:14px 16px;cursor:pointer}
+.skrh b{font-size:1.05rem}.skrh span{color:var(--accent);font-weight:700;font-size:.88rem}.skrh small{color:var(--sub);margin-left:auto}
+.skrb{padding:0 16px 10px}
+.skrb p{margin:0;padding:9px 0;border-top:1px solid var(--line);font-size:.93rem;line-height:1.6}
+.skrb p small{color:var(--sub);margin-right:6px}
+.ng{margin-bottom:26px}
+.ng h3{font-size:1rem;margin:0 0 8px;display:flex;align-items:baseline;gap:8px}.ng h3 small{color:var(--sub);font-weight:400}
+.nrow{display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;padding:10px 0;border-top:1px solid var(--line)}
+.nv{font-size:1.25rem;font-weight:800;color:var(--accent);line-height:1.35;word-break:keep-all}
+.nx p{margin:0 0 3px;font-size:.93rem}.nx small{color:var(--sub)}
+@media(max-width:480px){.nrow{grid-template-columns:104px minmax(0,1fr);gap:10px}.nv{font-size:1.05rem}}
+.link{border:0;background:none;color:var(--accent);cursor:pointer;font-size:.85rem;padding:0}
+/* ----- 팝업 ----- */
 dialog{width:min(720px,94vw);max-height:90vh;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--ink);padding:0}
 dialog::backdrop{background:rgba(10,14,22,.55)}
 .dlg{padding:24px 26px 28px}
-.card p{margin:0;color:var(--ink);font-size:1.12rem;font-weight:800;line-height:1.5;letter-spacing:-.01em;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
-.card h2{font-size:.85rem;line-height:1.45;margin:0;font-weight:400;color:var(--sub);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.dlg .concl{font-size:1.3rem;font-weight:800;line-height:1.45;letter-spacing:-.01em;margin:10px 0 6px}
-.dlg .dtitle{font-size:.88rem;color:var(--sub);line-height:1.45;margin:0 0 18px}
+.dlg .dtitle{font-size:.88rem;color:var(--sub);line-height:1.45;margin:10px 0 6px}
+.dlg .concl{font-size:1.3rem;font-weight:800;line-height:1.5;letter-spacing:-.01em;margin:0 0 18px}
 .tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:2;background:var(--card);margin:0 -26px;padding:0 22px}
-.tab{padding:10px 16px;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;background:none;color:var(--sub);font:inherit;font-weight:700;cursor:pointer}
+.tab{padding:10px 16px;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;background:none;color:var(--sub);font-weight:700;cursor:pointer}
 .tab.on{color:var(--ink);border-bottom-color:var(--accent)}
 .pane h3{font-size:1.08rem;font-weight:800;margin:26px 0 8px;padding-left:10px;border-left:4px solid var(--accent)}
 .pane h3.first{margin-top:18px}
@@ -56,30 +119,7 @@ a.tm:hover{color:var(--accent)}
 .sc .tm{align-self:flex-start;margin:4px 0 0;background:var(--card)}
 .sc .big{font-size:1.45rem;font-weight:800;color:var(--accent);line-height:1.25}
 .actions{display:flex;gap:10px;margin-top:24px}
-.btn{display:inline-block;padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;cursor:pointer;text-decoration:none}
 .dlg a.btn.main{background:var(--accent);border-color:var(--accent);color:#fff;margin:0}
-.brief{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 22px 18px;margin:0 0 30px}
-.bhead{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;font-size:.85rem;color:var(--sub)}
-.bhead>b{color:var(--accent);font-weight:800;font-size:.95rem}
-.bdates{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
-.bdates button,#btog{border:1px solid var(--line);background:none;color:var(--sub);border-radius:99px;padding:3px 11px;font:inherit;font-size:.8rem;cursor:pointer}
-.bdates button.on{background:var(--accent);border-color:var(--accent);color:#fff}
-.brief h2{font-size:1.5rem;line-height:1.4;font-weight:800;letter-spacing:-.02em;margin:14px 0 10px}
-.bover{margin:0 0 4px;color:var(--ink);line-height:1.7;font-size:1rem}
-.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px;margin-top:22px}
-.bb{margin-top:22px}.bgrid .bb{margin-top:0}
-.bb h3{font-size:.95rem;font-weight:800;margin:0 0 12px;padding-left:10px;border-left:4px solid var(--accent)}
-.bi{margin:0 0 16px}
-.bi b{display:block;font-size:1rem;margin-bottom:3px}
-.bi p,.sk p{margin:0 0 6px;line-height:1.6;font-size:.93rem}
-.src{display:inline-flex;gap:4px;flex-wrap:wrap;vertical-align:middle}
-.src button{border:0;background:var(--chip);color:var(--sub);border-radius:99px;padding:1px 9px;font:inherit;font-size:.76rem;font-weight:600;cursor:pointer}
-.src button:hover{color:var(--accent)}
-.skg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
-.sk{background:var(--chip);border-radius:12px;padding:14px}
-.skh{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
-.skh b{font-size:1.02rem}.skh small{color:var(--sub);font-size:.78rem}
-.bnote{color:var(--sub);font-size:.78rem;margin:20px 0 0}
 .note{color:var(--sub);font-size:.82rem;margin-top:40px}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </style>
@@ -87,36 +127,62 @@ a.tm:hover{color:var(--accent)}
 <body>
 <div class="wrap">
   <h1>경제 유튜브 요약</h1>
-  <p class="lead">인기 경제 채널의 영상을 AI가 요약하고, 하루치를 종합한 브리핑을 함께 보여 준다. 카드를 누르면 상세 요약과 장면별 시간을 볼 수 있다.</p>
-  <section id="brief"></section>
-  <div class="bar">
-    <input id="q" type="search" placeholder="제목, 키워드로 검색" aria-label="검색">
-    <div class="chips" id="chips"></div>
+  <p class="lead">인기 경제 채널의 영상을 AI가 요약하고, 하루와 한 주를 종합한 브리핑을 함께 보여 준다. 카드를 누르면 상세 요약과 장면별 시간을 볼 수 있다.</p>
+  <nav class="nav" id="nav"><button data-n="home">홈</button><button data-n="stocks">종목</button><button data-n="numbers">숫자·지표</button></nav>
+  <div id="v-home">
+    <section id="brief"></section>
+    <div class="bar">
+      <input id="q" type="search" placeholder="제목, 키워드로 검색" aria-label="검색">
+      <div class="chips" id="chips"></div>
+    </div>
+    <div class="grid" id="grid"></div>
   </div>
-  <div class="grid" id="grid"></div>
+  <div id="v-stocks" hidden></div>
+  <div id="v-numbers" hidden></div>
   <p class="note">AI가 요약한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
 </div>
 <dialog id="dlg"></dialog>
+<div class="pop" id="pop" hidden></div>
 <script src="videos.js"></script>
 <script src="briefs.js"></script>
+<script src="notes.js"></script>
 <script>
-/* ===== 여기부터는 건드리지 않아도 된다 ===== */
 if(typeof VIDEOS==="undefined"){document.querySelector("#grid").innerHTML='<div class="empty">영상 목록(videos.js)을 불러오지 못했다. index.html과 videos.js가 같은 폴더에 있는지 확인해야 한다.</div>';throw new Error("videos.js를 찾을 수 없다")}
 VIDEOS.sort((a,b)=>b.date.localeCompare(a.date));
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const vid=u=>(u.match(/(?:v=|youtu\.be\/)([\w-]{11})/)||[])[1];
 const sec=t=>t.split(":").reduce((a,b)=>a*60+ +b,0);
+const nk=n=>String(n||"").replace(/[\s·・\-_.()（）]/g,"").toUpperCase();
+const kst=(ms=0)=>new Date(Date.now()+9*36e5-ms).toISOString().slice(0,10);
+const md=d=>d.slice(5).replace("-",".");
+const sent=t=>esc(t).replace(/([.!?])\s+/g,"$1<br>");
+const uniq=a=>[...new Set(a||[])];
+const NOTE=k=>(typeof NOTES!=="undefined"&&NOTES&&NOTES[k])||"";
+const idx={};VIDEOS.forEach((v,i)=>{const k=vid(v.url);if(k)idx[k]=i});
+const ymd=(i)=>VIDEOS[i].date;
 let ch="전체",q="",shown=12;const PAGE=12;
 const chans=["전체",...new Set(VIDEOS.map(v=>v.channel))];
 function chips(){$("#chips").innerHTML=chans.map(c=>`<button class="chip" aria-pressed="${c===ch}" data-c="${esc(c)}">${esc(c)}</button>`).join("")}
 function thumb(v){const id=vid(v.url);return id?`<img src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">`:""}
-function card(i,f){const v=VIDEOS[i];return `<article class="card${f?" feature":""}" tabindex="0" data-i="${i}"><div class="thumb">${thumb(v)}</div><div class="body"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span></div><p>${esc(v.conclusion)}</p><h2>${esc(v.title)}</h2><div class="tags">${v.tags.map(t=>`<span>${esc(t)}</span>`).join("")}</div></div></article>`}
+function card(i){const v=VIDEOS[i];return `<article class="card" tabindex="0" data-i="${i}"><div class="thumb">${thumb(v)}</div><div class="body"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span></div><h2>${esc(v.title)}</h2><p>${sent(v.conclusion)}</p><div class="tags">${(v.tags||[]).map(t=>`<span>${esc(t)}</span>`).join("")}</div></div></article>`}
 function render(){
- const idx=VIDEOS.map((v,i)=>i).filter(i=>{const v=VIDEOS[i];return (ch==="전체"||v.channel===ch)&&(!q||(v.title+v.conclusion+v.tags.join(" ")).toLowerCase().includes(q))});
- $("#grid").innerHTML=idx.length?idx.slice(0,shown).map(i=>card(i)).join("")+(idx.length>shown?`<div class="more"><button class="btn" id="more">더 보기 (${idx.length-shown}편 남음)</button></div>`:""):`<div class="empty">조건에 맞는 영상이 없다. 다른 키워드나 채널을 골라보자.</div>`;
+ const list=VIDEOS.map((v,i)=>i).filter(i=>{const v=VIDEOS[i];return (ch==="전체"||v.channel===ch)&&(!q||(v.title+v.conclusion+(v.tags||[]).join(" ")).toLowerCase().includes(q))});
+ $("#grid").innerHTML=list.length?list.slice(0,shown).map(i=>card(i)).join("")+(list.length>shown?`<div class="more"><button class="btn" id="more">더 보기 (${list.length-shown}편 남음)</button></div>`:""):`<div class="empty">조건에 맞는 영상이 없다. 다른 키워드나 채널을 골라보자.</div>`;
 }
+/* ----- 관련 영상 카드 / 마우스를 올리면 뜨는 카드 ----- */
+const vcard=i=>{const v=VIDEOS[i];return `<div class="vc" data-open="${i}"><div class="vth">${thumb(v)}</div><div class="vtx"><div class="vm"><b>${esc(v.channel)}</b> ${esc(md(v.date))}</div><p>${sent(v.conclusion)}</p></div></div>`};
+const hv=ref=>idx[ref]===undefined?"":`<button class="hv" data-v="${idx[ref]}">${esc(VIDEOS[idx[ref]].channel)}</button>`;
+const relMap={};
+const rel=(key,refs)=>{const u=uniq(refs).filter(k=>idx[k]!==undefined);relMap[key]=u;return u.length?`<button class="rel" data-rel="${key}">관련 영상 ${u.length}</button><div class="relp" id="rp-${key}" hidden></div>`:""};
+function toggleRel(key){const p=$("#rp-"+key);if(!p)return;if(p.hidden){p.innerHTML=(relMap[key]||[]).slice(0,6).map(k=>vcard(idx[k])).join("");p.hidden=false}else p.hidden=true}
+const pop=$("#pop");let popT=null,popEl=null;
+function showPop(el){clearTimeout(popT);popEl=el;pop.innerHTML=vcard(+el.dataset.v);pop.hidden=false;const r=el.getBoundingClientRect(),w=Math.min(400,innerWidth-24);pop.style.width=w+"px";pop.style.left=Math.min(Math.max(12,r.left),innerWidth-w-12)+"px";let y=r.bottom+8;if(y+160>innerHeight)y=Math.max(12,r.top-160-8);pop.style.top=y+"px"}
+function hidePop(){clearTimeout(popT);pop.hidden=true;popEl=null}
+const canHover=()=>matchMedia("(hover:hover)").matches;
+/* ----- 상세 요약 팝업 ----- */
 function open(i){
+ hidePop();
  const v=VIDEOS[i],id=vid(v.url),base=id?`https://www.youtube.com/watch?v=${id}`:"";
  const tm=t=>!t?"":base?`<a class="tm" href="${base}&t=${sec(t)}s" target="_blank" rel="noopener">▶ ${t}</a>`:`<span class="tm">${t}</span>`;
  const item=(t,x)=>{const k=x.search(/[:：]/),h=k>0&&k<40;return `<li><span>${h?`<b>${esc(x.slice(0,k+1))}</b> ${esc(x.slice(k+1).trim())}`:esc(x)}</span>${tm(t)}</li>`};
@@ -124,39 +190,133 @@ function open(i){
  const st=(v.stocks||[]).map(([t,n,x])=>`<div class="sc"><b>${esc(n)}</b><p>${esc(x)}</p>${tm(t)}</div>`).join("");
  const nu=(v.numbers||[]).map(([t,n,x])=>`<div class="sc"><span class="big">${esc(n)}</span><p>${esc(x)}</p>${tm(t)}</div>`).join("");
  const p2=(st?`<h3 class="first">언급된 종목</h3><div class="sgrid">${st}</div>`:"")+(nu?`<h3${st?"":' class="first"'}>주요 숫자</h3><div class="sgrid">${nu}</div>`:"");
- $("#dlg").innerHTML=`<div class="dlg"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span>${v.people?`<span>출연 ${esc(v.people)}</span>`:""}</div><p class="concl">${esc(v.conclusion)}</p><p class="dtitle">${esc(v.title)}</p>${p2?`<div class="tabs" role="tablist"><button class="tab on" role="tab" data-p="0">요약</button><button class="tab" role="tab" data-p="1">종목·숫자</button></div>`:""}<section class="pane sec" id="s0">${p1}</section>${p2?`<section class="pane sec" id="s1">${p2}</section>`:""}<div class="actions">${base?`<a class="btn main" href="${base}" target="_blank" rel="noopener">원본 영상 보기</a>`:""}<button class="btn" id="x">닫기</button></div></div>`;
+ const nt=NOTE(id);
+ $("#dlg").innerHTML=`<div class="dlg"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span>${v.people?`<span>출연 ${esc(v.people)}</span>`:""}</div><p class="dtitle">${esc(v.title)}</p><p class="concl">${sent(v.conclusion)}</p>${nt?`<p class="enote"><b>편집자 한마디</b>${esc(nt)}</p>`:""}${p2?`<div class="tabs" role="tablist"><button class="tab on" role="tab" data-p="0">요약</button><button class="tab" role="tab" data-p="1">종목·숫자</button></div>`:""}<section class="pane sec" id="s0">${p1}</section>${p2?`<section class="pane sec" id="s1">${p2}</section>`:""}<div class="actions">${base?`<a class="btn main" href="${base}" target="_blank" rel="noopener">원본 영상 보기</a>`:""}<button class="btn" id="x">닫기</button></div></div>`;
  $("#dlg").showModal();$("#dlg").scrollTop=0;$("#dlg").onscroll=spy;$("#x").onclick=()=>$("#dlg").close();
 }
 function mark(n){$('.tab[data-p="0"]').className="tab"+(n===0?" on":"");$('.tab[data-p="1"]').className="tab"+(n===1?" on":"")}
 function spy(){const d=$("#dlg"),s1=$("#s1");if(!s1)return;const atEnd=d.scrollTop+d.clientHeight>=d.scrollHeight-4;mark(atEnd||s1.getBoundingClientRect().top-d.getBoundingClientRect().top<140?1:0)}
 function tab(n){mark(n);const t=$("#s"+n);if(t&&t.scrollIntoView)t.scrollIntoView({behavior:"smooth",block:"start"})}
-/* ----- 종합 브리핑 ----- */
-let bi=0,bopen=true;
-const idx={};
-VIDEOS.forEach((v,i)=>{const k=vid(v.url);if(k)idx[k]=i});
-const src=ids=>{const o=[];(ids||[]).forEach(k=>{if(idx[k]!==undefined&&!o.includes(k))o.push(k)});return o.length?`<span class="src">${o.map(k=>`<button data-v="${idx[k]}">${esc(VIDEOS[idx[k]].channel)}</button>`).join("")}</span>`:""};
+/* ----- 종합 브리핑 (일간/주간) ----- */
+let bmode="day",bi=0,wi=0,bopen=true;
+const WD=["일","월","화","수","목","금","토"];
+const wday=d=>WD[new Date(d+"T00:00:00Z").getUTCDay()];
 function brief(){
  const el=$("#brief");
- if(typeof BRIEFS==="undefined"||!BRIEFS.length){el.innerHTML="";return}
- const b=BRIEFS[bi],today=new Date(Date.now()+9*36e5).toISOString().slice(0,10);
- const dates=BRIEFS.slice(0,7).map((x,i)=>`<button data-b="${i}" class="${i===bi?"on":""}">${esc(x.date.slice(5).replace("-","."))}</button>`).join("");
+ const B=typeof BRIEFS!=="undefined"?BRIEFS:[],W=typeof WEEKLY!=="undefined"?WEEKLY:[];
+ if(!B.length&&!W.length){el.innerHTML="";return}
+ if(bmode==="week"&&!W.length)bmode="day";if(bmode==="day"&&!B.length)bmode="week";
+ const mode=`<span class="bmode">${B.length?`<button data-m="day" class="${bmode==="day"?"on":""}">일간</button>`:""}${W.length?`<button data-m="week" class="${bmode==="week"?"on":""}">주간</button>`:""}</span>`;
  const blk=(t,body)=>body?`<div class="bb"><h3>${t}</h3>${body}</div>`:"";
- const th=(b.themes||[]).map(t=>`<div class="bi"><b>${esc(t.title)}</b><p>${esc(t.summary)}</p>${src(t.refs)}</div>`).join("");
- const ag=(b.agreements||[]).map(a=>`<div class="bi"><p>${esc(a.point)}</p>${src(a.refs)}</div>`).join("");
- const dg=(b.disagreements||[]).map(d=>`<div class="bi"><b>${esc(d.topic)}</b>${d.views.map(v=>`<p>${src([v.ref])} ${esc(v.view)}</p>`).join("")}</div>`).join("");
- const sk=(b.stocks||[]).map(s=>`<div class="sk"><div class="skh"><b>${esc(s.name)}</b><small>${s.count}편에서 언급</small></div>${s.mentions.slice(0,4).map(m=>`<p>${src([m.ref])} ${esc(m.view)}</p>`).join("")}</div>`).join("");
- const head=`<div class="bhead"><b>${b.date===today?"오늘의 시장 브리핑":"시장 브리핑"}</b><span>${esc(b.date.replace(/-/g,"."))} · 영상 ${b.count}편 종합</span><button id="btog">${bopen?"접기":"펼치기"}</button><span class="bdates">${dates}</span></div><h2>${esc(b.headline)}</h2>`;
- const body=bopen?`<p class="bover">${esc(b.overview)}</p><div class="bgrid">${blk("핵심 주제",th)}${blk("공통으로 말한 것",ag)}${blk("엇갈린 의견",dg)}</div>${blk("여러 영상에서 언급된 종목",sk?`<div class="skg">${sk}</div>`:"")}<p class="bnote">AI가 이날의 영상 요약들을 종합한 내용이며 투자 권유가 아니다. 채널 이름을 누르면 근거가 된 영상의 요약을 볼 수 있다.</p>`:"";
+ const kpl=b=>{const k=b.keypoints&&b.keypoints.length?b.keypoints:(b.overview?[b.overview]:[]);return k.length?`<ul class="kp">${k.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""};
+ const nt=k=>NOTE(k)?`<p class="enote"><b>편집자 한마디</b>${esc(NOTE(k))}</p>`:"";
+ const tog=`<button id="btog">${bopen?"접기":"자세히 보기"}</button>`;
+ let head,body;
+ if(bmode==="day"){
+  const b=B[Math.min(bi,B.length-1)];
+  const dates=B.slice(0,7).map((x,i)=>`<button data-b="${i}" class="${i===bi?"on":""}">${esc(md(x.date))}</button>`).join("");
+  head=`<div class="bhead"><b>${b.date===kst()?"오늘의 시장 브리핑":"시장 브리핑"}</b>${mode}<span>${esc(b.date.replace(/-/g,"."))} · 영상 ${b.count}편 종합</span>${tog}<span class="bdates">${dates}</span></div><h2>${esc(b.headline)}</h2>`;
+  const th=(b.themes||[]).map((t,n)=>`<div class="bi"><b>${esc(t.title)}</b><p>${esc(t.summary)}</p>${rel("t"+n,t.refs)}</div>`).join("");
+  const ag=(b.agreements||[]).map((a,n)=>`<div class="bi"><p>${esc(a.point)}</p>${rel("a"+n,a.refs)}</div>`).join("");
+  const dg=(b.disagreements||[]).map(d=>`<div class="bi"><b>${esc(d.topic)}</b>${d.views.map(v=>`<p>${esc(v.view)} ${hv(v.ref)}</p>`).join("")}</div>`).join("");
+  const sk=(b.stocks||[]).map(s=>`<div class="sk"><div class="skh"><b>${esc(s.name)}</b><small>${s.count}편에서 언급</small></div>${s.mentions.slice(0,5).map(m=>`<p>${esc(m.view)} ${hv(m.ref)}</p>`).join("")}</div>`).join("");
+  body=kpl(b)+nt(b.date)+(bopen?`<div class="bgrid">${blk("핵심 주제",th)}${blk("공통으로 말한 것",ag)}${blk("엇갈린 의견",dg)}</div>${blk("여러 영상에서 언급된 종목",sk?`<div class="skg">${sk}</div>`:"")}<p class="bnote">AI가 이날의 영상 요약들을 종합한 내용이며 투자 권유가 아니다. '관련 영상'을 누르거나 채널 이름에 마우스를 올리면 근거가 된 영상을 볼 수 있다.</p>`:"");
+ }else{
+  const w=W[Math.min(wi,W.length-1)];
+  const dates=W.slice(0,6).map((x,i)=>`<button data-w="${i}" class="${i===wi?"on":""}">${esc(md(x.week))}~</button>`).join("");
+  head=`<div class="bhead"><b>주간 브리핑</b>${mode}<span>${esc(md(w.week))} ~ ${esc(md(w.end))} · 영상 ${w.videos}편 종합</span>${tog}<span class="bdates">${dates}</span></div><h2>${esc(w.headline)}</h2>`;
+  const fl=(w.flow||[]).map(f=>`<dt>${esc(md(f.date))}(${wday(f.date)})</dt><dd>${esc(f.point)}</dd>`).join("");
+  const rc=(w.recurring||[]).map(r=>`<div class="bi"><b>${esc(r.title)}</b><p>${esc(r.summary)}</p><small style="color:var(--sub)">${r.dates.length}일 등장: ${r.dates.map(d=>esc(md(d))).join(", ")}</small></div>`).join("");
+  const sw=(w.stocks||[]).map(s=>`<div class="sk"><div class="skh"><b>${esc(s.name)}</b><small>${s.videos}편 · ${s.days.length}일</small></div><p>${esc(s.note)}</p><button class="link" data-sk="${esc(s.name)}">종목 페이지에서 보기 →</button></div>`).join("");
+  body=kpl(w)+nt("week:"+w.week)+(bopen?`<div class="bgrid">${blk("하루하루의 흐름",fl?`<dl class="tl">${fl}</dl>`:"")}${blk("이번 주 반복된 주제",rc)}</div>${blk("이번 주 많이 언급된 종목",sw?`<div class="skg">${sw}</div>`:"")}<p class="bnote">AI가 이번 주의 일간 브리핑들을 종합한 내용이며 투자 권유가 아니다.</p>`:"");
+ }
  el.innerHTML=`<div class="brief">${head}${body}</div>`;
 }
+/* ----- 종목 페이지 ----- */
+const SK={};VIDEOS.forEach((v,i)=>(v.stocks||[]).forEach(([t,n,note])=>{const k=nk(n);if(!k)return;const s=SK[k]=SK[k]||{names:{},items:[]};s.items.push({i,t,note,date:v.date});s.names[n]=(s.names[n]||0)+1}));
+let skQ="",skRange="30",skOpen=new Set(),skInit=false;
+const rangeChips=(cur,attr)=>[["7","7일"],["30","30일"],["all","전체"]].map(([k,l])=>`<button class="chip" ${attr}="${k}" aria-pressed="${cur===k}">${l}</button>`).join("");
+const tmLink=(i,t)=>{const id=vid(VIDEOS[i].url);return t&&id?`<a class="tm" href="https://www.youtube.com/watch?v=${id}&t=${sec(t)}s" target="_blank" rel="noopener">▶ ${t}</a>`:""};
+function stocksInit(){
+ const el=$("#v-stocks");
+ el.innerHTML=`<div class="vbar"><input id="sq" type="search" placeholder="종목 이름 검색" aria-label="종목 검색" value="${esc(skQ)}"><div class="chips" id="sr"></div></div><div id="sl"></div>`;
+ skInit=true;stocksList();
+}
+function stocksList(){
+ if(!skInit)return;
+ $("#sr").innerHTML=rangeChips(skRange,"data-r");
+ const cut=skRange==="all"?"":kst((+skRange-1)*864e5);
+ const rows=[];
+ Object.entries(SK).forEach(([k,s])=>{const its=s.items.filter(x=>!cut||x.date>=cut);if(!its.length)return;const name=Object.entries(s.names).sort((a,b)=>b[1]-a[1])[0][0];if(skQ&&!nk(name).includes(nk(skQ)))return;rows.push({k,name,its,n:new Set(its.map(x=>x.i)).size,c:new Set(its.map(x=>VIDEOS[x.i].channel)).size,last:its.reduce((m,x)=>x.date>m?x.date:m,"")})});
+ rows.sort((a,b)=>b.n-a.n||b.last.localeCompare(a.last));
+ $("#sl").innerHTML=rows.length?rows.slice(0,100).map(r=>{const open=skOpen.has(r.k);return `<div class="skr"><button class="skrh" data-k="${esc(r.k)}"><b>${esc(r.name)}</b><span>${r.n}편 · ${r.c}채널</span><small>마지막 언급 ${esc(md(r.last))} ${open?"▴":"▾"}</small></button>${open?`<div class="skrb">${r.its.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<p><small>${esc(md(x.date))}</small>${esc(x.note)} ${hv(vid(VIDEOS[x.i].url))} ${tmLink(x.i,x.t)}</p>`).join("")}</div>`:""}</div>`}).join(""):`<div class="empty">조건에 맞는 종목이 없다.</div>`;
+}
+/* ----- 숫자·지표 페이지 ----- */
+const NM=[];VIDEOS.forEach((v,i)=>(v.numbers||[]).forEach(n=>NM.push({i,t:n[0],val:n[1],note:n[2],label:n[3]||"기타",date:v.date})));
+let nmQ="",nmRange="30",nmLabel="",nmInit=false;
+function numsInit(){
+ $("#v-numbers").innerHTML=`<div class="vbar"><input id="nq" type="search" placeholder="지표, 숫자, 설명 검색" aria-label="숫자 검색" value="${esc(nmQ)}"><div class="chips" id="nr"></div></div><div class="chips" id="nl" style="margin-bottom:18px"></div><div id="nlist"></div>`;
+ nmInit=true;numsList();
+}
+function numsList(){
+ if(!nmInit)return;
+ $("#nr").innerHTML=rangeChips(nmRange,"data-nr");
+ const cut=nmRange==="all"?"":kst((+nmRange-1)*864e5);
+ const base=NM.filter(x=>(!cut||x.date>=cut)&&(!nmQ||(x.label+x.note+x.val).toLowerCase().includes(nmQ.toLowerCase())));
+ const cnt={};base.forEach(x=>cnt[x.label]=(cnt[x.label]||0)+1);
+ const labels=Object.entries(cnt).sort((a,b)=>(a[0]==="기타")-(b[0]==="기타")||b[1]-a[1]);
+ $("#nl").innerHTML=`<button class="chip" data-l="" aria-pressed="${nmLabel===""}">전체</button>`+labels.slice(0,16).map(([l,n])=>`<button class="chip" data-l="${esc(l)}" aria-pressed="${nmLabel===l}">${esc(l)} ${n}</button>`).join("");
+ const row=x=>`<div class="nrow"><div class="nv">${esc(x.val)}</div><div class="nx"><p>${esc(x.note)}</p><small>${esc(md(x.date))} ${hv(vid(VIDEOS[x.i].url))} ${tmLink(x.i,x.t)}</small></div></div>`;
+ const sorted=a=>a.slice().sort((p,r)=>r.date.localeCompare(p.date));
+ if(nmLabel){$("#nlist").innerHTML=sorted(base.filter(x=>x.label===nmLabel)).slice(0,80).map(row).join("")||`<div class="empty">조건에 맞는 숫자가 없다.</div>`;return}
+ $("#nlist").innerHTML=labels.length?labels.slice(0,12).map(([l,n])=>`<div class="ng"><h3>${esc(l)} <small>${n}개</small>${n>4?` <button class="link" data-l="${esc(l)}">이 지표만 보기 →</button>`:""}</h3>${sorted(base.filter(x=>x.label===l)).slice(0,4).map(row).join("")}</div>`).join(""):`<div class="empty">조건에 맞는 숫자가 없다.</div>`;
+}
+/* ----- 화면 전환 ----- */
+function route(){
+ const h=(location.hash||"").replace("#","");const v=["stocks","numbers"].includes(h)?h:"home";
+ ["home","stocks","numbers"].forEach(n=>{const e=$("#v-"+n);if(e)e.hidden=n!==v;const b=$('#nav [data-n="'+n+'"]');if(b)b.className=n===v?"on":""});
+ if(v==="stocks")stocksInit();if(v==="numbers")numsInit();
+ hidePop();
+}
+/* ----- 이벤트 ----- */
 $("#q").oninput=e=>{q=e.target.value.trim().toLowerCase();shown=PAGE;render()};
 $("#chips").onclick=e=>{const b=e.target.closest(".chip");if(b){ch=b.dataset.c;shown=PAGE;chips();render()}};
 $("#grid").onclick=e=>{if(e.target.id==="more"){shown+=PAGE;render();return}const c=e.target.closest(".card");if(c)open(+c.dataset.i)};
 $("#grid").onkeydown=e=>{if(e.key==="Enter"){const c=e.target.closest(".card");if(c)open(+c.dataset.i)}};
+$("#brief").onclick=e=>{
+ const r=e.target.closest("[data-rel]");if(r){toggleRel(r.dataset.rel);return}
+ const m=e.target.closest("[data-m]");if(m){bmode=m.dataset.m;brief();return}
+ const d=e.target.closest("[data-b]");if(d){bi=+d.dataset.b;brief();return}
+ const w=e.target.closest("[data-w]");if(w){wi=+w.dataset.w;brief();return}
+ const s=e.target.closest("[data-sk]");if(s){skQ=s.dataset.sk;skInit=false;location.hash="#stocks";route();return}
+ if(e.target.closest("#btog")){bopen=!bopen;brief()}
+};
+$("#v-stocks").onclick=e=>{
+ const k=e.target.closest("[data-k]");if(k){const key=k.dataset.k;skOpen.has(key)?skOpen.delete(key):skOpen.add(key);stocksList();return}
+ const r=e.target.closest("[data-r]");if(r){skRange=r.dataset.r;stocksList()}
+};
+$("#v-stocks").oninput=e=>{if(e.target.id==="sq"){skQ=e.target.value.trim();stocksList()}};
+$("#v-numbers").onclick=e=>{
+ const l=e.target.closest("[data-l]");if(l){nmLabel=l.dataset.l;numsList();return}
+ const r=e.target.closest("[data-nr]");if(r){nmRange=r.dataset.nr;numsList()}
+};
+$("#v-numbers").oninput=e=>{if(e.target.id==="nq"){nmQ=e.target.value.trim();nmLabel="";numsList()}};
+$("#nav").onclick=e=>{const b=e.target.closest("[data-n]");if(b){location.hash=b.dataset.n==="home"?"#home":"#"+b.dataset.n;route()}};
 $("#dlg").onclick=e=>{const b=e.target.closest&&e.target.closest(".tab");if(b){tab(+b.dataset.p);return}if(e.target===$("#dlg"))$("#dlg").close()};
-$("#brief").onclick=e=>{const v=e.target.closest("[data-v]");if(v){open(+v.dataset.v);return}const d=e.target.closest("[data-b]");if(d){bi=+d.dataset.b;brief();return}if(e.target.closest("#btog")){bopen=!bopen;brief()}};
+document.addEventListener("click",e=>{
+ const t=e.target,c=s=>t.closest&&t.closest(s);
+ const h=c(".hv");
+ if(h){if(canHover()){hidePop();open(+h.dataset.v)}else{(popEl===h&&!pop.hidden)?hidePop():showPop(h)}return}
+ const v=c(".vc");if(v){hidePop();open(+v.dataset.open);return}
+ if(!c("#pop"))hidePop();
+});
+document.addEventListener("mouseover",e=>{if(!canHover())return;const t=e.target,h=t.closest&&t.closest(".hv");if(h)showPop(h);else if(t.closest&&t.closest("#pop"))clearTimeout(popT)});
+document.addEventListener("mouseout",e=>{if(!canHover())return;const t=e.target;if(t.closest&&(t.closest(".hv")||t.closest("#pop")))popT=setTimeout(hidePop,180)});
+window.addEventListener("scroll",hidePop,{passive:true});
+window.addEventListener("hashchange",route);
 if(typeof BRIEFS!=="undefined")BRIEFS.sort((a,b)=>b.date.localeCompare(a.date));
-chips();render();brief();
+if(typeof WEEKLY!=="undefined")WEEKLY.sort((a,b)=>b.week.localeCompare(a.week));
+chips();render();brief();route();
 </script>
 </body>
 </html>
