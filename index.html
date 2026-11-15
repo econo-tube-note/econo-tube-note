@@ -58,6 +58,28 @@ a.tm:hover{color:var(--accent)}
 .actions{display:flex;gap:10px;margin-top:24px}
 .btn{display:inline-block;padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;cursor:pointer;text-decoration:none}
 .dlg a.btn.main{background:var(--accent);border-color:var(--accent);color:#fff;margin:0}
+.brief{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 22px 18px;margin:0 0 30px}
+.bhead{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;font-size:.85rem;color:var(--sub)}
+.bhead>b{color:var(--accent);font-weight:800;font-size:.95rem}
+.bdates{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.bdates button,#btog{border:1px solid var(--line);background:none;color:var(--sub);border-radius:99px;padding:3px 11px;font:inherit;font-size:.8rem;cursor:pointer}
+.bdates button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.brief h2{font-size:1.5rem;line-height:1.4;font-weight:800;letter-spacing:-.02em;margin:14px 0 10px}
+.bover{margin:0 0 4px;color:var(--ink);line-height:1.7;font-size:1rem}
+.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px;margin-top:22px}
+.bb{margin-top:22px}.bgrid .bb{margin-top:0}
+.bb h3{font-size:.95rem;font-weight:800;margin:0 0 12px;padding-left:10px;border-left:4px solid var(--accent)}
+.bi{margin:0 0 16px}
+.bi b{display:block;font-size:1rem;margin-bottom:3px}
+.bi p,.sk p{margin:0 0 6px;line-height:1.6;font-size:.93rem}
+.src{display:inline-flex;gap:4px;flex-wrap:wrap;vertical-align:middle}
+.src button{border:0;background:var(--chip);color:var(--sub);border-radius:99px;padding:1px 9px;font:inherit;font-size:.76rem;font-weight:600;cursor:pointer}
+.src button:hover{color:var(--accent)}
+.skg{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px}
+.sk{background:var(--chip);border-radius:12px;padding:14px}
+.skh{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
+.skh b{font-size:1.02rem}.skh small{color:var(--sub);font-size:.78rem}
+.bnote{color:var(--sub);font-size:.78rem;margin:20px 0 0}
 .note{color:var(--sub);font-size:.82rem;margin-top:40px}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </style>
@@ -65,7 +87,8 @@ a.tm:hover{color:var(--accent)}
 <body>
 <div class="wrap">
   <h1>경제 유튜브 요약</h1>
-  <p class="lead">인기 경제 채널의 영상을 AI가 요약해 한곳에 모았다. 카드를 누르면 상세 요약과 장면별 시간을 볼 수 있다.</p>
+  <p class="lead">인기 경제 채널의 영상을 AI가 요약하고, 하루치를 종합한 브리핑을 함께 보여 준다. 카드를 누르면 상세 요약과 장면별 시간을 볼 수 있다.</p>
+  <section id="brief"></section>
   <div class="bar">
     <input id="q" type="search" placeholder="제목, 키워드로 검색" aria-label="검색">
     <div class="chips" id="chips"></div>
@@ -75,6 +98,7 @@ a.tm:hover{color:var(--accent)}
 </div>
 <dialog id="dlg"></dialog>
 <script src="videos.js"></script>
+<script src="briefs.js"></script>
 <script>
 /* ===== 여기부터는 건드리지 않아도 된다 ===== */
 if(typeof VIDEOS==="undefined"){document.querySelector("#grid").innerHTML='<div class="empty">영상 목록(videos.js)을 불러오지 못했다. index.html과 videos.js가 같은 폴더에 있는지 확인해야 한다.</div>';throw new Error("videos.js를 찾을 수 없다")}
@@ -106,12 +130,33 @@ function open(i){
 function mark(n){$('.tab[data-p="0"]').className="tab"+(n===0?" on":"");$('.tab[data-p="1"]').className="tab"+(n===1?" on":"")}
 function spy(){const d=$("#dlg"),s1=$("#s1");if(!s1)return;const atEnd=d.scrollTop+d.clientHeight>=d.scrollHeight-4;mark(atEnd||s1.getBoundingClientRect().top-d.getBoundingClientRect().top<140?1:0)}
 function tab(n){mark(n);const t=$("#s"+n);if(t&&t.scrollIntoView)t.scrollIntoView({behavior:"smooth",block:"start"})}
+/* ----- 종합 브리핑 ----- */
+let bi=0,bopen=true;
+const idx={};
+VIDEOS.forEach((v,i)=>{const k=vid(v.url);if(k)idx[k]=i});
+const src=ids=>{const o=[];(ids||[]).forEach(k=>{if(idx[k]!==undefined&&!o.includes(k))o.push(k)});return o.length?`<span class="src">${o.map(k=>`<button data-v="${idx[k]}">${esc(VIDEOS[idx[k]].channel)}</button>`).join("")}</span>`:""};
+function brief(){
+ const el=$("#brief");
+ if(typeof BRIEFS==="undefined"||!BRIEFS.length){el.innerHTML="";return}
+ const b=BRIEFS[bi],today=new Date(Date.now()+9*36e5).toISOString().slice(0,10);
+ const dates=BRIEFS.slice(0,7).map((x,i)=>`<button data-b="${i}" class="${i===bi?"on":""}">${esc(x.date.slice(5).replace("-","."))}</button>`).join("");
+ const blk=(t,body)=>body?`<div class="bb"><h3>${t}</h3>${body}</div>`:"";
+ const th=(b.themes||[]).map(t=>`<div class="bi"><b>${esc(t.title)}</b><p>${esc(t.summary)}</p>${src(t.refs)}</div>`).join("");
+ const ag=(b.agreements||[]).map(a=>`<div class="bi"><p>${esc(a.point)}</p>${src(a.refs)}</div>`).join("");
+ const dg=(b.disagreements||[]).map(d=>`<div class="bi"><b>${esc(d.topic)}</b>${d.views.map(v=>`<p>${src([v.ref])} ${esc(v.view)}</p>`).join("")}</div>`).join("");
+ const sk=(b.stocks||[]).map(s=>`<div class="sk"><div class="skh"><b>${esc(s.name)}</b><small>${s.count}편에서 언급</small></div>${s.mentions.slice(0,4).map(m=>`<p>${src([m.ref])} ${esc(m.view)}</p>`).join("")}</div>`).join("");
+ const head=`<div class="bhead"><b>${b.date===today?"오늘의 시장 브리핑":"시장 브리핑"}</b><span>${esc(b.date.replace(/-/g,"."))} · 영상 ${b.count}편 종합</span><button id="btog">${bopen?"접기":"펼치기"}</button><span class="bdates">${dates}</span></div><h2>${esc(b.headline)}</h2>`;
+ const body=bopen?`<p class="bover">${esc(b.overview)}</p><div class="bgrid">${blk("핵심 주제",th)}${blk("공통으로 말한 것",ag)}${blk("엇갈린 의견",dg)}</div>${blk("여러 영상에서 언급된 종목",sk?`<div class="skg">${sk}</div>`:"")}<p class="bnote">AI가 이날의 영상 요약들을 종합한 내용이며 투자 권유가 아니다. 채널 이름을 누르면 근거가 된 영상의 요약을 볼 수 있다.</p>`:"";
+ el.innerHTML=`<div class="brief">${head}${body}</div>`;
+}
 $("#q").oninput=e=>{q=e.target.value.trim().toLowerCase();shown=PAGE;render()};
 $("#chips").onclick=e=>{const b=e.target.closest(".chip");if(b){ch=b.dataset.c;shown=PAGE;chips();render()}};
 $("#grid").onclick=e=>{if(e.target.id==="more"){shown+=PAGE;render();return}const c=e.target.closest(".card");if(c)open(+c.dataset.i)};
 $("#grid").onkeydown=e=>{if(e.key==="Enter"){const c=e.target.closest(".card");if(c)open(+c.dataset.i)}};
 $("#dlg").onclick=e=>{const b=e.target.closest&&e.target.closest(".tab");if(b){tab(+b.dataset.p);return}if(e.target===$("#dlg"))$("#dlg").close()};
-chips();render();
+$("#brief").onclick=e=>{const v=e.target.closest("[data-v]");if(v){open(+v.dataset.v);return}const d=e.target.closest("[data-b]");if(d){bi=+d.dataset.b;brief();return}if(e.target.closest("#btog")){bopen=!bopen;brief()}};
+if(typeof BRIEFS!=="undefined")BRIEFS.sort((a,b)=>b.date.localeCompare(a.date));
+chips();render();brief();
 </script>
 </body>
 </html>
