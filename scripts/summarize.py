@@ -848,12 +848,21 @@ def build_weekly(ws, days, videos):
     def txt(x):
         return (x or "").strip()
 
+    def nd(x):
+        """모델이 날짜를 '11.13', '11월 13일', '2026/11/13'처럼 써도 입력 날짜로 맞춘다."""
+        nums = re.findall(r"\d+", str(x or ""))
+        for d in dates:
+            y, m, dd = d.split("-")
+            if nums[-3:] == [y, m, dd] or [n.zfill(2) for n in nums[-2:]] == [m, dd]:
+                return d
+        return None
+
     kp = [txt(x) for x in data.get("keypoints") or [] if txt(x)][:4]
-    flow = [{"date": f["date"], "point": txt(f.get("point"))} for f in data.get("flow") or [] if f.get("date") in dates and txt(f.get("point"))]
+    flow = [{"date": nd(f.get("date")), "point": txt(f.get("point"))} for f in data.get("flow") or [] if nd(f.get("date")) and txt(f.get("point"))]
     flow.sort(key=lambda f: f["date"])
     rec = []
     for r in data.get("recurring") or []:
-        ds = sorted({d for d in r.get("dates") or [] if d in dates})
+        ds = sorted({nd(d) for d in r.get("dates") or [] if nd(d)})
         if txt(r.get("title")) and txt(r.get("summary")) and len(ds) >= 2:
             rec.append({"title": txt(r["title"]), "summary": txt(r["summary"]), "dates": ds})
     names = {norm_name(t["name"]): t for t in ranked}
@@ -864,7 +873,7 @@ def build_weekly(ws, days, videos):
             stocks.append({"name": t["name"], "videos": len(t["vids"]), "days": sorted(t["days"]), "note": txt(x["note"])})
     stocks.sort(key=lambda x: -x["videos"])
     if not txt(data.get("headline")) or not kp or not (flow or rec):
-        raise ValueError("주간 브리핑에 헤드라인, 핵심 줄, 흐름이 비어 있다")
+        raise ValueError(f"주간 브리핑 결과가 부족하다 (헤드라인 {'있음' if txt(data.get('headline')) else '없음'}, 핵심 줄 {len(kp)}개, 흐름 {len(flow)}개, 반복 주제 {len(rec)}개)")
     return {"week": ws, "end": end, "days": dates, "sig": [f"{b['date']}:{b['count']}" for b in days],
             "gen_date": datetime.datetime.now(KST).strftime("%Y-%m-%d"), "videos": len(in_week),
             "headline": txt(data["headline"]), "keypoints": kp, "flow": flow, "recurring": rec[:4], "stocks": stocks[:8]}
