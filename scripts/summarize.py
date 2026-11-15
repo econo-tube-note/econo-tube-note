@@ -512,6 +512,14 @@ def week_start(date_str):
 
 def norm_note_key(k):
     k = (k or "").strip()
+    today = datetime.datetime.now(KST).date()
+    if k in ("오늘", "today"):
+        return today.isoformat()
+    if k in ("어제", "yesterday"):
+        return (today - datetime.timedelta(days=1)).isoformat()
+    if k in ("주간", "이번주", "week"):  # 날짜 없이 '주간'만 쓰면 가장 최근 주간 브리핑(없으면 이번 주)에 단다
+        weekly = load_weekly()
+        return "week:" + (weekly[0]["week"] if weekly else week_start(today.isoformat()).isoformat())
     m = re.fullmatch(r"(?:주간|week)[: ]?(\d{4}-\d{2}-\d{2})", k)
     if m:
         return "week:" + week_start(m.group(1)).isoformat()
@@ -523,7 +531,8 @@ def norm_note_key(k):
 def set_note(key, text):
     k = norm_note_key(key)
     if not k:
-        print(f"코멘트를 달 대상을 알 수 없다: '{key}'. 날짜(2026-11-14), 주간:날짜, 또는 영상 주소를 쓴다.")
+        print(f"코멘트를 달 대상을 알 수 없다: '{key}'. note_key 칸에는 날짜(2026-11-14), 오늘, 주간(가장 최근 주), 주간:날짜, 영상 주소 중 하나를 쓴다.")
+        print("(주간 브리핑을 '만들려면' note_key가 아니라 첫 번째 칸(urls)에 주간 이라고 쓴다.)")
         return 1
     notes = load_notes()
     text = (text or "").strip()
@@ -551,10 +560,10 @@ BRIEF_PROMPT = """너는 한국 경제 유튜브 영상들의 요약을 종합�
 - refs와 ref에는 근거가 된 영상 번호(입력의 n)를 넣는다. 입력에 있는 번호만 쓴다.
 - headline: 오늘 영상들을 관통하는 시장 분위기를 공백 포함 45자 안팎의 짧은 한 문장으로 쓴다.
 - keypoints: 오늘의 핵심 3~4줄. 각 줄은 공백 포함 40자 안팎의 짧은 문장 하나이고, 정보를 하나씩만 담는다.
-- themes: 핵심 주제 2~4개. title은 짧게, summary는 두 문장 이내의 짧은 문장으로 쓴다.
-- agreements: 둘 이상의 영상이 공통으로 말한 것 2~4개. point와 refs(2개 이상).
-- disagreements: 영상마다 의견이 엇갈린 주제 0~3개. 없으면 빈 목록. topic과 views(각각 view, ref).
-- stocks: 둘 이상의 영상에서 언급된 종목 최대 8개. name과 mentions(각각 view: 그 영상에서의 평가나 맥락 한 줄, ref). 한 영상에서만 나온 종목은 넣지 않는다.
+- themes: 핵심 주제 2~4개. title은 공백 포함 25자 이내로 짧게, summary는 공백 포함 90자 이내의 한두 문장으로 쓴다.
+- agreements: 둘 이상의 영상이 공통으로 말한 것 2~4개. point는 공백 포함 45자 안팎의 한 문장, refs는 2개 이상.
+- disagreements: 영상마다 의견이 엇갈린 주제 0~3개. 없으면 빈 목록. topic은 짧게, views의 각 view는 공백 포함 45자 안팎의 한 문장(각각 view, ref).
+- stocks: 둘 이상의 영상에서 언급된 종목 최대 8개. name과 mentions(각각 view: 그 영상에서의 평가나 맥락을 공백 포함 45자 안팎의 한 문장으로, ref). 한 영상에서만 나온 종목은 넣지 않는다.
 
 영상 요약(JSON):
 """
