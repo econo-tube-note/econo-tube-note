@@ -9,7 +9,10 @@
   "8C9UKITrtLc": "직접 삭제",
   "IMSLxKFUz84": "직접 삭제",
   "6kEXheLAxts": "경제 무관: 아프리카의 일반적인 실상을 다루는 내용으로 경제적 관점이 분명하지 않음",
-  "bHeSYnGiA-U": "경제 무관: 가자지구 전쟁의 현장 상황을 다룬 시사·사회 이슈로 경제적 관점이 분명하지 않음"
+  "bHeSYnGiA-U": "경제 무관: 가자지구 전쟁의 현장 상황을 다룬 시사·사회 이슈로 경제적 관점이 분명하지 않음",
+  "EGCHJsiyfpo": "경제 무관: 지진이라는 자연재해 및 재난 상황을 다루고 있어 경제적 관점보다는 사회·재난 이슈에 해당함.",
+  "HSGMWOyRn58": "쇼츠",
+  "zSF-FLfPRbk": "쇼츠"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -17,12 +20,12 @@
  },
  "spent": {
   "2026-11-14": 27000,
-  "2026-11-15": 10800
+  "2026-11-15": 19800
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 17,
-   "busy": 2,
+   "ok": 21,
+   "busy": 3,
    "dead": 4
   },
   "gemini-3.7-flash": {
@@ -36,7 +39,7 @@
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 2,
+   "ok": 3,
    "busy": 0,
    "dead": 4
   },
@@ -49,12 +52,9 @@
  "topic": {
   "IDmdeUEObck": true,
   "0QL9B_8Ju9M": true,
-  "LJ_NAiZr09Q": true,
-  "IU-2OFhVB4I": true,
   "Hp6pWL2giRM": true,
   "cpb6wIQIK2Q": true,
   "80YalcHW0Rc": true,
-  "EnUsMp3IZu4": true,
   "SKNqY7mDNTw": true,
   "bumogqEOMgU": true,
   "ZeNpHp6Qkz4": true,
@@ -67,10 +67,10 @@
   "Uk0ZY0x7ehg": true,
   "uOKlw4eQKnI": true,
   "AC33ZTkqK8Y": true,
-  "PRU4kYSCJC8": true,
-  "fdk1qjtZYA0": true
+  "PRU4kYSCJC8": true
  },
  "brief_final": {
-  "2026-11-13": true
+  "2026-11-13": true,
+  "2026-11-14": true
  }
 }
