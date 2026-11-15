@@ -50,42 +50,13 @@ button{font:inherit;color:inherit}
 .kp li:before{content:"";position:absolute;left:3px;top:.85em;width:6px;height:6px;border-radius:50%;background:var(--accent)}
 .enote{margin:14px 0 0;padding:10px 14px;border-left:4px solid var(--accent);background:var(--chip);border-radius:0 10px 10px 0;font-size:.95rem;line-height:1.65}
 .enote b{color:var(--accent);margin-right:6px;font-size:.82rem}
-.bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px;margin-top:24px}
-.bb{margin-top:24px}.bgrid .bb{margin-top:0}
-.bb h3{font-size:.95rem;font-weight:800;margin:0 0 12px;padding-left:10px;border-left:4px solid var(--accent)}
-.bi{margin:0 0 18px}
-.bi b{display:block;font-size:1rem;margin-bottom:3px}
-.bi p,.sk p{margin:0 0 6px;line-height:1.6;font-size:.93rem}
-.rel{margin-top:4px;border:1px solid var(--line);background:none;color:var(--sub);border-radius:99px;padding:2px 11px;font-size:.78rem;font-weight:600;cursor:pointer}
-.rel:hover{color:var(--accent);border-color:var(--accent)}
-.relp{margin-top:8px;display:grid;gap:8px}
-.hv{border:0;background:var(--chip);color:var(--sub);border-radius:99px;padding:1px 9px;font-size:.76rem;font-weight:600;cursor:pointer;white-space:nowrap;vertical-align:1px}
-.hv:hover{color:var(--accent)}
-.skg{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
-.sk{background:var(--chip);border-radius:12px;padding:14px}
-.skh{display:flex;align-items:baseline;gap:8px;margin-bottom:8px}
-.skh b{font-size:1.02rem}.skh small{color:var(--sub);font-size:.78rem}
-.tl{display:grid;grid-template-columns:64px minmax(0,1fr);gap:4px 12px;margin:0}
-.tl dt{color:var(--accent);font-weight:700;font-size:.88rem}
-.tl dd{margin:0 0 8px;font-size:.95rem;line-height:1.6}
 .bnote{color:var(--sub);font-size:.78rem;margin:20px 0 0}
-.vc{display:grid;grid-template-columns:118px minmax(0,1fr);gap:12px;align-items:start;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer}
-.vc:hover{border-color:var(--accent)}
-.vth{aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:linear-gradient(135deg,#dbe3f4,#b9c6e6)}
-.vth img{width:100%;height:100%;object-fit:cover;display:block}
-.vm{font-size:.76rem;color:var(--sub)}.vm b{color:var(--accent)}
-.vtx p{margin:2px 0 0;font-size:.9rem;font-weight:700;line-height:1.5;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.pop{position:fixed;z-index:50;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.22);padding:6px}
-.pop .vc{border:0}
-@media(max-width:480px){.vc{grid-template-columns:96px minmax(0,1fr)}}
 /* ----- 종목·숫자 페이지 ----- */
 .vbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
 .skr{background:var(--card);border:1px solid var(--line);border-radius:12px;margin-bottom:10px}
 .skrh{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;width:100%;text-align:left;background:none;border:0;padding:14px 16px;cursor:pointer}
 .skrh b{font-size:1.05rem}.skrh span{color:var(--accent);font-weight:700;font-size:.88rem}.skrh small{color:var(--sub);margin-left:auto}
 .skrb{padding:0 16px 10px}
-.skrb p{margin:0;padding:9px 0;border-top:1px solid var(--line);font-size:.93rem;line-height:1.6}
-.skrb p small{color:var(--sub);margin-right:6px}
 .ng{margin-bottom:26px}
 .ng h3{font-size:1rem;margin:0 0 8px;display:flex;align-items:baseline;gap:8px}.ng h3 small{color:var(--sub);font-weight:400}
 .nrow{display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;padding:10px 0;border-top:1px solid var(--line)}
@@ -120,6 +91,55 @@ a.tm:hover{color:var(--accent)}
 .sc .big{font-size:1.45rem;font-weight:800;color:var(--accent);line-height:1.25}
 .actions{display:flex;gap:10px;margin-top:24px}
 .dlg a.btn.main{background:var(--accent);border-color:var(--accent);color:#fff;margin:0}
+.bsec{margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
+.bt{display:flex;align-items:center;gap:8px;font-size:1.15rem;font-weight:800;letter-spacing:-.01em;margin:0 0 14px}
+.cn{font-size:.76rem;font-weight:700;color:var(--sub);border:1px solid var(--line);border-radius:99px;padding:0 9px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:0 40px}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.tcard{border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.tcard b{display:block;font-size:1.05rem;line-height:1.45;margin-bottom:6px}
+.tcard p{margin:0 0 8px;color:var(--sub);font-size:.92rem;line-height:1.7;cursor:pointer;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tcard p.open{display:block;-webkit-line-clamp:unset}
+.tcard small{color:var(--sub);font-size:.8rem}
+.mrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;align-items:start;padding:9px 0;font-size:.95rem;line-height:1.6}
+.mrow+.mrow{border-top:1px solid var(--line)}
+.mrow>:last-child{justify-self:end}
+.dblock{margin:0 0 22px}
+.dtopic{font-weight:800;font-size:1.02rem;margin:0 0 2px}
+.rel{border:1px solid var(--line);background:none;color:var(--sub);border-radius:99px;padding:2px 11px;font-size:.78rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.rel:hover{color:var(--accent);border-color:var(--accent)}
+.tcard .rel{margin-top:2px}
+.hv{border:0;background:var(--chip);color:var(--sub);border-radius:99px;padding:2px 10px;font-size:.78rem;font-weight:600;cursor:pointer;white-space:nowrap}
+.hv:hover{color:var(--accent)}
+.sk .hv{background:var(--card);border:1px solid var(--line)}
+.skg{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.sk{background:var(--chip);border-radius:12px;padding:14px 16px}
+.skh{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+.skh b{font-size:1.1rem}.skh small{color:var(--sub);font-size:.8rem}
+.sk>p{margin:0 0 6px;font-size:.93rem;line-height:1.6}
+.tl{display:grid;grid-template-columns:64px minmax(0,1fr);gap:4px 12px;margin:0}
+.tl dt{color:var(--accent);font-weight:700;font-size:.9rem}
+.tl dd{margin:0 0 10px;font-size:.95rem;line-height:1.65}
+.vc{display:grid;grid-template-columns:128px minmax(0,1fr);gap:14px;align-items:start;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer}
+.vc:hover{background:var(--chip)}
+.vl{display:flex;flex-direction:column;gap:5px;min-width:0}
+.vth{aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:linear-gradient(135deg,#dbe3f4,#b9c6e6)}
+.vth img{width:100%;height:100%;object-fit:cover;display:block}
+.vl b{color:var(--accent);font-size:.82rem;line-height:1.3}
+.vl small{color:var(--sub);font-size:.76rem}
+.vr{min-width:0}
+.vt{font-size:.78rem;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vr p{margin:2px 0 0;font-size:.95rem;font-weight:800;line-height:1.5;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.pop{position:absolute;z-index:50;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.22);padding:8px;max-height:70vh;overflow:auto}
+.pop .vc{border:0;padding:8px}
+.pop .vc+.vc{border-top:1px solid var(--line);border-radius:0}
+@media(max-width:480px){.vc{grid-template-columns:100px minmax(0,1fr);gap:10px}}
+.skrb p{margin:0;padding:9px 0;border-top:1px solid var(--line);font-size:.93rem;line-height:1.6}
+.srow{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:10px;align-items:start}
+.srow small{color:var(--sub)}
+.rt{display:flex;gap:6px;align-items:center;justify-self:end;white-space:nowrap}
+.rt .tm{margin:0}
+#grid,#sl,#nlist{min-height:60vh}
 .note{color:var(--sub);font-size:.82rem;margin-top:40px}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </style>
@@ -170,15 +190,20 @@ function render(){
  const list=VIDEOS.map((v,i)=>i).filter(i=>{const v=VIDEOS[i];return (ch==="전체"||v.channel===ch)&&(!q||(v.title+v.conclusion+(v.tags||[]).join(" ")).toLowerCase().includes(q))});
  $("#grid").innerHTML=list.length?list.slice(0,shown).map(i=>card(i)).join("")+(list.length>shown?`<div class="more"><button class="btn" id="more">더 보기 (${list.length-shown}편 남음)</button></div>`:""):`<div class="empty">조건에 맞는 영상이 없다. 다른 키워드나 채널을 골라보자.</div>`;
 }
-/* ----- 관련 영상 카드 / 마우스를 올리면 뜨는 카드 ----- */
-const vcard=i=>{const v=VIDEOS[i];return `<div class="vc" data-open="${i}"><div class="vth">${thumb(v)}</div><div class="vtx"><div class="vm"><b>${esc(v.channel)}</b> ${esc(md(v.date))}</div><p>${sent(v.conclusion)}</p></div></div>`};
+/* ----- 관련 영상 카드 / 팝업 카드 ----- */
+const vcard=i=>{const v=VIDEOS[i];return `<div class="vc" data-open="${i}"><div class="vl"><div class="vth">${thumb(v)}</div><b>${esc(v.channel)}</b><small>${esc(v.date.replace(/-/g,"."))}</small></div><div class="vr"><div class="vt">${esc(v.title)}</div><p>${sent(v.conclusion)}</p></div></div>`};
 const hv=ref=>idx[ref]===undefined?"":`<button class="hv" data-v="${idx[ref]}">${esc(VIDEOS[idx[ref]].channel)}</button>`;
 const relMap={};
-const rel=(key,refs)=>{const u=uniq(refs).filter(k=>idx[k]!==undefined);relMap[key]=u;return u.length?`<button class="rel" data-rel="${key}">관련 영상 ${u.length}</button><div class="relp" id="rp-${key}" hidden></div>`:""};
-function toggleRel(key){const p=$("#rp-"+key);if(!p)return;if(p.hidden){p.innerHTML=(relMap[key]||[]).slice(0,6).map(k=>vcard(idx[k])).join("");p.hidden=false}else p.hidden=true}
-const pop=$("#pop");let popT=null,popEl=null;
-function showPop(el){clearTimeout(popT);popEl=el;pop.innerHTML=vcard(+el.dataset.v);pop.hidden=false;const r=el.getBoundingClientRect(),w=Math.min(400,innerWidth-24);pop.style.width=w+"px";pop.style.left=Math.min(Math.max(12,r.left),innerWidth-w-12)+"px";let y=r.bottom+8;if(y+160>innerHeight)y=Math.max(12,r.top-160-8);pop.style.top=y+"px"}
-function hidePop(){clearTimeout(popT);pop.hidden=true;popEl=null}
+const rel=(key,refs)=>{const u=uniq(refs).filter(k=>idx[k]!==undefined);relMap[key]=u;return u.length?`<button class="rel" data-rel="${key}">관련 영상 ${u.length}</button>`:""};
+const pop=$("#pop");let popT=null,popEl=null,popKind=null;
+function showPop(el,html,wide){
+ clearTimeout(popT);popEl=el;pop.innerHTML=html;pop.hidden=false;pop.scrollTop=0;
+ const r=el.getBoundingClientRect(),w=Math.min(wide?560:420,innerWidth-24),sx=window.scrollX||0,sy=window.scrollY||0;
+ pop.style.width=w+"px";pop.style.left=(sx+Math.min(Math.max(12,r.left),innerWidth-w-12))+"px";
+ const h=pop.offsetHeight||0;let top=r.bottom+8;if(h&&top+h>innerHeight&&r.top-8-h>12)top=r.top-8-h;
+ pop.style.top=(sy+top)+"px";
+}
+function hidePop(){clearTimeout(popT);pop.hidden=true;popEl=null;popKind=null}
 const canHover=()=>matchMedia("(hover:hover)").matches;
 /* ----- 상세 요약 팝업 ----- */
 function open(i){
@@ -202,33 +227,35 @@ let bmode="day",bi=0,wi=0,bopen=true;
 const WD=["일","월","화","수","목","금","토"];
 const wday=d=>WD[new Date(d+"T00:00:00Z").getUTCDay()];
 function brief(){
+ hidePop();
  const el=$("#brief");
  const B=typeof BRIEFS!=="undefined"?BRIEFS:[],W=typeof WEEKLY!=="undefined"?WEEKLY:[];
  if(!B.length&&!W.length){el.innerHTML="";return}
  if(bmode==="week"&&!W.length)bmode="day";if(bmode==="day"&&!B.length)bmode="week";
  const mode=`<span class="bmode">${B.length?`<button data-m="day" class="${bmode==="day"?"on":""}">일간</button>`:""}${W.length?`<button data-m="week" class="${bmode==="week"?"on":""}">주간</button>`:""}</span>`;
- const blk=(t,body)=>body?`<div class="bb"><h3>${t}</h3>${body}</div>`:"";
+ const sect=(t,n,body,cls)=>body?`<div class="bsec${cls?" "+cls:""}"><h3 class="bt">${t}${n?`<span class="cn">${n}</span>`:""}</h3>${body}</div>`:"";
  const kpl=b=>{const k=b.keypoints&&b.keypoints.length?b.keypoints:(b.overview?[b.overview]:[]);return k.length?`<ul class="kp">${k.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:""};
  const nt=k=>NOTE(k)?`<p class="enote"><b>편집자 한마디</b>${esc(NOTE(k))}</p>`:"";
  const tog=`<button id="btog">${bopen?"접기":"자세히 보기"}</button>`;
+ const mrows=(arr,fn)=>arr.map(fn).join("");
  let head,body;
  if(bmode==="day"){
   const b=B[Math.min(bi,B.length-1)];
   const dates=B.slice(0,7).map((x,i)=>`<button data-b="${i}" class="${i===bi?"on":""}">${esc(md(x.date))}</button>`).join("");
   head=`<div class="bhead"><b>${b.date===kst()?"오늘의 시장 브리핑":"시장 브리핑"}</b>${mode}<span>${esc(b.date.replace(/-/g,"."))} · 영상 ${b.count}편 종합</span>${tog}<span class="bdates">${dates}</span></div><h2>${esc(b.headline)}</h2>`;
-  const th=(b.themes||[]).map((t,n)=>`<div class="bi"><b>${esc(t.title)}</b><p>${esc(t.summary)}</p>${rel("t"+n,t.refs)}</div>`).join("");
-  const ag=(b.agreements||[]).map((a,n)=>`<div class="bi"><p>${esc(a.point)}</p>${rel("a"+n,a.refs)}</div>`).join("");
-  const dg=(b.disagreements||[]).map(d=>`<div class="bi"><b>${esc(d.topic)}</b>${d.views.map(v=>`<p>${esc(v.view)} ${hv(v.ref)}</p>`).join("")}</div>`).join("");
-  const sk=(b.stocks||[]).map(s=>`<div class="sk"><div class="skh"><b>${esc(s.name)}</b><small>${s.count}편에서 언급</small></div>${s.mentions.slice(0,5).map(m=>`<p>${esc(m.view)} ${hv(m.ref)}</p>`).join("")}</div>`).join("");
-  body=kpl(b)+nt(b.date)+(bopen?`<div class="bgrid">${blk("핵심 주제",th)}${blk("공통으로 말한 것",ag)}${blk("엇갈린 의견",dg)}</div>${blk("여러 영상에서 언급된 종목",sk?`<div class="skg">${sk}</div>`:"")}<p class="bnote">AI가 이날의 영상 요약들을 종합한 내용이며 투자 권유가 아니다. '관련 영상'을 누르거나 채널 이름에 마우스를 올리면 근거가 된 영상을 볼 수 있다.</p>`:"");
+  const th=(b.themes||[]).map((t,n)=>`<div class="tcard"><b>${esc(t.title)}</b><p data-exp title="눌러서 펼치기">${esc(t.summary)}</p>${rel("t"+n,t.refs)}</div>`).join("");
+  const ag=mrows(b.agreements||[],(a,n)=>`<div class="mrow"><span>${esc(a.point)}</span>${rel("a"+n,a.refs)}</div>`);
+  const dg=mrows(b.disagreements||[],d=>`<div class="dblock"><div class="dtopic">${esc(d.topic)}</div>${mrows(d.views,v=>`<div class="mrow"><span>${esc(v.view)}</span>${hv(v.ref)}</div>`)}</div>`);
+  const sk=mrows(b.stocks||[],s=>`<div class="sk"><div class="skh"><b>${esc(s.name)}</b><small>${s.count}편에서 언급</small></div>${mrows(s.mentions.slice(0,4),m=>`<div class="mrow"><span>${esc(m.view)}</span>${hv(m.ref)}</div>`)}</div>`);
+  body=kpl(b)+nt(b.date)+(bopen?sect("핵심 주제",(b.themes||[]).length,th&&`<div class="tgrid">${th}</div>`)+`<div class="cols">${sect("공통으로 말한 것",(b.agreements||[]).length,ag)}${sect("엇갈린 의견",(b.disagreements||[]).length,dg)}</div>`+sect("여러 영상에서 언급된 종목",(b.stocks||[]).length,sk&&`<div class="skg">${sk}</div>`)+`<p class="bnote">AI가 이날의 영상 요약들을 종합한 내용이며 투자 권유가 아니다. '관련 영상'을 누르거나 채널 이름에 마우스를 올리면 근거가 된 영상을 볼 수 있다.</p>`:"");
  }else{
   const w=W[Math.min(wi,W.length-1)];
   const dates=W.slice(0,6).map((x,i)=>`<button data-w="${i}" class="${i===wi?"on":""}">${esc(md(x.week))}~</button>`).join("");
   head=`<div class="bhead"><b>주간 브리핑</b>${mode}<span>${esc(md(w.week))} ~ ${esc(md(w.end))} · 영상 ${w.videos}편 종합</span>${tog}<span class="bdates">${dates}</span></div><h2>${esc(w.headline)}</h2>`;
   const fl=(w.flow||[]).map(f=>`<dt>${esc(md(f.date))}(${wday(f.date)})</dt><dd>${esc(f.point)}</dd>`).join("");
-  const rc=(w.recurring||[]).map(r=>`<div class="bi"><b>${esc(r.title)}</b><p>${esc(r.summary)}</p><small style="color:var(--sub)">${r.dates.length}일 등장: ${r.dates.map(d=>esc(md(d))).join(", ")}</small></div>`).join("");
+  const rc=(w.recurring||[]).map(r=>`<div class="tcard"><b>${esc(r.title)}</b><p data-exp title="눌러서 펼치기">${esc(r.summary)}</p><small>${r.dates.length}일 등장 · ${r.dates.map(d=>esc(md(d))).join(", ")}</small></div>`).join("");
   const sw=(w.stocks||[]).map(s=>`<div class="sk"><div class="skh"><b>${esc(s.name)}</b><small>${s.videos}편 · ${s.days.length}일</small></div><p>${esc(s.note)}</p><button class="link" data-sk="${esc(s.name)}">종목 페이지에서 보기 →</button></div>`).join("");
-  body=kpl(w)+nt("week:"+w.week)+(bopen?`<div class="bgrid">${blk("하루하루의 흐름",fl?`<dl class="tl">${fl}</dl>`:"")}${blk("이번 주 반복된 주제",rc)}</div>${blk("이번 주 많이 언급된 종목",sw?`<div class="skg">${sw}</div>`:"")}<p class="bnote">AI가 이번 주의 일간 브리핑들을 종합한 내용이며 투자 권유가 아니다.</p>`:"");
+  body=kpl(w)+nt("week:"+w.week)+(bopen?`<div class="cols">${sect("하루하루의 흐름",(w.flow||[]).length,fl&&`<dl class="tl">${fl}</dl>`)}${sect("이번 주 반복된 주제",(w.recurring||[]).length,rc&&`<div class="tgrid" style="grid-template-columns:1fr">${rc}</div>`)}</div>`+sect("이번 주 많이 언급된 종목",(w.stocks||[]).length,sw&&`<div class="skg">${sw}</div>`)+`<p class="bnote">AI가 이번 주의 일간 브리핑들을 종합한 내용이며 투자 권유가 아니다.</p>`:"");
  }
  el.innerHTML=`<div class="brief">${head}${body}</div>`;
 }
@@ -249,7 +276,7 @@ function stocksList(){
  const rows=[];
  Object.entries(SK).forEach(([k,s])=>{const its=s.items.filter(x=>!cut||x.date>=cut);if(!its.length)return;const name=Object.entries(s.names).sort((a,b)=>b[1]-a[1])[0][0];if(skQ&&!nk(name).includes(nk(skQ)))return;rows.push({k,name,its,n:new Set(its.map(x=>x.i)).size,c:new Set(its.map(x=>VIDEOS[x.i].channel)).size,last:its.reduce((m,x)=>x.date>m?x.date:m,"")})});
  rows.sort((a,b)=>b.n-a.n||b.last.localeCompare(a.last));
- $("#sl").innerHTML=rows.length?rows.slice(0,100).map(r=>{const open=skOpen.has(r.k);return `<div class="skr"><button class="skrh" data-k="${esc(r.k)}"><b>${esc(r.name)}</b><span>${r.n}편 · ${r.c}채널</span><small>마지막 언급 ${esc(md(r.last))} ${open?"▴":"▾"}</small></button>${open?`<div class="skrb">${r.its.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<p><small>${esc(md(x.date))}</small>${esc(x.note)} ${hv(vid(VIDEOS[x.i].url))} ${tmLink(x.i,x.t)}</p>`).join("")}</div>`:""}</div>`}).join(""):`<div class="empty">조건에 맞는 종목이 없다.</div>`;
+ $("#sl").innerHTML=rows.length?rows.slice(0,100).map(r=>{const open=skOpen.has(r.k);return `<div class="skr"><button class="skrh" data-k="${esc(r.k)}"><b>${esc(r.name)}</b><span>${r.n}편 · ${r.c}채널</span><small>마지막 언급 ${esc(md(r.last))} ${open?"▴":"▾"}</small></button>${open?`<div class="skrb">${r.its.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<p class="srow"><small>${esc(md(x.date))}</small><span>${esc(x.note)}</span><span class="rt">${hv(vid(VIDEOS[x.i].url))}${tmLink(x.i,x.t)}</span></p>`).join("")}</div>`:""}</div>`}).join(""):`<div class="empty">조건에 맞는 종목이 없다.</div>`;
 }
 /* ----- 숫자·지표 페이지 ----- */
 const NM=[];VIDEOS.forEach((v,i)=>(v.numbers||[]).forEach(n=>NM.push({i,t:n[0],val:n[1],note:n[2],label:n[3]||"기타",date:v.date})));
@@ -279,12 +306,13 @@ function route(){
  hidePop();
 }
 /* ----- 이벤트 ----- */
-$("#q").oninput=e=>{q=e.target.value.trim().toLowerCase();shown=PAGE;render()};
-$("#chips").onclick=e=>{const b=e.target.closest(".chip");if(b){ch=b.dataset.c;shown=PAGE;chips();render()}};
+const keep=fn=>{const bar=$(".bar"),y0=bar.getBoundingClientRect().top;fn();const d=bar.getBoundingClientRect().top-y0;if(d)window.scrollBy(0,d)};  // 결과가 줄어도 화면이 위로 튀지 않게 검색 줄의 위치를 유지한다
+$("#q").oninput=e=>{q=e.target.value.trim().toLowerCase();shown=PAGE;keep(render)};
+$("#chips").onclick=e=>{const b=e.target.closest(".chip");if(b)keep(()=>{ch=b.dataset.c;shown=PAGE;chips();render()})};
 $("#grid").onclick=e=>{if(e.target.id==="more"){shown+=PAGE;render();return}const c=e.target.closest(".card");if(c)open(+c.dataset.i)};
 $("#grid").onkeydown=e=>{if(e.key==="Enter"){const c=e.target.closest(".card");if(c)open(+c.dataset.i)}};
 $("#brief").onclick=e=>{
- const r=e.target.closest("[data-rel]");if(r){toggleRel(r.dataset.rel);return}
+ const x=e.target.closest("[data-exp]");if(x){x.className=x.className==="open"?"":"open";return}
  const m=e.target.closest("[data-m]");if(m){bmode=m.dataset.m;brief();return}
  const d=e.target.closest("[data-b]");if(d){bi=+d.dataset.b;brief();return}
  const w=e.target.closest("[data-w]");if(w){wi=+w.dataset.w;brief();return}
@@ -305,14 +333,16 @@ $("#nav").onclick=e=>{const b=e.target.closest("[data-n]");if(b){location.hash=b
 $("#dlg").onclick=e=>{const b=e.target.closest&&e.target.closest(".tab");if(b){tab(+b.dataset.p);return}if(e.target===$("#dlg"))$("#dlg").close()};
 document.addEventListener("click",e=>{
  const t=e.target,c=s=>t.closest&&t.closest(s);
+ const r=c(".rel");   // '관련 영상': 누르면 열리고, 다시 누르거나 바깥을 누르면 닫힌다
+ if(r){if(popEl===r&&!pop.hidden)hidePop();else{popKind="rel";showPop(r,(relMap[r.dataset.rel]||[]).slice(0,6).map(k=>vcard(idx[k])).join(""),true)}return}
  const h=c(".hv");
- if(h){if(canHover()){hidePop();open(+h.dataset.v)}else{(popEl===h&&!pop.hidden)?hidePop():showPop(h)}return}
+ if(h){if(canHover()){hidePop();open(+h.dataset.v)}else if(popEl===h&&!pop.hidden)hidePop();else{popKind="hv";showPop(h,vcard(+h.dataset.v),false)}return}
  const v=c(".vc");if(v){hidePop();open(+v.dataset.open);return}
  if(!c("#pop"))hidePop();
 });
-document.addEventListener("mouseover",e=>{if(!canHover())return;const t=e.target,h=t.closest&&t.closest(".hv");if(h)showPop(h);else if(t.closest&&t.closest("#pop"))clearTimeout(popT)});
-document.addEventListener("mouseout",e=>{if(!canHover())return;const t=e.target;if(t.closest&&(t.closest(".hv")||t.closest("#pop")))popT=setTimeout(hidePop,180)});
-window.addEventListener("scroll",hidePop,{passive:true});
+document.addEventListener("mouseover",e=>{if(!canHover())return;const t=e.target,h=t.closest&&t.closest(".hv");if(h){if(popKind==="rel"&&!pop.hidden)return;popKind="hv";showPop(h,vcard(+h.dataset.v),false)}else if(popKind==="hv"&&t.closest&&t.closest("#pop"))clearTimeout(popT)});
+document.addEventListener("mouseout",e=>{if(!canHover()||popKind!=="hv")return;const t=e.target;if(t.closest&&(t.closest(".hv")||t.closest("#pop")))popT=setTimeout(hidePop,180)});
+window.addEventListener("resize",hidePop);
 window.addEventListener("hashchange",route);
 if(typeof BRIEFS!=="undefined")BRIEFS.sort((a,b)=>b.date.localeCompare(a.date));
 if(typeof WEEKLY!=="undefined")WEEKLY.sort((a,b)=>b.week.localeCompare(a.week));
