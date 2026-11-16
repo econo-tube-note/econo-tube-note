@@ -33,7 +33,7 @@
   "삼성전자": {
    "name": "삼성전자",
    "tone": "혼재",
-   "count": 26,
+   "count": 27,
    "channels": 5,
    "last": "2026-11-16",
    "lastmod": "2026-11-17"
@@ -49,7 +49,7 @@
   "SK하이닉스": {
    "name": "SK하이닉스",
    "tone": "혼재",
-   "count": 21,
+   "count": 22,
    "channels": 4,
    "last": "2026-11-16",
    "lastmod": "2026-11-17"
@@ -216,7 +216,7 @@
   },
   "펌텍코리아": {
    "name": "펌텍코리아",
-   "tone": null,
+   "tone": "긍정",
    "count": 2,
    "channels": 2,
    "last": "2026-11-16",
@@ -232,7 +232,7 @@
   },
   "코스맥스": {
    "name": "코스맥스",
-   "tone": null,
+   "tone": "긍정",
    "count": 2,
    "channels": 2,
    "last": "2026-11-16",
