@@ -165,12 +165,29 @@ a.tm:hover{color:var(--accent)}
  .body{padding:14px 14px 16px}
 }
 .dtop{position:sticky;top:0;z-index:5;height:0;display:flex;justify-content:flex-end}
-.xbtn{width:38px;height:38px;margin:-12px -14px 0 0;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:1.1rem;line-height:1;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.14)}
+.xbtn{width:38px;height:38px;margin:10px -8px 0 0;flex:none;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:1.1rem;line-height:1;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.14)}
 .xbtn:hover{color:var(--accent);border-color:var(--accent)}
 @media(max-width:600px){
  dialog{width:calc(100% - 20px);max-width:calc(100% - 20px);max-height:88vh;margin:auto;border-radius:16px;border:1px solid var(--line)}
- .xbtn{margin:-8px -8px 0 0}
+ .xbtn{margin:6px -4px 0 0}
 }
+.dlg .meta,.dlg .dtitle{padding-right:44px}
+.nav{overflow-x:auto;scrollbar-width:none;white-space:nowrap}.nav::-webkit-scrollbar{display:none}.nav button{flex:none}
+.sech{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 14px}
+.sech h2{font-size:1.2rem;font-weight:800;margin:0}
+.digest{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:12px 14px;margin:6px 0 10px}
+.digest .dh{display:flex;align-items:center;gap:8px;margin-bottom:4px;font-size:.82rem;color:var(--sub)}
+.digest .dh b{color:var(--ink);font-size:.9rem}
+.digest p{margin:0 0 4px;font-weight:700;line-height:1.6}
+.digest ul{margin:4px 0 0;padding-left:18px}.digest li{font-size:.92rem;line-height:1.6}
+.tone{font-size:.74rem;font-weight:800;border-radius:99px;padding:1px 9px;color:#fff;background:#8a93a3}
+.tone.t긍정{background:#12805c}.tone.t부정{background:#c62828}.tone.t혼재{background:#c2410c}
+.ncnt{display:block;font-size:.76rem;font-weight:700;color:var(--sub);margin-top:2px}
+.nsrc{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:4px}
+.nsrc span{display:inline-flex;align-items:center;gap:4px;font-size:.8rem;color:var(--sub)}
+.nsrc .tm{margin:0}
+.comm{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:40px 20px;text-align:center;color:var(--sub)}
+.comm b{display:block;color:var(--ink);font-size:1.15rem;margin-bottom:6px}
 .note{color:var(--sub);font-size:.82rem;margin-top:40px}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </style>
@@ -179,9 +196,13 @@ a.tm:hover{color:var(--accent)}
 <div class="wrap">
   <h1>경제 유튜브 요약</h1>
   <p class="lead">인기 경제 채널의 영상을 AI가 요약하고, 하루와 한 주를 종합한 브리핑을 함께 보여 준다. 카드를 누르면 상세 요약과 장면별 시간을 볼 수 있다.</p>
-  <nav class="nav" id="nav"><button data-n="home">홈</button><button data-n="stocks">종목</button><button data-n="numbers">숫자·지표</button></nav>
+  <nav class="nav" id="nav"><button data-n="home">홈</button><button data-n="videos">영상 요약</button><button data-n="stocks">종목</button><button data-n="numbers">숫자·지표</button><button data-n="community">커뮤니티</button></nav>
   <div id="v-home">
     <section id="brief"></section>
+    <div class="sech"><h2>최근 영상</h2><button class="link" data-go="videos">영상 요약 전체 보기 →</button></div>
+    <div class="grid" id="hgrid"></div>
+  </div>
+  <div id="v-videos" hidden>
     <div class="bar">
       <input id="q" type="search" placeholder="제목, 키워드로 검색" aria-label="검색">
       <div class="chips" id="chips"></div>
@@ -190,6 +211,7 @@ a.tm:hover{color:var(--accent)}
   </div>
   <div id="v-stocks" hidden></div>
   <div id="v-numbers" hidden></div>
+  <div id="v-community" hidden><div class="comm"><b>커뮤니티 준비 중</b>영상과 브리핑에 대해 이야기를 나눌 공간을 준비하고 있다.</div></div>
   <p class="note">AI가 요약한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
 </div>
 <dialog id="dlg"></dialog>
@@ -197,6 +219,7 @@ a.tm:hover{color:var(--accent)}
 <script src="videos.js"></script>
 <script src="briefs.js"></script>
 <script src="notes.js"></script>
+<script src="stocks.js"></script>
 <script>
 if(typeof VIDEOS==="undefined"){document.querySelector("#grid").innerHTML='<div class="empty">영상 목록(videos.js)을 불러오지 못했다. index.html과 videos.js가 같은 폴더에 있는지 확인해야 한다.</div>';throw new Error("videos.js를 찾을 수 없다")}
 VIDEOS.sort((a,b)=>b.date.localeCompare(a.date));
@@ -217,6 +240,7 @@ const chans=["전체",...new Set(VIDEOS.map(v=>v.channel))];
 function chips(){$("#chips").innerHTML=chans.map(c=>`<button class="chip" aria-pressed="${c===ch}" data-c="${esc(c)}">${esc(c)}</button>`).join("")}
 function thumb(v){const id=vid(v.url);return id?`<img src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">`:""}
 function card(i){const v=VIDEOS[i];return `<article class="card" tabindex="0" data-i="${i}"><div class="thumb">${thumb(v)}</div><div class="body"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span></div><h2>${esc(v.title)}</h2><p>${sent(v.conclusion)}</p><div class="tags">${(v.tags||[]).map(t=>`<span>${esc(t)}</span>`).join("")}</div></div></article>`}
+function homeGrid(){const g=$("#hgrid");if(g)g.innerHTML=VIDEOS.slice(0,6).map((v,i)=>card(i)).join("")}
 function render(){
  const list=VIDEOS.map((v,i)=>i).filter(i=>{const v=VIDEOS[i];return (ch==="전체"||v.channel===ch)&&(!q||(v.title+v.conclusion+(v.tags||[]).join(" ")).toLowerCase().includes(q))});
  $("#grid").innerHTML=list.length?list.slice(0,shown).map(i=>card(i)).join("")+(list.length>shown?`<div class="more"><button class="btn" id="more">더 보기 (${list.length-shown}편 남음)</button></div>`:""):`<div class="empty">조건에 맞는 영상이 없다. 다른 키워드나 채널을 골라보자.</div>`;
@@ -318,7 +342,9 @@ function stocksList(){
  const rows=[];
  Object.entries(SK).forEach(([k,s])=>{const its=s.items.filter(x=>!cut||x.date>=cut);if(!its.length)return;const name=Object.entries(s.names).sort((a,b)=>b[1]-a[1])[0][0];if(skQ&&!nk(name).includes(nk(skQ)))return;rows.push({k,name,its,n:new Set(its.map(x=>x.i)).size,c:new Set(its.map(x=>VIDEOS[x.i].channel)).size,last:its.reduce((m,x)=>x.date>m?x.date:m,"")})});
  rows.sort((a,b)=>b.n-a.n||b.last.localeCompare(a.last));
- $("#sl").innerHTML=rows.length?rows.slice(0,100).map(r=>{const open=skOpen.has(r.k);return `<div class="skr"><button class="skrh" data-k="${esc(r.k)}"><b>${esc(r.name)}</b><span>${r.n}편 · ${r.c}채널</span><small>마지막 언급 ${esc(md(r.last))} ${open?"▴":"▾"}</small></button>${open?`<div class="skrb">${r.its.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<p class="srow"><small>${esc(md(x.date))}</small><span>${esc(x.note)}</span><span class="rt">${hv(vid(VIDEOS[x.i].url))}${tmLink(x.i,x.t)}</span></p>`).join("")}</div>`:""}</div>`}).join(""):`<div class="empty">조건에 맞는 종목이 없다.</div>`;
+ const SS=typeof STOCKSUM!=="undefined"&&STOCKSUM?STOCKSUM:{};
+ const dig=k=>{const d=SS[k];return d?`<div class="digest"><div class="dh"><b>종합</b><span class="tone t${esc(d.tone)}">${esc(d.tone)}</span><span>영상 ${d.count}편 기준 · ${esc(md(d.updated))} 정리</span></div><p>${esc(d.summary)}</p>${(d.points||[]).length?`<ul>${d.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>`:""}</div>`:""};
+ $("#sl").innerHTML=rows.length?rows.slice(0,100).map(r=>{const open=skOpen.has(r.k);return `<div class="skr"><button class="skrh" data-k="${esc(r.k)}"><b>${esc(r.name)}</b>${SS[r.k]?`<span class="tone t${esc(SS[r.k].tone)}">${esc(SS[r.k].tone)}</span>`:""}<span>${r.n}편 · ${r.c}채널</span><small>마지막 언급 ${esc(md(r.last))} ${open?"▴":"▾"}</small></button>${open?`<div class="skrb">${dig(r.k)}${r.its.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<p class="srow"><small>${esc(md(x.date))}</small><span>${esc(x.note)}</span><span class="rt">${hv(vid(VIDEOS[x.i].url))}${tmLink(x.i,x.t)}</span></p>`).join("")}</div>`:""}</div>`}).join(""):`<div class="empty">조건에 맞는 종목이 없다.</div>`;
 }
 /* ----- 숫자·지표 페이지 ----- */
 const GUESS=[["코스피","코스피 지수"],["코스닥","코스닥 지수"],["나스닥","나스닥 지수"],["S&P","S&P500 지수"],["다우","다우 지수"],["닛케이","닛케이 지수"],["필라델피아","필라델피아 반도체 지수"],["국채","국채 금리"],["기준금리","기준금리"],["금리","금리"],["환율","환율"],["유가","유가"],["WTI","유가"],["비트코인","비트코인 가격"],["신용잔고","신용잔고"],["반대매매","반대매매"],["외국인","외국인 매매"],["개인","개인 매매"],["기관","기관 매매"],["CPI","물가"],["물가","물가"],["실업","실업률"],["GDP","GDP"],["PER","PER·PBR"],["PBR","PER·PBR"],["목표가","목표 주가"],["시가총액","시가총액"],["영업이익","실적"],["매출","실적"],["실적","실적"],["상승률","등락률"],["하락폭","등락률"],["급락","등락률"],["급등","등락률"]];
@@ -334,18 +360,21 @@ function numsList(){
  $("#nr").innerHTML=rangeChips(nmRange,"data-nr");
  const cut=nmRange==="all"?"":kst((+nmRange-1)*864e5);
  const base=NM.filter(x=>(!cut||x.date>=cut)&&(!nmQ||(x.label+x.note+x.val).toLowerCase().includes(nmQ.toLowerCase())));
- const cnt={};base.forEach(x=>cnt[x.label]=(cnt[x.label]||0)+1);
+ // 같은 지표의 같은 숫자는 한 줄로 묶는다 (5조 원 = 5조원, 5.0% = 5%)
+ const nv=v=>String(v||"").replace(/[\s,]/g,"").replace(/(\d)\.0+(?!\d)/g,"$1").replace(/\(단위불명확\)/g,"");
+ const G={};base.forEach(x=>{const k=x.label+"|"+nv(x.val);(G[k]=G[k]||{label:x.label,items:[]}).items.push(x)});
+ const groups=Object.values(G).map(g=>{g.items.sort((p,r)=>r.date.localeCompare(p.date));g.last=g.items[0].date;return g});
+ const cnt={};groups.forEach(g=>cnt[g.label]=(cnt[g.label]||0)+1);
  const labels=Object.entries(cnt).sort((a,b)=>(a[0]==="기타")-(b[0]==="기타")||b[1]-a[1]);
  $("#nl").innerHTML=`<button class="chip" data-l="" aria-pressed="${nmLabel===""}">전체</button>`+labels.slice(0,16).map(([l,n])=>`<button class="chip" data-l="${esc(l)}" aria-pressed="${nmLabel===l}">${esc(l)} ${n}</button>`).join("");
- const row=x=>`<div class="nrow"><div class="nv">${esc(x.val)}</div><div class="nx"><p>${esc(x.note)}</p><small>${esc(md(x.date))} ${hv(vid(VIDEOS[x.i].url))} ${tmLink(x.i,x.t)}</small></div></div>`;
- const sorted=a=>a.slice().sort((p,r)=>r.date.localeCompare(p.date));
- if(nmLabel){$("#nlist").innerHTML=sorted(base.filter(x=>x.label===nmLabel)).slice(0,80).map(row).join("")||`<div class="empty">조건에 맞는 숫자가 없다.</div>`;return}
- $("#nlist").innerHTML=labels.length?labels.slice(0,12).map(([l,n])=>`<div class="ng"><h3>${esc(l)} <small>${n}개</small>${n>4?` <button class="link" data-l="${esc(l)}">이 지표만 보기 →</button>`:""}</h3>${sorted(base.filter(x=>x.label===l)).slice(0,4).map(row).join("")}</div>`).join(""):`<div class="empty">조건에 맞는 숫자가 없다.</div>`;
+ const row=g=>{const x=g.items[0],n=g.items.length;return `<div class="nrow"><div class="nv">${esc(x.val)}${n>1?`<span class="ncnt">${n}번 언급</span>`:""}</div><div class="nx"><p>${esc(x.note)}</p><div class="nsrc">${g.items.slice(0,6).map(y=>`<span>${esc(md(y.date))} ${hv(vid(VIDEOS[y.i].url))}${tmLink(y.i,y.t)}</span>`).join("")}${n>6?`<span>외 ${n-6}개</span>`:""}</div></div></div>`};
+ const sorted=a=>a.slice().sort((p,r)=>r.last.localeCompare(p.last)||r.items.length-p.items.length);
+ if(nmLabel){$("#nlist").innerHTML=sorted(groups.filter(g=>g.label===nmLabel)).slice(0,80).map(row).join("")||`<div class="empty">조건에 맞는 숫자가 없다.</div>`;return}
+ $("#nlist").innerHTML=labels.length?labels.slice(0,12).map(([l,n])=>`<div class="ng"><h3>${esc(l)} <small>${n}개</small>${n>4?` <button class="link" data-l="${esc(l)}">이 지표만 보기 →</button>`:""}</h3>${sorted(groups.filter(g=>g.label===l)).slice(0,4).map(row).join("")}</div>`).join(""):`<div class="empty">조건에 맞는 숫자가 없다.</div>`;
 }
-/* ----- 화면 전환 ----- */
 function route(){
- const h=(location.hash||"").replace("#","");const v=["stocks","numbers"].includes(h)?h:"home";
- ["home","stocks","numbers"].forEach(n=>{const e=$("#v-"+n);if(e)e.hidden=n!==v;const b=$('#nav [data-n="'+n+'"]');if(b)b.className=n===v?"on":""});
+ const h=(location.hash||"").replace("#","");const v=["videos","stocks","numbers","community"].includes(h)?h:"home";
+ ["home","videos","stocks","numbers","community"].forEach(n=>{const e=$("#v-"+n);if(e)e.hidden=n!==v;const b=$('#nav [data-n="'+n+'"]');if(b)b.className=n===v?"on":""});
  if(v==="stocks")stocksInit();if(v==="numbers")numsInit();
  hidePop();
 }
@@ -354,6 +383,7 @@ const keep=fn=>{const bar=$(".bar"),y0=bar.getBoundingClientRect().top;fn();cons
 $("#q").oninput=e=>{q=e.target.value.trim().toLowerCase();shown=PAGE;keep(render)};
 $("#chips").onclick=e=>{const b=e.target.closest(".chip");if(b)keep(()=>{ch=b.dataset.c;shown=PAGE;chips();render()})};
 $("#grid").onclick=e=>{if(e.target.id==="more"){shown+=PAGE;render();return}const c=e.target.closest(".card");if(c)open(+c.dataset.i)};
+$("#v-home").addEventListener("click",e=>{const g=e.target.closest&&e.target.closest("[data-go]");if(g){location.hash="#"+g.dataset.go;route();window.scrollTo&&window.scrollTo(0,0);return}const c=e.target.closest&&e.target.closest("#hgrid .card");if(c)open(+c.dataset.i)});
 $("#grid").onkeydown=e=>{if(e.key==="Enter"){const c=e.target.closest(".card");if(c)open(+c.dataset.i)}};
 $("#brief").onclick=e=>{
  const x=e.target.closest("[data-exp]");if(x){x.className=x.className==="open"?"":"open";return}
@@ -392,7 +422,7 @@ $("#dlg").addEventListener("close",()=>{if(dlgPushed){dlgPushed=false;history.ba
 window.addEventListener("popstate",()=>{if(dlgPushed){dlgPushed=false;if($("#dlg").open)$("#dlg").close()}hidePop()});
 if(typeof BRIEFS!=="undefined")BRIEFS.sort((a,b)=>b.date.localeCompare(a.date));
 if(typeof WEEKLY!=="undefined")WEEKLY.sort((a,b)=>b.week.localeCompare(a.week));
-chips();render();brief();route();
+chips();render();homeGrid();brief();route();
 </script>
 </body>
 </html>
