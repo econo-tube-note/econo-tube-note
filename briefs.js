@@ -1,6 +1,105 @@
 /* 종합 브리핑(일간 BRIEFS, 주간 WEEKLY). 자동화(scripts/summarize.py)가 갱신하는 파일이다. */
 const BRIEFS=[
  {
+  "date": "2026-11-16",
+  "count": 4,
+  "sources": [
+   "UihZAstNiGU",
+   "ue4sG-vBq7Y",
+   "LagAldYbD8M",
+   "mLfghqfrG1g"
+  ],
+  "headline": "AI 리스크 우려와 물가 불안 속에서 엔비디아 실적과 매크로 변수에 시장의 관심이 쏠린다.",
+  "keypoints": [
+   "연준은 AI 지출 및 데이터센터 부채 증가에 따른 금융안정 위험을 지적했다고 본다.",
+   "엔비디아는 리더십 이슈와 주가 변동성 속에서 실적 발표를 앞두고 있다고 전한다.",
+   "미국 생산자물가지수 발표 이후 인플레이션과 금리 인상 우려가 이어지고 있다고 본다.",
+   "한국은 반도체 등 주요 품목 호조로 연간 수출 1조 달러 달성이 확실시된다고 평가한다."
+  ],
+  "themes": [
+   {
+    "title": "연준의 AI 리스크 경고",
+    "summary": "연준은 AI 투자 열풍과 데이터센터 관련 부채 급증이 금융 시장의 안정성을 위협한다고 경고한다.",
+    "refs": [
+     "ue4sG-vBq7Y",
+     "LagAldYbD8M",
+     "mLfghqfrG1g"
+    ]
+   },
+   {
+    "title": "엔비디아 실적 및 리더십",
+    "summary": "엔비디아 주가가 하락세를 보이는 가운데 젠슨 황 복귀 청원과 실적 발표가 핵심 변수로 꼽힌다.",
+    "refs": [
+     "ue4sG-vBq7Y",
+     "LagAldYbD8M",
+     "mLfghqfrG1g"
+    ]
+   },
+   {
+    "title": "매크로 지표와 금리 향방",
+    "summary": "생산자물가지수 발표와 국채 금리 오름세 속에 연준 위원들의 추가 금리 인상 가능성이 제기된다.",
+    "refs": [
+     "UihZAstNiGU",
+     "ue4sG-vBq7Y",
+     "mLfghqfrG1g"
+    ]
+   }
+  ],
+  "agreements": [
+   {
+    "point": "연준은 AI 관련 부채 증가와 투자 과열이 금융안정을 위협할 수 있다고 경고했다고 본다.",
+    "refs": [
+     "ue4sG-vBq7Y",
+     "LagAldYbD8M",
+     "mLfghqfrG1g"
+    ]
+   },
+   {
+    "point": "엔비디아는 리더십 부재 우려로 인해 젠슨 황 CEO의 복귀 청원이 진행 중이라고 전한다.",
+    "refs": [
+     "ue4sG-vBq7Y",
+     "mLfghqfrG1g"
+    ]
+   },
+   {
+    "point": "생산자물가지수 발표 이후 인플레이션 우려와 추가 금리 인상 가능성이 제기되고 있다고 본다.",
+    "refs": [
+     "ue4sG-vBq7Y",
+     "mLfghqfrG1g"
+    ]
+   }
+  ],
+  "disagreements": [],
+  "stocks": [
+   {
+    "name": "엔비디아",
+    "count": 4,
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "AI 사이클의 핵심 동력원이나 자본 확장 성패를 좌우할 기업이라고 진단한다.",
+      "ref": "UihZAstNiGU"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "파이낸싱 리스크와 CEO 리더십 이슈로 주가 불확실성이 우려된다고 평가한다.",
+      "ref": "ue4sG-vBq7Y"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "실적 발표와 경영진 우려 속에 주가가 흔들렸으나 주도주 입지는 유지된다고 본다.",
+      "ref": "LagAldYbD8M"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "CEO 사임 파문 등으로 6주 연속 하락하며 주가 변동성을 겪었다고 분석한다.",
+      "ref": "mLfghqfrG1g"
+     }
+    ]
+   }
+  ]
+ },
+ {
   "date": "2026-11-15",
   "count": 9,
   "sources": [
