@@ -415,6 +415,7 @@ function route(){
  ["home","videos","stocks","numbers","community"].forEach(n=>{const e=$("#v-"+n);if(e)e.hidden=n!==v;const b=$('#nav [data-n="'+n+'"]');if(b)b.className=n===v?"on":""});
  if(v==="stocks")stocksInit();if(v==="numbers")numsInit();if(v==="community")community();
  hidePop();
+ if(b0==="v"){const i=idx[h.split("/")[1]];if(i!==undefined)setTimeout(()=>open(i),0)}  // 브리핑 페이지에서 영상 카드를 누르면 #v/영상ID 로 와서 상세 요약을 연다
 }
 /* ----- 커뮤니티 (Supabase) ----- */
 const CFG=typeof COMMUNITY!=="undefined"?COMMUNITY:null;
