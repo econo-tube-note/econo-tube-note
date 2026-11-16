@@ -423,6 +423,9 @@ TOPIC_PROMPT = """너는 경제·투자 유튜브 채널의 영상을 분류하�
 
 해당 주제: 경제(거시경제, 금리, 환율, 물가, 무역), 주식, 투자(코인·채권·펀드 포함), 산업·기업 분석, 부동산, 재테크(저축, 연금, 세금, 대출 등).
 
+참고: 이 채널들은 모두 경제·투자 전문 채널이다. 제목이 "이번엔 진짜 다르다", "지금 당장 확인하세요"처럼 궁금증을 끄는 문구이거나,
+사람 이름·인터뷰 형식이라서 경제 단어가 안 보여도 대부분 경제·투자 이야기다. 그런 영상은 해당한다.
+
 규칙
 - {rule}
 - 정치·외교·안보 이야기라도 제목이나 설명에 환율, 관세, 증시, 산업 영향처럼 경제적 관점이 분명히 드러나면 해당한다.
@@ -473,7 +476,7 @@ def call_gemini_text(prompt):
 def classify(items):
     """{영상id: (경제 관련 여부, 이유)}를 돌려준다. 호출이 실패하면 None."""
     strict = cfg("TOPIC_STRICT", 1)
-    rule = ("분명히 해당할 때만 related=true로 한다. 조금이라도 애매하면 false로 한다." if strict
+    rule = ("경제·투자와 관련 있다고 볼 만하면 related=true로 한다. 제목만으로 주제를 알 수 없으면 true로 한다. 경제와 상관없는 주제(음식, 여행, 건강, 연예, 일상, 경제 얘기가 없는 정치·안보 등)가 분명할 때만 false로 한다." if strict
             else "분명히 해당하지 않을 때만 false로 한다. 애매하면 true로 한다.")
     payload = [{"id": e["id"], "channel": e["channel"], "title": e["title"], "description": e.get("desc", "")} for e in items]
     try:
@@ -1365,6 +1368,16 @@ def main(argv):
         return 0
     if any(t == "진단" for t in tokens) and len(tokens) == 1:
         return diagnose()
+    if tokens == ["복구"]:  # '경제 무관'으로 빠졌던 영상을 다시 후보로 돌리고 바로 수집을 돌린다
+        state = read_json(STATE, {})
+        sk, tp = state.setdefault("skipped", {}), state.setdefault("topic", {})
+        back = [k for k, why in sk.items() if str(why).startswith("경제 무관")]
+        for k in back:
+            sk.pop(k, None)
+            tp.pop(k, None)
+        write_json(STATE, state)
+        print(f"'경제 무관'으로 제외됐던 영상 {len(back)}편을 다시 후보로 돌렸다. (올라온 지 {cfg('MAX_AGE_DAYS', 2)}일 안의 영상만 다시 처리된다)")
+        return auto()
     urls = [t for t in tokens if not t.startswith(("삭제:", "remove:", "브리핑", "주간")) and t != "정리"]
     if tidy_t and not urls and not removals:
         return tidy()
