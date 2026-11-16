@@ -2,8 +2,12 @@
 const BRIEFS=[
  {
   "date": "2026-11-16",
-  "count": 10,
+  "count": 14,
   "sources": [
+   "lChAcS0iIaA",
+   "2nVYe_DFJGU",
+   "2tSEzHXU02M",
+   "c6LAHhYBSDI",
    "FaYdu-Fa5_U",
    "26HqStmCCFs",
    "9U2TUMps-jI",
@@ -15,17 +19,27 @@ const BRIEFS=[
    "LagAldYbD8M",
    "mLfghqfrG1g"
   ],
-  "headline": "AI 파이낸싱 우려와 고금리 압박 속에 글로벌 증시의 변동성이 확대되고 있다.",
+  "headline": "외국인 매도세와 AI 불확실성으로 증시 변동성이 확대되었다.",
   "keypoints": [
-   "엔비디아 실적과 AI 부채 리스크가 증시 변동성의 핵심 변수로 떠올랐다.",
-   "외국인 매도세와 고금리 여파로 국내외 증시의 하락 압력이 지속되고 있다.",
-   "부동산 시장은 재건축 위험성과 고금리로 인해 전세 및 매매 불안이 지속된다.",
-   "유대인 자본은 의무 교육과 신용을 바탕으로 글로벌 금융을 주도하고 있다."
+   "외국인의 대규모 순매도로 코스피와 코스닥 지수가 폭락했다.",
+   "연준 위원들의 매파적 발언과 국채 금리 상승이 악재로 작용했다.",
+   "AI 관련 부채 급증과 금융 안정성 우려가 시장 심리를 위축시켰다.",
+   "전문가들은 현금 확보와 분산 투자를 통한 리스크 관리를 강조했다."
   ],
   "themes": [
    {
-    "title": "AI 투자와 파이낸싱 리스크",
-    "summary": "엔비디아 실적 발표와 AI 부채 급증에 따른 금융 리스크 우려가 증시 변동성을 확대시키고 있다.",
+    "title": "외국인 순매도와 증시 하락",
+    "summary": "외국인 투자자의 대규모 매도세와 고달러, 고금리 환경으로 증시 변동성이 극대화되었으며 보수적인 대응이 필요하다고 당부한다.",
+    "refs": [
+     "lChAcS0iIaA",
+     "c6LAHhYBSDI",
+     "saSLtHK3aJ0",
+     "ntk0jpMmJPU"
+    ]
+   },
+   {
+    "title": "AI 산업 리스크와 버블 논란",
+    "summary": "AI 데이터센터 부채 급증과 리더십 불확실성으로 증시 불안이 이어졌으나 장기적인 혁신과 성장 가능성은 지속된다고 본다.",
     "refs": [
      "FaYdu-Fa5_U",
      "UihZAstNiGU",
@@ -35,60 +49,59 @@ const BRIEFS=[
     ]
    },
    {
-    "title": "증시 변동성과 현금 운용 전략",
-    "summary": "외국인 매도세와 대만 증시 폭락 등으로 약세장이 지속되므로 현금을 아끼며 보수적으로 대응해야 한다.",
+    "title": "부동산 투자 리스크 및 주거 전략",
+    "summary": "재건축 분담금 증가와 상가 공실 등으로 부동산 불패 신화가 흔들리므로 실거주 중심 매수와 자산 다각화를 추천한다.",
     "refs": [
-     "FaYdu-Fa5_U",
-     "saSLtHK3aJ0",
-     "ntk0jpMmJPU"
-    ]
-   },
-   {
-    "title": "부동산 재건축 위험과 대응",
-    "summary": "재건축 사업비 증가와 고금리 영향으로 무주택자는 본인이 감당할 수 있는 기준에 따라 신중하게 접근해야 한다.",
-    "refs": [
+     "2nVYe_DFJGU",
      "9U2TUMps-jI"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "AI 관련 지출과 부채 증가로 인한 증시 고평가 및 금융 리스크 경고가 제기된다.",
+    "point": "외국인 매도세 확대로 인해 국내 증시가 큰 폭의 하락세를 보였다.",
     "refs": [
-     "ue4sG-vBq7Y",
-     "LagAldYbD8M",
-     "mLfghqfrG1g"
-    ]
-   },
-   {
-    "point": "엔비디아의 실적 발표와 향후 행보가 반도체 시장의 방향성을 결정할 핵심 변수다.",
-    "refs": [
-     "FaYdu-Fa5_U",
-     "LagAldYbD8M"
-    ]
-   },
-   {
-    "point": "외국인의 대규모 매도세와 대만 증시 하락이 국내 증시 하락을 이끌었다고 본다.",
-    "refs": [
-     "FaYdu-Fa5_U",
+     "lChAcS0iIaA",
+     "c6LAHhYBSDI",
      "saSLtHK3aJ0",
      "ntk0jpMmJPU"
+    ]
+   },
+   {
+    "point": "불확실한 시장 상황에서는 현금을 확보하고 보수적으로 대응해야 한다.",
+    "refs": [
+     "2nVYe_DFJGU",
+     "c6LAHhYBSDI",
+     "saSLtHK3aJ0"
+    ]
+   },
+   {
+    "point": "APEC 정상회담 등 국제 정치 행사가 시장 반등의 모멘텀이 될 수 있다.",
+    "refs": [
+     "lChAcS0iIaA",
+     "ntk0jpMmJPU",
+     "LagAldYbD8M"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "AI 산업 및 주가 하락의 성격",
+    "topic": "AI 주가 하락과 버블 가능성에 대한 관점",
     "views": [
      {
+      "channel": "815머니톡",
+      "view": "AI 주가는 반도체 사이클 특성에 따라 조정을 받는 것이라고 본다.",
+      "ref": "c6LAHhYBSDI"
+     },
+     {
       "channel": "삼프로TV 3PROTV",
-      "view": "단기 유동성 및 수급 악화에 따른 일시적 현상이며 성장성은 유효하다고 본다.",
+      "view": "단기적 하락일 뿐 성장성이 유효하므로 장기적으로 버텨야 한다고 본다.",
       "ref": "FaYdu-Fa5_U"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "AI 투자 확대에 따른 증시 고평가와 주가 조정 위험성이 크다고 경고한다.",
-      "ref": "LagAldYbD8M"
+      "view": "현재 위치는 버블 붕괴가 아닌 열광기 이전의 첫 조정을 거치는 단계로 본다.",
+      "ref": "UihZAstNiGU"
      }
     ]
    }
@@ -100,23 +113,44 @@ const BRIEFS=[
     "mentions": [
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "AI 사이클의 핵심 동력원이나 불확실성이 지속되고 있다고 평가한다.",
-      "ref": "UihZAstNiGU"
+      "view": "CEO 부재 우려에도 탄탄한 실적으로 재반등할 수 있다고 본다.",
+      "ref": "lChAcS0iIaA"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "파이낸싱 리스크와 CEO 이슈로 향후 불확실성이 우려된다고 평가한다.",
+      "view": "AI 산업의 핵심 지표이며 실적 발표가 시장에 큰 영향을 준다고 본다.",
+      "ref": "FaYdu-Fa5_U"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "파이낸싱 리스크와 CEO 리더십 문제로 불확실성이 우려된다고 설명한다.",
       "ref": "ue4sG-vBq7Y"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "실적 발표를 앞두고 주가가 흔들렸으나 AI 주도주 입지는 유지된다고 본다.",
+      "view": "실적 발표와 비전 제시 여부가 반도체 섹터의 핵심 변수라고 평가한다.",
       "ref": "LagAldYbD8M"
+     }
+    ]
+   },
+   {
+    "name": "SK하이닉스",
+    "count": 3,
+    "mentions": [
+     {
+      "channel": "815머니톡",
+      "view": "추가 하락 후 바닥을 확인하는 단계에 진입했다고 분석한다.",
+      "ref": "c6LAHhYBSDI"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "CEO 사임 파문 등으로 6주 연속 하락하며 큰 변동성을 겪었다고 분석한다.",
-      "ref": "mLfghqfrG1g"
+      "view": "전반적인 시장 하락 여파로 주가가 큰 폭으로 하락했다고 본다.",
+      "ref": "FaYdu-Fa5_U"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "개인 투자자 매수에도 불구 주가 하락세가 이어지고 있다고 지적한다.",
+      "ref": "saSLtHK3aJ0"
      }
     ]
    },
@@ -126,34 +160,18 @@ const BRIEFS=[
     "mentions": [
      {
       "channel": "815머니톡",
-      "view": "개인 투자자들이 대량으로 물려 있는 대표적 종목이라고 지적한다.",
-      "ref": "saSLtHK3aJ0"
+      "view": "외국인의 연속 매도 속에 주가 하락이 가속화되었다고 지적한다.",
+      "ref": "c6LAHhYBSDI"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "하락세가 지속되며 선행 PER 기준 최저 수준까지 떨어졌다고 평가한다.",
+      "view": "하락세가 지속되어 선행 PER 기준 최저 수준까지 하락했다고 본다.",
       "ref": "ntk0jpMmJPU"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "시장 불안감 속에서도 하락 폭이 작아 보합권을 유지했다고 평가한다.",
+      "view": "시장 불안 속에서도 하락 폭이 제한되며 보합세를 유지했다고 평가한다.",
       "ref": "LagAldYbD8M"
-     }
-    ]
-   },
-   {
-    "name": "하이닉스",
-    "count": 2,
-    "mentions": [
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "시장 하락의 여파로 인해 주가가 크게 하락했다고 언급한다.",
-      "ref": "FaYdu-Fa5_U"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "개인 투자자 매수가 몰렸으나 주가 하락으로 물려 있다고 본다.",
-      "ref": "saSLtHK3aJ0"
      }
     ]
    },
@@ -163,12 +181,12 @@ const BRIEFS=[
     "mentions": [
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "소프트뱅크가 대주주이며 AI 산업의 핵심 기업으로 평가한다.",
+      "view": "AI 산업 핵심 기업으로 엔비디아와의 협력이 중요하다고 본다.",
       "ref": "FaYdu-Fa5_U"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "CEO가 엔비디아 차기 CEO 후보로 거론되며 주가 반등을 시도했다고 전한다.",
+      "view": "CEO의 엔비디아 이적설 속에 주가가 하락 후 반등을 시도했다고 전한다.",
       "ref": "mLfghqfrG1g"
      }
     ]

@@ -15,6 +15,7 @@ h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
 .lead{color:var(--sub);margin:0 0 20px}
 button{font:inherit;color:inherit}
 .nav{display:flex;gap:4px;margin:0 0 24px;border-bottom:1px solid var(--line)}
+.nav a{display:block;padding:10px 16px;font-weight:700;color:var(--sub);text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-1px}
 .nav button{border:0;background:none;padding:10px 16px;font-weight:700;color:var(--sub);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
 .nav button.on{color:var(--ink);border-bottom-color:var(--accent)}
 .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
@@ -149,7 +150,7 @@ a.tm:hover{color:var(--accent)}
  .wrap{padding:22px 12px 40px}
  h1{font-size:1.55rem}
  .lead{font-size:.92rem;margin-bottom:14px}
- .nav{margin-bottom:16px}.nav button{padding:10px 12px}
+ .nav{margin-bottom:16px}.nav button,.nav a{padding:10px 12px}
  .brief{padding:16px 14px;border-radius:14px;margin-bottom:22px}
  .bdates{margin-left:0}
  .brief h2{font-size:1.22rem}
@@ -173,7 +174,7 @@ a.tm:hover{color:var(--accent)}
  .xbtn{margin:6px -4px 0 0}
 }
 .dlg .meta,.dlg .dtitle{padding-right:44px}
-.nav{overflow-x:auto;scrollbar-width:none;white-space:nowrap}.nav::-webkit-scrollbar{display:none}.nav button{flex:none}
+.nav{overflow-x:auto;scrollbar-width:none;white-space:nowrap}.nav::-webkit-scrollbar{display:none}.nav button,.nav a{flex:none}
 .sech{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 14px}
 .sech h2{font-size:1.2rem;font-weight:800;margin:0}
 .digest{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:12px 14px;margin:6px 0 10px}
@@ -240,9 +241,9 @@ a.vc{color:inherit;text-decoration:none}
 </style></head>
 <body><div class="wrap">
 <a class="logo" href="/econo-tube-note/">경제 유튜브 요약</a>
-<nav class="nav"><a href="/econo-tube-note/" class="on">홈</a><a href="/econo-tube-note/#videos" class="">영상 요약</a><a href="/econo-tube-note/#stocks" class="">종목</a><a href="/econo-tube-note/#numbers" class="">숫자·지표</a><a href="/econo-tube-note/#community" class="">커뮤니티</a></nav>
-<div class="brief"><h1 style="margin-top:0">주간 시장 브리핑</h1><ul class="plist"><li><a href="/econo-tube-note/week/2026-11-09/"><b>엔비디아 관련 리스크와 증시 변동성 속에서 반도체주 저평가와 수혜 섹터 중심의 대응이 강조되었다.</b><small>11.09 ~ 11.15 · 영상 28편</small></a></li></ul></div>
-<nav class="foot" style="margin-top:34px;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.9rem"><a href="/econo-tube-note/brief/">일간 브리핑 모아보기</a><a href="/econo-tube-note/week/">주간 브리핑 모아보기</a><a href="/econo-tube-note/stock/">종목별 종합 모아보기</a></nav>
+<nav class="nav"><a href="/econo-tube-note/" class="on">홈</a><a href="/econo-tube-note/#videos" class="">영상 요약</a><a href="/econo-tube-note/stock/" class="">종목</a><a href="/econo-tube-note/#numbers" class="">숫자·지표</a><a href="/econo-tube-note/#community" class="">커뮤니티</a></nav>
+<div class="brief"><h1 style="margin-top:0">주간 시장 브리핑</h1><ul class="plist" id="plist"><li><a href="/econo-tube-note/week/2026-11-09/"><b>엔비디아 관련 리스크와 증시 변동성 속에서 반도체주 저평가와 수혜 섹터 중심의 대응이 강조되었다.</b><small>11.09 ~ 11.15 · 영상 28편</small></a></li></ul></div>
+<nav class="foot" style="margin-top:34px;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.9rem"><a href="/econo-tube-note/brief/">일간 브리핑 모아보기</a><a href="/econo-tube-note/week/">주간 브리핑 모아보기</a><a href="/econo-tube-note/stock/">종목 모아보기</a></nav>
 <p class="note">AI가 경제 유튜브 영상과 그 요약을 종합한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
 </div><script>
 (()=>{const pop=document.createElement("div");pop.className="pop";pop.hidden=true;document.body.appendChild(pop);let cur=null;

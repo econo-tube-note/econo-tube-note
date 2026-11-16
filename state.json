@@ -13,7 +13,9 @@
   "nRr8HYVQvMY": "너무 긴 영상(369분)",
   "rdGRHVkn2hA": "너무 긴 영상(337분)",
   "Be1ZQAND8m0": "경제 무관: 건강검진과 의료 정보를 다루어 경제·투자와 무관하다.",
-  "EGCHJsiyfpo": "경제 무관: 일본 지진 및 재앙을 다루는 사회·자연재해 이슈로 경제적 관점이 없다."
+  "EGCHJsiyfpo": "경제 무관: 일본 지진 및 재앙을 다루는 사회·자연재해 이슈로 경제적 관점이 없다.",
+  "q0XXzZJGfoA": "너무 긴 영상(312분)",
+  "S0rMsJ7wnig": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -22,11 +24,11 @@
  "spent": {
   "2026-11-14": 27000,
   "2026-11-15": 21600,
-  "2026-11-16": 19320
+  "2026-11-16": 26710
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 27,
+   "ok": 31,
    "busy": 5,
    "dead": 4
   },
@@ -72,14 +74,10 @@
   "PRU4kYSCJC8": true,
   "nRr8HYVQvMY": true,
   "rdGRHVkn2hA": true,
-  "c6LAHhYBSDI": true,
-  "2tSEzHXU02M": true,
-  "2nVYe_DFJGU": true,
   "mhipCDonDKo": true,
   "q0XXzZJGfoA": true,
   "zYgSmH3Wl_s": true,
   "9MXwHlep8wQ": true,
-  "lChAcS0iIaA": true,
   "OK2FJONMpGA": true,
   "S0rMsJ7wnig": true,
   "UhA5xmTjqJ4": true,

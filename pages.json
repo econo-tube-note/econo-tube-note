@@ -1,8 +1,8 @@
 {
  "brief": {
   "2026-11-16": {
-   "headline": "AI 파이낸싱 우려와 고금리 압박 속에 글로벌 증시의 변동성이 확대되고 있다.",
-   "count": 10,
+   "headline": "외국인 매도세와 AI 불확실성으로 증시 변동성이 확대되었다.",
+   "count": 14,
    "lastmod": "2026-11-16"
   },
   "2026-11-15": {
@@ -33,115 +33,185 @@
   "삼성전자": {
    "name": "삼성전자",
    "tone": "혼재",
-   "count": 24,
+   "count": 25,
+   "channels": 5,
+   "last": "2026-11-16",
    "lastmod": "2026-11-16"
   },
   "엔비디아": {
    "name": "엔비디아",
    "tone": "혼재",
-   "count": 18,
+   "count": 20,
+   "channels": 4,
+   "last": "2026-11-16",
    "lastmod": "2026-11-16"
   },
   "SK하이닉스": {
    "name": "SK하이닉스",
-   "tone": "긍정",
-   "count": 15,
+   "tone": "혼재",
+   "count": 19,
+   "channels": 4,
+   "last": "2026-11-16",
    "lastmod": "2026-11-16"
   },
   "코어위브": {
    "name": "코어위브",
    "tone": "혼재",
-   "count": 4,
+   "count": 5,
+   "channels": 2,
+   "last": "2026-11-15",
    "lastmod": "2026-11-16"
   },
   "AMD": {
    "name": "AMD",
    "tone": "혼재",
    "count": 5,
+   "channels": 2,
+   "last": "2026-11-16",
    "lastmod": "2026-11-16"
   },
   "셀트리온": {
    "name": "셀트리온",
    "tone": "긍정",
    "count": 3,
+   "channels": 3,
+   "last": "2026-11-14",
    "lastmod": "2026-11-16"
   },
   "한화에어로스페이스": {
    "name": "한화에어로스페이스",
    "tone": "긍정",
    "count": 2,
+   "channels": 2,
+   "last": "2026-11-15",
    "lastmod": "2026-11-16"
   },
   "테슬라": {
    "name": "테슬라",
    "tone": "혼재",
    "count": 2,
+   "channels": 2,
+   "last": "2026-11-13",
    "lastmod": "2026-11-16"
   },
   "주성엔지니어링": {
    "name": "주성엔지니어링",
    "tone": "부정",
-   "count": 2,
+   "count": 3,
+   "channels": 2,
+   "last": "2026-11-16",
    "lastmod": "2026-11-16"
   },
   "삼성바이오로직스": {
    "name": "삼성바이오로직스",
    "tone": "긍정",
    "count": 2,
+   "channels": 2,
+   "last": "2026-11-14",
    "lastmod": "2026-11-16"
   },
   "브로드컴": {
    "name": "브로드컴",
    "tone": "혼재",
-   "count": 2,
+   "count": 3,
+   "channels": 2,
+   "last": "2026-11-14",
    "lastmod": "2026-11-16"
   },
   "대한항공": {
    "name": "대한항공",
    "tone": "긍정",
    "count": 3,
+   "channels": 2,
+   "last": "2026-11-16",
    "lastmod": "2026-11-16"
   },
   "구글": {
    "name": "구글",
    "tone": "긍정",
-   "count": 2,
+   "count": 4,
+   "channels": 3,
+   "last": "2026-11-16",
    "lastmod": "2026-11-16"
   },
   "가온칩스": {
    "name": "가온칩스",
    "tone": "긍정",
    "count": 2,
+   "channels": 2,
+   "last": "2026-11-15",
    "lastmod": "2026-11-16"
   },
   "TSMC": {
    "name": "TSMC",
    "tone": "혼재",
    "count": 3,
+   "channels": 2,
+   "last": "2026-11-16",
    "lastmod": "2026-11-16"
   },
   "LIG넥스원": {
    "name": "LIG넥스원",
    "tone": "긍정",
    "count": 2,
+   "channels": 2,
+   "last": "2026-11-15",
    "lastmod": "2026-11-16"
   },
   "마이크론": {
    "name": "마이크론",
    "tone": "중립",
-   "count": 2,
+   "count": 3,
+   "channels": 2,
+   "last": "2026-11-16",
    "lastmod": "2026-11-16"
   },
   "레인보우로보틱스": {
    "name": "레인보우로보틱스",
    "tone": "긍정",
    "count": 2,
+   "channels": 2,
+   "last": "2026-11-16",
    "lastmod": "2026-11-16"
   },
-  "하이닉스": {
-   "name": "하이닉스",
-   "tone": "혼재",
-   "count": 3,
+  "삼성SDI": {
+   "name": "삼성SDI",
+   "tone": null,
+   "count": 2,
+   "channels": 2,
+   "last": "2026-11-16",
+   "lastmod": "2026-11-16"
+  },
+  "심텍": {
+   "name": "심텍",
+   "tone": null,
+   "count": 2,
+   "channels": 2,
+   "last": "2026-11-16",
+   "lastmod": "2026-11-16"
+  },
+  "ARM": {
+   "name": "ARM",
+   "tone": null,
+   "count": 2,
+   "channels": 1,
+   "last": "2026-11-16",
+   "lastmod": "2026-11-16"
+  },
+  "삼성SDS": {
+   "name": "삼성SDS",
+   "tone": null,
+   "count": 2,
+   "channels": 1,
+   "last": "2026-11-16",
+   "lastmod": "2026-11-16"
+  },
+  "하이브": {
+   "name": "하이브",
+   "tone": null,
+   "count": 2,
+   "channels": 1,
+   "last": "2026-11-16",
    "lastmod": "2026-11-16"
   }
  }
