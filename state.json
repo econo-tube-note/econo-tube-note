@@ -24,22 +24,23 @@
  "spent": {
   "2026-11-14": 27000,
   "2026-11-15": 21600,
-  "2026-11-16": 26710
+  "2026-11-16": 26710,
+  "2026-11-17": 4344
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 31,
-   "busy": 5,
+   "ok": 32,
+   "busy": 6,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 1,
-   "busy": 12,
+   "busy": 14,
    "dead": 4
   },
   "gemini-3.8-flash": {
    "ok": 1,
-   "busy": 18,
+   "busy": 19,
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
@@ -81,7 +82,6 @@
   "OK2FJONMpGA": true,
   "S0rMsJ7wnig": true,
   "UhA5xmTjqJ4": true,
-  "W3AvtA5OwVE": true,
   "KHKXu_kP8_Y": true,
   "Of8HJe9eNYw": true,
   "SiPUXeRHkow": true,
@@ -94,6 +94,7 @@
  },
  "brief_final": {
   "2026-11-13": true,
-  "2026-11-14": true
+  "2026-11-14": true,
+  "2026-11-16": true
  }
 }

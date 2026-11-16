@@ -2,8 +2,9 @@
 const BRIEFS=[
  {
   "date": "2026-11-16",
-  "count": 14,
+  "count": 15,
   "sources": [
+   "W3AvtA5OwVE",
    "lChAcS0iIaA",
    "2nVYe_DFJGU",
    "2tSEzHXU02M",
@@ -19,38 +20,35 @@ const BRIEFS=[
    "LagAldYbD8M",
    "mLfghqfrG1g"
   ],
-  "headline": "외국인 매도세와 AI 불확실성으로 증시 변동성이 확대되었다.",
+  "headline": "외국인 매도 폭탄과 AI 버블 우려로 국내 증시가 급락했다.",
   "keypoints": [
-   "외국인의 대규모 순매도로 코스피와 코스닥 지수가 폭락했다.",
-   "연준 위원들의 매파적 발언과 국채 금리 상승이 악재로 작용했다.",
-   "AI 관련 부채 급증과 금융 안정성 우려가 시장 심리를 위축시켰다.",
-   "전문가들은 현금 확보와 분산 투자를 통한 리스크 관리를 강조했다."
+   "외국인과 기관의 대규모 매도세로 코스피가 3.59% 하락했다.",
+   "미국의 D램 담합 소송 진행과 AI 파이낸싱 리스크가 부각되었다.",
+   "환율 고착화와 금리 상승 부담으로 이머징 마켓 수급이 약화됐다.",
+   "변동성 장세 속에서 보수적인 현금 관리와 종목 선별이 필요하다."
   ],
   "themes": [
    {
-    "title": "외국인 순매도와 증시 하락",
-    "summary": "외국인 투자자의 대규모 매도세와 고달러, 고금리 환경으로 증시 변동성이 극대화되었으며 보수적인 대응이 필요하다고 당부한다.",
+    "title": "국내 증시 급락과 수급 악화",
+    "summary": "외국인과 기관의 대규모 매도세로 코스피와 코스닥이 급락했다. 선물 베이시스 음전과 환율 부담으로 수급 전환 확인이 우선이다.",
     "refs": [
+     "W3AvtA5OwVE",
      "lChAcS0iIaA",
-     "c6LAHhYBSDI",
-     "saSLtHK3aJ0",
-     "ntk0jpMmJPU"
+     "c6LAHhYBSDI"
     ]
    },
    {
-    "title": "AI 산업 리스크와 버블 논란",
-    "summary": "AI 데이터센터 부채 급증과 리더십 불확실성으로 증시 불안이 이어졌으나 장기적인 혁신과 성장 가능성은 지속된다고 본다.",
+    "title": "AI 버블 우려와 글로벌 변수",
+    "summary": "엔비디아 관련 불확실성과 AI 파이낸싱 리스크로 글로벌 증시 변동성이 확대되었다. 연준의 긴축 기조와 물가 지수가 주요 변수로 작용한다.",
     "refs": [
-     "FaYdu-Fa5_U",
-     "UihZAstNiGU",
      "ue4sG-vBq7Y",
      "LagAldYbD8M",
      "mLfghqfrG1g"
     ]
    },
    {
-    "title": "부동산 투자 리스크 및 주거 전략",
-    "summary": "재건축 분담금 증가와 상가 공실 등으로 부동산 불패 신화가 흔들리므로 실거주 중심 매수와 자산 다각화를 추천한다.",
+    "title": "부동산 시장 침체와 부채 부담",
+    "summary": "재건축 분담금 증가와 상가 공실 위험으로 부동산 불패 신화가 흔들리고 있다. 무주택자는 감당 가능한 대출 범위 내에서 신중히 접근해야 한다.",
     "refs": [
      "2nVYe_DFJGU",
      "9U2TUMps-jI"
@@ -59,49 +57,35 @@ const BRIEFS=[
   ],
   "agreements": [
    {
-    "point": "외국인 매도세 확대로 인해 국내 증시가 큰 폭의 하락세를 보였다.",
+    "point": "외국인의 대규모 매도세가 국내 증시 하락을 주도했다.",
     "refs": [
+     "W3AvtA5OwVE",
      "lChAcS0iIaA",
-     "c6LAHhYBSDI",
-     "saSLtHK3aJ0",
+     "c6LAHhYBSDI"
+    ]
+   },
+   {
+    "point": "AI 관련 불확실성과 반도체 섹터 심리 악화가 시장에 부담을 주었다.",
+    "refs": [
+     "W3AvtA5OwVE",
+     "lChAcS0iIaA",
      "ntk0jpMmJPU"
-    ]
-   },
-   {
-    "point": "불확실한 시장 상황에서는 현금을 확보하고 보수적으로 대응해야 한다.",
-    "refs": [
-     "2nVYe_DFJGU",
-     "c6LAHhYBSDI",
-     "saSLtHK3aJ0"
-    ]
-   },
-   {
-    "point": "APEC 정상회담 등 국제 정치 행사가 시장 반등의 모멘텀이 될 수 있다.",
-    "refs": [
-     "lChAcS0iIaA",
-     "ntk0jpMmJPU",
-     "LagAldYbD8M"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "AI 주가 하락과 버블 가능성에 대한 관점",
+    "topic": "현재 시장 하락에 대한 대응 전략",
     "views": [
      {
       "channel": "815머니톡",
-      "view": "AI 주가는 반도체 사이클 특성에 따라 조정을 받는 것이라고 본다.",
+      "view": "하락 추세가 이어지므로 현금을 확보하고 보수적으로 리스크를 관리해야 한다.",
       "ref": "c6LAHhYBSDI"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "단기적 하락일 뿐 성장성이 유효하므로 장기적으로 버텨야 한다고 본다.",
-      "ref": "FaYdu-Fa5_U"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "현재 위치는 버블 붕괴가 아닌 열광기 이전의 첫 조정을 거치는 단계로 본다.",
-      "ref": "UihZAstNiGU"
+      "view": "자포자기하기보다 주도주 교체 매매를 준비하며 반등을 대비해야 한다.",
+      "ref": "ntk0jpMmJPU"
      }
     ]
    }
@@ -109,69 +93,102 @@ const BRIEFS=[
   "stocks": [
    {
     "name": "엔비디아",
-    "count": 4,
+    "count": 3,
     "mentions": [
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "CEO 부재 우려에도 탄탄한 실적으로 재반등할 수 있다고 본다.",
+      "view": "CEO 부재 우려 등으로 시장 악재로 작용 중이다.",
       "ref": "lChAcS0iIaA"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "AI 산업의 핵심 지표이며 실적 발표가 시장에 큰 영향을 준다고 본다.",
-      "ref": "FaYdu-Fa5_U"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "파이낸싱 리스크와 CEO 리더십 문제로 불확실성이 우려된다고 설명한다.",
+      "view": "AI 생태계 파이낸싱 리스크 및 CEO 리더십 이슈로 불확실성이 우려된다.",
       "ref": "ue4sG-vBq7Y"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "실적 발표와 비전 제시 여부가 반도체 섹터의 핵심 변수라고 평가한다.",
-      "ref": "LagAldYbD8M"
-     }
-    ]
-   },
-   {
-    "name": "SK하이닉스",
-    "count": 3,
-    "mentions": [
-     {
-      "channel": "815머니톡",
-      "view": "추가 하락 후 바닥을 확인하는 단계에 진입했다고 분석한다.",
-      "ref": "c6LAHhYBSDI"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "전반적인 시장 하락 여파로 주가가 큰 폭으로 하락했다고 본다.",
-      "ref": "FaYdu-Fa5_U"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "개인 투자자 매수에도 불구 주가 하락세가 이어지고 있다고 지적한다.",
-      "ref": "saSLtHK3aJ0"
+      "view": "CEO 사임 파문 등으로 6주 연속 하락하며 변동성을 겪었다.",
+      "ref": "mLfghqfrG1g"
      }
     ]
    },
    {
     "name": "삼성전자",
-    "count": 3,
+    "count": 2,
     "mentions": [
      {
+      "channel": "삼프로TV 3PROTV",
+      "view": "D램 담합 소송 악재와 외국인 매도세로 4.47% 하락했다.",
+      "ref": "W3AvtA5OwVE"
+     },
+     {
       "channel": "815머니톡",
-      "view": "외국인의 연속 매도 속에 주가 하락이 가속화되었다고 지적한다.",
+      "view": "외국인의 지속적인 매도세 속에 하락세를 나타냈다.",
       "ref": "c6LAHhYBSDI"
-     },
+     }
+    ]
+   },
+   {
+    "name": "SK하이닉스",
+    "count": 2,
+    "mentions": [
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "하락세가 지속되어 선행 PER 기준 최저 수준까지 하락했다고 본다.",
-      "ref": "ntk0jpMmJPU"
+      "view": "외국인 매도 집중과 AI 반도체 심리 악화로 7.8% 급락했다.",
+      "ref": "W3AvtA5OwVE"
      },
      {
+      "channel": "815머니톡",
+      "view": "바닥 확인 구간에 진입했으나 추세 전환을 확인해야 한다.",
+      "ref": "c6LAHhYBSDI"
+     }
+    ]
+   },
+   {
+    "name": "삼양식품",
+    "count": 2,
+    "mentions": [
+     {
       "channel": "삼프로TV 3PROTV",
-      "view": "시장 불안 속에서도 하락 폭이 제한되며 보합세를 유지했다고 평가한다.",
-      "ref": "LagAldYbD8M"
+      "view": "하락장 속 대피성 자금이 몰리며 5%대 상승했다.",
+      "ref": "W3AvtA5OwVE"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "캐파 확장으로 인한 매출 상승이 기대된다.",
+      "ref": "saSLtHK3aJ0"
+     }
+    ]
+   },
+   {
+    "name": "펌텍코리아",
+    "count": 2,
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "화장품 용기 공급 부족 수혜로 5% 이상 오르며 신고가를 경신했다.",
+      "ref": "W3AvtA5OwVE"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "신고가 영역에 진입해 있는 종목이다.",
+      "ref": "saSLtHK3aJ0"
+     }
+    ]
+   },
+   {
+    "name": "코스맥스",
+    "count": 2,
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "견조한 ODM 실적 흐름을 바탕으로 5.6% 반등했다.",
+      "ref": "W3AvtA5OwVE"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "화장품 섹터 내에서 개별 호재로 주가를 잘 지키고 있다.",
+      "ref": "c6LAHhYBSDI"
      }
     ]
    },
@@ -181,12 +198,12 @@ const BRIEFS=[
     "mentions": [
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "AI 산업 핵심 기업으로 엔비디아와의 협력이 중요하다고 본다.",
+      "view": "소프트뱅크가 대주주이며 AI 산업의 핵심 기업으로 평가한다.",
       "ref": "FaYdu-Fa5_U"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "CEO의 엔비디아 이적설 속에 주가가 하락 후 반등을 시도했다고 전한다.",
+      "view": "차기 CEO 후보 접촉 보도가 나왔으나 이사회는 부인했다.",
       "ref": "mLfghqfrG1g"
      }
     ]
