@@ -19,6 +19,7 @@ h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
 .lead{color:var(--sub);margin:0 0 20px}
 button{font:inherit;color:inherit}
 .nav{display:flex;gap:4px;margin:0 0 24px;border-bottom:1px solid var(--line)}
+.nav a{display:block;padding:10px 16px;font-weight:700;color:var(--sub);text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-1px}
 .nav button{border:0;background:none;padding:10px 16px;font-weight:700;color:var(--sub);cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px}
 .nav button.on{color:var(--ink);border-bottom-color:var(--accent)}
 .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
@@ -153,7 +154,7 @@ a.tm:hover{color:var(--accent)}
  .wrap{padding:22px 12px 40px}
  h1{font-size:1.55rem}
  .lead{font-size:.92rem;margin-bottom:14px}
- .nav{margin-bottom:16px}.nav button{padding:10px 12px}
+ .nav{margin-bottom:16px}.nav button,.nav a{padding:10px 12px}
  .brief{padding:16px 14px;border-radius:14px;margin-bottom:22px}
  .bdates{margin-left:0}
  .brief h2{font-size:1.22rem}
@@ -177,7 +178,7 @@ a.tm:hover{color:var(--accent)}
  .xbtn{margin:6px -4px 0 0}
 }
 .dlg .meta,.dlg .dtitle{padding-right:44px}
-.nav{overflow-x:auto;scrollbar-width:none;white-space:nowrap}.nav::-webkit-scrollbar{display:none}.nav button{flex:none}
+.nav{overflow-x:auto;scrollbar-width:none;white-space:nowrap}.nav::-webkit-scrollbar{display:none}.nav button,.nav a{flex:none}
 .sech{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin:0 0 14px}
 .sech h2{font-size:1.2rem;font-weight:800;margin:0}
 .digest{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:12px 14px;margin:6px 0 10px}
@@ -232,7 +233,7 @@ a.tm:hover{color:var(--accent)}
 <div class="wrap">
   <h1>경제 유튜브 요약</h1>
   <p class="lead">인기 경제 채널의 영상을 AI가 요약하고, 하루와 한 주를 종합한 브리핑을 함께 보여 준다. 카드를 누르면 상세 요약과 장면별 시간을 볼 수 있다.</p>
-  <nav class="nav" id="nav"><button data-n="home">홈</button><button data-n="videos">영상 요약</button><button data-n="stocks">종목</button><button data-n="numbers">숫자·지표</button><button data-n="community">커뮤니티</button></nav>
+  <nav class="nav" id="nav"><button data-n="home">홈</button><button data-n="videos">영상 요약</button><a href="stock/">종목</a><button data-n="numbers">숫자·지표</button><button data-n="community">커뮤니티</button></nav>
   <div id="v-home">
     <section id="brief"></section>
     <div class="sech"><h2>최근 영상</h2><button class="link" data-go="videos">영상 요약 전체 보기 →</button></div>
@@ -248,7 +249,7 @@ a.tm:hover{color:var(--accent)}
   <div id="v-stocks" hidden></div>
   <div id="v-numbers" hidden></div>
   <div id="v-community" hidden></div>
-  <nav class="sitelinks" style="margin-top:34px;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.9rem"><a href="brief/">일간 브리핑 모아보기</a><a href="week/">주간 브리핑 모아보기</a><a href="stock/">종목별 종합 모아보기</a></nav>
+  <nav class="sitelinks" style="margin-top:34px;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.9rem"><a href="brief/">일간 브리핑 모아보기</a><a href="week/">주간 브리핑 모아보기</a><a href="stock/">종목 모아보기</a></nav>
   <p class="note">AI가 요약한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
 </div>
 <dialog id="dlg"></dialog>
@@ -354,7 +355,7 @@ function brief(){
   head=`<div class="bhead"><b>주간 브리핑</b>${mode}<span>${esc(md(w.week))} ~ ${esc(md(w.end))} · 영상 ${w.videos}편 종합</span>${tog}<span class="bdates">${dates}</span></div><h2>${esc(w.headline)}</h2>`;
   const fl=J(w.flow,f=>`<dt>${esc(md(f.date))}(${wday(f.date)})</dt><dd>${esc(f.point)}</dd>`);
   const rc=J(w.recurring,r=>`<div class="tcard"><b>${esc(r.title)}</b><p data-exp title="눌러서 펼치기">${esc(r.summary)}</p><small>${r.dates.length}일 등장 · ${r.dates.map(d=>esc(md(d))).join(", ")}</small></div>`);
-  const sw=J(w.stocks,s=>`<div class="sk"><div class="skh"><b>${esc(s.name)}</b><small>${s.videos}편 · ${s.days.length}일</small></div><p>${esc(s.note)}</p><button class="link" data-sk="${esc(s.name)}">종목 페이지에서 보기 →</button></div>`);
+  const sw=J(w.stocks,s=>`<div class="sk"><div class="skh"><b>${esc(s.name)}</b><small>${s.videos}편 · ${s.days.length}일</small></div><p>${esc(s.note)}</p><a class="link" href="stock/?q=${encodeURIComponent(s.name)}">종목 페이지에서 보기 →</a></div>`);
   body=kpl(w)+nt("week:"+w.week)+(bopen?
     sect("하루하루의 흐름",(w.flow||[]).length,fl&&`<dl class="tl">${fl}</dl>`,"c1")+
     sect("이번 주 반복된 주제",(w.recurring||[]).length,rc&&`<div class="tgrid">${rc}</div>`,"c2")+
@@ -411,7 +412,9 @@ function numsList(){
  $("#nlist").innerHTML=labels.length?labels.slice(0,12).map(([l,n])=>`<div class="ng"><h3>${esc(l)} <small>${n}개</small>${n>4?` <button class="link" data-l="${esc(l)}">이 지표만 보기 →</button>`:""}</h3>${sorted(groups.filter(g=>g.label===l)).slice(0,4).map(row).join("")}</div>`).join(""):`<div class="empty">조건에 맞는 숫자가 없다.</div>`;
 }
 function route(){
- const h=(location.hash||"").replace("#","");const b0=h.split("/")[0];const v=["videos","stocks","numbers","community"].includes(b0)?b0:"home";
+ const h=(location.hash||"").replace("#","");const b0=h.split("/")[0];
+ if(b0==="stocks"){location.replace("stock/");return}  // 종목은 검색에 잡히는 별도 페이지(stock/) 하나로 합쳤다
+ const v=["videos","stocks","numbers","community"].includes(b0)?b0:"home";
  ["home","videos","stocks","numbers","community"].forEach(n=>{const e=$("#v-"+n);if(e)e.hidden=n!==v;const b=$('#nav [data-n="'+n+'"]');if(b)b.className=n===v?"on":""});
  if(v==="stocks")stocksInit();if(v==="numbers")numsInit();if(v==="community")community();
  hidePop();
