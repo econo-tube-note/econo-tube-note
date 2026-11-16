@@ -44,8 +44,16 @@ PROMPT = """너는 한국 경제·투자 유튜브 영상을 요약하는 편집
 - conclusion: 영상의 핵심 결론. 짧게 쓴다. 공백 포함 55자 안팎으로, 최대 두 문장까지 허용한다. 한 문장에 정보를 여러 개 쉼표로 이어 붙이지 말고 핵심 하나만 담는다.
 - tags: 키워드 3개. '하락장', '외국인수급', '반도체', '금리', '환율'처럼 짧고 흔한 말을 우선 쓴다.
 - parts: 영상 내용을 주제별로 2~4개 파트로 나눈다. 파트 제목(title)은 네가 정한다. 각 파트에 핵심 항목을 3~4개 넣는다. 항목 text는 '소제목: 설명' 형식으로 쓴다. 출연자의 전망이나 의견은 '~라고 본다', '~라고 주장한다'처럼 출연자의 말이라는 것이 드러나게 쓴다.
-- stocks: 중요하게 다룬 종목 최대 7개. name에는 종목명만 쓰고 괄호로 다른 이름을 덧붙이지 않는다. note에는 출연자가 그 종목에 대해 어떤 평가를 했는지(긍정, 부정, 이유)를 한 줄로 쓴다. '언급됐다'만 쓰지 않는다.
-- numbers: 가장 중요한 숫자 4~5개만. label은 그 숫자가 가리키는 지표 이름을 짧은 명사구로 쓴다(예: 코스닥 지수, 미국 국채 금리, 원/달러 환율, 신용잔고). 지표라고 하기 어려우면 '기타'로 쓴다. value는 영상에서 말한 단위와 기준 그대로 적고, 단위나 기준이 분명하지 않으면 '(단위 불명확)'을 붙인다. note에는 숫자의 의미를 한 줄로 쓴다.
+- 항목 설명은 영상을 안 본 사람이 읽고 '무엇이, 왜, 얼마나'를 알 수 있게 구체적으로 쓴다. 영상에 나온 숫자, 종목·기업·인물 이름, 근거를 넣는다.
+  나쁜 예: '시장 악재: AI 투자 확대에 대한 노이즈가 커졌다고 본다.' (무슨 노이즈인지 모른다)
+  좋은 예: '시장 악재: 오픈AI의 데이터센터 투자 축소설이 돌면서 AI 투자 사이클이 꺾이는 것 아니냐는 우려가 커졌다고 본다.'
+  '중요하다고 본다', '불확실성이 커졌다', '보수적으로 대응해야 한다'처럼 어느 영상에나 쓸 수 있는 말만으로 항목을 채우지 않는다. 그런 결론이면 왜 그렇게 보는지 근거를 함께 쓴다.
+- 항목마다 설명 끝맺음을 '~라고 본다'로만 반복하지 말고 '~라고 설명한다', '~라고 지적한다', '~라고 전망한다'처럼 내용에 맞게 쓴다.
+- stocks: 중요하게 다룬 종목 최대 7개. name에는 종목명만 쓰고 괄호로 다른 이름을 덧붙이지 않는다. 줄임말이나 영어 대신 한국에서 흔히 쓰는 정식 이름을 쓴다(예: 하이닉스→SK하이닉스, 삼전→삼성전자, NVIDIA→엔비디아, 증권사 앱에 표시되는 종목명 기준). note에는 출연자가 그 종목에 대해 어떤 평가를 했는지(긍정, 부정, 이유)를 한 줄로 쓴다. '언급됐다'만 쓰지 않는다.
+- numbers: 가장 중요한 숫자 4~5개만. label은 그 숫자가 가리키는 지표 이름을 짧은 명사구로 쓴다(예: 코스닥 지수, 미국 국채 금리, 원/달러 환율, 신용잔고). 지표라고 하기 어려우면 '기타'로 쓴다. value는 영상에서 말한 단위와 기준 그대로 적고, 단위나 기준이 분명하지 않으면 '(단위 불명확)'을 붙인다. note는 그 숫자가 '무엇의' 숫자인지 주어를 반드시 밝혀서 한 줄로 쓴다. 숫자 카드만 따로 떼어 봐도 이해되게 쓴다.
+  나쁜 예: value '2.894조 달러', note '10월 28일 기준 저점을 기록한 후 회복세로 전환되었다고 설명한다.' (무엇이 2.894조 달러인지 없다)
+  좋은 예: label '미국 지급준비금', value '2.894조 달러', note '미국 은행들의 지급준비금이 10월 28일 이 수준에서 바닥을 찍고 회복 중이라고 설명한다.'
+  label은 가능한 한 구체적인 지표 이름으로 쓰고, 정말 지표로 묶을 수 없을 때만 '기타'로 쓴다.
 - time: 해당 내용이 영상에서 나오는 시간. 링크나 주소 없이 '분:초' 글자만 적는다. 예: 06:34 (1시간이 넘으면 1:05:30). 확실하지 않으면 빈 문자열로 둔다.
 - 영상에 없는 내용은 쓰지 않는다. 네가 아는 정보로 영상 내용의 사실 여부를 판단하거나 정정하지 않는다. 추측하지 않는다.
 """
@@ -78,7 +86,12 @@ def model_rate(m):
 
 
 # ---------- 제미나이 호출 (이 함수만 외부 라이브러리를 쓴다) ----------
-def call_gemini(video_url):
+def is_lite(m):
+    return "lite" in (m or "")
+
+
+def call_gemini(video_url, allow_lite=True):
+    """영상을 요약한다. allow_lite가 False면 품질이 낮은 lite 모델은 쓰지 않는다."""
     from google import genai
     from google.genai import types
     from pydantic import BaseModel
@@ -114,7 +127,10 @@ def call_gemini(video_url):
     # 모델을 차례로 한 번씩 시도한다. 한 모델이 바쁘면 바로 다음 모델로 넘어가고, 전부 바쁘면 잠깐 쉬었다가 처음부터 다시 돌린다.
     fallbacks = os.environ.get("GEMINI_FALLBACKS", "gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash-lite,gemini-3.1-flash-lite")
     models = [MODEL] + [m.strip() for m in fallbacks.split(",") if m.strip() and m.strip() != MODEL]
-    models.sort(key=lambda m: -model_rate(m))  # 지금까지 성공률이 높은 모델부터 (기록이 같으면 원래 순서)
+    # 일반 flash 모델을 먼저(그 안에서는 성공률이 높은 순), lite 모델은 맨 뒤에 둔다. lite는 빠르지만 요약이 얕다.
+    models.sort(key=lambda m: (is_lite(m), -model_rate(m)))
+    if not allow_lite:
+        models = [m for m in models if not is_lite(m)]
     permanent = ("NOT_FOUND", "PERMISSION_DENIED", "INVALID_ARGUMENT", "UNAUTHENTICATED")
     slow = set()  # 이번 영상에서 응답이 멈춘 모델
     last = None
@@ -160,13 +176,15 @@ def call_gemini(video_url):
                 else:
                     STATS.append((model, "busy"))
                     print(f"  [{model}] 바쁨/오류: {str(e)[:120]}")
+                    if "quota" in str(e).lower():
+                        slow.add(model)  # 그 모델의 사용 한도를 다 썼다. 이번 영상에서는 다시 묻지 않는다
         if all(m in DEAD or m in slow for m in models):
             break
         if rnd < 2:
             wait = 30 * (rnd + 1)
             print(f"  모든 모델이 바빠서 {wait}초 쉰다 ({rnd + 1}/3)")
             time.sleep(wait)
-    raise RuntimeError(f"제미나이 호출 실패: {last}")
+    raise RuntimeError(f"제미나이 호출 실패(UNAVAILABLE): {last}")
 
 
 # ---------- 영상 정보(제목, 채널, 날짜) ----------
@@ -225,7 +243,7 @@ def clean(s, vid_url, title, channel, date):
     if not conclusion or not parts:
         raise ValueError("요약에 결론이나 주제별 내용이 비어 있다")
 
-    stocks = [[tm(x.get("time")), (x.get("name") or "").strip(), (x.get("note") or "").strip()]
+    stocks = [[tm(x.get("time")), canon_stock(x.get("name")), (x.get("note") or "").strip()]
               for x in (s.get("stocks") or [])[:7] if (x.get("name") or "").strip()]
     numbers = [[tm(x.get("time")), (x.get("value") or "").strip(), (x.get("note") or "").strip(), (x.get("label") or "").strip()[:20] or "기타"]
                for x in (s.get("numbers") or [])[:6] if (x.get("value") or "").strip()]
@@ -487,9 +505,67 @@ def classify(items):
     return {str(i.get("id")): (bool(i.get("related")), str(i.get("reason", ""))[:80]) for i in data.get("items", [])}
 
 
-def norm_name(n):
-    """종목 이름을 비교하기 쉽게 정리한다. (공백과 기호를 없애고 대문자로)"""
+# 같은 종목을 다르게 부르는 이름들. 왼쪽이 사이트에 쓸 이름, 오른쪽이 같은 종목으로 볼 다른 이름이다.
+# 새로 발견하면 여기에 한 줄 추가하면 된다.
+STOCK_ALIAS = {
+    "SK하이닉스": ["하이닉스", "SK하닉", "하닉", "SK hynix", "Hynix"],
+    "삼성전자": ["삼전", "Samsung Electronics", "삼성전자우"],
+    "엔비디아": ["NVIDIA", "엔비디아(NVIDIA)", "NVDA"],
+    "테슬라": ["Tesla", "TSLA"],
+    "애플": ["Apple", "AAPL"],
+    "마이크로소프트": ["Microsoft", "MS", "MSFT"],
+    "구글": ["알파벳", "Alphabet", "Google", "GOOGL"],
+    "메타": ["Meta", "메타플랫폼스", "페이스북"],
+    "아마존": ["Amazon", "AMZN"],
+    "TSMC": ["대만반도체", "타이완반도체", "TSMC(대만)"],
+    "브로드컴": ["Broadcom", "AVGO"],
+    "마이크론": ["Micron", "마이크론테크놀로지"],
+    "팔란티어": ["Palantir", "PLTR"],
+    "코어위브": ["CoreWeave"],
+    "오라클": ["Oracle"],
+    "넷플릭스": ["Netflix"],
+    "AMD": ["에이엠디"],
+    "현대차": ["현대자동차"],
+    "기아": ["기아차"],
+    "LG에너지솔루션": ["LG엔솔", "엔솔"],
+    "삼성바이오로직스": ["삼성바이오", "삼바"],
+    "한화에어로스페이스": ["한화에어로"],
+    "네이버": ["NAVER"],
+    "POSCO홀딩스": ["포스코홀딩스", "포스코"],
+}
+_ALIAS_KEY = {}
+
+
+def _key(n):
     return re.sub(r"[\s·・\-_.()（）]", "", n or "").upper()
+
+
+def canon_stock(n):
+    """종목 이름을 사이트에서 쓰는 정식 이름으로 바꾼다."""
+    if not _ALIAS_KEY:
+        for main_name, others in STOCK_ALIAS.items():
+            for o in [main_name] + others:
+                _ALIAS_KEY[_key(o)] = main_name
+    n = (n or "").strip()
+    base = re.sub(r"\s*[(（][^)）]*[)）]\s*", "", n).strip() or n  # 괄호 속 덧붙인 이름은 뗀다
+    return _ALIAS_KEY.get(_key(n)) or _ALIAS_KEY.get(_key(base)) or n
+
+
+def norm_name(n):
+    """종목 이름을 비교하기 쉽게 정리한다. (별칭을 정식 이름으로 바꾸고, 공백과 기호를 없애고 대문자로)"""
+    return _key(canon_stock(n))
+
+
+def canon_all(videos):
+    """저장된 영상들의 종목 이름을 정식 이름으로 맞춘다. 바뀐 개수를 돌려준다."""
+    n = 0
+    for v in videos:
+        for row in v.get("stocks") or []:
+            if len(row) >= 2:
+                c = canon_stock(row[1])
+                if c != row[1]:
+                    row[1], n = c, n + 1
+    return n
 
 
 # ---------- 직접 쓰는 한마디 코멘트 (notes.js) ----------
@@ -1052,7 +1128,16 @@ def auto():
     spent = state["spent"].get(today, 0)
 
     videos = load()
-    have = {video_id(v.get("url")) for v in videos + read_json(ARCHIVE, [])}
+    arch = read_json(ARCHIVE, [])
+    have = {video_id(v.get("url")) for v in videos + arch}
+    fixed = canon_all(videos)
+    if fixed:
+        save(videos)
+    fixed_a = canon_all(arch)
+    if fixed_a:
+        write_json(ARCHIVE, arch)
+    if fixed or fixed_a:
+        print(f"종목 이름을 정식 이름으로 맞췄다: {fixed + fixed_a}곳 (예: 하이닉스 -> SK하이닉스)")
 
     lists, ids_changed = [], False
     for ch in channels:
@@ -1112,7 +1197,7 @@ def auto():
                     print(f"경제와 무관해서 제외: [{e['channel']}] {e['title']} ({v[1]})")
         write_json(STATE, state)
 
-    done, bad_streak = 0, 0
+    done, bad_streak, flash_down = 0, 0, False
     for e in interleave(lists):
         if done >= per_run or time.time() > deadline:
             print("이번 실행에서 처리할 수 있는 한도에 도달했다.")
@@ -1141,10 +1226,14 @@ def auto():
         if spent + est > budget:
             print(f"오늘 처리 시간 예산을 넘어서 다음으로 미룬다: {e['title']}")
             continue
+        age_h = (now - e["published"]).total_seconds() / 3600
+        lite_ok = age_h >= cfg("LITE_AFTER_HOURS", 30)  # 곧 기간이 끝나는 영상만 lite 모델을 허용한다
+        if flash_down and not lite_ok:
+            continue  # 좋은 모델이 이번 실행에서 모두 막혔다. 급하지 않은 영상은 다음 실행에 좋은 모델로 요약한다
         url = f"https://www.youtube.com/watch?v={vid}"
         print(f"요약 시작: {e['channel']} | {e['title']} ({est // 60}분)")
         try:
-            entry = clean(call_gemini(url), url, e["title"], e["channel"],
+            entry = clean(call_gemini(url, allow_lite=lite_ok), url, e["title"], e["channel"],
                           e["published"].astimezone(KST).strftime("%Y-%m-%d"))
             entry["model"] = next((m for m, o in reversed(STATS) if o == "ok"), "")  # 어느 모델이 요약했는지 기록
             videos.insert(0, entry)
@@ -1157,8 +1246,12 @@ def auto():
             save(videos)
             print(f"  완료: {e['title']}")
         except Exception as ex:
-            bad_streak += 1
             busy = any(c in str(ex) for c in ("503", "UNAVAILABLE", "429", "RESOURCE_EXHAUSTED", "응답이 없다"))
+            if busy and not lite_ok:
+                flash_down = True
+                print("  좋은 모델이 모두 바쁘거나 한도에 걸렸다. 급하지 않은 영상은 다음 실행으로 미루고, 기간이 곧 끝나는 영상만 계속 처리한다.")
+            else:
+                bad_streak += 1
             if busy:
                 # 구글이 혼잡해서 생긴 일시적인 실패는 포기 횟수에 세지 않는다. (올라온 지 이틀이 지나면 자연히 대상에서 빠진다)
                 print(f"  혼잡으로 실패, 다음 실행 때 다시 시도한다: {str(ex)[:150]}")
@@ -1180,6 +1273,29 @@ def auto():
         if bad_streak >= 2:
             print("연속으로 실패해서 이번 실행은 여기서 멈춘다. (구글이 혼잡할 수 있다. 다음 실행 때 다시 시도한다.)")
             break
+        time.sleep(5)
+
+    # 이번 실행에서 여유가 남으면 lite 모델로 만든 얕은 요약을 좋은 모델로 다시 만든다 (최근 2일 영상만)
+    redo_cut = (now.astimezone(KST) - datetime.timedelta(days=2)).strftime("%Y-%m-%d")
+    for v in [v for v in videos if is_lite(v.get("model")) and v.get("date", "") >= redo_cut]:
+        if done >= per_run or time.time() > deadline or bad_streak >= 2 or flash_down:
+            break
+        if spent + 1800 > budget:
+            break
+        print(f"다시 요약(얕은 요약 보완): {v['channel']} | {v['title']}")
+        try:
+            new = clean(call_gemini(v["url"], allow_lite=False), v["url"], v["title"], v["channel"], v["date"])
+            new["model"] = next((m for m, o in reversed(STATS) if o == "ok"), "")
+            v.clear()
+            v.update(new)
+            spent += 1800
+            state["spent"][today] = spent
+            done += 1
+            save(videos)
+            print("  완료")
+        except Exception as ex:
+            bad_streak += 1
+            print(f"  실패, 다음에 다시 시도한다: {str(ex)[:150]}")
         time.sleep(5)
 
     try:

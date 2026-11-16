@@ -17,7 +17,15 @@ import json
 import os
 import re
 from pathlib import Path
+import sys
 from urllib.parse import quote
+
+try:  # 종목 별칭(하이닉스 -> SK하이닉스)은 summarize.py에 있는 표를 같이 쓴다
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from summarize import canon_stock
+except Exception:
+    def canon_stock(n):
+        return (n or "").strip()
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = os.environ.get("SITE_URL", "https://econo-tube-note.github.io/econo-tube-note").rstrip("/")
@@ -49,7 +57,7 @@ def vid_of(url):
 
 
 def norm(n):
-    return re.sub(r"[\s·・\-_.()（）]", "", n or "").upper()
+    return re.sub(r"[\s·・\-_.()（）]", "", canon_stock(n)).upper()
 
 
 def slug(name):
@@ -143,7 +151,7 @@ def page(path, title, desc, body, kind="article", date=None, nav_on="home"):
         if date:
             data["datePublished"] = date
         ld = '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + "</script>"
-    tabs = [("home", "홈", ""), ("videos", "영상 요약", "#videos"), ("stocks", "종목", "#stocks"),
+    tabs = [("home", "홈", ""), ("videos", "영상 요약", "#videos"), ("stocks", "종목", "stock/"),
             ("numbers", "숫자·지표", "#numbers"), ("community", "커뮤니티", "#community")]
     nav = "".join(f'<a href="{BASE}{h}" class="{"on" if k == nav_on else ""}">{t}</a>' for k, t, h in tabs)
     return f"""<!doctype html>
@@ -158,7 +166,7 @@ def page(path, title, desc, body, kind="article", date=None, nav_on="home"):
 <a class="logo" href="{BASE}">{e(SITE_NAME)}</a>
 <nav class="nav">{nav}</nav>
 {body}
-<nav class="foot" style="margin-top:34px;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.9rem"><a href="{href('brief/')}">일간 브리핑 모아보기</a><a href="{href('week/')}">주간 브리핑 모아보기</a><a href="{href('stock/')}">종목별 종합 모아보기</a></nav>
+<nav class="foot" style="margin-top:34px;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.9rem"><a href="{href('brief/')}">일간 브리핑 모아보기</a><a href="{href('week/')}">주간 브리핑 모아보기</a><a href="{href('stock/')}">종목 모아보기</a></nav>
 <p class="note">AI가 경제 유튜브 영상과 그 요약을 종합한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
 </div>{POP_JS}</body></html>
 """
@@ -239,9 +247,10 @@ def build():
     today = datetime.datetime.now(KST).strftime("%Y-%m-%d")
     changed = 0
 
-    stock_slug = {norm(d.get("name")): slug(d.get("name")) for d in digests.values()}
+    stock_slug = {norm(d.get("name")): slug(canon_stock(d.get("name"))) for d in digests.values()}
     for s_, m in man["stock"].items():
-        stock_slug.setdefault(norm(m.get("name")), s_)
+        if canon_stock(m.get("name")) == m.get("name"):
+            stock_slug.setdefault(norm(m.get("name")), s_)
 
     def stock_name(name):
         s_ = stock_slug.get(norm(name))
@@ -306,40 +315,68 @@ def build():
         changed += c
         mark("week", ws, c, {"headline": w.get("headline"), "end": w.get("end"), "videos": w.get("videos")})
 
-    # 종목 페이지
-    mentions = {}
+    # 종목 페이지: 2편 이상에서 언급된 모든 종목 (종합 정리가 있으면 맨 위에 보여 준다)
+    table = {}
     for v in V.values():
         for row in v.get("stocks") or []:
-            if len(row) >= 3:
-                mentions.setdefault(norm(row[1]), []).append((v, row))
+            if len(row) >= 3 and norm(row[1]):
+                t = table.setdefault(norm(row[1]), {"names": {}, "items": []})
+                t["names"][row[1]] = t["names"].get(row[1], 0) + 1
+                t["items"].append((v, row))
+    dig_by = {}
+    for d in digests.values():  # 같은 종목의 종합이 여러 개면(예전 별칭 이름으로 만든 것) 최신 것을 쓴다
+        k = norm(d.get("name"))
+        if k not in dig_by or (d.get("updated") or "", d.get("count") or 0) > (dig_by[k].get("updated") or "", dig_by[k].get("count") or 0):
+            dig_by[k] = d
     brief_days = {}
     for b in briefs:
         for s in b.get("stocks") or []:
             brief_days.setdefault(norm(s["name"]), set()).add(b["date"])
-    for d in digests.values():
-        name, s_, F = d.get("name"), slug(d.get("name")), Frag(V)
-        ms = sorted(mentions.get(norm(name), []), key=lambda x: x[0].get("date", ""), reverse=True)
 
-        def tm(v, t):
-            vid = vid_of(v.get("url"))
-            return f'<a class="tm" href="https://www.youtube.com/watch?v={e(vid)}&t={secs(t)}s" target="_blank" rel="noopener">▶ {e(t)}</a>' if t and vid else ""
+    def tm(v, t):
+        vid = vid_of(v.get("url"))
+        return f'<a class="tm" href="https://www.youtube.com/watch?v={e(vid)}&t={secs(t)}s" target="_blank" rel="noopener">▶ {e(t)}</a>' if t and vid else ""
+
+    for k, t in table.items():
+        vids_ = {vid_of(v.get("url")) for v, _ in t["items"]}
+        if len(vids_) < 2 and k not in dig_by:
+            continue  # 한 편에서만 나온 종목은 내용이 얇아서 페이지를 만들지 않는다
+        d = dig_by.get(k)
+        name = canon_stock(d.get("name") if d else max(t["names"], key=t["names"].get))
+        s_, F = slug(name), Frag(V)
+        ms = sorted(t["items"], key=lambda x: x[0].get("date", ""), reverse=True)
+        chans = {v.get("channel") for v, _ in ms}
+        last = ms[0][0].get("date", "") if ms else ""
         rows = "".join(f'<p class="srow"><small>{e(sdate(v.get("date")))}</small><span>{e(row[2])}</span><span class="rt">{F.hv(vid_of(v.get("url")))}{tm(v, row[0])}</span></p>'
                        for v, row in ms[:40])
-        bd = [x for x in sorted(brief_days.get(norm(name), set()), reverse=True) if x in man["brief"]]
-        body = (f'<div class="brief"><div class="bhead"><b>종목 종합</b><span>영상 {d.get("count")}편 기준 · {e(sdate(d.get("updated")))} 정리</span></div>'
-                f'<h1>{e(name)} <span class="tone t{e(d.get("tone"))}" style="font-size:.8rem;vertical-align:5px">{e(d.get("tone"))}</span></h1>'
-                f'<div class="digest"><p>{e(d.get("summary"))}</p>{"<ul>" + "".join(f"<li>{e(p)}</li>" for p in d.get("points") or []) + "</ul>" if d.get("points") else ""}</div>'
+        bd = [x for x in sorted(brief_days.get(k, set()), reverse=True) if x in man["brief"]]
+        tone = d.get("tone") if d else None
+        dig = (f'<div class="digest"><div class="dh"><b>종합</b><span>영상 {d.get("count")}편 기준 · {e(sdate(d.get("updated")))} 정리</span></div><p>{e(d.get("summary"))}</p>'
+               + ("<ul>" + "".join(f"<li>{e(p)}</li>" for p in d.get("points") or []) + "</ul>" if d.get("points") else "") + "</div>") if d else ""
+        body = (f'<div class="brief"><div class="bhead"><b>종목</b><span>영상 {len(vids_)}편 · {len(chans)}채널 · 마지막 언급 {e(sdate(last))}</span>'
+                f'<a class="link" href="{href("stock/")}">전체 종목 →</a></div>'
+                f'<h1>{e(name)}{f" <span class=\"tone t{e(tone)}\" style=\"font-size:.8rem;vertical-align:5px\">{e(tone)}</span>" if tone else ""}</h1>{dig}'
                 + sect("채널별 언급", len(ms[:40]), rows and f'<div class="skrb" style="padding:0">{rows}</div>', "c4")
                 + sect("이 종목이 나온 브리핑", len(bd), bd and '<div class="chips">' + "".join(f'<a href="{href("brief/" + x + "/")}">{e(sdate(x))}</a>' for x in bd) + "</div>", "c1")
                 + "</div>" + F.templates())
-        c = write(f"stock/{s_}", page(f"stock/{quote(s_)}/", f"{name}: 경제 유튜브 채널들의 시각 종합",
-                                      desc_of(d.get("summary"), *(d.get("points") or [])), body, date=d.get("updated"), nav_on="stocks"))
+        desc = desc_of(d.get("summary"), *(d.get("points") or [])) if d else desc_of(f"{name}에 대해 경제 유튜브 채널 {len(chans)}곳이 한 말을 모았다.", *[r[2] for _, r in ms[:3]])
+        c = write(f"stock/{s_}", page(f"stock/{quote(s_)}/", f"{name}: 경제 유튜브 채널들의 시각", desc, body, date=(d or {}).get("updated") or last, nav_on="stocks"))
         changed += c
-        mark("stock", s_, c, {"name": name, "tone": d.get("tone"), "count": d.get("count")})
+        mark("stock", s_, c, {"name": name, "tone": tone, "count": len(vids_), "channels": len(chans), "last": last})
+
+    # 예전에 별칭 이름(예: 하이닉스)으로 만든 종목 페이지는 정식 이름 페이지로 넘기고 목록에서 뺀다
+    for s_, m in list(man["stock"].items()):
+        c_ = canon_stock(m.get("name"))
+        if c_ != m.get("name") and slug(c_) != s_:
+            to = href("stock/" + quote(slug(c_)) + "/")
+            changed += write(f"stock/{s_}", f'<!DOCTYPE html><html lang="ko"><head><meta charset="utf-8"><title>{e(c_)}</title>'
+                             f'<link rel="canonical" href="{SITE}/stock/{quote(slug(c_))}/"><meta name="robots" content="noindex">'
+                             f'<meta http-equiv="refresh" content="0; url={to}"></head><body><a href="{to}">{e(c_)} 페이지로 이동</a></body></html>')
+            del man["stock"][s_]
 
     # 모아보기
-    def listing(path, title, desc, items, nav_on="home"):
-        body = f'<div class="brief"><h1 style="margin-top:0">{title}</h1>' + (f'<ul class="plist">{items}</ul>' if items else '<div class="empty">아직 없다.</div>') + "</div>"
+    def listing(path, title, desc, items, nav_on="home", extra="", script=""):
+        body = f'<div class="brief"><h1 style="margin-top:0">{title}</h1>{extra}' + (f'<ul class="plist" id="plist">{items}</ul>' if items else '<div class="empty">아직 없다.</div>') + "</div>" + script
         return write(path, page(path + "/", title, desc, body, kind="list", nav_on=nav_on))
 
     changed += listing("brief", "일간 시장 브리핑", "경제 유튜브 채널들의 영상을 하루 단위로 종합한 시장 브리핑 목록이다.",
@@ -348,9 +385,24 @@ def build():
     changed += listing("week", "주간 시장 브리핑", "경제 유튜브 채널들의 한 주 흐름을 종합한 주간 브리핑 목록이다.",
                        "".join(f'<li><a href="{href("week/" + w + "/")}"><b>{e(m.get("headline"))}</b><small>{e(sdate(w))} ~ {e(sdate(m.get("end")))} · 영상 {e(m.get("videos"))}편</small></a></li>'
                                for w, m in sorted(man["week"].items(), reverse=True)))
-    changed += listing("stock", "종목별 종합", "여러 경제 유튜브 채널에서 언급된 종목을 종목별로 종합한 목록이다.",
-                       "".join(f'<li><a href="{href("stock/" + quote(s_) + "/")}"><b>{e(m.get("name"))}<span class="tone t{e(m.get("tone"))}">{e(m.get("tone"))}</span></b><small>영상 {e(m.get("count"))}편 기준</small></a></li>'
-                               for s_, m in sorted(man["stock"].items(), key=lambda x: -(x[1].get("count") or 0))), nav_on="stocks")
+    stock_bar = ('<div class="vbar"><input id="sq" type="search" placeholder="종목 이름 검색" aria-label="종목 검색">'
+                 '<div class="chips" id="sr"><button class="chip" data-r="7">7일</button><button class="chip" data-r="30" aria-pressed="true">30일</button><button class="chip" data-r="all">전체</button></div></div>')
+    stock_js = """<script>
+(()=>{const q=document.getElementById("sq"),rows=[...document.querySelectorAll("#plist li")];let r="30";
+const p=new URLSearchParams(location.search).get("q");if(p)q.value=p;
+const nk=s=>s.replace(/[\\s·・\\-_.()（）]/g,"").toUpperCase();
+function f(){const cut=r==="all"?"":new Date(Date.now()+9*36e5-(+r-1)*864e5).toISOString().slice(0,10),k=nk(q.value);let n=0;
+rows.forEach(li=>{const ok=(!cut||li.dataset.last>=cut)&&(!k||nk(li.dataset.name).includes(k));li.hidden=!ok;if(ok)n++});
+document.querySelectorAll("#sr .chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.r===r));
+let em=document.getElementById("sempty");if(!em){em=document.createElement("div");em.id="sempty";em.className="empty";em.textContent="조건에 맞는 종목이 없다.";document.getElementById("plist").after(em)}em.hidden=n>0}
+q.addEventListener("input",f);document.getElementById("sr").addEventListener("click",e=>{const b=e.target.closest(".chip");if(b){r=b.dataset.r;f()}});f()})();
+</script>"""
+    changed += listing("stock", "종목", "여러 경제 유튜브 채널에서 언급된 종목을 종목별로 모아 채널들의 시각을 정리했다.",
+                       "".join(f'<li data-name="{e(m.get("name"))}" data-last="{e(m.get("last") or "")}"><a href="{href("stock/" + quote(s_) + "/")}"><b>{e(m.get("name"))}'
+                               + (f'<span class="tone t{e(m.get("tone"))}">{e(m.get("tone"))}</span>' if m.get("tone") else "")
+                               + f'</b><small>영상 {e(m.get("count"))}편{" · " + str(m.get("channels")) + "채널" if m.get("channels") else ""}{" · 마지막 언급 " + sdate(m.get("last")) if m.get("last") else ""}</small></a></li>'
+                               for s_, m in sorted(man["stock"].items(), key=lambda x: (-(x[1].get("count") or 0), x[1].get("name") or ""))),
+                       nav_on="stocks", extra=stock_bar, script=stock_js)
 
     # 사이트맵
     urls = [(url(""), today), (url("brief/"), today), (url("week/"), today), (url("stock/"), today)]
