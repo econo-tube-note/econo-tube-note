@@ -164,6 +164,13 @@ a.tm:hover{color:var(--accent)}
  dialog{width:100%;max-width:100%;max-height:92vh;margin:auto 0 0;border-radius:16px 16px 0 0}
  .body{padding:14px 14px 16px}
 }
+.dtop{position:sticky;top:0;z-index:5;height:0;display:flex;justify-content:flex-end}
+.xbtn{width:38px;height:38px;margin:-12px -14px 0 0;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:1.1rem;line-height:1;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.14)}
+.xbtn:hover{color:var(--accent);border-color:var(--accent)}
+@media(max-width:600px){
+ dialog{width:calc(100% - 20px);max-width:calc(100% - 20px);max-height:88vh;margin:auto;border-radius:16px;border:1px solid var(--line)}
+ .xbtn{margin:-8px -8px 0 0}
+}
 .note{color:var(--sub);font-size:.82rem;margin-top:40px}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 </style>
@@ -230,6 +237,7 @@ function showPop(el,html,wide){
 function hidePop(){clearTimeout(popT);pop.hidden=true;popEl=null;popKind=null}
 const canHover=()=>matchMedia("(hover:hover)").matches;
 /* ----- 상세 요약 팝업 ----- */
+let dlgPushed=false;
 function open(i){
  hidePop();
  const v=VIDEOS[i],id=vid(v.url),base=id?`https://www.youtube.com/watch?v=${id}`:"";
@@ -240,8 +248,9 @@ function open(i){
  const nu=(v.numbers||[]).map(([t,n,x])=>`<div class="sc"><span class="big">${esc(n)}</span><p>${esc(x)}</p>${tm(t)}</div>`).join("");
  const p2=(st?`<h3 class="first">언급된 종목</h3><div class="sgrid">${st}</div>`:"")+(nu?`<h3${st?"":' class="first"'}>주요 숫자</h3><div class="sgrid">${nu}</div>`:"");
  const nt=NOTE(id);
- $("#dlg").innerHTML=`<div class="dlg"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span>${v.people?`<span>출연 ${esc(v.people)}</span>`:""}</div><p class="dtitle">${esc(v.title)}</p><p class="concl">${sent(v.conclusion)}</p>${nt?`<p class="enote"><b>편집자 한마디</b>${esc(nt)}</p>`:""}${p2?`<div class="tabs" role="tablist"><button class="tab on" role="tab" data-p="0">요약</button><button class="tab" role="tab" data-p="1">종목·숫자</button></div>`:""}<section class="pane sec" id="s0">${p1}</section>${p2?`<section class="pane sec" id="s1">${p2}</section>`:""}<div class="actions">${base?`<a class="btn main" href="${base}" target="_blank" rel="noopener">원본 영상 보기</a>`:""}<button class="btn" id="x">닫기</button></div></div>`;
- $("#dlg").showModal();$("#dlg").scrollTop=0;$("#dlg").onscroll=spy;$("#x").onclick=()=>$("#dlg").close();
+ $("#dlg").innerHTML=`<div class="dlg"><div class="dtop"><button class="xbtn" id="xtop" aria-label="닫기">✕</button></div><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span>${v.people?`<span>출연 ${esc(v.people)}</span>`:""}</div><p class="dtitle">${esc(v.title)}</p><p class="concl">${sent(v.conclusion)}</p>${nt?`<p class="enote"><b>편집자 한마디</b>${esc(nt)}</p>`:""}${p2?`<div class="tabs" role="tablist"><button class="tab on" role="tab" data-p="0">요약</button><button class="tab" role="tab" data-p="1">종목·숫자</button></div>`:""}<section class="pane sec" id="s0">${p1}</section>${p2?`<section class="pane sec" id="s1">${p2}</section>`:""}<div class="actions">${base?`<a class="btn main" href="${base}" target="_blank" rel="noopener">원본 영상 보기</a>`:""}<button class="btn" id="x">닫기</button></div></div>`;
+ if(!$("#dlg").open)$("#dlg").showModal();$("#dlg").scrollTop=0;$("#dlg").onscroll=spy;$("#x").onclick=()=>$("#dlg").close();$("#xtop").onclick=()=>$("#dlg").close();
+ if(!dlgPushed){try{history.pushState({dlg:1},"");dlgPushed=true}catch(e){}}  // 뒤로가기를 누르면 페이지를 벗어나지 않고 팝업만 닫히게
 }
 function mark(n){$('.tab[data-p="0"]').className="tab"+(n===0?" on":"");$('.tab[data-p="1"]').className="tab"+(n===1?" on":"")}
 function spy(){const d=$("#dlg"),s1=$("#s1");if(!s1)return;const atEnd=d.scrollTop+d.clientHeight>=d.scrollHeight-4;mark(atEnd||s1.getBoundingClientRect().top-d.getBoundingClientRect().top<140?1:0)}
@@ -379,6 +388,8 @@ document.addEventListener("mouseover",e=>{if(!canHover())return;const t=e.target
 document.addEventListener("mouseout",e=>{if(!canHover()||popKind!=="hv")return;const t=e.target;if(t.closest&&(t.closest(".hv")||t.closest("#pop")))popT=setTimeout(hidePop,180)});
 window.addEventListener("resize",hidePop);
 window.addEventListener("hashchange",route);
+$("#dlg").addEventListener("close",()=>{if(dlgPushed){dlgPushed=false;history.back()}});
+window.addEventListener("popstate",()=>{if(dlgPushed){dlgPushed=false;if($("#dlg").open)$("#dlg").close()}hidePop()});
 if(typeof BRIEFS!=="undefined")BRIEFS.sort((a,b)=>b.date.localeCompare(a.date));
 if(typeof WEEKLY!=="undefined")WEEKLY.sort((a,b)=>b.week.localeCompare(a.week));
 chips();render();brief();route();
