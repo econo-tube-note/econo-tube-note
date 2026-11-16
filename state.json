@@ -11,7 +11,9 @@
   "HSGMWOyRn58": "쇼츠",
   "zSF-FLfPRbk": "쇼츠",
   "nRr8HYVQvMY": "너무 긴 영상(369분)",
-  "rdGRHVkn2hA": "너무 긴 영상(337분)"
+  "rdGRHVkn2hA": "너무 긴 영상(337분)",
+  "Be1ZQAND8m0": "경제 무관: 건강검진과 의료 정보를 다루어 경제·투자와 무관하다.",
+  "EGCHJsiyfpo": "경제 무관: 일본 지진 및 재앙을 다루는 사회·자연재해 이슈로 경제적 관점이 없다."
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -20,12 +22,12 @@
  "spent": {
   "2026-11-14": 27000,
   "2026-11-15": 21600,
-  "2026-11-16": 7200
+  "2026-11-16": 19320
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 26,
-   "busy": 3,
+   "ok": 27,
+   "busy": 5,
    "dead": 4
   },
   "gemini-3.7-flash": {
@@ -39,7 +41,7 @@
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 3,
+   "ok": 8,
    "busy": 0,
    "dead": 4
   },
@@ -69,7 +71,28 @@
   "AC33ZTkqK8Y": true,
   "PRU4kYSCJC8": true,
   "nRr8HYVQvMY": true,
-  "rdGRHVkn2hA": true
+  "rdGRHVkn2hA": true,
+  "c6LAHhYBSDI": true,
+  "2tSEzHXU02M": true,
+  "2nVYe_DFJGU": true,
+  "mhipCDonDKo": true,
+  "q0XXzZJGfoA": true,
+  "zYgSmH3Wl_s": true,
+  "9MXwHlep8wQ": true,
+  "lChAcS0iIaA": true,
+  "OK2FJONMpGA": true,
+  "S0rMsJ7wnig": true,
+  "UhA5xmTjqJ4": true,
+  "W3AvtA5OwVE": true,
+  "KHKXu_kP8_Y": true,
+  "Of8HJe9eNYw": true,
+  "SiPUXeRHkow": true,
+  "G9xGEntpZOw": true,
+  "fsNl1qHldUo": true,
+  "9dTjRAFYBBo": true,
+  "1pne_I6ZlYE": true,
+  "qn8zd-KNNVU": true,
+  "y4wIDFIua_g": true
  },
  "brief_final": {
   "2026-11-13": true,

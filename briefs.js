@@ -2,52 +2,58 @@
 const BRIEFS=[
  {
   "date": "2026-11-16",
-  "count": 4,
+  "count": 10,
   "sources": [
+   "FaYdu-Fa5_U",
+   "26HqStmCCFs",
+   "9U2TUMps-jI",
+   "kYLW8f4wzy8",
+   "saSLtHK3aJ0",
+   "ntk0jpMmJPU",
    "UihZAstNiGU",
    "ue4sG-vBq7Y",
    "LagAldYbD8M",
    "mLfghqfrG1g"
   ],
-  "headline": "AI 리스크 우려와 물가 불안 속에서 엔비디아 실적과 매크로 변수에 시장의 관심이 쏠린다.",
+  "headline": "AI 파이낸싱 우려와 고금리 압박 속에 글로벌 증시의 변동성이 확대되고 있다.",
   "keypoints": [
-   "연준은 AI 지출 및 데이터센터 부채 증가에 따른 금융안정 위험을 지적했다고 본다.",
-   "엔비디아는 리더십 이슈와 주가 변동성 속에서 실적 발표를 앞두고 있다고 전한다.",
-   "미국 생산자물가지수 발표 이후 인플레이션과 금리 인상 우려가 이어지고 있다고 본다.",
-   "한국은 반도체 등 주요 품목 호조로 연간 수출 1조 달러 달성이 확실시된다고 평가한다."
+   "엔비디아 실적과 AI 부채 리스크가 증시 변동성의 핵심 변수로 떠올랐다.",
+   "외국인 매도세와 고금리 여파로 국내외 증시의 하락 압력이 지속되고 있다.",
+   "부동산 시장은 재건축 위험성과 고금리로 인해 전세 및 매매 불안이 지속된다.",
+   "유대인 자본은 의무 교육과 신용을 바탕으로 글로벌 금융을 주도하고 있다."
   ],
   "themes": [
    {
-    "title": "연준의 AI 리스크 경고",
-    "summary": "연준은 AI 투자 열풍과 데이터센터 관련 부채 급증이 금융 시장의 안정성을 위협한다고 경고한다.",
+    "title": "AI 투자와 파이낸싱 리스크",
+    "summary": "엔비디아 실적 발표와 AI 부채 급증에 따른 금융 리스크 우려가 증시 변동성을 확대시키고 있다.",
     "refs": [
-     "ue4sG-vBq7Y",
-     "LagAldYbD8M",
-     "mLfghqfrG1g"
-    ]
-   },
-   {
-    "title": "엔비디아 실적 및 리더십",
-    "summary": "엔비디아 주가가 하락세를 보이는 가운데 젠슨 황 복귀 청원과 실적 발표가 핵심 변수로 꼽힌다.",
-    "refs": [
-     "ue4sG-vBq7Y",
-     "LagAldYbD8M",
-     "mLfghqfrG1g"
-    ]
-   },
-   {
-    "title": "매크로 지표와 금리 향방",
-    "summary": "생산자물가지수 발표와 국채 금리 오름세 속에 연준 위원들의 추가 금리 인상 가능성이 제기된다.",
-    "refs": [
+     "FaYdu-Fa5_U",
      "UihZAstNiGU",
      "ue4sG-vBq7Y",
+     "LagAldYbD8M",
      "mLfghqfrG1g"
+    ]
+   },
+   {
+    "title": "증시 변동성과 현금 운용 전략",
+    "summary": "외국인 매도세와 대만 증시 폭락 등으로 약세장이 지속되므로 현금을 아끼며 보수적으로 대응해야 한다.",
+    "refs": [
+     "FaYdu-Fa5_U",
+     "saSLtHK3aJ0",
+     "ntk0jpMmJPU"
+    ]
+   },
+   {
+    "title": "부동산 재건축 위험과 대응",
+    "summary": "재건축 사업비 증가와 고금리 영향으로 무주택자는 본인이 감당할 수 있는 기준에 따라 신중하게 접근해야 한다.",
+    "refs": [
+     "9U2TUMps-jI"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "연준은 AI 관련 부채 증가와 투자 과열이 금융안정을 위협할 수 있다고 경고했다고 본다.",
+    "point": "AI 관련 지출과 부채 증가로 인한 증시 고평가 및 금융 리스크 경고가 제기된다.",
     "refs": [
      "ue4sG-vBq7Y",
      "LagAldYbD8M",
@@ -55,21 +61,38 @@ const BRIEFS=[
     ]
    },
    {
-    "point": "엔비디아는 리더십 부재 우려로 인해 젠슨 황 CEO의 복귀 청원이 진행 중이라고 전한다.",
+    "point": "엔비디아의 실적 발표와 향후 행보가 반도체 시장의 방향성을 결정할 핵심 변수다.",
     "refs": [
-     "ue4sG-vBq7Y",
-     "mLfghqfrG1g"
+     "FaYdu-Fa5_U",
+     "LagAldYbD8M"
     ]
    },
    {
-    "point": "생산자물가지수 발표 이후 인플레이션 우려와 추가 금리 인상 가능성이 제기되고 있다고 본다.",
+    "point": "외국인의 대규모 매도세와 대만 증시 하락이 국내 증시 하락을 이끌었다고 본다.",
     "refs": [
-     "ue4sG-vBq7Y",
-     "mLfghqfrG1g"
+     "FaYdu-Fa5_U",
+     "saSLtHK3aJ0",
+     "ntk0jpMmJPU"
     ]
    }
   ],
-  "disagreements": [],
+  "disagreements": [
+   {
+    "topic": "AI 산업 및 주가 하락의 성격",
+    "views": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "단기 유동성 및 수급 악화에 따른 일시적 현상이며 성장성은 유효하다고 본다.",
+      "ref": "FaYdu-Fa5_U"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "AI 투자 확대에 따른 증시 고평가와 주가 조정 위험성이 크다고 경고한다.",
+      "ref": "LagAldYbD8M"
+     }
+    ]
+   }
+  ],
   "stocks": [
    {
     "name": "엔비디아",
@@ -77,22 +100,75 @@ const BRIEFS=[
     "mentions": [
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "AI 사이클의 핵심 동력원이나 자본 확장 성패를 좌우할 기업이라고 진단한다.",
+      "view": "AI 사이클의 핵심 동력원이나 불확실성이 지속되고 있다고 평가한다.",
       "ref": "UihZAstNiGU"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "파이낸싱 리스크와 CEO 리더십 이슈로 주가 불확실성이 우려된다고 평가한다.",
+      "view": "파이낸싱 리스크와 CEO 이슈로 향후 불확실성이 우려된다고 평가한다.",
       "ref": "ue4sG-vBq7Y"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "실적 발표와 경영진 우려 속에 주가가 흔들렸으나 주도주 입지는 유지된다고 본다.",
+      "view": "실적 발표를 앞두고 주가가 흔들렸으나 AI 주도주 입지는 유지된다고 본다.",
       "ref": "LagAldYbD8M"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "CEO 사임 파문 등으로 6주 연속 하락하며 주가 변동성을 겪었다고 분석한다.",
+      "view": "CEO 사임 파문 등으로 6주 연속 하락하며 큰 변동성을 겪었다고 분석한다.",
+      "ref": "mLfghqfrG1g"
+     }
+    ]
+   },
+   {
+    "name": "삼성전자",
+    "count": 3,
+    "mentions": [
+     {
+      "channel": "815머니톡",
+      "view": "개인 투자자들이 대량으로 물려 있는 대표적 종목이라고 지적한다.",
+      "ref": "saSLtHK3aJ0"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "하락세가 지속되며 선행 PER 기준 최저 수준까지 떨어졌다고 평가한다.",
+      "ref": "ntk0jpMmJPU"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "시장 불안감 속에서도 하락 폭이 작아 보합권을 유지했다고 평가한다.",
+      "ref": "LagAldYbD8M"
+     }
+    ]
+   },
+   {
+    "name": "하이닉스",
+    "count": 2,
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "시장 하락의 여파로 인해 주가가 크게 하락했다고 언급한다.",
+      "ref": "FaYdu-Fa5_U"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "개인 투자자 매수가 몰렸으나 주가 하락으로 물려 있다고 본다.",
+      "ref": "saSLtHK3aJ0"
+     }
+    ]
+   },
+   {
+    "name": "ARM",
+    "count": 2,
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "소프트뱅크가 대주주이며 AI 산업의 핵심 기업으로 평가한다.",
+      "ref": "FaYdu-Fa5_U"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "CEO가 엔비디아 차기 CEO 후보로 거론되며 주가 반등을 시도했다고 전한다.",
       "ref": "mLfghqfrG1g"
      }
     ]
