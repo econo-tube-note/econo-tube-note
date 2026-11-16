@@ -30,17 +30,17 @@
  "models": {
   "gemini-3.6-flash": {
    "ok": 16,
-   "busy": 4,
+   "busy": 6,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 1,
-   "busy": 15,
+   "busy": 16,
    "dead": 4
   },
   "gemini-3.8-flash": {
    "ok": 1,
-   "busy": 22,
+   "busy": 25,
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
