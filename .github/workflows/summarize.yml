@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
     inputs:
       urls:
-        description: "영상 주소를 넣으면 그 영상을 요약한다(여러 개는 공백으로 구분). 비워 두면 5개 채널에서 새 영상을 찾아 요약한다. 그 밖의 명령: 삭제:영상주소(또는 제목 속 단어) / 브리핑 (날짜는 브리핑:2026-11-14) / 주간 (주간:2026-11-14) / 정리(긴 결론 줄이기, 숫자에 지표 이름 붙이기) / 진단(채널별 수집 현황 보기)"
+        description: "영상 주소를 넣으면 그 영상을 요약한다(여러 개는 공백으로 구분). 비워 두면 5개 채널에서 새 영상을 찾아 요약한다. 그 밖의 명령: 삭제:영상주소(또는 제목 속 단어) / 브리핑 (날짜는 브리핑:2026-11-14) / 주간 (주간:2026-11-14) / 종목(종목 종합 다시 만들기) / 정리(긴 결론 줄이기, 숫자에 지표 이름 붙이기) / 진단(채널별 수집 현황 보기)"
         required: false
         default: ""
       note_key:
@@ -20,7 +20,7 @@ on:
         default: ""
   push:
     branches: [main]
-    paths: ["index.html", "videos.js", "briefs.js", "notes.js"]
+    paths: ["index.html", "videos.js", "briefs.js", "notes.js", "stocks.js"]
 
 permissions:
   contents: write
@@ -70,6 +70,8 @@ jobs:
           BRIEF_MIN_NEW: "3"        # 브리핑 후 영상이 이만큼 늘면 다시 만든다
           WEEKLY: "1"               # 1이면 주간 브리핑도 만든다
           WEEKLY_MIN_DAYS: "3"      # 일간 브리핑이 이만큼 모인 주부터 주간 브리핑을 만든다
+          STOCK_DIGEST: "1"         # 1이면 여러 영상에서 언급된 종목의 종합 정리를 만든다
+          STOCK_PER_RUN: "4"        # 한 번 실행에서 새로 정리할 종목 수
         run: |
           pip install google-genai
           python scripts/summarize.py "$URLS"
@@ -80,10 +82,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for f in videos.js briefs.js notes.js state.json archive.json channels.json; do
+          for f in videos.js briefs.js notes.js stocks.js state.json archive.json channels.json; do
             if [ -f "$f" ]; then git add "$f"; fi
           done
-          if git diff --cached --quiet -- videos.js briefs.js notes.js; then
+          if git diff --cached --quiet -- videos.js briefs.js notes.js stocks.js; then
             echo "videos=false" >> "$GITHUB_OUTPUT"
           else
             echo "videos=true" >> "$GITHUB_OUTPUT"
@@ -92,6 +94,13 @@ jobs:
             git commit -m "영상 요약 자동 갱신"
             git push
           fi
+
+      - name: 데이터 파일에 버전 붙이기 (브라우저가 예전 파일을 계속 쓰지 않게)
+        if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.commit.outputs.videos == 'true' }}
+        run: |
+          V=$(date +%s)
+          sed -i -E "s/(videos|briefs|notes|stocks)\.js(\?v=[0-9]+)?\"/\1.js?v=$V\"/g" index.html
+          grep -o '<script src="[a-z]*\.js?v=[0-9]*"' index.html
 
       - uses: actions/configure-pages@v5
         if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.commit.outputs.videos == 'true' }}
