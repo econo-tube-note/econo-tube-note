@@ -181,12 +181,43 @@ a.tm:hover{color:var(--accent)}
 .digest p{margin:0 0 4px;font-weight:700;line-height:1.6}
 .digest ul{margin:4px 0 0;padding-left:18px}.digest li{font-size:.92rem;line-height:1.6}
 .tone{font-size:.74rem;font-weight:800;border-radius:99px;padding:1px 9px;color:#fff;background:#8a93a3}
+.skrh .tone,.dh .tone{color:#fff;font-size:.74rem;font-weight:800}
 .tone.t긍정{background:#12805c}.tone.t부정{background:#c62828}.tone.t혼재{background:#c2410c}
 .ncnt{display:block;font-size:.76rem;font-weight:700;color:var(--sub);margin-top:2px}
 .nsrc{display:flex;flex-wrap:wrap;gap:4px 10px;margin-top:4px}
 .nsrc span{display:inline-flex;align-items:center;gap:4px;font-size:.8rem;color:var(--sub)}
 .nsrc .tm{margin:0}
 .comm{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:40px 20px;text-align:center;color:var(--sub)}
+.cbox{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:14px}
+.ctop{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-bottom:14px}
+.ctop h2{font-size:1.2rem;font-weight:800;margin:0;margin-right:auto}
+.ctop small{color:var(--sub)}
+.btn.main{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.sm{padding:6px 12px;font-size:.85rem}
+.plist{list-style:none;margin:0;padding:0}
+.plist li{border-top:1px solid var(--line)}
+.plist li:first-child{border-top:0}
+.plist a{display:block;padding:12px 2px;color:var(--ink);text-decoration:none}
+.plist a:hover b{color:var(--accent)}
+.plist b{font-size:1rem;font-weight:700}
+.plist .cc{color:var(--accent);font-weight:800;font-size:.85rem;margin-left:6px}
+.plist small,.pmeta{display:block;color:var(--sub);font-size:.8rem;margin-top:3px}
+.pview h1{font-size:1.3rem;line-height:1.45;margin:4px 0 6px}
+.pbody{white-space:pre-wrap;word-break:break-word;line-height:1.8;margin:16px 0 18px}
+.clist{list-style:none;margin:0;padding:0}
+.clist li{padding:10px 0;border-top:1px solid var(--line)}
+.clist .cm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:.8rem;color:var(--sub)}
+.clist .cm b{color:var(--ink)}
+.clist p{margin:4px 0 0;white-space:pre-wrap;word-break:break-word;line-height:1.65}
+.lnk{border:0;background:none;color:var(--sub);font-size:.78rem;cursor:pointer;padding:0;text-decoration:underline}
+.cform input[type=text],.cform textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit;margin-bottom:10px}
+.cform textarea{min-height:120px;resize:vertical}
+.cform label{display:flex;gap:8px;align-items:flex-start;font-size:.88rem;margin:6px 0}
+.cmsg{color:#c62828;font-size:.88rem;margin:6px 0 0;min-height:1em}
+.cpol{margin-top:22px;color:var(--sub);font-size:.85rem}
+.cpol details{margin-top:8px}
+.cpol summary{cursor:pointer;font-weight:700;color:var(--ink)}
+.cpol ul{padding-left:18px;line-height:1.7}
 .comm b{display:block;color:var(--ink);font-size:1.15rem;margin-bottom:6px}
 .note{color:var(--sub);font-size:.82rem;margin-top:40px}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
@@ -211,7 +242,7 @@ a.tm:hover{color:var(--accent)}
   </div>
   <div id="v-stocks" hidden></div>
   <div id="v-numbers" hidden></div>
-  <div id="v-community" hidden><div class="comm"><b>커뮤니티 준비 중</b>영상과 브리핑에 대해 이야기를 나눌 공간을 준비하고 있다.</div></div>
+  <div id="v-community" hidden></div>
   <p class="note">AI가 요약한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
 </div>
 <dialog id="dlg"></dialog>
@@ -220,6 +251,7 @@ a.tm:hover{color:var(--accent)}
 <script src="briefs.js"></script>
 <script src="notes.js"></script>
 <script src="stocks.js"></script>
+<script src="config.js"></script>
 <script>
 if(typeof VIDEOS==="undefined"){document.querySelector("#grid").innerHTML='<div class="empty">영상 목록(videos.js)을 불러오지 못했다. index.html과 videos.js가 같은 폴더에 있는지 확인해야 한다.</div>';throw new Error("videos.js를 찾을 수 없다")}
 VIDEOS.sort((a,b)=>b.date.localeCompare(a.date));
@@ -373,10 +405,128 @@ function numsList(){
  $("#nlist").innerHTML=labels.length?labels.slice(0,12).map(([l,n])=>`<div class="ng"><h3>${esc(l)} <small>${n}개</small>${n>4?` <button class="link" data-l="${esc(l)}">이 지표만 보기 →</button>`:""}</h3>${sorted(groups.filter(g=>g.label===l)).slice(0,4).map(row).join("")}</div>`).join(""):`<div class="empty">조건에 맞는 숫자가 없다.</div>`;
 }
 function route(){
- const h=(location.hash||"").replace("#","");const v=["videos","stocks","numbers","community"].includes(h)?h:"home";
+ const h=(location.hash||"").replace("#","");const b0=h.split("/")[0];const v=["videos","stocks","numbers","community"].includes(b0)?b0:"home";
  ["home","videos","stocks","numbers","community"].forEach(n=>{const e=$("#v-"+n);if(e)e.hidden=n!==v;const b=$('#nav [data-n="'+n+'"]');if(b)b.className=n===v?"on":""});
- if(v==="stocks")stocksInit();if(v==="numbers")numsInit();
+ if(v==="stocks")stocksInit();if(v==="numbers")numsInit();if(v==="community")community();
  hidePop();
+}
+/* ----- 커뮤니티 (Supabase) ----- */
+const CFG=typeof COMMUNITY!=="undefined"?COMMUNITY:null;
+let sb=null,me=null,myP=null,cmPage=0;const CM_PAGE=20;
+const cview=()=>(location.hash||"").replace("#","");
+const ft=t=>{const d=new Date(new Date(t).getTime()+9*36e5).toISOString();return d.slice(5,10).replace("-",".")+" "+d.slice(11,16)};
+const errMsg=e=>{const m=(e&&(e.message||e.details))||String(e);if(e&&e.code==="23505")return "이미 쓰고 있는 닉네임이다. 다른 닉네임을 골라야 한다.";if(e&&e.code==="23514")return "글자 수를 확인해야 한다. (닉네임 2~12자, 제목 2~80자, 본문 2~5000자, 댓글 1~1000자)";if(/row-level security/i.test(m))return "권한이 없다. 로그인 상태나 닉네임 설정을 확인해야 한다.";return m};
+function loadSbLib(){return new Promise((ok,no)=>{if(window.supabase&&window.supabase.createClient)return ok();const s=document.createElement("script");s.src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";s.onload=()=>ok();s.onerror=()=>no(new Error("커뮤니티 도구를 불러오지 못했다. 잠시 뒤에 새로고침해 본다."));document.head.appendChild(s)})}
+async function sbInit(){
+ if(sb)return sb;
+ if(!CFG||!CFG.url||!CFG.key)throw new Error("NOCFG");
+ await loadSbLib();
+ sb=window.supabase.createClient(CFG.url,CFG.key,{auth:{flowType:"pkce",detectSessionInUrl:true,persistSession:true}});
+ const {data}=await sb.auth.getSession();me=data.session?data.session.user:null;await loadMe();
+ sb.auth.onAuthStateChange(async(ev,ses)=>{const u=ses?ses.user:null;if((u&&u.id)===(me&&me.id))return;me=u;await loadMe();if(cview().startsWith("community"))community()});
+ return sb;
+}
+async function loadMe(){if(!me){myP=null;return}const {data}=await sb.from("profiles").select("id,nickname,is_admin,banned").eq("id",me.id).maybeSingle();myP=data||null}
+async function login(){try{await sbInit();sessionStorage.setItem("afterLogin",location.hash||"#community");await sb.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname}})}catch(e){alertBox(errMsg(e))}}
+function alertBox(m){const el=$("#cmsg");if(el)el.textContent=m;else alert(m)}
+const policy=()=>`<div class="cpol"><details><summary>운영 규칙</summary><ul>
+<li>특정 종목을 사거나 팔라고 권하는 글, 리딩방·유료방·광고 홍보 글은 삭제하고 이용을 제한한다.</li>
+<li>욕설, 비방, 차별 표현, 다른 사람의 개인정보, 허위 사실, 불법 정보는 삭제한다.</li>
+<li>이곳의 글은 회원 개인의 의견이며 투자 판단의 책임은 본인에게 있다.</li>
+<li>문제가 있는 글은 '신고'를 누르면 운영자가 확인한다.</li></ul></details>
+<details><summary>개인정보 처리방침</summary><ul>
+<li>수집 항목: 구글 로그인으로 받는 이메일 주소와 계정 식별자, 직접 정한 닉네임, 작성한 글과 댓글.</li>
+<li>이용 목적: 회원 확인, 게시판 운영, 부정 이용 방지.</li>
+<li>보관 기간: 회원 탈퇴 시 바로 삭제한다. 탈퇴는 로그인 후 '탈퇴'에서 할 수 있다.</li>
+<li>처리 위탁: 데이터 저장은 Supabase, 로그인은 Google을 이용한다. 그 밖의 제3자에게 제공하지 않는다.</li>
+<li>만 14세 미만은 가입할 수 없다.</li>
+<li>문의: ${esc((CFG&&CFG.contact)||"운영자에게 문의")}</li></ul></details></div>`;
+function topBar(title,extra){
+ let r;
+ if(!me)r=`<button class="btn sm main" data-c="login">구글로 로그인</button>`;
+ else if(!myP)r=`<small>닉네임을 정하면 글을 쓸 수 있다</small><button class="lnk" data-c="logout">로그아웃</button>`;
+ else r=`<small><b>${esc(myP.nickname)}</b>${myP.is_admin?" (운영자)":""}</small>${myP.is_admin?`<button class="lnk" data-c="reports">신고 목록</button>`:""}<button class="lnk" data-c="logout">로그아웃</button><button class="lnk" data-c="leave">탈퇴</button>`;
+ return `<div class="ctop"><h2>${title}</h2>${extra||""}${r}</div>`;
+}
+const nickForm=()=>`<div class="cbox cform"><b>닉네임 정하기</b><p style="color:var(--sub);font-size:.88rem;margin:4px 0 10px">게시판에는 이 닉네임만 보인다. (2~12자)</p><input type="text" id="nick" maxlength="12" placeholder="닉네임"><label><input type="checkbox" id="ag1"> 만 14세 이상이다.</label><label><input type="checkbox" id="ag2"> 아래 운영 규칙과 개인정보 처리방침에 동의한다.</label><button class="btn main" data-c="savenick">시작하기</button><p class="cmsg" id="cmsg"></p></div>`;
+const who=x=>esc(x&&x.profiles?x.profiles.nickname:"탈퇴한 회원");
+async function community(){
+ const el=$("#v-community");
+ if(!CFG||!CFG.url){el.innerHTML=`<div class="comm"><b>커뮤니티 준비 중</b>영상과 브리핑에 대해 이야기를 나눌 공간을 준비하고 있다.</div>`;return}
+ if(!sb)el.innerHTML=`<div class="empty">불러오는 중…</div>`;
+ try{await sbInit()}catch(e){el.innerHTML=`<div class="comm"><b>커뮤니티를 열지 못했다</b>${esc(e.message==="NOCFG"?"설정이 비어 있다.":errMsg(e))}</div>`;return}
+ const parts=cview().split("/");
+ try{
+  if(parts[1]==="new")return await cmWrite(el);
+  if(parts[1]==="reports")return await cmReports(el);
+  if(/^\d+$/.test(parts[1]||""))return await cmPost(el,+parts[1]);
+  await cmList(el);
+ }catch(e){el.innerHTML=topBar("자유게시판")+`<div class="cbox"><p class="cmsg">${esc(errMsg(e))}</p></div>`}
+}
+async function cmList(el,more){
+ if(!more)cmPage=0;
+ const lim=(cmPage+1)*CM_PAGE;
+ const {data,error}=await sb.from("posts").select("id,title,created_at,profiles(nickname),comments(count)").order("created_at",{ascending:false}).range(0,lim);
+ if(error)throw error;
+ const rows=data.slice(0,lim),hasMore=data.length>lim;
+ const items=rows.map(p=>{const n=(p.comments&&p.comments[0]&&p.comments[0].count)||0;return `<li><a href="#community/${p.id}"><b>${esc(p.title)}</b>${n?`<span class="cc">[${n}]</span>`:""}<small>${who(p)} · ${ft(p.created_at)}</small></a></li>`}).join("");
+ el.innerHTML=topBar("자유게시판",myP&&!myP.banned?`<button class="btn sm main" data-c="new">글쓰기</button>`:"")+(me&&!myP?nickForm():"")+`<div class="cbox">${items?`<ul class="plist">${items}</ul>`:`<div class="empty">아직 글이 없다. 첫 글을 남겨 보자.</div>`}${hasMore?`<div class="more"><button class="btn" data-c="more">더 보기</button></div>`:""}</div>`+policy();
+}
+async function cmWrite(el){
+ if(!me){el.innerHTML=topBar("글쓰기",`<button class="btn sm" data-c="list">목록</button>`)+`<div class="cbox">글을 쓰려면 로그인해야 한다.</div>`+policy();return}
+ if(!myP){el.innerHTML=topBar("글쓰기",`<button class="btn sm" data-c="list">목록</button>`)+nickForm()+policy();return}
+ el.innerHTML=topBar("글쓰기",`<button class="btn sm" data-c="list">목록</button>`)+`<div class="cbox cform"><input type="text" id="ptitle" maxlength="80" placeholder="제목 (2~80자)"><textarea id="pbody" maxlength="5000" placeholder="내용 (2~5000자). 특정 종목 매수·매도 권유, 홍보 글은 삭제된다."></textarea><button class="btn main" data-c="post">등록</button><p class="cmsg" id="cmsg"></p></div>`+policy();
+}
+async function cmPost(el,id){
+ const {data:p,error}=await sb.from("posts").select("id,title,body,created_at,user_id,profiles(nickname)").eq("id",id).maybeSingle();
+ if(error)throw error;
+ if(!p){el.innerHTML=topBar("자유게시판",`<button class="btn sm" data-c="list">목록</button>`)+`<div class="cbox"><div class="empty">지워졌거나 없는 글이다.</div></div>`;return}
+ const {data:cs,error:e2}=await sb.from("comments").select("id,body,created_at,user_id,profiles(nickname)").eq("post_id",id).order("created_at",{ascending:true});
+ if(e2)throw e2;
+ const mine=uid=>me&&uid===me.id,adm=myP&&myP.is_admin;
+ const acts=(type,oid,uid)=>me?(mine(uid)||adm?`<button class="lnk" data-c="del" data-t="${type}" data-id="${oid}">삭제</button>`:"")+(myP&&!mine(uid)?` <button class="lnk" data-c="report" data-t="${type}" data-id="${oid}">신고</button>`:""):"";
+ const clist=(cs||[]).map(c=>`<li><div class="cm"><b>${who(c)}</b><span>${ft(c.created_at)}</span>${acts("comment",c.id,c.user_id)}</div><p>${esc(c.body)}</p></li>`).join("");
+ const cform=myP&&!myP.banned?`<div class="cform" style="margin-top:12px"><textarea id="cbody" maxlength="1000" placeholder="댓글 (1~1000자)" style="min-height:70px"></textarea><button class="btn sm main" data-c="comment" data-id="${p.id}">댓글 등록</button><p class="cmsg" id="cmsg"></p></div>`:(me?"":`<p style="color:var(--sub);font-size:.88rem;margin-top:12px">댓글을 쓰려면 <button class="lnk" data-c="login">로그인</button>한다.</p>`);
+ el.innerHTML=topBar("자유게시판",`<button class="btn sm" data-c="list">목록</button>`)+(me&&!myP?nickForm():"")+`<div class="cbox pview"><h1>${esc(p.title)}</h1><span class="pmeta">${who(p)} · ${ft(p.created_at)} ${acts("post",p.id,p.user_id)}</span><div class="pbody">${esc(p.body)}</div><b>댓글 ${(cs||[]).length}</b><ul class="clist">${clist}</ul>${cform}</div>`+policy();
+}
+async function cmReports(el){
+ if(!myP||!myP.is_admin){location.hash="#community";return}
+ const {data,error}=await sb.from("reports").select("id,target_type,target_id,reason,created_at").order("created_at",{ascending:false}).limit(100);
+ if(error)throw error;
+ const cids=data.filter(r=>r.target_type==="comment").map(r=>r.target_id);
+ const cpost={};if(cids.length){const {data:cs}=await sb.from("comments").select("id,post_id").in("id",cids);(cs||[]).forEach(c=>cpost[c.id]=c.post_id)}
+ const rows=data.map(r=>{const pid=r.target_type==="post"?r.target_id:cpost[r.target_id];return `<li><div class="cm"><b>${r.target_type==="post"?"글":"댓글"} #${r.target_id}</b><span>${ft(r.created_at)}</span>${pid?`<a href="#community/${pid}">보러 가기</a>`:"<span>이미 지워짐</span>"}<button class="lnk" data-c="unreport" data-id="${r.id}">처리 완료</button></div><p>${esc(r.reason||"(사유 없음)")}</p></li>`}).join("");
+ el.innerHTML=topBar("신고 목록",`<button class="btn sm" data-c="list">목록</button>`)+`<div class="cbox">${rows?`<ul class="clist">${rows}</ul>`:`<div class="empty">신고가 없다.</div>`}</div>`;
+}
+$("#v-community").addEventListener("click",async e=>{
+ const b=e.target.closest&&e.target.closest("[data-c]");if(!b)return;
+ const c=b.dataset.c,val=id=>{const x=$("#"+id);return x?x.value.trim():""};
+ try{
+  if(c==="login")return login();
+  if(c==="logout"){await sb.auth.signOut();me=null;myP=null;return community()}
+  if(c==="leave"){if(!confirm("탈퇴하면 쓴 글과 댓글이 모두 지워진다. 탈퇴할까?"))return;const {error}=await sb.rpc("delete_my_account");if(error)throw error;await sb.auth.signOut();me=null;myP=null;location.hash="#community";return community()}
+  if(c==="new"){location.hash="#community/new";return}
+  if(c==="list"){location.hash="#community";return}
+  if(c==="reports"){location.hash="#community/reports";return}
+  if(c==="more"){cmPage++;return cmList($("#v-community"),true)}
+  if(c==="savenick"){
+   const n=val("nick");if(n.length<2||n.length>12)return alertBox("닉네임은 2~12자로 정한다.");
+   if(!$("#ag1").checked||!$("#ag2").checked)return alertBox("두 항목에 모두 동의해야 한다.");
+   const {error}=await sb.from("profiles").insert({id:me.id,nickname:n});if(error)throw error;await loadMe();return community()}
+  if(c==="post"){
+   b.disabled=true;const {data,error}=await sb.from("posts").insert({title:val("ptitle"),body:val("pbody")}).select("id").single();b.disabled=false;
+   if(error)throw error;location.hash="#community/"+data.id;return}
+  if(c==="comment"){
+   b.disabled=true;const {error}=await sb.from("comments").insert({post_id:+b.dataset.id,body:val("cbody")});b.disabled=false;
+   if(error)throw error;return community()}
+  if(c==="del"){if(!confirm("삭제할까?"))return;const t=b.dataset.t==="post"?"posts":"comments";const {error}=await sb.from(t).delete().eq("id",+b.dataset.id);if(error)throw error;if(t==="posts")location.hash="#community";else community();return}
+  if(c==="report"){const r=prompt("신고 사유를 짧게 적는다. (선택)");if(r===null)return;const {error}=await sb.from("reports").insert({target_type:b.dataset.t,target_id:+b.dataset.id,reason:r.slice(0,200)});if(error&&error.code!=="23505")throw error;alert("신고했다. 운영자가 확인한다.");return}
+  if(c==="unreport"){const {error}=await sb.from("reports").delete().eq("id",+b.dataset.id);if(error)throw error;return community()}
+ }catch(err){b.disabled=false;alertBox(errMsg(err))}
+});
+// 구글 로그인 후 돌아왔을 때: 로그인을 마무리하고 원래 보던 커뮤니티 화면으로 돌려보낸다
+if(/[?&]code=/.test(location.search)||sessionStorage.getItem("afterLogin")){
+ sbInit().catch(()=>{}).finally(()=>{const back=sessionStorage.getItem("afterLogin");sessionStorage.removeItem("afterLogin");try{history.replaceState(null,"",location.pathname+(back||location.hash||""))}catch(e){}route()});
 }
 /* ----- 이벤트 ----- */
 const keep=fn=>{const bar=$(".bar"),y0=bar.getBoundingClientRect().top;fn();const d=bar.getBoundingClientRect().top-y0;if(d)window.scrollBy(0,d)};  // 결과가 줄어도 화면이 위로 튀지 않게 검색 줄의 위치를 유지한다
