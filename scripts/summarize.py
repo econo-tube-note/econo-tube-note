@@ -926,6 +926,95 @@ def force_weekly(date):
     return 0
 
 
+# ---------- 종목 종합 (stocks.js): 여러 영상에서 나온 종목 이야기를 한 번에 정리 ----------
+STOCKS = ROOT / "stocks.js"
+STOCK_PROMPT = """너는 경제 유튜브 영상들에서 한 종목에 대해 나온 말들을 모아 정리하는 편집자다. 아래 JSON은 종목 이름과, 날짜·채널별 언급(mentions)이다. 규칙대로 JSON으로 답해라.
+
+규칙
+- 문체는 '~다'로 통일하고 문장은 짧게 쓴다.
+- 입력에 있는 내용만 쓴다. 네가 아는 정보로 판단하거나 보태지 않는다. 사거나 팔라고 권하지 않는다.
+- tone: 채널들의 전반적인 시각. 긍정, 부정, 혼재, 중립 중 하나.
+- summary: 채널들이 이 종목을 어떻게 보는지 종합한 한두 문장 (공백 포함 90자 이내).
+- points: 공통으로 나온 이야기나 의견이 갈린 지점 2~3개. 각각 공백 포함 45자 안팎의 한 문장.
+
+입력(JSON):
+"""
+
+
+def load_stock_digests():
+    try:
+        return _read_const(STOCKS.read_text(encoding="utf-8"), "STOCKSUM") or {}
+    except Exception:
+        return {}
+
+
+def save_stock_digests(d):
+    STOCKS.write_text("/* 종목별 종합 정리. 자동화(scripts/summarize.py)가 갱신하는 파일이다. */\nconst STOCKSUM="
+                      + json.dumps(d, ensure_ascii=False, indent=1) + ";\n", encoding="utf-8")
+
+
+def stock_schema():
+    from pydantic import BaseModel
+
+    class StockDigest(BaseModel):
+        tone: str
+        summary: str
+        points: list[str]
+    return StockDigest
+
+
+def update_stock_digests(videos, force=False):
+    """최근 30일 동안 2편 이상에서 언급된 종목을 정리한다. 새 언급이 생긴 종목만 다시 만든다."""
+    if not force and not cfg("STOCK_DIGEST", 1):
+        return
+    days, per_run = cfg("STOCK_DAYS", 30), cfg("STOCK_PER_RUN", 4)
+    cut = (datetime.datetime.now(KST) - datetime.timedelta(days=days)).strftime("%Y-%m-%d")
+    table = {}
+    for v in videos:
+        if v.get("date", "") < cut:
+            continue
+        vid = video_id(v.get("url"))
+        for row in v.get("stocks") or []:
+            k = norm_name(row[1])
+            if not k:
+                continue
+            t = table.setdefault(k, {"names": {}, "items": {}})
+            t["names"][row[1]] = t["names"].get(row[1], 0) + 1
+            t["items"].setdefault(vid, {"date": v["date"], "channel": v["channel"], "note": row[2]})
+    digests = load_stock_digests()
+    todo = []
+    for k, t in table.items():
+        if len(t["items"]) < 2:
+            continue
+        ids = sorted(t["items"])
+        if not force and digests.get(k, {}).get("ids") == ids:
+            continue
+        todo.append((len(ids), k, t, ids))
+    todo.sort(reverse=True)  # 많이 언급된 종목부터
+    made = 0
+    for _, k, t, ids in todo[:per_run if not force else 30]:
+        name = max(t["names"], key=t["names"].get)
+        items = sorted(t["items"].values(), key=lambda x: x["date"], reverse=True)[:12]
+        print(f"종목 종합 만드는 중: {name} (영상 {len(ids)}편)")
+        try:
+            out = call_json(STOCK_PROMPT + json.dumps({"name": name, "mentions": items}, ensure_ascii=False),
+                            stock_schema, "BRIEF_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 120)
+        except Exception as e:
+            print(f"  종목 종합 실패: {str(e)[:120]}")
+            break  # 혼잡하면 다음 실행으로 미룬다
+        summary = (out.get("summary") or "").strip()
+        if not summary:
+            continue
+        tone = out.get("tone") if out.get("tone") in ("긍정", "부정", "혼재", "중립") else "중립"
+        digests[k] = {"name": name, "tone": tone, "summary": summary,
+                      "points": [p.strip() for p in out.get("points") or [] if p.strip()][:3],
+                      "ids": ids, "count": len(ids), "updated": datetime.datetime.now(KST).strftime("%Y-%m-%d")}
+        save_stock_digests(digests)
+        made += 1
+    if made:
+        print(f"종목 종합 {made}개를 새로 만들었다.")
+
+
 def interleave(lists):
     """채널마다 최신 영상부터 한 편씩 번갈아 꺼낸다. (한 채널이 예산을 다 쓰지 않게)"""
     out = []
@@ -1093,6 +1182,7 @@ def auto():
     try:
         update_briefs(state, videos)
         update_weekly(videos)
+        update_stock_digests(videos)
     except Exception as e:
         print(f"브리핑 단계에서 오류: {str(e)[:150]}")
     write_json(STATE, state)
@@ -1267,6 +1357,12 @@ def main(argv):
     briefing = [t for t in tokens if t.startswith("브리핑")]
     weekly_t = [t for t in tokens if t.startswith("주간")]
     tidy_t = [t for t in tokens if t == "정리"]
+    if tokens == ["종목"]:  # 종목 종합을 지금 전부 다시 만든다
+        if not os.environ.get("GEMINI_API_KEY"):
+            print("GEMINI_API_KEY가 없다.")
+            return 1
+        update_stock_digests(load(), force=True)
+        return 0
     if any(t == "진단" for t in tokens) and len(tokens) == 1:
         return diagnose()
     urls = [t for t in tokens if not t.startswith(("삭제:", "remove:", "브리핑", "주간")) and t != "정리"]
