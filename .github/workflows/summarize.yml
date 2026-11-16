@@ -76,16 +76,34 @@ jobs:
           pip install google-genai
           python scripts/summarize.py "$URLS"
 
+      - name: 검색용 개별 페이지 만들기 (브리핑·주간·종목, 사이트맵)
+        if: ${{ !cancelled() && github.event_name != 'push' }}
+        env:
+          SITE_URL: https://econo-tube-note.github.io/econo-tube-note
+        run: python scripts/pages.py
+
+      - name: 커뮤니티 데이터베이스 깨우기 (무료 Supabase가 1주일 쉬면 멈추는 것을 막는다)
+        if: ${{ github.event_name == 'schedule' }}
+        continue-on-error: true
+        run: |
+          if [ -f config.js ]; then
+            URL=$(grep -o 'url:"[^"]*"' config.js | cut -d'"' -f2)
+            KEY=$(grep -o 'key:"[^"]*"' config.js | cut -d'"' -f2)
+            if [ -n "$URL" ] && [ -n "$KEY" ]; then
+              curl -s -o /dev/null -w "Supabase 응답: %{http_code}\n" "$URL/rest/v1/posts?select=id&limit=1" -H "apikey: $KEY"
+            fi
+          fi
+
       - name: 변경사항 저장
         id: commit
         if: ${{ !cancelled() && github.event_name != 'push' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          for f in videos.js briefs.js notes.js stocks.js state.json archive.json channels.json; do
-            if [ -f "$f" ]; then git add "$f"; fi
+          for f in videos.js briefs.js notes.js stocks.js state.json archive.json channels.json sitemap.xml pages.json brief week stock; do
+            if [ -e "$f" ]; then git add "$f"; fi
           done
-          if git diff --cached --quiet -- videos.js briefs.js notes.js stocks.js; then
+          if git diff --cached --quiet -- videos.js briefs.js notes.js stocks.js sitemap.xml brief week stock; then
             echo "videos=false" >> "$GITHUB_OUTPUT"
           else
             echo "videos=true" >> "$GITHUB_OUTPUT"
@@ -99,7 +117,7 @@ jobs:
         if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.commit.outputs.videos == 'true' }}
         run: |
           V=$(date +%s)
-          sed -i -E "s/(videos|briefs|notes|stocks)\.js(\?v=[0-9]+)?\"/\1.js?v=$V\"/g" index.html
+          sed -i -E "s/(videos|briefs|notes|stocks|config)\.js(\?v=[0-9]+)?\"/\1.js?v=$V\"/g" index.html
           grep -o '<script src="[a-z]*\.js?v=[0-9]*"' index.html
 
       - uses: actions/configure-pages@v5
