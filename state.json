@@ -25,22 +25,22 @@
   "2026-11-14": 27000,
   "2026-11-15": 21600,
   "2026-11-16": 26710,
-  "2026-11-17": 4344
+  "2026-11-17": 6422
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 32,
-   "busy": 6,
+   "ok": 16,
+   "busy": 4,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 1,
-   "busy": 14,
+   "busy": 15,
    "dead": 4
   },
   "gemini-3.8-flash": {
    "ok": 1,
-   "busy": 19,
+   "busy": 22,
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
@@ -83,7 +83,6 @@
   "S0rMsJ7wnig": true,
   "UhA5xmTjqJ4": true,
   "KHKXu_kP8_Y": true,
-  "Of8HJe9eNYw": true,
   "SiPUXeRHkow": true,
   "G9xGEntpZOw": true,
   "fsNl1qHldUo": true,
