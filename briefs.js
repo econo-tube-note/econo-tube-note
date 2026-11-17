@@ -1,6 +1,69 @@
 /* 종합 브리핑(일간 BRIEFS, 주간 WEEKLY). 자동화(scripts/summarize.py)가 갱신하는 파일이다. */
 const BRIEFS=[
  {
+  "date": "2026-11-17",
+  "count": 3,
+  "sources": [
+   "IQPubZrMfH8",
+   "mmCP7KDv5pw",
+   "0J5AXS2pqUg"
+  ],
+  "headline": "글로벌 규제와 금리 인상 우려 속에 증시가 하락세를 보이고 있다",
+  "keypoints": [
+   "증시가 하락 추세에 있으므로 반등 시 현금 비중을 늘려야 한다.",
+   "미국의 규제와 데이터센터 수요 둔화로 AI 성장 속도가 둔화할 수 있다.",
+   "나스닥 선물이 전저점 지지 여부를 테스트하며 변동성을 보이고 있다.",
+   "고금리 국면이 장기화하면서 증시 바닥 다지기에 오랜 시간이 걸릴 수 있다."
+  ],
+  "themes": [
+   {
+    "title": "미국 규제와 AI 성장 둔화 우려",
+    "summary": "미국의 동남아 제3국 데이터센터 통제와 규제로 인해 전반적인 데이터센터와 칩 수요가 둔화할 수 있다고 본다.",
+    "refs": [
+     "IQPubZrMfH8",
+     "0J5AXS2pqUg"
+    ]
+   },
+   {
+    "title": "가상자산 시장 급락과 거래소 적자",
+    "summary": "나스닥 급락과 악의적 포지션 공격 등으로 가상자산 전반이 조정을 겪었으며 국내 거래소는 적자로 전환했다.",
+    "refs": [
+     "mmCP7KDv5pw"
+    ]
+   }
+  ],
+  "agreements": [
+   {
+    "point": "나스닥과 기술주 중심의 지수가 하락 압력을 받으며 조정을 겪고 있다.",
+    "refs": [
+     "IQPubZrMfH8",
+     "mmCP7KDv5pw",
+     "0J5AXS2pqUg"
+    ]
+   }
+  ],
+  "disagreements": [],
+  "stocks": [
+   {
+    "name": "마이크로스트래티지",
+    "count": 2,
+    "tone": "부정",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "비트코인 매입 규모를 줄이고 자사 우선주 환매에 집중하는 가운데 MSCI 지수 편출 악재로 매도 압박을 받고 있다.",
+      "ref": "mmCP7KDv5pw"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "주식 발행으로 자금을 조달해 비트코인을 지속적으로 추가 매수함.",
+      "ref": "0J5AXS2pqUg"
+     }
+    ]
+   }
+  ]
+ },
+ {
   "date": "2026-11-16",
   "count": 19,
   "sources": [
