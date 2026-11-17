@@ -285,7 +285,7 @@
   },
   "이수페타시스": {
    "name": "이수페타시스",
-   "tone": null,
+   "tone": "긍정",
    "count": 2,
    "channels": 2,
    "last": "2026-11-17",
@@ -293,7 +293,7 @@
   },
   "지니언스": {
    "name": "지니언스",
-   "tone": null,
+   "tone": "혼재",
    "count": 2,
    "channels": 2,
    "last": "2026-11-17",
@@ -301,7 +301,7 @@
   },
   "GS건설": {
    "name": "GS건설",
-   "tone": null,
+   "tone": "긍정",
    "count": 2,
    "channels": 2,
    "last": "2026-11-17",
