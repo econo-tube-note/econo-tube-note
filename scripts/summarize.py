@@ -90,10 +90,84 @@ def is_lite(m):
     return "lite" in (m or "")
 
 
-def call_gemini(video_url, allow_lite=True):
-    """영상을 요약한다. allow_lite가 False면 품질이 낮은 lite 모델은 쓰지 않는다."""
-    from google import genai
-    from google.genai import types
+# ---------- 자막(스크립트) 시험 ----------
+def fetch_transcript(vid):
+    """유튜브 자막을 가져온다. [(시작초, 글)] 목록. 실패하면 예외를 낸다."""
+    from youtube_transcript_api import YouTubeTranscriptApi
+    langs = ["ko", "en"]
+    try:  # 새 버전
+        got = YouTubeTranscriptApi().fetch(vid, languages=langs)
+        return [(float(x.start), x.text) for x in got]
+    except AttributeError:  # 옛 버전
+        got = YouTubeTranscriptApi.get_transcript(vid, languages=langs)
+        return [(float(x["start"]), x["text"]) for x in got]
+
+
+def mmss(sec):
+    sec = int(sec)
+    return f"{sec // 3600}:{sec % 3600 // 60:02d}:{sec % 60:02d}" if sec >= 3600 else f"{sec // 60:02d}:{sec % 60:02d}"
+
+
+TRANSCRIPT_PROMPT = PROMPT.replace("영상을 보고 아래 규칙대로", "아래 자막(대본)을 읽고 아래 규칙대로") + """
+- 입력은 영상의 자동 자막이다. 각 줄 앞의 [분:초]가 그 말이 나온 시간이다. time에는 이 시간을 쓴다.
+- 자동 자막이라 종목명, 숫자, 사람 이름이 소리 나는 대로 잘못 적혀 있을 수 있다. 문맥으로 분명할 때만 바로잡고, 애매하면 그 항목을 쓰지 않는다.
+
+자막:
+"""
+
+
+def transcript_test(target=""):
+    """GitHub 서버에서 자막을 가져올 수 있는지, 자막으로 요약하면 품질이 어떤지 시험한다. 사이트에는 아무것도 저장하지 않는다."""
+    videos = load()
+    if target:
+        vids = [video_id(target)] if video_id(target) else []
+    else:
+        vids = [video_id(v["url"]) for v in videos[:3]]
+    print("자막 가져오기 시험 (사이트에는 저장하지 않는다)")
+    got = None
+    for n, vid in enumerate(vids):
+        if n:
+            time.sleep(5)  # 클라우드 서버에서 연달아 요청하면 유튜브가 막기 쉬워서 간격을 둔다
+        try:
+            lines = fetch_transcript(vid)
+            chars = sum(len(t) for _, t in lines)
+            print(f"  성공: {vid} | 자막 {len(lines)}줄, {chars}자 | 첫 줄: {lines[0][1][:40] if lines else ''}")
+            if got is None and lines:
+                got = (vid, lines)
+        except Exception as e:
+            print(f"  실패: {vid} | {type(e).__name__}: {str(e)[:200]}")
+    if not got:
+        print("\n결과: 자막을 하나도 못 가져왔다. GitHub 서버에서는 이 방법을 쓸 수 없다.")
+        return 0
+    vid, lines = got
+    text = "\n".join(f"[{mmss(st)}] {t}" for st, t in lines)
+    print(f"\n자막으로 요약해 본다: {vid} (자막 {len(text)}자)")
+    t0 = time.time()
+    out = call_json(TRANSCRIPT_PROMPT + text, summary_schema, "TRANSCRIPT_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.8-flash,gemini-3.5-flash-lite", 180)
+    print(f"  걸린 시간: {time.time() - t0:.0f}초")
+    old = next((v for v in videos if video_id(v["url"]) == vid), None)
+
+    def show(label, conclusion, parts, stocks, numbers):
+        print(f"\n===== {label} =====")
+        print(f"결론: {conclusion}")
+        for p in parts:
+            print(f"[{p['t']}]")
+            for t, x in p["items"]:
+                print(f"  {t:>6} {x}")
+        print("종목: " + " / ".join(f"{s[1]}({s[2]})" for s in stocks))
+        print("숫자: " + " / ".join(f"{n[1]} - {n[2]}" for n in numbers))
+
+    try:
+        new = clean(out, f"https://www.youtube.com/watch?v={vid}", "", "", "")
+        show("자막으로 만든 요약", new["conclusion"], new["parts"], new["stocks"], new["numbers"])
+    except Exception as e:
+        print(f"  자막 요약 정리 실패: {e}")
+    if old:
+        show(f"지금 사이트의 요약 (영상으로 만든 것, {old.get('model', '모델 기록 없음')})", old.get("conclusion"), old.get("parts") or [], old.get("stocks") or [], old.get("numbers") or [])
+    return 0
+
+
+def summary_schema():
     from pydantic import BaseModel
 
     class Item(BaseModel):
@@ -123,6 +197,29 @@ def call_gemini(video_url, allow_lite=True):
         stocks: list[Stock]
         numbers: list[Num]
 
+    return Summary
+
+
+FPS_OK = [True]  # 영상 프레임 수 줄이기 설정이 받아들여지는지 (거절되면 이번 실행에서는 끈다)
+
+
+def video_part(types, video_url):
+    """영상을 넘길 때 화면을 몇 초에 한 장 볼지 정한다. 소리는 그대로 다 듣는다."""
+    fps = float(os.environ.get("VIDEO_FPS", "0.2") or 0)
+    if fps and FPS_OK[0]:
+        try:
+            return types.Part(file_data=types.FileData(file_uri=video_url), video_metadata=types.VideoMetadata(fps=fps))
+        except Exception:
+            FPS_OK[0] = False
+    return types.Part(file_data=types.FileData(file_uri=video_url))
+
+
+def call_gemini(video_url, allow_lite=True):
+    """영상을 요약한다. allow_lite가 False면 품질이 낮은 lite 모델은 쓰지 않는다."""
+    from google import genai
+    from google.genai import types
+
+    Summary = summary_schema()
     client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
     # 모델을 차례로 한 번씩 시도한다. 한 모델이 바쁘면 바로 다음 모델로 넘어가고, 전부 바쁘면 잠깐 쉬었다가 처음부터 다시 돌린다.
     fallbacks = os.environ.get("GEMINI_FALLBACKS", "gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash-lite,gemini-3.1-flash-lite")
@@ -144,7 +241,7 @@ def call_gemini(video_url, allow_lite=True):
                     model=model,
                     contents=types.Content(
                         parts=[
-                            types.Part(file_data=types.FileData(file_uri=video_url)),
+                            video_part(types, video_url),
                             types.Part(text=PROMPT),
                         ]
                     ),
@@ -169,6 +266,11 @@ def call_gemini(video_url, allow_lite=True):
                 print(f"  [{model}] {e} -> 이 영상에서는 다음 모델로 넘어간다")
             except Exception as e:
                 last = e
+                if FPS_OK[0] and "INVALID_ARGUMENT" in str(e) and os.environ.get("VIDEO_FPS", "0.2") not in ("", "0"):
+                    FPS_OK[0] = False  # 프레임 수 설정을 거절했다. 설정 없이 다시 시도한다 (모델을 버리지 않는다)
+                    STATS.append((model, "busy"))
+                    print(f"  [{model}] 프레임 수 줄이기 설정이 거절돼서 끄고 다시 시도한다: {str(e)[:100]}")
+                    continue
                 if any(c in str(e) for c in permanent):
                     DEAD.add(model)  # 모델 이름이 없거나 권한이 없다. 이번 실행 동안은 다시 안 쓴다
                     STATS.append((model, "dead"))
@@ -655,8 +757,7 @@ def call_json(prompt, make_schema, models_env, default_models, timeout):
     schema = make_schema()
     client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
     models = [m.strip() for m in os.environ.get(models_env, default_models).split(",") if m.strip()]
-    models.sort(key=lambda m: -model_rate(m))
-    last = None
+    last = None  # 모델은 정해 준 순서대로 쓴다 (글 정리 작업은 lite를 먼저, 브리핑은 좋은 모델을 먼저)
     for rnd in range(2):
         for model in models:
             if model in DEAD:
@@ -1048,7 +1149,7 @@ def update_stock_digests(videos, force=False):
     """최근 30일 동안 2편 이상에서 언급된 종목을 정리한다. 새 언급이 생긴 종목만 다시 만든다."""
     if not force and not cfg("STOCK_DIGEST", 1):
         return
-    days, per_run = cfg("STOCK_DAYS", 30), cfg("STOCK_PER_RUN", 4)
+    days, per_run = cfg("STOCK_DAYS", 30), cfg("STOCK_PER_RUN", 2)
     cut = (datetime.datetime.now(KST) - datetime.timedelta(days=days)).strftime("%Y-%m-%d")
     table = {}
     for v in videos:
@@ -1079,7 +1180,7 @@ def update_stock_digests(videos, force=False):
         print(f"종목 종합 만드는 중: {name} (영상 {len(ids)}편)")
         try:
             out = call_json(STOCK_PROMPT + json.dumps({"name": name, "mentions": items}, ensure_ascii=False),
-                            stock_schema, "BRIEF_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 120)
+                            stock_schema, "STOCK_MODELS", "gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-3.6-flash", 120)
         except Exception as e:
             print(f"  종목 종합 실패: {str(e)[:120]}")
             break  # 혼잡하면 다음 실행으로 미룬다
@@ -1371,7 +1472,7 @@ def tidy():
     Cns, Lbs = tidy_schemas()
     videos = load()
     max_len = cfg("TIDY_MAX_LEN", 70)
-    models = ("TIDY_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.8-flash,gemini-3.5-flash-lite")
+    models = ("TIDY_MODELS", "gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-3.6-flash")
 
     # 1) 긴 결론 다시 쓰기
     longs = [v for v in videos if len(v.get("conclusion", "")) > max_len]
@@ -1489,6 +1590,8 @@ def main(argv):
         return 0
     if any(t == "진단" for t in tokens) and len(tokens) == 1:
         return diagnose()
+    if tokens and tokens[0].split(":")[0] == "자막테스트":
+        return transcript_test(tokens[0].split(":", 1)[1] if ":" in tokens[0] else "")
     if tokens == ["복구"]:  # '경제 무관'으로 빠졌던 영상을 다시 후보로 돌리고 바로 수집을 돌린다
         state = read_json(STATE, {})
         sk, tp = state.setdefault("skipped", {}), state.setdefault("topic", {})
