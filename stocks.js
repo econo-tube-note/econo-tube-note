@@ -3,11 +3,11 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "외국인 매도와 소송 악재로 주가가 하락했으나, 밸류에이션 매력과 반등 기대감에 따른 분할 대응 의견이 공존한다.",
+  "summary": "주주환원책과 기술 기대감으로 매력적이라는 의견과 외국인 매도와 소송 악재로 보수적 접근이 필요하다는 의견이 엇갈린다.",
   "points": [
-   "D램 소송 악재와 외국인 매도세로 인해 주가가 하락세를 보였다.",
-   "선행 PER 기준 최저 수준으로 떨어져 밸류에이션 매력이 부각되었다.",
-   "단기 트레이딩 관점의 분할 매수와 하락 갭 돌파 전 보수적 접근이 갈린다."
+   "주주환원책과 기술 세대교체 기대감으로 상승 호재가 남아있다.",
+   "D램 담합 소송과 외국인 매도세 집중으로 단기 조정을 받았다.",
+   "하락 갭 돌파 전까지 보수적 접근이 필요하다는 시각이 존재한다."
   ],
   "ids": [
    "4-y8e6UGd88",
@@ -16,6 +16,7 @@ const STOCKSUM={
    "DNHHB8jEuSM",
    "EnUsMp3IZu4",
    "G-DfszxECas",
+   "GS5nFhf6Nuk",
    "GzDMiPDUZr0",
    "IQPubZrMfH8",
    "IU-2OFhVB4I",
@@ -25,6 +26,7 @@ const STOCKSUM={
    "OK2FJONMpGA",
    "P1m0QaKWzG0",
    "PZLLj9tHYlQ",
+   "UhA5xmTjqJ4",
    "W3AvtA5OwVE",
    "_0ePh1KmGdc",
    "c6LAHhYBSDI",
@@ -34,6 +36,7 @@ const STOCKSUM={
    "jSVzxKubRcQ",
    "kyUbMfnczE0",
    "mW4Bp0uo0eQ",
+   "n16GTXBi7e0",
    "n7IBLAd9K8U",
    "ntk0jpMmJPU",
    "p7m602W5tg4",
@@ -43,24 +46,26 @@ const STOCKSUM={
    "xrqbovX16L8",
    "zYgSmH3Wl_s"
   ],
-  "count": 32,
-  "updated": "2026-11-17"
+  "count": 35,
+  "updated": "2026-11-18"
  },
  "엔비디아": {
   "name": "엔비디아",
   "tone": "혼재",
-  "summary": "경영진 리스크와 불확실성으로 주가 변동성이 크지만 AI 주도주로서 탄탄한 실적과 경쟁력을 유지하고 있다.",
+  "summary": "엔비디아는 실적 자체는 탄탄하나 경영진 이슈와 규제 우려로 주가 변동성을 겪고 있다.",
   "points": [
-   "CEO 리더십 이슈와 순환 투자 지속성에 대한 우려가 존재한다.",
-   "탄탄한 실적과 대체 불가능한 칩 성능으로 경쟁력은 유지된다.",
-   "실적 발표와 향후 가이던스 확인이 주가 방향을 결정할 것이다."
+   "경영진 부재와 리더십 이슈가 시장의 불확실성과 주가 하락 요인으로 작용한다.",
+   "규제안 발표와 실적 불확실성이 있으나 매출 영향은 제한적이고 실적은 탄탄하다.",
+   "박스권 단기 매매 대응 의견과 보수적 관점이 함께 제기된다."
   ],
   "ids": [
    "0J5AXS2pqUg",
    "4-y8e6UGd88",
    "9MXwHlep8wQ",
    "BIhFDJtoK6k",
+   "GS5nFhf6Nuk",
    "IU-2OFhVB4I",
+   "KHKXu_kP8_Y",
    "LagAldYbD8M",
    "P1m0QaKWzG0",
    "PZLLj9tHYlQ",
@@ -72,6 +77,7 @@ const STOCKSUM={
    "mLfghqfrG1g",
    "mW4Bp0uo0eQ",
    "maYCQ85ygu8",
+   "n16GTXBi7e0",
    "otI40DgSV8A",
    "p7m602W5tg4",
    "r_mO3QY3fE4",
@@ -81,17 +87,17 @@ const STOCKSUM={
    "xrqbovX16L8",
    "zb7Lyp31Mvg"
   ],
-  "count": 24,
-  "updated": "2026-11-17"
+  "count": 27,
+  "updated": "2026-11-18"
  },
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "혼재",
-  "summary": "반도체 악재와 외국인 매도세로 급락을 겪었으나 저가 매수와 분할 매수 기회로 보는 시각이 함께 존재한다.",
+  "summary": "반도체 악재와 외국인 매도로 급락하며 추가 하락 우려가 제기되는 한편, 저가 매수 유입과 반등 기회에 대한 기대도 공존한다.",
   "points": [
-   "외국인 매도와 악재로 주가가 큰 폭으로 하락했다.",
-   "저점 부근에서 분할 매수나 저가 매수 기회로 평가한다.",
-   "추세 전환을 확인한 뒤 매수하는 것이 안전하다."
+   "반도체 악재와 외국인 매도세로 인해 급락하며 추가 하락 우려가 존재한다.",
+   "PBR 1배 수준 및 전저점 부근에서 저가 매수 유입과 단기 반등 기회가 기대된다.",
+   "주가 상승이 일부 선반영되어 상대적 상승 여력이 부족하다는 평가가 있다."
   ],
   "ids": [
    "4-y8e6UGd88",
@@ -101,6 +107,7 @@ const STOCKSUM={
    "EnUsMp3IZu4",
    "FaYdu-Fa5_U",
    "G-DfszxECas",
+   "GS5nFhf6Nuk",
    "IQPubZrMfH8",
    "IU-2OFhVB4I",
    "JYyoOyLbEdY",
@@ -108,12 +115,14 @@ const STOCKSUM={
    "OK2FJONMpGA",
    "Of8HJe9eNYw",
    "PZLLj9tHYlQ",
+   "UhA5xmTjqJ4",
    "W3AvtA5OwVE",
    "_0ePh1KmGdc",
    "c6LAHhYBSDI",
    "cZKNKIAXEfY",
    "fdk1qjtZYA0",
    "mW4Bp0uo0eQ",
+   "n16GTXBi7e0",
    "n7IBLAd9K8U",
    "p7m602W5tg4",
    "r_mO3QY3fE4",
@@ -122,8 +131,8 @@ const STOCKSUM={
    "xrqbovX16L8",
    "zYgSmH3Wl_s"
   ],
-  "count": 27,
-  "updated": "2026-11-17"
+  "count": 30,
+  "updated": "2026-11-18"
  },
  "코어위브": {
   "name": "코어위브",
@@ -587,5 +596,23 @@ const STOCKSUM={
   ],
   "count": 2,
   "updated": "2026-11-17"
+ },
+ "삼성전기": {
+  "name": "삼성전기",
+  "tone": "혼재",
+  "summary": "성장성과 밸류에이션 매력이 있으나 전방 시장 안정과 외국인 수급 확인이 필요하다.",
+  "points": [
+   "AI 메모리 기판 수요가 지속되며 중장기 밸류에이션 매력이 유효하다.",
+   "성장성은 높지만 전방 시장이 안정되어야 주가 회복이 가능하다.",
+   "주가 하락으로 가격 부담은 줄었으나 시장 반등과 수급 확인이 필요하다."
+  ],
+  "ids": [
+   "KHKXu_kP8_Y",
+   "UhA5xmTjqJ4",
+   "n7IBLAd9K8U",
+   "yLhZiyCgAjY"
+  ],
+  "count": 4,
+  "updated": "2026-11-18"
  }
 };
