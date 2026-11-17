@@ -124,6 +124,14 @@ a.vc{color:inherit;text-decoration:none}
 .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(380px,100%),1fr));gap:10px}
 .chips a{display:inline-block;background:var(--chip);border-radius:99px;padding:3px 12px;margin:0 6px 6px 0;font-size:.88rem;text-decoration:none;color:var(--ink)}
 .plist .tone{margin-left:6px;vertical-align:2px}
+.bli{display:flex!important;gap:18px;align-items:center}
+.bld{flex:none;width:76px;display:flex;flex-direction:column}
+.bld b{font-size:1.45rem!important;font-weight:800!important;letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
+.bld.wk b{font-size:1.15rem!important}
+.bld small{margin-top:2px!important}
+.blt{min-width:0}
+.bli:hover .bld b{color:var(--accent)}
+@media(max-width:600px){.bli{gap:12px}.bld{width:62px}.bld b{font-size:1.2rem!important}.bld.wk b{font-size:1rem!important}}
 .srow .tm{text-decoration:none}
 @media(max-width:600px){.logo{font-size:1.55rem}.nav a{padding:10px 12px}.brief h1{font-size:1.22rem}}
 """
@@ -426,8 +434,7 @@ def build():
         vids = [V[x] for x in b.get("sources") or [] if x in V]
         body = (f'<div class="brief"><div class="bhead"><b>시장 브리핑</b><span>{e(kdate(d))} · 영상 {b.get("count", len(vids))}편 종합</span>'
                 + (f'<a class="link" href="{href("week/" + wk + "/")}">이 주의 주간 브리핑 →</a>' if wk in week_keys else "")
-                + f'<a class="link" href="{href("brief/")}">일간 브리핑 모아보기</a>'
-                + (f'<a class="link" href="{href("week/")}">주간 브리핑 모아보기</a>' if week_keys else "")
+                + f'<a class="link" href="{href("brief/")}">브리핑 모아보기</a>'
                 + f'<span class="bdates">{dates}</span></div>'
                 f'<h1>{e(b.get("headline"))}</h1>{kp_list(b.get("keypoints"))}{note_box(notes, d)}'
                 + sect("핵심 주제", len(b.get("themes") or []), th and f'<div class="tgrid">{th}</div>', "c1")
@@ -453,7 +460,7 @@ def build():
         sw = "".join(f'<div class="sk"><div class="skh"><b>{stock_name(s["name"])}</b><small>{s.get("videos")}편 · {len(s.get("days") or [])}일</small></div><p>{e(s["note"])}</p></div>'
                      for s in w.get("stocks") or [])
         body = (f'<div class="brief"><div class="bhead"><b>주간 브리핑</b><span>{e(kdate(ws))} ~ {e(kdate(w.get("end")))} · 영상 {w.get("videos", "")}편 종합</span>'
-                f'<a class="link" href="{href("week/")}">주간 브리핑 모아보기</a><a class="link" href="{href("brief/")}">일간 브리핑 모아보기</a></div>'
+                f'<a class="link" href="{href("brief/")}#weekly">브리핑 모아보기</a></div>'
                 f'<h1>{e(w.get("headline"))}</h1>{kp_list(w.get("keypoints"))}{note_box(notes, "week:" + ws)}'
                 + sect("하루하루의 흐름", len(w.get("flow") or []), fl and f'<dl class="tl">{fl}</dl>', "c1")
                 + sect("이번 주 반복된 주제", len(w.get("recurring") or []), rc and f'<div class="tgrid">{rc}</div>', "c2")
@@ -528,10 +535,25 @@ def build():
         body = f'<div class="brief"><h1 style="margin-top:0">{title}</h1>{extra}' + (f'<ul class="plist" id="plist">{items}</ul>' if items else '<div class="empty">아직 없다.</div>') + "</div>" + script
         return write(path, page(path + "/", title, desc, body, kind="list", nav_on=nav_on))
 
-    changed += listing("brief", "시장 브리핑", "경제 유튜브 채널들의 영상을 하루 단위로 종합한 시장 브리핑 목록이다.",
-                       "".join(f'<li><a href="{href("brief/" + d + "/")}"><b>{e(m.get("headline"))}</b><small>{e(kdate(d))} · 영상 {e(m.get("count"))}편</small></a></li>'
-                               for d, m in sorted(man["brief"].items(), reverse=True)), nav_on="brief",
-                       extra=f'<p style="margin:-4px 0 14px"><a class="link" href="{href("week/")}">주간 브리핑 모아보기 →</a></p>' if man["week"] else "")
+    # 브리핑 탭: 일간 브리핑 목록, 그 아래 주간 브리핑 목록
+    def day_li(d, m):
+        x = datetime.date.fromisoformat(d)
+        return (f'<li><a class="bli" href="{href("brief/" + d + "/")}"><span class="bld"><b>{x.month}.{x.day:02d}</b><small>{x.year} · {WD[x.weekday()]}</small></span>'
+                f'<span class="blt"><b>{e(m.get("headline"))}</b><small>영상 {e(m.get("count"))}편 종합</small></span></a></li>')
+
+    def week_li(w, m):
+        a_, b_ = datetime.date.fromisoformat(w), datetime.date.fromisoformat(m.get("end") or w)
+        return (f'<li><a class="bli" href="{href("week/" + w + "/")}"><span class="bld wk"><b>{a_.month}.{a_.day:02d}~</b><small>~{b_.month}.{b_.day:02d}</small></span>'
+                f'<span class="blt"><b>{e(m.get("headline"))}</b><small>영상 {e(m.get("videos"))}편 종합</small></span></a></li>')
+
+    dl = "".join(day_li(d, m) for d, m in sorted(man["brief"].items(), reverse=True))
+    wl = "".join(week_li(w, m) for w, m in sorted(man["week"].items(), reverse=True))
+    body = (f'<div class="brief"><h1 style="margin-top:0">시장 브리핑</h1>'
+            f'<h2 class="bt c1">일간 브리핑<span class="cn">{len(man["brief"])}</span></h2>'
+            + (f'<ul class="plist blist">{dl}</ul>' if dl else '<div class="empty">아직 없다.</div>')
+            + (f'<div class="bsec" id="weekly"><h2 class="bt c2">주간 브리핑<span class="cn">{len(man["week"])}</span></h2><ul class="plist blist">{wl}</ul></div>' if wl else "")
+            + "</div>")
+    changed += write("brief", page("brief/", "시장 브리핑", "경제 유튜브 채널들의 영상을 하루, 한 주 단위로 종합한 시장 브리핑 목록이다.", body, kind="list", nav_on="brief"))
     changed += listing("week", "주간 시장 브리핑", "경제 유튜브 채널들의 한 주 흐름을 종합한 주간 브리핑 목록이다.",
                        "".join(f'<li><a href="{href("week/" + w + "/")}"><b>{e(m.get("headline"))}</b><small>{e(sdate(w))} ~ {e(sdate(m.get("end")))} · 영상 {e(m.get("videos"))}편</small></a></li>'
                                for w, m in sorted(man["week"].items(), reverse=True)), nav_on="brief")
