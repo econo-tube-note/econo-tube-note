@@ -642,7 +642,7 @@ BRIEF_PROMPT = """너는 한국 경제 유튜브 영상들의 요약을 종합�
 - themes: 핵심 주제 2~4개. title은 공백 포함 25자 이내로 짧게, summary는 공백 포함 90자 이내의 한두 문장으로 쓴다.
 - agreements: 둘 이상의 영상이 공통으로 말한 것 2~4개. point는 공백 포함 45자 안팎의 한 문장, refs는 2개 이상.
 - disagreements: 영상마다 의견이 엇갈린 주제 0~3개. 없으면 빈 목록. topic은 짧게, views의 각 view는 공백 포함 45자 안팎의 한 문장(각각 view, ref).
-- stocks: 둘 이상의 영상에서 언급된 종목 최대 8개. name과 mentions(각각 view: 그 영상에서의 평가나 맥락을 공백 포함 45자 안팎의 한 문장으로, ref). 한 영상에서만 나온 종목은 넣지 않는다.
+- stocks: 둘 이상의 영상에서 언급된 종목 최대 8개. name과 mentions(각각 view: 그 영상에서의 평가나 맥락을 공백 포함 45자 안팎의 한 문장으로, ref). 한 영상에서만 나온 종목은 넣지 않는다. tone에는 이날 영상들의 전반적인 시각을 긍정, 부정, 혼재, 중립 중 하나로 쓴다.
 
 영상 요약(JSON):
 """
@@ -700,6 +700,7 @@ def brief_schema():
 
     class StockB(BaseModel):
         name: str
+        tone: str
         mentions: list[View]
 
     class Brief(BaseModel):
@@ -751,7 +752,8 @@ def build_brief(date, vids):
         ms = [{"channel": chans[m["ref"]], "view": txt(m.get("view")), "ref": ids[m["ref"]]}
               for m in s_.get("mentions") or [] if ok(m.get("ref")) and txt(m.get("view"))]
         if txt(s_.get("name")) and len({m["ref"] for m in ms}) >= 2:
-            stocks.append({"name": txt(s_["name"]), "count": len({m["ref"] for m in ms}), "mentions": ms})
+            tone = s_.get("tone") if s_.get("tone") in ("긍정", "부정", "혼재", "중립") else ""
+            stocks.append({"name": canon_stock(txt(s_["name"])), "count": len({m["ref"] for m in ms}), "tone": tone, "mentions": ms})
     stocks.sort(key=lambda x: -x["count"])
     kp = [txt(x) for x in data.get("keypoints") or [] if txt(x)][:4]
     if not txt(data.get("headline")) or not kp or not themes:
@@ -1236,6 +1238,7 @@ def auto():
             entry = clean(call_gemini(url, allow_lite=lite_ok), url, e["title"], e["channel"],
                           e["published"].astimezone(KST).strftime("%Y-%m-%d"))
             entry["model"] = next((m for m, o in reversed(STATS) if o == "ok"), "")  # 어느 모델이 요약했는지 기록
+            entry["ts"] = e["published"].astimezone(KST).strftime("%Y-%m-%dT%H:%M")  # 올라온 시각 (홈의 최근 24시간 계산용)
             videos.insert(0, entry)
             have.add(vid)
             state["failed"].pop(vid, None)
@@ -1286,6 +1289,8 @@ def auto():
         try:
             new = clean(call_gemini(v["url"], allow_lite=False), v["url"], v["title"], v["channel"], v["date"])
             new["model"] = next((m for m, o in reversed(STATS) if o == "ok"), "")
+            if v.get("ts"):
+                new["ts"] = v["ts"]
             v.clear()
             v.update(new)
             spent += 1800
