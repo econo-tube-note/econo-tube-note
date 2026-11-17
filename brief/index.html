@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>일간 시장 브리핑 | 경제 유튜브 요약</title>
-<meta name="description" content="경제 유튜브 채널들의 영상을 하루 단위로 종합한 시장 브리핑 목록이다.">
+<title>시장 브리핑 | 경제 유튜브 요약</title>
+<meta name="description" content="경제 유튜브 채널들의 영상을 하루, 한 주 단위로 종합한 시장 브리핑 목록이다.">
 <link rel="canonical" href="https://econo-tube-note.github.io/econo-tube-note/brief/">
 <meta property="og:type" content="website"><meta property="og:site_name" content="경제 유튜브 요약">
-<meta property="og:title" content="일간 시장 브리핑"><meta property="og:description" content="경제 유튜브 채널들의 영상을 하루 단위로 종합한 시장 브리핑 목록이다."><meta property="og:url" content="https://econo-tube-note.github.io/econo-tube-note/brief/">
+<meta property="og:title" content="시장 브리핑"><meta property="og:description" content="경제 유튜브 채널들의 영상을 하루, 한 주 단위로 종합한 시장 브리핑 목록이다."><meta property="og:url" content="https://econo-tube-note.github.io/econo-tube-note/brief/">
 <style>
 :root{--bg:#f4f5f8;--card:#fff;--ink:#14181f;--sub:#5d6573;--line:#e1e4ea;--accent:#2457f5;--chip:#eef1f7}
 @media (prefers-color-scheme:dark){:root{--bg:#0f1217;--card:#181c24;--ink:#eef1f6;--sub:#9aa3b2;--line:#272d38;--accent:#7b99ff;--chip:#222833}}
@@ -224,6 +224,60 @@ a.tm:hover{color:var(--accent)}
 .note{color:var(--sub);font-size:.82rem;margin-top:40px}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
+/* ----- 홈 대시보드 ----- */
+.dash{display:flex;flex-direction:column;gap:16px}
+.dash[hidden]{display:none}
+.dblk{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+.dhd{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 12px;margin-bottom:12px}
+.dhd .bt{margin:0}
+.dlatest .dhd{margin-bottom:14px}
+.dj{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}.dj:first-of-type{margin-top:4px;padding-top:0;border-top:0}
+.dj h3{margin:0 0 8px;font-size:.95rem;font-weight:800}.dj h3 small{color:var(--sub);font-weight:500;font-size:.78rem;margin-left:6px}
+.dcnt{font-size:.74rem;font-weight:700;color:var(--sub);border:1px solid var(--line);border-radius:99px;padding:0 7px;margin-left:4px;white-space:nowrap}
+.dsn{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.dstk p{margin:2px 0 0;font-size:.86rem;line-height:1.5;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.dmeta{color:var(--sub);font-size:.8rem}
+.dmore{margin-left:auto;color:var(--accent);font-size:.86rem;font-weight:700;text-decoration:none;white-space:nowrap}
+.dhl{font-size:1.35rem;font-weight:800;line-height:1.45;letter-spacing:-.02em;margin:0 0 8px}
+.dths{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:12px 0 0}
+.dths small{color:var(--sub);font-weight:700;margin-right:4px}
+.dth{background:var(--chip);border-radius:99px;padding:4px 12px;font-size:.88rem;font-weight:600;color:var(--ink);text-decoration:none}
+.dth:hover{color:var(--accent)}
+.dfoot{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.dwk{display:flex;gap:8px;align-items:baseline;flex:1 1 300px;min-width:0;color:var(--ink);font-size:.92rem}
+.dwk b{color:var(--sub);font-size:.8rem;white-space:nowrap}
+.dwk span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dis{padding:10px 0}.dis+.dis{border-top:1px dashed var(--line)}
+.dq{display:block;font-size:1rem;margin-bottom:8px}
+.dv2{display:flex;gap:10px;padding:6px 10px;border-radius:10px;color:var(--ink);text-decoration:none;font-size:.94rem;line-height:1.55}
+.dv2:hover{background:var(--chip)}
+.dch{flex:none;width:118px;color:var(--accent);font-weight:700;font-size:.84rem;padding-top:1px}
+.dgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.dnum{border:1px solid var(--line);background:none}
+.dstk{background:var(--chip)}
+.dstk,.dnum{border-radius:12px;padding:12px 14px;color:var(--ink);text-decoration:none;display:flex;flex-direction:column;gap:4px;position:relative}
+.dstk b{font-size:1.02rem}
+.dstk small,.dnum small{color:var(--sub);font-size:.8rem}
+.dnum b{font-size:1.25rem;color:var(--accent);font-weight:800;line-height:1.3}
+.dnum p{margin:0;font-size:.86rem;line-height:1.5;color:var(--sub)}
+.dnl{display:flex;justify-content:space-between;gap:6px}.dnl span:first-child{min-width:0}
+.dnum .cnt{flex:none;font-size:.72rem;font-weight:700;color:var(--sub);background:var(--chip);border-radius:99px;padding:0 7px;height:fit-content}
+.dvids{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.dvid{color:var(--ink);text-decoration:none;display:flex;flex-direction:column;gap:4px;min-width:0}
+.dvid img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;background:var(--chip)}
+.dvid small{color:var(--sub);font-size:.74rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dvid b{font-size:.84rem;line-height:1.4;font-weight:600;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.dstk:hover,.dnum:hover{outline:2px solid var(--accent);outline-offset:-1px}
+.dash .bnote{margin:0}
+.dhd+.dj{margin-top:4px;padding-top:0;border-top:0}
+.dvs{display:flex;align-items:center;gap:14px}
+.dis .dv{flex:1;display:flex;flex-direction:column;gap:6px;background:none;padding:2px 0;border-radius:0;font-size:.95rem;line-height:1.6}
+.vs{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:.78rem;font-weight:800;color:#c2410c;border:1.5px solid #c2410c;background:var(--card)}
+.dvc{align-self:flex-end;background:var(--card);border:1px solid var(--line);color:var(--sub);border-radius:99px;padding:2px 10px;font-size:.78rem;font-weight:600;white-space:nowrap;text-decoration:none}
+.dvc:hover{color:var(--accent)}
+@media(max-width:800px){.dvids{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}.dvid{flex:0 0 42%;scroll-snap-align:start}}
+@media(max-width:600px){.dvs{flex-direction:column;align-items:stretch;gap:8px}.vs{align-self:center;width:30px;height:30px}.dblk{padding:16px}.dhl{font-size:1.15rem}.dgrid{grid-template-columns:repeat(2,1fr)}.dv2{flex-direction:column;gap:2px;padding:6px 4px}.dch{width:auto}.dvid{flex-basis:62%}.dmore{margin-left:0}}
+
 .logo{display:block;font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 16px;color:var(--ink);text-decoration:none}
 .nav a{border:0;background:none;padding:10px 16px;font-weight:700;color:var(--sub);text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-1px;flex:none}
 .nav{display:flex;gap:4px}
@@ -236,14 +290,22 @@ a.vc{color:inherit;text-decoration:none}
 .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(380px,100%),1fr));gap:10px}
 .chips a{display:inline-block;background:var(--chip);border-radius:99px;padding:3px 12px;margin:0 6px 6px 0;font-size:.88rem;text-decoration:none;color:var(--ink)}
 .plist .tone{margin-left:6px;vertical-align:2px}
+.bli{display:flex!important;gap:18px;align-items:center}
+.bld{flex:none;width:76px;display:flex;flex-direction:column}
+.bld b{font-size:1.45rem!important;font-weight:800!important;letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
+.bld.wk b{font-size:1.15rem!important}
+.bld small{margin-top:2px!important}
+.blt{min-width:0}
+.bli:hover .bld b{color:var(--accent)}
+@media(max-width:600px){.bli{gap:12px}.bld{width:62px}.bld b{font-size:1.2rem!important}.bld.wk b{font-size:1rem!important}}
 .srow .tm{text-decoration:none}
 @media(max-width:600px){.logo{font-size:1.55rem}.nav a{padding:10px 12px}.brief h1{font-size:1.22rem}}
 </style></head>
 <body><div class="wrap">
 <a class="logo" href="/econo-tube-note/">경제 유튜브 요약</a>
-<nav class="nav"><a href="/econo-tube-note/" class="on">홈</a><a href="/econo-tube-note/#videos" class="">영상 요약</a><a href="/econo-tube-note/stock/" class="">종목</a><a href="/econo-tube-note/#numbers" class="">숫자·지표</a><a href="/econo-tube-note/#community" class="">커뮤니티</a></nav>
-<div class="brief"><h1 style="margin-top:0">일간 시장 브리핑</h1><ul class="plist" id="plist"><li><a href="/econo-tube-note/brief/2026-11-16/"><b>외국인 대량이탈과 AI 반도체 악재로 국내 증시 변동성이 급증했다.</b><small>2026.11.16 (월) · 영상 19편</small></a></li><li><a href="/econo-tube-note/brief/2026-11-15/"><b>국내 증시의 수급 불안과 AI 반도체 리스크 속에서도 저평가된 주요 반도체 종목을 중심으로 바닥 확인 시도가 나타나고 있다.</b><small>2026.11.15 (일) · 영상 9편</small></a></li><li><a href="/econo-tube-note/brief/2026-11-14/"><b>엔비디아 젠슨 황 CEO 관련 리스크와 수급 불안으로 증시 변동성이 커진 가운데 국내 반도체주의 펀더멘털과 저평가 매력에 주목하는 분석이 제시된다.</b><small>2026.11.14 (토) · 영상 11편</small></a></li><li><a href="/econo-tube-note/brief/2026-11-13/"><b>엔비디아 관련 불확실성과 증시 변동성 속에서 보수적 리스크 관리와 로봇·AI 반도체 등 수혜 섹터 중심의 박스권 대응이 강조된다.</b><small>2026.11.13 (금) · 영상 6편</small></a></li></ul></div>
-<nav class="foot" style="margin-top:34px;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.9rem"><a href="/econo-tube-note/brief/">일간 브리핑 모아보기</a><a href="/econo-tube-note/week/">주간 브리핑 모아보기</a><a href="/econo-tube-note/stock/">종목 모아보기</a></nav>
+<nav class="nav"><a href="/econo-tube-note/" class="">홈</a><a href="/econo-tube-note/brief/" class="on">브리핑</a><a href="/econo-tube-note/#videos" class="">영상 요약</a><a href="/econo-tube-note/stock/" class="">종목</a><a href="/econo-tube-note/#numbers" class="">숫자·지표</a><a href="/econo-tube-note/#community" class="">커뮤니티</a></nav>
+<div class="brief"><h1 style="margin-top:0">시장 브리핑</h1><h2 class="bt c1">일간 브리핑<span class="cn">4</span></h2><ul class="plist blist"><li><a class="bli" href="/econo-tube-note/brief/2026-11-16/"><span class="bld"><b>11.16</b><small>2026 · 월</small></span><span class="blt"><b>외국인 대량이탈과 AI 반도체 악재로 국내 증시 변동성이 급증했다.</b><small>영상 19편 종합</small></span></a></li><li><a class="bli" href="/econo-tube-note/brief/2026-11-15/"><span class="bld"><b>11.15</b><small>2026 · 일</small></span><span class="blt"><b>국내 증시의 수급 불안과 AI 반도체 리스크 속에서도 저평가된 주요 반도체 종목을 중심으로 바닥 확인 시도가 나타나고 있다.</b><small>영상 9편 종합</small></span></a></li><li><a class="bli" href="/econo-tube-note/brief/2026-11-14/"><span class="bld"><b>11.14</b><small>2026 · 토</small></span><span class="blt"><b>엔비디아 젠슨 황 CEO 관련 리스크와 수급 불안으로 증시 변동성이 커진 가운데 국내 반도체주의 펀더멘털과 저평가 매력에 주목하는 분석이 제시된다.</b><small>영상 11편 종합</small></span></a></li><li><a class="bli" href="/econo-tube-note/brief/2026-11-13/"><span class="bld"><b>11.13</b><small>2026 · 금</small></span><span class="blt"><b>엔비디아 관련 불확실성과 증시 변동성 속에서 보수적 리스크 관리와 로봇·AI 반도체 등 수혜 섹터 중심의 박스권 대응이 강조된다.</b><small>영상 6편 종합</small></span></a></li></ul><div class="bsec" id="weekly"><h2 class="bt c2">주간 브리핑<span class="cn">1</span></h2><ul class="plist blist"><li><a class="bli" href="/econo-tube-note/week/2026-11-09/"><span class="bld wk"><b>11.09~</b><small>~11.15</small></span><span class="blt"><b>엔비디아 관련 리스크와 증시 변동성 속에서 반도체주 저평가와 수혜 섹터 중심의 대응이 강조되었다.</b><small>영상 28편 종합</small></span></a></li></ul></div></div>
+
 <p class="note">AI가 경제 유튜브 영상과 그 요약을 종합한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
 </div><script>
 (()=>{const pop=document.createElement("div");pop.className="pop";pop.hidden=true;document.body.appendChild(pop);let cur=null;

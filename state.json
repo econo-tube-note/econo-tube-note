@@ -30,17 +30,17 @@
  "models": {
   "gemini-3.6-flash": {
    "ok": 20,
-   "busy": 9,
+   "busy": 10,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 1,
-   "busy": 22,
+   "busy": 23,
    "dead": 4
   },
   "gemini-3.8-flash": {
    "ok": 1,
-   "busy": 32,
+   "busy": 33,
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
@@ -93,7 +93,10 @@
   "LfrqRcZwzro": true,
   "4xr3yoEKNS0": true,
   "b8x1LtnwzJA": true,
-  "XfTLxMrKirQ": true
+  "XfTLxMrKirQ": true,
+  "-CBtnYZLrXs": true,
+  "G-DfszxECas": true,
+  "gJudhfVxejM": true
  },
  "brief_final": {
   "2026-11-13": true,
