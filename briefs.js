@@ -202,8 +202,11 @@ const BRIEFS=[
  },
  {
   "date": "2026-11-16",
-  "count": 19,
+  "count": 22,
   "sources": [
+   "KHKXu_kP8_Y",
+   "UhA5xmTjqJ4",
+   "mhipCDonDKo",
    "OK2FJONMpGA",
    "9MXwHlep8wQ",
    "zYgSmH3Wl_s",
@@ -224,103 +227,95 @@ const BRIEFS=[
    "LagAldYbD8M",
    "mLfghqfrG1g"
   ],
-  "headline": "외국인 대량이탈과 AI 반도체 악재로 국내 증시 변동성이 급증했다.",
+  "headline": "외국인 대규모 매도와 AI 불확실성에 국내 증시가 급락하며 관망세가 짙어졌다.",
   "keypoints": [
-   "외국인의 대규모 매도세로 국내 증시가 큰 폭의 하락세를 기록했다.",
-   "D램 담합 소송과 엔비디아 악재가 반도체주 하락을 부추겼다.",
-   "고금리와 환율 부담이 매크로 수급에 지속적인 악영향을 주고 있다.",
-   "급변하는 시장 환경에서는 현금 확보와 리스크 관리가 필요하다."
+   "외국인 투자자의 대량 매도세로 코스피와 코스닥 지수가 폭락했다.",
+   "미국 D램 담합 소송과 대만 증시 급락이 반도체주 투매를 자극했다.",
+   "엔비디아 실적 발표를 앞두고 글로벌 AI 투자 심리가 경색되었다.",
+   "전문가들은 추가 매수를 자제하고 기술적 반등을 관망하라고 조언한다."
   ],
   "themes": [
    {
-    "title": "외국인 매도와 반도체 폭락",
-    "summary": "외국인의 대규모 순매도와 D램 담합 소송 등 악재가 겹치며 국내 증시와 반도체 대형주가 급락했다고 분석한다.",
+    "title": "외국인 매도와 반도체주 투매",
+    "summary": "외국인이 코스피 시장에서 대규모 매도를 이어가며 삼성전자와 SK하이닉스 등 주요 반도체 종목이 급락했다. 수급 악화로 지수 하단이 낮아졌다.",
     "refs": [
+     "UhA5xmTjqJ4",
      "OK2FJONMpGA",
-     "9MXwHlep8wQ",
      "zYgSmH3Wl_s",
      "W3AvtA5OwVE",
      "c6LAHhYBSDI"
     ]
    },
    {
-    "title": "AI 파이낸싱 및 리더십 불안",
-    "summary": "엔비디아 경영진 부재와 AI 파이낸싱 리스크로 인해 글로벌 AI 섹터 전반의 변동성이 확대되었다고 평가한다.",
+    "title": "AI 밸류체인과 엔비디아 리스크",
+    "summary": "엔비디아 실적 발표와 경영진 리스크, 미국 법원의 D램 담합 소송 등으로 AI 밸류체인 전반의 주가 변동성이 확대되었다.",
     "refs": [
+     "KHKXu_kP8_Y",
+     "OK2FJONMpGA",
      "9MXwHlep8wQ",
      "lChAcS0iIaA",
      "ue4sG-vBq7Y",
-     "LagAldYbD8M",
      "mLfghqfrG1g"
     ]
    },
    {
-    "title": "부동산 분담금과 시장 위험",
-    "summary": "재건축 추가 분담금 증가와 고금리 여파로 부동산 사업의 불확실성이 커졌으므로 신중한 접근이 필요하다고 제언한다.",
+    "title": "고금리 및 고달러 매크로 부담",
+    "summary": "미국 10년물 국채 금리 상승과 달러 강세, 높은 생산자물가지수(PPI)로 인해 매크로 지표 부담이 가중되고 위험자산 선호 심리가 위축되었다.",
     "refs": [
-     "2nVYe_DFJGU",
-     "9U2TUMps-jI"
+     "KHKXu_kP8_Y",
+     "OK2FJONMpGA",
+     "lChAcS0iIaA",
+     "ue4sG-vBq7Y"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "외국인의 대규모 매도세가 국내 증시 급락을 주도했다고 분석한다.",
+    "point": "외국인의 대규모 매도세가 국내 증시 하락을 주도했다고 본다.",
     "refs": [
+     "UhA5xmTjqJ4",
      "OK2FJONMpGA",
      "9MXwHlep8wQ",
      "zYgSmH3Wl_s",
+     "Of8HJe9eNYw",
      "W3AvtA5OwVE",
-     "c6LAHhYBSDI"
+     "lChAcS0iIaA",
+     "c6LAHhYBSDI",
+     "ntk0jpMmJPU"
     ]
    },
    {
-    "point": "미국 10년물 국채 금리 상승이 시장에 부담을 주고 있다고 지적한다.",
+    "point": "미국 국채 금리 상승과 달러 강세가 매크로 부담을 가중시킨다고 본다.",
+    "refs": [
+     "KHKXu_kP8_Y",
+     "OK2FJONMpGA",
+     "lChAcS0iIaA",
+     "ue4sG-vBq7Y"
+    ]
+   },
+   {
+    "point": "대만 증시 폭락과 엔비디아 불확실성이 반도체주 하락에 영향을 주었다고 본다.",
     "refs": [
      "OK2FJONMpGA",
      "zYgSmH3Wl_s",
-     "lChAcS0iIaA",
-     "mLfghqfrG1g"
-    ]
-   },
-   {
-    "point": "엔비디아의 경영진 리스크와 불확실성이 AI 투심을 악화시켰다고 본다.",
-    "refs": [
-     "9MXwHlep8wQ",
-     "lChAcS0iIaA",
-     "ue4sG-vBq7Y",
-     "LagAldYbD8M"
+     "c6LAHhYBSDI",
+     "ntk0jpMmJPU"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "D램 담합 소송의 증시 영향",
+    "topic": "D램 담합 소송이 당일 급락에 미친 영향",
     "views": [
      {
       "channel": "815머니톡",
-      "view": "D램 담합 소송 진행 판결이 메모리 업체 주가를 끌어내렸다고 본다.",
+      "view": "미 법원의 D램 담합 소송 재판 진행 소식이 시장 심리에 직접적인 악재로 작용했다고 본다.",
       "ref": "OK2FJONMpGA"
      },
      {
       "channel": "815머니톡",
-      "view": "D램 소송 이슈는 이미 반영되어 당일 하락의 직접적 원인은 아니라고 본다.",
+      "view": "D램 담합 소송 소식은 주말에 이미 반영되어 당일 하락의 직접적 원인은 아니라고 본다.",
       "ref": "zYgSmH3Wl_s"
-     }
-    ]
-   },
-   {
-    "topic": "AI 산업 조정의 성격",
-    "views": [
-     {
-      "channel": "전인구경제연구소",
-      "view": "AI 투자 관련 부채와 순환 금융 구조가 금융 불안을 키운다고 본다.",
-      "ref": "9MXwHlep8wQ"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "AI 성장성은 유효하며 주가 하락은 일시적인 유동성 부족 탓이라고 본다.",
-      "ref": "FaYdu-Fa5_U"
      }
     ]
    }
@@ -328,49 +323,42 @@ const BRIEFS=[
   "stocks": [
    {
     "name": "삼성전자",
-    "count": 3,
+    "count": 2,
+    "tone": "부정",
     "mentions": [
      {
       "channel": "815머니톡",
-      "view": "D램 소송 이슈와 외국인 매도 집중으로 주가가 하락했다고 본다.",
+      "view": "외국인 매도 집중과 담합 소송 이슈로 주가가 3.2% 하락했다고 분석한다.",
       "ref": "OK2FJONMpGA"
      },
      {
       "channel": "전인구경제연구소",
-      "view": "수급을 받쳐줄 자사주 매입 현금 집행 시점이 내년으로 밀렸다고 본다.",
+      "view": "자사주 매입 등 수급 방어 현금 집행 시점이 내년으로 지연되었다고 지적한다.",
       "ref": "9MXwHlep8wQ"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "D램 담합 소송 악재와 외국인 매도세로 4.47% 하락했다고 본다.",
-      "ref": "W3AvtA5OwVE"
      }
     ]
    },
    {
     "name": "SK하이닉스",
-    "count": 3,
+    "count": 2,
+    "tone": "부정",
     "mentions": [
      {
       "channel": "815머니톡",
-      "view": "반도체 악재와 외국인 순매도 영향으로 주가가 급락했다고 분석한다.",
-      "ref": "OK2FJONMpGA"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "대만 증시 폭락과 반도체 투심 악화로 8% 내외 조정을 받았다고 본다.",
+      "view": "대만 증시 폭락과 반도체 투자 심리 악화로 주가가 급락했다고 평가한다.",
       "ref": "zYgSmH3Wl_s"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "소송 악재에도 PBR 1배 구간에서는 저가 매수 유입이 기대된다고 본다.",
+      "view": "PBR 1배 수준인 110만 원 이하에서는 저가 매수 유입이 기대된다고 본다.",
       "ref": "Of8HJe9eNYw"
      }
     ]
    },
    {
     "name": "엔비디아",
-    "count": 3,
+    "count": 2,
+    "tone": "부정",
     "mentions": [
      {
       "channel": "전인구경제연구소",
@@ -379,28 +367,7 @@ const BRIEFS=[
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "CEO 부재 우려에도 주가와 달리 실적 자체는 탄탄하다고 평가한다.",
-      "ref": "lChAcS0iIaA"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "CEO 사임 파문 등으로 6주 연속 하락하며 변동성을 겪었다고 본다.",
-      "ref": "mLfghqfrG1g"
-     }
-    ]
-   },
-   {
-    "name": "삼성SDI",
-    "count": 2,
-    "mentions": [
-     {
-      "channel": "815머니톡",
-      "view": "배터리 공급계약 공시에도 2차전지 전반의 약세로 주가가 하락했다고 본다.",
-      "ref": "OK2FJONMpGA"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "시장 안정 시 로봇 등과 함께 빠른 반등이 가능하다고 예상한다.",
+      "view": "CEO 부재 우려로 악재 작용 중이나 실적 자체는 탄탄하다고 평가한다.",
       "ref": "lChAcS0iIaA"
      }
     ]
@@ -408,15 +375,33 @@ const BRIEFS=[
    {
     "name": "삼양식품",
     "count": 2,
+    "tone": "긍정",
     "mentions": [
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "공장 투자 발표 후 안전자산 성격 자금이 몰리며 상승했다고 본다.",
+      "view": "베트남 공장 투자 발표 후 대피성 자금이 쏠리며 5%대 상승했다고 본다.",
       "ref": "W3AvtA5OwVE"
      },
      {
       "channel": "815머니톡",
-      "view": "캐파 확장에 따른 매출 상승과 주가 상승이 기대된다고 본다.",
+      "view": "캐파 확장으로 인한 매출 상승이 기대된다고 본다.",
+      "ref": "saSLtHK3aJ0"
+     }
+    ]
+   },
+   {
+    "name": "펌텍코리아",
+    "count": 2,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "화장품 용기 공급 부족 수혜와 실적 기대감으로 신고가를 경신했다고 평가한다.",
+      "ref": "W3AvtA5OwVE"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "신고가 영역에 진입해 있다고 본다.",
       "ref": "saSLtHK3aJ0"
      }
     ]
@@ -424,48 +409,51 @@ const BRIEFS=[
    {
     "name": "코스맥스",
     "count": 2,
+    "tone": "긍정",
     "mentions": [
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "견조한 실적을 바탕으로 대형주 약세 속에서도 반등했다고 평가한다.",
+      "view": "견조한 ODM 실적 흐름을 바탕으로 대형주 약세 속에서도 반등했다고 본다.",
       "ref": "W3AvtA5OwVE"
      },
      {
       "channel": "815머니톡",
-      "view": "화장품 섹터 내에서 개별 호재로 주가를 잘 지키고 있다고 평가한다.",
+      "view": "화장품 섹터 내 다른 종목과 달리 개별 호재로 주가를 지키고 있다고 본다.",
       "ref": "c6LAHhYBSDI"
-     }
-    ]
-   },
-   {
-    "name": "주성엔지니어링",
-    "count": 2,
-    "mentions": [
-     {
-      "channel": "815머니톡",
-      "view": "코스닥 소부장 대형주 약세 영향으로 주가가 밀렸다고 분석한다.",
-      "ref": "OK2FJONMpGA"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "강한 상승 동력이 있던 종목으로 업황 회복 시 빠를 것으로 본다.",
-      "ref": "lChAcS0iIaA"
      }
     ]
    },
    {
     "name": "레인보우로보틱스",
     "count": 2,
+    "tone": "긍정",
     "mentions": [
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "기관 수급 유입으로 시장 하락에도 방어력을 보여주었다고 평가한다.",
+      "view": "기관 수급이 유입되고 하락장에서도 방어력을 보여준 핵심 로봇주로 평가한다.",
       "ref": "Of8HJe9eNYw"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "코스닥 로봇 관련주 매수세 유입에 힘입어 5.7% 상승했다고 본다.",
+      "view": "로봇 관련주 매수세 유입으로 5.7% 상승했다고 지적한다.",
       "ref": "LagAldYbD8M"
+     }
+    ]
+   },
+   {
+    "name": "주성엔지니어링",
+    "count": 2,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "815머니톡",
+      "view": "코스닥 소부장 대형주 동반 약세로 주가가 밀려났다고 본다.",
+      "ref": "OK2FJONMpGA"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "변동성이 크지만 업황 회복 시 빠르게 돌아설 수 있다고 평가한다.",
+      "ref": "lChAcS0iIaA"
      }
     ]
    }
