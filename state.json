@@ -15,7 +15,9 @@
   "Be1ZQAND8m0": "경제 무관: 건강검진과 의료 정보를 다루어 경제·투자와 무관하다.",
   "EGCHJsiyfpo": "경제 무관: 일본 지진 및 재앙을 다루는 사회·자연재해 이슈로 경제적 관점이 없다.",
   "q0XXzZJGfoA": "너무 긴 영상(312분)",
-  "S0rMsJ7wnig": "너무 짧음"
+  "S0rMsJ7wnig": "너무 짧음",
+  "-T626UlW8jk": "너무 긴 영상(331분)",
+  "VkvJKPIUpl8": "너무 긴 영상(381분)"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -30,17 +32,17 @@
  "models": {
   "gemini-3.6-flash": {
    "ok": 21,
-   "busy": 13,
+   "busy": 15,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 2,
-   "busy": 25,
+   "busy": 26,
    "dead": 4
   },
   "gemini-3.8-flash": {
    "ok": 2,
-   "busy": 37,
+   "busy": 38,
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
@@ -95,7 +97,10 @@
   "XfTLxMrKirQ": true,
   "-CBtnYZLrXs": true,
   "G-DfszxECas": true,
-  "gJudhfVxejM": true
+  "gJudhfVxejM": true,
+  "theFRDuKYag": true,
+  "GMGhKccHISQ": true,
+  "gj6A0uOqjH4": true
  },
  "brief_final": {
   "2026-11-13": true,

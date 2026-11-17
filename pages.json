@@ -197,7 +197,7 @@
   },
   "ARM": {
    "name": "ARM",
-   "tone": null,
+   "tone": "긍정",
    "count": 2,
    "channels": 1,
    "last": "2026-11-16",
@@ -253,7 +253,7 @@
   },
   "나무가": {
    "name": "나무가",
-   "tone": null,
+   "tone": "혼재",
    "count": 2,
    "channels": 2,
    "last": "2026-11-17",
