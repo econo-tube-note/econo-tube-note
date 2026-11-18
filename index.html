@@ -10,10 +10,11 @@
 <meta property="og:title" content="경제 유튜브 요약"><meta property="og:description" content="인기 경제 유튜브 채널의 영상 요약과 매일 시장 브리핑">
 <meta property="og:url" content="https://econo-tube-note.github.io/econo-tube-note/">
 <style>
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
 :root{--bg:#f4f5f8;--card:#fff;--ink:#14181f;--sub:#5d6573;--line:#e1e4ea;--accent:#2457f5;--chip:#eef1f7}
 @media (prefers-color-scheme:dark){:root{--bg:#0f1217;--card:#181c24;--ink:#eef1f6;--sub:#9aa3b2;--line:#272d38;--accent:#7b99ff;--chip:#222833}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.6}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.6}
 .wrap{max-width:1080px;margin:0 auto;padding:40px 20px 56px}
 h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
 .lead{color:var(--sub);margin:0 0 20px}
@@ -297,6 +298,44 @@ a.tm:hover{color:var(--accent)}
 .dvc:hover{color:var(--accent)}
 @media(max-width:800px){.dvids{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}.dvid{flex:0 0 42%;scroll-snap-align:start}}
 @media(max-width:600px){.dwk{flex-wrap:wrap}.dwk span{white-space:normal;overflow:visible}.dfoot .dmore{margin-left:auto}.mseg{min-width:0;flex-direction:column;gap:0;font-size:.74rem}.mseg span{font-size:.9rem}.mbar{height:52px}.dvs{flex-direction:column;align-items:stretch;gap:8px}.vs{align-self:center;font-size:1.3rem;padding:2px 0}.dblk{padding:16px}.dhl{font-size:1.15rem}.dgrid{grid-template-columns:repeat(2,1fr)}.dv2{flex-direction:column;gap:2px;padding:6px 4px}.dch{width:auto}.dvid{flex-basis:62%}.dmore{margin-left:0}}
+
+/* ----- 영상 카드: 제목과 한 줄 요약 균형, 분위기, 상세 요약 버튼 ----- */
+.card h2{font-size:.95rem;font-weight:600;color:var(--ink);line-height:1.45}
+.card p{font-size:1.02rem;font-weight:700;color:var(--ink);-webkit-line-clamp:4}
+.card h2{color:var(--sub);font-weight:400}
+.thumb{position:relative}
+.thumb .md{position:absolute;left:8px;bottom:8px;color:#fff;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:99px;line-height:1.6;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.card .body{flex:1}
+.cfoot{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;margin-top:auto}
+.cmore{flex:none;font-size:.78rem;font-weight:600;color:var(--sub);white-space:nowrap;padding:2px 0}
+.card:hover .cmore{color:var(--accent)}
+.tags .kw{border:0;background:var(--chip);color:var(--sub);padding:2px 10px;border-radius:99px;font:inherit;font-size:.78rem;cursor:pointer}
+.tags .kw:hover{color:var(--accent)}
+.kwbar{display:flex;align-items:center;gap:10px;margin:-6px 0 18px;flex-wrap:wrap}
+.kwbar small{color:var(--sub);font-weight:700;font-size:.8rem}
+.kwbar .chips .chip{font-size:.82rem;padding:4px 12px}
+.sitefoot{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;margin:26px 0 8px;padding-top:16px;border-top:1px solid var(--line);font-size:.84rem}
+.sitefoot a{color:var(--sub);text-decoration:none}.sitefoot a:hover{color:var(--accent)}
+@media(max-width:600px){
+ /* 모바일은 유튜브 검색 결과처럼: 왼쪽 썸네일, 오른쪽 채널·제목, 아래에 한 줄 요약 */
+ .grid .card{display:grid;grid-template-columns:44% 1fr;grid-template-areas:"th me" "th ti" "co co" "fo fo";column-gap:12px;row-gap:4px;padding:12px;align-items:start}
+ .grid .card .body{display:contents}
+ .grid .card .thumb{grid-area:th;border-radius:8px;overflow:hidden}
+ .grid .card .meta{grid-area:me;font-size:.76rem;gap:2px 8px}
+ .grid .card h2{grid-area:ti;font-size:.88rem;-webkit-line-clamp:3}
+ .grid .card p{grid-area:co;font-size:.95rem;-webkit-line-clamp:3;margin-top:6px}
+ .grid .card .cfoot{grid-area:fo}
+ .grid .card .tags .kw{font-size:.72rem;padding:1px 8px}
+ /* 모바일에서는 채널·키워드 버튼을 한 줄로 두고 옆으로 넘겨 본다 (세로 공간 절약) */
+ #v-videos .bar .chips,#kwchips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:2px}
+ #v-videos .bar .chips::-webkit-scrollbar,#kwchips::-webkit-scrollbar{display:none}
+ #v-videos .chip{flex:none}
+ .kwbar{flex-wrap:nowrap;margin-top:-4px}.kwbar small{flex:none}.kwbar .chips{min-width:0}
+ .grid .card .thumb .md{left:5px;bottom:5px;font-size:.66rem;padding:0 6px}
+ .grid{gap:10px}
+ .dlatest.dblk #hgrid .card{padding:10px 0;border-bottom:1px solid var(--line)}
+ .dlatest.dblk #hgrid .card:last-child{border-bottom:0}
+}
 </style>
 </head>
 <body>
@@ -306,12 +345,7 @@ a.tm:hover{color:var(--accent)}
   <nav class="nav" id="nav"><button data-n="home">홈</button><a href="brief/">브리핑</a><button data-n="videos">영상 요약</button><a href="stock/">종목</a><button data-n="numbers">숫자·지표</button><button data-n="community">커뮤니티</button></nav>
   <div id="v-home" class="dash">
 <!--DASH:START-->
-<section class="dblk dmkt"><div class="dhd"><h2 class="bt c1">지금 시장은</h2><span class="dmeta">2026.11.18 (수) 기준 · 영상 3편 종합 · 22:27 갱신</span><a class="dmore" href="/econo-tube-note/brief/2026-11-18/">브리핑 전문 보기 →</a></div><p class="dhl">엔비디아의 탄탄한 실적과 AI 투자 지속 가능성을 점검하는 시장 분위기다.</p><ul class="kp"><li>엔비디아는 3분기 실적과 4분기 가이던스 모두 예상치를 상회했다.</li><li>지수 갭 메우기가 완료된 만큼 패닉 매도보다 냉정한 대응이 필요하다.</li><li>국내 반도체 양사는 풍부한 현금성 자산을 바탕으로 투자를 이어간다.</li><li>AI 인프라 투자 지속 여부와 지정학적 리스크가 핵심 변수로 꼽힌다.</li></ul><div class="dths"><small>핵심 주제</small><a class="dth" href="/econo-tube-note/brief/2026-11-18/#theme-1">엔비디아 실적과 가이던스</a><a class="dth" href="/econo-tube-note/brief/2026-11-18/#theme-2">AI 투자 사이클과 리스크</a><a class="dth" href="/econo-tube-note/brief/2026-11-18/#theme-3">국내 반도체 현금력과 증시</a></div><div class="dfoot"><div class="dwk"><b>이번 주 흐름</b><span>외국인 매도와 엔비디아 실적 발표를 거치며 증시 변동성이 확대되었다.</span></div><a class="dmore" href="/econo-tube-note/week/2026-11-16/">주간 브리핑 보기 →</a></div></section>
-<section class="dblk"><div class="dhd"><h2 class="bt c3">채널들의 시장 판단</h2><span class="dmeta">유튜브는 지금 시장을 이렇게 본다</span><a class="dmore" href="/econo-tube-note/brief/2026-11-18/#agree">채널 의견 전체 보기 →</a></div><div class="dj"><h3>주요 쟁점</h3><div class="dis"><b class="dq">AI 투자 축소 및 자금 조달 우려</b><div class="dvs"><div class="dv"><span>경영진의 보수적 기조와 네오클라우드 자금 조달 리스크로 인해 시장에 공포가 확산되고 있다고 본다.</span><a class="dvc" href="/econo-tube-note/#v/Codp7P9gH4U">815머니톡</a></div><span class="vs">vs</span><div class="dv"><span>오픈AI 관련 지급보증은 실제 집행이 없어 리스크가 크지 않으며 AI 투자 사이클은 계속된다고 본다.</span><a class="dvc" href="/econo-tube-note/#v/E2-V6z2WQzo">삼프로TV 3PROTV</a></div></div></div></div></section>
-<section class="dblk"><div class="dhd"><h2 class="bt c4">많이 언급된 종목</h2><span class="dmeta">최근 24시간 · 영상 5편 기준</span><a class="dmore" href="/econo-tube-note/stock/">종목 페이지로 →</a></div><div class="dgrid"><a class="dstk" href="/econo-tube-note/stock/%EC%97%94%EB%B9%84%EB%94%94%EC%95%84/"><span class="dsn"><b>엔비디아</b><span class="tone t혼재">혼재</span></span><small>영상 4편 · 2채널</small><p>견고한 실적과 AI 수요로 장기 성장성이 기대되나, 경영진 이슈와 규제 등 단기 불확실성으로 우려와 보수적 시각이 공존한다.</p></a><a class="dstk" href="/econo-tube-note/stock/SK%ED%95%98%EC%9D%B4%EB%8B%89%EC%8A%A4/"><span class="dsn"><b>SK하이닉스</b><span class="tone t혼재">혼재</span></span><small>영상 1편 · 1채널</small><p>풍부한 현금과 HBM 경쟁력으로 턴어라운드가 기대된다는 의견과, 역대급 조정과 선반영으로 관망해야 한다는 평가가 엇갈린다.</p></a><a class="dstk" href="/econo-tube-note/stock/TSMC/"><span class="dsn"><b>TSMC</b><span class="tone t긍정">긍정</span></span><small>영상 1편 · 1채널</small><p>TSMC는 견조한 AI 반도체 수요를 바탕으로 최대 매출을 달성하며 긍정적인 평가를 받고 있다.</p></a><a class="dstk" href="/econo-tube-note/stock/%EA%B5%AC%EA%B8%80/"><span class="dsn"><b>구글</b><span class="tone t긍정">긍정</span></span><small>영상 1편 · 1채널</small><p>구글은 AI 인프라와 자체 칩 수요로 긍정적인 평가를 받으나 일부 투자자의 매도도 언급된다.</p></a><a class="dstk" href="/econo-tube-note/stock/?q=%EB%84%B7%ED%94%8C%EB%A6%AD%EC%8A%A4"><span class="dsn"><b>넷플릭스</b></span><small>영상 1편 · 1채널</small><p>에버코어ISI에서 스포티파이 대신 대형주 추천 3위 종목으로 새로 선정됨.</p></a><a class="dstk" href="/econo-tube-note/stock/?q=%EB%8F%99%EA%B5%AD%EC%A0%9C%EC%95%BD"><span class="dsn"><b>동국제약</b></span><small>영상 1편 · 1채널</small><p>자회사 실적 부진으로 쇼크를 겪었으나 마데카 크림의 글로벌 유통망 확대로 헬스케어 매출 성장이 기대된다고 평가한다.</p></a></div></section>
-<section class="dblk"><div class="dhd"><h2 class="bt c2">숫자로 본 시장</h2><span class="dmeta">최근 24시간 · 영상에서 언급된 수치 · 실시간 시세 아님</span><a class="dmore" href="/econo-tube-note/#numbers">숫자·지표로 →</a></div><div class="dgrid"><a class="dnum" href="/econo-tube-note/#numbers/%EB%AF%B8%EA%B5%AD%2010%EB%85%84%EB%AC%BC%20%EA%B5%AD%EC%B1%84%20%EA%B8%88%EB%A6%AC"><small class="dnl"><span>미국 10년물 국채 금리</span></small><b>5.133%</b><p>미국 10년물 국채 금리가 5.13%선까지 치솟아 증시에 위협적인 수준을 형성함.</p></a><a class="dnum" href="/econo-tube-note/#numbers/WTI%20%EC%9B%90%EC%9C%A0%20%EC%84%A0%EB%AC%BC%20%EA%B0%80%EA%B2%A9"><small class="dnl"><span>WTI 원유 선물 가격</span></small><b>배럴당 84.12달러</b><p>WTI 유가가 84달러 중반선에서 움직이며 물가 불안 요인으로 작동함.</p></a><a class="dnum" href="/econo-tube-note/#numbers/%EB%8B%AC%EB%9F%AC%20%EC%9D%B8%EB%8D%B1%EC%8A%A4"><small class="dnl"><span>달러 인덱스</span></small><b>103.60</b><p>달러 인덱스가 금리 인상 우려를 동반하며 지속적인 상승세를 기록함.</p></a></div></section>
-<section class="dblk dlatest"><div class="dhd"><h2 class="bt ">최근 영상</h2><a class="dmore" href="/econo-tube-note/#videos">영상 요약 전체 보기 →</a></div><div class="grid" id="hgrid"></div></section>
-<p class="bnote">AI가 경제 유튜브 영상들을 요약·종합한 내용이며 투자 권유가 아니다.</p>
+<p class="empty">대시보드를 준비하고 있다. 자동화가 한 번 돌면 채워진다.</p>
 <!--DASH:END-->
   </div>
   <div id="v-videos" hidden>
@@ -319,6 +353,7 @@ a.tm:hover{color:var(--accent)}
       <input id="q" type="search" placeholder="제목, 키워드로 검색" aria-label="검색">
       <div class="chips" id="chips"></div>
     </div>
+    <div class="kwbar"><small>키워드</small><div class="chips" id="kwchips"></div></div>
     <div id="mf" hidden></div>
     <div class="grid" id="grid"></div>
   </div>
@@ -326,6 +361,7 @@ a.tm:hover{color:var(--accent)}
   <div id="v-numbers" hidden></div>
   <div id="v-community" hidden></div>
   <p class="note">AI가 요약한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
+  <footer class="sitefoot"><a href="about/">사이트 소개</a><a href="privacy/">개인정보처리방침</a><a href="mailto:gomajjy0@gmail.com">문의 gomajjy0@gmail.com</a></footer>
 </div>
 <dialog id="dlg"></dialog>
 <div class="pop" id="pop" hidden></div>
@@ -354,11 +390,16 @@ const in24=v=>{const since=new Date(Date.now()+9*36e5-864e5).toISOString().slice
 const chans=["전체",...new Set(VIDEOS.map(v=>v.channel))];
 function chips(){$("#chips").innerHTML=chans.map(c=>`<button class="chip" aria-pressed="${c===ch}" data-c="${esc(c)}">${esc(c)}</button>`).join("")}
 function thumb(v){const id=vid(v.url);return id?`<img src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">`:""}
-function card(i){const v=VIDEOS[i];return `<article class="card" tabindex="0" data-i="${i}"><div class="thumb">${thumb(v)}</div><div class="body"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span></div><h2>${esc(v.title)}</h2><p>${sent(v.conclusion)}</p><div class="tags">${(v.tags||[]).map(t=>`<span>${esc(t)}</span>`).join("")}</div></div></article>`}
+const MOODS={"낙관":"긍정","중립":"중립","비관":"부정"};  // 데이터는 낙관/중립/비관으로 저장하고 화면에는 긍정/중립/부정으로 보여 준다
+let kw="";
+function card(i){const v=VIDEOS[i];return `<article class="card" tabindex="0" data-i="${i}"><div class="thumb">${thumb(v)}${MOODS[v.mood]?`<span class="md m${v.mood}">${MOODS[v.mood]}</span>`:""}</div><div class="body"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span></div><h2>${esc(v.title)}</h2><p>${sent(v.conclusion)}</p><div class="cfoot"><div class="tags">${(v.tags||[]).map(t=>`<button class="kw" data-kw="${esc(t)}">#${esc(t)}</button>`).join("")}</div><span class="cmore">상세 요약 ›</span></div></div></article>`}
+function kwChips(){const since=kst(7*864e5),cnt={};VIDEOS.forEach(v=>{if(v.date>=since)(v.tags||[]).forEach(t=>cnt[t]=(cnt[t]||0)+1)});
+ let top=Object.entries(cnt).filter(([,n])=>n>=2).sort((a,b)=>b[1]-a[1]).slice(0,12).map(([t])=>t);if(kw&&!top.includes(kw))top.unshift(kw);
+ const el=$("#kwchips");if(el)el.innerHTML=`<button class="chip" data-kw="" aria-pressed="${!kw}">전체</button>`+top.map(t=>`<button class="chip" data-kw="${esc(t)}" aria-pressed="${t===kw}">#${esc(t)}</button>`).join("")}
 function homeGrid(){const g=$("#hgrid");if(g)g.innerHTML=VIDEOS.slice(0,6).map((v,i)=>card(i)).join("")}
 function render(){
- const list=VIDEOS.map((v,i)=>i).filter(i=>{const v=VIDEOS[i];return (ch==="전체"||v.channel===ch)&&(!moodF||(v.mood===moodF&&in24(v)))&&(!q||(v.title+v.conclusion+(v.tags||[]).join(" ")).toLowerCase().includes(q))});
- const mf=$("#mf");if(mf){mf.hidden=!moodF;mf.innerHTML=moodF?`최근 24시간 · ${moodF==="중립"?"중립·관망":esc(moodF)} 분위기 영상 ${list.length}편 <button id="mfx">✕ 필터 해제</button>`:""}
+ const list=VIDEOS.map((v,i)=>i).filter(i=>{const v=VIDEOS[i];return (ch==="전체"||v.channel===ch)&&(!moodF||(v.mood===moodF&&in24(v)))&&(!kw||(v.tags||[]).includes(kw))&&(!q||(v.title+v.conclusion+(v.tags||[]).join(" ")).toLowerCase().includes(q))});
+ const mf=$("#mf");if(mf){mf.hidden=!moodF;mf.innerHTML=moodF?`최근 24시간 · ${moodF==="중립"?"중립·관망":esc(MOODS[moodF]||moodF)} 분위기 영상 ${list.length}편 <button id="mfx">✕ 필터 해제</button>`:""}
  $("#grid").innerHTML=list.length?list.slice(0,shown).map(i=>card(i)).join("")+(list.length>shown?`<div class="more"><button class="btn" id="more">더 보기 (${list.length-shown}편 남음)</button></div>`:""):`<div class="empty">조건에 맞는 영상이 없다. 다른 키워드나 채널을 골라보자.</div>`;
 }
 /* ----- 관련 영상 카드 / 팝업 카드 ----- */
@@ -499,11 +540,12 @@ function route(){
   if(i!==undefined)setTimeout(()=>open(i),0);if(curView)return}
  const sub=h.split("/").slice(1).map(x=>{try{return decodeURIComponent(x)}catch(e){return x}});
  const v=["videos","stocks","numbers","community"].includes(b0)?b0:"home";
- if(v==="videos"){const m=sub[0]==="mood"&&["낙관","중립","비관"].includes(sub[1])?sub[1]:"";if(m!==moodF){moodF=m;shown=PAGE;render()}}
+ if(v==="videos"){const m=sub[0]==="mood"&&["낙관","중립","비관"].includes(sub[1])?sub[1]:"";const k=sub[0]==="kw"?(sub[1]||""):kw;if(m!==moodF||k!==kw){moodF=m;kw=k;shown=PAGE;kwChips();render()}}
  if(v==="numbers"&&sub[0]){nmLabel=sub[0];nmRange="7"}
  ["home","videos","stocks","numbers","community"].forEach(n=>{const e=$("#v-"+n);if(e)e.hidden=n!==v;const b=$('#nav [data-n="'+n+'"]');if(b)b.className=n===v?"on":""});
  if(v==="stocks")stocksInit();if(v==="numbers")numsInit();if(v==="community")community();
  hidePop();
+ const ld=$(".lead");if(ld)ld.hidden=v!=="home";  // 사이트 소개 문구는 홈에서만
  if(curView!==null&&curView!==v)window.scrollTo(0,0);  // 다른 화면으로 넘어가면 맨 위부터 보여 준다
  curView=v;
 }
@@ -631,8 +673,12 @@ const keep=fn=>{const bar=$(".bar"),y0=bar.getBoundingClientRect().top;fn();cons
 $("#q").oninput=e=>{q=e.target.value.trim().toLowerCase();shown=PAGE;keep(render)};
 $("#chips").onclick=e=>{const b=e.target.closest(".chip");if(b)keep(()=>{ch=b.dataset.c;shown=PAGE;chips();render()})};
 $("#mf").onclick=e=>{if(e.target.id==="mfx"){location.hash="#videos"}};
-$("#grid").onclick=e=>{if(e.target.id==="more"){shown+=PAGE;render();return}const c=e.target.closest(".card");if(c)open(+c.dataset.i)};
-$("#v-home").addEventListener("click",e=>{const g=e.target.closest&&e.target.closest("[data-go]");if(g){location.hash="#"+g.dataset.go;route();window.scrollTo&&window.scrollTo(0,0);return}const c=e.target.closest&&e.target.closest("#hgrid .card");if(c)open(+c.dataset.i)});
+$("#kwchips").onclick=e=>{const b=e.target.closest(".chip");if(b)keep(()=>{kw=b.dataset.kw;shown=PAGE;kwChips();render()})};
+$("#grid").onclick=e=>{if(e.target.id==="more"){shown+=PAGE;render();return}
+ const k=e.target.closest(".kw");if(k){kw=k.dataset.kw;shown=PAGE;kwChips();render();$("#v-videos").scrollIntoView({block:"start"});return}  // 카드의 #키워드를 누르면 그 키워드로 걸러 본다
+ const c=e.target.closest(".card");if(c)open(+c.dataset.i)};
+$("#v-home").addEventListener("click",e=>{const g=e.target.closest&&e.target.closest("[data-go]");if(g){location.hash="#"+g.dataset.go;route();window.scrollTo&&window.scrollTo(0,0);return}const k=e.target.closest&&e.target.closest("#hgrid .kw");if(k){location.hash="#videos/kw/"+encodeURIComponent(k.dataset.kw);return}
+ const c=e.target.closest&&e.target.closest("#hgrid .card");if(c)open(+c.dataset.i)});
 $("#grid").onkeydown=e=>{if(e.key==="Enter"){const c=e.target.closest(".card");if(c)open(+c.dataset.i)}};
 if($("#brief"))$("#brief").onclick=e=>{
  const x=e.target.closest("[data-exp]");if(x){x.className=x.className==="open"?"":"open";return}
@@ -671,7 +717,7 @@ $("#dlg").addEventListener("close",()=>{if(dlgPushed){dlgPushed=false;history.ba
 window.addEventListener("popstate",()=>{if(dlgPushed){dlgPushed=false;if($("#dlg").open)$("#dlg").close()}hidePop()});
 if(typeof BRIEFS!=="undefined")BRIEFS.sort((a,b)=>b.date.localeCompare(a.date));
 if(typeof WEEKLY!=="undefined")WEEKLY.sort((a,b)=>b.week.localeCompare(a.week));
-chips();render();homeGrid();route();
+chips();kwChips();render();homeGrid();route();
 </script>
 </body>
 </html>
