@@ -129,6 +129,9 @@ a.vc{color:inherit;text-decoration:none}
 .bld b{font-size:1.45rem!important;font-weight:800!important;letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
 .bld.wk b{font-size:1.15rem!important}
 .bld small{margin-top:2px!important}
+#themes,#agree,#disagree{scroll-margin-top:12px}
+.dis .dv .hv{align-self:flex-end}
+.tcard.flash{outline:2px solid var(--accent);outline-offset:2px;transition:outline-color .4s}
 .blt{min-width:0}
 .bli:hover .bld b{color:var(--accent)}
 @media(max-width:600px){.bli{gap:12px}.bld{width:62px}.bld b{font-size:1.2rem!important}.bld.wk b{font-size:1rem!important}}
@@ -137,6 +140,10 @@ a.vc{color:inherit;text-decoration:none}
 """
 
 POP_JS = """<script>
+(()=>{const m=/^#theme-([0-9]+)$/.exec(location.hash);if(!m)return;const go=()=>{const s=document.getElementById("themes"),c=document.getElementById("theme-"+m[1]);
+if(s)s.scrollIntoView({block:"start"});if(c){c.classList.add("flash");setTimeout(()=>c.classList.remove("flash"),2600)}};
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",()=>setTimeout(go,0));else setTimeout(go,0)})();
+</script><script>
 (()=>{const pop=document.createElement("div");pop.className="pop";pop.hidden=true;document.body.appendChild(pop);let cur=null;
 function show(el,html,wide){pop.innerHTML=html;pop.hidden=false;pop.scrollTop=0;const r=el.getBoundingClientRect(),w=Math.min(wide?560:420,innerWidth-24);
 pop.style.width=w+"px";pop.style.left=(scrollX+Math.min(Math.max(12,r.left),innerWidth-w-12))+"px";const h=pop.offsetHeight||0;let top=r.bottom+8;
@@ -221,8 +228,8 @@ class Frag:
         return "".join(f'<template id="{k}">{h}</template>' for k, h in self.tpl.items())
 
 
-def sect(title, n, body, c):
-    return f'<div class="bsec"><h3 class="bt {c}">{title}<span class="cn">{n}</span></h3>{body}</div>' if body else ""
+def sect(title, n, body, c, sid=""):
+    return (f'<div class="bsec"{f" id={chr(34)}{sid}{chr(34)}" if sid else ""}><h3 class="bt {c}">{title}<span class="cn">{n}</span></h3>{body}</div>') if body else ""
 
 
 def note_box(notes, key):
@@ -277,19 +284,42 @@ def build_dash(recent, briefs, weekly, digests, man):
             + (f'<div class="dths"><small>핵심 주제</small>{themes}</div>' if themes else "")
             + wk_line + "</section>")
 
-    # 2) 채널들의 시장 판단: 같은 목소리 + 엇갈린 지점 + 채널별 한마디
+    # 2) 채널들의 시장 판단: 영상 단위 분위기(어제와 비교) + 오늘의 쟁점 1개
     parts = []
-    if b and b.get("agreements"):
-        rows = "".join(f'<li>{e(a["point"])}' + (f' <span class="dcnt">{len(set(a.get("refs") or []))}편</span>' if len(set(a.get("refs") or [])) > 1 else "") + "</li>"
-                       for a in b["agreements"][:3])
-        parts.append(f'<div class="dj"><h3>같은 목소리</h3><ul class="kp">{rows}</ul></div>')
+    prev_since = (now - datetime.timedelta(hours=48)).strftime("%Y-%m-%dT%H:%M")
+    yday2 = (now - datetime.timedelta(days=2)).strftime("%Y-%m-%d")
+    prev = [v for v in recent if v not in day and ((v.get("ts") or "") >= prev_since or (not v.get("ts") and yday2 <= (v.get("date") or "") < yday))]
+
+    def moods(vs):
+        c = {"낙관": 0, "중립": 0, "비관": 0}
+        for v in vs:
+            if v.get("mood") in c:
+                c[v["mood"]] += 1
+        return c
+
+    mc, pc = moods(day), moods(prev)
+    tot, ptot = sum(mc.values()), sum(pc.values())
+    if tot >= 5:
+        segs = "".join(f'<a class="mseg m{k}" style="flex:{n}" href="{BASE}#videos/mood/{quote(k)}" title="{k} {n}편"><b>{"중립·관망" if k == "중립" else k}</b><span>{n}</span></a>'
+                       for k, n in mc.items() if n)
+        trend = ""
+        if ptot >= 5:
+            score = (mc["낙관"] - mc["비관"]) / tot
+            pscore = (pc["낙관"] - pc["비관"]) / ptot
+            d = score - pscore
+            trend = ("어제보다 낙관 쪽으로 기울었다" if d >= 0.15 else "어제보다 비관 쪽으로 기울었다" if d <= -0.15 else "어제와 비슷한 분위기다")
+            arrow = "▲" if d >= 0.15 else "▼" if d <= -0.15 else "―"
+            trend = f'<p class="mtrend"><span class="ma">{arrow}</span>{trend} <small>어제 낙관 {pc["낙관"]} · 중립 {pc["중립"]} · 비관 {pc["비관"]}</small></p>'
+        parts.append(f'<div class="dj"><h3>오늘 영상 {tot}편의 분위기 <small>막대를 누르면 해당 영상만 본다</small></h3><div class="mbar">{segs}</div>{trend}</div>')
     if b and b.get("disagreements"):
-        rows = "".join(f'<div class="dis"><b class="dq">{e(d["topic"])}</b><div class="dvs">'
-                       + '<span class="vs">vs</span>'.join(f'<div class="dv"><span>{e(w.get("view"))}</span><a class="dvc" href="{BASE}#v/{e(w.get("ref"))}">{e(w.get("channel"))}</a></div>' for w in (d.get("views") or [])[:3])
-                       + "</div></div>" for d in b["disagreements"][:2])
-        parts.append(f'<div class="dj"><h3>엇갈린 지점</h3>{rows}</div>')
+        d = b["disagreements"][0]
+        boxes = '<span class="vs">vs</span>'.join(
+            f'<div class="dv"><span>{e(w.get("view"))}</span><a class="dvc" href="{BASE}#v/{e(w.get("ref"))}">{e(w.get("channel"))}</a></div>'
+            for w in (d.get("views") or [])[:2])
+        parts.append(f'<div class="dj"><h3>오늘의 쟁점</h3><div class="dis"><b class="dq">{e(d["topic"])}</b><div class="dvs">{boxes}</div></div></div>')
     if parts:
-        blocks.append('<section class="dblk">' + hd("채널들의 시장 판단", "c3", "유튜브는 지금 시장을 이렇게 본다") + "".join(parts) + "</section>")
+        more = (href("brief/" + b["date"] + "/") + ("#disagree" if b.get("disagreements") else "#agree"), "쟁점 전체 보기") if b else ""
+        blocks.append('<section class="dblk">' + hd("채널들의 시장 판단", "c3", "유튜브는 지금 시장을 이렇게 본다", more) + "".join(parts) + "</section>")
 
     # 3) 많이 언급된 종목 TOP6
     tb = {}
@@ -355,13 +385,13 @@ def build_dash(recent, briefs, weekly, digests, man):
             vk, lst = max(g["vals"].items(), key=lambda kv: len(kv[1]))
             n, v = lst[0]
             vid = vid_of(v.get("url"))
-            cards += (f'<a class="dnum" href="{BASE}#v/{e(vid)}"><small class="dnl"><span>{e(label)}</span>'
+            cards += (f'<a class="dnum" href="{BASE}#numbers/{quote(label)}"><small class="dnl"><span>{e(label)}</span>'
                       + (f'<span class="cnt">{g["n"]}번 언급</span>' if g["n"] > 1 else "") + f'</small><b>{e(n[1])}</b><p>{e(n[2])}</p></a>')
         blocks.append('<section class="dblk">' + hd("숫자로 본 오늘", "c2", "영상에서 언급된 수치 · 실시간 시세 아님", (BASE + "#numbers", "숫자·지표로"))
                       + f'<div class="dgrid">{cards}</div></section>')
 
     # 5) 최신 영상: 카드 모양은 영상 요약 탭과 같다 (화면에서 채운다)
-    blocks.append('<section class="dlatest">' + hd("최근 영상", "", "", (BASE + "#videos", "영상 요약 전체 보기")) + '<div class="grid" id="hgrid"></div></section>')
+    blocks.append('<section class="dblk dlatest">' + hd("최근 영상", "c1", "", (BASE + "#videos", "영상 요약 전체 보기")) + '<div class="grid" id="hgrid"></div></section>')
 
     blocks.append('<p class="bnote">AI가 경제 유튜브 영상들을 요약·종합한 내용이며 투자 권유가 아니다.</p>')
     html_ = "<!--DASH:START-->\n" + "\n".join(blocks) + "\n<!--DASH:END-->"
@@ -425,8 +455,8 @@ def build():
         wk = (datetime.date.fromisoformat(d) - datetime.timedelta(days=datetime.date.fromisoformat(d).weekday())).isoformat()
         th = "".join(f'<div class="tcard" id="theme-{n + 1}"><b>{e(t["title"])}</b><p data-exp title="눌러서 펼치기">{e(t["summary"])}</p>{F.rel(t.get("refs"))}</div>' for n, t in enumerate(b.get("themes") or []))
         ag = "".join(f'<div class="mrow"><span>{e(a["point"])}</span>{F.rel(a.get("refs"))}</div>' for a in b.get("agreements") or [])
-        dg = "".join(f'<div class="dblock"><div class="dtopic">{e(x["topic"])}</div><div class="dviews">'
-                     + "".join(f'<div class="dv"><span>{e(w["view"])}</span>{F.hv(w.get("ref"), w.get("channel"))}</div>' for w in x.get("views") or [])
+        dg = "".join(f'<div class="dis"><b class="dq">{e(x["topic"])}</b><div class="dvs">'  # 홈과 같은 모양: 테두리 상자 vs 테두리 상자
+                     + '<span class="vs">vs</span>'.join(f'<div class="dv"><span>{e(w["view"])}</span>{F.hv(w.get("ref"), w.get("channel"))}</div>' for w in x.get("views") or [])
                      + "</div></div>" for x in b.get("disagreements") or [])
         sk = "".join(f'<div class="sk"><div class="skh"><b>{stock_name(s["name"])}</b><small>{s.get("count", "")}편에서 언급</small></div>'
                      + "".join(f'<div class="mrow"><span>{e(m["view"])}</span>{F.hv(m.get("ref"), m.get("channel"))}</div>' for m in (s.get("mentions") or [])[:4])
@@ -437,9 +467,9 @@ def build():
                 + f'<a class="link" href="{href("brief/")}">브리핑 모아보기</a>'
                 + f'<span class="bdates">{dates}</span></div>'
                 f'<h1>{e(b.get("headline"))}</h1>{kp_list(b.get("keypoints"))}{note_box(notes, d)}'
-                + sect("핵심 주제", len(b.get("themes") or []), th and f'<div class="tgrid">{th}</div>', "c1")
-                + sect("공통으로 말한 것", len(b.get("agreements") or []), ag, "c2")
-                + sect("엇갈린 의견", len(b.get("disagreements") or []), dg, "c3")
+                + sect("핵심 주제", len(b.get("themes") or []), th and f'<div class="tgrid">{th}</div>', "c1", "themes")
+                + sect("공통으로 말한 것", len(b.get("agreements") or []), ag, "c2", "agree")
+                + sect("엇갈린 의견", len(b.get("disagreements") or []), dg, "c3", "disagree")
                 + sect("여러 영상에서 언급된 종목", len(b.get("stocks") or []), sk and f'<div class="skg">{sk}</div>', "c4")
                 + sect("이날 요약한 영상", len(vids), vids and '<div class="vgrid">' + "".join(F.vcard(v) for v in vids) + "</div>", "")
                 + '<p class="bnote">AI가 이날의 영상 요약들을 종합한 내용이며 투자 권유가 아니다. \'관련 영상\'이나 채널 이름을 누르면 근거가 된 영상을 볼 수 있다.</p></div>'

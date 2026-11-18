@@ -42,6 +42,7 @@ PROMPT = """너는 한국 경제·투자 유튜브 영상을 요약하는 편집
 - 문체는 모두 '~다'로 통일한다.
 - people: 출연자 이름을 쉼표로 적는다. 모르면 빈 문자열.
 - conclusion: 영상의 핵심 결론. 짧게 쓴다. 공백 포함 55자 안팎으로, 최대 두 문장까지 허용한다. 한 문장에 정보를 여러 개 쉼표로 이어 붙이지 말고 핵심 하나만 담는다.
+- mood: 이 영상 출연자들이 시장(주식시장 전반)을 보는 분위기를 '낙관', '중립', '비관' 중 하나로 쓴다. 상승·매수 기회를 강조하면 낙관, 하락·위험·매도를 강조하면 비관, 관망을 권하거나 출연자끼리 의견이 갈리거나 시장 전망이 아닌 내용이면 중립이다.
 - tags: 키워드 3개. '하락장', '외국인수급', '반도체', '금리', '환율'처럼 짧고 흔한 말을 우선 쓴다.
 - parts: 영상 내용을 주제별로 2~4개 파트로 나눈다. 파트 제목(title)은 네가 정한다. 각 파트에 핵심 항목을 3~4개 넣는다. 항목 text는 '소제목: 설명' 형식으로 쓴다. 출연자의 전망이나 의견은 '~라고 본다', '~라고 주장한다'처럼 출연자의 말이라는 것이 드러나게 쓴다.
 - 항목 설명은 영상을 안 본 사람이 읽고 '무엇이, 왜, 얼마나'를 알 수 있게 구체적으로 쓴다. 영상에 나온 숫자, 종목·기업·인물 이름, 근거를 넣는다.
@@ -192,6 +193,7 @@ def summary_schema():
     class Summary(BaseModel):
         people: str
         conclusion: str
+        mood: str
         tags: list[str]
         parts: list[SPart]
         stocks: list[Stock]
@@ -356,6 +358,9 @@ def clean(s, vid_url, title, channel, date):
         entry["people"] = s["people"].strip()
     entry.update({"conclusion": conclusion, "tags": tags, "parts": parts,
                   "stocks": stocks, "numbers": numbers})
+    mood = (s.get("mood") or "").strip()
+    if mood in ("낙관", "중립", "비관"):
+        entry["mood"] = mood
     return entry
 
 
@@ -743,7 +748,7 @@ BRIEF_PROMPT = """너는 한국 경제 유튜브 영상들의 요약을 종합�
 - keypoints: 오늘의 핵심 3~4줄. 각 줄은 공백 포함 40자 안팎의 짧은 문장 하나이고, 정보를 하나씩만 담는다.
 - themes: 핵심 주제 2~4개. title은 공백 포함 25자 이내로 짧게, summary는 공백 포함 90자 이내의 한두 문장으로 쓴다.
 - agreements: 둘 이상의 영상이 공통으로 말한 것 2~4개. point는 공백 포함 45자 안팎의 한 문장, refs는 2개 이상.
-- disagreements: 영상마다 의견이 엇갈린 주제 0~3개. 없으면 빈 목록. topic은 짧게, views의 각 view는 공백 포함 45자 안팎의 한 문장(각각 view, ref).
+- disagreements: 영상마다 의견이 엇갈린 주제 0~3개. 없으면 빈 목록. 가장 크게 엇갈리고 투자 판단에 중요한 주제를 맨 앞에 둔다. topic은 짧게, views의 각 view는 공백 포함 45자 안팎의 한 문장(각각 view, ref).
 - stocks: 둘 이상의 영상에서 언급된 종목 최대 8개. name과 mentions(각각 view: 그 영상에서의 평가나 맥락을 공백 포함 45자 안팎의 한 문장으로, ref). 한 영상에서만 나온 종목은 넣지 않는다. tone에는 이날 영상들의 전반적인 시각을 긍정, 부정, 혼재, 중립 중 하나로 쓴다.
 
 영상 요약(JSON):
