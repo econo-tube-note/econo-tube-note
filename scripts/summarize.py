@@ -118,7 +118,8 @@ def parse_json3(raw):
 def fetch_transcript_ytdlp(vid, cookiefile=""):
     """yt-dlp로 자막을 가져온다. 쿠키 파일이 있으면 로그인한 상태로 요청한다."""
     import yt_dlp
-    opts = {"skip_download": True, "quiet": True, "no_warnings": True}
+    # 영상 파일은 필요 없고 자막 정보만 필요하다. 영상 형식이 없다는 에러는 무시하고 자막 목록만 받는다
+    opts = {"skip_download": True, "quiet": True, "no_warnings": True, "ignore_no_formats_error": True}
     if cookiefile:
         opts["cookiefile"] = cookiefile
     with yt_dlp.YoutubeDL(opts) as ydl:
@@ -128,7 +129,10 @@ def fetch_transcript_ytdlp(vid, cookiefile=""):
             for lang in ("ko", "ko-orig", "ko-KR"):
                 for f in pool.get(lang) or []:
                     if f.get("ext") == "json3" and f.get("url"):
-                        raw = ydl.urlopen(f["url"]).read().decode("utf-8")
+                        try:
+                            raw = ydl.urlopen(f["url"]).read().decode("utf-8")
+                        except Exception as e:
+                            raise RuntimeError(f"{kind}({lang}) 목록은 받았는데 내용 받기에서 막혔다: {str(e)[:120]}")
                         lines = parse_json3(raw)
                         if lines:
                             return lines, f"{kind}({lang})"
