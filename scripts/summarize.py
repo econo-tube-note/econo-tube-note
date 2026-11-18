@@ -1334,6 +1334,12 @@ def auto():
             print(f"채널 영상 목록 실패: {ch['name']}: {e}")
             continue
         print(f"채널 확인: {ch['name']} -> {author} ({ch['id']}), 최근 영상 {len(entries)}편")
+        inc = ch.get("title_include") or []  # channels.json에서 제목에 이 말이 들어간 영상만 모으게 할 수 있다 (예: 특정 코너만)
+        if inc:
+            nk = lambda t: re.sub(r"\s", "", t or "").lower()
+            before = len(entries)
+            entries = [e for e in entries if any(nk(w) in nk(e["title"]) for w in inc)]
+            print(f"  [{ch['name']}] 제목에 {'/'.join(inc)}가 들어간 영상만 본다: {before}편 중 {len(entries)}편")
         win = int(ch.get("max_age_days") or max_age)  # channels.json에서 채널마다 기간을 따로 정할 수 있다
         fresh, known, old = [], 0, 0
         for e in entries:
