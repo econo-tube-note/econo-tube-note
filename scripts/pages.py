@@ -31,6 +31,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = os.environ.get("SITE_URL", "https://econo-tube-note.github.io/econo-tube-note").rstrip("/")
 BASE = "/" + SITE.split("://", 1)[1].split("/", 1)[1].strip("/") + "/" if SITE.count("/") > 2 else "/"
 SITE_NAME = os.environ.get("SITE_NAME", "경제 유튜브 요약")
+CONTACT = os.environ.get("CONTACT_EMAIL", "gomajjy0@gmail.com")
 MANIFEST = ROOT / "pages.json"
 KST = datetime.timezone(datetime.timedelta(hours=9))
 WD = "월화수목금토일"
@@ -129,6 +130,7 @@ a.vc{color:inherit;text-decoration:none}
 .bld b{font-size:1.45rem!important;font-weight:800!important;letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
 .bld.wk b{font-size:1.15rem!important}
 .bld small{margin-top:2px!important}
+.infodoc h2.bt{margin:26px 0 8px}.infodoc p,.infodoc li{line-height:1.75}
 #themes,#agree,#disagree{scroll-margin-top:12px}
 .dis .dv .hv{align-self:flex-end}
 .tcard.flash{outline:2px solid var(--accent);outline-offset:2px;transition:outline-color .4s}
@@ -183,6 +185,7 @@ def page(path, title, desc, body, kind="article", date=None, nav_on="home"):
 {body}
 
 <p class="note">AI가 경제 유튜브 영상과 그 요약을 종합한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
+<footer class="sitefoot"><a href="{BASE}about/">사이트 소개</a><a href="{BASE}privacy/">개인정보처리방침</a><a href="mailto:{e(CONTACT)}">문의 {e(CONTACT)}</a></footer>
 </div>{POP_JS}</body></html>
 """
 
@@ -297,19 +300,20 @@ def build_dash(recent, briefs, weekly, digests, man):
                 c[v["mood"]] += 1
         return c
 
+    ML = {"낙관": "긍정", "중립": "중립·관망", "비관": "부정"}  # 데이터 이름 -> 화면에 보이는 이름
     mc, pc = moods(day), moods(prev)
     tot, ptot = sum(mc.values()), sum(pc.values())
     if tot >= 5:
-        segs = "".join(f'<a class="mseg m{k}" style="flex:{n}" href="{BASE}#videos/mood/{quote(k)}" title="{k} {n}편"><b>{"중립·관망" if k == "중립" else k}</b><span>{n}</span></a>'
+        segs = "".join(f'<a class="mseg m{k}" style="flex:{n}" href="{BASE}#videos/mood/{quote(k)}" title="{ML[k]} {n}편"><b>{ML[k]}</b><span>{n}</span></a>'
                        for k, n in mc.items() if n)
         trend = ""
         if ptot >= 5:
             score = (mc["낙관"] - mc["비관"]) / tot
             pscore = (pc["낙관"] - pc["비관"]) / ptot
             d = score - pscore
-            trend = ("어제보다 낙관 쪽으로 기울었다" if d >= 0.15 else "어제보다 비관 쪽으로 기울었다" if d <= -0.15 else "어제와 비슷한 분위기다")
+            trend = ("어제보다 긍정 쪽으로 기울었다" if d >= 0.15 else "어제보다 부정 쪽으로 기울었다" if d <= -0.15 else "어제와 비슷한 분위기다")
             arrow = "▲" if d >= 0.15 else "▼" if d <= -0.15 else "―"
-            trend = f'<p class="mtrend"><span class="ma">{arrow}</span>{trend} <small>어제 낙관 {pc["낙관"]} · 중립 {pc["중립"]} · 비관 {pc["비관"]}</small></p>'
+            trend = f'<p class="mtrend"><span class="ma">{arrow}</span>{trend} <small>어제 긍정 {pc["낙관"]} · 중립 {pc["중립"]} · 부정 {pc["비관"]}</small></p>'
         parts.append(f'<div class="dj"><h3>최근 24시간 영상 {tot}편의 분위기 <small>막대를 누르면 해당 영상만 본다</small></h3><div class="mbar">{segs}</div>{trend}</div>')
     if b and b.get("disagreements"):
         d = b["disagreements"][0]
@@ -408,6 +412,56 @@ def build_dash(recent, briefs, weekly, digests, man):
         return 0
     p.write_text(t2, encoding="utf-8")
     return 1
+
+
+# ---------- 사이트 소개, 개인정보처리방침 ----------
+INFO_DATE = "2026-11-19"
+
+
+def build_info_pages():
+    try:
+        chans = [c.get("name") for c in json.loads((ROOT / "channels.json").read_text(encoding="utf-8")) if c.get("name")]
+    except Exception:
+        chans = []
+    ch_list = "".join(f"<li>{e(c)}</li>" for c in chans) or "<li>채널 목록을 불러오지 못했다.</li>"
+    mail = f'<a href="mailto:{e(CONTACT)}">{e(CONTACT)}</a>'
+
+    def doc(title, sections):
+        return ('<div class="brief infodoc"><h1 style="margin-top:0">' + e(title) + "</h1>"
+                + "".join(f'<h2 class="bt c1">{h}</h2>{b}' for h, b in sections) + "</div>")
+
+    about = doc("사이트 소개", [
+        ("어떤 곳인가", f"<p>{e(SITE_NAME)}는 인기 경제 유튜브 채널의 영상을 AI가 요약하고, 여러 채널의 이야기를 하루와 한 주 단위로 종합해 보여 주는 곳이다. "
+                    "영상을 다 볼 시간이 없을 때, 오늘 경제 유튜브에서 무슨 이야기가 오갔는지 몇 분 안에 파악할 수 있게 만드는 게 목표다.</p>"),
+        ("다루는 채널", f"<ul class=\"kp\">{ch_list}</ul><p>채널은 앞으로 늘어날 수 있다.</p>"),
+        ("볼 수 있는 것", "<ul class=\"kp\"><li><b>홈</b>: 지금 시장 요약, 채널들의 분위기와 쟁점, 많이 언급된 종목과 숫자를 한눈에 본다.</li>"
+                     "<li><b>브리핑</b>: 하루와 한 주의 영상을 종합한 시장 브리핑이다.</li>"
+                     "<li><b>영상 요약</b>: 영상마다 한 줄 결론, 장면별 핵심 내용, 언급된 종목과 숫자를 정리하고, 해당 장면으로 바로 가는 시간 링크를 단다.</li>"
+                     "<li><b>종목</b>: 여러 영상에서 언급된 종목을 모아 채널들의 시각을 비교한다.</li>"
+                     "<li><b>숫자·지표</b>: 영상에서 언급된 지표와 수치를 모아 본다.</li></ul>"),
+        ("어떻게 만드나", "<p>2시간마다 자동으로 새 영상을 찾아 Google의 AI(Gemini)로 요약한다. 경제·투자와 관련 없는 영상은 제외한다. "
+                     "브리핑과 종목 정리도 같은 방식으로 자동으로 만들고, 필요할 때 운영자가 한마디를 덧붙인다.</p>"),
+        ("꼭 알아 둘 점", "<ul class=\"kp\"><li>AI가 만든 요약이라 내용이 틀리거나 빠질 수 있다. 중요한 내용은 원본 영상에서 확인해야 한다.</li>"
+                      "<li>이 사이트의 내용은 투자 권유가 아니다. 숫자는 영상 속 출연자가 말한 것이며 실시간 시세가 아니다.</li>"
+                      "<li>영상과 썸네일의 저작권은 각 채널에 있다. 모든 요약에는 원본 영상 링크를 단다.</li></ul>"),
+        ("문의", f"<p>잘못된 요약, 삭제 요청, 제안은 {mail}로 보내 주면 확인한다.</p>"),
+    ])
+    privacy = doc("개인정보처리방침", [
+        ("1. 수집하는 개인정보", "<p>이 사이트는 회원가입이나 로그인 기능이 없고, 방문자의 이름·연락처 같은 개인정보를 직접 수집하지 않는다.</p>"),
+        ("2. 자동으로 기록될 수 있는 정보", "<p>사이트는 GitHub Pages에서 운영된다. GitHub는 보안과 서비스 운영을 위해 방문자의 IP 주소 등 접속 기록을 남길 수 있으며, "
+                                   "이는 GitHub의 개인정보 정책을 따른다. 운영자는 이 기록을 따로 받거나 보관하지 않는다.</p>"),
+        ("3. 외부에서 불러오는 콘텐츠", "<p>영상 썸네일은 YouTube(Google) 서버에서, 글꼴은 jsDelivr에서 불러온다. 이 과정에서 해당 서비스가 접속 정보를 받을 수 있다. "
+                                 "영상 링크를 누르면 YouTube로 이동하며, 그때부터는 YouTube의 정책이 적용된다.</p>"),
+        ("4. 쿠키와 브라우저 저장 공간", "<p>사이트 자체는 방문자를 추적하는 쿠키를 쓰지 않는다. 화면 설정 같은 편의 기능을 위해 브라우저 저장 공간을 쓸 수 있으나, 그 내용은 방문자의 브라우저에만 남고 운영자에게 전송되지 않는다.</p>"),
+        ("5. 광고와 방문 통계", "<p>앞으로 Google 애널리틱스(방문 통계)나 Google 애드센스(광고)를 도입할 수 있다. 도입하면 Google을 비롯한 제3자 공급업체가 쿠키를 사용해 "
+                             "방문자의 이 사이트 및 다른 사이트 방문 기록을 바탕으로 광고를 게재하거나 통계를 낼 수 있다. 맞춤 광고는 "
+                             '<a href="https://adssettings.google.com" target="_blank" rel="noopener">Google 광고 설정</a>에서 끌 수 있다. 도입할 때 이 문서를 고친다.</p>'),
+        ("6. 문의", f"<p>개인정보와 관련한 문의는 {mail}로 보내 주면 된다.</p>"),
+        ("7. 시행일", f"<p>이 방침은 {e(kdate(INFO_DATE))}부터 적용한다. 내용이 바뀌면 이 페이지에 알린다.</p>"),
+    ])
+    n = write("about", page("about/", "사이트 소개", f"{SITE_NAME}는 인기 경제 유튜브 채널의 영상을 AI가 요약하고 하루와 한 주 단위로 종합해 보여 주는 곳이다.", about, kind="list", nav_on=""))
+    n += write("privacy", page("privacy/", "개인정보처리방침", f"{SITE_NAME}의 개인정보처리방침이다.", privacy, kind="list", nav_on=""))
+    return n
 
 
 # ---------- 페이지 만들기 ----------
@@ -609,8 +663,11 @@ q.addEventListener("input",f);document.getElementById("sr").addEventListener("cl
     # 홈 대시보드: index.html 의 <!--DASH:START--> ~ <!--DASH:END--> 사이를 미리 만든 화면으로 채운다 (검색에 잡히게)
     changed += build_dash(read_const(ROOT / "videos.js", "VIDEOS", []), briefs, weekly, digests, man)
 
+    # 사이트 소개, 개인정보처리방침
+    changed += build_info_pages()
+
     # 사이트맵
-    urls = [(url(""), today), (url("brief/"), today), (url("week/"), today), (url("stock/"), today)]
+    urls = [(url(""), today), (url("brief/"), today), (url("week/"), today), (url("stock/"), today), (url("about/"), INFO_DATE), (url("privacy/"), INFO_DATE)]
     urls += [(url(f"brief/{d}/"), m.get("lastmod", today)) for d, m in man["brief"].items()]
     urls += [(url(f"week/{w}/"), m.get("lastmod", today)) for w, m in man["week"].items()]
     urls += [(url(f"stock/{quote(s_)}/"), m.get("lastmod", today)) for s_, m in man["stock"].items()]

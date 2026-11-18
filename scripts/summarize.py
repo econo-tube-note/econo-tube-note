@@ -42,6 +42,7 @@ PROMPT = """너는 한국 경제·투자 유튜브 영상을 요약하는 편집
 - 문체는 모두 '~다'로 통일한다.
 - people: 출연자 이름을 쉼표로 적는다. 모르면 빈 문자열.
 - conclusion: 영상의 핵심 결론. 짧게 쓴다. 공백 포함 55자 안팎으로, 최대 두 문장까지 허용한다. 한 문장에 정보를 여러 개 쉼표로 이어 붙이지 말고 핵심 하나만 담는다.
+- economic: 이 영상의 중심 내용이 경제·주식·투자·산업·부동산·재테크이면 true, 아니면 false다. 경제 채널 영상이어도 교육, 사회 사건, 건강, 재난, 경제 얘기가 거의 없는 정치·안보 등이 중심이면 false다.
 - mood: 이 영상 출연자들이 시장(주식시장 전반)을 보는 분위기를 '낙관', '중립', '비관' 중 하나로 쓴다. 상승·매수 기회를 강조하면 낙관, 하락·위험·매도를 강조하면 비관, 관망을 권하거나 출연자끼리 의견이 갈리거나 시장 전망이 아닌 내용이면 중립이다.
 - tags: 키워드 3개. '하락장', '외국인수급', '반도체', '금리', '환율'처럼 짧고 흔한 말을 우선 쓴다.
 - parts: 영상 내용을 주제별로 2~4개 파트로 나눈다. 파트 제목(title)은 네가 정한다. 각 파트에 핵심 항목을 3~4개 넣는다. 항목 text는 '소제목: 설명' 형식으로 쓴다. 출연자의 전망이나 의견은 '~라고 본다', '~라고 주장한다'처럼 출연자의 말이라는 것이 드러나게 쓴다.
@@ -55,6 +56,7 @@ PROMPT = """너는 한국 경제·투자 유튜브 영상을 요약하는 편집
   나쁜 예: value '2.894조 달러', note '10월 28일 기준 저점을 기록한 후 회복세로 전환되었다고 설명한다.' (무엇이 2.894조 달러인지 없다)
   좋은 예: label '미국 지급준비금', value '2.894조 달러', note '미국 은행들의 지급준비금이 10월 28일 이 수준에서 바닥을 찍고 회복 중이라고 설명한다.'
   label은 가능한 한 구체적인 지표 이름으로 쓰고, 정말 지표로 묶을 수 없을 때만 '기타'로 쓴다.
+  kind는 그 숫자의 성격을 '현재', '전망', '과거' 중 하나로 쓴다. 지금 시점의 수치나 최근 실적이면 현재, 앞으로의 예상·목표·목표가면 전망, 지난 기록이나 비교용 과거 수치면 과거다.
 - time: 해당 내용이 영상에서 나오는 시간. 링크나 주소 없이 '분:초' 글자만 적는다. 예: 06:34 (1시간이 넘으면 1:05:30). 확실하지 않으면 빈 문자열로 둔다.
 - 영상에 없는 내용은 쓰지 않는다. 네가 아는 정보로 영상 내용의 사실 여부를 판단하거나 정정하지 않는다. 추측하지 않는다.
 """
@@ -211,6 +213,21 @@ def transcript_test(target=""):
     return 0
 
 
+SLOT_NAMES = ("저녁(17~24시)", "새벽(0~7시)", "오전(7~12시)", "오후(12~17시)")
+
+
+def budget_window(now):
+    """영상 예산의 '하루'와 지금까지 쓸 수 있는 누적 시간(초)을 돌려준다.
+    하루는 오후 5시에 시작하고, 시간대별 몫(SLOT_BUDGET_MIN)을 차례로 더한다. 앞 시간대에서 안 쓴 몫은 뒤로 넘어간다."""
+    k = now.astimezone(KST) - datetime.timedelta(hours=17)
+    day = k.strftime("%Y-%m-%d")
+    h = k.hour  # 0~6: 17~24시, 7~13: 0~7시, 14~18: 7~12시, 19~23: 12~17시
+    idx = 0 if h < 7 else 1 if h < 14 else 2 if h < 19 else 3
+    slots = [int(x) for x in os.environ.get("SLOT_BUDGET_MIN", "170,0,200,100").split(",")][:4]
+    slots += [0] * (4 - len(slots))
+    return day, sum(slots[:idx + 1]) * 60, SLOT_NAMES[idx]
+
+
 def summary_schema():
     from pydantic import BaseModel
 
@@ -232,10 +249,12 @@ def summary_schema():
         label: str
         value: str
         note: str
+        kind: str
 
     class Summary(BaseModel):
         people: str
         conclusion: str
+        economic: bool
         mood: str
         tags: list[str]
         parts: list[SPart]
@@ -259,8 +278,9 @@ def video_part(types, video_url):
     return types.Part(file_data=types.FileData(file_uri=video_url))
 
 
-def call_gemini(video_url, allow_lite=True):
-    """영상을 요약한다. allow_lite가 False면 품질이 낮은 lite 모델은 쓰지 않는다."""
+def call_gemini(video_url, allow_lite=True, transcript=None):
+    """영상을 요약한다. transcript(자막 글)가 있으면 영상 대신 자막을 읽고 요약한다.
+    allow_lite가 False면 품질이 낮은 lite 모델은 쓰지 않는다."""
     from google import genai
     from google.genai import types
 
@@ -284,7 +304,7 @@ def call_gemini(video_url, allow_lite=True):
             def ask(model=model):
                 return client.models.generate_content(
                     model=model,
-                    contents=types.Content(
+                    contents=(TRANSCRIPT_PROMPT + transcript) if transcript else types.Content(
                         parts=[
                             video_part(types, video_url),
                             types.Part(text=PROMPT),
@@ -393,6 +413,7 @@ def clean(s, vid_url, title, channel, date):
     stocks = [[tm(x.get("time")), canon_stock(x.get("name")), (x.get("note") or "").strip()]
               for x in (s.get("stocks") or [])[:7] if (x.get("name") or "").strip()]
     numbers = [[tm(x.get("time")), (x.get("value") or "").strip(), (x.get("note") or "").strip(), (x.get("label") or "").strip()[:20] or "기타"]
+               + ([x["kind"]] if x.get("kind") in ("현재", "전망", "과거") else [])
                for x in (s.get("numbers") or [])[:6] if (x.get("value") or "").strip()]
     tags = [t.strip() for t in (s.get("tags") or []) if t.strip()][:3]
 
@@ -644,7 +665,7 @@ def call_gemini_text(prompt):
 def classify(items):
     """{영상id: (경제 관련 여부, 이유)}를 돌려준다. 호출이 실패하면 None."""
     strict = cfg("TOPIC_STRICT", 1)
-    rule = ("경제·투자와 관련 있다고 볼 만하면 related=true로 한다. 제목만으로 주제를 알 수 없으면 true로 한다. 경제와 상관없는 주제(음식, 여행, 건강, 연예, 일상, 경제 얘기가 없는 정치·안보 등)가 분명할 때만 false로 한다." if strict
+    rule = ("경제·투자 이야기가 중심일 것으로 보이면 related=true로 한다. 제목이 궁금증을 끄는 문구라서 주제를 알 수 없을 때도 true로 한다. 대신 교육·입시, 사회 사건·사고, 건강·의료, 재난, 연예, 일상, 경제 얘기가 없는 정치·안보·역사처럼 경제가 아닌 주제가 제목에 드러나면 경제 채널 영상이어도 false로 한다." if strict
             else "분명히 해당하지 않을 때만 false로 한다. 애매하면 true로 한다.")
     payload = [{"id": e["id"], "channel": e["channel"], "title": e["title"], "description": e.get("desc", "")} for e in items]
     try:
@@ -1260,7 +1281,7 @@ def auto():
         print("GEMINI_API_KEY가 없다. GitHub 비밀 저장 공간에 키를 넣었는지 확인해라.")
         return 1
     max_age, max_len = cfg("MAX_AGE_DAYS", 2), cfg("MAX_VIDEO_MIN", 90) * 60
-    min_len, budget = cfg("MIN_VIDEO_SEC", 180), cfg("DAILY_BUDGET_MIN", 450) * 60
+    min_len = cfg("MIN_VIDEO_SEC", 180)
     per_run = cfg("MAX_PER_RUN", 6)
     deadline = time.time() + cfg("RUN_DEADLINE_MIN", 60) * 60
 
@@ -1273,10 +1294,15 @@ def auto():
         state.setdefault(k, {})
     MODEL_STATS.update(state["models"])
     now = datetime.datetime.now(datetime.timezone.utc)
-    today = now.astimezone(KST).strftime("%Y-%m-%d")
+    # 영상 예산의 하루는 오후 5시에 시작한다 (구글 무료 한도가 초기화되는 시각에 맞춘다)
+    today, budget, slot_name = budget_window(now)
     week_ago = (now.astimezone(KST) - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
     state["spent"] = {d: v for d, v in state["spent"].items() if d >= week_ago}
     spent = state["spent"].get(today, 0)
+    cookie = os.environ.get("YT_COOKIES_FILE", "")
+    if cookie and not (os.path.exists(cookie) and os.path.getsize(cookie) > 50):
+        cookie = ""
+    print(f"영상 예산: {slot_name} 시간대 | 지금까지 쓸 수 있는 시간 {budget // 60}분 중 {spent // 60}분 사용 | 자막 방식: {'켜짐' if cookie else '꺼짐(쿠키 없음)'}")
 
     videos = load()
     arch = read_json(ARCHIVE, [])
@@ -1349,7 +1375,10 @@ def auto():
         write_json(STATE, state)
 
     done, bad_streak, flash_down = 0, 0, False
-    for e in interleave(lists):
+    tr_fail, n_tr, n_vid = 0, 0, 0
+    long_sec = cfg("LONG_VIDEO_MIN", 75) * 60
+    order = sorted(interleave(lists), key=lambda e: (e.get("length") or 0) > long_sec)  # 긴 영상은 짧은 영상을 다 처리한 뒤에
+    for e in order:
         if done >= per_run or time.time() > deadline:
             print("이번 실행에서 처리할 수 있는 한도에 도달했다.")
             break
@@ -1369,31 +1398,58 @@ def auto():
         if 0 < length < min_len:
             state["skipped"][vid] = "너무 짧음"
             continue
-        if length > max_len:
+        if length > max(max_len, cfg("MAX_TRANSCRIPT_MIN", 180) * 60):
             state["skipped"][vid] = f"너무 긴 영상({length // 60}분)"
             print(f"너무 길어서 건너뜀({length // 60}분): {e['title']}")
             continue
         est = length or 1800  # 길이를 모르면 30분으로 계산한다
-        if spent + est > budget:
-            print(f"오늘 처리 시간 예산을 넘어서 다음으로 미룬다: {e['title']}")
-            continue
         age_h = (now - e["published"]).total_seconds() / 3600
         lite_ok = age_h >= cfg("LITE_AFTER_HOURS", 30)  # 곧 기간이 끝나는 영상만 lite 모델을 허용한다
         if flash_down and not lite_ok:
             continue  # 좋은 모델이 이번 실행에서 모두 막혔다. 급하지 않은 영상은 다음 실행에 좋은 모델로 요약한다
         url = f"https://www.youtube.com/watch?v={vid}"
-        print(f"요약 시작: {e['channel']} | {e['title']} ({est // 60}분)")
+        # 1) 자막을 먼저 시도한다. 자막으로 요약하면 영상 예산(하루 8시간)을 쓰지 않는다
+        text = None
+        if cookie and tr_fail < 3:
+            try:
+                lines, how = fetch_transcript_ytdlp(vid, cookie)
+                text = "\n".join(f"[{mmss(st)}] {t}" for st, t in lines)
+                tr_fail = 0
+            except Exception as ex:
+                tr_fail += 1
+                print(f"  자막을 못 받았다({tr_fail}번째): {e['title'][:40]} | {str(ex).splitlines()[0][:120] if str(ex) else ''}")
+                if tr_fail == 3:
+                    print("  자막이 3번 연속 실패했다. 이번 실행은 영상 방식으로만 요약한다. (계속 이러면 쿠키가 만료됐을 수 있다)")
+            time.sleep(4)  # 자막 요청 사이에 간격을 둔다 (부계정이 봇으로 찍히지 않게)
+        if text is None and length > max_len:  # 자막으로는 긴 영상도 요약하지만, 영상 방식은 너무 긴 영상을 하지 않는다
+            print(f"자막이 없고 영상이 길어서({length // 60}분) 영상 방식으로는 하지 않는다: {e['title']}")
+            continue
+        if text is None and spent + est > budget:
+            print(f"영상 예산({slot_name} 시간대)을 넘어서 다음으로 미룬다: {e['title']}")
+            continue
+        src = "자막" if text else "영상"
+        print(f"요약 시작({src}): {e['channel']} | {e['title']} ({est // 60}분)")
         try:
-            entry = clean(call_gemini(url, allow_lite=lite_ok), url, e["title"], e["channel"],
-                          e["published"].astimezone(KST).strftime("%Y-%m-%d"))
+            raw = call_gemini(url, allow_lite=lite_ok, transcript=text)
+            if raw.get("economic") is False:
+                state["skipped"][vid] = "경제 무관(내용 확인)"
+                state["topic"].pop(vid, None)
+                print(f"  내용을 보니 경제 영상이 아니라서 제외: {e['title']}")
+                continue
+            entry = clean(raw, url, e["title"], e["channel"], e["published"].astimezone(KST).strftime("%Y-%m-%d"))
+            entry["src"] = src
             entry["model"] = next((m for m, o in reversed(STATS) if o == "ok"), "")  # 어느 모델이 요약했는지 기록
             entry["ts"] = e["published"].astimezone(KST).strftime("%Y-%m-%dT%H:%M")  # 올라온 시각 (홈의 최근 24시간 계산용)
             videos.insert(0, entry)
             have.add(vid)
             state["failed"].pop(vid, None)
             state["topic"].pop(vid, None)
-            spent += est
-            state["spent"][today] = spent
+            if src == "영상":
+                spent += est
+                state["spent"][today] = spent
+                n_vid += 1
+            else:
+                n_tr += 1
             done, bad_streak = done + 1, 0
             save(videos)
             print(f"  완료: {e['title']}")
@@ -1428,22 +1484,35 @@ def auto():
         time.sleep(5)
 
     # 이번 실행에서 여유가 남으면 lite 모델로 만든 얕은 요약을 좋은 모델로 다시 만든다 (최근 2일 영상만)
+    # 다시 요약은 영상 예산이 초기화되기 직전(오후 3~5시)에, 새 영상을 다 처리하고 남은 여유로만 한다
     redo_cut = (now.astimezone(KST) - datetime.timedelta(days=2)).strftime("%Y-%m-%d")
-    for v in [v for v in videos if is_lite(v.get("model")) and v.get("date", "") >= redo_cut]:
+    redo_time = 15 <= now.astimezone(KST).hour < 17
+    for v in [v for v in videos if redo_time and is_lite(v.get("model")) and v.get("date", "") >= redo_cut]:
         if done >= per_run or time.time() > deadline or bad_streak >= 2 or flash_down:
             break
-        if spent + 1800 > budget:
+        text = None
+        if cookie and tr_fail < 3:
+            try:
+                lines, _ = fetch_transcript_ytdlp(video_id(v["url"]), cookie)
+                text = "\n".join(f"[{mmss(st)}] {t}" for st, t in lines)
+            except Exception:
+                tr_fail += 1
+            time.sleep(4)
+        if text is None and spent + 1800 > budget:
             break
-        print(f"다시 요약(얕은 요약 보완): {v['channel']} | {v['title']}")
+        print(f"다시 요약(얕은 요약 보완, {'자막' if text else '영상'}): {v['channel']} | {v['title']}")
         try:
-            new = clean(call_gemini(v["url"], allow_lite=False), v["url"], v["title"], v["channel"], v["date"])
+            new = clean(call_gemini(v["url"], allow_lite=False, transcript=text), v["url"], v["title"], v["channel"], v["date"])
+            new["src"] = "자막" if text else "영상"
             new["model"] = next((m for m, o in reversed(STATS) if o == "ok"), "")
-            if v.get("ts"):
-                new["ts"] = v["ts"]
+            for k in ("ts", "mood"):
+                if v.get(k) and not new.get(k):
+                    new[k] = v[k]
             v.clear()
             v.update(new)
-            spent += 1800
-            state["spent"][today] = spent
+            if not text:
+                spent += 1800
+                state["spent"][today] = spent
             done += 1
             save(videos)
             print("  완료")
@@ -1461,7 +1530,7 @@ def auto():
     write_json(STATE, state)
     for m, c in state["models"].items():
         print(f"모델 누적 기록: {m} -> 성공 {c['ok']}, 바쁨 {c['busy']}, 사용불가 {c['dead']}")
-    print(f"\n이번 실행: 성공 {done}편 | 오늘 사용한 영상 시간 {spent // 60}분 / 예산 {budget // 60}분")
+    print(f"\n이번 실행: 성공 {done}편 (자막 {n_tr}편 · 영상 {n_vid}편) | 영상 예산 {spent // 60}분 사용 / 지금까지 쓸 수 있는 시간 {budget // 60}분 ({slot_name}, 오후 5시 초기화)")
     return 0
 
 
