@@ -49,28 +49,28 @@
  "spent": {},
  "models": {
   "gemini-3.6-flash": {
-   "ok": 5,
-   "busy": 15,
+   "ok": 8,
+   "busy": 19,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 1,
-   "busy": 24,
+   "busy": 27,
    "dead": 4
   },
   "gemini-3.8-flash": {
    "ok": 1,
-   "busy": 28,
+   "busy": 32,
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 19,
-   "busy": 2,
+   "ok": 21,
+   "busy": 4,
    "dead": 4
   },
   "gemini-3.5-flash-lite": {
-   "ok": 1,
-   "busy": 2,
+   "ok": 2,
+   "busy": 3,
    "dead": 4
   }
  },
@@ -148,17 +148,13 @@
   "9E76qPLcH2I": true,
   "RdfnAtPvQ_Y": true,
   "FyGbtyVa15A": true,
-  "eFnxFsUiMvs": true,
-  "-PVT3Gp45SE": true,
   "E_hFDCS4SCo": true,
-  "6g110iUWTVo": true,
   "agyobp9BQ4I": true,
   "CJ7CocnSQv8": true,
   "czlp9MNI2ms": true,
   "UrO7j2xXmhI": true,
   "hEq902LKr3k": true,
   "Lsc8rckE98s": true,
-  "kZAYyNhv5p4": true,
   "Vy2KSdTuQ2w": true,
   "Cgn7XPWef2A": true,
   "ePHxrqnevQI": true,
@@ -168,7 +164,6 @@
   "vCEYiChFcnA": true,
   "OUCijtPQrCQ": true,
   "Q_Pgdi25lg0": true,
-  "lBlGFVbqgXE": true,
   "dHmiFEuyjWw": true,
   "ZCzUlVm2jSg": true,
   "LiGYUpAkYzA": true,
@@ -176,7 +171,6 @@
   "dX_Ak9Yu2jI": true,
   "vdr27RxbWB4": true,
   "bHls2Oc1faY": true,
-  "XrMcS9HJQQQ": true,
   "FeBExCVpt4U": true,
   "8O7iSTMZ-84": true,
   "JL6acLiFOFE": true,
