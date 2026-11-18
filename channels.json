@@ -23,5 +23,10 @@
   "name": "머니인사이드",
   "handle": "@moneyinside7",
   "id": "UCxfko2YOD6DODYRGzeOPhIQ"
- }
+ },
+   {"name": "연합뉴스경제TV", "handle": "", "id": "UC6kZpTl39-_SqfBrF1-N2oQ", "title_include": ["인포맥스라이브", "인포맥스 라이브"]},
+  {"name": "증시각도기TV", "handle": "@koreanstockrider", "id": "UCdOjVxkj5JA0iDu3_xcsTyQ"},
+  {"name": "교보증권 머니텐", "handle": "", "id": "UCcviJwrVaorhIFL4csgAz1w"},
+  {"name": "체슬리TV", "handle": "@chesleytv", "id": "UCXST0Hq6CAmG0dmo3jgrlEw"},
+  {"name": "채국장 머니버스", "handle": "@chaegookjang", "id": "UCl7_Zg4RdQbHx0kXaiKL-5g"}
 ]
