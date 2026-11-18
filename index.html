@@ -304,7 +304,11 @@ a.tm:hover{color:var(--accent)}
 .card p{font-size:1.02rem;font-weight:700;color:var(--ink);-webkit-line-clamp:4}
 .card h2{color:var(--sub);font-weight:400}
 .thumb{position:relative}
-.thumb .md{position:absolute;left:8px;bottom:8px;color:#fff;font-size:.72rem;font-weight:700;padding:1px 8px;border-radius:99px;line-height:1.6;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+/* 분위기 표시는 채널·날짜 줄 오른쪽 끝, 모든 카드 같은 자리에 */
+.card .meta{flex-wrap:nowrap;align-items:center}
+.card .meta b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .meta span{flex:none}
+.card .meta .md{margin-left:auto;color:#fff;font-size:.72rem;font-weight:700;padding:0 8px;border-radius:99px;line-height:1.7}
 .card .body{flex:1}
 .cfoot{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;margin-top:auto}
 .cmore{flex:none;font-size:.78rem;font-weight:600;color:var(--sub);white-space:nowrap;padding:2px 0}
@@ -318,10 +322,10 @@ a.tm:hover{color:var(--accent)}
 .sitefoot a{color:var(--sub);text-decoration:none}.sitefoot a:hover{color:var(--accent)}
 @media(max-width:600px){
  /* 모바일은 유튜브 검색 결과처럼: 왼쪽 썸네일, 오른쪽 채널·제목, 아래에 한 줄 요약 */
- .grid .card{display:grid;grid-template-columns:44% 1fr;grid-template-areas:"th me" "th ti" "co co" "fo fo";column-gap:12px;row-gap:4px;padding:12px;align-items:start}
+ .grid .card{display:grid;grid-template-columns:44% minmax(0,1fr);grid-template-areas:"th me" "th ti" "co co" "fo fo";column-gap:12px;row-gap:4px;padding:12px;align-items:start}
  .grid .card .body{display:contents}
  .grid .card .thumb{grid-area:th;border-radius:8px;overflow:hidden}
- .grid .card .meta{grid-area:me;font-size:.76rem;gap:2px 8px}
+ .grid .card .meta{grid-area:me;font-size:.76rem;gap:2px 6px;min-width:0}
  .grid .card h2{grid-area:ti;font-size:.88rem;-webkit-line-clamp:3}
  .grid .card p{grid-area:co;font-size:.95rem;-webkit-line-clamp:3;margin-top:6px}
  .grid .card .cfoot{grid-area:fo}
@@ -331,7 +335,7 @@ a.tm:hover{color:var(--accent)}
  #v-videos .bar .chips::-webkit-scrollbar,#kwchips::-webkit-scrollbar{display:none}
  #v-videos .chip{flex:none}
  .kwbar{flex-wrap:nowrap;margin-top:-4px}.kwbar small{flex:none}.kwbar .chips{min-width:0}
- .grid .card .thumb .md{left:5px;bottom:5px;font-size:.66rem;padding:0 6px}
+ .grid .card .meta .md{font-size:.66rem;padding:0 6px}
  .grid{gap:10px}
  .dlatest.dblk #hgrid .card{padding:10px 0;border-bottom:1px solid var(--line)}
  .dlatest.dblk #hgrid .card:last-child{border-bottom:0}
@@ -392,7 +396,7 @@ function chips(){$("#chips").innerHTML=chans.map(c=>`<button class="chip" aria-p
 function thumb(v){const id=vid(v.url);return id?`<img src="https://img.youtube.com/vi/${id}/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">`:""}
 const MOODS={"낙관":"긍정","중립":"중립","비관":"부정"};  // 데이터는 낙관/중립/비관으로 저장하고 화면에는 긍정/중립/부정으로 보여 준다
 let kw="";
-function card(i){const v=VIDEOS[i];return `<article class="card" tabindex="0" data-i="${i}"><div class="thumb">${thumb(v)}${MOODS[v.mood]?`<span class="md m${v.mood}">${MOODS[v.mood]}</span>`:""}</div><div class="body"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span></div><h2>${esc(v.title)}</h2><p>${sent(v.conclusion)}</p><div class="cfoot"><div class="tags">${(v.tags||[]).map(t=>`<button class="kw" data-kw="${esc(t)}">#${esc(t)}</button>`).join("")}</div><span class="cmore">상세 요약 ›</span></div></div></article>`}
+function card(i){const v=VIDEOS[i];return `<article class="card" tabindex="0" data-i="${i}"><div class="thumb">${thumb(v)}</div><div class="body"><div class="meta"><b>${esc(v.channel)}</b><span>${esc(v.date.replace(/-/g,"."))}</span>${MOODS[v.mood]?`<span class="md m${v.mood}">${MOODS[v.mood]}</span>`:""}</div><h2>${esc(v.title)}</h2><p>${sent(v.conclusion)}</p><div class="cfoot"><div class="tags">${(v.tags||[]).map(t=>`<button class="kw" data-kw="${esc(t)}">#${esc(t)}</button>`).join("")}</div><span class="cmore">상세 요약 ›</span></div></div></article>`}
 function kwChips(){const since=kst(7*864e5),cnt={};VIDEOS.forEach(v=>{if(v.date>=since)(v.tags||[]).forEach(t=>cnt[t]=(cnt[t]||0)+1)});
  let top=Object.entries(cnt).filter(([,n])=>n>=2).sort((a,b)=>b[1]-a[1]).slice(0,12).map(([t])=>t);if(kw&&!top.includes(kw))top.unshift(kw);
  const el=$("#kwchips");if(el)el.innerHTML=`<button class="chip" data-kw="" aria-pressed="${!kw}">전체</button>`+top.map(t=>`<button class="chip" data-kw="${esc(t)}" aria-pressed="${t===kw}">#${esc(t)}</button>`).join("")}
