@@ -6,10 +6,11 @@
 <meta property="og:type" content="article"><meta property="og:site_name" content="경제 유튜브 요약">
 <meta property="og:title" content="11.16~11.22 주간 시장 브리핑: 외국인 매도와 엔비디아 실적 발표를 거치며 증시 변동성이 확대되었다."><meta property="og:description" content="외국인의 대규모 매도세로 국내 증시가 급락세를 보였다. 엔비디아 실적과 AI 투자 지속 가능성이 핵심 변수로 작용했다. 고금리와 매크로 부담이 이어지며 시장에 하방 압력을 가했다. 지수 갭 메우기 이후 패닉 매도보다 냉정한 대응이 필요하다."><meta property="og:url" content="https://econo-tube-note.github.io/econo-tube-note/week/2026-11-16/">
 <style>
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
 :root{--bg:#f4f5f8;--card:#fff;--ink:#14181f;--sub:#5d6573;--line:#e1e4ea;--accent:#2457f5;--chip:#eef1f7}
 @media (prefers-color-scheme:dark){:root{--bg:#0f1217;--card:#181c24;--ink:#eef1f6;--sub:#9aa3b2;--line:#272d38;--accent:#7b99ff;--chip:#222833}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.6}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.6}
 .wrap{max-width:1080px;margin:0 auto;padding:40px 20px 56px}
 h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
 .lead{color:var(--sub);margin:0 0 20px}
@@ -294,6 +295,48 @@ a.tm:hover{color:var(--accent)}
 @media(max-width:800px){.dvids{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}.dvid{flex:0 0 42%;scroll-snap-align:start}}
 @media(max-width:600px){.dwk{flex-wrap:wrap}.dwk span{white-space:normal;overflow:visible}.dfoot .dmore{margin-left:auto}.mseg{min-width:0;flex-direction:column;gap:0;font-size:.74rem}.mseg span{font-size:.9rem}.mbar{height:52px}.dvs{flex-direction:column;align-items:stretch;gap:8px}.vs{align-self:center;font-size:1.3rem;padding:2px 0}.dblk{padding:16px}.dhl{font-size:1.15rem}.dgrid{grid-template-columns:repeat(2,1fr)}.dv2{flex-direction:column;gap:2px;padding:6px 4px}.dch{width:auto}.dvid{flex-basis:62%}.dmore{margin-left:0}}
 
+/* ----- 영상 카드: 제목과 한 줄 요약 균형, 분위기, 상세 요약 버튼 ----- */
+.card h2{font-size:.95rem;font-weight:600;color:var(--ink);line-height:1.45}
+.card p{font-size:1.02rem;font-weight:700;color:var(--ink);-webkit-line-clamp:4}
+.card h2{color:var(--sub);font-weight:400}
+.thumb{position:relative}
+/* 분위기 표시는 채널·날짜 줄 오른쪽 끝, 모든 카드 같은 자리에 */
+.card .meta{flex-wrap:nowrap;align-items:center}
+.card .meta b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .meta span{flex:none}
+.card .meta .md{margin-left:auto;color:#fff;font-size:.72rem;font-weight:700;padding:0 8px;border-radius:99px;line-height:1.7}
+.card .body{flex:1}
+.cfoot{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;margin-top:auto}
+.cmore{flex:none;font-size:.78rem;font-weight:600;color:var(--sub);white-space:nowrap;padding:2px 0}
+.card:hover .cmore{color:var(--accent)}
+.tags .kw{border:0;background:var(--chip);color:var(--sub);padding:2px 10px;border-radius:99px;font:inherit;font-size:.78rem;cursor:pointer}
+.tags .kw:hover{color:var(--accent)}
+.kwbar{display:flex;align-items:center;gap:10px;margin:-6px 0 18px;flex-wrap:wrap}
+.kwbar small{color:var(--sub);font-weight:700;font-size:.8rem}
+.kwbar .chips .chip{font-size:.82rem;padding:4px 12px}
+.sitefoot{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;margin:26px 0 8px;padding-top:16px;border-top:1px solid var(--line);font-size:.84rem}
+.sitefoot a{color:var(--sub);text-decoration:none}.sitefoot a:hover{color:var(--accent)}
+@media(max-width:600px){
+ /* 모바일은 유튜브 검색 결과처럼: 왼쪽 썸네일, 오른쪽 채널·제목, 아래에 한 줄 요약 */
+ .grid .card{display:grid;grid-template-columns:44% minmax(0,1fr);grid-template-areas:"th me" "th ti" "co co" "fo fo";column-gap:12px;row-gap:4px;padding:12px;align-items:start}
+ .grid .card .body{display:contents}
+ .grid .card .thumb{grid-area:th;border-radius:8px;overflow:hidden}
+ .grid .card .meta{grid-area:me;font-size:.76rem;gap:2px 6px;min-width:0}
+ .grid .card h2{grid-area:ti;font-size:.88rem;-webkit-line-clamp:3}
+ .grid .card p{grid-area:co;font-size:.95rem;-webkit-line-clamp:3;margin-top:6px}
+ .grid .card .cfoot{grid-area:fo}
+ .grid .card .tags .kw{font-size:.72rem;padding:1px 8px}
+ /* 모바일에서는 채널·키워드 버튼을 한 줄로 두고 옆으로 넘겨 본다 (세로 공간 절약) */
+ #v-videos .bar .chips,#kwchips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:2px}
+ #v-videos .bar .chips::-webkit-scrollbar,#kwchips::-webkit-scrollbar{display:none}
+ #v-videos .chip{flex:none}
+ .kwbar{flex-wrap:nowrap;margin-top:-4px}.kwbar small{flex:none}.kwbar .chips{min-width:0}
+ .grid .card .meta .md{font-size:.66rem;padding:0 6px}
+ .grid{gap:10px}
+ .dlatest.dblk #hgrid .card{padding:10px 0;border-bottom:1px solid var(--line)}
+ .dlatest.dblk #hgrid .card:last-child{border-bottom:0}
+}
+
 .logo{display:block;font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 16px;color:var(--ink);text-decoration:none}
 .nav a{border:0;background:none;padding:10px 16px;font-weight:700;color:var(--sub);text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-1px;flex:none}
 .nav{display:flex;gap:4px}
@@ -311,6 +354,7 @@ a.vc{color:inherit;text-decoration:none}
 .bld b{font-size:1.45rem!important;font-weight:800!important;letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
 .bld.wk b{font-size:1.15rem!important}
 .bld small{margin-top:2px!important}
+.infodoc h2.bt{margin:26px 0 8px}.infodoc p,.infodoc li{line-height:1.75}
 #themes,#agree,#disagree{scroll-margin-top:12px}
 .dis .dv .hv{align-self:flex-end}
 .tcard.flash{outline:2px solid var(--accent);outline-offset:2px;transition:outline-color .4s}
@@ -326,6 +370,7 @@ a.vc{color:inherit;text-decoration:none}
 <div class="brief"><div class="bhead"><b>주간 브리핑</b><span>2026.11.16 (월) ~ 2026.11.22 (일) · 영상 41편 종합</span><a class="link" href="/econo-tube-note/brief/#weekly">브리핑 모아보기</a></div><h1>외국인 매도와 엔비디아 실적 발표를 거치며 증시 변동성이 확대되었다.</h1><ul class="kp"><li>외국인의 대규모 매도세로 국내 증시가 급락세를 보였다.</li><li>엔비디아 실적과 AI 투자 지속 가능성이 핵심 변수로 작용했다.</li><li>고금리와 매크로 부담이 이어지며 시장에 하방 압력을 가했다.</li><li>지수 갭 메우기 이후 패닉 매도보다 냉정한 대응이 필요하다.</li></ul><div class="bsec"><h3 class="bt c1">하루하루의 흐름<span class="cn">3</span></h3><dl class="tl"><dt>11.16(월)</dt><dd>외국인 대규모 매도와 반도체주 투매로 국내 증시가 급락했다. <a class="link" href="/econo-tube-note/brief/2026-11-16/">브리핑 →</a></dd><dt>11.17(화)</dt><dd>외국인 매도와 엔비디아 실적 우려 속에 증시 변동성이 지속됐다. <a class="link" href="/econo-tube-note/brief/2026-11-17/">브리핑 →</a></dd><dt>11.18(수)</dt><dd>엔비디아의 탄탄한 실적 발표로 AI 투자 지속 가능성을 점검했다. <a class="link" href="/econo-tube-note/brief/2026-11-18/">브리핑 →</a></dd></dl></div><div class="bsec"><h3 class="bt c2">이번 주 반복된 주제<span class="cn">3</span></h3><div class="tgrid"><div class="tcard"><b>외국인 매도와 반도체주</b><p data-exp title="눌러서 펼치기">외국인의 대규모 순매도가 이어지면서 삼성전자와 SK하이닉스 등 주요 반도체 종목이 큰 조정을 받았다. 수급 주체 부재로 증시 변동성이 심화되었다.</p><small>3일 등장 · <a href="/econo-tube-note/brief/2026-11-16/">11.16</a>, <a href="/econo-tube-note/brief/2026-11-17/">11.17</a>, <a href="/econo-tube-note/brief/2026-11-18/">11.18</a></small></div><div class="tcard"><b>엔비디아 실적과 AI 리스크</b><p data-exp title="눌러서 펼치기">엔비디아 실적 발표와 가이던스를 앞두고 기대와 우려가 교차했다. 실적 발표 이후에는 AI 투자 사이클과 인프라 투자 지속 여부가 주요 화두가 되었다.</p><small>3일 등장 · <a href="/econo-tube-note/brief/2026-11-16/">11.16</a>, <a href="/econo-tube-note/brief/2026-11-17/">11.17</a>, <a href="/econo-tube-note/brief/2026-11-18/">11.18</a></small></div><div class="tcard"><b>고금리 및 거시경제 부담</b><p data-exp title="눌러서 펼치기">미국 국채 금리 상승과 매크로 지표 부담이 증시에 하방 압력을 가했다. 고금리 환경 속에서 거시경제 변수에 대한 주의가 요구되었다.</p><small>2일 등장 · <a href="/econo-tube-note/brief/2026-11-16/">11.16</a>, <a href="/econo-tube-note/brief/2026-11-17/">11.17</a></small></div></div></div><div class="bsec"><h3 class="bt c4">이번 주 많이 언급된 종목<span class="cn">8</span></h3><div class="skg"><div class="sk"><div class="skh"><b><a href="/econo-tube-note/stock/SK%ED%95%98%EC%9D%B4%EB%8B%89%EC%8A%A4/" style="color:inherit">SK하이닉스</a></b><small>20편 · 3일</small></div><p>외국인 매도세 속에서 주요 반도체 종목으로 함께 급락과 수급 상황이 언급되었다.</p></div><div class="sk"><div class="skh"><b><a href="/econo-tube-note/stock/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90/" style="color:inherit">삼성전자</a></b><small>19편 · 3일</small></div><p>외국인 매도 영향으로 주가가 하락했으며 풍부한 현금성 자산과 투자 매력이 다뤄졌다.</p></div><div class="sk"><div class="skh"><b><a href="/econo-tube-note/stock/%EC%97%94%EB%B9%84%EB%94%94%EC%95%84/" style="color:inherit">엔비디아</a></b><small>17편 · 3일</small></div><p>실적 발표와 경영진 리스크 및 4분기 가이던스가 시장의 핵심 변수로 집중 조명되었다.</p></div><div class="sk"><div class="skh"><b><a href="/econo-tube-note/stock/%EA%B5%AC%EA%B8%80/" style="color:inherit">구글</a></b><small>5편 · 3일</small></div><p>AI 밸류체인 및 시장 동향과 관련하여 주간 브리핑 과정에서 언급되었다.</p></div><div class="sk"><div class="skh"><b><a href="/econo-tube-note/stock/%EC%98%A4%EB%9D%BC%ED%81%B4/" style="color:inherit">오라클</a></b><small>3편 · 3일</small></div><p>AI 관련 시장 흐름과 함께 주간 브리핑 대상 종목으로 포함되었다.</p></div><div class="sk"><div class="skh"><b><a href="/econo-tube-note/stock/%EC%82%BC%EC%84%B1%EC%A0%84%EA%B8%B0/" style="color:inherit">삼성전기</a></b><small>3편 · 2일</small></div><p>국내 증시 하락 및 반도체 관련 흐름 속에서 함께 언급되었다.</p></div><div class="sk"><div class="skh"><b><a href="/econo-tube-note/stock/%EC%A3%BC%EC%84%B1%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4%EB%A7%81/" style="color:inherit">주성엔지니어링</a></b><small>3편 · 2일</small></div><p>반도체 업종 변동성 국면에서 관련 종목으로 거론되었다.</p></div><div class="sk"><div class="skh"><b><a href="/econo-tube-note/stock/%EC%82%BC%EC%96%91%EC%8B%9D%ED%92%88/" style="color:inherit">삼양식품</a></b><small>3편 · 2일</small></div><p>증시 등락 과정에서 언급된 주간 종목 중 하나다.</p></div></div></div><p class="bnote">AI가 이번 주의 일간 브리핑들을 종합한 내용이며 투자 권유가 아니다.</p></div>
 
 <p class="note">AI가 경제 유튜브 영상과 그 요약을 종합한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
+<footer class="sitefoot"><a href="/econo-tube-note/about/">사이트 소개</a><a href="/econo-tube-note/privacy/">개인정보처리방침</a><a href="mailto:gomajjy0@gmail.com">문의 gomajjy0@gmail.com</a></footer>
 </div><script>
 (()=>{const m=/^#theme-([0-9]+)$/.exec(location.hash);if(!m)return;const go=()=>{const s=document.getElementById("themes"),c=document.getElementById("theme-"+m[1]);
 if(s)s.scrollIntoView({block:"start"});if(c){c.classList.add("flash");setTimeout(()=>c.classList.remove("flash"),2600)}};

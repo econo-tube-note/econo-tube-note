@@ -6,10 +6,11 @@
 <meta property="og:type" content="article"><meta property="og:site_name" content="경제 유튜브 요약">
 <meta property="og:title" content="네비우스: 경제 유튜브 채널들의 시각"><meta property="og:description" content="네비우스는 시장에서 중요한 위치를 차지하는 네오클라우드 업체다. 그러나 호실적에도 악재와 불확실성 여파로 주가가 하락했다. 네오클라우드 업체 중 2위로 시장에서 중요한 위치를 차지한다. 호실적 발표에도 시기적 악재와 엔비디아의 지급 보증 불확실성으로 주가가 하락했다."><meta property="og:url" content="https://econo-tube-note.github.io/econo-tube-note/stock/%EB%84%A4%EB%B9%84%EC%9A%B0%EC%8A%A4/">
 <style>
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
 :root{--bg:#f4f5f8;--card:#fff;--ink:#14181f;--sub:#5d6573;--line:#e1e4ea;--accent:#2457f5;--chip:#eef1f7}
 @media (prefers-color-scheme:dark){:root{--bg:#0f1217;--card:#181c24;--ink:#eef1f6;--sub:#9aa3b2;--line:#272d38;--accent:#7b99ff;--chip:#222833}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.6}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.6}
 .wrap{max-width:1080px;margin:0 auto;padding:40px 20px 56px}
 h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
 .lead{color:var(--sub);margin:0 0 20px}
@@ -294,6 +295,48 @@ a.tm:hover{color:var(--accent)}
 @media(max-width:800px){.dvids{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}.dvid{flex:0 0 42%;scroll-snap-align:start}}
 @media(max-width:600px){.dwk{flex-wrap:wrap}.dwk span{white-space:normal;overflow:visible}.dfoot .dmore{margin-left:auto}.mseg{min-width:0;flex-direction:column;gap:0;font-size:.74rem}.mseg span{font-size:.9rem}.mbar{height:52px}.dvs{flex-direction:column;align-items:stretch;gap:8px}.vs{align-self:center;font-size:1.3rem;padding:2px 0}.dblk{padding:16px}.dhl{font-size:1.15rem}.dgrid{grid-template-columns:repeat(2,1fr)}.dv2{flex-direction:column;gap:2px;padding:6px 4px}.dch{width:auto}.dvid{flex-basis:62%}.dmore{margin-left:0}}
 
+/* ----- 영상 카드: 제목과 한 줄 요약 균형, 분위기, 상세 요약 버튼 ----- */
+.card h2{font-size:.95rem;font-weight:600;color:var(--ink);line-height:1.45}
+.card p{font-size:1.02rem;font-weight:700;color:var(--ink);-webkit-line-clamp:4}
+.card h2{color:var(--sub);font-weight:400}
+.thumb{position:relative}
+/* 분위기 표시는 채널·날짜 줄 오른쪽 끝, 모든 카드 같은 자리에 */
+.card .meta{flex-wrap:nowrap;align-items:center}
+.card .meta b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card .meta span{flex:none}
+.card .meta .md{margin-left:auto;color:#fff;font-size:.72rem;font-weight:700;padding:0 8px;border-radius:99px;line-height:1.7}
+.card .body{flex:1}
+.cfoot{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;margin-top:auto}
+.cmore{flex:none;font-size:.78rem;font-weight:600;color:var(--sub);white-space:nowrap;padding:2px 0}
+.card:hover .cmore{color:var(--accent)}
+.tags .kw{border:0;background:var(--chip);color:var(--sub);padding:2px 10px;border-radius:99px;font:inherit;font-size:.78rem;cursor:pointer}
+.tags .kw:hover{color:var(--accent)}
+.kwbar{display:flex;align-items:center;gap:10px;margin:-6px 0 18px;flex-wrap:wrap}
+.kwbar small{color:var(--sub);font-weight:700;font-size:.8rem}
+.kwbar .chips .chip{font-size:.82rem;padding:4px 12px}
+.sitefoot{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;margin:26px 0 8px;padding-top:16px;border-top:1px solid var(--line);font-size:.84rem}
+.sitefoot a{color:var(--sub);text-decoration:none}.sitefoot a:hover{color:var(--accent)}
+@media(max-width:600px){
+ /* 모바일은 유튜브 검색 결과처럼: 왼쪽 썸네일, 오른쪽 채널·제목, 아래에 한 줄 요약 */
+ .grid .card{display:grid;grid-template-columns:44% minmax(0,1fr);grid-template-areas:"th me" "th ti" "co co" "fo fo";column-gap:12px;row-gap:4px;padding:12px;align-items:start}
+ .grid .card .body{display:contents}
+ .grid .card .thumb{grid-area:th;border-radius:8px;overflow:hidden}
+ .grid .card .meta{grid-area:me;font-size:.76rem;gap:2px 6px;min-width:0}
+ .grid .card h2{grid-area:ti;font-size:.88rem;-webkit-line-clamp:3}
+ .grid .card p{grid-area:co;font-size:.95rem;-webkit-line-clamp:3;margin-top:6px}
+ .grid .card .cfoot{grid-area:fo}
+ .grid .card .tags .kw{font-size:.72rem;padding:1px 8px}
+ /* 모바일에서는 채널·키워드 버튼을 한 줄로 두고 옆으로 넘겨 본다 (세로 공간 절약) */
+ #v-videos .bar .chips,#kwchips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding-bottom:2px}
+ #v-videos .bar .chips::-webkit-scrollbar,#kwchips::-webkit-scrollbar{display:none}
+ #v-videos .chip{flex:none}
+ .kwbar{flex-wrap:nowrap;margin-top:-4px}.kwbar small{flex:none}.kwbar .chips{min-width:0}
+ .grid .card .meta .md{font-size:.66rem;padding:0 6px}
+ .grid{gap:10px}
+ .dlatest.dblk #hgrid .card{padding:10px 0;border-bottom:1px solid var(--line)}
+ .dlatest.dblk #hgrid .card:last-child{border-bottom:0}
+}
+
 .logo{display:block;font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 16px;color:var(--ink);text-decoration:none}
 .nav a{border:0;background:none;padding:10px 16px;font-weight:700;color:var(--sub);text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-1px;flex:none}
 .nav{display:flex;gap:4px}
@@ -311,6 +354,7 @@ a.vc{color:inherit;text-decoration:none}
 .bld b{font-size:1.45rem!important;font-weight:800!important;letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
 .bld.wk b{font-size:1.15rem!important}
 .bld small{margin-top:2px!important}
+.infodoc h2.bt{margin:26px 0 8px}.infodoc p,.infodoc li{line-height:1.75}
 #themes,#agree,#disagree{scroll-margin-top:12px}
 .dis .dv .hv{align-self:flex-end}
 .tcard.flash{outline:2px solid var(--accent);outline-offset:2px;transition:outline-color .4s}
@@ -326,6 +370,7 @@ a.vc{color:inherit;text-decoration:none}
 <div class="brief"><div class="bhead"><b>종목</b><span>영상 2편 · 1채널 · 마지막 언급 11.17</span><a class="link" href="/econo-tube-note/stock/">전체 종목 →</a></div><h1>네비우스 <span class="tone t혼재" style="font-size:.8rem;vertical-align:5px">혼재</span></h1><div class="digest"><div class="dh"><b>종합</b><span>영상 2편 기준 · 11.18 정리</span></div><p>네비우스는 시장에서 중요한 위치를 차지하는 네오클라우드 업체다. 그러나 호실적에도 악재와 불확실성 여파로 주가가 하락했다.</p><ul><li>네오클라우드 업체 중 2위로 시장에서 중요한 위치를 차지한다.</li><li>호실적 발표에도 시기적 악재와 엔비디아의 지급 보증 불확실성으로 주가가 하락했다.</li></ul></div><div class="bsec"><h3 class="bt c4">채널별 언급<span class="cn">2</span></h3><div class="skrb" style="padding:0"><p class="srow"><small>11.17</small><span>네오클라우드 업체 중 2위로 시장에서 중요한 위치를 차지한다.</span><span class="rt"><button class="hv" data-t="v-GrEZiF4e6k">815머니톡</button><a class="tm" href="https://www.youtube.com/watch?v=-GrEZiF4e6k&t=1375s" target="_blank" rel="noopener">▶ 22:55</a></span></p><p class="srow"><small>11.14</small><span>호실적 발표에도 불구하고 시기적 악재와 엔비디아의 지급 보증 불확실성 여파로 주가가 하락했다고 설명한다.</span><span class="rt"><button class="hv" data-t="vr_mO3QY3fE4">815머니톡</button><a class="tm" href="https://www.youtube.com/watch?v=r_mO3QY3fE4&t=664s" target="_blank" rel="noopener">▶ 11:04</a></span></p></div></div></div><template id="v-GrEZiF4e6k"><a class="vc" href="/econo-tube-note/#v/-GrEZiF4e6k"><div class="vl"><div class="vth"><img src="https://img.youtube.com/vi/-GrEZiF4e6k/hqdefault.jpg" alt="" loading="lazy"></div><b>815머니톡</b><small>2026.11.17</small></div><div class="vr"><div class="vt">[#긴급인터뷰] “악재가 끊이지 않는다!” 공포에 질린 투자자들 AI 반도체 무차별 투매… 삼성전자·SK하이닉스 슈퍼호황 정말 끝났나?ㅣ 테크밸리인사이트 손정우 대표</div><p>젠슨 황 사임 이슈는 엔비디아에 단기 악재이나 AI 산업의 전체 수요는 견조하다. 따라서 반도체 공급망은 유지될 것이며 중장기적으로는 긍정적이다.</p></div></a></template><template id="vr_mO3QY3fE4"><a class="vc" href="/econo-tube-note/#v/r_mO3QY3fE4"><div class="vl"><div class="vth"><img src="https://img.youtube.com/vi/r_mO3QY3fE4/hqdefault.jpg" alt="" loading="lazy"></div><b>815머니톡</b><small>2026.11.14</small></div><div class="vr"><div class="vt">“젠슨 황 떠나자 AI 데이터센터주 초토화!” 삼성전자·SK하이닉스까지 무너지나?ㅣ오로라투자자문 이지환 대표</div><p>AI 반도체 변동성의 실질 타격은 크지 않으므로, 가격 메리트가 있는 국내 반도체주 위주로 대응해야 한다.</p></div></a></template>
 
 <p class="note">AI가 경제 유튜브 영상과 그 요약을 종합한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
+<footer class="sitefoot"><a href="/econo-tube-note/about/">사이트 소개</a><a href="/econo-tube-note/privacy/">개인정보처리방침</a><a href="mailto:gomajjy0@gmail.com">문의 gomajjy0@gmail.com</a></footer>
 </div><script>
 (()=>{const m=/^#theme-([0-9]+)$/.exec(location.hash);if(!m)return;const go=()=>{const s=document.getElementById("themes"),c=document.getElementById("theme-"+m[1]);
 if(s)s.scrollIntoView({block:"start"});if(c){c.classList.add("flash");setTimeout(()=>c.classList.remove("flash"),2600)}};
