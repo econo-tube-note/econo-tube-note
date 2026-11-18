@@ -26,8 +26,8 @@
    "lastmod": "2026-11-18"
   },
   "2026-11-18": {
-   "headline": "엔비디아 실적 호조와 수급 개선에 힘입어 반도체 중심의 증시 반등 가능성이 제기된다.",
-   "count": 21,
+   "headline": "엔비디아의 탄탄한 실적 발표로 반도체 중심의 시장 반등 기대감이 커지고 있다",
+   "count": 24,
    "lastmod": "2026-11-19"
   }
  },
@@ -48,26 +48,26 @@
  "stock": {
   "삼성전자": {
    "name": "삼성전자",
-   "tone": "혼재",
-   "count": 52,
-   "channels": 8,
-   "last": "2026-11-18",
+   "tone": "긍정",
+   "count": 58,
+   "channels": 10,
+   "last": "2026-11-19",
    "lastmod": "2026-11-19"
   },
   "엔비디아": {
    "name": "엔비디아",
    "tone": "혼재",
-   "count": 39,
-   "channels": 7,
-   "last": "2026-11-18",
+   "count": 43,
+   "channels": 8,
+   "last": "2026-11-19",
    "lastmod": "2026-11-19"
   },
   "SK하이닉스": {
    "name": "SK하이닉스",
    "tone": "혼재",
-   "count": 49,
-   "channels": 9,
-   "last": "2026-11-18",
+   "count": 55,
+   "channels": 10,
+   "last": "2026-11-19",
    "lastmod": "2026-11-19"
   },
   "코어위브": {
@@ -161,8 +161,8 @@
   "TSMC": {
    "name": "TSMC",
    "tone": "긍정",
-   "count": 5,
-   "channels": 3,
+   "count": 6,
+   "channels": 4,
    "last": "2026-11-18",
    "lastmod": "2026-11-19"
   },
@@ -289,9 +289,9 @@
   "삼성전기": {
    "name": "삼성전기",
    "tone": "혼재",
-   "count": 6,
-   "channels": 3,
-   "last": "2026-11-18",
+   "count": 8,
+   "channels": 4,
+   "last": "2026-11-19",
    "lastmod": "2026-11-19"
   },
   "이수페타시스": {
@@ -428,6 +428,46 @@
    "count": 2,
    "channels": 2,
    "last": "2026-11-18",
+   "lastmod": "2026-11-19"
+  },
+  "JYP-Ent": {
+   "name": "JYP Ent.",
+   "tone": null,
+   "count": 2,
+   "channels": 2,
+   "last": "2026-11-18",
+   "lastmod": "2026-11-19"
+  },
+  "알테오젠": {
+   "name": "알테오젠",
+   "tone": null,
+   "count": 2,
+   "channels": 2,
+   "last": "2026-11-17",
+   "lastmod": "2026-11-19"
+  },
+  "애플": {
+   "name": "애플",
+   "tone": null,
+   "count": 2,
+   "channels": 1,
+   "last": "2026-11-18",
+   "lastmod": "2026-11-19"
+  },
+  "현대모비스": {
+   "name": "현대모비스",
+   "tone": null,
+   "count": 2,
+   "channels": 2,
+   "last": "2026-11-18",
+   "lastmod": "2026-11-19"
+  },
+  "SK텔레콤": {
+   "name": "SK텔레콤",
+   "tone": null,
+   "count": 2,
+   "channels": 2,
+   "last": "2026-11-19",
    "lastmod": "2026-11-19"
   }
  }

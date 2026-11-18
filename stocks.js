@@ -2,12 +2,12 @@
 const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
-  "tone": "혼재",
-  "summary": "낮은 가격대와 엔비디아 공급 약정 등으로 구조적 성장과 장기 매력이 기대된다는 의견과 함께, 업황 불확실성과 소통 부족에 따른 단기 수급 변동성 우려가 공존한다.",
+  "tone": "긍정",
+  "summary": "주가 하락으로 밸류에이션 매력이 부각되었으며 반도체 주도주로서 장기 보유와 저점 매수 기회로 평가한다.",
   "points": [
-   "엔비디아 공급 약정과 고객사 확보로 향후 실적과 경쟁력이 기대된다.",
-   "고점 대비 큰 폭으로 하락하여 낮은 가격대와 밸류에이션 매력이 존재한다.",
-   "반도체 업황 불확실성과 소통 부족으로 단기 수급 변동성 우려가 있다."
+   "월봉상 주요 지지선에 도달하여 저점 형성 가능성과 낮은 가격대를 평가한다.",
+   "엔비디아 공급 약정과 고객사 다변화로 향후 실적 성장이 기대된다.",
+   "반도체 주도주로서 장기 보유가 유리하며 마진율 유지 시 매수 구간으로 본다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -20,9 +20,11 @@ const STOCKSUM={
    "AjAzI1Uxh9c",
    "BIhFDJtoK6k",
    "C1yE6FwQMCY",
+   "Cgn7XPWef2A",
    "Codp7P9gH4U",
    "DNHHB8jEuSM",
    "EnUsMp3IZu4",
+   "FeBExCVpt4U",
    "G-DfszxECas",
    "GS5nFhf6Nuk",
    "GzDMiPDUZr0",
@@ -31,9 +33,11 @@ const STOCKSUM={
    "JYyoOyLbEdY",
    "Jn91NmZyGBg",
    "LagAldYbD8M",
+   "N_4n0mMwAWA",
    "OK2FJONMpGA",
    "P1m0QaKWzG0",
    "PZLLj9tHYlQ",
+   "Q_Pgdi25lg0",
    "RiLTQh6mqws",
    "TDGVrEKXU5M",
    "UhA5xmTjqJ4",
@@ -43,6 +47,7 @@ const STOCKSUM={
    "bYGImu0Xhag",
    "c6LAHhYBSDI",
    "cZKNKIAXEfY",
+   "cpvUuHMLsgI",
    "dOy04iFw5_U",
    "eFnxFsUiMvs",
    "fdk1qjtZYA0",
@@ -56,6 +61,7 @@ const STOCKSUM={
    "n7IBLAd9K8U",
    "ntk0jpMmJPU",
    "p7m602W5tg4",
+   "qrosihil7Ms",
    "r_mO3QY3fE4",
    "saSLtHK3aJ0",
    "vVe3kbl0k44",
@@ -63,7 +69,7 @@ const STOCKSUM={
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 52,
+  "count": 58,
   "updated": "2026-11-19"
  },
  "엔비디아": {
@@ -114,11 +120,11 @@ const STOCKSUM={
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "혼재",
-  "summary": "AI 반도체와 HBM 수요로 성장 잠재력을 인정받으나, 수급 악화와 고객 집중도 우려도 함께 제기된다.",
+  "summary": "AI 수혜와 탄탄한 펀더멘털로 장기 성장이 기대되나, 단기 주가 하락과 고객 다변화에 따른 우려도 존재한다.",
   "points": [
-   "엔비디아향 HBM 수요에 힘입어 장기적인 실적 성장이 기대된다.",
-   "높은 고객 집중도와 외국인 매도세로 인해 단기적인 수급 불안을 겪고 있다.",
-   "목표가 하향 조정에도 불구하고 핵심 펀더멘털과 이익 창출력은 공고하다."
+   "AI 인프라 확대와 엔비디아향 HBM 수요로 장기 성장이 예상된다.",
+   "시장 조정으로 주가가 하락했으며 엔비디아 비중이 높아 고객 다변화 우려가 있다.",
+   "탄탄한 실적과 주주환원 기조에도 불구하고 목표가 하향 조정에 대한 비판이 존재한다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -131,19 +137,23 @@ const STOCKSUM={
    "AjAzI1Uxh9c",
    "BIhFDJtoK6k",
    "C1yE6FwQMCY",
+   "Cgn7XPWef2A",
    "Codp7P9gH4U",
    "DNHHB8jEuSM",
    "EnUsMp3IZu4",
    "FaYdu-Fa5_U",
+   "FeBExCVpt4U",
    "G-DfszxECas",
    "GS5nFhf6Nuk",
    "IQPubZrMfH8",
    "IU-2OFhVB4I",
    "JYyoOyLbEdY",
    "Jn91NmZyGBg",
+   "N_4n0mMwAWA",
    "OK2FJONMpGA",
    "Of8HJe9eNYw",
    "PZLLj9tHYlQ",
+   "Q_Pgdi25lg0",
    "RiLTQh6mqws",
    "TDGVrEKXU5M",
    "UhA5xmTjqJ4",
@@ -153,6 +163,7 @@ const STOCKSUM={
    "bYGImu0Xhag",
    "c6LAHhYBSDI",
    "cZKNKIAXEfY",
+   "cpvUuHMLsgI",
    "dOy04iFw5_U",
    "eFnxFsUiMvs",
    "fdk1qjtZYA0",
@@ -163,6 +174,7 @@ const STOCKSUM={
    "n16GTXBi7e0",
    "n7IBLAd9K8U",
    "p7m602W5tg4",
+   "qrosihil7Ms",
    "r_mO3QY3fE4",
    "saSLtHK3aJ0",
    "t9R5tJ0zR34",
@@ -171,7 +183,7 @@ const STOCKSUM={
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 49,
+  "count": 55,
   "updated": "2026-11-19"
  },
  "코어위브": {

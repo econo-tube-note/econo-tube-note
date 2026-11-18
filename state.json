@@ -41,7 +41,10 @@
   "UqV-kxtYvwk": "너무 짧음",
   "S3TICRbqdVo": "너무 짧음",
   "uWy8MmHtPts": "너무 짧음",
-  "-XqpELqAMCA": "너무 짧음"
+  "-XqpELqAMCA": "너무 짧음",
+  "5uwB47HBQQA": "경제 무관: 수능과 AI가 국가시험에 미치는 영향 등 교육 및 사회적 이슈를 다룸.",
+  "K7C5Ej575sM": "너무 짧음",
+  "_Tqm0GqYKXw": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -50,27 +53,27 @@
  "spent": {},
  "models": {
   "gemini-3.6-flash": {
-   "ok": 8,
-   "busy": 28,
+   "ok": 5,
+   "busy": 17,
    "dead": 4
   },
   "gemini-3.7-flash": {
-   "ok": 1,
-   "busy": 34,
+   "ok": 0,
+   "busy": 20,
    "dead": 4
   },
   "gemini-3.8-flash": {
-   "ok": 1,
-   "busy": 39,
+   "ok": 0,
+   "busy": 24,
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 27,
-   "busy": 6,
+   "ok": 30,
+   "busy": 7,
    "dead": 4
   },
   "gemini-3.5-flash-lite": {
-   "ok": 2,
+   "ok": 3,
    "busy": 5,
    "dead": 4
   }
@@ -140,7 +143,6 @@
   "zNrjmwUR9-Y": true,
   "DaHzmjAGfGQ": true,
   "CpGj1M3vaO8": true,
-  "qrosihil7Ms": true,
   "E2JBFfuhP_8": true,
   "3BsUb4zzP-4": true,
   "DS2u_UooFsw": true,
@@ -152,13 +154,10 @@
   "czlp9MNI2ms": true,
   "Lsc8rckE98s": true,
   "Vy2KSdTuQ2w": true,
-  "Cgn7XPWef2A": true,
   "ePHxrqnevQI": true,
   "D8Ux7TGeiHA": true,
-  "N_4n0mMwAWA": true,
   "vCEYiChFcnA": true,
   "OUCijtPQrCQ": true,
-  "Q_Pgdi25lg0": true,
   "dHmiFEuyjWw": true,
   "ZCzUlVm2jSg": true,
   "LiGYUpAkYzA": true,
@@ -166,7 +165,6 @@
   "dX_Ak9Yu2jI": true,
   "vdr27RxbWB4": true,
   "bHls2Oc1faY": true,
-  "FeBExCVpt4U": true,
   "8O7iSTMZ-84": true,
   "JL6acLiFOFE": true,
   "kgPvRNvkX0k": true,
@@ -183,7 +181,12 @@
   "uWy8MmHtPts": true,
   "2Rmp4RHsjek": true,
   "-XqpELqAMCA": true,
-  "cpvUuHMLsgI": true
+  "StAwPxju_7Y": true,
+  "K7C5Ej575sM": true,
+  "5k0zCfIFr8w": true,
+  "dra2apL7dEg": true,
+  "uU9ZKGTSh0k": true,
+  "_Tqm0GqYKXw": true
  },
  "brief_final": {
   "2026-11-13": true,
