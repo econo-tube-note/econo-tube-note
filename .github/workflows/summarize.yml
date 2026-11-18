@@ -73,7 +73,7 @@ jobs:
           STOCK_DIGEST: "1"         # 1이면 여러 영상에서 언급된 종목의 종합 정리를 만든다
           STOCK_PER_RUN: "2"        # 한 번 실행에서 새로 정리할 종목 수
           VIDEO_FPS: "0.2"          # 영상 화면을 몇 초에 한 장 볼지 (0.2 = 5초에 한 장, 1 = 매초). 소리는 다 듣는다. 낮을수록 한도를 덜 쓴다
-          LITE_AFTER_HOURS: "3"    # 좋은 모델이 막혔을 때, 올라온 지 이 시간이 지난 영상부터 lite 모델로 요약한다
+          LITE_AFTER_HOURS: "3"     # 좋은 모델이 막혔을 때, 올라온 지 이 시간이 지난 영상부터 lite 모델로 요약한다
         run: |
           pip install google-genai youtube-transcript-api
           python scripts/summarize.py "$URLS"
