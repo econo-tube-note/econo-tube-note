@@ -104,6 +104,37 @@ def fetch_transcript(vid):
         return [(float(x["start"]), x["text"]) for x in got]
 
 
+def parse_json3(raw):
+    """유튜브 자막(json3 형식)을 [(시작초, 글)]로 바꾼다."""
+    data = json.loads(raw)
+    out = []
+    for ev in data.get("events") or []:
+        text = "".join(sg.get("utf8", "") for sg in ev.get("segs") or []).replace("\n", " ").strip()
+        if text:
+            out.append((ev.get("tStartMs", 0) / 1000, text))
+    return out
+
+
+def fetch_transcript_ytdlp(vid, cookiefile=""):
+    """yt-dlp로 자막을 가져온다. 쿠키 파일이 있으면 로그인한 상태로 요청한다."""
+    import yt_dlp
+    opts = {"skip_download": True, "quiet": True, "no_warnings": True}
+    if cookiefile:
+        opts["cookiefile"] = cookiefile
+    with yt_dlp.YoutubeDL(opts) as ydl:
+        info = ydl.extract_info(f"https://www.youtube.com/watch?v={vid}", download=False)
+        pools = [("수동 자막", info.get("subtitles") or {}), ("자동 자막", info.get("automatic_captions") or {})]
+        for kind, pool in pools:
+            for lang in ("ko", "ko-orig", "ko-KR"):
+                for f in pool.get(lang) or []:
+                    if f.get("ext") == "json3" and f.get("url"):
+                        raw = ydl.urlopen(f["url"]).read().decode("utf-8")
+                        lines = parse_json3(raw)
+                        if lines:
+                            return lines, f"{kind}({lang})"
+        raise RuntimeError("한국어 자막이 없다. 있는 자막: " + ", ".join(sorted(set(list(pools[0][1]) + [k for k in pools[1][1] if k.startswith(("ko", "en"))])))[:120])
+
+
 def mmss(sec):
     sec = int(sec)
     return f"{sec // 3600}:{sec % 3600 // 60:02d}:{sec % 60:02d}" if sec >= 3600 else f"{sec // 60:02d}:{sec % 60:02d}"
@@ -125,20 +156,28 @@ def transcript_test(target=""):
     else:
         vids = [video_id(v["url"]) for v in videos[:3]]
     print("자막 가져오기 시험 (사이트에는 저장하지 않는다)")
+    cookie = os.environ.get("YT_COOKIES_FILE", "")
+    if cookie and not (os.path.exists(cookie) and os.path.getsize(cookie) > 50):
+        cookie = ""
+    methods = [("기본(쿠키 없음)", lambda v: (fetch_transcript(v), "youtube-transcript-api"))]
+    methods.append(("yt-dlp + 쿠키" if cookie else "yt-dlp(쿠키 없음)", lambda v: fetch_transcript_ytdlp(v, cookie)))
+    print("쿠키: " + ("있음 (GitHub 비밀값 YOUTUBE_COOKIES)" if cookie else "없음"))
     got = None
-    for n, vid in enumerate(vids):
-        if n:
-            time.sleep(5)  # 클라우드 서버에서 연달아 요청하면 유튜브가 막기 쉬워서 간격을 둔다
-        try:
-            lines = fetch_transcript(vid)
-            chars = sum(len(t) for _, t in lines)
-            print(f"  성공: {vid} | 자막 {len(lines)}줄, {chars}자 | 첫 줄: {lines[0][1][:40] if lines else ''}")
-            if got is None and lines:
-                got = (vid, lines)
-        except Exception as e:
-            print(f"  실패: {vid} | {type(e).__name__}: {str(e)[:200]}")
+    for name, fn in methods:
+        print(f"\n[방법] {name}")
+        for n, vid in enumerate(vids):
+            if n:
+                time.sleep(5)  # 클라우드 서버에서 연달아 요청하면 유튜브가 막기 쉬워서 간격을 둔다
+            try:
+                lines, how = fn(vid)
+                chars = sum(len(t) for _, t in lines)
+                print(f"  성공: {vid} | {how} | 자막 {len(lines)}줄, {chars}자 | 첫 줄: {lines[0][1][:40] if lines else ''}")
+                if got is None and lines:
+                    got = (vid, lines)
+            except Exception as e:
+                print(f"  실패: {vid} | {type(e).__name__}: {str(e).splitlines()[0][:200] if str(e) else ''}")
     if not got:
-        print("\n결과: 자막을 하나도 못 가져왔다. GitHub 서버에서는 이 방법을 쓸 수 없다.")
+        print("\n결과: 어떤 방법으로도 자막을 못 가져왔다.")
         return 0
     vid, lines = got
     text = "\n".join(f"[{mmss(st)}] {t}" for st, t in lines)
