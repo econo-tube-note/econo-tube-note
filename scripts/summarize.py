@@ -351,9 +351,10 @@ def call_gemini(video_url, allow_lite=True, transcript=None):
                     ),
                 )
 
+            wait_s = cfg("TEXT_TIMEOUT_SEC", 120) if transcript else CALL_TIMEOUT  # 자막(글)은 영상보다 훨씬 빨리 끝나야 정상이다
             try:
-                print(f"  [{model}] 요청 보냄 (최대 {CALL_TIMEOUT}초 기다림)")
-                resp = run_with_timeout(ask, CALL_TIMEOUT)
+                print(f"  [{model}] 요청 보냄 (최대 {wait_s}초 기다림)")
+                resp = run_with_timeout(ask, wait_s)
                 out = json.loads(resp.text)
                 STATS.append((model, "ok"))
                 print(f"  사용한 모델: {model}")
@@ -1376,9 +1377,15 @@ def auto():
             print(f"  [{ch['name']}] 제목에 {'/'.join(inc)}가 들어간 영상만 본다: {before}편 중 {len(entries)}편")
         win = int(ch.get("max_age_days") or max_age)  # channels.json에서 채널마다 기간을 따로 정할 수 있다
         fresh, known, old = [], 0, 0
+        done_n, why = 0, []
         for e in entries:
-            if e["id"] in have or e["id"] in state["skipped"]:
+            if e["id"] in have:
                 known += 1
+                done_n += 1
+                continue
+            if e["id"] in state["skipped"]:
+                known += 1
+                why.append((str(state["skipped"][e["id"]]), e["title"]))
                 continue
             if (now - e["published"]).total_seconds() > win * 86400:
                 old += 1
@@ -1387,7 +1394,14 @@ def auto():
             fresh.append(e)
         newest = max((e["published"] for e in entries), default=None)
         ago = f"{(now - newest).days}일 전" if newest else "알 수 없음"
-        print(f"  [{ch['name']}] 가장 최근 영상 {ago} | 기간({win}일) 안의 새 영상 {len(fresh)}편 | 이미 처리했거나 제외한 영상 {known}편 | 기간이 지난 영상 {old}편")
+        groups = {}
+        for w, _ in why:
+            k = w.split(":")[0].split("(")[0].strip()
+            groups[k] = groups.get(k, 0) + 1
+        gtxt = f" ({', '.join(f'{k} {n}' for k, n in groups.items())})" if groups else ""
+        print(f"  [{ch['name']}] 가장 최근 영상 {ago} | 새 영상 {len(fresh)}편 | 요약함 {done_n}편 | 제외 {len(why)}편{gtxt} | 기간({win}일) 지남 {old}편")
+        for w, t in why[:6]:  # 무엇을 왜 뺐는지 제목까지 보여 준다
+            print(f"    제외: {w[:40]} | {t[:50]}")
         lists.append(fresh)
     if ids_changed:
         write_json(CHANNELS, channels)
