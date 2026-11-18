@@ -284,7 +284,7 @@ def build_dash(recent, briefs, weekly, digests, man):
             + (f'<div class="dths"><small>핵심 주제</small>{themes}</div>' if themes else "")
             + wk_line + "</section>")
 
-    # 2) 채널들의 시장 판단: 영상 단위 분위기(어제와 비교) + 오늘의 쟁점 1개
+    # 2) 채널들의 시장 판단: 영상 단위 분위기(어제와 비교) + 주요 쟁점 1개
     parts = []
     prev_since = (now - datetime.timedelta(hours=48)).strftime("%Y-%m-%dT%H:%M")
     yday2 = (now - datetime.timedelta(days=2)).strftime("%Y-%m-%d")
@@ -310,15 +310,15 @@ def build_dash(recent, briefs, weekly, digests, man):
             trend = ("어제보다 낙관 쪽으로 기울었다" if d >= 0.15 else "어제보다 비관 쪽으로 기울었다" if d <= -0.15 else "어제와 비슷한 분위기다")
             arrow = "▲" if d >= 0.15 else "▼" if d <= -0.15 else "―"
             trend = f'<p class="mtrend"><span class="ma">{arrow}</span>{trend} <small>어제 낙관 {pc["낙관"]} · 중립 {pc["중립"]} · 비관 {pc["비관"]}</small></p>'
-        parts.append(f'<div class="dj"><h3>오늘 영상 {tot}편의 분위기 <small>막대를 누르면 해당 영상만 본다</small></h3><div class="mbar">{segs}</div>{trend}</div>')
+        parts.append(f'<div class="dj"><h3>최근 24시간 영상 {tot}편의 분위기 <small>막대를 누르면 해당 영상만 본다</small></h3><div class="mbar">{segs}</div>{trend}</div>')
     if b and b.get("disagreements"):
         d = b["disagreements"][0]
         boxes = '<span class="vs">vs</span>'.join(
             f'<div class="dv"><span>{e(w.get("view"))}</span><a class="dvc" href="{BASE}#v/{e(w.get("ref"))}">{e(w.get("channel"))}</a></div>'
             for w in (d.get("views") or [])[:2])
-        parts.append(f'<div class="dj"><h3>오늘의 쟁점</h3><div class="dis"><b class="dq">{e(d["topic"])}</b><div class="dvs">{boxes}</div></div></div>')
+        parts.append(f'<div class="dj"><h3>주요 쟁점</h3><div class="dis"><b class="dq">{e(d["topic"])}</b><div class="dvs">{boxes}</div></div></div>')
     if parts:
-        more = (href("brief/" + b["date"] + "/") + ("#disagree" if b.get("disagreements") else "#agree"), "쟁점 전체 보기") if b else ""
+        more = (href("brief/" + b["date"] + "/") + ("#agree" if b.get("agreements") else "#disagree"), "채널 의견 전체 보기") if b else ""
         blocks.append('<section class="dblk">' + hd("채널들의 시장 판단", "c3", "유튜브는 지금 시장을 이렇게 본다", more) + "".join(parts) + "</section>")
 
     # 3) 많이 언급된 종목 TOP6
@@ -365,7 +365,7 @@ def build_dash(recent, briefs, weekly, digests, man):
         blocks.append('<section class="dblk">' + hd("많이 언급된 종목", "c4", f"최근 24시간 · 영상 {len(day)}편 기준", (href("stock/"), "종목 페이지로"))
                       + f'<div class="dgrid">{cells}</div></section>')
 
-    # 4) 숫자로 본 오늘: 지표 이름이 분명한 것만
+    # 4) 숫자로 본 시장: 지표 이름이 분명한 것만
     nb = {}
     for v in day:
         for n in v.get("numbers") or []:
@@ -387,11 +387,11 @@ def build_dash(recent, briefs, weekly, digests, man):
             vid = vid_of(v.get("url"))
             cards += (f'<a class="dnum" href="{BASE}#numbers/{quote(label)}"><small class="dnl"><span>{e(label)}</span>'
                       + (f'<span class="cnt">{g["n"]}번 언급</span>' if g["n"] > 1 else "") + f'</small><b>{e(n[1])}</b><p>{e(n[2])}</p></a>')
-        blocks.append('<section class="dblk">' + hd("숫자로 본 오늘", "c2", "영상에서 언급된 수치 · 실시간 시세 아님", (BASE + "#numbers", "숫자·지표로"))
+        blocks.append('<section class="dblk">' + hd("숫자로 본 시장", "c2", "최근 24시간 · 영상에서 언급된 수치 · 실시간 시세 아님", (BASE + "#numbers", "숫자·지표로"))
                       + f'<div class="dgrid">{cards}</div></section>')
 
     # 5) 최신 영상: 카드 모양은 영상 요약 탭과 같다 (화면에서 채운다)
-    blocks.append('<section class="dblk dlatest">' + hd("최근 영상", "c1", "", (BASE + "#videos", "영상 요약 전체 보기")) + '<div class="grid" id="hgrid"></div></section>')
+    blocks.append('<section class="dblk dlatest">' + hd("최근 영상", "", "", (BASE + "#videos", "영상 요약 전체 보기")) + '<div class="grid" id="hgrid"></div></section>')
 
     blocks.append('<p class="bnote">AI가 경제 유튜브 영상들을 요약·종합한 내용이며 투자 권유가 아니다.</p>')
     html_ = "<!--DASH:START-->\n" + "\n".join(blocks) + "\n<!--DASH:END-->"
@@ -468,10 +468,10 @@ def build():
                 + f'<span class="bdates">{dates}</span></div>'
                 f'<h1>{e(b.get("headline"))}</h1>{kp_list(b.get("keypoints"))}{note_box(notes, d)}'
                 + sect("핵심 주제", len(b.get("themes") or []), th and f'<div class="tgrid">{th}</div>', "c1", "themes")
-                + sect("공통으로 말한 것", len(b.get("agreements") or []), ag, "c2", "agree")
-                + sect("엇갈린 의견", len(b.get("disagreements") or []), dg, "c3", "disagree")
-                + sect("여러 영상에서 언급된 종목", len(b.get("stocks") or []), sk and f'<div class="skg">{sk}</div>', "c4")
-                + sect("이날 요약한 영상", len(vids), vids and '<div class="vgrid">' + "".join(F.vcard(v) for v in vids) + "</div>", "")
+                + sect("공통된 시각", len(b.get("agreements") or []), ag, "c2", "agree")
+                + sect("엇갈린 시각", len(b.get("disagreements") or []), dg, "c3", "disagree")
+                + sect("많이 언급된 종목", len(b.get("stocks") or []), sk and f'<div class="skg">{sk}</div>', "c4")
+                + sect("종합한 영상", len(vids), vids and '<div class="vgrid">' + "".join(F.vcard(v) for v in vids) + "</div>", "")
                 + '<p class="bnote">AI가 이날의 영상 요약들을 종합한 내용이며 투자 권유가 아니다. \'관련 영상\'이나 채널 이름을 누르면 근거가 된 영상을 볼 수 있다.</p></div>'
                 + F.templates())
         c = write(f"brief/{d}", page(f"brief/{d}/", f"{sdate(d)} 시장 브리핑: {b.get('headline', '')}", desc_of(*(b.get("keypoints") or [])), body, date=d, nav_on="brief"))
