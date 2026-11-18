@@ -21,7 +21,10 @@
   "BgtJH523BfE": "너무 짧음",
   "theFRDuKYag": "너무 긴 영상(308분)",
   "sNE5GmvtfcU": "너무 긴 영상(335분)",
-  "B_uGzXjHYhk": "너무 긴 영상(370분)"
+  "B_uGzXjHYhk": "너무 긴 영상(370분)",
+  "DS2u_UooFsw": "너무 짧음",
+  "9E76qPLcH2I": "너무 짧음",
+  "FyGbtyVa15A": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -37,17 +40,17 @@
  "models": {
   "gemini-3.6-flash": {
    "ok": 9,
-   "busy": 21,
+   "busy": 24,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 3,
-   "busy": 33,
+   "busy": 36,
    "dead": 4
   },
   "gemini-3.8-flash": {
    "ok": 1,
-   "busy": 19,
+   "busy": 22,
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
@@ -128,7 +131,14 @@
   "CpGj1M3vaO8": true,
   "qrosihil7Ms": true,
   "E2JBFfuhP_8": true,
-  "3BsUb4zzP-4": true
+  "3BsUb4zzP-4": true,
+  "DS2u_UooFsw": true,
+  "NCGhP2Vyods": true,
+  "ssuDsuSzuo4": true,
+  "TDGVrEKXU5M": true,
+  "9E76qPLcH2I": true,
+  "RdfnAtPvQ_Y": true,
+  "FyGbtyVa15A": true
  },
  "brief_final": {
   "2026-11-13": true,
