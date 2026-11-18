@@ -117,28 +117,62 @@ def parse_json3(raw):
     return out
 
 
+class _YLog:
+    """yt-dlp가 남기는 경고를 모아 둔다 (실패 원인을 로그에 보여 주기 위해)"""
+    def __init__(self):
+        self.msgs = []
+
+    def debug(self, m):
+        pass
+
+    def info(self, m):
+        pass
+
+    def warning(self, m):
+        self.msgs.append(str(m))
+
+    def error(self, m):
+        self.msgs.append(str(m))
+
+
 def fetch_transcript_ytdlp(vid, cookiefile=""):
-    """yt-dlp로 자막을 가져온다. 쿠키 파일이 있으면 로그인한 상태로 요청한다."""
+    """yt-dlp로 자막을 가져온다. 쿠키 파일이 있으면 로그인한 상태로 요청한다.
+    자막 목록이 비어 오면 유튜브에 요청하는 방식(웹, 모바일 웹, TV 등)을 바꿔 가며 다시 시도한다."""
     import yt_dlp
-    # 영상 파일은 필요 없고 자막 정보만 필요하다. 영상 형식이 없다는 에러는 무시하고 자막 목록만 받는다
-    opts = {"skip_download": True, "quiet": True, "no_warnings": True, "ignore_no_formats_error": True}
-    if cookiefile:
-        opts["cookiefile"] = cookiefile
-    with yt_dlp.YoutubeDL(opts) as ydl:
-        info = ydl.extract_info(f"https://www.youtube.com/watch?v={vid}", download=False)
-        pools = [("수동 자막", info.get("subtitles") or {}), ("자동 자막", info.get("automatic_captions") or {})]
-        for kind, pool in pools:
-            for lang in ("ko", "ko-orig", "ko-KR"):
-                for f in pool.get(lang) or []:
-                    if f.get("ext") == "json3" and f.get("url"):
-                        try:
-                            raw = ydl.urlopen(f["url"]).read().decode("utf-8")
-                        except Exception as e:
-                            raise RuntimeError(f"{kind}({lang}) 목록은 받았는데 내용 받기에서 막혔다: {str(e)[:120]}")
-                        lines = parse_json3(raw)
-                        if lines:
-                            return lines, f"{kind}({lang})"
-        raise RuntimeError("한국어 자막이 없다. 있는 자막: " + ", ".join(sorted(set(list(pools[0][1]) + [k for k in pools[1][1] if k.startswith(("ko", "en"))])))[:120])
+    reasons = []
+    for client in [None] + [c.strip() for c in os.environ.get("YTDLP_CLIENTS", "mweb,tv,web_safari,web_embedded").split(",") if c.strip()]:
+        log = _YLog()
+        opts = {"skip_download": True, "quiet": True, "no_warnings": False, "ignore_no_formats_error": True, "logger": log}
+        if cookiefile:
+            opts["cookiefile"] = cookiefile
+        if client:
+            opts["extractor_args"] = {"youtube": {"player_client": [client]}}
+        name = client or "기본"
+        try:
+            with yt_dlp.YoutubeDL(opts) as ydl:
+                info = ydl.extract_info(f"https://www.youtube.com/watch?v={vid}", download=False)
+                pools = [("수동 자막", info.get("subtitles") or {}), ("자동 자막", info.get("automatic_captions") or {})]
+                for kind, pool in pools:
+                    for lang in ("ko", "ko-orig", "ko-KR"):
+                        for f in pool.get(lang) or []:
+                            if f.get("ext") == "json3" and f.get("url"):
+                                try:
+                                    raw = ydl.urlopen(f["url"]).read().decode("utf-8")
+                                except Exception as e:
+                                    reasons.append(f"{name}: 자막 내용 받기 실패({str(e)[:60]})")
+                                    continue
+                                lines = parse_json3(raw)
+                                if lines:
+                                    return lines, f"{kind}({lang}, {name})"
+                langs = sorted(set(pools[0][1]) | {k for k in pools[1][1] if k.startswith(("ko", "en"))})
+                hint = ""
+                joined = " ".join(log.msgs)
+                if "Sign in" in joined or "not a bot" in joined or "cookies" in joined.lower():
+                    hint = " / 로그인 확인 요구(쿠키 문제일 수 있다)"
+                reasons.append(f"{name}: 영상 형식 {len(info.get('formats') or [])}개, 자막 {', '.join(langs) or '없음'}{hint}")
+        except Exception as e:
+            reasons.append(f"{name}: {str(e).splitlines()[0][:80] if str(e) else type(e).__name__}")
+    raise RuntimeError("한국어 자막을 못 받았다 → " + " | ".join(reasons)[:400])
 
 
 def mmss(sec):
@@ -225,7 +259,7 @@ def budget_window(now):
     idx = 0 if h < 7 else 1 if h < 14 else 2 if h < 19 else 3
     slots = [int(x) for x in os.environ.get("SLOT_BUDGET_MIN", "170,0,200,100").split(",")][:4]
     slots += [0] * (4 - len(slots))
-    return day, sum(slots[:idx + 1]) * 60, SLOT_NAMES[idx]
+    return "17시~" + day, sum(slots[:idx + 1]) * 60, SLOT_NAMES[idx]  # 예전(자정 기준) 기록과 이름이 겹치지 않게 앞에 붙인다
 
 
 def summary_schema():
@@ -1297,7 +1331,7 @@ def auto():
     # 영상 예산의 하루는 오후 5시에 시작한다 (구글 무료 한도가 초기화되는 시각에 맞춘다)
     today, budget, slot_name = budget_window(now)
     week_ago = (now.astimezone(KST) - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
-    state["spent"] = {d: v for d, v in state["spent"].items() if d >= week_ago}
+    state["spent"] = {d: v for d, v in state["spent"].items() if d.split("~")[-1] >= week_ago and d.startswith("17시~")}
     spent = state["spent"].get(today, 0)
     cookie = os.environ.get("YT_COOKIES_FILE", "")
     if cookie and not (os.path.exists(cookie) and os.path.getsize(cookie) > 50):
@@ -1416,16 +1450,16 @@ def auto():
         url = f"https://www.youtube.com/watch?v={vid}"
         # 1) 자막을 먼저 시도한다. 자막으로 요약하면 영상 예산(하루 8시간)을 쓰지 않는다
         text = None
-        if cookie and tr_fail < 3:
+        if cookie and tr_fail < 5:
             try:
                 lines, how = fetch_transcript_ytdlp(vid, cookie)
                 text = "\n".join(f"[{mmss(st)}] {t}" for st, t in lines)
                 tr_fail = 0
             except Exception as ex:
                 tr_fail += 1
-                print(f"  자막을 못 받았다({tr_fail}번째): {e['title'][:40]} | {str(ex).splitlines()[0][:120] if str(ex) else ''}")
-                if tr_fail == 3:
-                    print("  자막이 3번 연속 실패했다. 이번 실행은 영상 방식으로만 요약한다. (계속 이러면 쿠키가 만료됐을 수 있다)")
+                print(f"  자막을 못 받았다({tr_fail}번째): {e['title'][:40]} | {str(ex).splitlines()[0][:400] if str(ex) else ''}")
+                if tr_fail == 5:
+                    print("  자막이 5번 연속 실패했다. 이번 실행은 영상 방식으로만 요약한다. (계속 이러면 쿠키가 만료됐을 수 있다)")
             time.sleep(4)  # 자막 요청 사이에 간격을 둔다 (부계정이 봇으로 찍히지 않게)
         if text is None and length > max_len:  # 자막으로는 긴 영상도 요약하지만, 영상 방식은 너무 긴 영상을 하지 않는다
             print(f"자막이 없고 영상이 길어서({length // 60}분) 영상 방식으로는 하지 않는다: {e['title']}")
@@ -1497,7 +1531,7 @@ def auto():
         if done >= per_run or time.time() > deadline or bad_streak >= 2 or flash_down:
             break
         text = None
-        if cookie and tr_fail < 3:
+        if cookie and tr_fail < 5:
             try:
                 lines, _ = fetch_transcript_ytdlp(video_id(v["url"]), cookie)
                 text = "\n".join(f"[{mmss(st)}] {t}" for st, t in lines)
