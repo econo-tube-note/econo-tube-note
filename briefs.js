@@ -2,73 +2,134 @@
 const BRIEFS=[
  {
   "date": "2026-11-18",
-  "count": 3,
+  "count": 21,
   "sources": [
+   "TDGVrEKXU5M",
+   "hEq902LKr3k",
+   "UrO7j2xXmhI",
+   "agyobp9BQ4I",
+   "NCGhP2Vyods",
+   "lBlGFVbqgXE",
+   "kZAYyNhv5p4",
+   "XrMcS9HJQQQ",
+   "-PVT3Gp45SE",
+   "6g110iUWTVo",
+   "eFnxFsUiMvs",
+   "zwDALEtOzR8",
+   "RiLTQh6mqws",
+   "AT8gm5K7xAY",
+   "bYGImu0Xhag",
+   "5ejfTU3cvac",
+   "egDZOq_zOPo",
+   "ssuDsuSzuo4",
    "2NXRZFCSWcs",
    "Codp7P9gH4U",
    "E2-V6z2WQzo"
   ],
-  "headline": "엔비디아의 탄탄한 실적과 AI 투자 지속 가능성을 점검하는 시장 분위기다.",
+  "headline": "엔비디아 실적 호조와 수급 개선에 힘입어 반도체 중심의 증시 반등 가능성이 제기된다.",
   "keypoints": [
-   "엔비디아는 3분기 실적과 4분기 가이던스 모두 예상치를 상회했다.",
-   "지수 갭 메우기가 완료된 만큼 패닉 매도보다 냉정한 대응이 필요하다.",
-   "국내 반도체 양사는 풍부한 현금성 자산을 바탕으로 투자를 이어간다.",
-   "AI 인프라 투자 지속 여부와 지정학적 리스크가 핵심 변수로 꼽힌다."
+   "엔비디아의 우수한 실적과 데이터센터 수요 확증으로 AI 투자 지속성이 확인되었다.",
+   "엔트로픽 상장과 수급 개선에 따라 국내 증시가 바닥을 다지고 반등할 것으로 본다.",
+   "반도체 대형주의 밸류에이션 저평가 매력과 대규모 현금 여력이 부각되고 있다.",
+   "로봇과 엔터 등 차세대 주도 섹터 및 주주 환원 개혁에 대한 관심이 확대된다."
   ],
   "themes": [
    {
-    "title": "엔비디아 실적과 가이던스",
-    "summary": "엔비디아의 3분기 매출은 예상치를 상회했고 4분기 가이던스도 긍정적이다. 데이터센터 매출이 핵심 동력으로 작용하며 실적 호조를 이끌었다.",
+    "title": "엔비디아 실적과 AI 투자 지속",
+    "summary": "엔비디아의 실적 발표와 높은 구매 약정이 확인되며 AI 데이터센터 투자가 계속될 것으로 전망한다. 지정학적 규제에도 불구하고 강력한 수요가 업황을 뒷받침한다고 해석한다.",
     "refs": [
-     "2NXRZFCSWcs",
+     "TDGVrEKXU5M",
+     "kZAYyNhv5p4",
+     "eFnxFsUiMvs",
+     "5ejfTU3cvac",
      "E2-V6z2WQzo"
     ]
    },
    {
-    "title": "AI 투자 사이클과 리스크",
-    "summary": "하이퍼스케일러들의 설비 투자 축소 우려가 존재하지만 차세대 칩 수요는 견고하다. 지급보증과 자금 조달 리스크에 대한 관리 방안이 주목받고 있다.",
+    "title": "국내 반도체 대형주 저평가론",
+    "summary": "삼성전자와 SK하이닉스는 이익 대비 주가가 급락해 극심한 저평가 구간에 진입했다고 본다. 풍부한 현금성 자산을 바탕으로 향후 시장 반등을 주도할 것으로 예상한다.",
     "refs": [
-     "2NXRZFCSWcs",
-     "Codp7P9gH4U",
-     "E2-V6z2WQzo"
-    ]
-   },
-   {
-    "title": "국내 반도체 현금력과 증시",
-    "summary": "지수가 갭을 메운 가운데 삼성전자와 SK하이닉스는 풍부한 현금성 자산을 보유하고 있다. 대중국 수출 규제 속에서 국내 반도체 수급에 미칠 영향도 분석된다.",
-    "refs": [
+     "TDGVrEKXU5M",
+     "kZAYyNhv5p4",
+     "-PVT3Gp45SE",
+     "RiLTQh6mqws",
      "Codp7P9gH4U"
+    ]
+   },
+   {
+    "title": "피지컬 AI와 로봇주 부상",
+    "summary": "단순 소프트웨어 AI를 넘어 로봇 등 물리학적 AI가 새로운 주도 섹터로 부상하고 있다고 분석한다. 대기업의 사업 추진과 기술 진전에 따라 관련 종목의 기대감이 커진다.",
+    "refs": [
+     "NCGhP2Vyods",
+     "6g110iUWTVo",
+     "eFnxFsUiMvs",
+     "RiLTQh6mqws"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "엔비디아의 3분기 실적이 시장의 예상치를 상회하며 양호한 성과를 기록했다.",
+    "point": "엔비디아의 실적 발표와 대규모 구매 약정이 AI 투자 사이클의 지속성을 입증했다고 본다.",
     "refs": [
-     "2NXRZFCSWcs",
-     "E2-V6z2WQzo"
+     "TDGVrEKXU5M",
+     "kZAYyNhv5p4",
+     "eFnxFsUiMvs",
+     "5ejfTU3cvac"
     ]
    },
    {
-    "point": "엔비디아의 데이터센터 매출과 차세대 칩 수요가 기업 성장의 핵심 동력이다.",
+    "point": "삼성전자와 SK하이닉스는 주가가 크게 하락해 밸류에이션상 저평가 상태라고 진단한다.",
     "refs": [
-     "2NXRZFCSWcs",
-     "E2-V6z2WQzo"
+     "TDGVrEKXU5M",
+     "kZAYyNhv5p4",
+     "-PVT3Gp45SE",
+     "RiLTQh6mqws"
+    ]
+   },
+   {
+    "point": "엔트로픽의 상장이 완료되면 시장의 유동성이 개선되고 수익성이 증명될 것으로 전망한다.",
+    "refs": [
+     "6g110iUWTVo",
+     "eFnxFsUiMvs",
+     "egDZOq_zOPo"
+    ]
+   },
+   {
+    "point": "한중 FTA 협상 타결 소식에 힘입어 엔터 및 미디어 관련주가 수혜를 입을 것으로 본다.",
+    "refs": [
+     "eFnxFsUiMvs",
+     "RiLTQh6mqws",
+     "egDZOq_zOPo"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "AI 투자 축소 및 자금 조달 우려",
+    "topic": "로봇주 투자 매력 및 주가 전망",
     "views": [
      {
       "channel": "815머니톡",
-      "view": "경영진의 보수적 기조와 네오클라우드 자금 조달 리스크로 인해 시장에 공포가 확산되고 있다고 본다.",
-      "ref": "Codp7P9gH4U"
+      "view": "삼성전자 등 대기업의 로봇 사업 추진에 따라 로봇주가 시장 주도 섹터로 부상한다고 본다.",
+      "ref": "NCGhP2Vyods"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "오픈AI 관련 지급보증은 실제 집행이 없어 리스크가 크지 않으며 AI 투자 사이클은 계속된다고 본다.",
+      "view": "로봇주는 매물 부담이 크고 정배열 종목이 드물어 엔터주에 비해 투자 매력이 낮다고 지적한다.",
+      "ref": "egDZOq_zOPo"
+     }
+    ]
+   },
+   {
+    "topic": "AI 인프라 투자 사이클의 단계",
+    "views": [
+     {
+      "channel": "교보증권 머니텐 Money10",
+      "view": "AI 인프라 구축은 이미 70~80% 진행되어 캐즘 구간과 속도 조절에 진입했다고 주장한다.",
+      "ref": "lBlGFVbqgXE"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "하이퍼스케일러들의 설비 투자와 차세대 칩 수요가 견고해 AI 투자 사이클은 계속된다고 본다.",
       "ref": "E2-V6z2WQzo"
      }
     ]
@@ -76,24 +137,178 @@ const BRIEFS=[
   ],
   "stocks": [
    {
-    "name": "엔비디아",
-    "count": 3,
-    "tone": "혼재",
+    "name": "삼성전자",
+    "count": 4,
+    "tone": "긍정",
     "mentions": [
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "3분기 실적은 예상치를 상회했으나 시장의 불확실성으로 주가는 약보합세를 보였다.",
-      "ref": "2NXRZFCSWcs"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "실적 발표를 앞두고 벤더 파이낸싱 유지 여부와 경영진 기조에 대한 시장의 의구심을 해소해야 한다고 본다.",
-      "ref": "Codp7P9gH4U"
+      "view": "저점 마진율이 유지되면 구조적 성장주로 보며 대형주 위주 매수가 합리적이라고 본다.",
+      "ref": "TDGVrEKXU5M"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "견고한 실적과 차세대 칩 수요 덕분에 성장세가 이어지며 밸류에이션 부담이 완화되었다.",
+      "view": "엔비디아 구매 약정 증가와 데이터센터용 메모리 수요 호조로 주도주 역할을 할 것으로 본다.",
+      "ref": "eFnxFsUiMvs"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "엔비디아의 AI 인프라 수요 급증 영향으로 시장을 견인하며 상승 전환했다고 분석한다.",
+      "ref": "RiLTQh6mqws"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "215조 원의 현금성 자산을 보유하고 있어 섣부른 비관론을 경계해야 한다고 조언한다.",
+      "ref": "Codp7P9gH4U"
+     }
+    ]
+   },
+   {
+    "name": "SK하이닉스",
+    "count": 4,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "AI 네러티브 노출 기업으로 삼성전자와 동일한 방향성으로 이해하는 것이 적절하다고 조언한다.",
+      "ref": "TDGVrEKXU5M"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "엔비디아향 HBM 수요 증가와 핵심 펀더멘털 유지로 이익 창출력이 공고하다고 평가한다.",
+      "ref": "eFnxFsUiMvs"
+     },
+     {
+      "channel": "김작가 TV",
+      "view": "목표주가 하향 조정을 비판하며 장기적인 펀더멘털 관점에서 접근해야 한다고 강조한다.",
+      "ref": "-PVT3Gp45SE"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "114조 원 수준의 풍부한 현금성 자산을 확보하여 기술 투자를 지속할 것으로 본다.",
+      "ref": "Codp7P9gH4U"
+     }
+    ]
+   },
+   {
+    "name": "엔비디아",
+    "count": 4,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "실적 가이던스가 긍정적으로 발표되어 시장의 우려를 상당 부분 해소했다고 평가한다.",
+      "ref": "TDGVrEKXU5M"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "실적이 예상치를 상회하고 강력한 데이터센터 수요로 인해 저평가 상태라고 주장한다.",
+      "ref": "kZAYyNhv5p4"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "주가 하락으로 밸류에이션 부담이 낮아져 매수 관점에서 긍정적이라고 평가한다.",
+      "ref": "eFnxFsUiMvs"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "견고한 실적과 하이퍼스케일러의 차세대 칩 수요에 힘입어 성장이 지속될 것으로 본다.",
       "ref": "E2-V6z2WQzo"
+     }
+    ]
+   },
+   {
+    "name": "레인보우로보틱스",
+    "count": 3,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "815머니톡",
+      "view": "기관 수급이 매우 우수하며 로봇 섹터 내에서 가장 강한 흐름을 보인다고 평가한다.",
+      "ref": "NCGhP2Vyods"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "CES 기대감과 삼성의 로봇 사업 추진 모멘텀으로 주가가 강세를 보였다고 언급한다.",
+      "ref": "eFnxFsUiMvs"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "삼성전자의 휴머노이드 로봇 공개 소식에 영향받아 20% 급등했다고 설명한다.",
+      "ref": "RiLTQh6mqws"
+     }
+    ]
+   },
+   {
+    "name": "엔트로픽",
+    "count": 3,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "815머니톡",
+      "view": "상장을 통해 AI 수익화 모델을 증명하고 증시 투자 심리를 개선할 것으로 본다.",
+      "ref": "6g110iUWTVo"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "IPO 청약 마감 후 증거금이 환불되면서 증시 유동성이 회복될 것으로 전망한다.",
+      "ref": "eFnxFsUiMvs"
+     },
+     {
+      "channel": "전인구경제연구소",
+      "view": "엔비디아 의존도가 낮고 구글 TPU를 활용해 실질적 수혜를 볼 가능성이 높다고 본다.",
+      "ref": "bYGImu0Xhag"
+     }
+    ]
+   },
+   {
+    "name": "이수페타시스",
+    "count": 2,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "김작가 TV",
+      "view": "단기 급등했으나 추세 매매 결과가 아니므로 반등 시 매도해야 한다고 권고한다.",
+      "ref": "agyobp9BQ4I"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "구글 TPU 공급 핵심 업체로 주가 조정 후 강력한 주도주로 반등할 것으로 본다.",
+      "ref": "6g110iUWTVo"
+     }
+    ]
+   },
+   {
+    "name": "에스엠",
+    "count": 2,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "증시각도기TV",
+      "view": "한한령 해제 소식과 FTA 타결 호재에 힘입어 큰 폭으로 상승했다고 설명한다.",
+      "ref": "RiLTQh6mqws"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "중국 관련 공을 들여왔으며 저항대를 돌파하여 흐름을 긍정적으로 평가한다.",
+      "ref": "egDZOq_zOPo"
+     }
+    ]
+   },
+   {
+    "name": "로보티즈",
+    "count": 2,
+    "tone": "중립",
+    "mentions": [
+     {
+      "channel": "815머니톡",
+      "view": "기관 매수세가 계속 이어지고 있어 눈여겨볼 로봇 종목으로 언급한다.",
+      "ref": "NCGhP2Vyods"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "로봇주 중 차트 흐름이 나은 편이나 여전히 매물 부담이 존재한다고 지적한다.",
+      "ref": "egDZOq_zOPo"
      }
     ]
    }
