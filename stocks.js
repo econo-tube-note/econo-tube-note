@@ -3,16 +3,18 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "풍부한 현금성 자산과 실적 개선 기대감이 있는 반면, 외국인 매도세와 업황 조정 우려가 엇갈린다.",
+  "summary": "삼성전자는 업황 불확실성과 수급 변동성으로 하락세를 겪고 있으나, 장기적 밸류에이션 매력과 턴어라운드 기대감이 공존한다.",
   "points": [
-   "풍부한 현금성 자산과 실적 개선으로 턴어라운드 가능성이 언급된다.",
-   "외국인 매도세 지속과 D램 소송 이슈로 주가 하락세가 나타났다.",
-   "SK하이닉스 대비 안정성과 주주환원책 호재로 매력도가 높다는 평가가 있다."
+   "반도체 업황 불확실성과 외국인 매도세로 단기 주가 하락과 변동성이 나타난다.",
+   "풍부한 현금성 자산과 장기적 밸류에이션 매력으로 반등 기대감이 존재한다.",
+   "소통 부족에 따른 투자 심리 악화와 주주환원책 호재 평가가 엇갈린다."
   ],
   "ids": [
    "-GrEZiF4e6k",
    "4-y8e6UGd88",
+   "5ejfTU3cvac",
    "9MXwHlep8wQ",
+   "AT8gm5K7xAY",
    "AjAzI1Uxh9c",
    "BIhFDJtoK6k",
    "C1yE6FwQMCY",
@@ -30,9 +32,11 @@ const STOCKSUM={
    "OK2FJONMpGA",
    "P1m0QaKWzG0",
    "PZLLj9tHYlQ",
+   "RiLTQh6mqws",
    "UhA5xmTjqJ4",
    "W3AvtA5OwVE",
    "_0ePh1KmGdc",
+   "bYGImu0Xhag",
    "c6LAHhYBSDI",
    "cZKNKIAXEfY",
    "dOy04iFw5_U",
@@ -49,10 +53,11 @@ const STOCKSUM={
    "saSLtHK3aJ0",
    "vVe3kbl0k44",
    "xrqbovX16L8",
-   "zYgSmH3Wl_s"
+   "zYgSmH3Wl_s",
+   "zwDALEtOzR8"
   ],
-  "count": 40,
-  "updated": "2026-11-18"
+  "count": 45,
+  "updated": "2026-11-19"
  },
  "엔비디아": {
   "name": "엔비디아",
@@ -102,16 +107,18 @@ const STOCKSUM={
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "혼재",
-  "summary": "풍부한 현금과 HBM 경쟁력으로 턴어라운드가 기대된다는 의견과, 역대급 조정과 선반영으로 관망해야 한다는 평가가 엇갈린다.",
+  "summary": "엔비디아 수혜와 HBM 경쟁력으로 기대를 모으는 한편, 수급 악화와 고점 대비 큰 하락으로 우려도 공존한다.",
   "points": [
-   "HBM 시장의 강자로서 AI 반도체 사이클의 핵심 기업으로 평가받는다.",
-   "고점 대비 큰 폭으로 하락하여 추가 하락 위험과 관망 필요성이 제기된다.",
-   "업황 회복 시 삼성전자보다 탄력적인 반등이 가능할 것이라는 전망이 있다."
+   "엔비디아 실적 수혜와 HBM 시장 강자로 AI 반도체 사이클의 핵심이다.",
+   "고점 대비 60퍼센트 이상 하락하며 수급 이슈와 역대급 조정을 겪고 있다.",
+   "자사주 매입에도 외국인 매도세가 이어지고 개인 투자자 비중이 높다."
   ],
   "ids": [
    "-GrEZiF4e6k",
    "4-y8e6UGd88",
+   "5ejfTU3cvac",
    "9MXwHlep8wQ",
+   "AT8gm5K7xAY",
    "AjAzI1Uxh9c",
    "BIhFDJtoK6k",
    "C1yE6FwQMCY",
@@ -128,9 +135,11 @@ const STOCKSUM={
    "OK2FJONMpGA",
    "Of8HJe9eNYw",
    "PZLLj9tHYlQ",
+   "RiLTQh6mqws",
    "UhA5xmTjqJ4",
    "W3AvtA5OwVE",
    "_0ePh1KmGdc",
+   "bYGImu0Xhag",
    "c6LAHhYBSDI",
    "cZKNKIAXEfY",
    "dOy04iFw5_U",
@@ -144,10 +153,11 @@ const STOCKSUM={
    "t9R5tJ0zR34",
    "vVe3kbl0k44",
    "xrqbovX16L8",
-   "zYgSmH3Wl_s"
+   "zYgSmH3Wl_s",
+   "zwDALEtOzR8"
   ],
-  "count": 36,
-  "updated": "2026-11-18"
+  "count": 41,
+  "updated": "2026-11-19"
  },
  "코어위브": {
   "name": "코어위브",
