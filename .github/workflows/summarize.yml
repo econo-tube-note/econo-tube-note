@@ -122,7 +122,13 @@ jobs:
           fi
           if ! git diff --cached --quiet; then
             git commit -m "영상 요약 자동 갱신"
-            git push
+            # 실행 도중에 누가 파일을 올렸으면 그 내용을 먼저 받아 합친 뒤 저장한다 (최대 3번 시도)
+            for i in 1 2 3; do
+              if git push; then break; fi
+              echo "저장소가 그사이 바뀌어서 최신 내용을 받아 합친 뒤 다시 저장한다 ($i/3)"
+              git pull --rebase --no-edit || { git rebase --abort; echo "합치다가 충돌이 났다. 이번 결과는 저장하지 못했다."; exit 1; }
+              sleep 3
+            done
           fi
 
       - name: 데이터 파일에 버전 붙이기 (브라우저가 예전 파일을 계속 쓰지 않게)
