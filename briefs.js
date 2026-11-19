@@ -2,8 +2,14 @@
 const BRIEFS=[
  {
   "date": "2026-11-19",
-  "count": 39,
+  "count": 45,
   "sources": [
+   "FlUs8YY8aAE",
+   "G_CPMSwOIP0",
+   "pnIq4HW1nRg",
+   "22mEZYyDpZA",
+   "u1ndn512x0w",
+   "SnQAb8i2xO4",
    "bsmFdEtKWqM",
    "5ce3JngZSq0",
    "l6BRztXR5jo",
@@ -44,185 +50,317 @@ const BRIEFS=[
    "AydkVh-c6GI",
    "cpvUuHMLsgI"
   ],
-  "headline": "증시 변동성과 수급 불안 속에서 앤트로픽 상장과 저가 매수가 유입되며 바닥 다지기가 진행된다.",
+  "headline": "코스피 5000선 지지력과 앤트로픽 상장 기대감 속에 증시는 변동성 장세를 이어간다.",
   "keypoints": [
-   "코스피는 하락세를 거쳐 5,100선 부근에서 반등을 시도하며 바닥을 다지는 흐름을 보인다.",
-   "외국인의 매도와 수급 공백에도 불구하고 기관과 기타 법인의 매수세가 시장 하방을 방어한다.",
-   "앤트로픽의 성공적인 상장이 AI 산업 투자 심리에 온기를 불어넣고 자금 유입을 기대하게 만든다.",
-   "한한령 해제 기대감에 힘입어 엔터, 화장품, 콘텐츠 관련주에 매수세가 집중되며 강세를 보인다."
+   "코스피는 외국인 매도와 파생상품 청산 압박 속에서도 5000선을 지키며 바닥 다지기를 시도한다.",
+   "엔트로픽의 성공적인 상장과 AI 인프라 투자 지속은 반도체 및 관련 섹터에 온기를 불어넣는다.",
+   "한한령 해제 기대감으로 엔터, 콘텐츠, 화장품 등 중국 관련 비반도체 섹터로 수급이 유입된다.",
+   "고금리 장기화와 유가 하락 등 매크로 불확실성이 상존해 당분간 보수적 분할 매수가 필요하다."
   ],
   "themes": [
    {
-    "title": "앤트로픽 상장과 AI 수급 변화",
-    "summary": "AI 전용 기업 엔트로픽이 공모가 상단으로 상장하며 위축되었던 AI 관련주 투자 심리에 긍정적인 영향을 미친다.",
+    "title": "코스피 5000선 지지력과 수급",
+    "summary": "외국인 매도와 공매도 비중 확대에도 코스피 5000선이 지지되며 하단 내성이 확인되고 있다. 다만 거래대금 부진과 수급 꼬임으로 본격적인 반등에는 시간이 소요될 전망이다.",
     "refs": [
-     "bsmFdEtKWqM",
+     "FlUs8YY8aAE",
+     "G_CPMSwOIP0",
+     "22mEZYyDpZA",
+     "5ce3JngZSq0",
+     "c7f9jtyq9yw",
+     "VEYoCnIz6XQ"
+    ]
+   },
+   {
+    "title": "엔트로픽 상장과 AI 투자",
+    "summary": "비상장 AI 기업 엔트로픽의 성공적인 상장으로 토큰 수요와 AI 생태계 성장이 가시화되었다. 대규모 자금 유입과 AI 인프라 수요는 반도체 업종에 긍정적 요인으로 작용한다.",
+    "refs": [
+     "FlUs8YY8aAE",
+     "22mEZYyDpZA",
+     "u1ndn512x0w",
      "l6BRztXR5jo",
-     "QoEfnBKO5zU"
+     "XPSgxVcev3E",
+     "QoEfnBKO5zU",
+     "PREEBWeBwhs"
     ]
    },
    {
     "title": "중국 한한령 해제 기대감",
-    "summary": "한중 FTA 서비스 협상 타결과 문화 교류 기대감으로 엔터, 화장품, 콘텐츠 제작사 등에 수급이 유입된다.",
+    "summary": "한중 FTA 서비스·투자 후속협상 타결로 엔터, 콘텐츠, 화장품 등의 중국 진출 장벽이 낮아졌다. 관련 주식들로 단기 유동성과 수급이 강하게 쏠리는 양상을 보인다.",
     "refs": [
+     "G_CPMSwOIP0",
+     "22mEZYyDpZA",
      "bsmFdEtKWqM",
+     "5ce3JngZSq0",
      "09Ij_WyfeMs",
-     "G5Kz41EjDmw"
+     "G5Kz41EjDmw",
+     "AydkVh-c6GI"
     ]
    },
    {
-    "title": "반도체 업황과 밸류에이션 논란",
-    "summary": "목표가 하향과 치킨게임 우려가 제기되는 한편, PBR 하단에서 밸류에이션 매력과 장기 성장이 유효하다는 시각이 공존한다.",
+    "title": "반도체 업황과 밸류에이션",
+    "summary": "모건스탠리의 목표가 하향과 다운사이클 우려가 제기되었으나 기업들의 기초 체력과 실적은 견조하다. 현재 밸류에이션이 매우 낮아 매력적인 저점 매수 구간이라는 평가가 공존한다.",
     "refs": [
-     "l6BRztXR5jo",
+     "FlUs8YY8aAE",
+     "pnIq4HW1nRg",
      "vC7v55f8sdo",
-     "LEYOVBYtp3Q"
+     "LEYOVBYtp3Q",
+     "K101Dy3FU1w",
+     "RkpF-xeoalw"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "현재 증시는 수급 불안과 파생상품 물량 청산 과정에서 변동성이 크며 바닥 다지기 국면에 있다.",
+    "point": "코스피가 5000선 부근에서 지지력을 보이며 하단 내성과 바닥 다지기 흐름을 나타내고 있다.",
     "refs": [
-     "bsmFdEtKWqM",
-     "vC7v55f8sdo",
-     "K101Dy3FU1w"
+     "G_CPMSwOIP0",
+     "22mEZYyDpZA",
+     "5ce3JngZSq0",
+     "WiHMm0NkGEE",
+     "vqB7JpqjRy0",
+     "VEYoCnIz6XQ"
     ]
    },
    {
-    "point": "엔트로픽의 성공적인 상장은 위축된 AI 투자 심리를 회복시키는 계기가 될 수 있다.",
+    "point": "엔트로픽의 상장과 성공적인 흥행은 위축된 AI 투자 심리와 생태계에 긍정적인 온기를 불어넣고 있다.",
     "refs": [
+     "FlUs8YY8aAE",
+     "22mEZYyDpZA",
      "l6BRztXR5jo",
      "XPSgxVcev3E",
-     "QoEfnBKO5zU"
+     "QoEfnBKO5zU",
+     "7WVn5WmOlsA"
     ]
    },
    {
-    "point": "한중 관계 개선과 한한령 해제 기대감으로 엔터 및 콘텐츠 섹터에 수급이 유입되고 있다.",
+    "point": "한중 관계 개선 및 한한령 해제 기대감이 부각되며 엔터와 콘텐츠, 화장품 등 관련주로 수급이 집중되고 있다.",
     "refs": [
+     "G_CPMSwOIP0",
+     "22mEZYyDpZA",
      "bsmFdEtKWqM",
+     "5ce3JngZSq0",
      "09Ij_WyfeMs",
      "G5Kz41EjDmw"
+    ]
+   },
+   {
+    "point": "외국인 수급 부진과 매크로 불확실성이 해소될 때까지 무리한 추격 매수보다는 보수적인 분할 매수와 현금 확보가 유리하다.",
+    "refs": [
+     "pnIq4HW1nRg",
+     "u1ndn512x0w",
+     "bsmFdEtKWqM",
+     "LEYOVBYtp3Q",
+     "c7f9jtyq9yw",
+     "d9rmKdDS43w"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "반도체 주가 전망과 대응 전략",
+    "topic": "반도체 대형주 주가 전망과 하락 원인",
     "views": [
      {
-      "channel": "교보증권 머니텐 Money10",
-      "view": "모건스탠리의 목표가 하향과 공급 증가 우려를 반영해 보수적으로 대응하며 비중을 줄여야 한다.",
-      "ref": "LEYOVBYtp3Q"
+      "channel": "김작가 TV",
+      "view": "모건스탠리의 우려와 공급 증가 전망대로 반도체 고점 통과 및 실적 절벽 리스크가 존재해 보수적 접근이 필요하다.",
+      "ref": "pnIq4HW1nRg"
      },
      {
-      "channel": "체슬리TV",
-      "view": "PBR 하단과 견조한 펀더멘털을 고려할 때 현재 가격은 매력적이므로 분할 매수로 대응해야 한다.",
-      "ref": "l6BRztXR5jo"
+      "channel": "전인구경제연구소",
+      "view": "실적과 펀더멘털은 여전히 견고하며 현재의 주가 하락은 과도한 공포와 수급 꼬임에 따른 저평가 구간이므로 매수 기회다.",
+      "ref": "yrEcOVH79Pc"
+     }
+    ]
+   },
+   {
+    "topic": "한중 관계 개선 및 엔터·중국 관련주 상승의 지속성",
+    "views": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "중국 내 애국소비 경향과 현지 경쟁 심화를 고려할 때 장기 추세 상승보다는 단기 트레이딩 관점으로 접근해야 한다.",
+      "ref": "22mEZYyDpZA"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "공동 제작 범위 확대와 서비스 협상 타결로 확실한 실적 모멘텀이 확보되어 지속적인 수혜가 기대된다.",
+      "ref": "G5Kz41EjDmw"
      }
     ]
    }
   ],
   "stocks": [
    {
-    "name": "삼성전자",
-    "count": 2,
+    "name": "SK하이닉스",
+    "count": 3,
     "tone": "혼재",
     "mentions": [
      {
+      "channel": "연합뉴스경제TV",
+      "view": "다운사이클 발생 시에도 높은 영업이익률 유지가 가능하나 시장 하락 우려를 선반영하고 있다고 평가한다.",
+      "ref": "FlUs8YY8aAE"
+     },
+     {
       "channel": "김작가 TV",
-      "view": "사업 포트폴리오 다변화로 하락 시 방어력이 높으나 반등 폭은 제한적이라고 본다.",
-      "ref": "WiHMm0NkGEE"
+      "view": "실적 절벽 우려는 과도하며 현재 밸류에이션은 밸류 트랩을 의심할 만큼 매우 싼 구간이다.",
+      "ref": "pnIq4HW1nRg"
      },
      {
       "channel": "815머니톡",
-      "view": "현재 PBR 0.9배 수준으로 역사적 하단 구간에서 바닥을 형성하고 있다.",
+      "view": "PBR 1배 수준의 하단 밸류에이션에 진입했으나 추세 하락장이므로 분할 매수로 길게 접근해야 한다.",
       "ref": "vqB7JpqjRy0"
      }
     ]
    },
    {
-    "name": "SK하이닉스",
-    "count": 2,
+    "name": "삼성전자",
+    "count": 3,
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "김작가 TV",
-      "view": "메모리 몰빵 구조라 반도체 가격 하락 시 불리하지만 변동성이 커 단기 트레이딩에 유효하다.",
-      "ref": "WiHMm0NkGEE"
+      "channel": "연합뉴스경제TV",
+      "view": "디램 가격 하락 시나리오에서도 견조한 실적 체력을 유지하나 매수 심리 회복에는 시간이 필요하다.",
+      "ref": "FlUs8YY8aAE"
      },
      {
-      "channel": "815머니톡",
-      "view": "PER 4.4배 수준으로 저평가되어 있으나 높은 이익률의 지속 가능성에 의문이 든다.",
-      "ref": "K101Dy3FU1w"
+      "channel": "김작가 TV",
+      "view": "부채가 적어 고금리 직접 영향은 적으나 주가가 과도하게 저평가된 상태다.",
+      "ref": "pnIq4HW1nRg"
+     },
+     {
+      "channel": "김작가 TV",
+      "view": "다변화된 포트폴리오로 방어력이 높으나 상단 반등 폭은 24만~25만 원으로 제한적이다.",
+      "ref": "WiHMm0NkGEE"
      }
     ]
    },
    {
     "name": "엔비디아",
-    "count": 2,
-    "tone": "긍정",
+    "count": 3,
+    "tone": "혼재",
     "mentions": [
      {
+      "channel": "연합뉴스경제TV",
+      "view": "분기 실적 서프라이즈에도 불확실한 장기 비전과 경영진 부재 여파로 주가 모멘텀이 약화됐다.",
+      "ref": "FlUs8YY8aAE"
+     },
+     {
       "channel": "체슬리TV",
-      "view": "수출 규제에도 불구하고 강력한 수요와 신제품 출시로 실적이 견고하다.",
+      "view": "수출 규제에도 수요가 공급을 크게 웃돌아 실적이 견고하며 블랙웰 출하가 본격화되고 있다.",
       "ref": "l6BRztXR5jo"
      },
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "메모리 장기공급계약이 늘어나며 HBM4 공급이 순항할 것으로 전망한다.",
-      "ref": "AydkVh-c6GI"
-     }
-    ]
-   },
-   {
-    "name": "하이브",
-    "count": 2,
-    "tone": "긍정",
-    "mentions": [
-     {
-      "channel": "김작가 TV",
-      "view": "기관이 지속적으로 매수하고 있으며 바닥권에서 반등을 시도하고 있다.",
-      "ref": "5ce3JngZSq0"
-     },
-     {
       "channel": "815머니톡",
-      "view": "내년 상반기 완전체 월드투어로 엔터주 중 실적 모멘텀이 가장 명확하다.",
-      "ref": "mcc0jFRgPuw"
-     }
-    ]
-   },
-   {
-    "name": "에스엠",
-    "count": 2,
-    "tone": "긍정",
-    "mentions": [
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "중국 관련 대장주로 인식되어 지속적인 매집이 확인된다.",
-      "ref": "bsmFdEtKWqM"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "한중 FTA 후속협상 타결 호재로 주가가 큰 폭의 상승세를 보였다.",
-      "ref": "G5Kz41EjDmw"
+      "view": "실적 발표 후 경영진의 신중한 발언과 리더십 이슈로 주가 변동성이 확대됐다.",
+      "ref": "Cfb0KSoFWz0"
      }
     ]
    },
    {
     "name": "삼성전기",
-    "count": 2,
+    "count": 3,
     "tone": "긍정",
     "mentions": [
+     {
+      "channel": "연합뉴스경제TV",
+      "view": "분봉상 수급 변화와 함께 숏커버링 물량이 유입되며 장중 동적인 움직임을 보였다.",
+      "ref": "FlUs8YY8aAE"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "실적 성장세에 비해 PER이 낮아 강한 반등이 나왔다고 평가한다.",
+      "ref": "22mEZYyDpZA"
+     },
      {
       "channel": "체슬리TV",
       "view": "엔비디아와의 기판 공급 계약 확대로 실적 성장이 기대된다.",
       "ref": "l6BRztXR5jo"
+     }
+    ]
+   },
+   {
+    "name": "하이브",
+    "count": 3,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "거래량이 수반되며 수급이 집중되어 반도체 주도주가 쉬어갈 때 대안이 될 수 있다.",
+      "ref": "22mEZYyDpZA"
      },
      {
       "channel": "김작가 TV",
-      "view": "엔비디아와 MLCC 관련 계약 및 수주 기대감이 반영되며 주가가 강세를 보였다.",
-      "ref": "WiHMm0NkGEE"
+      "view": "바닥권에서 반등을 시도하며 기관이 지속적으로 매수하고 있다.",
+      "ref": "5ce3JngZSq0"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "내년 상반기 BTS 완전체 월드투어로 엔터주 중 가장 명확한 실적 개선이 전망된다.",
+      "ref": "mcc0jFRgPuw"
+     }
+    ]
+   },
+   {
+    "name": "CJ ENM",
+    "count": 3,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "한한령 완화 및 한중 관계 개선 기대감에 힘입어 급등세를 보였다.",
+      "ref": "22mEZYyDpZA"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "한령 해제 기대감으로 수급이 집중되며 강세를 기록했다.",
+      "ref": "bsmFdEtKWqM"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "문화 서비스 교류 기대감으로 주가가 크게 상승했다.",
+      "ref": "09Ij_WyfeMs"
+     }
+    ]
+   },
+   {
+    "name": "에스엠",
+    "count": 3,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "중국 관련 대장주로 인식되어 기타 법인의 지속적인 매집이 확인됐다.",
+      "ref": "bsmFdEtKWqM"
+     },
+     {
+      "channel": "김작가 TV",
+      "view": "한령 해제 기대감으로 주가가 급등하며 기관 수급이 유입되고 있다.",
+      "ref": "5ce3JngZSq0"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "중국 콘텐츠 시장 개방 기대감으로 주가가 큰 폭의 상승세를 보였다.",
+      "ref": "G5Kz41EjDmw"
+     }
+    ]
+   },
+   {
+    "name": "아모레퍼시픽",
+    "count": 3,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "815머니톡",
+      "view": "한한령 관련주 중 상대적으로 덜 올랐고 연말 소비 시즌과 환율 안정 시 상승 여력이 확실하다.",
+      "ref": "VEYoCnIz6XQ"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "화장품 섹터 내에서 에스트라 등 실적을 확인해야 할 기업이다.",
+      "ref": "d9rmKdDS43w"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "엔터·콘텐츠 대신 기초 화장품 비중이 높아 실적 기반으로 유리하다.",
+      "ref": "G_CPMSwOIP0"
      }
     ]
    }
