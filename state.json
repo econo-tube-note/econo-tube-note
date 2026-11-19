@@ -68,7 +68,7 @@
  "spent": {},
  "models": {
   "gemini-3.6-flash": {
-   "ok": 11,
+   "ok": 13,
    "busy": 27,
    "dead": 4
   },
@@ -200,7 +200,11 @@
   "VAaaivIhty0": true,
   "vXxSGS2ioBQ": true,
   "wzjGWiraCxw": true,
-  "8ZS2VyTY9lk": true
+  "8ZS2VyTY9lk": true,
+  "bQOYdqsuNQI": true,
+  "vhsLz4kwn4k": true,
+  "ODiEz3dslcE": true,
+  "IsNVO2cmRvA": true
  },
  "brief_final": {
   "2026-11-13": true,
