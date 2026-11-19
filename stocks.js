@@ -311,21 +311,30 @@ const STOCKSUM={
  },
  "AMD": {
   "name": "AMD",
-  "tone": "혼재",
-  "summary": "엔비디아의 대안 칩으로서 반사 수혜 및 AI 가속기 점유율 확대를 기대받으나, 업종 약세와 차익실현으로 하락세를 보였다.",
+  "tone": "긍정",
+  "summary": "AMD는 AI 반도체 시장의 성장과 엔비디아 대안 수혜로 주목받고 있으나 단기 등락도 함께 나타나고 있다.",
   "points": [
-   "엔비디아 독점력 약화로 대안 칩과 경쟁사로서 반사 수혜를 기대받고 있다.",
-   "AI 가속기 점유율을 늘리고 있으나 차익실현과 업종 약세로 크게 하락했다."
+   "AI 가속기와 데이터센터 확장으로 시장 점유율을 확대하고 있다.",
+   "엔비디아의 독점력 흔들림에 따른 반사이익과 수혜가 기대된다.",
+   "급등 이후 차익실현 매물과 경쟁사 이슈로 주가 변동성을 보였다."
   ],
   "ids": [
+   "5k0zCfIFr8w",
    "BIhFDJtoK6k",
+   "HW1kdcwhrqY",
+   "KOho88gAhO4",
    "LagAldYbD8M",
    "P1m0QaKWzG0",
+   "PREEBWeBwhs",
+   "QoEfnBKO5zU",
+   "XrMcS9HJQQQ",
    "_0ePh1KmGdc",
-   "cZKNKIAXEfY"
+   "cZKNKIAXEfY",
+   "dra2apL7dEg",
+   "h40ZIc8mx-c"
   ],
-  "count": 5,
-  "updated": "2026-11-16"
+  "count": 13,
+  "updated": "2026-11-20"
  },
  "셀트리온": {
   "name": "셀트리온",
@@ -576,17 +585,27 @@ const STOCKSUM={
  "하이브": {
   "name": "하이브",
   "tone": "혼재",
-  "summary": "하이브는 엔터주 중 차트 자리가 좋지 않다는 분석이 있으나, 시장이 좋지 않을 때는 방어주 성격을 띠기도 한다.",
+  "summary": "한한령 해제 기대감과 실적 개선 전망으로 급등하며 수급이 몰리나 차트 매물 부담과 실질 성과 확인 필요성도 제기된다.",
   "points": [
-   "엔터주 중에서 상대적으로 가장 차트 자리가 좋지 않다.",
-   "시장이 좋지 않을 때 방어주 성격을 띠며 상승률 상위에 올랐다."
+   "한중 FTA 타결과 한한령 해제 기대감으로 주가가 급등했다.",
+   "BTS 완전체 활동 재개에 따른 실적 개선이 전망된다.",
+   "차트 매물이 많고 자리가 좋지 않아 성과 확인이 필요하다."
   ],
   "ids": [
+   "09Ij_WyfeMs",
+   "22mEZYyDpZA",
+   "5ce3JngZSq0",
+   "AydkVh-c6GI",
+   "G5Kz41EjDmw",
+   "eFnxFsUiMvs",
+   "egDZOq_zOPo",
    "kyUbMfnczE0",
-   "ntk0jpMmJPU"
+   "mcc0jFRgPuw",
+   "ntk0jpMmJPU",
+   "vqB7JpqjRy0"
   ],
-  "count": 2,
-  "updated": "2026-11-17"
+  "count": 11,
+  "updated": "2026-11-20"
  },
  "펌텍코리아": {
   "name": "펌텍코리아",
