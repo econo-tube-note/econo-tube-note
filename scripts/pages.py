@@ -28,9 +28,10 @@ except Exception:
         return (n or "").strip()
 
 ROOT = Path(__file__).resolve().parent.parent
-SITE = os.environ.get("SITE_URL", "https://econo-tube-note.github.io/econo-tube-note").rstrip("/")
+SITE = os.environ.get("SITE_URL", "https://marketraven.kr").rstrip("/")
 BASE = "/" + SITE.split("://", 1)[1].split("/", 1)[1].strip("/") + "/" if SITE.count("/") > 2 else "/"
-SITE_NAME = os.environ.get("SITE_NAME", "경제 유튜브 요약")
+SITE_NAME = os.environ.get("SITE_NAME", "Market Raven")
+TAGLINE = "경제 유튜브, 대신 보고 핵심만 전한다"
 CONTACT = os.environ.get("CONTACT_EMAIL", "gomajjy0@gmail.com")
 MANIFEST = ROOT / "pages.json"
 KST = datetime.timezone(datetime.timedelta(hours=9))
@@ -98,6 +99,17 @@ def href(path):
     return BASE + path.lstrip("/")
 
 
+def short_title(t):
+    """탭·검색 결과용 짧은 제목: 앞뒤의 [말머리]·#번호와 | 뒤 출연자 표기를 뺀다"""
+    s = (t or "").strip()
+    s = re.sub(r"^(\s*[\[【][^\]】]{0,20}[\]】]\s*)+", "", s)
+    s = re.split(r"[|ㅣ｜]", s)[0]
+    s = re.sub(r"(\s*([\[【][^\]】]{0,20}[\]】]|#\d+))+\s*$", "", s).strip(" -·")
+    if len(s) < 6:
+        s = (t or "").strip()
+    return re.sub(r"\s+", " ", s)
+
+
 def desc_of(*parts, n=150):
     t = re.sub(r"\s+", " ", " ".join(x for x in parts if x)).strip()
     return t if len(t) <= n else t[: n - 1].rstrip() + "…"
@@ -113,7 +125,8 @@ def main_css():
 
 
 EXTRA_CSS = """
-.logo{display:block;font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 16px;color:var(--ink);text-decoration:none}
+.logo{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 16px;color:var(--ink)}
+@media(max-width:640px){.logo{font-size:1.55rem}}
 .nav a{border:0;background:none;padding:10px 16px;font-weight:700;color:var(--sub);text-decoration:none;border-bottom:3px solid transparent;margin-bottom:-1px;flex:none}
 .nav{display:flex;gap:4px}
 .nav a.on{color:var(--ink);border-bottom-color:var(--accent)}
@@ -200,7 +213,7 @@ addEventListener("resize",hide)})();
 </script>"""
 
 
-def page(path, title, desc, body, kind="article", date=None, nav_on="home"):
+def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_title=None):
     canon = url(path)
     ld = ""
     if kind == "article":
@@ -214,14 +227,14 @@ def page(path, title, desc, body, kind="article", date=None, nav_on="home"):
     nav = "".join(f'<a href="{BASE}{h}" class="{"on" if k == nav_on else ""}">{t}</a>' for k, t, h in tabs)
     return f"""<!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{e(title)} | {e(SITE_NAME)}</title>
+<title>{e(tab_title or (title + " | " + SITE_NAME))}</title>
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{e(canon)}">
 <meta property="og:type" content="{'article' if kind == 'article' else 'website'}"><meta property="og:site_name" content="{e(SITE_NAME)}">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{e(canon)}">
 <style>{main_css()}{EXTRA_CSS}</style>{ld}</head>
 <body><div class="wrap">
-<a class="logo" href="{BASE}">{e(SITE_NAME)}</a>
+<div class="logo brand"><a href="{BASE}">{e(SITE_NAME)}</a><small>{e(TAGLINE)}</small></div>
 <nav class="nav">{nav}</nav>
 {body}
 
@@ -482,7 +495,7 @@ def build_info_pages():
                 + "".join(f'<h2 class="bt c1">{h}</h2>{b}' for h, b in sections) + "</div>")
 
     about = doc("사이트 소개", [
-        ("어떤 곳인가", f"<p>{e(SITE_NAME)}는 인기 경제 유튜브 채널의 영상을 AI가 요약하고, 여러 채널의 이야기를 하루와 한 주 단위로 종합해 보여 주는 곳이다. "
+        ("어떤 곳인가", f"<p>{e(SITE_NAME)}은 인기 경제 유튜브 채널의 영상을 AI가 요약하고, 여러 채널의 이야기를 하루와 한 주 단위로 종합해 보여 주는 곳이다. "
                     "영상을 다 볼 시간이 없을 때, 오늘 경제 유튜브에서 무슨 이야기가 오갔는지 몇 분 안에 파악할 수 있게 만드는 게 목표다.</p>"),
         ("다루는 채널", f"<ul class=\"kp\">{ch_list}</ul><p>채널은 앞으로 늘어날 수 있다.</p>"),
         ("볼 수 있는 것", "<ul class=\"kp\"><li><b>홈</b>: 지금 시장 요약, 채널들의 분위기와 쟁점, 많이 언급된 종목과 숫자를 한눈에 본다.</li>"
@@ -510,7 +523,7 @@ def build_info_pages():
         ("6. 문의", f"<p>개인정보와 관련한 문의는 {mail}로 보내 주면 된다.</p>"),
         ("7. 시행일", f"<p>이 방침은 {e(kdate(INFO_DATE))}부터 적용한다. 내용이 바뀌면 이 페이지에 알린다.</p>"),
     ])
-    n = write("about", page("about/", "사이트 소개", f"{SITE_NAME}는 인기 경제 유튜브 채널의 영상을 AI가 요약하고 하루와 한 주 단위로 종합해 보여 주는 곳이다.", about, kind="list", nav_on=""))
+    n = write("about", page("about/", "사이트 소개", f"{SITE_NAME}은 인기 경제 유튜브 채널의 영상을 AI가 요약하고 하루와 한 주 단위로 종합해 보여 주는 곳이다.", about, kind="list", nav_on=""))
     n += write("privacy", page("privacy/", "개인정보처리방침", f"{SITE_NAME}의 개인정보처리방침이다.", privacy, kind="list", nav_on=""))
     return n
 
@@ -592,7 +605,7 @@ def build_video_pages(V, man, briefs, stock_slug, mark):
         items = [x for p_ in v.get("parts") or [] for _, x in p_.get("items") or []]
         desc = desc_of(v.get("conclusion"), *items[:3])
         title = f'{v.get("title")} 요약 | {v.get("channel")}'
-        c = write(f"v/{vid}", page(f"v/{vid}/", title, desc, body, date=d, nav_on="videos"))
+        c = write(f"v/{vid}", page(f"v/{vid}/", title, desc, body, date=d, nav_on="videos", tab_title=short_title(v.get("title")) + " 요약"))
         changed += c
         mark("video", vid, c, {"title": (v.get("title") or "")[:80], "date": d})
     return changed
