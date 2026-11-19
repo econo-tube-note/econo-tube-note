@@ -3,11 +3,11 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "주가 하락과 투자 우려가 지속되는 가운데 견고한 펀더멘털과 주주환원 정책을 바탕으로 한 저평가 매력도 함께 언급된다.",
+  "summary": "주가 하락과 외국인 매도 우려가 있으나, 견고한 펀더멘털과 자사주 매입 등을 통한 반등 기대감도 공존한다.",
   "points": [
-   "주가 하락과 데이터 센터 투자 우려가 이어지고 있다.",
-   "풍부한 영업이익과 자사주 매입 등 주주환원 정책이 긍정적이다.",
-   "외국인 수급이 유입되면 주가 반등이 가능할 것으로 본다."
+   "외국인 매도세와 지수 하락 압력 속에서 전저점 바닥을 다지는 구간이다.",
+   "AI 수요 대응 및 데이터 센터 투자 축소 우려로 주가가 과도하게 하락했다.",
+   "영업이익 성장세와 풍부한 현금을 바탕으로 수급 유입 시 주가 상승을 기대한다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -39,6 +39,7 @@ const STOCKSUM={
    "JYyoOyLbEdY",
    "Jn91NmZyGBg",
    "K101Dy3FU1w",
+   "LEYOVBYtp3Q",
    "LagAldYbD8M",
    "N_4n0mMwAWA",
    "OK2FJONMpGA",
@@ -72,6 +73,7 @@ const STOCKSUM={
    "kZAYyNhv5p4",
    "kyUbMfnczE0",
    "lBlGFVbqgXE",
+   "ld70Ck32c2I",
    "mW4Bp0uo0eQ",
    "mcc0jFRgPuw",
    "n16GTXBi7e0",
@@ -91,7 +93,7 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 80,
+  "count": 82,
   "updated": "2026-11-19"
  },
  "엔비디아": {
@@ -142,15 +144,16 @@ const STOCKSUM={
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "혼재",
-  "summary": "탄탄한 실적과 HBM 수요로 긍정적 전망이 우세하나, 마진 지속성과 시장 하락에 대한 우려도 함께 존재한다.",
+  "summary": "저평가된 밸류에이션과 탄탄한 실적 덕분에 긍정적인 평가가 많으나, 높은 마진의 지속 가능성에 대한 우려와 하락장 속 대응에 대한 의견이 엇갈린다.",
   "points": [
-   "메모리 및 HBM 수요로 실적 성장세가 지속될 것이라는 전망이 있다.",
-   "70~80% 마진의 지속 가능성과 공급 증가에 대한 우려가 존재한다.",
-   "저평가된 밸류에이션 속에서 분할 매수와 수급 개선 기대를 언급한다."
+   "낮은 PER과 PBR을 바탕으로 저평가 매력과 밸류에이션 하단 진입이라는 평가가 나온다.",
+   "HBM 수요 증가와 견조한 실적 덕분에 내년까지 성장이 지속될 것이라는 전망이 있다.",
+   "높은 마진의 지속 가능성에 대한 우려와 함께 추세 하락장에 따른 분할 매수 의견이 존재한다."
   ],
   "ids": [
    "-GrEZiF4e6k",
    "-PVT3Gp45SE",
+   "00J5lJ3i94U",
    "4-y8e6UGd88",
    "5ejfTU3cvac",
    "6g110iUWTVo",
@@ -177,6 +180,7 @@ const STOCKSUM={
    "JYyoOyLbEdY",
    "Jn91NmZyGBg",
    "K101Dy3FU1w",
+   "LEYOVBYtp3Q",
    "N_4n0mMwAWA",
    "OK2FJONMpGA",
    "Of8HJe9eNYw",
@@ -225,7 +229,7 @@ const STOCKSUM={
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 75,
+  "count": 77,
   "updated": "2026-11-19"
  },
  "코어위브": {
