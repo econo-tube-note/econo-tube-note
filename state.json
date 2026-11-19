@@ -53,23 +53,23 @@
  "spent": {},
  "models": {
   "gemini-3.6-flash": {
-   "ok": 5,
-   "busy": 17,
+   "ok": 6,
+   "busy": 25,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 0,
-   "busy": 20,
+   "busy": 27,
    "dead": 4
   },
   "gemini-3.8-flash": {
    "ok": 0,
-   "busy": 24,
+   "busy": 33,
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 30,
-   "busy": 7,
+   "ok": 18,
+   "busy": 3,
    "dead": 4
   },
   "gemini-3.5-flash-lite": {
@@ -141,9 +141,7 @@
   "VZv-QcnXCN4": true,
   "oqUHwpwhdGY": true,
   "zNrjmwUR9-Y": true,
-  "DaHzmjAGfGQ": true,
   "CpGj1M3vaO8": true,
-  "E2JBFfuhP_8": true,
   "3BsUb4zzP-4": true,
   "DS2u_UooFsw": true,
   "9E76qPLcH2I": true,
@@ -156,9 +154,7 @@
   "Vy2KSdTuQ2w": true,
   "ePHxrqnevQI": true,
   "D8Ux7TGeiHA": true,
-  "vCEYiChFcnA": true,
   "OUCijtPQrCQ": true,
-  "dHmiFEuyjWw": true,
   "ZCzUlVm2jSg": true,
   "LiGYUpAkYzA": true,
   "tXq_SjCHvek": true,
@@ -167,7 +163,6 @@
   "bHls2Oc1faY": true,
   "8O7iSTMZ-84": true,
   "JL6acLiFOFE": true,
-  "kgPvRNvkX0k": true,
   "f_Pb9-42cUE": true,
   "d3rEiUE9QjQ": true,
   "SRDGOovbH4g": true,
@@ -186,7 +181,10 @@
   "5k0zCfIFr8w": true,
   "dra2apL7dEg": true,
   "uU9ZKGTSh0k": true,
-  "_Tqm0GqYKXw": true
+  "_Tqm0GqYKXw": true,
+  "RkpF-xeoalw": true,
+  "G5Kz41EjDmw": true,
+  "znmu0vaHb10": true
  },
  "brief_final": {
   "2026-11-13": true,

@@ -114,7 +114,13 @@ a.tm:hover{color:var(--accent)}
 .tl dd{margin:0 0 10px;font-size:.95rem;line-height:1.65}
 .vc{display:grid;grid-template-columns:128px minmax(0,1fr);gap:14px;align-items:start;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer}
 .vc:hover{background:var(--chip)}
-.vl{display:flex;flex-direction:column;gap:5px;min-width:0}
+/* 팝업은 썸네일을 크게, 제목은 자르지 않는다 */
+.pop .vc{grid-template-columns:176px minmax(0,1fr)}
+.pop .vt{white-space:normal;overflow:visible;line-height:1.45}
+.vl{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:7px 6px;min-width:0}
+.vl .vth{grid-column:1/-1}
+.vl b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vl small{white-space:nowrap}
 .vth{aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:linear-gradient(135deg,#dbe3f4,#b9c6e6)}
 .vth img{width:100%;height:100%;object-fit:cover;display:block}
 .vl b{color:var(--accent);font-size:.82rem;line-height:1.3}
@@ -125,7 +131,12 @@ a.tm:hover{color:var(--accent)}
 .pop{position:absolute;z-index:50;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.22);padding:8px;max-height:70vh;overflow:auto}
 .pop .vc{border:0;padding:8px}
 .pop .vc+.vc{border-top:1px solid var(--line);border-radius:0}
-@media(max-width:480px){.vc{grid-template-columns:100px minmax(0,1fr);gap:10px}}
+@media(max-width:480px){.vc{grid-template-columns:100px minmax(0,1fr);gap:10px}
+/* 모바일 팝업: 썸네일을 폭 가득, 그 아래 채널·날짜, 제목, 요약을 세로로 */
+.pop .vc{grid-template-columns:1fr;gap:8px}
+.pop .vr p{-webkit-line-clamp:5}
+/* 모바일 홈의 최근 영상은 4개만 */
+#hgrid .card:nth-child(n+5){display:none}}
 .skrb p{margin:0;padding:9px 0;border-top:1px solid var(--line);font-size:.93rem;line-height:1.6}
 #grid,#sl,#nlist{min-height:60vh}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(290px,100%),1fr));gap:18px}
@@ -293,7 +304,7 @@ a.tm:hover{color:var(--accent)}
 .dvc{align-self:flex-end;background:var(--card);border:1px solid var(--line);color:var(--sub);border-radius:99px;padding:2px 10px;font-size:.78rem;font-weight:600;white-space:nowrap;text-decoration:none}
 .dvc:hover{color:var(--accent)}
 @media(max-width:800px){.dvids{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}.dvid{flex:0 0 42%;scroll-snap-align:start}}
-@media(max-width:600px){.dwk{flex-wrap:wrap}.dwk span{white-space:normal;overflow:visible}.dfoot .dmore{margin-left:auto}.mseg{min-width:0;flex-direction:column;gap:0;font-size:.74rem}.mseg span{font-size:.9rem}.mbar{height:52px}.dvs{flex-direction:column;align-items:stretch;gap:8px}.vs{align-self:center;font-size:1.3rem;padding:2px 0}.dblk{padding:16px}.dhl{font-size:1.15rem}.dgrid{grid-template-columns:repeat(2,1fr)}.dv2{flex-direction:column;gap:2px;padding:6px 4px}.dch{width:auto}.dvid{flex-basis:62%}.dmore{margin-left:0}}
+@media(max-width:600px){.dwk{flex-wrap:wrap}.dwk span{white-space:normal;overflow:visible}.dfoot .dmore{margin-left:auto}.mseg{min-width:0;flex-direction:column;gap:0;font-size:.74rem}.mseg span{font-size:.9rem}.mbar{height:52px}.dvs{flex-direction:column;align-items:stretch;gap:8px}.vs{align-self:center;font-size:1.3rem;padding:2px 0}.dblk{padding:16px}.dhl{font-size:1.15rem}.dgrid{grid-template-columns:repeat(2,1fr)}.dv2{flex-direction:column;gap:2px;padding:6px 4px}.dch{width:auto}.dvid{flex-basis:62%}.dhd>.dmore{order:2;margin-left:auto}.dhd>.dmeta{order:3;flex-basis:100%}}
 
 /* ----- 영상 카드: 제목과 한 줄 요약 균형, 분위기, 상세 요약 버튼 ----- */
 .card h2{font-size:.95rem;font-weight:600;color:var(--ink);line-height:1.45}
@@ -333,8 +344,10 @@ a.tm:hover{color:var(--accent)}
  .kwbar{flex-wrap:nowrap;margin-top:-4px}.kwbar small{flex:none}.kwbar .chips{min-width:0}
  .grid .card .meta .md{font-size:.66rem;padding:0 6px}
  .grid{gap:10px}
- .dlatest.dblk #hgrid .card{padding:10px 0;border-bottom:1px solid var(--line)}
- .dlatest.dblk #hgrid .card:last-child{border-bottom:0}
+ /* 모바일 홈의 최근 영상: 바깥 흰 박스 없이, 카드는 영상 요약 탭과 같은 모양에 썸네일만 조금 크게 */
+ .dlatest.dblk{background:none;border:0;padding:0;box-shadow:none}
+ .dlatest.dblk #hgrid .card{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px}
+ #hgrid .card{grid-template-columns:50% minmax(0,1fr)}
 }
 
 .logo{display:block;font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 16px;color:var(--ink);text-decoration:none}
@@ -367,7 +380,7 @@ a.vc{color:inherit;text-decoration:none}
 <body><div class="wrap">
 <a class="logo" href="/econo-tube-note/">경제 유튜브 요약</a>
 <nav class="nav"><a href="/econo-tube-note/" class="">홈</a><a href="/econo-tube-note/brief/" class="on">브리핑</a><a href="/econo-tube-note/#videos" class="">영상 요약</a><a href="/econo-tube-note/stock/" class="">종목</a><a href="/econo-tube-note/#numbers" class="">숫자·지표</a><a href="/econo-tube-note/#community" class="">커뮤니티</a></nav>
-<div class="brief"><h1 style="margin-top:0">시장 브리핑</h1><h2 class="bt c1">일간 브리핑<span class="cn">6</span></h2><ul class="plist blist"><li><a class="bli" href="/econo-tube-note/brief/2026-11-18/"><span class="bld"><b>11.18</b><small>2026 · 수</small></span><span class="blt"><b>엔비디아의 탄탄한 실적 발표로 반도체 중심의 시장 반등 기대감이 커지고 있다</b><small>영상 24편 종합</small></span></a></li><li><a class="bli" href="/econo-tube-note/brief/2026-11-17/"><span class="bld"><b>11.17</b><small>2026 · 화</small></span><span class="blt"><b>엔비디아 실적과 외국인 매도세 속에 국내 증시가 급락하며 변동성을 보이고 있다.</b><small>영상 16편 종합</small></span></a></li><li><a class="bli" href="/econo-tube-note/brief/2026-11-16/"><span class="bld"><b>11.16</b><small>2026 · 월</small></span><span class="blt"><b>외국인 대규모 매도와 AI 불확실성에 국내 증시가 급락하며 관망세가 짙어졌다.</b><small>영상 22편 종합</small></span></a></li><li><a class="bli" href="/econo-tube-note/brief/2026-11-15/"><span class="bld"><b>11.15</b><small>2026 · 일</small></span><span class="blt"><b>국내 증시의 수급 불안과 AI 반도체 리스크 속에서도 저평가된 주요 반도체 종목을 중심으로 바닥 확인 시도가 나타나고 있다.</b><small>영상 9편 종합</small></span></a></li><li><a class="bli" href="/econo-tube-note/brief/2026-11-14/"><span class="bld"><b>11.14</b><small>2026 · 토</small></span><span class="blt"><b>엔비디아 젠슨 황 CEO 관련 리스크와 수급 불안으로 증시 변동성이 커진 가운데 국내 반도체주의 펀더멘털과 저평가 매력에 주목하는 분석이 제시된다.</b><small>영상 11편 종합</small></span></a></li><li><a class="bli" href="/econo-tube-note/brief/2026-11-13/"><span class="bld"><b>11.13</b><small>2026 · 금</small></span><span class="blt"><b>엔비디아 관련 불확실성과 증시 변동성 속에서 보수적 리스크 관리와 로봇·AI 반도체 등 수혜 섹터 중심의 박스권 대응이 강조된다.</b><small>영상 6편 종합</small></span></a></li></ul><div class="bsec" id="weekly"><h2 class="bt c2">주간 브리핑<span class="cn">2</span></h2><ul class="plist blist"><li><a class="bli" href="/econo-tube-note/week/2026-11-16/"><span class="bld wk"><b>11.16~</b><small>~11.22</small></span><span class="blt"><b>외국인 매도세와 AI 우려 속 엔비디아 실적이 발표된 한 주였다.</b><small>영상 48편 종합</small></span></a></li><li><a class="bli" href="/econo-tube-note/week/2026-11-09/"><span class="bld wk"><b>11.09~</b><small>~11.15</small></span><span class="blt"><b>엔비디아 관련 리스크와 증시 변동성 속에서 반도체주 저평가와 수혜 섹터 중심의 대응이 강조되었다.</b><small>영상 28편 종합</small></span></a></li></ul></div></div>
+<div class="brief"><h1 style="margin-top:0">시장 브리핑</h1><h2 class="bt c1">일간 브리핑<span class="cn">6</span></h2><ul class="plist blist"><li><a class="bli" href="/econo-tube-note/brief/2026-11-18/"><span class="bld"><b>11.18</b><small>2026 · 수</small></span><span class="blt"><b>엔비디아의 탄탄한 실적과 AI 투자 지속 기대감 속에 증시 반등 모색</b><small>영상 27편 종합</small></span></a></li><li><a class="bli" href="/econo-tube-note/brief/2026-11-17/"><span class="bld"><b>11.17</b><small>2026 · 화</small></span><span class="blt"><b>엔비디아 실적과 외국인 매도세 속에 국내 증시가 급락하며 변동성을 보이고 있다.</b><small>영상 16편 종합</small></span></a></li><li><a class="bli" href="/econo-tube-note/brief/2026-11-16/"><span class="bld"><b>11.16</b><small>2026 · 월</small></span><span class="blt"><b>외국인 대규모 매도와 AI 불확실성에 국내 증시가 급락하며 관망세가 짙어졌다.</b><small>영상 22편 종합</small></span></a></li><li><a class="bli" href="/econo-tube-note/brief/2026-11-15/"><span class="bld"><b>11.15</b><small>2026 · 일</small></span><span class="blt"><b>국내 증시의 수급 불안과 AI 반도체 리스크 속에서도 저평가된 주요 반도체 종목을 중심으로 바닥 확인 시도가 나타나고 있다.</b><small>영상 9편 종합</small></span></a></li><li><a class="bli" href="/econo-tube-note/brief/2026-11-14/"><span class="bld"><b>11.14</b><small>2026 · 토</small></span><span class="blt"><b>엔비디아 젠슨 황 CEO 관련 리스크와 수급 불안으로 증시 변동성이 커진 가운데 국내 반도체주의 펀더멘털과 저평가 매력에 주목하는 분석이 제시된다.</b><small>영상 11편 종합</small></span></a></li><li><a class="bli" href="/econo-tube-note/brief/2026-11-13/"><span class="bld"><b>11.13</b><small>2026 · 금</small></span><span class="blt"><b>엔비디아 관련 불확실성과 증시 변동성 속에서 보수적 리스크 관리와 로봇·AI 반도체 등 수혜 섹터 중심의 박스권 대응이 강조된다.</b><small>영상 6편 종합</small></span></a></li></ul><div class="bsec" id="weekly"><h2 class="bt c2">주간 브리핑<span class="cn">2</span></h2><ul class="plist blist"><li><a class="bli" href="/econo-tube-note/week/2026-11-16/"><span class="bld wk"><b>11.16~</b><small>~11.22</small></span><span class="blt"><b>외국인 매도세와 AI 우려 속 엔비디아 실적이 발표된 한 주였다.</b><small>영상 48편 종합</small></span></a></li><li><a class="bli" href="/econo-tube-note/week/2026-11-09/"><span class="bld wk"><b>11.09~</b><small>~11.15</small></span><span class="blt"><b>엔비디아 관련 리스크와 증시 변동성 속에서 반도체주 저평가와 수혜 섹터 중심의 대응이 강조되었다.</b><small>영상 28편 종합</small></span></a></li></ul></div></div>
 
 <p class="note">AI가 경제 유튜브 영상과 그 요약을 종합한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
 <footer class="sitefoot"><a href="/econo-tube-note/about/">사이트 소개</a><a href="/econo-tube-note/privacy/">개인정보처리방침</a><a href="mailto:gomajjy0@gmail.com">문의 gomajjy0@gmail.com</a></footer>
@@ -377,7 +390,7 @@ if(s)s.scrollIntoView({block:"start"});if(c){c.classList.add("flash");setTimeout
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",()=>setTimeout(go,0));else setTimeout(go,0)})();
 </script><script>
 (()=>{const pop=document.createElement("div");pop.className="pop";pop.hidden=true;document.body.appendChild(pop);let cur=null;
-function show(el,html,wide){pop.innerHTML=html;pop.hidden=false;pop.scrollTop=0;const r=el.getBoundingClientRect(),w=Math.min(wide?560:420,innerWidth-24);
+function show(el,html,wide){pop.innerHTML=html;pop.hidden=false;pop.scrollTop=0;const r=el.getBoundingClientRect(),w=Math.min(wide?600:480,innerWidth-24);
 pop.style.width=w+"px";pop.style.left=(scrollX+Math.min(Math.max(12,r.left),innerWidth-w-12))+"px";const h=pop.offsetHeight||0;let top=r.bottom+8;
 if(h&&top+h>innerHeight&&r.top-8-h>12)top=r.top-8-h;pop.style.top=(scrollY+top)+"px";cur=el}
 function hide(){pop.hidden=true;cur=null}

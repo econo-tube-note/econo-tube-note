@@ -3,11 +3,11 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "긍정",
-  "summary": "주가 하락으로 밸류에이션 매력이 부각되었으며 반도체 주도주로서 장기 보유와 저점 매수 기회로 평가한다.",
+  "summary": "AI 시장 성장과 저점 매수 구간 진입으로 반등 가능성이 높다고 평가한다.",
   "points": [
-   "월봉상 주요 지지선에 도달하여 저점 형성 가능성과 낮은 가격대를 평가한다.",
-   "엔비디아 공급 약정과 고객사 다변화로 향후 실적 성장이 기대된다.",
-   "반도체 주도주로서 장기 보유가 유리하며 마진율 유지 시 매수 구간으로 본다."
+   "DS 부문장의 AI 시장 우려 일축과 구조적 성장을 자신했다.",
+   "월봉상 주요 지지선 도달과 낮은 가격대로 저점 매수 구간이라는 의견이다.",
+   "엔비디아 관련 공급 약정과 실적 성장에 대한 기대감이 존재한다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -18,11 +18,14 @@ const STOCKSUM={
    "9MXwHlep8wQ",
    "AT8gm5K7xAY",
    "AjAzI1Uxh9c",
+   "AydkVh-c6GI",
    "BIhFDJtoK6k",
    "C1yE6FwQMCY",
    "Cgn7XPWef2A",
    "Codp7P9gH4U",
    "DNHHB8jEuSM",
+   "DaHzmjAGfGQ",
+   "E2JBFfuhP_8",
    "EnUsMp3IZu4",
    "FeBExCVpt4U",
    "G-DfszxECas",
@@ -64,12 +67,13 @@ const STOCKSUM={
    "qrosihil7Ms",
    "r_mO3QY3fE4",
    "saSLtHK3aJ0",
+   "vCEYiChFcnA",
    "vVe3kbl0k44",
    "xrqbovX16L8",
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 58,
+  "count": 62,
   "updated": "2026-11-19"
  },
  "엔비디아": {
@@ -119,12 +123,11 @@ const STOCKSUM={
  },
  "SK하이닉스": {
   "name": "SK하이닉스",
-  "tone": "혼재",
-  "summary": "AI 수혜와 탄탄한 펀더멘털로 장기 성장이 기대되나, 단기 주가 하락과 고객 다변화에 따른 우려도 존재한다.",
+  "tone": "긍정",
+  "summary": "AI 산업의 핵심으로 꼽히며 HBM 수요와 견조한 실적을 바탕으로 긍정적인 평가를 받고 있다.",
   "points": [
-   "AI 인프라 확대와 엔비디아향 HBM 수요로 장기 성장이 예상된다.",
-   "시장 조정으로 주가가 하락했으며 엔비디아 비중이 높아 고객 다변화 우려가 있다.",
-   "탄탄한 실적과 주주환원 기조에도 불구하고 목표가 하향 조정에 대한 비판이 존재한다."
+   "엔비디아향 HBM 수요로 실적 성장이 기대된다.",
+   "AI 데이터센터 호조로 펀더멘털이 탄탄하다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -135,11 +138,14 @@ const STOCKSUM={
    "9MXwHlep8wQ",
    "AT8gm5K7xAY",
    "AjAzI1Uxh9c",
+   "AydkVh-c6GI",
    "BIhFDJtoK6k",
    "C1yE6FwQMCY",
    "Cgn7XPWef2A",
    "Codp7P9gH4U",
    "DNHHB8jEuSM",
+   "DaHzmjAGfGQ",
+   "E2JBFfuhP_8",
    "EnUsMp3IZu4",
    "FaYdu-Fa5_U",
    "FeBExCVpt4U",
@@ -178,12 +184,13 @@ const STOCKSUM={
    "r_mO3QY3fE4",
    "saSLtHK3aJ0",
    "t9R5tJ0zR34",
+   "vCEYiChFcnA",
    "vVe3kbl0k44",
    "xrqbovX16L8",
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 55,
+  "count": 59,
   "updated": "2026-11-19"
  },
  "코어위브": {
