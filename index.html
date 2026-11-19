@@ -118,7 +118,13 @@ a.tm:hover{color:var(--accent)}
 .tl dd{margin:0 0 10px;font-size:.95rem;line-height:1.65}
 .vc{display:grid;grid-template-columns:128px minmax(0,1fr);gap:14px;align-items:start;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--card);cursor:pointer}
 .vc:hover{background:var(--chip)}
-.vl{display:flex;flex-direction:column;gap:5px;min-width:0}
+/* 팝업은 썸네일을 크게, 제목은 자르지 않는다 */
+.pop .vc{grid-template-columns:176px minmax(0,1fr)}
+.pop .vt{white-space:normal;overflow:visible;line-height:1.45}
+.vl{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:7px 6px;min-width:0}
+.vl .vth{grid-column:1/-1}
+.vl b{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vl small{white-space:nowrap}
 .vth{aspect-ratio:16/9;border-radius:8px;overflow:hidden;background:linear-gradient(135deg,#dbe3f4,#b9c6e6)}
 .vth img{width:100%;height:100%;object-fit:cover;display:block}
 .vl b{color:var(--accent);font-size:.82rem;line-height:1.3}
@@ -129,7 +135,12 @@ a.tm:hover{color:var(--accent)}
 .pop{position:absolute;z-index:50;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.22);padding:8px;max-height:70vh;overflow:auto}
 .pop .vc{border:0;padding:8px}
 .pop .vc+.vc{border-top:1px solid var(--line);border-radius:0}
-@media(max-width:480px){.vc{grid-template-columns:100px minmax(0,1fr);gap:10px}}
+@media(max-width:480px){.vc{grid-template-columns:100px minmax(0,1fr);gap:10px}
+/* 모바일 팝업: 썸네일을 폭 가득, 그 아래 채널·날짜, 제목, 요약을 세로로 */
+.pop .vc{grid-template-columns:1fr;gap:8px}
+.pop .vr p{-webkit-line-clamp:5}
+/* 모바일 홈의 최근 영상은 4개만 */
+#hgrid .card:nth-child(n+5){display:none}}
 .skrb p{margin:0;padding:9px 0;border-top:1px solid var(--line);font-size:.93rem;line-height:1.6}
 #grid,#sl,#nlist{min-height:60vh}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(290px,100%),1fr));gap:18px}
@@ -297,7 +308,7 @@ a.tm:hover{color:var(--accent)}
 .dvc{align-self:flex-end;background:var(--card);border:1px solid var(--line);color:var(--sub);border-radius:99px;padding:2px 10px;font-size:.78rem;font-weight:600;white-space:nowrap;text-decoration:none}
 .dvc:hover{color:var(--accent)}
 @media(max-width:800px){.dvids{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:4px}.dvid{flex:0 0 42%;scroll-snap-align:start}}
-@media(max-width:600px){.dwk{flex-wrap:wrap}.dwk span{white-space:normal;overflow:visible}.dfoot .dmore{margin-left:auto}.mseg{min-width:0;flex-direction:column;gap:0;font-size:.74rem}.mseg span{font-size:.9rem}.mbar{height:52px}.dvs{flex-direction:column;align-items:stretch;gap:8px}.vs{align-self:center;font-size:1.3rem;padding:2px 0}.dblk{padding:16px}.dhl{font-size:1.15rem}.dgrid{grid-template-columns:repeat(2,1fr)}.dv2{flex-direction:column;gap:2px;padding:6px 4px}.dch{width:auto}.dvid{flex-basis:62%}.dmore{margin-left:0}}
+@media(max-width:600px){.dwk{flex-wrap:wrap}.dwk span{white-space:normal;overflow:visible}.dfoot .dmore{margin-left:auto}.mseg{min-width:0;flex-direction:column;gap:0;font-size:.74rem}.mseg span{font-size:.9rem}.mbar{height:52px}.dvs{flex-direction:column;align-items:stretch;gap:8px}.vs{align-self:center;font-size:1.3rem;padding:2px 0}.dblk{padding:16px}.dhl{font-size:1.15rem}.dgrid{grid-template-columns:repeat(2,1fr)}.dv2{flex-direction:column;gap:2px;padding:6px 4px}.dch{width:auto}.dvid{flex-basis:62%}.dhd>.dmore{order:2;margin-left:auto}.dhd>.dmeta{order:3;flex-basis:100%}}
 
 /* ----- 영상 카드: 제목과 한 줄 요약 균형, 분위기, 상세 요약 버튼 ----- */
 .card h2{font-size:.95rem;font-weight:600;color:var(--ink);line-height:1.45}
@@ -337,8 +348,10 @@ a.tm:hover{color:var(--accent)}
  .kwbar{flex-wrap:nowrap;margin-top:-4px}.kwbar small{flex:none}.kwbar .chips{min-width:0}
  .grid .card .meta .md{font-size:.66rem;padding:0 6px}
  .grid{gap:10px}
- .dlatest.dblk #hgrid .card{padding:10px 0;border-bottom:1px solid var(--line)}
- .dlatest.dblk #hgrid .card:last-child{border-bottom:0}
+ /* 모바일 홈의 최근 영상: 바깥 흰 박스 없이, 카드는 영상 요약 탭과 같은 모양에 썸네일만 조금 크게 */
+ .dlatest.dblk{background:none;border:0;padding:0;box-shadow:none}
+ .dlatest.dblk #hgrid .card{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px}
+ #hgrid .card{grid-template-columns:50% minmax(0,1fr)}
 }
 </style>
 </head>
@@ -349,12 +362,7 @@ a.tm:hover{color:var(--accent)}
   <nav class="nav" id="nav"><button data-n="home">홈</button><a href="brief/">브리핑</a><button data-n="videos">영상 요약</button><a href="stock/">종목</a><button data-n="numbers">숫자·지표</button><button data-n="community">커뮤니티</button></nav>
   <div id="v-home" class="dash">
 <!--DASH:START-->
-<section class="dblk dmkt"><div class="dhd"><h2 class="bt c1">지금 시장은</h2><span class="dmeta">2026.11.18 (수) 기준 · 영상 24편 종합 · 08:09 갱신</span><a class="dmore" href="/econo-tube-note/brief/2026-11-18/">브리핑 전문 보기 →</a></div><p class="dhl">엔비디아의 탄탄한 실적 발표로 반도체 중심의 시장 반등 기대감이 커지고 있다</p><ul class="kp"><li>엔비디아는 3분기 시장 기대치를 상회하는 실적을 기록하며 AI 수요가 여전히 견고함을 증명했다.</li><li>외국인은 선물 시장에서 대규모 순매수 기조를 유지하며 지수 하락을 방어하고 있다.</li><li>한중 FTA 서비스 투자 협상 타결로 엔터 및 미디어 관련주가 단기 모멘텀을 얻었다.</li><li>전문가들은 단기 변동성에 흔들리지 말고 장기적인 관점에서 대응할 것을 조언한다.</li></ul><div class="dths"><small>핵심 주제</small><a class="dth" href="/econo-tube-note/brief/2026-11-18/#theme-1">엔비디아 실적과 AI 인프라</a><a class="dth" href="/econo-tube-note/brief/2026-11-18/#theme-2">한중 FTA 협상 타결</a><a class="dth" href="/econo-tube-note/brief/2026-11-18/#theme-3">증시 수급과 대응 전략</a></div><div class="dfoot"><div class="dwk"><b>이번 주 흐름</b><span>외국인 매도세와 AI 우려 속 엔비디아 실적이 발표된 한 주였다.</span></div><a class="dmore" href="/econo-tube-note/week/2026-11-16/">주간 브리핑 보기 →</a></div></section>
-<section class="dblk"><div class="dhd"><h2 class="bt c3">채널들의 시장 판단</h2><span class="dmeta">유튜브는 지금 시장을 이렇게 본다</span><a class="dmore" href="/econo-tube-note/brief/2026-11-18/#agree">채널 의견 전체 보기 →</a></div><div class="dj"><h3>최근 24시간 영상 22편의 분위기 <small>막대를 누르면 해당 영상만 본다</small></h3><div class="mbar"><a class="mseg m낙관" style="flex:13" href="/econo-tube-note/#videos/mood/%EB%82%99%EA%B4%80" title="긍정 13편"><b>긍정</b><span>13</span></a><a class="mseg m중립" style="flex:9" href="/econo-tube-note/#videos/mood/%EC%A4%91%EB%A6%BD" title="중립·관망 9편"><b>중립·관망</b><span>9</span></a></div></div><div class="dj"><h3>주요 쟁점</h3><div class="dis"><b class="dq">단기 증시 대응 및 리스크 관리</b><div class="dvs"><div class="dv"><span>지수가 흔들려도 장기적인 관점에서 가만히 보유하는 것이 유리하다.</span><a class="dvc" href="/econo-tube-note/#v/N_4n0mMwAWA">체슬리TV</a></div><span class="vs">vs</span><div class="dv"><span>6,000선 등 반등 시 리스크 관리를 하며 비중을 조절해야 한다.</span><a class="dvc" href="/econo-tube-note/#v/egDZOq_zOPo">삼프로TV 3PROTV</a></div></div></div></div></section>
-<section class="dblk"><div class="dhd"><h2 class="bt c4">많이 언급된 종목</h2><span class="dmeta">최근 24시간 · 영상 22편 기준</span><a class="dmore" href="/econo-tube-note/stock/">종목 페이지로 →</a></div><div class="dgrid"><a class="dstk" href="/econo-tube-note/stock/SK%ED%95%98%EC%9D%B4%EB%8B%89%EC%8A%A4/"><span class="dsn"><b>SK하이닉스</b><span class="tone t긍정">긍정</span></span><small>영상 17편 · 9채널</small><p>AI 수혜와 탄탄한 펀더멘털로 장기 성장이 기대되나, 단기 주가 하락과 고객 다변화에 따른 우려도 존재한다.</p></a><a class="dstk" href="/econo-tube-note/stock/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90/"><span class="dsn"><b>삼성전자</b><span class="tone t혼재">혼재</span></span><small>영상 16편 · 9채널</small><p>주가 하락으로 밸류에이션 매력이 부각되었으며 반도체 주도주로서 장기 보유와 저점 매수 기회로 평가한다.</p></a><a class="dstk" href="/econo-tube-note/stock/%EC%97%94%EB%B9%84%EB%94%94%EC%95%84/"><span class="dsn"><b>엔비디아</b><span class="tone t긍정">긍정</span></span><small>영상 10편 · 6채널</small><p>견고한 실적과 AI 수요로 장기 성장성이 기대되나, 경영진 이슈와 규제 등 단기 불확실성으로 우려와 보수적 시각이 공존한다.</p></a><a class="dstk" href="/econo-tube-note/stock/%EB%A0%88%EC%9D%B8%EB%B3%B4%EC%9A%B0%EB%A1%9C%EB%B3%B4%ED%8B%B1%EC%8A%A4/"><span class="dsn"><b>레인보우로보틱스</b><span class="tone t긍정">긍정</span></span><small>영상 3편 · 3채널</small><p>기관 매수세 유입과 AI 및 로봇 부품 국산화 모멘텀에 힘입어 시장 하락에도 강세를 보인 핵심 로봇주로 평가받는다.</p></a><a class="dstk" href="/econo-tube-note/stock/%EC%82%BC%EC%84%B1%EC%A0%84%EA%B8%B0/"><span class="dsn"><b>삼성전기</b><span class="tone t혼재">혼재</span></span><small>영상 3편 · 3채널</small><p>성장성과 밸류에이션 매력이 있으나 전방 시장 안정과 외국인 수급 확인이 필요하다.</p></a><a class="dstk" href="/econo-tube-note/stock/%EC%97%94%ED%8A%B8%EB%A1%9C%ED%94%BD/"><span class="dsn"><b>엔트로픽</b></span><small>영상 3편 · 3채널</small><p>상장을 통한 자본 조달 성공 여부가 미국 부채 위기 판가름 변수라고 봄.</p></a></div></section>
-<section class="dblk"><div class="dhd"><h2 class="bt c2">숫자로 본 시장</h2><span class="dmeta">최근 24시간 · 영상에서 언급된 수치 · 실시간 시세 아님</span><a class="dmore" href="/econo-tube-note/#numbers">숫자·지표로 →</a></div><div class="dgrid"><a class="dnum" href="/econo-tube-note/#numbers/%EC%99%B8%EA%B5%AD%EC%9D%B8%20%EC%84%A0%EB%AC%BC%20%EB%88%84%EC%A0%81%20%EC%88%9C%EB%A7%A4%EC%88%98"><small class="dnl"><span>외국인 선물 누적 순매수</span><span class="cnt">2번 언급</span></small><b>7조 원</b><p>외국인이 선물 시장에서 쌓아온 누적 매수 규모라고 설명한다.</p></a><a class="dnum" href="/econo-tube-note/#numbers/%EC%BD%94%EC%8A%A4%ED%94%BC%20%EC%A7%80%EC%88%98%20%EC%A0%84%EB%A7%9D"><small class="dnl"><span>코스피 지수 전망</span><span class="cnt">2번 언급</span></small><b>8,000</b><p>다른 출연자가 제시한 내년도 지수 상단 전망치이다.</p></a><a class="dnum" href="/econo-tube-note/#numbers/%EB%B9%85%EC%8A%A4%20%EC%A7%80%EC%88%98"><small class="dnl"><span>빅스 지수</span></small><b>20대</b><p>빅스 지수가 20대까지 진입하며 시장의 공포 심리가 극대화된 상태라고 설명한다.</p></a><a class="dnum" href="/econo-tube-note/#numbers/%EC%BD%94%EC%8A%A4%ED%94%BC%20%EC%A7%80%EC%88%98"><small class="dnl"><span>코스피 지수</span></small><b>5,000선</b><p>현재 5,000선이 이탈된 상태로 시장의 심리적 지지선 역할을 했다고 설명한다.</p></a><a class="dnum" href="/econo-tube-note/#numbers/%EC%97%94%EB%B9%84%EB%94%94%EC%95%84%20%EB%82%B4%EB%85%84%20%EB%A7%A4%EC%B6%9C%20%EC%84%B1%EC%9E%A5%EB%A5%A0"><small class="dnl"><span>엔비디아 내년 매출 성장률</span></small><b>+75%</b><p>엔비디아가 내년 매출이 올해 대비 75% 성장할 것이라는 가이던스를 제시했다고 설명한다.</p></a><a class="dnum" href="/econo-tube-note/#numbers/%EC%A7%80%EC%88%98%20%ED%95%98%EB%9D%BD%EA%B8%B0%20%EC%9E%90%EA%B8%88%20%EC%9D%B4%ED%83%88"><small class="dnl"><span>지수 하락기 자금 이탈</span></small><b>13.4조 원</b><p>지수가 5,500이었던 시점 대비 예탁금과 신용 감소분을 합산한 금액이라고 설명한다.</p></a></div></section>
-<section class="dblk dlatest"><div class="dhd"><h2 class="bt ">최근 영상</h2><a class="dmore" href="/econo-tube-note/#videos">영상 요약 전체 보기 →</a></div><div class="grid" id="hgrid"></div></section>
-<p class="bnote">AI가 경제 유튜브 영상들을 요약·종합한 내용이며 투자 권유가 아니다.</p>
+<p class="empty">대시보드를 준비하고 있다. 자동화가 한 번 돌면 채워진다.</p>
 <!--DASH:END-->
   </div>
   <div id="v-videos" hidden>
@@ -419,7 +427,7 @@ const rel=(key,refs)=>{const u=uniq(refs).filter(k=>idx[k]!==undefined);relMap[k
 const pop=$("#pop");let popT=null,popEl=null,popKind=null;
 function showPop(el,html,wide){
  clearTimeout(popT);popEl=el;pop.innerHTML=html;pop.hidden=false;pop.scrollTop=0;
- const r=el.getBoundingClientRect(),w=Math.min(wide?560:420,innerWidth-24),sx=window.scrollX||0,sy=window.scrollY||0;
+ const r=el.getBoundingClientRect(),w=Math.min(wide?600:480,innerWidth-24),sx=window.scrollX||0,sy=window.scrollY||0;
  pop.style.width=w+"px";pop.style.left=(sx+Math.min(Math.max(12,r.left),innerWidth-w-12))+"px";
  const h=pop.offsetHeight||0;let top=r.bottom+8;if(h&&top+h>innerHeight&&r.top-8-h>12)top=r.top-8-h;
  pop.style.top=(sy+top)+"px";
