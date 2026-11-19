@@ -147,7 +147,7 @@ if(s)s.scrollIntoView({block:"start"});if(c){c.classList.add("flash");setTimeout
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",()=>setTimeout(go,0));else setTimeout(go,0)})();
 </script><script>
 (()=>{const pop=document.createElement("div");pop.className="pop";pop.hidden=true;document.body.appendChild(pop);let cur=null;
-function show(el,html,wide){pop.innerHTML=html;pop.hidden=false;pop.scrollTop=0;const r=el.getBoundingClientRect(),w=Math.min(wide?560:420,innerWidth-24);
+function show(el,html,wide){pop.innerHTML=html;pop.hidden=false;pop.scrollTop=0;const r=el.getBoundingClientRect(),w=Math.min(wide?600:480,innerWidth-24);
 pop.style.width=w+"px";pop.style.left=(scrollX+Math.min(Math.max(12,r.left),innerWidth-w-12))+"px";const h=pop.offsetHeight||0;let top=r.bottom+8;
 if(h&&top+h>innerHeight&&r.top-8-h>12)top=r.top-8-h;pop.style.top=(scrollY+top)+"px";cur=el}
 function hide(){pop.hidden=true;cur=null}
