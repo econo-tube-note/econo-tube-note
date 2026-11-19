@@ -780,8 +780,16 @@ const BRIEFS=[
  },
  {
   "date": "2026-11-17",
-  "count": 16,
+  "count": 24,
   "sources": [
+   "zrfU-fyCP04",
+   "f_Pb9-42cUE",
+   "ZCzUlVm2jSg",
+   "vCEYiChFcnA",
+   "kgPvRNvkX0k",
+   "FeBExCVpt4U",
+   "Q_Pgdi25lg0",
+   "MZXa-6vrUUg",
    "-GrEZiF4e6k",
    "AjAzI1Uxh9c",
    "t9R5tJ0zR34",
@@ -799,319 +807,168 @@ const BRIEFS=[
    "mmCP7KDv5pw",
    "0J5AXS2pqUg"
   ],
-  "headline": "엔비디아 실적과 외국인 매도세 속에 국내 증시가 급락하며 변동성을 보이고 있다.",
+  "headline": "엔비디아 실적 우려와 금리 부담 속 AI 밸류체인 조정 장세 지속",
   "keypoints": [
-   "코스피 5,000선이 붕괴되는 등 증시 전반에 매도세가 이어지고 있다.",
-   "외국인의 대규모 매도와 수급 불안으로 코스닥 지수가 급락했다.",
-   "엔비디아 실적 발표와 앤트로픽 상장 등의 대형 이벤트가 주목받고 있다.",
-   "하락장 속에서 무리한 매매를 자제하고 현금과 대형주 위주로 대응해야 한다."
+   "엔비디아 실적 발표와 CEO 이슈 등으로 빅테크 주가 조정이 나타났다.",
+   "미국 10년물 국채 금리 상승과 유동성 부담이 증시 하방 압력으로 작용했다.",
+   "외국인 매도세와 심리 위축으로 국내 증시가 약세를 보였다.",
+   "지수 바닥 확인 전까지 무리한 매수를 자제하고 보수적으로 대응해야 한다."
   ],
   "themes": [
    {
-    "title": "반도체 업황과 AI 투자 우려",
-    "summary": "AI 반도체 수요의 지속성에 대한 우려와 규제 이슈로 관련 주가가 큰 폭으로 하락했다.",
+    "title": "AI 반도체 및 빅테크 조정",
+    "summary": "엔비디아 CEO 이슈와 AI 투자 과열 우려로 빅테크와 반도체 주가가 조정을 받고 있으나 장기적 AI 수요는 유효하다.",
     "refs": [
+     "zrfU-fyCP04",
+     "kgPvRNvkX0k",
      "-GrEZiF4e6k",
      "t9R5tJ0zR34",
-     "GS5nFhf6Nuk",
      "xZHld6KdReU"
     ]
    },
    {
-    "title": "외국인 수급과 증시 하락",
-    "summary": "외국인의 대규모 순매도와 수급 주체 부재로 지수 하방 압력이 심화되었다.",
+    "title": "금리 및 수급 불확실성",
+    "summary": "미국 국채 금리 상승과 외국인의 지속적인 매도세가 국내 증시의 변동성을 키우고 있다.",
     "refs": [
-     "t9R5tJ0zR34",
+     "FeBExCVpt4U",
+     "bkh49Tc7x4M",
      "dOy04iFw5_U",
-     "yLhZiyCgAjY",
-     "JYyoOyLbEdY"
+     "G-DfszxECas"
     ]
    },
    {
-    "title": "하락장 대응 전략",
-    "summary": "무리한 물타기와 3배 레버리지를 피하고 실적이 탄탄한 대형주나 방어주를 중심으로 대응해야 한다.",
+    "title": "증시 바닥 및 대응 전략",
+    "summary": "지수가 하락세를 보임에 따라 무리한 물타기를 자제하고 실적과 배당 중심의 종목으로 방어해야 한다.",
     "refs": [
+     "f_Pb9-42cUE",
      "AjAzI1Uxh9c",
-     "n16GTXBi7e0",
-     "GS5nFhf6Nuk",
-     "maYCQ85ygu8"
+     "C1yE6FwQMCY",
+     "n16GTXBi7e0"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "외국인 투자자의 대규모 매도세가 증시 하락을 주도하고 있다.",
+    "point": "엔비디아와 AI 관련주의 조정을 거치며 실적 발표가 핵심 분수령이 될 것이다.",
     "refs": [
-     "t9R5tJ0zR34",
-     "dOy04iFw5_U",
+     "kgPvRNvkX0k",
      "yLhZiyCgAjY",
-     "JYyoOyLbEdY"
+     "GS5nFhf6Nuk"
     ]
    },
    {
-    "point": "엔비디아 실적 발표와 관련 이슈가 향후 증시 반등의 중요한 분수령이 된다.",
+    "point": "미국 10년물 국채 금리 상승이 시장에 지속적인 하방 압력으로 작용하고 있다.",
     "refs": [
-     "yLhZiyCgAjY",
-     "GS5nFhf6Nuk",
-     "maYCQ85ygu8",
-     "xZHld6KdReU"
+     "ZCzUlVm2jSg",
+     "FeBExCVpt4U",
+     "G-DfszxECas"
     ]
    },
    {
-    "point": "하락장에서 무리한 물타기나 3배 레버리지 투자는 위험하므로 자제해야 한다.",
+    "point": "하락장에서 섣부른 물타기를 자제하고 관망하거나 보수적으로 대응해야 한다.",
     "refs": [
      "AjAzI1Uxh9c",
-     "n16GTXBi7e0",
-     "G-DfszxECas"
+     "dOy04iFw5_U",
+     "JYyoOyLbEdY"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "삼성전자와 SK하이닉스 중 투자 매력도",
+    "topic": "삼성전자와 SK하이닉스 투자 매력도 비교",
     "views": [
      {
       "channel": "김작가 TV",
-      "view": "주주환원 정책과 지배구조 개편 호재가 있는 삼성전자가 SK하이닉스보다 유리하다고 본다.",
+      "view": "삼성전자는 주주환원책과 지배구조 개편 호재가 있어 SK하이닉스보다 긍정적이다.",
       "ref": "n16GTXBi7e0"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "반도체 상승 전환 시 SK하이닉스의 주가 반등 탄력이 삼성전자보다 더 크다고 본다.",
+      "view": "SK하이닉스는 반도체 업황 반등 시 삼성전자보다 단기 주가 반등 폭이 더 클 것이다.",
       "ref": "GS5nFhf6Nuk"
+     }
+    ]
+   },
+   {
+    "topic": "하락장 속 방어주 및 배당주 투자 전략",
+    "views": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "국내 시장은 유동성이 얇아 하락장 시 방어주도 동반 하락하므로 편입을 지양해야 한다.",
+      "ref": "G-DfszxECas"
+     },
+     {
+      "channel": "체슬리TV",
+      "view": "주가 하락으로 배당수익률이 높아진 고배당주와 경기소비재는 훌륭한 대피처가 된다.",
+      "ref": "f_Pb9-42cUE"
      }
     ]
    }
   ],
   "stocks": [
    {
-    "name": "SK하이닉스",
-    "count": 10,
+    "name": "삼성전자",
+    "count": 3,
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "815머니톡",
-      "view": "고점에 물린 개인 투자자가 많아 주가 변동에 민감하다.",
-      "ref": "-GrEZiF4e6k"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "반도체 업황 회복과 함께 턴어라운드 가능성이 있는 대표 종목이다.",
-      "ref": "AjAzI1Uxh9c"
-     },
-     {
-      "channel": "머니인사이드",
-      "view": "HBM 시장의 강자로 AI 반도체 사이클의 핵심 기업이다.",
-      "ref": "t9R5tJ0zR34"
-     },
-     {
-      "channel": "김작가 TV",
-      "view": "뛰어난 실적 개선세로 시장 지수 하방을 지지하는 역할을 했다.",
-      "ref": "C1yE6FwQMCY"
+      "channel": "체슬리TV",
+      "view": "이익 상승 추세와 높은 배당 수익률로 투자 유망한 종목이다.",
+      "ref": "f_Pb9-42cUE"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "고점 대비 62% 하락해 이동평균선이 돌아설 때까지 관망해야 한다.",
-      "ref": "dOy04iFw5_U"
-     },
-     {
-      "channel": "김작가 TV",
-      "view": "상승 기대감이 선반영되어 삼성전자 대비 상대적 상승 여력이 부족하다.",
-      "ref": "n16GTXBi7e0"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "상승 전환 시 단기 주가 반등 폭이 삼성전자보다 크다고 전망한다.",
+      "view": "외국인 매도세로 하락했으나 장기적 기술 세대교체 관점에서 안정적이다.",
       "ref": "GS5nFhf6Nuk"
      },
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "지수 리바운딩 시 탄력적인 움직임을 기대할 수 있다.",
-      "ref": "G-DfszxECas"
-     },
-     {
       "channel": "김작가 TV",
-      "view": "하락 시 3분의 1씩 분할 매수 전략으로 접근할 것을 제안한다.",
-      "ref": "JYyoOyLbEdY"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "전저점 이탈 시 추가 하락 위험이 크지만 버블 상태는 아니다.",
-      "ref": "IQPubZrMfH8"
+      "view": "주주환원책과 지배구조 개편 호재로 상승 여력이 남아있다.",
+      "ref": "n16GTXBi7e0"
      }
     ]
    },
    {
-    "name": "삼성전자",
-    "count": 9,
+    "name": "SK하이닉스",
+    "count": 3,
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "815머니톡",
-      "view": "고점에 물린 개인 투자자가 많아 주가 변동에 민감하다.",
-      "ref": "-GrEZiF4e6k"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "반도체 업황 회복과 함께 턴어라운드 가능성이 있는 대표 종목이다.",
-      "ref": "AjAzI1Uxh9c"
-     },
-     {
-      "channel": "김작가 TV",
-      "view": "실적 개선이 시장 밸류에이션 기준을 높이는 데 기여했다고 평가한다.",
-      "ref": "C1yE6FwQMCY"
+      "channel": "채국장의 코스피2만행 머니버스",
+      "view": "HBM 수요와 AI 성장에 힘입어 장기적으로 우상향할 것이다.",
+      "ref": "ZCzUlVm2jSg"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "외국인 매도세 지속 및 업황 조정 우려로 주가 하락세가 이어졌다.",
-      "ref": "dOy04iFw5_U"
-     },
-     {
-      "channel": "김작가 TV",
-      "view": "상승 호재 여력이 남아있어 SK하이닉스보다 투자 매력도가 높다.",
-      "ref": "n16GTXBi7e0"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "가격 하방 리스크 차원에서 SK하이닉스 대비 안정적이다.",
+      "view": "고점 대비 과도하게 하락했으나 반도체 반등 시 탄력적인 상승이 기대된다.",
       "ref": "GS5nFhf6Nuk"
      },
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "지수 반등 시 강한 베타 플레이를 기대할 수 있는 대표 종목이다.",
-      "ref": "G-DfszxECas"
-     },
-     {
-      "channel": "김작가 TV",
-      "view": "하락하더라도 15만 원을 깨지 않고 반등할 가능성이 높다.",
-      "ref": "JYyoOyLbEdY"
-     },
-     {
       "channel": "815머니톡",
-      "view": "SK하이닉스 대비 여유 폭이 있으나 보수적 접근이 필요하다.",
+      "view": "전저점에 밀려 있어 지지선 이탈 시 추가 하락 위험에 유의해야 한다.",
       "ref": "IQPubZrMfH8"
      }
     ]
    },
    {
     "name": "엔비디아",
-    "count": 6,
+    "count": 3,
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "815머니톡",
-      "view": "젠슨 황 사임 이슈로 단기 악재를 겪고 있으나 AI 수요는 견조하다.",
-      "ref": "-GrEZiF4e6k"
+      "channel": "체슬리TV",
+      "view": "CEO 사임 이슈와 실적 발표를 앞두고 있으나 최악의 상황이 반영되었다.",
+      "ref": "zrfU-fyCP04"
      },
      {
       "channel": "머니인사이드",
-      "view": "AI 인프라 투자의 최대 수혜주로 장기적 성장성이 높다고 평가한다.",
+      "view": "AI 인프라 투자의 핵심으로 장기적 성장성이 높다.",
       "ref": "t9R5tJ0zR34"
      },
      {
       "channel": "김작가 TV",
-      "view": "15달러 단위 박스권 내에서 단기 트레이딩으로 대응하는 것이 유효하다.",
+      "view": "박스권 내에서 10달러 단위로 단기 트레이딩하는 전략이 유효하다.",
       "ref": "n16GTXBi7e0"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "규제안 발표와 실적 불확실성이 있으나 매출 영향은 제한적이다.",
-      "ref": "GS5nFhf6Nuk"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "과도한 비관론으로 AI 사이클 위축 우려를 키웠다고 본다.",
-      "ref": "xZHld6KdReU"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "젠슨 황 복귀 부인 소식 등으로 주가 하락세가 지속되고 있다.",
-      "ref": "0J5AXS2pqUg"
-     }
-    ]
-   },
-   {
-    "name": "코어위브",
-    "count": 2,
-    "tone": "중립",
-    "mentions": [
-     {
-      "channel": "815머니톡",
-      "view": "네오클라우드 업체 중 1위로 AI 수요 확인의 지표가 된다.",
-      "ref": "-GrEZiF4e6k"
-     },
-     {
-      "channel": "머니인사이드",
-      "view": "최근 시장의 우려가 있으나 AI 인프라 투자 측면에서 주목할 필요가 있다.",
-      "ref": "t9R5tJ0zR34"
-     }
-    ]
-   },
-   {
-    "name": "구글",
-    "count": 2,
-    "tone": "긍정",
-    "mentions": [
-     {
-      "channel": "머니인사이드",
-      "view": "AI 기술 개발과 데이터센터 투자를 주도하는 핵심 기업이다.",
-      "ref": "t9R5tJ0zR34"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "실질적 AI 수요를 창출하고 있다고 설명한다.",
-      "ref": "xZHld6KdReU"
-     }
-    ]
-   },
-   {
-    "name": "셀트리온",
-    "count": 2,
-    "tone": "긍정",
-    "mentions": [
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "대형주로서 주가 방어력을 보여주었다는 평가를 받는다.",
-      "ref": "dOy04iFw5_U"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "펀더멘털이 견고하고 주가가 버텨주는 대형 바이오 종목이다.",
-      "ref": "G-DfszxECas"
-     }
-    ]
-   },
-   {
-    "name": "삼성바이오로직스",
-    "count": 2,
-    "tone": "긍정",
-    "mentions": [
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "시장 급락 속에서도 방어주 역할을 해주었다는 평가를 받는다.",
-      "ref": "dOy04iFw5_U"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "하락장에 쉽게 무너지지 않는 안정적인 펀더멘털을 갖추었다.",
-      "ref": "G-DfszxECas"
-     }
-    ]
-   },
-   {
-    "name": "현대건설",
-    "count": 2,
-    "tone": "중립",
-    "mentions": [
-     {
-      "channel": "김작가 TV",
-      "view": "최악의 바닥을 지난 종목으로 집중 투자하기 적합하다는 주장이 있다.",
-      "ref": "n16GTXBi7e0"
-     },
-     {
-      "channel": "김작가 TV",
-      "view": "중동 관련 건설 모멘텀으로 단기 반등이 기대된다.",
-      "ref": "JYyoOyLbEdY"
      }
     ]
    }

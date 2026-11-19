@@ -51,7 +51,11 @@
   "b8kRF-9t6v4": "너무 짧음",
   "_0suChOlrmo": "너무 짧음",
   "wlH04rn3byM": "너무 짧음",
-  "YUskkH1U74k": "너무 짧음"
+  "YUskkH1U74k": "너무 짧음",
+  "Y41Mgq17ZPU": "너무 짧음",
+  "JXCUNKwQOqw": "너무 짧음",
+  "StAwPxju_7Y": "너무 긴 영상(332분)",
+  "2Rmp4RHsjek": "너무 긴 영상(374분)"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -61,26 +65,26 @@
  "models": {
   "gemini-3.6-flash": {
    "ok": 6,
-   "busy": 17,
+   "busy": 24,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 0,
-   "busy": 28,
+   "busy": 35,
    "dead": 4
   },
   "gemini-3.8-flash": {
    "ok": 0,
-   "busy": 35,
+   "busy": 40,
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 32,
-   "busy": 4,
+   "ok": 35,
+   "busy": 5,
    "dead": 4
   },
   "gemini-3.5-flash-lite": {
-   "ok": 4,
+   "ok": 5,
    "busy": 5,
    "dead": 4
   }
@@ -150,7 +154,6 @@
   "9E76qPLcH2I": true,
   "RdfnAtPvQ_Y": true,
   "FyGbtyVa15A": true,
-  "E_hFDCS4SCo": true,
   "CJ7CocnSQv8": true,
   "czlp9MNI2ms": true,
   "Lsc8rckE98s": true,
@@ -163,7 +166,6 @@
   "dX_Ak9Yu2jI": true,
   "vdr27RxbWB4": true,
   "bHls2Oc1faY": true,
-  "8O7iSTMZ-84": true,
   "JL6acLiFOFE": true,
   "d3rEiUE9QjQ": true,
   "SRDGOovbH4g": true,
@@ -178,7 +180,6 @@
   "-XqpELqAMCA": true,
   "StAwPxju_7Y": true,
   "K7C5Ej575sM": true,
-  "dra2apL7dEg": true,
   "uU9ZKGTSh0k": true,
   "_Tqm0GqYKXw": true,
   "znmu0vaHb10": true,
@@ -187,11 +188,22 @@
   "hqE-WkJew2k": true,
   "ignd9kfF_zA": true,
   "b8kRF-9t6v4": true,
-  "d9rmKdDS43w": true,
   "_0suChOlrmo": true,
   "wlH04rn3byM": true,
   "YUskkH1U74k": true,
-  "G_CPMSwOIP0": true
+  "G_CPMSwOIP0": true,
+  "bsmFdEtKWqM": true,
+  "K101Dy3FU1w": true,
+  "yrEcOVH79Pc": true,
+  "09Ij_WyfeMs": true,
+  "LEYOVBYtp3Q": true,
+  "l6BRztXR5jo": true,
+  "033hjf_nIC8": true,
+  "Y41Mgq17ZPU": true,
+  "54G-uaVm_OA": true,
+  "o-XnIliameI": true,
+  "JXCUNKwQOqw": true,
+  "22mEZYyDpZA": true
  },
  "brief_final": {
   "2026-11-13": true,
