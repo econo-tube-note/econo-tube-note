@@ -2,8 +2,14 @@
 const BRIEFS=[
  {
   "date": "2026-11-19",
-  "count": 13,
+  "count": 19,
   "sources": [
+   "axG8buIPalY",
+   "Y56dlWVPpPg",
+   "VEYoCnIz6XQ",
+   "HW1kdcwhrqY",
+   "AR7QdvYFeYA",
+   "mcc0jFRgPuw",
    "G5Kz41EjDmw",
    "KOho88gAhO4",
    "QoEfnBKO5zU",
@@ -18,160 +24,96 @@ const BRIEFS=[
    "AydkVh-c6GI",
    "cpvUuHMLsgI"
   ],
-  "headline": "증시 변동성이 확대된 가운데 엔비디아 실적과 앤트로픽 상장 등 대형 이벤트를 소화하며 반등의 실마리를 모색한다.",
+  "headline": "코스피 약세 속 외국인 수급 불안과 한한령 해제 기대감 유입",
   "keypoints": [
-   "코스피 5,000선을 전후로 외국인과 기관의 수급 변동성과 지수 하단 지지력에 대한 관심이 높다.",
-   "한중 FTA 서비스 후속협상 타결로 콘텐츠와 화장품 등 중국 관련주가 강세를 보였다.",
-   "엔비디아의 우수한 실적 발표와 앤트로픽의 성공적인 상장이 AI 투자 심리 회복에 기여했다.",
-   "WTI 유가 하락과 금리 인상 우려가 겹치며 자산 시장 전반의 경계감이 지속되고 있다."
+   "비트코인은 금리 인상 우려와 자금 이탈로 하락세를 보였다.",
+   "코스피는 외국인 매도와 변동성 확대 속에서 5,000선 공방을 벌였다.",
+   "중국과의 FTA 후속 협상으로 엔터와 화장품 등 중국 관련주가 급등했다.",
+   "엔비디아는 호실적에도 경영진 이슈와 AI 투자 우려로 변동성을 겪었다."
   ],
   "themes": [
    {
-    "title": "중국 관련주 강세",
-    "summary": "한중 FTA 서비스 협상 타결과 한한령 해제 기대감으로 엔터, 화장품, 여행 등 중국 관련 종목들이 급등했다.",
+    "title": "가상자산 시장 하락과 인프라 변화",
+    "summary": "비트코인은 금리 인상 우려와 200주선 이탈로 하락 압력을 받았고 국내 거래소는 실적 악화를 겪었다.",
+    "refs": [
+     "axG8buIPalY",
+     "Y56dlWVPpPg"
+    ]
+   },
+   {
+    "title": "한중 FTA 협상 타결과 콘텐츠 수혜",
+    "summary": "한중 FTA 서비스 후속협상 타결로 콘텐츠와 화장품 등 중국 소비 관련주가 강세를 보였다.",
     "refs": [
      "G5Kz41EjDmw",
-     "KOho88gAhO4",
-     "PREEBWeBwhs",
      "7WVn5WmOlsA",
-     "h40ZIc8mx-c",
      "AydkVh-c6GI"
     ]
    },
    {
-    "title": "AI 반도체와 대형 이벤트",
-    "summary": "엔비디아의 호실적 발표와 앤트로픽의 대규모 IPO 흥행이 AI 인프라 투자 지속성에 대한 기대를 높였다.",
+    "title": "반도체 및 AI 인프라 투자 지속",
+    "summary": "엔비디아의 실적 발표와 앤트로픽 상장 흥행으로 AI 투자 사이클에 대한 기대와 우려가 교차했다.",
     "refs": [
      "QoEfnBKO5zU",
      "PREEBWeBwhs",
-     "7WVn5WmOlsA",
-     "igdgKOPRR_4",
-     "5k0zCfIFr8w",
-     "h40ZIc8mx-c"
-    ]
-   },
-   {
-    "title": "증시 변동성과 수급 점검",
-    "summary": "코스피 5,000선 부근에서 외국인 매도와 개인 투매로 변동성이 커진 가운데 저점 매수와 방어 전략이 논의되었다.",
-    "refs": [
-     "KOho88gAhO4",
-     "igdgKOPRR_4",
-     "teuTyJ7CwFM",
-     "h40ZIc8mx-c",
-     "AydkVh-c6GI"
+     "7WVn5WmOlsA"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "한중 FTA 후속협상 타결과 관계 개선 기대감으로 엔터 및 화장품 등 중국 소비 관련주가 수혜를 입었다.",
+    "point": "한한령 해제 기대감으로 엔터 및 중국 관련주가 급등세를 보였다.",
     "refs": [
      "G5Kz41EjDmw",
-     "KOho88gAhO4",
-     "PREEBWeBwhs",
      "7WVn5WmOlsA",
-     "h40ZIc8mx-c",
      "AydkVh-c6GI"
     ]
    },
    {
-    "point": "엔비디아의 실적과 향후 가이던스는 전반적으로 우수하며 AI 인프라 투자 사이클은 유지된다.",
+    "point": "미국의 추가 금리 인상 우려와 매크로 불안이 증시 전반에 부담을 주었다.",
     "refs": [
-     "QoEfnBKO5zU",
-     "PREEBWeBwhs",
-     "7WVn5WmOlsA",
-     "igdgKOPRR_4",
-     "Cfb0KSoFWz0",
-     "5k0zCfIFr8w",
-     "AydkVh-c6GI",
-     "cpvUuHMLsgI"
-    ]
-   },
-   {
-    "point": "WTI 유가 하락 추세와 금리 변동성 확대가 원자재와 자산 시장 전반의 경계감을 높이고 있다.",
-    "refs": [
-     "KOho88gAhO4",
-     "QoEfnBKO5zU",
-     "Cfb0KSoFWz0",
-     "5k0zCfIFr8w",
-     "AydkVh-c6GI"
+     "axG8buIPalY",
+     "Y56dlWVPpPg",
+     "5k0zCfIFr8w"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "반도체 주가 하락 국면과 향후 전망",
+    "topic": "반도체 및 AI 데이터센터 투자 전망",
     "views": [
      {
       "channel": "전인구경제연구소",
-      "view": "데이터센터 투자 축소 우려와 신규 공장 가동으로 인한 공급 증가로 반도체 가격 하락과 추가 조정 위험이 존재한다고 본다.",
+      "view": "AI 데이터센터 투자 축소 우려로 반도체 업황에 부정적인 영향을 미칠 수 있다고 본다.",
       "ref": "RkpF-xeoalw"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "최악의 시나리오가 이미 주가에 반영되었으며 펀더멘털이 견고하고 밸류에이션 매력이 충분하다고 본다.",
+      "view": "AI 데이터센터 투자는 일시적 노이즈에 불과하며 내년까지 성장이 지속될 것이라고 본다.",
       "ref": "QoEfnBKO5zU"
-     }
-    ]
-   },
-   {
-    "topic": "엔트로픽 상장 직후의 주가 흐름",
-    "views": [
-     {
-      "channel": "815머니톡",
-      "view": "상장 초기 패시브 자금 유입으로 단기 상승이 가능하나 이후 락업 해제 물량으로 약세를 보일 수 있다고 본다.",
-      "ref": "igdgKOPRR_4"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "스페이스X 대비 유동성이 풍부해 상대적으로 변동성이 덜하고 AI 투자 심리 회복의 계기가 될 것이라고 본다.",
-      "ref": "h40ZIc8mx-c"
      }
     ]
    }
   ],
   "stocks": [
    {
-    "name": "엔비디아",
-    "count": 3,
-    "tone": "혼재",
-    "mentions": [
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "실적과 2027년 매출 가이던스는 양호하나 CEO 선임 및 경영진 이슈로 주가 변동성이 확대되었다고 평가한다.",
-      "ref": "QoEfnBKO5zU"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "실적 발표 후 경영진의 신중한 태도와 네오클라우드 제재 우려로 주가 반등이 지연되고 있다고 평가한다.",
-      "ref": "igdgKOPRR_4"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "메모리 장기공급계약이 대폭 늘어나며 AI 성장세를 입증했다고 본다.",
-      "ref": "AydkVh-c6GI"
-     }
-    ]
-   },
-   {
     "name": "삼성전자",
     "count": 3,
     "tone": "혼재",
     "mentions": [
      {
+      "channel": "815머니톡",
+      "view": "외국인 수급 유입 시 내년 영업이익 확대를 바탕으로 주가 상승 여력이 있다고 본다.",
+      "ref": "mcc0jFRgPuw"
+     },
+     {
       "channel": "삼프로TV 3PROTV",
-      "view": "데이터센터 투자 축소 우려로 주가가 과도하게 하락했으나 펀더멘털은 견고하다고 본다.",
+      "view": "데이터센터 투자 축소 우려로 과도하게 하락했으나 펀더멘털은 견고하다고 본다.",
       "ref": "QoEfnBKO5zU"
      },
      {
       "channel": "전인구경제연구소",
       "view": "주가 하락으로 배당수익률이 크게 상승하여 저평가 매력이 부각된다고 평가한다.",
       "ref": "RkpF-xeoalw"
-     },
-     {
-      "channel": "전인구경제연구소",
-      "view": "매크로 악재와 AI 투자 회수 우려로 조정받았으나 강화된 주주환원 정책을 바탕으로 보유 관점을 유지한다고 평가한다.",
-      "ref": "teuTyJ7CwFM"
      }
     ]
    },
@@ -181,19 +123,41 @@ const BRIEFS=[
     "tone": "긍정",
     "mentions": [
      {
+      "channel": "815머니톡",
+      "view": "메모리 및 HBM 수요가 견조하여 올해와 내년 영업이익이 크게 증가할 것으로 예상한다.",
+      "ref": "mcc0jFRgPuw"
+     },
+     {
       "channel": "삼프로TV 3PROTV",
       "view": "HBM 수요 증가에 힘입어 내년까지 실적 성장이 지속될 것으로 전망한다.",
       "ref": "QoEfnBKO5zU"
      },
      {
-      "channel": "전인구경제연구소",
-      "view": "공급 증가 우려로 목표가가 하향되었으나 장기적 경쟁력은 여전히 높다고 평가한다.",
-      "ref": "RkpF-xeoalw"
+      "channel": "815머니톡",
+      "view": "지수 리스크를 해지할 경우 순수 기업 가치 측면에서 투자 매력이 있다고 판단한다.",
+      "ref": "igdgKOPRR_4"
+     }
+    ]
+   },
+   {
+    "name": "엔비디아",
+    "count": 3,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "실적 발표 후 시장의 AI 투자 사이클 우려를 완전히 해소하지 못했다는 평가를 받았다.",
+      "ref": "axG8buIPalY"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "엔비디아의 LTA 계약 확대로 HBM4 공급이 계획대로 원활히 진행될 것으로 본다.",
-      "ref": "AydkVh-c6GI"
+      "view": "2027년 매출 가이던스를 상향하며 AI 시장의 성장을 주도하고 있다고 평가한다.",
+      "ref": "QoEfnBKO5zU"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "실적과 가이던스는 매우 좋으나 차기 CEO 선임 관련 불확실성이 존재한다.",
+      "ref": "PREEBWeBwhs"
      }
     ]
    },
@@ -203,9 +167,9 @@ const BRIEFS=[
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "AI 반도체 시장 내 데이터센터 확장 수혜주로 함께 언급되며 양호한 흐름을 나타냈다고 설명한다.",
-      "ref": "KOho88gAhO4"
+      "channel": "체슬리TV",
+      "view": "내년 소켓 장착 제품 출시를 통해 소켓 시장의 추가적인 고객사 확장 요인이 될 것으로 전망한다.",
+      "ref": "HW1kdcwhrqY"
      },
      {
       "channel": "삼프로TV 3PROTV",
@@ -214,30 +178,8 @@ const BRIEFS=[
      },
      {
       "channel": "증시각도기TV",
-      "view": "경쟁사 이슈로 인해 5.3% 상승하며 긍정적인 흐름을 보였다.",
+      "view": "엔비디아 악재에 따른 반사이익으로 상승세를 나타냈다고 설명한다.",
       "ref": "5k0zCfIFr8w"
-     }
-    ]
-   },
-   {
-    "name": "에스엠",
-    "count": 3,
-    "tone": "긍정",
-    "mentions": [
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "중국 콘텐츠 시장 개방 기대감으로 주가가 큰 폭의 상승세를 보였다고 언급한다.",
-      "ref": "G5Kz41EjDmw"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "중국 관계 개선 기대감으로 엔터 섹터 내 가장 큰 수혜가 예상됨.",
-      "ref": "Cfb0KSoFWz0"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "한중 한한령 해제 및 개방 기대감에 힘입어 상한가를 기록했다고 분석한다.",
-      "ref": "AydkVh-c6GI"
      }
     ]
    },
@@ -258,42 +200,52 @@ const BRIEFS=[
      },
      {
       "channel": "증시각도기TV",
-      "view": "엔비디아의 악재를 반사이익으로 삼아 3.6% 상승했다.",
+      "view": "엔비디아의 악재를 반사이익으로 삼아 상승했다고 지적한다.",
       "ref": "5k0zCfIFr8w"
      }
     ]
    },
    {
-    "name": "하이브",
-    "count": 2,
+    "name": "에스엠",
+    "count": 3,
     "tone": "긍정",
     "mentions": [
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "한중 FTA 서비스 후속협상 타결 소식에 힘입어 엔터주 전반의 상승세 속에 주가가 올랐다고 언급한다.",
+      "view": "중국 콘텐츠 시장 개방 기대감으로 주가가 큰 폭의 상승세를 보였다고 언급한다.",
       "ref": "G5Kz41EjDmw"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "한중 문화 교류 및 중국 시장 관련 기대감으로 16% 상승했다고 지적한다.",
-      "ref": "AydkVh-c6GI"
+      "view": "중국 관련 호재로 전일 상한가를 기록한 후 강세를 유지했다.",
+      "ref": "7WVn5WmOlsA"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "한중 관계 개선 기대감으로 엔터 섹터 내 가장 큰 수혜가 예상됨.",
+      "ref": "Cfb0KSoFWz0"
      }
     ]
    },
    {
-    "name": "엔트로픽",
-    "count": 2,
+    "name": "하이브",
+    "count": 3,
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "IPO 수요가 매우 뜨거우며 상장 후 AI 인프라 투자 확대로 이어질 것으로 기대된다.",
-      "ref": "PREEBWeBwhs"
+      "channel": "815머니톡",
+      "view": "내년 상반기 BTS 완전체 월드투어와 음반 출시가 예정되어 있어 엔터주 중 실적 모멘텀이 가장 명확하다.",
+      "ref": "mcc0jFRgPuw"
      },
      {
-      "channel": "815머니톡",
-      "view": "상장 초기 패시브 자금에 의한 단기 상승이 기대되지만 락업 해제 물량 때문에 6개월간 보수적 접근이 필요하다고 전망한다.",
-      "ref": "igdgKOPRR_4"
+      "channel": "삼프로TV 3PROTV",
+      "view": "한중 FTA 서비스 후속협상 타결 소식에 힘입어 엔터주 전반의 상승세 속에 주가가 올랐다.",
+      "ref": "G5Kz41EjDmw"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "한중 문화 교류 및 중국 시장 관련 기대감으로 상승했다고 지적한다.",
+      "ref": "AydkVh-c6GI"
      }
     ]
    }
