@@ -1,6 +1,216 @@
 /* 종합 브리핑(일간 BRIEFS, 주간 WEEKLY). 자동화(scripts/summarize.py)가 갱신하는 파일이다. */
 const BRIEFS=[
  {
+  "date": "2026-11-19",
+  "count": 6,
+  "sources": [
+   "RkpF-xeoalw",
+   "5k0zCfIFr8w",
+   "teuTyJ7CwFM",
+   "h40ZIc8mx-c",
+   "AydkVh-c6GI",
+   "cpvUuHMLsgI"
+  ],
+  "headline": "미국 증시와 연준 금리 우려 속 코스피 5000선 지지력과 AI 반도체 장기 성장에 주목한다.",
+  "keypoints": [
+   "모건스탠리의 공급 증가 전망과 노무라증권의 AI 수요 긍정 전망이 엇갈린다.",
+   "연준 위원들의 추가 금리 인상 발언과 국채 금리 상승으로 시장 분위기가 위축되었다.",
+   "GTA 6 사전 예약 흥행과 한한령 해제 기대감으로 관련 콘텐츠 및 엔터주가 강세를 보였다.",
+   "엔비디아의 장기공급계약(LTA) 확대와 밸류에이션 매력으로 반도체 지지력이 기대된다."
+  ],
+  "themes": [
+   {
+    "title": "반도체 주가 하락과 성장성 전망",
+    "summary": "공급 증가 우려와 연준의 금리 인상 기조로 반도체 주가가 조정받았으나, 장기적인 AI 인프라 수요와 주주환원 정책을 바탕으로 저점 매수 및 보유 전략이 유효하다고 본다.",
+    "refs": [
+     "RkpF-xeoalw",
+     "teuTyJ7CwFM",
+     "AydkVh-c6GI",
+     "cpvUuHMLsgI"
+    ]
+   },
+   {
+    "title": "미국 시장 변동성과 금리 우려",
+    "summary": "미국 테크주의 엇갈린 흐름과 연준 인사들의 추가 긴축 발언으로 시장 변동성이 커졌으며, 단기 국채 금리 상승과 주택 시장 둔화 부담이 지속되고 있다고 진단한다.",
+    "refs": [
+     "5k0zCfIFr8w",
+     "AydkVh-c6GI"
+    ]
+   },
+   {
+    "title": "신작 흥행과 정책 수혜 테마",
+    "summary": "GTA 6의 대규모 사전 예약 흥행과 한중 한한령 해제 기대감에 힘입어 엔터, 미디어, 게임, 운송 및 로봇 관련주로 자금이 순환 유입되며 강세를 보였다.",
+    "refs": [
+     "h40ZIc8mx-c",
+     "AydkVh-c6GI"
+    ]
+   }
+  ],
+  "agreements": [
+   {
+    "point": "반도체 산업의 AI 인프라 장기 성장성은 여전히 유효하다.",
+    "refs": [
+     "RkpF-xeoalw",
+     "AydkVh-c6GI",
+     "cpvUuHMLsgI"
+    ]
+   },
+   {
+    "point": "금리 변수와 매크로 불안으로 증시 변동성이 확대되었다.",
+    "refs": [
+     "5k0zCfIFr8w",
+     "teuTyJ7CwFM",
+     "h40ZIc8mx-c",
+     "AydkVh-c6GI"
+    ]
+   }
+  ],
+  "disagreements": [
+   {
+    "topic": "반도체 단기 주가 전망 및 대응",
+    "views": [
+     {
+      "channel": "전인구경제연구소",
+      "view": "신규 공장 가동에 따른 공급 증가 우려로 목표가가 하향되었으나 현재 구간은 저평가되었으므로 인내심을 갖고 버텨야 한다고 본다.",
+      "ref": "RkpF-xeoalw"
+     },
+     {
+      "channel": "교보증권 머니텐 Money10",
+      "view": "시장 전반의 약세 흐름 속에서도 60월봉 지지선을 확인하며 바닥을 다지는 과정이므로 장기 집중 투자가 유효하다고 본다.",
+      "ref": "cpvUuHMLsgI"
+     }
+    ]
+   }
+  ],
+  "stocks": [
+   {
+    "name": "삼성전자",
+    "count": 5,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "전인구경제연구소",
+      "view": "주가 하락으로 배당수익률이 크게 상승하여 저평가 매력이 부각된다고 평가한다.",
+      "ref": "RkpF-xeoalw"
+     },
+     {
+      "channel": "전인구경제연구소",
+      "view": "매크로 악재와 AI 투자 회수 우려로 조정받았으나 강화된 주주환원 정책을 바탕으로 보유 관점을 유지한다고 평가한다.",
+      "ref": "teuTyJ7CwFM"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "외국인과 기관의 매도세 속에 주가가 2% 하락하며 약세를 보였다.",
+      "ref": "h40ZIc8mx-c"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "DS 부문 사장이 컨퍼런스에서 AI 시장 우려를 일축하며 구조적 성장을 자신했다고 강조한다.",
+      "ref": "AydkVh-c6GI"
+     },
+     {
+      "channel": "교보증권 머니텐 Money10",
+      "view": "월봉상 주요 지지선 구간에 도달해 밸류에이션 측면에서 저점 형성 가능성을 점친다.",
+      "ref": "cpvUuHMLsgI"
+     }
+    ]
+   },
+   {
+    "name": "SK하이닉스",
+    "count": 5,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "전인구경제연구소",
+      "view": "공급 증가 우려로 목표가가 하향되었으나 장기적 경쟁력은 여전히 높다고 평가한다.",
+      "ref": "RkpF-xeoalw"
+     },
+     {
+      "channel": "전인구경제연구소",
+      "view": "AI 데이터센터 관련 시장의 걱정은 일시적인 노이즈에 불과하여 긍정적인 시각을 유지한다고 평가한다.",
+      "ref": "teuTyJ7CwFM"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "시장 전체 하락 흐름과 맞물려 주가가 1.9% 내렸다.",
+      "ref": "h40ZIc8mx-c"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "엔비디아의 LTA 계약 확대로 HBM4 공급이 계획대로 원활히 진행될 것으로 본다.",
+      "ref": "AydkVh-c6GI"
+     },
+     {
+      "channel": "교보증권 머니텐 Money10",
+      "view": "지수 반등을 이끌었으며 매물벽 돌파와 60월봉 지지 여부가 핵심이라고 진단한다.",
+      "ref": "cpvUuHMLsgI"
+     }
+    ]
+   },
+   {
+    "name": "엔비디아",
+    "count": 4,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "증시각도기TV",
+      "view": "젠슨 황 복귀설이 부정되면서 실적 발표 후 2.9% 하락했다.",
+      "ref": "5k0zCfIFr8w"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "단기적으로는 관련 ETF 자금 유출이 발생했으나 고성능 게이밍 및 AI GPU 수요 측면에서 장기 수혜가 가능하다.",
+      "ref": "h40ZIc8mx-c"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "실적 발표 후 주가는 하락했으나 메모리 장기공급계약을 대폭 늘리며 AI 성장세를 입증했다고 본다.",
+      "ref": "AydkVh-c6GI"
+     },
+     {
+      "channel": "교보증권 머니텐 Money10",
+      "view": "3분기 실적 발표와 긍정적인 향후 전망을 바탕으로 견고한 성장세를 입증했다고 평가한다.",
+      "ref": "cpvUuHMLsgI"
+     }
+    ]
+   },
+   {
+    "name": "삼성전기",
+    "count": 2,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "전인구경제연구소",
+      "view": "엔비디아향 기판 및 MLCC 공급으로 최근 1년간 우수한 성과를 보였다고 평가한다.",
+      "ref": "RkpF-xeoalw"
+     },
+     {
+      "channel": "교보증권 머니텐 Money10",
+      "view": "엔비디아와의 HBM 기판 공급 협력 기대감 등으로 강세를 나타냈다고 언급한다.",
+      "ref": "cpvUuHMLsgI"
+     }
+    ]
+   },
+   {
+    "name": "AMD",
+    "count": 2,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "증시각도기TV",
+      "view": "경쟁사 이슈로 인해 5.3% 상승하며 긍정적인 흐름을 보였다.",
+      "ref": "5k0zCfIFr8w"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "콘솔 및 PC용 GPU 칩 공급 기업으로서 장기적인 수혜가 기대된다.",
+      "ref": "h40ZIc8mx-c"
+     }
+    ]
+   }
+  ]
+ },
+ {
   "date": "2026-11-18",
   "count": 27,
   "sources": [
