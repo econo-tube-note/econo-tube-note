@@ -436,7 +436,17 @@ def build_dash(recent, briefs, weekly, digests, man):
                       + f'<div class="dgrid">{cards}</div></section>')
 
     # 5) 최신 영상: 카드 모양은 영상 요약 탭과 같다 (화면에서 채운다)
-    blocks.append('<section class="dblk dlatest">' + hd("최근 영상", "", "", (BASE + "#videos", "영상 요약 전체 보기")) + '<div class="grid" id="hgrid"></div></section>')
+    # 화면에서 다시 그리지만, 자바스크립트를 못 읽는 검색엔진도 영상 페이지 링크를 따라가게 미리 채워 둔다
+    def hcard(i, v):
+        vid = vid_of(v.get("url"))
+        md = MOOD_LABEL.get(v.get("mood"))
+        tit = f'<a class="clink" href="{href("v/" + vid + "/")}">{e(v.get("title"))}</a>' if vid else e(v.get("title"))
+        return (f'<article class="card" data-i="{i}"><div class="thumb">' + (f'<img src="https://img.youtube.com/vi/{e(vid)}/hqdefault.jpg" alt="" loading="lazy">' if vid else "")
+                + f'</div><div class="body"><div class="meta"><b>{e(v.get("channel"))}</b><span>{e((v.get("date") or "").replace("-", "."))}</span>'
+                + (f'<span class="md m{e(v.get("mood"))}">{md}</span>' if md else "")
+                + f'</div><h2>{tit}</h2><p>{e(v.get("conclusion"))}</p></div></article>')
+    blocks.append('<section class="dblk dlatest">' + hd("최근 영상", "", "", (BASE + "#videos", "영상 요약 전체 보기"))
+                  + '<div class="grid" id="hgrid">' + "".join(hcard(i, v) for i, v in enumerate(recent[:6])) + '</div></section>')
 
     blocks.append('<p class="bnote">AI가 경제 유튜브 영상들을 요약·종합한 내용이며 투자 권유가 아니다.</p>')
     html_ = "<!--DASH:START-->\n" + "\n".join(blocks) + "\n<!--DASH:END-->"
