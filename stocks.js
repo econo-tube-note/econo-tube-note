@@ -3,10 +3,11 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "주가 하락과 매크로 악재로 우려가 있으나, 낮은 밸류에이션과 주주환원을 바탕으로 저점 매수와 반등 가능성이 제기된다.",
+  "summary": "매크로 악재와 약세 속에서도 저평가 매력과 실적 성장이 부각된다.",
   "points": [
-   "주가 하락과 저평가로 배당수익률이 상승하고 저점 매수 구간이라는 의견이 있다.",
-   "AI 투자 회수 우려와 매크로 악재로 조정을 받았으나 구조적 성장이 기대된다."
+   "낮은 밸류에이션과 주가 하락으로 인한 배당수익률 상승으로 저평가 매력이 부각된다.",
+   "외국인과 기관의 매도세 속에서 약세를 보였으나 AI 시장 우려를 일축하며 구조적 성장을 자신했다.",
+   "애플과의 장기 공급 계약 가능성과 강화된 주주환원 정책을 바탕으로 보유 관점이 유지된다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -20,6 +21,7 @@ const STOCKSUM={
    "AydkVh-c6GI",
    "BIhFDJtoK6k",
    "C1yE6FwQMCY",
+   "Cfb0KSoFWz0",
    "Cgn7XPWef2A",
    "Codp7P9gH4U",
    "DNHHB8jEuSM",
@@ -48,12 +50,14 @@ const STOCKSUM={
    "XrMcS9HJQQQ",
    "ZCzUlVm2jSg",
    "_0ePh1KmGdc",
+   "_JMuWDJzLJg",
    "bYGImu0Xhag",
    "c6LAHhYBSDI",
    "cZKNKIAXEfY",
    "cpvUuHMLsgI",
    "dOy04iFw5_U",
    "eFnxFsUiMvs",
+   "f_Pb9-42cUE",
    "fdk1qjtZYA0",
    "h40ZIc8mx-c",
    "j8RY_qFNvCk",
@@ -74,9 +78,10 @@ const STOCKSUM={
    "vVe3kbl0k44",
    "xrqbovX16L8",
    "zYgSmH3Wl_s",
+   "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 66,
+  "count": 70,
   "updated": "2026-11-19"
  },
  "엔비디아": {
@@ -127,11 +132,11 @@ const STOCKSUM={
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "긍정",
-  "summary": "공급 증가 우려와 주가 하락 조정이 있으나, AI 산업의 핵심으로서 견조한 펀더멘털과 장기적 경쟁력이 높게 평가된다.",
+  "summary": "공급 증가 우려와 주가 하락이 있으나, AI 산업의 핵심으로서 탄탄한 펀더멘털과 장기적 경쟁력을 높게 평가한다.",
   "points": [
-   "공급 증가 우려로 목표가가 하향되거나 주가가 하락했다.",
-   "AI 산업의 핵심으로서 견조한 실적과 주주환원이 기대된다.",
-   "엔비디아 계약 확대로 HBM4 공급이 원활히 진행된다."
+   "AI 데이터센터 호조와 HBM 공급 확대로 실적 기대감이 높다.",
+   "공급 증가 우려로 목표가가 하향되기도 했다.",
+   "밸류에이션 매력과 저평가 인식이 공존한다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -172,6 +177,7 @@ const STOCKSUM={
    "XrMcS9HJQQQ",
    "ZCzUlVm2jSg",
    "_0ePh1KmGdc",
+   "_JMuWDJzLJg",
    "bYGImu0Xhag",
    "c6LAHhYBSDI",
    "cZKNKIAXEfY",
@@ -198,7 +204,7 @@ const STOCKSUM={
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 63,
+  "count": 64,
   "updated": "2026-11-19"
  },
  "코어위브": {

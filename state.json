@@ -45,7 +45,9 @@
   "5uwB47HBQQA": "경제 무관: 수능과 AI가 국가시험에 미치는 영향 등 교육 및 사회적 이슈를 다룸.",
   "K7C5Ej575sM": "너무 짧음",
   "_Tqm0GqYKXw": "너무 짧음",
-  "M_H-08YWh2E": "너무 짧음"
+  "M_H-08YWh2E": "너무 짧음",
+  "hqE-WkJew2k": "너무 짧음",
+  "ignd9kfF_zA": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -54,27 +56,27 @@
  "spent": {},
  "models": {
   "gemini-3.6-flash": {
-   "ok": 8,
-   "busy": 32,
+   "ok": 4,
+   "busy": 24,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 0,
-   "busy": 33,
+   "busy": 40,
    "dead": 4
   },
   "gemini-3.8-flash": {
    "ok": 0,
-   "busy": 39,
+   "busy": 25,
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 22,
-   "busy": 3,
+   "ok": 27,
+   "busy": 4,
    "dead": 4
   },
   "gemini-3.5-flash-lite": {
-   "ok": 3,
+   "ok": 4,
    "busy": 5,
    "dead": 4
   }
@@ -130,15 +132,12 @@
   "sNE5GmvtfcU": true,
   "hZhxmglAnuk": true,
   "kZc5iQ0bXfY": true,
-  "xjVdgtREpc4": true,
   "tB7T2h2hbYc": true,
   "6QsR2Jre64w": true,
   "rQBECS1zytU": true,
   "AbbCGe2z4Og": true,
   "EsqB5CuzaWE": true,
-  "_JMuWDJzLJg": true,
   "RBahpe1ZHTc": true,
-  "VZv-QcnXCN4": true,
   "oqUHwpwhdGY": true,
   "zNrjmwUR9-Y": true,
   "CpGj1M3vaO8": true,
@@ -162,11 +161,9 @@
   "bHls2Oc1faY": true,
   "8O7iSTMZ-84": true,
   "JL6acLiFOFE": true,
-  "f_Pb9-42cUE": true,
   "d3rEiUE9QjQ": true,
   "SRDGOovbH4g": true,
   "bXFO4Hc6R34": true,
-  "zrfU-fyCP04": true,
   "uqLZmCzk87A": true,
   "z95vQU9TRmg": true,
   "UqV-kxtYvwk": true,
@@ -183,11 +180,17 @@
   "G5Kz41EjDmw": true,
   "znmu0vaHb10": true,
   "M_H-08YWh2E": true,
-  "Cfb0KSoFWz0": true,
   "7WVn5WmOlsA": true,
   "PREEBWeBwhs": true,
   "QoEfnBKO5zU": true,
-  "KOho88gAhO4": true
+  "KOho88gAhO4": true,
+  "FmOvuiAqZMU": true,
+  "VEYoCnIz6XQ": true,
+  "HW1kdcwhrqY": true,
+  "hqE-WkJew2k": true,
+  "Y56dlWVPpPg": true,
+  "ignd9kfF_zA": true,
+  "axG8buIPalY": true
  },
  "brief_final": {
   "2026-11-13": true,
