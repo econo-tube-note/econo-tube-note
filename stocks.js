@@ -3,11 +3,11 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "주가 하락과 매크로 악재로 우려가 있으나, 펀더멘털과 저평가 매력을 바탕으로 향후 반등을 기대한다.",
+  "summary": "주가 하락과 투자 우려가 지속되는 가운데 견고한 펀더멘털과 주주환원 정책을 바탕으로 한 저평가 매력도 함께 언급된다.",
   "points": [
-   "데이터 센터 투자 축소와 AI 우려로 주가가 하락세를 보였다.",
-   "영업이익 성장과 배당 매력으로 저점 형성 가능성이 제기된다.",
-   "외국인 수급 유입 시 주가 상승을 기대하는 시각이 존재한다."
+   "주가 하락과 데이터 센터 투자 우려가 이어지고 있다.",
+   "풍부한 영업이익과 자사주 매입 등 주주환원 정책이 긍정적이다.",
+   "외국인 수급이 유입되면 주가 반등이 가능할 것으로 본다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -38,6 +38,7 @@ const STOCKSUM={
    "IU-2OFhVB4I",
    "JYyoOyLbEdY",
    "Jn91NmZyGBg",
+   "K101Dy3FU1w",
    "LagAldYbD8M",
    "N_4n0mMwAWA",
    "OK2FJONMpGA",
@@ -83,12 +84,14 @@ const STOCKSUM={
    "teuTyJ7CwFM",
    "vCEYiChFcnA",
    "vVe3kbl0k44",
+   "vqB7JpqjRy0",
    "xrqbovX16L8",
+   "yrEcOVH79Pc",
    "zYgSmH3Wl_s",
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 77,
+  "count": 80,
   "updated": "2026-11-19"
  },
  "엔비디아": {
@@ -138,12 +141,12 @@ const STOCKSUM={
  },
  "SK하이닉스": {
   "name": "SK하이닉스",
-  "tone": "긍정",
-  "summary": "HBM 수요와 실적 성장을 바탕으로 장기적 경쟁력과 투자 매력이 높다고 평가한다.",
+  "tone": "혼재",
+  "summary": "탄탄한 실적과 HBM 수요로 긍정적 전망이 우세하나, 마진 지속성과 시장 하락에 대한 우려도 함께 존재한다.",
   "points": [
-   "메모리와 HBM 수요 견조로 영업이익이 크게 증가할 것으로 예상한다.",
-   "공급 증가 우려로 목표가가 하향되었으나 장기적 경쟁력은 여전히 높다.",
-   "시장 전체 하락과 지수 리스크 속에 주가가 하락세를 보이기도 했다."
+   "메모리 및 HBM 수요로 실적 성장세가 지속될 것이라는 전망이 있다.",
+   "70~80% 마진의 지속 가능성과 공급 증가에 대한 우려가 존재한다.",
+   "저평가된 밸류에이션 속에서 분할 매수와 수급 개선 기대를 언급한다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -173,6 +176,7 @@ const STOCKSUM={
    "IU-2OFhVB4I",
    "JYyoOyLbEdY",
    "Jn91NmZyGBg",
+   "K101Dy3FU1w",
    "N_4n0mMwAWA",
    "OK2FJONMpGA",
    "Of8HJe9eNYw",
@@ -191,6 +195,7 @@ const STOCKSUM={
    "_JMuWDJzLJg",
    "bYGImu0Xhag",
    "c6LAHhYBSDI",
+   "c7f9jtyq9yw",
    "cZKNKIAXEfY",
    "cpvUuHMLsgI",
    "d9rmKdDS43w",
@@ -214,11 +219,13 @@ const STOCKSUM={
    "teuTyJ7CwFM",
    "vCEYiChFcnA",
    "vVe3kbl0k44",
+   "vqB7JpqjRy0",
    "xrqbovX16L8",
+   "yrEcOVH79Pc",
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 71,
+  "count": 75,
   "updated": "2026-11-19"
  },
  "코어위브": {
