@@ -47,7 +47,8 @@
   "_Tqm0GqYKXw": "너무 짧음",
   "M_H-08YWh2E": "너무 짧음",
   "hqE-WkJew2k": "너무 짧음",
-  "ignd9kfF_zA": "너무 짧음"
+  "ignd9kfF_zA": "너무 짧음",
+  "b8kRF-9t6v4": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -56,22 +57,22 @@
  "spent": {},
  "models": {
   "gemini-3.6-flash": {
-   "ok": 4,
-   "busy": 24,
+   "ok": 7,
+   "busy": 29,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 0,
-   "busy": 40,
+   "busy": 24,
    "dead": 4
   },
   "gemini-3.8-flash": {
    "ok": 0,
-   "busy": 25,
+   "busy": 31,
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 27,
+   "ok": 30,
    "busy": 4,
    "dead": 4
   },
@@ -177,20 +178,17 @@
   "dra2apL7dEg": true,
   "uU9ZKGTSh0k": true,
   "_Tqm0GqYKXw": true,
-  "G5Kz41EjDmw": true,
   "znmu0vaHb10": true,
   "M_H-08YWh2E": true,
-  "7WVn5WmOlsA": true,
-  "PREEBWeBwhs": true,
-  "QoEfnBKO5zU": true,
-  "KOho88gAhO4": true,
   "FmOvuiAqZMU": true,
   "VEYoCnIz6XQ": true,
   "HW1kdcwhrqY": true,
   "hqE-WkJew2k": true,
   "Y56dlWVPpPg": true,
   "ignd9kfF_zA": true,
-  "axG8buIPalY": true
+  "axG8buIPalY": true,
+  "b8kRF-9t6v4": true,
+  "d9rmKdDS43w": true
  },
  "brief_final": {
   "2026-11-13": true,
