@@ -2,8 +2,14 @@
 const BRIEFS=[
  {
   "date": "2026-11-20",
-  "count": 24,
+  "count": 30,
   "sources": [
+   "2gvPe2UYxNI",
+   "EO1fFAkh7xA",
+   "e6AA2VHR3b0",
+   "iy6JmJMrGHU",
+   "3PTKmp5zdh8",
+   "tMfYOFMSLTs",
    "-vR1-SjKtXI",
    "4HRFYRybYVY",
    "AWknNSPEM1g",
@@ -29,60 +35,25 @@ const BRIEFS=[
    "X1D0cQjwrkU",
    "UlNBpokQfVk"
   ],
-  "headline": "엔트로픽 상장과 AI 버블 우려 속에 국내외 증시가 폭락세를 기록했다.",
+  "headline": "엔트로픽 상장과 AI 버블 우려 속 아시아 증시 폭락 및 저가 매수 공방",
   "keypoints": [
-   "엔트로픽 상장에 따른 자금 쏠림으로 기술주 매도세가 심화되었다.",
-   "AMD 공매도 리포트와 미국의 규제 강화가 반도체 투심을 위축시켰다.",
-   "코스피 5,000선이 붕괴하며 외국인과 기관의 순매도가 이어졌다.",
-   "전문가들은 투매를 자제하고 분할 매수나 저평가주 접근을 권유한다."
+   "엔트로픽 대규모 상장 직후 차익 실현 매물과 AI 버블 경고가 겹치며 미국과 아시아 증시가 급락했다.",
+   "외국인과 기관의 동반 대규모 순매도와 신용 청산 여파로 코스피 지수 5,000선이 붕괴되었다.",
+   "반도체 업종은 대중국 규제와 밸류에이션 논란을 겪었으나 펀더멘털 대비 과도한 저평가 상태라는 분석이 나왔다."
   ],
   "themes": [
    {
-    "title": "엔트로픽 상장의 수급 파장",
-    "summary": "엔트로픽 상장으로 자금이 쏠리면서 기존 테크주와 반도체 섹터의 유동성이 이탈했고 시장 전반에 하락 압력을 가했다고 지적한다.",
+    "title": "엔트로픽 상장과 AI 투자 리스크",
+    "summary": "엔트로픽의 대규모 IPO 성공과 높은 시초가 형성이 증시 전반의 유동성을 흡수하고 AI 버블 우려와 순환 금융 구조에 대한 경계감을 확산시켰다.",
     "refs": [
-     "-vR1-SjKtXI",
-     "waz9eTAJIxU",
-     "uPfwN34xlpE",
-     "TV3diSFaZIU",
-     "axY9mi3lmok",
-     "fNFna6Mp5Dg",
-     "ODiEz3dslcE",
-     "QwhGDJbSGvU",
-     "X1D0cQjwrkU"
+     "2gvPe2UYxNI",
+     "3PTKmp5zdh8",
+     "fNFna6Mp5Dg"
     ]
    },
    {
-    "title": "반도체 악재와 증시 급락",
-    "summary": "AMD 공매도 리포트와 미국의 대중국 수출 규제 강화 소식이 겹치며 삼성전자와 SK하이닉스 등 대형주 중심으로 폭락장이 연출되었다고 분석한다.",
-    "refs": [
-     "-vR1-SjKtXI",
-     "waz9eTAJIxU",
-     "uPfwN34xlpE",
-     "KopQpHNgc4k",
-     "cZn4q_KfdjY",
-     "Tzc0KuusVbI",
-     "-HaqruPY5Rg"
-    ]
-   },
-   {
-    "title": "폭락장 대응 및 투자 전략",
-    "summary": "지수 하락 폭이 과도한 저평가 구간에 진입했으므로 기계적 손절보다는 분할 매수나 우량주 리밸런싱으로 대응해야 한다고 조언한다.",
-    "refs": [
-     "AWknNSPEM1g",
-     "KopQpHNgc4k",
-     "cZn4q_KfdjY",
-     "Tzc0KuusVbI",
-     "TV3diSFaZIU",
-     "axY9mi3lmok",
-     "vMcjzb9nK9s",
-     "hgo5J-kQ_Ck"
-    ]
-   }
-  ],
-  "agreements": [
-   {
-    "point": "미국의 대중국 반도체 수출 규제가 증시에 악재로 작용했다고 분석한다.",
+    "title": "아시아 증시 폭락과 외국인 수급 공백",
+    "summary": "미국의 대중국 반도체 규제 강화와 공매도 리포트 여파로 삼성전자와 SK하이닉스 등 대형주에 매물이 쏟아지며 지수가 급락했다.",
     "refs": [
      "-vR1-SjKtXI",
      "waz9eTAJIxU",
@@ -90,55 +61,57 @@ const BRIEFS=[
     ]
    },
    {
-    "point": "AMD 공매도 리포트가 반도체 투자 심리를 약화시켰다고 지적한다.",
+    "title": "저평가 국면 대응과 분할 매수 전략",
+    "summary": "지수가 단기 급락하여 극단적 공포 구간에 진입했으나, 주요 반도체와 우량주에 대해 투매를 자제하고 분할 매수로 대응해야 한다는 의견이 제기됐다.",
     "refs": [
+     "e6AA2VHR3b0",
      "KopQpHNgc4k",
-     "-HaqruPY5Rg",
-     "ODiEz3dslcE",
-     "X1D0cQjwrkU"
+     "vMcjzb9nK9s"
+    ]
+   }
+  ],
+  "agreements": [
+   {
+    "point": "엔트로픽 상장 이후 차익 실현과 수급 쏠림이 증시 전반의 변동성을 키웠다.",
+    "refs": [
+     "3PTKmp5zdh8",
+     "uPfwN34xlpE",
+     "fNFna6Mp5Dg",
+     "ODiEz3dslcE"
     ]
    },
    {
-    "point": "현재 증시 낙폭이 과도하므로 감정적 투매를 자제해야 한다고 강조한다.",
+    "point": "외국인과 기관의 매도세와 신용 매물 출회가 국내 증시 급락을 이끌었다.",
     "refs": [
-     "AWknNSPEM1g",
-     "uPfwN34xlpE",
+     "waz9eTAJIxU",
      "cZn4q_KfdjY",
      "TV3diSFaZIU",
-     "axY9mi3lmok",
-     "vMcjzb9nK9s",
-     "UlNBpokQfVk"
+     "LaNmkC9HkS4"
+    ]
+   },
+   {
+    "point": "최근의 지수 하락은 펀더멘털 대비 과도한 수준이므로 무조건적인 손절보다는 버티거나 분할 매수로 대응해야 한다.",
+    "refs": [
+     "e6AA2VHR3b0",
+     "cZn4q_KfdjY",
+     "Tzc0KuusVbI",
+     "TV3diSFaZIU"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "폭락장 속 대응 전략",
+    "topic": "삼성전자 및 SK하이닉스 등 대형 반도체주 추가 매수 시점",
     "views": [
      {
-      "channel": "815머니톡",
-      "view": "불확실성이 크므로 현금을 확보하며 관망해야 한다고 주장한다.",
-      "ref": "7ctnlT1jlyQ"
+      "channel": "체슬리TV",
+      "view": "가격 조정이 마무리 단계이며 역사적 저평가 구간이므로 분할 매수와 저가 매수 기회로 삼아야 한다.",
+      "ref": "e6AA2VHR3b0"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "극심한 저평가 영역이므로 신규 분할 매수에 나서야 한다고 권유한다.",
-      "ref": "Tzc0KuusVbI"
-     }
-    ]
-   },
-   {
-    "topic": "삼성전자 및 SK하이닉스 추가 매수 시각",
-    "views": [
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "개인 매수세 과다로 저점의 단기 회복이 어렵다고 본다.",
+      "view": "개인 매수세가 과다하고 수급 공백과 공매도 압력이 이어지고 있어 추가 매수를 경계해야 한다.",
       "ref": "KopQpHNgc4k"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "악재가 대부분 반영되어 수급 개선 시 강한 반등이 나올 수 있다고 본다.",
-      "ref": "Tzc0KuusVbI"
      }
     ]
    }
@@ -146,137 +119,150 @@ const BRIEFS=[
   "stocks": [
    {
     "name": "삼성전자",
-    "count": 2,
+    "count": 3,
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "전인구경제연구소",
-      "view": "대중국 수출 규제와 외국인 매도로 주가가 급락했다고 지적한다.",
-      "ref": "waz9eTAJIxU"
+      "channel": "체슬리TV",
+      "view": "가격 조정이 마무리 단계이며 내년 실적 기준 PBR 1배 수준이 강력한 지지선이 될 것으로 본다.",
+      "ref": "e6AA2VHR3b0"
      },
      {
-      "channel": "김작가 TV",
-      "view": "밸류에이션이 역사적 저평가 구간에 진입하여 매력적이라고 평가한다.",
-      "ref": "AWknNSPEM1g"
+      "channel": "815머니톡",
+      "view": "미국 상무부 규제로 인한 중국향 칩 주문 중단 악재로 타격을 입었다고 언급한다.",
+      "ref": "uPfwN34xlpE"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "실적 감소 악재를 가정한 주가도 밸류에이션상 지나치게 낮아 현 시점 매도는 부적절하다고 평가한다.",
+      "ref": "cZn4q_KfdjY"
      }
     ]
    },
    {
     "name": "SK하이닉스",
-    "count": 2,
+    "count": 3,
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "815머니톡",
-      "view": "외국인 매도세와 공매도가 쌓이며 큰 폭의 주가 하락을 기록했다고 전한다.",
-      "ref": "-HaqruPY5Rg"
+      "channel": "체슬리TV",
+      "view": "업황 사이클상 90만 원 전후가 강력한 지지선이 될 것으로 전망한다.",
+      "ref": "e6AA2VHR3b0"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "HBM4 가격 인상과 데이터센터 투자 확대에 따른 수혜가 기대된다고 본다.",
-      "ref": "UlNBpokQfVk"
-     }
-    ]
-   },
-   {
-    "name": "AMD",
-    "count": 2,
-    "tone": "부정",
-    "mentions": [
-     {
-      "channel": "815머니톡",
-      "view": "공매도 리포트와 대중국 규제 위반 의혹으로 주가가 급락했다고 지적한다.",
-      "ref": "uPfwN34xlpE"
+      "view": "목표주가가 105만 원까지 하향 조정되며 악재가 쏟아졌으나 실적 대비 지나친 저평가 상태라고 판단한다.",
+      "ref": "KopQpHNgc4k"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "우회 수출 논란으로 인한 투심 악화는 과도한 우려라고 평가한다.",
-      "ref": "UlNBpokQfVk"
+      "view": "악재가 대거 반영되어 PER 2.7배 수준까지 조정을 받았으므로 손절을 자제할 것을 권유한다.",
+      "ref": "cZn4q_KfdjY"
      }
     ]
    },
    {
     "name": "엔비디아",
-    "count": 2,
+    "count": 3,
     "tone": "혼재",
     "mentions": [
      {
+      "channel": "815머니톡",
+      "view": "AI 생태계에서 최종 대부자 역할을 하며 순환 금융 구조의 중심에 있다고 평가한다.",
+      "ref": "2gvPe2UYxNI"
+     },
+     {
       "channel": "삼프로TV 3PROTV",
-      "view": "순환 금융 구조 및 마진 축소 압력으로 이익 둔화 우려가 있다고 지적한다.",
-      "ref": "fNFna6Mp5Dg"
+      "view": "12개월 선행 PER이 11배 수준까지 떨어져 글로벌 필수소비재보다 낮은 비이성적 저평가 상태라고 본다.",
+      "ref": "KopQpHNgc4k"
      },
      {
       "channel": "증시각도기TV",
-      "view": "PER이 팬데믹 저점 수준까지 낮아져 가격 매력이 커졌다고 평가한다.",
+      "view": "주가 하락으로 연환산 이익 대비 주가수익비율이 12~13배까지 낮아져 가격 매력이 커졌다고 평가한다.",
       "ref": "ODiEz3dslcE"
      }
     ]
    },
    {
-    "name": "엔트로픽",
-    "count": 2,
-    "tone": "혼재",
+    "name": "AMD",
+    "count": 3,
+    "tone": "부정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "성공적으로 상장했으나 기존 테크주의 자금을 흡수하며 시장 하락을 유발했다고 본다.",
-      "ref": "X1D0cQjwrkU"
+      "channel": "전인구경제연구소",
+      "view": "순환 금융 의혹과 더불어 매출의 20% 이상을 차지하는 높은 중국 의존도가 지적되며 주가가 크게 하락했다고 평가한다.",
+      "ref": "waz9eTAJIxU"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "대규모 자금 조달을 통한 투자 확대가 반도체 신규 수요 호재가 될 것으로 본다.",
-      "ref": "UlNBpokQfVk"
+      "view": "중국 규제 위반 레포트 여파로 급락했으나 옵션 만기 수급 영향이 커 다음 주 영향은 제한적일 것으로 본다.",
+      "ref": "cZn4q_KfdjY"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "중국 블랙리스트 기업과의 연계설과 공매도 리포트 영향으로 주가가 7% 이상 폭락하는 타격을 입었다고 평가한다.",
+      "ref": "ODiEz3dslcE"
      }
     ]
    },
    {
-    "name": "SK텔레콤",
-    "count": 2,
-    "tone": "혼재",
+    "name": "TSMC",
+    "count": 3,
+    "tone": "부정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "엔트로픽 상장 후 직접 투자가 가능해져 수급 이탈로 급락했다고 분석한다.",
-      "ref": "fNFna6Mp5Dg"
+      "channel": "815머니톡",
+      "view": "대만 증시의 핵심으로, 차트상 매도 시그널이 발생해 불안한 흐름을 보인다고 평가한다.",
+      "ref": "2gvPe2UYxNI"
      },
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "엔트로픽 초기 투자로 약 4조 3,000억 원의 투자 수익을 올렸다고 본다.",
-      "ref": "qu5RoRs0beQ"
+      "channel": "전인구경제연구소",
+      "view": "미국의 대중 수출 통제 강화 조치로 인해 일부 중국 고객사에 반도체 출하를 중단했다고 설명한다.",
+      "ref": "waz9eTAJIxU"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "대중국 고성능 칩 제재 여파로 주가 충격을 받으며 대만 증시 하락을 끌어냈다고 설명한다.",
+      "ref": "uPfwN34xlpE"
      }
     ]
    },
    {
     "name": "삼성전기",
-    "count": 2,
+    "count": 3,
     "tone": "부정",
     "mentions": [
      {
       "channel": "김작가 TV",
-      "view": "독점 프리미엄을 주기 어렵고 밸류에이션 부담이 크다고 경고한다.",
+      "view": "독점 프리미엄 적용이 어렵고 밸류에이션이 높아 추가 리스크 관리가 필요하다고 평가한다.",
       "ref": "AWknNSPEM1g"
      },
      {
       "channel": "815머니톡",
-      "view": "높은 밸류에이션 부담으로 이탈 시 비중을 줄일 것을 권고한다.",
+      "view": "AI 밸류체인 전반의 급락세와 외국계 매도가 집중되며 12% 폭락했다.",
+      "ref": "-HaqruPY5Rg"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "실적 대비 밸류에이션이 높아 비중을 일부 축소하고 대응할 필요가 있다고 지적한다.",
       "ref": "7ctnlT1jlyQ"
      }
     ]
    },
    {
-    "name": "월마트",
+    "name": "셀트리온",
     "count": 2,
-    "tone": "중립",
+    "tone": "긍정",
     "mentions": [
      {
-      "channel": "체슬리TV",
-      "view": "연간 전망치가 시장 기대에 미치지 못해 주가가 약세를 보였다고 설명한다.",
-      "ref": "IsNVO2cmRvA"
+      "channel": "김작가 TV",
+      "view": "반도체 섹터 약세 시 대안이 되는 제약·바이오 포트폴리오 다변화 종목으로 언급한다.",
+      "ref": "AWknNSPEM1g"
      },
      {
-      "channel": "체슬리TV",
-      "view": "매출 성장률 대비 PER 39배로 방어주로서 고평가되어 있다고 지적한다.",
-      "ref": "vMcjzb9nK9s"
+      "channel": "삼프로TV 3PROTV",
+      "view": "짐펜트라 호재와 함께 실적 가시성이 높아 시장 약세에도 잘 버티며 반등 시 수혜가 기대된다고 본다.",
+      "ref": "Tzc0KuusVbI"
      }
     ]
    }

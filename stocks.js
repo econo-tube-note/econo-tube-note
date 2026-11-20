@@ -3,11 +3,11 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "미국 규제와 외국인 매도로 주가가 급락했으나, 밸류에이션 매력이 높아 대형주 대안으로 긍정 평가한다.",
+  "summary": "악재로 인한 주가 급락과 저평가 매력이 공존하며, 수급과 반등 시점에 대한 의견이 나뉜다.",
   "points": [
-   "미국 수출 규제와 외국인 매도세로 주가가 큰 폭으로 하락했다.",
-   "밸류에이션이 지나치게 낮아 현시점 저평가 상태로 평가받는다.",
-   "개인 매수와 수급 영향으로 빠른 반등은 어려울 수 있다."
+   "미 대중 수출 규제와 외국인 매도로 주가가 큰 폭으로 하락했다.",
+   "현재 주가는 밸류에이션상 저평가 구간이나 수급 영향으로 빠른 반등은 어렵다.",
+   "소부장 대비 안정성이 높고 향후 파운드리 역량이 기회 요인으로 꼽힌다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -77,6 +77,7 @@ const STOCKSUM={
    "cpvUuHMLsgI",
    "d9rmKdDS43w",
    "dOy04iFw5_U",
+   "e6AA2VHR3b0",
    "eFnxFsUiMvs",
    "fNFna6Mp5Dg",
    "f_Pb9-42cUE",
@@ -100,6 +101,7 @@ const STOCKSUM={
    "qrosihil7Ms",
    "r_mO3QY3fE4",
    "saSLtHK3aJ0",
+   "tMfYOFMSLTs",
    "teuTyJ7CwFM",
    "uPfwN34xlpE",
    "vC7v55f8sdo",
@@ -113,7 +115,7 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 102,
+  "count": 104,
   "updated": "2026-11-20"
  },
  "엔비디아": {
@@ -214,11 +216,11 @@ const STOCKSUM={
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "혼재",
-  "summary": "기술주 투매와 목표가 하향 등 악재로 급락했으나, 실적 대비 지나친 저평가 상태라는 의견과 함께 반등 가능성이 제기된다.",
+  "summary": "기술주 투매와 목표가 하향 등 악재로 급락했으나, 실적 대비 지나친 저평가 상태라는 의견과 엔비디아 관련 우려가 혼재한다.",
   "points": [
-   "기술주 투매와 외국인 매도세로 인해 주가가 급락하고 목표가가 하향 조정되었다.",
-   "악재가 대거 반영되어 PER 2.7배 수준의 저평가 구간에 진입했다.",
-   "2029년까지 HBM 수요가 견고하고 수급 물갈이 후 단기 반등 가능성이 존재한다."
+   "악재 반영으로 PER 2.7배 수준까지 조정을 받았다.",
+   "키옥시아 전환사채의 주식 전환을 검토하고 있다.",
+   "엔비디아 이익률이 꺾이면 가격 협상력이 약화될 수 있다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -290,6 +292,7 @@ const STOCKSUM={
    "cpvUuHMLsgI",
    "d9rmKdDS43w",
    "dOy04iFw5_U",
+   "e6AA2VHR3b0",
    "eFnxFsUiMvs",
    "fNFna6Mp5Dg",
    "fdk1qjtZYA0",
@@ -323,7 +326,7 @@ const STOCKSUM={
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 101,
+  "count": 102,
   "updated": "2026-11-20"
  },
  "코어위브": {
