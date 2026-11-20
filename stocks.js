@@ -127,17 +127,19 @@ const STOCKSUM={
  "엔비디아": {
   "name": "엔비디아",
   "tone": "혼재",
-  "summary": "실적 호조와 목표가 상향에도 불구하고 AI 모멘텀 꺾임 우려와 경영진 관련 악재가 겹쳐 높은 변동성을 보인다.",
+  "summary": "AI 생태계의 핵심 역할과 저평가 매력이 부각되는 한편, 스캔들과 수장 부재 및 순환 금융 축소 우려로 변동성이 커졌다.",
   "points": [
-   "순환 자본 문제와 공급단 이슈 및 중국 관련 악재로 AI 모멘텀 꺾임 우려가 제기된다.",
-   "주가 하락으로 가격 매력이 커졌다는 평가와 과거처럼 매수 기회가 될 수 있다는 의견이 있다.",
-   "호실적 발표에도 불구하고 불확실한 장기 비전과 경영진 부재로 주가 모멘텀이 약화되었다."
+   "선행 PER 하락과 저평가 매력이 부각된다.",
+   "CEO 부재와 순환 금융 축소 우려가 존재한다.",
+   "중국 악재와 수급 변동성으로 불안감이 커졌다."
   ],
   "ids": [
    "-GrEZiF4e6k",
    "-PVT3Gp45SE",
    "0J5AXS2pqUg",
    "2NXRZFCSWcs",
+   "2gvPe2UYxNI",
+   "3PTKmp5zdh8",
    "4-y8e6UGd88",
    "54G-uaVm_OA",
    "5k0zCfIFr8w",
@@ -159,6 +161,7 @@ const STOCKSUM={
    "K101Dy3FU1w",
    "KHKXu_kP8_Y",
    "KOho88gAhO4",
+   "KopQpHNgc4k",
    "LEYOVBYtp3Q",
    "LagAldYbD8M",
    "NCGhP2Vyods",
@@ -179,7 +182,9 @@ const STOCKSUM={
    "X1D0cQjwrkU",
    "XPSgxVcev3E",
    "_0ePh1KmGdc",
+   "_1luAl4h7rw",
    "axG8buIPalY",
+   "bLg89ute0zQ",
    "c7f9jtyq9yw",
    "cZn4q_KfdjY",
    "cpvUuHMLsgI",
@@ -191,6 +196,7 @@ const STOCKSUM={
    "h40ZIc8mx-c",
    "igdgKOPRR_4",
    "jSVzxKubRcQ",
+   "kXGnjB4FYIk",
    "kZAYyNhv5p4",
    "kgPvRNvkX0k",
    "l6BRztXR5jo",
@@ -205,10 +211,12 @@ const STOCKSUM={
    "qrosihil7Ms",
    "r_mO3QY3fE4",
    "t9R5tJ0zR34",
+   "tMfYOFMSLTs",
    "ue4sG-vBq7Y",
    "vC7v55f8sdo",
    "vMcjzb9nK9s",
    "vVe3kbl0k44",
+   "waz9eTAJIxU",
    "xZHld6KdReU",
    "xjVdgtREpc4",
    "xrqbovX16L8",
@@ -216,8 +224,8 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 81,
-  "updated": "2026-11-20"
+  "count": 89,
+  "updated": "2026-11-21"
  },
  "SK하이닉스": {
   "name": "SK하이닉스",
@@ -363,30 +371,47 @@ const STOCKSUM={
  },
  "AMD": {
   "name": "AMD",
-  "tone": "긍정",
-  "summary": "AMD는 AI 반도체 시장의 성장과 엔비디아 대안 수혜로 주목받고 있으나 단기 등락도 함께 나타나고 있다.",
+  "tone": "부정",
+  "summary": "공매도 리포트와 중국 규제 위반 의혹으로 주가가 급락했으나, 단기적 영향에 그칠 것이라는 시각도 존재한다.",
   "points": [
-   "AI 가속기와 데이터센터 확장으로 시장 점유율을 확대하고 있다.",
-   "엔비디아의 독점력 흔들림에 따른 반사이익과 수혜가 기대된다.",
-   "급등 이후 차익실현 매물과 경쟁사 이슈로 주가 변동성을 보였다."
+   "공매도 리포트와 중국 관련 악재로 주가가 7퍼센트 이상 하락했다.",
+   "중국 수출 통제 위반 의혹과 재무적 리스크가 집중적으로 지적되었다.",
+   "회사 측의 의혹 부인과 함께 수급 영향으로 다음 주 영향은 제한적일 것이다."
   ],
   "ids": [
+   "-HaqruPY5Rg",
    "5k0zCfIFr8w",
    "BIhFDJtoK6k",
+   "ByMmWIxsB4E",
    "HW1kdcwhrqY",
+   "IsNVO2cmRvA",
+   "JVtGCzfB7NA",
    "KOho88gAhO4",
+   "KopQpHNgc4k",
    "LagAldYbD8M",
+   "ODiEz3dslcE",
    "P1m0QaKWzG0",
    "PREEBWeBwhs",
    "QoEfnBKO5zU",
+   "QwhGDJbSGvU",
+   "Tzc0KuusVbI",
+   "UlNBpokQfVk",
+   "X1D0cQjwrkU",
    "XrMcS9HJQQQ",
    "_0ePh1KmGdc",
+   "_1luAl4h7rw",
+   "axY9mi3lmok",
+   "bLg89ute0zQ",
    "cZKNKIAXEfY",
+   "cZn4q_KfdjY",
    "dra2apL7dEg",
-   "h40ZIc8mx-c"
+   "h40ZIc8mx-c",
+   "kXGnjB4FYIk",
+   "uPfwN34xlpE",
+   "waz9eTAJIxU"
   ],
-  "count": 13,
-  "updated": "2026-11-20"
+  "count": 30,
+  "updated": "2026-11-21"
  },
  "셀트리온": {
   "name": "셀트리온",
