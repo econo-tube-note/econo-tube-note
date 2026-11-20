@@ -3,16 +3,17 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "주가가 과도하게 저평가되어 있으나 시장 수급과 변동성에 큰 영향을 받고 있다.",
+  "summary": "미국 규제와 외국인 매도로 주가가 급락했으나, 밸류에이션 매력이 높아 대형주 대안으로 긍정 평가한다.",
   "points": [
-   "현재 주가는 밸류에이션상 과도하게 저평가된 상태다.",
-   "시장 수급과 외국계 창구의 매도세에 영향을 받는다.",
-   "파운드리 역량과 신규 주문 수혜가 기회 요인이다."
+   "미국 수출 규제와 외국인 매도세로 주가가 큰 폭으로 하락했다.",
+   "밸류에이션이 지나치게 낮아 현시점 저평가 상태로 평가받는다.",
+   "개인 매수와 수급 영향으로 빠른 반등은 어려울 수 있다."
   ],
   "ids": [
    "-GrEZiF4e6k",
    "-HaqruPY5Rg",
    "-PVT3Gp45SE",
+   "-vR1-SjKtXI",
    "4-y8e6UGd88",
    "5ejfTU3cvac",
    "6g110iUWTVo",
@@ -20,6 +21,7 @@ const STOCKSUM={
    "7ctnlT1jlyQ",
    "9MXwHlep8wQ",
    "AT8gm5K7xAY",
+   "AWknNSPEM1g",
    "AjAzI1Uxh9c",
    "AydkVh-c6GI",
    "BIhFDJtoK6k",
@@ -42,6 +44,7 @@ const STOCKSUM={
    "JYyoOyLbEdY",
    "Jn91NmZyGBg",
    "K101Dy3FU1w",
+   "KopQpHNgc4k",
    "LEYOVBYtp3Q",
    "LagAldYbD8M",
    "N_4n0mMwAWA",
@@ -98,17 +101,19 @@ const STOCKSUM={
    "r_mO3QY3fE4",
    "saSLtHK3aJ0",
    "teuTyJ7CwFM",
+   "uPfwN34xlpE",
    "vC7v55f8sdo",
    "vCEYiChFcnA",
    "vVe3kbl0k44",
    "vqB7JpqjRy0",
+   "waz9eTAJIxU",
    "xrqbovX16L8",
    "yrEcOVH79Pc",
    "zYgSmH3Wl_s",
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 97,
+  "count": 102,
   "updated": "2026-11-20"
  },
  "엔비디아": {
@@ -209,16 +214,17 @@ const STOCKSUM={
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "혼재",
-  "summary": "악재가 반영된 저점 구간이라는 시각과 시장 하락 우려가 겹치며 추가 반등 여부에 촉각을 곤두세우고 있다.",
+  "summary": "기술주 투매와 목표가 하향 등 악재로 급락했으나, 실적 대비 지나친 저평가 상태라는 의견과 함께 반등 가능성이 제기된다.",
   "points": [
-   "악재가 반영되어 PER 2.7배 수준까지 조정을 받았다.",
-   "2029년까지 HBM 수요가 견고하고 HBM4 장비 발주를 본격화한다.",
-   "시장 약세와 외국인 매도세로 인해 전저점 방어 여부가 중요하다."
+   "기술주 투매와 외국인 매도세로 인해 주가가 급락하고 목표가가 하향 조정되었다.",
+   "악재가 대거 반영되어 PER 2.7배 수준의 저평가 구간에 진입했다.",
+   "2029년까지 HBM 수요가 견고하고 수급 물갈이 후 단기 반등 가능성이 존재한다."
   ],
   "ids": [
    "-GrEZiF4e6k",
    "-HaqruPY5Rg",
    "-PVT3Gp45SE",
+   "-vR1-SjKtXI",
    "00J5lJ3i94U",
    "22mEZYyDpZA",
    "4-y8e6UGd88",
@@ -228,6 +234,7 @@ const STOCKSUM={
    "7ctnlT1jlyQ",
    "9MXwHlep8wQ",
    "AT8gm5K7xAY",
+   "AWknNSPEM1g",
    "AjAzI1Uxh9c",
    "AydkVh-c6GI",
    "BIhFDJtoK6k",
@@ -250,6 +257,7 @@ const STOCKSUM={
    "JYyoOyLbEdY",
    "Jn91NmZyGBg",
    "K101Dy3FU1w",
+   "KopQpHNgc4k",
    "LEYOVBYtp3Q",
    "N_4n0mMwAWA",
    "OK2FJONMpGA",
@@ -309,12 +317,13 @@ const STOCKSUM={
    "vCEYiChFcnA",
    "vVe3kbl0k44",
    "vqB7JpqjRy0",
+   "waz9eTAJIxU",
    "xrqbovX16L8",
    "yrEcOVH79Pc",
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 97,
+  "count": 101,
   "updated": "2026-11-20"
  },
  "코어위브": {
