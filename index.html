@@ -20,6 +20,41 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard Vari
 .wrap{max-width:1080px;margin:0 auto;padding:40px 20px 56px}
 h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
 .lead{color:var(--sub);margin:0 0 20px}
+/* 숫자·지표: 화제 지표 순위 */
+.nhint{color:var(--sub);font-size:.84rem;margin:-4px 0 16px}
+.nkhd{display:flex;align-items:baseline;gap:10px;margin:0 0 8px}.nkhd span{font-size:1.1rem;font-weight:800}.nkhd small{color:var(--sub);font-size:.8rem}
+.nks{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.nk+.nk{border-top:1px solid var(--line)}
+.nkh{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:28px minmax(0,1fr) auto 92px 14px;align-items:center;gap:12px;padding:12px 16px}
+.nkh:hover{background:#f8f9fb}
+.nkh::after{content:"▾";color:var(--sub);font-size:.8rem}.nk.open .nkh::after{content:"▴"}
+.nkr{font-weight:800;color:var(--sub);text-align:center}.nk:nth-child(-n+3) .nkr{color:var(--accent)}
+.nkm{min-width:0}.nkm b{display:block;font-size:1rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nkm small{display:block;color:var(--sub);font-size:.82rem;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nkc{display:flex;align-items:center;gap:8px;white-space:nowrap}.nkc b{font-size:.92rem}
+.nkd{font-size:.74rem;font-weight:700;color:var(--sub);min-width:30px;text-align:right}.nkd.up{color:#d9485f}.nkd.dn{color:#2f6fd6}.nkd.new{color:#2f9e6b}
+.nkt{display:flex;align-items:flex-end;gap:2px;height:26px}.nkt i{flex:1;background:var(--accent);opacity:.75;border-radius:2px 2px 0 0}.nkt i.z{background:var(--line);opacity:1}
+.nkb{padding:0 16px 10px 56px;background:#fbfbfd}
+.nkb{border-top:1px solid var(--line)}
+.nkind{display:inline-block;font-size:.7rem;font-weight:700;color:var(--sub);border:1px solid var(--line);border-radius:99px;padding:0 6px;margin-top:3px}
+.nmore{display:block;margin:10px auto 0;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:7px 16px;font:inherit;font-size:.86rem;cursor:pointer;color:var(--sub)}
+.netc{margin-top:22px}.netc>.link{font-size:.9rem}
+.nsearch .nslab{font-size:.78rem;font-weight:700;color:var(--accent);margin-top:12px}
+.nsearch .nrow{border-top:0;padding-top:2px}
+@media(max-width:560px){.nkh{grid-template-columns:22px minmax(0,1fr) auto 12px;gap:10px;padding:11px 12px}
+ .nkt{grid-column:2/4;grid-row:2;height:16px}.nkh::after{grid-row:1;grid-column:4}
+ .nkb{padding:0 12px 8px 12px}}
+.nday+.nday{border-top:1px dashed var(--line)}
+.ndh{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:9px 0}
+.ndh:hover .ndv{color:var(--accent)}
+.ndd{font-size:.82rem;color:var(--sub);font-weight:700}
+.ndv{font-weight:700;font-size:.95rem;line-height:1.5}.ndv small{font-weight:500;color:var(--sub);font-size:.8rem}
+.ndc{font-size:.78rem;color:var(--sub);white-space:nowrap}
+.ndb{padding:0 0 8px 56px}
+.ndm{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:0;padding:6px 0;border-top:1px solid var(--line);font-size:.9rem}
+.ndm b{color:var(--accent)}.ndm span:not(.nkind){flex:1;min-width:200px;color:var(--ink)}
+.sc.hl{outline:2px solid var(--accent);outline-offset:2px;background:#eef3ff}
+@media(max-width:560px){.ndh{grid-template-columns:38px minmax(0,1fr);gap:8px}.ndc{grid-column:2}.ndb{padding-left:0}.ndm span:not(.nkind){min-width:100%}}
 /* 사이트 이름과 설명 한 줄 */
 .brand{display:flex;flex-wrap:wrap;align-items:center;gap:2px 14px}
 .brand a{color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
@@ -378,12 +413,7 @@ a.tm:hover{color:var(--accent)}
   <nav class="nav" id="nav"><button data-n="home">홈</button><a href="brief/">브리핑</a><button data-n="videos">영상 요약</button><a href="stock/">종목</a><button data-n="numbers">숫자·지표</button><button data-n="community">커뮤니티</button></nav>
   <div id="v-home" class="dash">
 <!--DASH:START-->
-<section class="dblk dmkt"><div class="dhd"><h2 class="bt c1">지금 시장은</h2><span class="dmeta">2026.11.20 (금) 기준 · 영상 7편 종합 · 12:06 갱신</span><a class="dmore" href="/brief/2026-11-20/">브리핑 전문 보기 →</a></div><p class="dhl">엔트로픽 상장과 규제 우려로 증시가 급락했으나 반등 기대도 상존한다.</p><ul class="kp"><li>엔트로픽이 대규모 자금을 조달하며 상장했으나 차익 매물로 증시가 흔들렸다.</li><li>AMD 공매도 리포트와 미중 규제 노이즈가 반도체주 약세를 촉발했다.</li><li>연준의 금리 우려 속 한미 증시가 급락하며 거래대금이 바닥권에 진입했다.</li><li>과도한 하락세에 따른 반등 기대와 신중한 현금 확보 의견이 엇갈렸다.</li></ul><div class="dths"><small>핵심 주제</small><a class="dth" href="/brief/2026-11-20/#theme-1">엔트로픽 초대형 상장 여파</a><a class="dth" href="/brief/2026-11-20/#theme-2">AMD 공매도와 중국 규제</a><a class="dth" href="/brief/2026-11-20/#theme-3">증시 급락과 투자 대응</a></div><div class="dfoot"><div class="dwk"><b>이번 주 흐름</b><span>엔비디아 실적과 수급 불안 속 증시가 반등과 바닥 다지기를 거쳤다.</span></div><a class="dmore" href="/week/2026-11-16/">주간 브리핑 보기 →</a></div></section>
-<section class="dblk"><div class="dhd"><h2 class="bt c3">채널들의 시장 판단</h2><span class="dmeta">유튜브는 지금 시장을 이렇게 본다</span><a class="dmore" href="/brief/2026-11-20/#agree">채널 의견 전체 보기 →</a></div><div class="dj"><h3>최근 24시간 영상 41편의 분위기 <small>막대를 누르면 해당 영상만 본다</small></h3><div class="mbar"><a class="mseg m낙관" style="flex:11" href="/#videos/mood/%EB%82%99%EA%B4%80" title="긍정 11편"><b>긍정</b><span>11</span></a><a class="mseg m중립" style="flex:23" href="/#videos/mood/%EC%A4%91%EB%A6%BD" title="중립·관망 23편"><b>중립·관망</b><span>23</span></a><a class="mseg m비관" style="flex:7" href="/#videos/mood/%EB%B9%84%EA%B4%80" title="부정 7편"><b>부정</b><span>7</span></a></div><p class="mtrend"><span class="ma">▼</span>어제보다 부정 쪽으로 기울었다 <small>어제 긍정 17 · 중립 18 · 부정 2</small></p></div><div class="dj"><h3>주요 쟁점</h3><div class="dis"><b class="dq">현재 증시 구간에서의 매매 대응 방향</b><div class="dvs"><div class="dv"><span>하락 추세가 이어지므로 현금을 보유하며 시장을 관망해야 한다고 본다.</span><a class="dvc" href="/#v/7ctnlT1jlyQ">815머니톡</a></div><span class="vs">vs</span><div class="dv"><span>과도한 하락 상태이므로 주식을 팔 이유가 없고 강한 반등이 올 수 있다고 본다.</span><a class="dvc" href="/#v/UlNBpokQfVk">삼프로TV 3PROTV</a></div></div></div></div></section>
-<section class="dblk"><div class="dhd"><h2 class="bt c4">많이 언급된 종목</h2><span class="dmeta">최근 24시간 · 영상 41편 기준</span><a class="dmore" href="/stock/">종목 페이지로 →</a></div><div class="dgrid"><a class="dstk" href="/stock/SK%ED%95%98%EC%9D%B4%EB%8B%89%EC%8A%A4/"><span class="dsn"><b>SK하이닉스</b><span class="tone t중립">중립</span></span><small>영상 25편 · 8채널</small><p>키옥시아 투자 성공과 높은 영업이익률 등의 긍정적 평가가 있으나, 시장 약세와 주가 하락 우려가 함께 언급된다.</p></a><a class="dstk" href="/stock/%EC%82%BC%EC%84%B1%EC%A0%84%EC%9E%90/"><span class="dsn"><b>삼성전자</b><span class="tone t중립">중립</span></span><small>영상 20편 · 7채널</small><p>단기 변동성과 매수 심리 회복 지연 우려가 존재하지만, 가격 매력과 AI 수혜 기대감도 함께 언급된다.</p></a><a class="dstk" href="/stock/%EC%97%94%EB%B9%84%EB%94%94%EC%95%84/"><span class="dsn"><b>엔비디아</b><span class="tone t중립">중립</span></span><small>영상 17편 · 6채널</small><p>견고한 실적과 수요에도 불구하고 장기 비전 불확실성과 정치적 규제 우려가 공존한다.</p></a><a class="dstk" href="/stock/%EC%82%BC%EC%84%B1%EC%A0%84%EA%B8%B0/"><span class="dsn"><b>삼성전기</b><span class="tone t긍정">긍정</span></span><small>영상 8편 · 6채널</small><p>엔비디아와의 기판 및 MLCC 공급 계약 기대감으로 실적 성장과 주가 강세가 이어지고 있다.</p></a><a class="dstk" href="/stock/AMD/"><span class="dsn"><b>AMD</b><span class="tone t부정">부정</span></span><small>영상 6편 · 3채널</small><p>AMD는 AI 반도체 시장의 성장과 엔비디아 대안 수혜로 주목받고 있으나 단기 등락도 함께 나타나고 있다.</p></a><a class="dstk" href="/stock/%ED%95%98%EC%9D%B4%EB%B8%8C/"><span class="dsn"><b>하이브</b><span class="tone t긍정">긍정</span></span><small>영상 5편 · 4채널</small><p>한한령 해제 기대감과 실적 개선 전망으로 급등하며 수급이 몰리나 차트 매물 부담과 실질 성과 확인 필요성도 제기된다.</p></a></div></section>
-<section class="dblk"><div class="dhd"><h2 class="bt c2">숫자로 본 시장</h2><span class="dmeta">최근 24시간 · 영상에서 언급된 수치 · 실시간 시세 아님</span><a class="dmore" href="/#numbers">숫자·지표로 →</a></div><div class="dgrid"><a class="dnum" href="/#numbers/%EC%BD%94%EC%8A%A4%ED%94%BC%20%EC%A7%80%EC%88%98"><small class="dnl"><span>코스피 지수</span><span class="cnt">6번 언급</span></small><b>5,137포인트</b><p>박병창 대표가 증시 대응 기준선으로 제시하며 언급한 최근 코스피 지수라고 설명한다.</p></a><a class="dnum" href="/#numbers/%EC%9B%90/%EB%8B%AC%EB%9F%AC%20%ED%99%98%EC%9C%A8"><small class="dnl"><span>원/달러 환율</span><span class="cnt">3번 언급</span></small><b>1,334원</b><p>미국과의 금리 격차가 벌어졌음에도 원/달러 환율이 강세를 유지하고 있다고 설명한다.</p></a><a class="dnum" href="/#numbers/%EB%AF%B8%EA%B5%AD%2010%EB%85%84%EB%AC%BC%20%EA%B5%AD%EC%B1%84%20%EA%B8%88%EB%A6%AC"><small class="dnl"><span>미국 10년물 국채 금리</span><span class="cnt">3번 언급</span></small><b>5.15%</b><p>주식 시장에 부담을 주는 현재의 높은 금리 수준임.</p></a><a class="dnum" href="/#numbers/%EC%BD%94%EC%8A%A4%EB%8B%A5%20%EC%A7%80%EC%88%98"><small class="dnl"><span>코스닥 지수</span><span class="cnt">3번 언급</span></small><b>684</b><p>한국 코스닥 시장이 3.3% 올라이 마감한 지수라고 설명한다.</p></a><a class="dnum" href="/#numbers/%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD%20%EC%97%B0%EA%B0%84%20%EC%88%98%EC%B6%9C%EC%95%A1"><small class="dnl"><span>대한민국 연간 수출액</span></small><b>1조 달러</b><p>한국이 세계 4번째로 달성한 연간 누적 수출액이라고 설명한다.</p></a><a class="dnum" href="/#numbers/%EB%AF%B8%EA%B5%AD%20%EA%B5%AD%EC%B1%84%20%EC%88%9C%EB%A7%A4%EC%88%98%EC%95%A1"><small class="dnl"><span>미국 국채 순매수액</span></small><b>115억 달러</b><p>한국이 지난 9월 매입한 미국 중장기 국채 규모라고 설명한다.</p></a></div></section>
-<section class="dblk dlatest"><div class="dhd"><h2 class="bt ">최근 영상</h2><a class="dmore" href="/#videos">영상 요약 전체 보기 →</a></div><div class="grid" id="hgrid"><article class="card" data-i="0"><div class="thumb"><img src="https://img.youtube.com/vi/qu5RoRs0beQ/hqdefault.jpg" alt="" loading="lazy"></div><div class="body"><div class="meta"><b>삼프로TV 3PROTV</b><span>2026.11.20</span><span class="md m중립">중립</span></div><h2><a class="clink" href="/v/qu5RoRs0beQ/">앤트로픽 상장 첫날 17% 상승…아마존·구글·SKT·LG 대박 | 트럼프 요구한 핵 군축, 중·러는 냉담…김정은 회담도 성사 안 돼 | 권순우 삼프로TV 취재팀장 [뉴스3]</a></h2><p>엔트로픽 상장 성과와 한국의 수출 1조 달러 돌파 및 미국 국채 매수 등 주요 경제 이슈를 분석한다.</p></div></article><article class="card" data-i="1"><div class="thumb"><img src="https://img.youtube.com/vi/ODiEz3dslcE/hqdefault.jpg" alt="" loading="lazy"></div><div class="body"><div class="meta"><b>증시각도기TV</b><span>2026.11.20</span><span class="md m비관">부정</span></div><h2><a class="clink" href="/v/ODiEz3dslcE/">[11월 20일 금요일 미국시황] 앤트로픽 흡혈귀? 미국시장이 죽어버렸다! | AMD 공매도 직격탄 | 미국 기술주 밸류에이션 급락</a></h2><p>엔트로픽 상장과 금리 인상 우려로 미국 증시가 하락했다고 설명한다. 국내 증시는 거래대금 바닥권에 진입했다고 전망한다.</p></div></article><article class="card" data-i="2"><div class="thumb"><img src="https://img.youtube.com/vi/7ctnlT1jlyQ/hqdefault.jpg" alt="" loading="lazy"></div><div class="body"><div class="meta"><b>815머니톡</b><span>2026.11.20</span><span class="md m중립">중립</span></div><h2><a class="clink" href="/v/7ctnlT1jlyQ/">“검은 금요일, 어제 반등에 속았다!” 다시 급락한 증시… 반토막 난 계좌 지금 손절해야 하나?  | 이주현 대표</a></h2><p>미중 갈등과 금리 인상 여파로 하락 추세가 이어지므로 당분간 현금을 확보하며 시장을 관망할 것을 권한다.</p></div></article><article class="card" data-i="3"><div class="thumb"><img src="https://img.youtube.com/vi/LaNmkC9HkS4/hqdefault.jpg" alt="" loading="lazy"></div><div class="body"><div class="meta"><b>삼프로TV 3PROTV</b><span>2026.11.20</span><span class="md m중립">중립</span></div><h2><a class="clink" href="/v/LaNmkC9HkS4/">&quot;이제는 AI가 당신의 자산을 관리할 것&quot; 놓치면 후회합니다 | 김창배 금융위 디지털금융총괄과 사무관 [더블 업]</a></h2><p>AI와 결합한 핀테크 변화에 대비하고 폭락장에서는 장기 적립식 투자를 유지해야 한다.</p></div></article><article class="card" data-i="4"><div class="thumb"><img src="https://img.youtube.com/vi/QwhGDJbSGvU/hqdefault.jpg" alt="" loading="lazy"></div><div class="body"><div class="meta"><b>삼프로TV 3PROTV</b><span>2026.11.20</span><span class="md m중립">중립</span></div><h2><a class="clink" href="/v/QwhGDJbSGvU/">&quot;이제 와서 왜?&quot; AI 버블 우려 속 반토막 난 주식, 어떻게 대응할까?  | 박병창 MP파트너스 대표 [마켓 인사이드]</a></h2><p>미국 증시 급락은 악재가 선반영되는 과정으로 본다. 코스피 5,000선 지지력과 연기금 및 외국인 수급 변화를 주시해야 한다.</p></div></article><article class="card" data-i="5"><div class="thumb"><img src="https://img.youtube.com/vi/X1D0cQjwrkU/hqdefault.jpg" alt="" loading="lazy"></div><div class="body"><div class="meta"><b>삼프로TV 3PROTV</b><span>2026.11.20</span><span class="md m비관">부정</span></div><h2><a class="clink" href="/v/X1D0cQjwrkU/">앤트로픽 상장 첫 날 공모가 상회…시장은 대거 차익 실현 | 여도은, 박명석 큐레이터 [월가 뉴스레터]</a></h2><p>엔트로픽 상장 직후 차익 매물과 중국 관련 악재가 겹치며 미국 증시와 반도체주가 급락했다.</p></div></article></div></section>
-<p class="bnote">AI가 경제 유튜브 영상들을 요약·종합한 내용이며 투자 권유가 아니다.</p>
+<p class="empty">대시보드를 준비하고 있다. 자동화가 한 번 돌면 채워진다.</p>
 <!--DASH:END-->
   </div>
   <div id="v-videos" hidden>
@@ -462,7 +492,7 @@ function related(i,n=3){const v=VIDEOS[i],st=new Set((v.stocks||[]).map(r=>nk(r[
  return VIDEOS.map((w,j)=>{if(j===i)return null;let sc=3*(w.stocks||[]).filter(r=>st.has(nk(r[1]))).length+(w.tags||[]).filter(t=>tg.has(t)).length;
   if(w.date===v.date&&w.channel!==v.channel)sc+=1;if(sc<=0)return null;const gap=Math.abs(Date.parse(w.date)-d0)/864e5;if(gap>14)return null;return [sc-gap*.15,w.date,j]})
   .filter(Boolean).sort((a,b)=>b[0]-a[0]||b[1].localeCompare(a[1])).slice(0,n).map(x=>x[2])}
-function open(i){
+function open(i,focusNum){
  hidePop();
  const v=VIDEOS[i],id=vid(v.url),base=id?`https://www.youtube.com/watch?v=${id}`:"";
  const tm=t=>!t?"":base?`<a class="tm" href="${base}&t=${sec(t)}s" target="_blank" rel="noopener">▶ ${t}</a>`:`<span class="tm">${t}</span>`;
@@ -476,6 +506,7 @@ function open(i){
  $("#dlg").querySelectorAll(".rel2 .vc").forEach(c=>c.onclick=()=>open(+c.dataset.open));  // 이어서 볼 영상을 누르면 그 영상 요약으로 바뀐다
  if(!$("#dlg").open)$("#dlg").showModal();$("#dlg").scrollTop=0;$("#dlg").onscroll=spy;$("#x").onclick=()=>$("#dlg").close();$("#xtop").onclick=()=>$("#dlg").close();
  if(!dlgPushed){try{history.pushState({dlg:1},"");dlgPushed=true}catch(e){}}  // 뒤로가기를 누르면 페이지를 벗어나지 않고 팝업만 닫히게
+ if(focusNum){const el=[...$("#dlg").querySelectorAll(".sc")].find(s=>{const b=s.querySelector(".big");return b&&b.textContent===focusNum});if(el){el.classList.add("hl");setTimeout(()=>el.scrollIntoView({block:"center"}),40)}}
 }
 function mark(n){$('.tab[data-p="0"]').className="tab"+(n===0?" on":"");$('.tab[data-p="1"]').className="tab"+(n===1?" on":"")}
 function spy(){const d=$("#dlg"),s1=$("#s1");if(!s1)return;const atEnd=d.scrollTop+d.clientHeight>=d.scrollHeight-4;mark(atEnd||s1.getBoundingClientRect().top-d.getBoundingClientRect().top<140?1:0)}
@@ -548,33 +579,69 @@ function stocksList(){
  $("#sl").innerHTML=rows.length?rows.slice(0,100).map(r=>{const open=skOpen.has(r.k);return `<div class="skr"><button class="skrh" data-k="${esc(r.k)}"><b>${esc(r.name)}</b>${SS[r.k]?`<span class="tone t${esc(SS[r.k].tone)}">${esc(SS[r.k].tone)}</span>`:""}<span>${r.n}편 · ${r.c}채널</span><small>마지막 언급 ${esc(md(r.last))} ${open?"▴":"▾"}</small></button>${open?`<div class="skrb">${dig(r.k)}${r.its.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<p class="srow"><small>${esc(md(x.date))}</small><span>${esc(x.note)}</span><span class="rt">${hv(vid(VIDEOS[x.i].url))}${tmLink(x.i,x.t)}</span></p>`).join("")}</div>`:""}</div>`}).join(""):`<div class="empty">조건에 맞는 종목이 없다.</div>`;
 }
 /* ----- 숫자·지표 페이지 ----- */
-const GUESS=[["코스피","코스피 지수"],["코스닥","코스닥 지수"],["나스닥","나스닥 지수"],["S&P","S&P500 지수"],["다우","다우 지수"],["닛케이","닛케이 지수"],["필라델피아","필라델피아 반도체 지수"],["국채","국채 금리"],["기준금리","기준금리"],["금리","금리"],["환율","환율"],["유가","유가"],["WTI","유가"],["비트코인","비트코인 가격"],["신용잔고","신용잔고"],["반대매매","반대매매"],["외국인","외국인 매매"],["개인","개인 매매"],["기관","기관 매매"],["CPI","물가"],["물가","물가"],["실업","실업률"],["GDP","GDP"],["PER","PER·PBR"],["PBR","PER·PBR"],["목표가","목표 주가"],["시가총액","시가총액"],["영업이익","실적"],["매출","실적"],["실적","실적"],["상승률","등락률"],["하락폭","등락률"],["급락","등락률"],["급등","등락률"]];
-const guess=(note,val,label)=>{if(label&&label!=="기타")return label;const t=(note||"")+" "+(val||"");for(const [k,l] of GUESS)if(t.includes(k))return l;return "기타"};  // 지표 이름이 없는 옛 데이터용 임시 분류 ('정리' 명령을 돌리면 AI가 붙인 이름으로 바뀐다)
-const NM=[];VIDEOS.forEach((v,i)=>(v.numbers||[]).forEach(n=>NM.push({i,t:n[0],val:n[1],note:n[2],label:guess(n[2],n[1],n[3]),date:v.date})));
-let nmQ="",nmRange="30",nmLabel="",nmInit=false;
+const GUESS=[["신용잔고","신용잔고"],["반대매매","반대매매"],["코스피","코스피 지수"],["코스닥","코스닥 지수"],["나스닥","나스닥 지수"],["S&P","S&P500 지수"],["다우","다우 지수"],["닛케이","닛케이 지수"],["필라델피아","필라델피아 반도체 지수"],["10년","미국 10년물 국채 금리"],["국채","미국 국채 금리"],["기준금리","미국 기준금리"],["달러 인덱스","달러 인덱스"],["환율","원/달러 환율"],["유가","국제유가"],["WTI","국제유가"],["비트코인","비트코인 가격"],["CPI","물가"],["물가","물가"],["실업","고용 지표"],["고용","고용 지표"],["GDP","GDP 성장률"],["PER","PER·PBR"],["PBR","PER·PBR"],["목표가","목표 주가"],["시가총액","시가총액"],["영업이익","기업 실적"],["매출","기업 실적"],["실적","기업 실적"],["상승률","주가 등락률"],["하락폭","주가 등락률"],["급락","주가 등락률"],["급등","주가 등락률"]];
+// 매도/매수 방향: 설명 문장에서 마지막에 나오는 표현으로 판단 (순매도와 순매수는 정반대 얘기라 따로 둔다)
+const flowOf=(who,note,val)=>{if(/^\s*-/.test(val||""))return who+" 순매도";const a=(note||"").match(/순매도|매도|팔았|팔고|순매수|매수|사들/g);return a?who+(/도|팔/.test(a[a.length-1])?" 순매도":" 순매수"):who+" 매매"};
+const guess=(note,val,label)=>{const m=(label||"").match(/^(외국인|기관|개인) 순매매$/);if(m)return flowOf(m[1],note,val);if(label&&label!=="기타")return label;const t=(note||"")+" "+(val||"");const w=t.match(/(외국인|기관|개인)[^.]{0,40}(매도|매수|순매)/);if(w)return flowOf(w[1],note,val);for(const [k,l] of GUESS)if(t.includes(k))return l;return "기타"};  // 지표 이름이 없거나 옛 이름인 데이터용
+const NM=[];VIDEOS.forEach((v,i)=>(v.numbers||[]).forEach(n=>NM.push({i,t:n[0],val:n[1],note:n[2],label:guess(n[2],n[1],n[3]),kind:n[4]||"",date:v.date})));
+let nmQ="",nmInit=false,nmEtc=false,nmAll=false;const nmOpen=new Set(),nmDay=new Set();
 function numsInit(){
- $("#v-numbers").innerHTML=`<div class="vbar"><input id="nq" type="search" placeholder="지표, 숫자, 설명 검색" aria-label="숫자 검색" value="${esc(nmQ)}"><div class="chips" id="nr"></div></div><div class="chips" id="nl" style="margin-bottom:18px"></div><div id="nlist"></div>`;
+ $("#v-numbers").innerHTML=`<div class="vbar"><input id="nq" type="search" placeholder="지표, 숫자, 설명 검색" aria-label="숫자 검색" value="${esc(nmQ)}"></div><p class="nhint">유튜브 영상에서 언급된 숫자를 지표별로 모았다. 실시간 시세가 아니라 방송에서 말한 값이다.</p><div id="nlist"></div>`;
  nmInit=true;numsList();
+}
+// 같은 지표의 같은 숫자는 한 줄로 (5조 원 = 5조원, 5.0% = 5%), 같은 날 아주 가까운 % 값도 한 줄로 (5.13% ~ 5.15%)
+const nmNorm=v=>String(v||"").replace(/[\s,]/g,"").replace(/(\d)\.0+(?!\d)/g,"$1").replace(/\(단위불명확\)/g,"");
+function nmGroups(items){
+ const G=[];
+ items.slice().sort((p,r)=>r.date.localeCompare(p.date)).forEach(x=>{
+  const k=nmNorm(x.val),m=k.match(/^([-+]?\d+(?:\.\d+)?)%$/);
+  const g=G.find(g=>g.label===x.label&&(g.key===k||(m&&g.pct!=null&&g.date===x.date&&Math.abs(g.pct-+m[1])<=.1)));
+  if(g){g.items.push(x);if(m){g.lo=Math.min(g.lo,+m[1]);g.hi=Math.max(g.hi,+m[1])}}
+  else G.push({label:x.label,key:k,date:x.date,pct:m?+m[1]:null,lo:m?+m[1]:0,hi:m?+m[1]:0,items:[x]});
+ });
+ G.forEach(g=>{g.last=g.items[0].date;g.show=g.pct!=null&&g.hi>g.lo?`${g.lo}~${g.hi}%`:g.items[0].val});
+ return G;
+}
+const nmRow=g=>{const x=g.items[0],n=g.items.length;return `<div class="nrow"><div class="nv">${esc(g.show)}${n>1?`<span class="ncnt">${n}번 언급</span>`:""}${x.kind==="전망"?`<span class="nkind">전망</span>`:x.kind==="과거"?`<span class="nkind">과거</span>`:""}</div><div class="nx"><p>${esc(x.note)}</p><div class="nsrc">${g.items.slice(0,6).map(y=>`<span>${esc(md(y.date))} ${hv(vid(VIDEOS[y.i].url))}${tmLink(y.i,y.t)}</span>`).join("")}${n>6?`<span>외 ${n-6}개</span>`:""}</div></div></div>`};
+const NM_CUM=/누적|연초 이후|연간|올해 들어|올 들어/;
+// 펼친 지표: 하루에 한 줄. 같은 날 숫자가 다른 건 대개 장중 시점 차이라 크기로 합치지 않고 날짜로 묶는다
+function nmDays(r){
+ const D={};r.its.forEach(x=>(D[x.date]=D[x.date]||[]).push(x));
+ return Object.keys(D).sort().reverse().slice(0,14).map(d=>{
+  const its=D[d],key=r.label+"|"+d,open=nmDay.has(key);
+  const side=x=>x.kind==="전망"||x.kind==="과거"||NM_CUM.test(x.note);  // 전망·과거·누적 수치는 그날 값과 섞지 않는다
+  const now=its.filter(x=>!side(x)),oth=its.filter(side);
+  const uniq=a=>{const s=new Map();a.forEach(x=>{const k=nmNorm(x.val);s.set(k,(s.get(k)||{v:x.val,n:0}));s.get(k).n++});return [...s.values()].sort((p,q)=>q.n-p.n)};
+  const u=uniq(now),uo=uniq(oth),vals=u.slice(0,4).map(x=>esc(x.v)).join(" · ")+(u.length>4?` <small>외 ${u.length-4}</small>`:"")+(uo.length?` <small class="nko">${uo.length===its.length?"":"· "}${uo.slice(0,2).map(x=>esc(x.v)).join(", ")} (누적·과거·전망)</small>`:"");
+  const ch=new Set(its.map(x=>VIDEOS[x.i].channel)).size;
+  return `<div class="nday${open?" open":""}"><button class="ndh" data-d="${esc(key)}"><span class="ndd">${esc(md(d))}</span><span class="ndv">${vals}</span><span class="ndc">${its.length}번 · ${ch}곳</span></button>${open?`<div class="ndb">${its.map(x=>`<p class="ndm"><b>${esc(x.val)}</b>${x.kind==="전망"||x.kind==="과거"?`<span class="nkind">${x.kind}</span>`:NM_CUM.test(x.note)?`<span class="nkind">누적</span>`:""}<span>${esc(x.note)}</span><button class="hv nvgo" data-v="${x.i}" data-n="${esc(x.val)}">${esc(VIDEOS[x.i].channel)}</button></p>`).join("")}</div>`:""}</div>`;
+ }).join("");
 }
 function numsList(){
  if(!nmInit)return;
- $("#nr").innerHTML=rangeChips(nmRange,"data-nr");
- const cut=nmRange==="all"?"":kst((+nmRange-1)*864e5);
- const base=NM.filter(x=>(!cut||x.date>=cut)&&(!nmQ||(x.label+x.note+x.val).toLowerCase().includes(nmQ.toLowerCase())));
- // 같은 지표의 같은 숫자는 한 줄로 묶는다 (5조 원 = 5조원, 5.0% = 5%)
- const nv=v=>String(v||"").replace(/[\s,]/g,"").replace(/(\d)\.0+(?!\d)/g,"$1").replace(/\(단위불명확\)/g,"");
- const G={};base.forEach(x=>{const k=x.label+"|"+nv(x.val);(G[k]=G[k]||{label:x.label,items:[]}).items.push(x)});
- const groups=Object.values(G).map(g=>{g.items.sort((p,r)=>r.date.localeCompare(p.date));g.last=g.items[0].date;return g});
- const cnt={};groups.forEach(g=>cnt[g.label]=(cnt[g.label]||0)+1);
- const labels=Object.entries(cnt).sort((a,b)=>(a[0]==="기타")-(b[0]==="기타")||b[1]-a[1]);
- const ment={};base.forEach(x=>ment[x.label]=(ment[x.label]||0)+1);  // 알약은 3번 이상 언급된 지표만 (보고 있는 지표는 항상)
- const pills=labels.filter(([l])=>l!=="기타"&&(ment[l]>=3||l===nmLabel));
- if(nmLabel&&!cnt[nmLabel])pills.unshift([nmLabel,0]);
- $("#nl").innerHTML=`<button class="chip" data-l="" aria-pressed="${nmLabel===""}">전체</button>`+pills.slice(0,16).map(([l])=>`<button class="chip" data-l="${esc(l)}" aria-pressed="${nmLabel===l}">${esc(l)} ${ment[l]||0}</button>`).join("");
- const row=g=>{const x=g.items[0],n=g.items.length;return `<div class="nrow"><div class="nv">${esc(x.val)}${n>1?`<span class="ncnt">${n}번 언급</span>`:""}</div><div class="nx"><p>${esc(x.note)}</p><div class="nsrc">${g.items.slice(0,6).map(y=>`<span>${esc(md(y.date))} ${hv(vid(VIDEOS[y.i].url))}${tmLink(y.i,y.t)}</span>`).join("")}${n>6?`<span>외 ${n-6}개</span>`:""}</div></div></div>`};
- const sorted=a=>a.slice().sort((p,r)=>r.last.localeCompare(p.last)||r.items.length-p.items.length);
- if(nmLabel){$("#nlist").innerHTML=sorted(groups.filter(g=>g.label===nmLabel)).slice(0,80).map(row).join("")||`<div class="empty">조건에 맞는 숫자가 없다.</div>`;return}
- $("#nlist").innerHTML=labels.length?labels.slice(0,12).map(([l,n])=>`<div class="ng"><h3>${esc(l)} <small>${n}개</small>${n>4?` <button class="link" data-l="${esc(l)}">이 지표만 보기 →</button>`:""}</h3>${sorted(groups.filter(g=>g.label===l)).slice(0,4).map(row).join("")}</div>`).join(""):`<div class="empty">조건에 맞는 숫자가 없다.</div>`;
+ if(nmQ){  // 검색할 때는 순위 대신 찾은 숫자를 바로 보여 준다
+  const q=nmQ.toLowerCase(),hit=NM.filter(x=>(x.label+x.note+x.val).toLowerCase().includes(q));
+  const gs=nmGroups(hit).sort((p,r)=>r.last.localeCompare(p.last)).slice(0,80);
+  $("#nlist").innerHTML=gs.length?`<div class="nsearch">${gs.map(g=>`<div class="nslab">${esc(g.label)}</div>`+nmRow(g)).join("")}</div>`:`<div class="empty">조건에 맞는 숫자가 없다.</div>`;return;
+ }
+ const d7=kst(6*864e5),d14=kst(13*864e5),d30=kst(29*864e5);
+ const days=[...Array(14)].map((_,k)=>kst((13-k)*864e5));
+ const L={};NM.forEach(x=>{if(x.date<d30)return;(L[x.label]=L[x.label]||[]).push(x)});
+ // 종목마다 값이 다른 숫자(주가 등락률, 실적, 목표 주가 등)는 시장 지표가 아니라서 순위에서 빼고 아래 '기타'로 보낸다
+ const etc=[];["기타","주가 등락률","기업 실적","목표 주가","PER·PBR","시가총액","기업가치"].forEach(k=>{if(L[k]){etc.push(...L[k]);delete L[k]}});
+ const rows=Object.entries(L).map(([label,its])=>{
+  const w=its.filter(x=>x.date>=d7).length,p=its.filter(x=>x.date>=d14&&x.date<d7).length;
+  // 최근 값: 가장 최근 날짜의 숫자 중 가장 많이 언급된 것 (전망·과거 수치는 빼고)
+  const now=its.filter(x=>x.kind!=="전망"&&x.kind!=="과거"&&!NM_CUM.test(x.note)),pool=now.length?now:its,ld=pool.reduce((m,x)=>x.date>m?x.date:m,"");
+  const cur=nmGroups(pool.filter(x=>x.date===ld)).sort((a,b)=>b.items.length-a.items.length)[0];
+  return {label,its,w,p,cur,bars:days.map(d=>its.filter(x=>x.date===d).length)}
+ }).filter(r=>r.w+r.p>0).sort((a,b)=>b.w-a.w||b.p-a.p||b.its.length-a.its.length);
+ const mx=Math.max(1,...rows.flatMap(r=>r.bars));
+ const badge=r=>r.p===0&&r.w>0?`<span class="nkd new">새로</span>`:r.w>r.p?`<span class="nkd up">▲${r.w-r.p}</span>`:r.w<r.p?`<span class="nkd dn">▼${r.p-r.w}</span>`:`<span class="nkd">–</span>`;
+ const show=nmAll?rows:rows.slice(0,15);
+ const item=(r,k)=>{const open=nmOpen.has(r.label);return `<div class="nk${open?" open":""}" id="nk-${esc(r.label)}"><button class="nkh" data-l="${esc(r.label)}" aria-expanded="${open}"><span class="nkr">${k+1}</span><span class="nkm"><b>${esc(r.label)}</b><small>최근 ${esc(r.cur.show)} · ${esc(md(r.cur.date))}</small></span><span class="nkc"><b>${r.w}회</b>${badge(r)}</span><span class="nkt" title="최근 14일 언급">${r.bars.map(n=>`<i style="height:${n?Math.max(14,Math.round(n/mx*100)):6}%"${n?"":` class="z"`}></i>`).join("")}</span></button>${open?`<div class="nkb">${nmDays(r)}</div>`:""}</div>`};
+ $("#nlist").innerHTML=(rows.length?`<div class="nkhd"><span>화제 지표</span><small>이번 주 언급 순 · 지난주 대비 · 최근 14일 추이</small></div><div class="nks">${show.map(item).join("")}</div>${rows.length>15&&!nmAll?`<button class="smore nmore" data-more="1">지표 ${rows.length-15}개 더 보기</button>`:""}`:`<div class="empty">최근 2주 동안 언급된 지표가 없다.</div>`)
+  +(etc.length?`<div class="netc"><button class="link" data-etc="1">기타 숫자 (종목별 수치 등) ${etc.length}개 ${nmEtc?"접기 ▴":"보기 ▾"}</button>${nmEtc?nmGroups(etc).slice(0,60).map(nmRow).join(""):""}</div>`:"");
 }
 function route(){
  const h=(location.hash||"").replace("#","");const b0=h.split("/")[0];
@@ -585,7 +652,7 @@ function route(){
  const sub=h.split("/").slice(1).map(x=>{try{return decodeURIComponent(x)}catch(e){return x}});
  const v=["videos","stocks","numbers","community"].includes(b0)?b0:"home";
  if(v==="videos"){const m=sub[0]==="mood"&&["낙관","중립","비관"].includes(sub[1])?sub[1]:"";const k=sub[0]==="kw"?(sub[1]||""):kw;if(m!==moodF||k!==kw){moodF=m;kw=k;shown=PAGE;kwChips();render()}}
- if(v==="numbers"&&sub[0]){nmLabel=sub[0];nmRange="7"}
+ if(v==="numbers"&&sub[0]){nmQ="";nmOpen.add(sub[0])}
  ["home","videos","stocks","numbers","community"].forEach(n=>{const e=$("#v-"+n);if(e)e.hidden=n!==v;const b=$('#nav [data-n="'+n+'"]');if(b)b.className=n===v?"on":""});
  if(v==="stocks")stocksInit();if(v==="numbers")numsInit();if(v==="community")community();
  hidePop();
@@ -738,16 +805,20 @@ $("#v-stocks").onclick=e=>{
 };
 $("#v-stocks").oninput=e=>{if(e.target.id==="sq"){skQ=e.target.value.trim();stocksList()}};
 $("#v-numbers").onclick=e=>{
- const l=e.target.closest("[data-l]");if(l){nmLabel=l.dataset.l;numsList();return}
- const r=e.target.closest("[data-nr]");if(r){nmRange=r.dataset.nr;numsList()}
+ if(e.target.closest(".tm,.hv,a"))return;
+ const dd=e.target.closest("[data-d]");if(dd){const k=dd.dataset.d;nmDay.has(k)?nmDay.delete(k):nmDay.add(k);numsList();return}
+ const l=e.target.closest("[data-l]");if(l){const k=l.dataset.l;nmOpen.has(k)?nmOpen.delete(k):nmOpen.add(k);numsList();return}
+ if(e.target.closest("[data-more]")){nmAll=true;numsList();return}
+ if(e.target.closest("[data-etc]")){nmEtc=!nmEtc;numsList()}
 };
-$("#v-numbers").oninput=e=>{if(e.target.id==="nq"){nmQ=e.target.value.trim();nmLabel="";numsList()}};
+$("#v-numbers").oninput=e=>{if(e.target.id==="nq"){nmQ=e.target.value.trim();numsList()}};
 $("#nav").onclick=e=>{const b=e.target.closest("[data-n]");if(b){location.hash=b.dataset.n==="home"?"#home":"#"+b.dataset.n;route()}};
 $("#dlg").onclick=e=>{const b=e.target.closest&&e.target.closest(".tab");if(b){tab(+b.dataset.p);return}if(e.target===$("#dlg"))$("#dlg").close()};
 document.addEventListener("click",e=>{
  const t=e.target,c=s=>t.closest&&t.closest(s);
  const r=c(".rel");   // '관련 영상': 누르면 열리고, 다시 누르거나 바깥을 누르면 닫힌다
  if(r){if(popEl===r&&!pop.hidden)hidePop();else{popKind="rel";showPop(r,(relMap[r.dataset.rel]||[]).slice(0,6).map(k=>vcard(idx[k])).join(""),true)}return}
+ const g=c(".nvgo");if(g){hidePop();open(+g.dataset.v,g.dataset.n);return}  // 숫자 탭: 바로 영상 요약을 열고 그 숫자로 이동
  const h=c(".hv");
  if(h){if(popEl===h&&!pop.hidden){if(popKind==="hv")popKind="hvc";else hidePop()}else{popKind="hvc";showPop(h,vcard(+h.dataset.v),false)}return}  // 누르면 고정, 다시 누르거나 바깥을 누르면 닫힘
  const v=c(".vc");if(v){hidePop();open(+v.dataset.open);return}
