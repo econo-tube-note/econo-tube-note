@@ -22,10 +22,10 @@ h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
 .lead{color:var(--sub);margin:0 0 20px}
 /* 숫자·지표: 화제 지표 순위 */
 .nhint{color:var(--sub);font-size:.84rem;margin:-4px 0 16px}
-.nkhd{display:flex;align-items:baseline;gap:10px;margin:0 0 8px}.nkhd span{font-size:1.1rem;font-weight:800}.nkhd small{color:var(--sub);font-size:.8rem}
+.nkhd{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;margin:0 0 8px}.nkhd span{font-size:1.1rem;font-weight:800;white-space:nowrap}.nkhd small{color:var(--sub);font-size:.8rem}
 .nks{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .nk+.nk{border-top:1px solid var(--line)}
-.nkh{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:28px minmax(0,1fr) auto 92px 14px;align-items:center;gap:12px;padding:12px 16px}
+.nkh{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:34px minmax(0,1fr) auto 92px 14px;align-items:center;gap:12px;padding:12px 16px}
 .nkh:hover{background:#f8f9fb}
 .nkh::after{content:"▾";color:var(--sub);font-size:.8rem}.nk.open .nkh::after{content:"▴"}
 .nkr{font-weight:800;color:var(--sub);text-align:center}.nk:nth-child(-n+3) .nkr{color:var(--accent)}
@@ -41,8 +41,8 @@ h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
 .netc{margin-top:22px}.netc>.link{font-size:.9rem}
 .nsearch .nslab{font-size:.78rem;font-weight:700;color:var(--accent);margin-top:12px}
 .nsearch .nrow{border-top:0;padding-top:2px}
-@media(max-width:560px){.nkh{grid-template-columns:22px minmax(0,1fr) auto 12px;gap:10px;padding:11px 12px}
- .nkt{grid-column:2/4;grid-row:2;height:16px}.nkh::after{grid-row:1;grid-column:4}
+@media(max-width:560px){.nkh{grid-template-columns:24px minmax(0,1fr) auto 12px;gap:6px 10px;padding:12px 12px 14px}
+ .nkt{grid-column:2/4;grid-row:2;height:12px;margin-top:2px}.nkh::after{grid-row:1;grid-column:4}
  .nkb{padding:0 12px 8px 12px}}
 .nday+.nday{border-top:1px dashed var(--line)}
 .ndh{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:9px 0}
@@ -55,6 +55,15 @@ h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
 .ndm b{color:var(--accent)}.ndm span:not(.nkind){flex:1;min-width:200px;color:var(--ink)}
 .sc.hl{outline:2px solid var(--accent);outline-offset:2px;background:#eef3ff}
 @media(max-width:560px){.ndh{grid-template-columns:38px minmax(0,1fr);gap:8px}.ndc{grid-column:2}.ndb{padding-left:0}.ndm span:not(.nkind){min-width:100%}}
+.nkr{display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.1}.nkr .nkd{min-width:0;text-align:center;font-size:.66rem}
+.sks .nkm small{color:var(--ink);opacity:.78}
+.nkh.nkl{color:inherit;text-decoration:none}.nkh.nkl::after{content:"›";font-size:1.1rem}
+.sks .nkm b .tone{font-size:.68rem;vertical-align:2px;margin-left:4px}
+.sks .nkb .srow{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:10px;align-items:baseline}
+@media(max-width:560px){.sks .nkm small{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.sks .nkb .srow{grid-template-columns:38px minmax(0,1fr)}.sks .nkb .srow .rt{grid-column:2}}
+.nkhd .nper{margin-left:auto;display:flex;gap:6px}.nkhd .nper .chip{padding:4px 12px;font-size:.82rem}
+.nkt{gap:1px}
+@media(max-width:560px){.nkhd .nper{margin:6px 0 2px;width:100%}}
 /* 사이트 이름과 설명 한 줄 */
 .brand{display:flex;flex-wrap:wrap;align-items:center;gap:2px 14px}
 .brand a{color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
@@ -564,27 +573,52 @@ const rangeChips=(cur,attr)=>[["7","7일"],["30","30일"],["all","전체"]].map(
 const tmLink=(i,t)=>{const id=vid(VIDEOS[i].url);return t&&id?`<a class="tm" href="https://www.youtube.com/watch?v=${id}&t=${sec(t)}s" target="_blank" rel="noopener">▶ ${t}</a>`:""};
 function stocksInit(){
  const el=$("#v-stocks");
- el.innerHTML=`<div class="vbar"><input id="sq" type="search" placeholder="종목 이름 검색" aria-label="종목 검색" value="${esc(skQ)}"><div class="chips" id="sr"></div></div><div id="sl"></div>`;
+ el.innerHTML=`<div class="vbar"><input id="sq" type="search" placeholder="종목 이름 검색" aria-label="종목 검색" value="${esc(skQ)}"></div><div id="sl"></div>`;
  skInit=true;stocksList();
 }
+let skAll=false;
 function stocksList(){
  if(!skInit)return;
- $("#sr").innerHTML=rangeChips(skRange,"data-r");
- const cut=skRange==="all"?"":kst((+skRange-1)*864e5);
- const rows=[];
- Object.entries(SK).forEach(([k,s])=>{const its=s.items.filter(x=>!cut||x.date>=cut);if(!its.length)return;const name=Object.entries(s.names).sort((a,b)=>b[1]-a[1])[0][0];if(skQ&&!nk(name).includes(nk(skQ)))return;rows.push({k,name,its,n:new Set(its.map(x=>x.i)).size,c:new Set(its.map(x=>VIDEOS[x.i].channel)).size,last:its.reduce((m,x)=>x.date>m?x.date:m,"")})});
- rows.sort((a,b)=>b.n-a.n||b.last.localeCompare(a.last));
+ const d7=kst(6*864e5),d14=kst(13*864e5),d30=kst(29*864e5),days=[...Array(14)].map((_,k)=>kst((13-k)*864e5));
  const SS=typeof STOCKSUM!=="undefined"&&STOCKSUM?STOCKSUM:{};
+ const vids=a=>new Set(a.map(x=>x.i)).size;
+ const rows=[];
+ Object.entries(SK).forEach(([k,s])=>{
+  const its=s.items.filter(x=>skQ||x.date>=d30);if(!its.length)return;
+  const name=Object.entries(s.names).sort((a,b)=>b[1]-a[1])[0][0];if(skQ&&!nk(name).includes(nk(skQ)))return;
+  const last=its.slice().sort((a,b)=>b.date.localeCompare(a.date))[0];
+  const one=SS[k]?String(SS[k].summary||"").split(/(?<=다\.)\s/)[0]:last.note;  // 종합 요약이 있으면 첫 문장, 없으면 가장 최근 언급
+  rows.push({key:k,name,its,w:vids(its.filter(x=>x.date>=d7)),p:vids(its.filter(x=>x.date>=d14&&x.date<d7)),n:vids(its),c:new Set(its.map(x=>VIDEOS[x.i].channel)).size,one})
+ });
+ rows.sort((a,b)=>b.w-a.w||b.p-a.p||b.n-a.n);
+ rankMoves(rows);
+ const mx=Math.max(1,...rows.flatMap(r=>days.map(d=>r.its.filter(x=>x.date===d).length)));
  const dig=k=>{const d=SS[k];return d?`<div class="digest"><div class="dh"><b>종합</b><span class="tone t${esc(d.tone)}">${esc(d.tone)}</span><span>영상 ${d.count}편 기준 · ${esc(md(d.updated))} 정리</span></div><p>${esc(d.summary)}</p>${(d.points||[]).length?`<ul>${d.points.map(p=>`<li>${esc(p)}</li>`).join("")}</ul>`:""}</div>`:""};
- $("#sl").innerHTML=rows.length?rows.slice(0,100).map(r=>{const open=skOpen.has(r.k);return `<div class="skr"><button class="skrh" data-k="${esc(r.k)}"><b>${esc(r.name)}</b>${SS[r.k]?`<span class="tone t${esc(SS[r.k].tone)}">${esc(SS[r.k].tone)}</span>`:""}<span>${r.n}편 · ${r.c}채널</span><small>마지막 언급 ${esc(md(r.last))} ${open?"▴":"▾"}</small></button>${open?`<div class="skrb">${dig(r.k)}${r.its.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<p class="srow"><small>${esc(md(x.date))}</small><span>${esc(x.note)}</span><span class="rt">${hv(vid(VIDEOS[x.i].url))}${tmLink(x.i,x.t)}</span></p>`).join("")}</div>`:""}</div>`}).join(""):`<div class="empty">조건에 맞는 종목이 없다.</div>`;
+ const show=skAll||skQ?rows.slice(0,100):rows.slice(0,30);
+ $("#sl").innerHTML=rows.length?`<div class="nkhd"><span>화제 종목</span><small>이번 주 언급 영상 수 순 · 지난주 대비 순위 · 최근 14일 추이</small></div><div class="nks sks">${show.map((r,j)=>{const open=skOpen.has(r.key);return `<div class="nk${open?" open":""}"><button class="nkh" data-k="${esc(r.key)}" aria-expanded="${open}"><span class="nkr">${j+1}${r.move}</span><span class="nkm"><b>${esc(r.name)}${SS[r.key]?` <span class="tone t${esc(SS[r.key].tone)}">${esc(SS[r.key].tone)}</span>`:""}</b><small>${esc(r.one)}</small></span><span class="nkc"><b>${r.w}편</b></span>${bars14(r.its,mx,days)}</button>${open?`<div class="nkb skrb">${dig(r.key)}${r.its.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<p class="srow"><small>${esc(md(x.date))}</small><span>${esc(x.note)}</span><span class="rt">${hv(vid(VIDEOS[x.i].url))}${tmLink(x.i,x.t)}</span></p>`).join("")}</div>`:""}</div>`}).join("")}</div>${rows.length>show.length?`<button class="smore nmore" data-skmore="1">종목 ${rows.length-show.length}개 더 보기</button>`:""}`:`<div class="empty">조건에 맞는 종목이 없다.</div>`;
 }
+// 순위 기간: 일간(최근 24시간 vs 그 전 24시간), 주간(최근 7일 vs 그 전 7일), 월간(최근 30일 vs 그 전 30일)
+const kstT=(ms=0)=>new Date(Date.now()+9*36e5-ms).toISOString().slice(0,16);
+const PERS={day:{t:"일간",cur:"최근 24시간",prev:"전날 대비",bars:7},week:{t:"주간",cur:"이번 주",prev:"지난주 대비",bars:14},month:{t:"월간",cur:"최근 30일",prev:"지난달 대비",bars:30}};
+function perOf(mode){
+ if(mode==="day"){const a=kstT(864e5),b=kstT(2*864e5);return x=>x.ts>=a?"c":x.ts>=b?"p":""}
+ const n=mode==="month"?30:7,a=kst((n-1)*864e5),b=kst((2*n-1)*864e5);return x=>x.date>=a?"c":x.date>=b?"p":""
+}
+const perDays=mode=>[...Array(PERS[mode].bars)].map((_,k)=>kst((PERS[mode].bars-1-k)*864e5));
+const perChips=(mode,attr)=>`<div class="chips nper">${Object.entries(PERS).map(([k,v])=>`<button class="chip" ${attr}="${k}" aria-pressed="${k===mode}">${v.t}</button>`).join("")}</div>`;
+// 지난주 대비 순위 변동: 지난주 순위와 비교해 ▲·▼, 지난주에 없던 건 NEW
+function rankMoves(rows){
+ const prev=rows.filter(r=>r.p>0).slice().sort((a,b)=>b.p-a.p).map(r=>r.key),pr={};prev.forEach((k,j)=>pr[k]=j);
+ rows.forEach((r,j)=>{r.move=pr[r.key]===undefined?`<span class="nkd new">NEW</span>`:pr[r.key]>j?`<span class="nkd up">▲${pr[r.key]-j}</span>`:pr[r.key]<j?`<span class="nkd dn">▼${j-pr[r.key]}</span>`:`<span class="nkd">–</span>`});
+}
+const bars14=(its,mx,days)=>`<span class="nkt" title="최근 14일 언급">${days.map(d=>{const n=its.filter(x=>x.date===d).length;return `<i style="height:${n?Math.max(14,Math.round(n/mx*100)):6}%"${n?"":` class="z"`}></i>`}).join("")}</span>`;
 /* ----- 숫자·지표 페이지 ----- */
 const GUESS=[["신용잔고","신용잔고"],["반대매매","반대매매"],["코스피","코스피 지수"],["코스닥","코스닥 지수"],["나스닥","나스닥 지수"],["S&P","S&P500 지수"],["다우","다우 지수"],["닛케이","닛케이 지수"],["필라델피아","필라델피아 반도체 지수"],["10년","미국 10년물 국채 금리"],["국채","미국 국채 금리"],["기준금리","미국 기준금리"],["달러 인덱스","달러 인덱스"],["환율","원/달러 환율"],["유가","국제유가"],["WTI","국제유가"],["비트코인","비트코인 가격"],["CPI","물가"],["물가","물가"],["실업","고용 지표"],["고용","고용 지표"],["GDP","GDP 성장률"],["PER","PER·PBR"],["PBR","PER·PBR"],["목표가","목표 주가"],["시가총액","시가총액"],["영업이익","기업 실적"],["매출","기업 실적"],["실적","기업 실적"],["상승률","주가 등락률"],["하락폭","주가 등락률"],["급락","주가 등락률"],["급등","주가 등락률"]];
 // 매도/매수 방향: 설명 문장에서 마지막에 나오는 표현으로 판단 (순매도와 순매수는 정반대 얘기라 따로 둔다)
 const flowOf=(who,note,val)=>{if(/^\s*-/.test(val||""))return who+" 순매도";const a=(note||"").match(/순매도|매도|팔았|팔고|순매수|매수|사들/g);return a?who+(/도|팔/.test(a[a.length-1])?" 순매도":" 순매수"):who+" 매매"};
 const guess=(note,val,label)=>{const m=(label||"").match(/^(외국인|기관|개인) 순매매$/);if(m)return flowOf(m[1],note,val);if(label&&label!=="기타")return label;const t=(note||"")+" "+(val||"");const w=t.match(/(외국인|기관|개인)[^.]{0,40}(매도|매수|순매)/);if(w)return flowOf(w[1],note,val);for(const [k,l] of GUESS)if(t.includes(k))return l;return "기타"};  // 지표 이름이 없거나 옛 이름인 데이터용
-const NM=[];VIDEOS.forEach((v,i)=>(v.numbers||[]).forEach(n=>NM.push({i,t:n[0],val:n[1],note:n[2],label:guess(n[2],n[1],n[3]),kind:n[4]||"",date:v.date})));
-let nmQ="",nmInit=false,nmEtc=false,nmAll=false;const nmOpen=new Set(),nmDay=new Set();
+const NM=[];VIDEOS.forEach((v,i)=>(v.numbers||[]).forEach(n=>NM.push({i,t:n[0],val:n[1],note:n[2],label:guess(n[2],n[1],n[3]),kind:n[4]||"",date:v.date,ts:v.ts||v.date+"T00:00"})));
+let nmQ="",nmInit=false,nmEtc=false,nmAll=false,nmPer="week";const nmOpen=new Set(),nmDay=new Set();
 function numsInit(){
  $("#v-numbers").innerHTML=`<div class="vbar"><input id="nq" type="search" placeholder="지표, 숫자, 설명 검색" aria-label="숫자 검색" value="${esc(nmQ)}"></div><p class="nhint">유튜브 영상에서 언급된 숫자를 지표별로 모았다. 실시간 시세가 아니라 방송에서 말한 값이다.</p><div id="nlist"></div>`;
  nmInit=true;numsList();
@@ -624,23 +658,23 @@ function numsList(){
   const gs=nmGroups(hit).sort((p,r)=>r.last.localeCompare(p.last)).slice(0,80);
   $("#nlist").innerHTML=gs.length?`<div class="nsearch">${gs.map(g=>`<div class="nslab">${esc(g.label)}</div>`+nmRow(g)).join("")}</div>`:`<div class="empty">조건에 맞는 숫자가 없다.</div>`;return;
  }
- const d7=kst(6*864e5),d14=kst(13*864e5),d30=kst(29*864e5);
- const days=[...Array(14)].map((_,k)=>kst((13-k)*864e5));
- const L={};NM.forEach(x=>{if(x.date<d30)return;(L[x.label]=L[x.label]||[]).push(x)});
+ const P=perOf(nmPer),days=perDays(nmPer),d30=kst(29*864e5);
+ const L={};NM.forEach(x=>{if(!P(x)&&x.date<d30)return;(L[x.label]=L[x.label]||[]).push(x)});
  // 종목마다 값이 다른 숫자(주가 등락률, 실적, 목표 주가 등)는 시장 지표가 아니라서 순위에서 빼고 아래 '기타'로 보낸다
  const etc=[];["기타","주가 등락률","기업 실적","목표 주가","PER·PBR","시가총액","기업가치"].forEach(k=>{if(L[k]){etc.push(...L[k]);delete L[k]}});
  const rows=Object.entries(L).map(([label,its])=>{
-  const w=its.filter(x=>x.date>=d7).length,p=its.filter(x=>x.date>=d14&&x.date<d7).length;
+  const w=its.filter(x=>P(x)==="c").length,p=its.filter(x=>P(x)==="p").length;
   // 최근 값: 가장 최근 날짜의 숫자 중 가장 많이 언급된 것 (전망·과거 수치는 빼고)
   const now=its.filter(x=>x.kind!=="전망"&&x.kind!=="과거"&&!NM_CUM.test(x.note)),pool=now.length?now:its,ld=pool.reduce((m,x)=>x.date>m?x.date:m,"");
   const cur=nmGroups(pool.filter(x=>x.date===ld)).sort((a,b)=>b.items.length-a.items.length)[0];
-  return {label,its,w,p,cur,bars:days.map(d=>its.filter(x=>x.date===d).length)}
+  return {key:label,label,its,w,p,cur,bars:days.map(d=>its.filter(x=>x.date===d).length)}
  }).filter(r=>r.w+r.p>0).sort((a,b)=>b.w-a.w||b.p-a.p||b.its.length-a.its.length);
+ rankMoves(rows);
  const mx=Math.max(1,...rows.flatMap(r=>r.bars));
- const badge=r=>r.p===0&&r.w>0?`<span class="nkd new">새로</span>`:r.w>r.p?`<span class="nkd up">▲${r.w-r.p}</span>`:r.w<r.p?`<span class="nkd dn">▼${r.p-r.w}</span>`:`<span class="nkd">–</span>`;
  const show=nmAll?rows:rows.slice(0,15);
- const item=(r,k)=>{const open=nmOpen.has(r.label);return `<div class="nk${open?" open":""}" id="nk-${esc(r.label)}"><button class="nkh" data-l="${esc(r.label)}" aria-expanded="${open}"><span class="nkr">${k+1}</span><span class="nkm"><b>${esc(r.label)}</b><small>최근 ${esc(r.cur.show)} · ${esc(md(r.cur.date))}</small></span><span class="nkc"><b>${r.w}회</b>${badge(r)}</span><span class="nkt" title="최근 14일 언급">${r.bars.map(n=>`<i style="height:${n?Math.max(14,Math.round(n/mx*100)):6}%"${n?"":` class="z"`}></i>`).join("")}</span></button>${open?`<div class="nkb">${nmDays(r)}</div>`:""}</div>`};
- $("#nlist").innerHTML=(rows.length?`<div class="nkhd"><span>화제 지표</span><small>이번 주 언급 순 · 지난주 대비 · 최근 14일 추이</small></div><div class="nks">${show.map(item).join("")}</div>${rows.length>15&&!nmAll?`<button class="smore nmore" data-more="1">지표 ${rows.length-15}개 더 보기</button>`:""}`:`<div class="empty">최근 2주 동안 언급된 지표가 없다.</div>`)
+ const item=(r,k)=>{const open=nmOpen.has(r.label);return `<div class="nk${open?" open":""}" id="nk-${esc(r.label)}"><button class="nkh" data-l="${esc(r.label)}" aria-expanded="${open}"><span class="nkr">${k+1}${r.move}</span><span class="nkm"><b>${esc(r.label)}</b><small>최근 ${esc(r.cur.show)} · ${esc(md(r.cur.date))}</small></span><span class="nkc"><b>${r.w}회</b></span><span class="nkt" title="최근 ${days.length}일 언급">${r.bars.map(n=>`<i style="height:${n?Math.max(14,Math.round(n/mx*100)):6}%"${n?"":` class="z"`}></i>`).join("")}</span></button>${open?`<div class="nkb">${nmDays(r)}</div>`:""}</div>`};
+ const nhd=`<div class="nkhd"><span>화제 지표</span><small>${PERS[nmPer].cur} 언급 순 · ${PERS[nmPer].prev} 순위 · 최근 ${PERS[nmPer].bars}일 추이</small>${perChips(nmPer,"data-per")}</div>`;
+ $("#nlist").innerHTML=nhd+(rows.length?`<div class="nks">${show.map(item).join("")}</div>${rows.length>15&&!nmAll?`<button class="smore nmore" data-more="1">지표 ${rows.length-15}개 더 보기</button>`:""}`:`<div class="empty">${PERS[nmPer].cur} 동안 언급된 지표가 없다.</div>`)
   +(etc.length?`<div class="netc"><button class="link" data-etc="1">기타 숫자 (종목별 수치 등) ${etc.length}개 ${nmEtc?"접기 ▴":"보기 ▾"}</button>${nmEtc?nmGroups(etc).slice(0,60).map(nmRow).join(""):""}</div>`:"");
 }
 function route(){
@@ -800,12 +834,14 @@ if($("#brief"))$("#brief").onclick=e=>{
  if(e.target.closest("#btog")){bopen=!bopen;brief()}
 };
 $("#v-stocks").onclick=e=>{
+ if(e.target.closest(".tm,.hv,a"))return;
  const k=e.target.closest("[data-k]");if(k){const key=k.dataset.k;skOpen.has(key)?skOpen.delete(key):skOpen.add(key);stocksList();return}
- const r=e.target.closest("[data-r]");if(r){skRange=r.dataset.r;stocksList()}
+ if(e.target.closest("[data-skmore]")){skAll=true;stocksList()}
 };
 $("#v-stocks").oninput=e=>{if(e.target.id==="sq"){skQ=e.target.value.trim();stocksList()}};
 $("#v-numbers").onclick=e=>{
  if(e.target.closest(".tm,.hv,a"))return;
+ const pe=e.target.closest("[data-per]");if(pe){nmPer=pe.dataset.per;nmAll=false;numsList();return}
  const dd=e.target.closest("[data-d]");if(dd){const k=dd.dataset.d;nmDay.has(k)?nmDay.delete(k):nmDay.add(k);numsList();return}
  const l=e.target.closest("[data-l]");if(l){const k=l.dataset.l;nmOpen.has(k)?nmOpen.delete(k):nmOpen.add(k);numsList();return}
  if(e.target.closest("[data-more]")){nmAll=true;numsList();return}
