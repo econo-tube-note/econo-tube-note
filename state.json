@@ -59,21 +59,25 @@
   "VAaaivIhty0": "너무 짧음",
   "vXxSGS2ioBQ": "너무 짧음",
   "wzjGWiraCxw": "너무 짧음",
-  "FmOvuiAqZMU": "너무 긴 영상(308분)"
+  "FmOvuiAqZMU": "너무 긴 영상(308분)",
+  "CNBjRDb6JGo": "너무 짧음",
+  "--bLyqi3ULE": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
   "0QL9B_8Ju9M": 3
  },
- "spent": {},
+ "spent": {
+  "17시~2026-11-19": 11959
+ },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 10,
-   "busy": 16,
+   "ok": 14,
+   "busy": 18,
    "dead": 4
   },
   "gemini-3.7-flash": {
-   "ok": 1,
+   "ok": 3,
    "busy": 33,
    "dead": 4
   },
@@ -204,8 +208,10 @@
   "bQOYdqsuNQI": true,
   "vhsLz4kwn4k": true,
   "IsNVO2cmRvA": true,
-  "axY9mi3lmok": true,
-  "TV3diSFaZIU": true
+  "TV3diSFaZIU": true,
+  "AEDvqamCuQ0": true,
+  "CNBjRDb6JGo": true,
+  "--bLyqi3ULE": true
  },
  "brief_final": {
   "2026-11-13": true,

@@ -16,6 +16,50 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard Vari
 .wrap{max-width:1080px;margin:0 auto;padding:40px 20px 56px}
 h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
 .lead{color:var(--sub);margin:0 0 20px}
+/* 숫자·지표: 화제 지표 순위 */
+.nhint{color:var(--sub);font-size:.84rem;margin:-4px 0 16px}
+.nkhd{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;margin:0 0 8px}.nkhd span{font-size:1.1rem;font-weight:800;white-space:nowrap}.nkhd small{color:var(--sub);font-size:.8rem}
+.nks{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.nk+.nk{border-top:1px solid var(--line)}
+.nkh{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:34px minmax(0,1fr) auto 92px 14px;align-items:center;gap:12px;padding:12px 16px}
+.nkh:hover{background:#f8f9fb}
+.nkh::after{content:"▾";color:var(--sub);font-size:.8rem}.nk.open .nkh::after{content:"▴"}
+.nkr{font-weight:800;color:var(--sub);text-align:center}.nk:nth-child(-n+3) .nkr{color:var(--accent)}
+.nkm{min-width:0}.nkm b{display:block;font-size:1rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nkm small{display:block;color:var(--sub);font-size:.82rem;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.nkc{display:flex;align-items:center;gap:8px;white-space:nowrap}.nkc b{font-size:.92rem}
+.nkd{font-size:.74rem;font-weight:700;color:var(--sub);min-width:30px;text-align:right}.nkd.up{color:#d9485f}.nkd.dn{color:#2f6fd6}.nkd.new{color:#2f9e6b}
+.nkt{display:flex;align-items:flex-end;gap:2px;height:26px}.nkt i{flex:1;background:var(--accent);opacity:.75;border-radius:2px 2px 0 0}.nkt i.z{background:var(--line);opacity:1}
+.nkb{padding:0 16px 10px 56px;background:#fbfbfd}
+.nkb{border-top:1px solid var(--line)}
+.nkind{display:inline-block;font-size:.7rem;font-weight:700;color:var(--sub);border:1px solid var(--line);border-radius:99px;padding:0 6px;margin-top:3px}
+.nmore{display:block;margin:10px auto 0;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:7px 16px;font:inherit;font-size:.86rem;cursor:pointer;color:var(--sub)}
+.netc{margin-top:22px}.netc>.link{font-size:.9rem}
+.nsearch .nslab{font-size:.78rem;font-weight:700;color:var(--accent);margin-top:12px}
+.nsearch .nrow{border-top:0;padding-top:2px}
+@media(max-width:560px){.nkh{grid-template-columns:24px minmax(0,1fr) auto 12px;gap:6px 10px;padding:12px 12px 14px}
+ .nkt{grid-column:2/4;grid-row:2;height:12px;margin-top:2px}.nkh::after{grid-row:1;grid-column:4}
+ .nkb{padding:0 12px 8px 12px}}
+.nday+.nday{border-top:1px dashed var(--line)}
+.ndh{all:unset;box-sizing:border-box;width:100%;cursor:pointer;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:9px 0}
+.ndh:hover .ndv{color:var(--accent)}
+.ndd{font-size:.82rem;color:var(--sub);font-weight:700}
+.ndv{font-weight:700;font-size:.95rem;line-height:1.5}.ndv small{font-weight:500;color:var(--sub);font-size:.8rem}
+.ndc{font-size:.78rem;color:var(--sub);white-space:nowrap}
+.ndb{padding:0 0 8px 56px}
+.ndm{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:0;padding:6px 0;border-top:1px solid var(--line);font-size:.9rem}
+.ndm b{color:var(--accent)}.ndm span:not(.nkind){flex:1;min-width:200px;color:var(--ink)}
+.sc.hl{outline:2px solid var(--accent);outline-offset:2px;background:#eef3ff}
+@media(max-width:560px){.ndh{grid-template-columns:38px minmax(0,1fr);gap:8px}.ndc{grid-column:2}.ndb{padding-left:0}.ndm span:not(.nkind){min-width:100%}}
+.nkr{display:flex;flex-direction:column;align-items:center;gap:1px;line-height:1.1}.nkr .nkd{min-width:0;text-align:center;font-size:.66rem}
+.sks .nkm small{color:var(--ink);opacity:.78}
+.nkh.nkl{color:inherit;text-decoration:none}.nkh.nkl::after{content:"›";font-size:1.1rem}
+.sks .nkm b .tone{font-size:.68rem;vertical-align:2px;margin-left:4px}
+.sks .nkb .srow{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:10px;align-items:baseline}
+@media(max-width:560px){.sks .nkm small{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}.sks .nkb .srow{grid-template-columns:38px minmax(0,1fr)}.sks .nkb .srow .rt{grid-column:2}}
+.nkhd .nper{margin-left:auto;display:flex;gap:6px}.nkhd .nper .chip{padding:4px 12px;font-size:.82rem}
+.nkt{gap:1px}
+@media(max-width:560px){.nkhd .nper{margin:6px 0 2px;width:100%}}
 /* 사이트 이름과 설명 한 줄 */
 .brand{display:flex;flex-wrap:wrap;align-items:center;gap:2px 14px}
 .brand a{color:inherit;text-decoration:none;display:inline-flex;align-items:center;gap:10px}
@@ -439,7 +483,7 @@ a.vc{color:inherit;text-decoration:none}
 <body><div class="wrap">
 <div class="logo brand"><a href="/"><img src="/logo.svg" alt="" width="54" height="43">Market Raven</a><small>경제 유튜브, 대신 보고 핵심만 전한다</small></div>
 <nav class="nav"><a href="/" class="">홈</a><a href="/brief/" class="on">브리핑</a><a href="/#videos" class="">영상 요약</a><a href="/stock/" class="">종목</a><a href="/#numbers" class="">숫자·지표</a><a href="/#community" class="">커뮤니티</a></nav>
-<div class="brief"><h1 style="margin-top:0">시장 브리핑</h1><h2 class="bt c1">일간 브리핑<span class="cn">8</span></h2><ul class="plist blist"><li><a class="bli" href="/brief/2026-11-20/"><span class="bld"><b>11.20</b><small>2026 · 금</small></span><span class="blt"><b>엔트로픽 상장과 규제 우려로 증시가 급락했으나 반등 기대도 상존한다.</b><small>영상 7편 종합</small></span></a></li><li><a class="bli" href="/brief/2026-11-19/"><span class="bld"><b>11.19</b><small>2026 · 목</small></span><span class="blt"><b>코스피 5000선 지지력과 앤트로픽 상장 기대감 속에 증시는 변동성 장세를 이어간다.</b><small>영상 45편 종합</small></span></a></li><li><a class="bli" href="/brief/2026-11-18/"><span class="bld"><b>11.18</b><small>2026 · 수</small></span><span class="blt"><b>엔비디아의 견고한 실적 발표로 국내 증시가 반등을 시도하는 하루였다.</b><small>영상 31편 종합</small></span></a></li><li><a class="bli" href="/brief/2026-11-17/"><span class="bld"><b>11.17</b><small>2026 · 화</small></span><span class="blt"><b>엔비디아 실적 우려와 금리 부담 속 AI 밸류체인 조정 장세 지속</b><small>영상 24편 종합</small></span></a></li><li><a class="bli" href="/brief/2026-11-16/"><span class="bld"><b>11.16</b><small>2026 · 월</small></span><span class="blt"><b>외국인 대규모 매도와 AI 불확실성에 국내 증시가 급락하며 관망세가 짙어졌다.</b><small>영상 22편 종합</small></span></a></li><li><a class="bli" href="/brief/2026-11-15/"><span class="bld"><b>11.15</b><small>2026 · 일</small></span><span class="blt"><b>국내 증시의 수급 불안과 AI 반도체 리스크 속에서도 저평가된 주요 반도체 종목을 중심으로 바닥 확인 시도가 나타나고 있다.</b><small>영상 9편 종합</small></span></a></li><li><a class="bli" href="/brief/2026-11-14/"><span class="bld"><b>11.14</b><small>2026 · 토</small></span><span class="blt"><b>엔비디아 젠슨 황 CEO 관련 리스크와 수급 불안으로 증시 변동성이 커진 가운데 국내 반도체주의 펀더멘털과 저평가 매력에 주목하는 분석이 제시된다.</b><small>영상 11편 종합</small></span></a></li><li><a class="bli" href="/brief/2026-11-13/"><span class="bld"><b>11.13</b><small>2026 · 금</small></span><span class="blt"><b>엔비디아 관련 불확실성과 증시 변동성 속에서 보수적 리스크 관리와 로봇·AI 반도체 등 수혜 섹터 중심의 박스권 대응이 강조된다.</b><small>영상 6편 종합</small></span></a></li></ul><div class="bsec" id="weekly"><h2 class="bt c2">주간 브리핑<span class="cn">2</span></h2><ul class="plist blist"><li><a class="bli" href="/week/2026-11-16/"><span class="bld wk"><b>11.16~</b><small>~11.22</small></span><span class="blt"><b>엔비디아 실적과 수급 불안 속 증시가 반등과 바닥 다지기를 거쳤다.</b><small>영상 118편 종합</small></span></a></li><li><a class="bli" href="/week/2026-11-09/"><span class="bld wk"><b>11.09~</b><small>~11.15</small></span><span class="blt"><b>엔비디아 관련 리스크와 증시 변동성 속에서 반도체주 저평가와 수혜 섹터 중심의 대응이 강조되었다.</b><small>영상 28편 종합</small></span></a></li></ul></div></div>
+<div class="brief"><h1 style="margin-top:0">시장 브리핑</h1><h2 class="bt c1">일간 브리핑<span class="cn">8</span></h2><ul class="plist blist"><li><a class="bli" href="/brief/2026-11-20/"><span class="bld"><b>11.20</b><small>2026 · 금</small></span><span class="blt"><b>엔트로픽 상장과 금리 우려로 증시가 급락했으나 저가 매수 기회라는 시각도 나온다.</b><small>영상 13편 종합</small></span></a></li><li><a class="bli" href="/brief/2026-11-19/"><span class="bld"><b>11.19</b><small>2026 · 목</small></span><span class="blt"><b>코스피 5000선 지지력과 앤트로픽 상장 기대감 속에 증시는 변동성 장세를 이어간다.</b><small>영상 45편 종합</small></span></a></li><li><a class="bli" href="/brief/2026-11-18/"><span class="bld"><b>11.18</b><small>2026 · 수</small></span><span class="blt"><b>엔비디아의 견고한 실적 발표로 국내 증시가 반등을 시도하는 하루였다.</b><small>영상 31편 종합</small></span></a></li><li><a class="bli" href="/brief/2026-11-17/"><span class="bld"><b>11.17</b><small>2026 · 화</small></span><span class="blt"><b>엔비디아 실적 우려와 금리 부담 속 AI 밸류체인 조정 장세 지속</b><small>영상 24편 종합</small></span></a></li><li><a class="bli" href="/brief/2026-11-16/"><span class="bld"><b>11.16</b><small>2026 · 월</small></span><span class="blt"><b>외국인 대규모 매도와 AI 불확실성에 국내 증시가 급락하며 관망세가 짙어졌다.</b><small>영상 22편 종합</small></span></a></li><li><a class="bli" href="/brief/2026-11-15/"><span class="bld"><b>11.15</b><small>2026 · 일</small></span><span class="blt"><b>국내 증시의 수급 불안과 AI 반도체 리스크 속에서도 저평가된 주요 반도체 종목을 중심으로 바닥 확인 시도가 나타나고 있다.</b><small>영상 9편 종합</small></span></a></li><li><a class="bli" href="/brief/2026-11-14/"><span class="bld"><b>11.14</b><small>2026 · 토</small></span><span class="blt"><b>엔비디아 젠슨 황 CEO 관련 리스크와 수급 불안으로 증시 변동성이 커진 가운데 국내 반도체주의 펀더멘털과 저평가 매력에 주목하는 분석이 제시된다.</b><small>영상 11편 종합</small></span></a></li><li><a class="bli" href="/brief/2026-11-13/"><span class="bld"><b>11.13</b><small>2026 · 금</small></span><span class="blt"><b>엔비디아 관련 불확실성과 증시 변동성 속에서 보수적 리스크 관리와 로봇·AI 반도체 등 수혜 섹터 중심의 박스권 대응이 강조된다.</b><small>영상 6편 종합</small></span></a></li></ul><div class="bsec" id="weekly"><h2 class="bt c2">주간 브리핑<span class="cn">2</span></h2><ul class="plist blist"><li><a class="bli" href="/week/2026-11-16/"><span class="bld wk"><b>11.16~</b><small>~11.22</small></span><span class="blt"><b>엔비디아 실적과 수급 불안 속 증시가 반등과 바닥 다지기를 거쳤다.</b><small>영상 118편 종합</small></span></a></li><li><a class="bli" href="/week/2026-11-09/"><span class="bld wk"><b>11.09~</b><small>~11.15</small></span><span class="blt"><b>엔비디아 관련 리스크와 증시 변동성 속에서 반도체주 저평가와 수혜 섹터 중심의 대응이 강조되었다.</b><small>영상 28편 종합</small></span></a></li></ul></div></div>
 
 <p class="note">AI가 경제 유튜브 영상과 그 요약을 종합한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
 <footer class="sitefoot"><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a><a href="mailto:gomajjy0@gmail.com">문의 gomajjy0@gmail.com</a></footer>
