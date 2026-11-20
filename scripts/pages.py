@@ -31,6 +31,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SITE = os.environ.get("SITE_URL", "https://marketraven.kr").rstrip("/")
 BASE = "/" + SITE.split("://", 1)[1].split("/", 1)[1].strip("/") + "/" if SITE.count("/") > 2 else "/"
 SITE_NAME = os.environ.get("SITE_NAME", "Market Raven")
+GA_ID = os.environ.get("GA_ID", "G-RNKNJWH6EC")  # 방문 통계 (Google 애널리틱스 측정 ID, 공개해도 되는 값)
 TAGLINE = "경제 유튜브, 대신 보고 핵심만 전한다"
 CONTACT = os.environ.get("CONTACT_EMAIL", "gomajjy0@gmail.com")
 MANIFEST = ROOT / "pages.json"
@@ -245,12 +246,13 @@ def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_
     nav = "".join(f'<a href="{BASE}{h}" class="{"on" if k == nav_on else ""}">{t}</a>' for k, t, h in tabs)
     return f"""<!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+{(f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag("js",new Date());gtag("config","{GA_ID}");</script>' if GA_ID else "")}
 <title>{e(tab_title or (title + " | " + SITE_NAME))}</title>
 <meta name="description" content="{e(desc)}">
 <link rel="canonical" href="{e(canon)}">
 <meta property="og:type" content="{'article' if kind == 'article' else 'website'}"><meta property="og:site_name" content="{e(SITE_NAME)}">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{e(canon)}">
-<meta property="og:image" content="{e(image or url("og.png"))}"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="{e(image or url("og.png"))}"><link rel="alternate" type="application/rss+xml" title="{e(SITE_NAME)}" href="{e(url("rss.xml"))}"><meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>{main_css()}{EXTRA_CSS}</style>{ld}</head>
 <body><div class="wrap">
@@ -327,6 +329,90 @@ CLEAR_NUM = ("지수", "금리", "환율", "국채", "유가", "WTI", "브렌트
 def num_key(v):
     t = re.sub(r"[\s,]", "", v or "")
     return re.sub(r"(\d)\.0(?=\D|$)", r"\1", t)
+
+
+# ---------- 브리핑 공유 이미지 (카톡·검색 미리보기용, 1200x630) ----------
+def og_image(name, kicker, headline, foot):
+    """og/<name>.png 를 만들고 사이트 주소를 돌려준다. 글꼴이나 Pillow가 없으면 None (공통 이미지를 쓴다)."""
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+    except ImportError:
+        return None
+    font, logo = ROOT / "scripts" / "og-font.otf", ROOT / "scripts" / "og-logo.png"
+    if not font.exists():
+        return None
+    out = ROOT / "og" / f"{name}.png"
+    out.parent.mkdir(exist_ok=True)
+    F = lambda s: ImageFont.truetype(str(font), s)
+    im = Image.new("RGB", (1200, 630), "white")
+    dr = ImageDraw.Draw(im)
+    x0 = 64
+    if logo.exists():
+        lg = Image.open(logo).convert("RGBA")
+        lg = lg.resize((int(lg.width * 70 / lg.height), 70))
+        im.paste(lg, (x0, 46), lg)
+        dr.text((x0 + lg.width + 16, 56), "Market Raven", font=F(40), fill="#14181f")
+    dr.text((x0, 176), kicker, font=F(40), fill="#e5383b")
+
+    def wrap(text, f, width):
+        lines, cur = [], ""
+        for w in (text or "").split(" "):
+            t_ = (cur + " " + w).strip()
+            if dr.textlength(t_, font=f) <= width:
+                cur = t_
+                continue
+            if cur:
+                lines.append(cur)
+            cur = ""
+            for ch in w:  # 한 단어가 너무 길면 글자 단위로 자른다
+                if dr.textlength(cur + ch, font=f) > width:
+                    lines.append(cur)
+                    cur = ""
+                cur += ch
+        if cur:
+            lines.append(cur)
+        return lines
+    for size in (68, 60, 52):
+        f = F(size)
+        lines = wrap(headline, f, 1200 - x0 * 2)
+        if len(lines) <= 3:
+            break
+    lines = lines[:3]
+    y = 250
+    for ln in lines:
+        dr.text((x0, y), ln, font=f, fill="#14181f")
+        y += int(size * 1.32)
+    dr.text((x0, 532), foot, font=F(30), fill="#5d6573")
+    site = SITE.split("//")[-1]
+    dr.text((1200 - x0 - dr.textlength(site, font=F(30)), 532), site, font=F(30), fill="#5d6573")
+    dr.rectangle([0, 612, 1200, 630], fill="#e5383b")
+    im.save(out, optimize=True)
+    return url(f"og/{name}.png")
+
+
+# ---------- RSS (네이버 서치어드바이저 등록용) ----------
+def write_rss(man):
+    from email.utils import format_datetime
+
+    def when(s):
+        try:
+            return format_datetime(datetime.datetime.fromisoformat(s[:16] if "T" in s else s + "T09:00").replace(tzinfo=KST))
+        except Exception:
+            return ""
+    items = []
+    for d, m in man["brief"].items():
+        items.append((d + "T23:00", f"{sdate(d)} 시장 브리핑: {m.get('headline') or ''}", url(f"brief/{d}/"), m.get("desc") or ""))
+    for w, m in man["week"].items():
+        items.append(((m.get("end") or w) + "T23:30", f"{sdate(w)}~{sdate(m.get('end'))} 주간 시장 브리핑: {m.get('headline') or ''}", url(f"week/{w}/"), m.get("desc") or ""))
+    for k, m in man["video"].items():
+        items.append((m.get("ts") or (m.get("date") or "") + "T12:00", f"{short_title(m.get('title'))} 요약" + (f" | {m.get('ch')}" if m.get("ch") else ""), url(f"v/{k}/"), m.get("desc") or ""))
+    items.sort(key=lambda x: x[0], reverse=True)
+    body = "".join(f"<item><title>{e(tt)}</title><link>{e(ln)}</link><guid isPermaLink=\"true\">{e(ln)}</guid><description>{e(ds)}</description><pubDate>{when(ts)}</pubDate></item>\n"
+                   for ts, tt, ln, ds in items[:60])
+    xml = ('<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>\n'
+           f"<title>{e(SITE_NAME)}</title><link>{e(url(''))}</link><description>{e(TAGLINE)}. 경제 유튜브 영상 요약과 매일 시장 브리핑.</description><language>ko</language>"
+           f'<atom:link href="{e(url("rss.xml"))}" rel="self" type="application/rss+xml"/>\n' + body + "</channel></rss>\n")
+    (ROOT / "rss.xml").write_text(xml, encoding="utf-8")
 
 
 def build_dash(recent, briefs, weekly, digests, man):
@@ -499,7 +585,7 @@ def build_dash(recent, briefs, weekly, digests, man):
 
 
 # ---------- 사이트 소개, 개인정보처리방침 ----------
-INFO_DATE = "2026-11-19"
+INFO_DATE = "2026-11-20"
 
 
 def build_info_pages():
@@ -534,11 +620,13 @@ def build_info_pages():
         ("1. 수집하는 개인정보", "<p>이 사이트는 회원가입이나 로그인 기능이 없고, 방문자의 이름·연락처 같은 개인정보를 직접 수집하지 않는다.</p>"),
         ("2. 자동으로 기록될 수 있는 정보", "<p>사이트는 GitHub Pages에서 운영된다. GitHub는 보안과 서비스 운영을 위해 방문자의 IP 주소 등 접속 기록을 남길 수 있으며, "
                                    "이는 GitHub의 개인정보 정책을 따른다. 운영자는 이 기록을 따로 받거나 보관하지 않는다.</p>"),
-        ("3. 외부에서 불러오는 콘텐츠", "<p>영상 썸네일은 YouTube(Google) 서버에서, 글꼴은 jsDelivr에서 불러온다. 이 과정에서 해당 서비스가 접속 정보를 받을 수 있다. "
-                                 "영상 링크를 누르면 YouTube로 이동하며, 그때부터는 YouTube의 정책이 적용된다.</p>"),
-        ("4. 쿠키와 브라우저 저장 공간", "<p>사이트 자체는 방문자를 추적하는 쿠키를 쓰지 않는다. 화면 설정 같은 편의 기능을 위해 브라우저 저장 공간을 쓸 수 있으나, 그 내용은 방문자의 브라우저에만 남고 운영자에게 전송되지 않는다.</p>"),
-        ("5. 광고와 방문 통계", "<p>앞으로 Google 애널리틱스(방문 통계)나 Google 애드센스(광고)를 도입할 수 있다. 도입하면 Google을 비롯한 제3자 공급업체가 쿠키를 사용해 "
-                             "방문자의 이 사이트 및 다른 사이트 방문 기록을 바탕으로 광고를 게재하거나 통계를 낼 수 있다. 맞춤 광고는 "
+        ("3. 외부에서 불러오는 콘텐츠", "<p>영상 썸네일은 YouTube(Google) 서버에서, 글꼴은 jsDelivr에서 불러온다. 영상 요약 페이지에는 YouTube 플레이어가 들어 있어, 페이지를 열거나 영상을 재생하면 YouTube가 쿠키를 쓰고 접속 정보를 받을 수 있다. "
+                                 "이 부분에는 YouTube(Google)의 개인정보 정책이 적용된다.</p>"),
+        ("4. 쿠키와 브라우저 저장 공간", "<p>방문 통계를 위해 Google 애널리틱스 쿠키를 쓴다(5번 참고). 그 밖에 화면 설정 같은 편의 기능을 위해 브라우저 저장 공간을 쓸 수 있으나, 그 내용은 방문자의 브라우저에만 남고 운영자에게 전송되지 않는다. 쿠키는 브라우저 설정에서 거부하거나 지울 수 있다.</p>"),
+        ("5. 방문 통계와 광고", "<p>이 사이트는 방문자 수와 많이 본 페이지를 파악하기 위해 Google 애널리틱스를 쓴다. Google 애널리틱스는 쿠키로 방문한 페이지, 머문 시간, 대략적인 지역, 기기와 브라우저 종류 같은 정보를 모으며, "
+                             "운영자는 개인을 알아볼 수 없는 통계 형태로만 본다. 수집된 정보는 Google의 정책에 따라 처리된다. 수집을 원하지 않으면 "
+                             '<a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google 애널리틱스 차단 브라우저 부가기능</a>을 쓰거나 쿠키를 거부하면 된다.</p>'
+                             "<p>앞으로 Google 애드센스(광고)를 도입할 수 있다. 도입하면 Google을 비롯한 제3자 공급업체가 쿠키를 사용해 방문자의 이 사이트 및 다른 사이트 방문 기록을 바탕으로 광고를 게재할 수 있다. 맞춤 광고는 "
                              '<a href="https://adssettings.google.com" target="_blank" rel="noopener">Google 광고 설정</a>에서 끌 수 있다. 도입할 때 이 문서를 고친다.</p>'),
         ("6. 문의", f"<p>개인정보와 관련한 문의는 {mail}로 보내 주면 된다.</p>"),
         ("7. 시행일", f"<p>이 방침은 {e(kdate(INFO_DATE))}부터 적용한다. 내용이 바뀌면 이 페이지에 알린다.</p>"),
@@ -632,7 +720,7 @@ def build_video_pages(V, man, briefs, stock_slug, mark):
         title = f'{v.get("title")} 요약 | {v.get("channel")}'
         c = write(f"v/{vid}", page(f"v/{vid}/", title, desc, body, date=d, nav_on="videos", tab_title=short_title(v.get("title")) + " 요약", image=f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg", extra_ld=video_ld(v, vid)))
         changed += c
-        mark("video", vid, c, {"title": (v.get("title") or "")[:80], "date": d})
+        mark("video", vid, c, {"title": (v.get("title") or "")[:80], "date": d, "ts": v.get("ts") or "", "ch": v.get("channel") or "", "desc": desc})
     return changed
 
 
@@ -700,9 +788,12 @@ def build():
                 + sect("종합한 영상", len(vids), vids and '<div class="vgrid">' + "".join(F.vcard(v) for v in vids) + "</div>", "")
                 + '<p class="bnote">AI가 이날의 영상 요약들을 종합한 내용이며 투자 권유가 아니다. \'관련 영상\'이나 채널 이름을 누르면 근거가 된 영상을 볼 수 있다.</p></div>'
                 + F.templates())
-        c = write(f"brief/{d}", page(f"brief/{d}/", f"{sdate(d)} 시장 브리핑: {b.get('headline', '')}", desc_of(*(b.get("keypoints") or [])), body, date=d, nav_on="brief"))
+        dd_ = datetime.date.fromisoformat(d)
+        ogi = og_image(f"brief-{d}", f"{dd_.month}.{dd_.day:02d} ({WD[dd_.weekday()]}) 시장 브리핑", b.get("headline") or "", f"경제 유튜브 영상 {b.get('count') or ''}편 종합")
+        bdesc = desc_of(*(b.get("keypoints") or []))
+        c = write(f"brief/{d}", page(f"brief/{d}/", f"{sdate(d)} 시장 브리핑: {b.get('headline', '')}", bdesc, body, date=d, nav_on="brief", image=ogi))
         changed += c
-        mark("brief", d, c, {"headline": b.get("headline"), "count": b.get("count")})
+        mark("brief", d, c, {"headline": b.get("headline"), "count": b.get("count"), "desc": bdesc})
 
     # 주간 브리핑
     for w in weekly:
@@ -722,10 +813,13 @@ def build():
                 + sect("이번 주 반복된 주제", len(w.get("recurring") or []), rc and f'<div class="tgrid">{rc}</div>', "c2")
                 + sect("이번 주 많이 언급된 종목", len(w.get("stocks") or []), sw and f'<div class="skg">{sw}</div>', "c4")
                 + '<p class="bnote">AI가 이번 주의 일간 브리핑들을 종합한 내용이며 투자 권유가 아니다.</p></div>')
+        a_, z_ = datetime.date.fromisoformat(ws), datetime.date.fromisoformat(w.get("end") or ws)
+        ogi = og_image(f"week-{ws}", f"{a_.month}.{a_.day:02d}~{z_.month}.{z_.day:02d} 주간 시장 브리핑", w.get("headline") or "", f"경제 유튜브 영상 {w.get('videos') or ''}편 종합")
+        wdesc = desc_of(*(w.get("keypoints") or []))
         c = write(f"week/{ws}", page(f"week/{ws}/", f"{sdate(ws)}~{sdate(w.get('end'))} 주간 시장 브리핑: {w.get('headline', '')}",
-                                     desc_of(*(w.get("keypoints") or [])), body, date=w.get("gen_date") or ws, nav_on="brief"))
+                                     wdesc, body, date=w.get("gen_date") or ws, nav_on="brief", image=ogi))
         changed += c
-        mark("week", ws, c, {"headline": w.get("headline"), "end": w.get("end"), "videos": w.get("videos")})
+        mark("week", ws, c, {"headline": w.get("headline"), "end": w.get("end"), "videos": w.get("videos"), "desc": wdesc})
 
     # 종목 페이지: 2편 이상에서 언급된 모든 종목 (종합 정리가 있으면 맨 위에 보여 준다)
     table = {}
@@ -928,6 +1022,7 @@ q.addEventListener("input",f);f()})();
     urls += [(url(f"week/{w}/"), m.get("lastmod", today)) for w, m in man["week"].items()]
     urls += [(url(f"stock/{quote(s_)}/"), m.get("lastmod", today)) for s_, m in man["stock"].items()]
     urls += [(url(f"v/{k}/"), m.get("lastmod", today)) for k, m in man["video"].items()]
+    write_rss(man)
     (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                                       + "".join(f"<url><loc>{html.escape(u)}</loc><lastmod>{lm}</lastmod></url>\n" for u, lm in urls) + "</urlset>\n", encoding="utf-8")
     MANIFEST.write_text(json.dumps(man, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
