@@ -99,6 +99,19 @@ def href(path):
     return BASE + path.lstrip("/")
 
 
+def video_ld(v, vid):
+    """검색엔진용 영상 정보(VideoObject): 원본 유튜브 영상을 가리킨다"""
+    d = v.get("date") or ""
+    data = {"@context": "https://schema.org", "@type": "VideoObject", "name": (v.get("title") or "")[:200],
+            "description": v.get("conclusion") or v.get("title") or "",
+            "thumbnailUrl": [f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg"],
+            "embedUrl": f"https://www.youtube.com/embed/{vid}", "url": f"https://www.youtube.com/watch?v={vid}",
+            "inLanguage": "ko", "author": {"@type": "Organization", "name": v.get("channel") or ""}}
+    if re.match(r"\d{4}-\d{2}-\d{2}$", d):
+        data["uploadDate"] = d + "T00:00:00+09:00"
+    return data
+
+
 def short_title(t):
     """탭·검색 결과용 짧은 제목: 앞뒤의 [말머리]·#번호와 | 뒤 출연자 표기를 뺀다"""
     s = (t or "").strip()
@@ -147,6 +160,7 @@ a.vc{color:inherit;text-decoration:none}
 .vtop{display:grid;grid-template-columns:300px minmax(0,1fr);grid-template-rows:auto auto 1fr;grid-template-areas:"hero meta" "hero title" "hero btn";gap:6px 20px;align-items:start;margin:14px 0 18px}
 .vhero{grid-area:hero;display:block;position:relative;border-radius:12px;overflow:hidden;aspect-ratio:16/9;background:linear-gradient(135deg,#dbe3f4,#b9c6e6)}
 .vhero img{width:100%;height:100%;object-fit:cover;display:block}
+.vhero iframe{width:100%;height:100%;border:0;display:block}
 .vhero i{position:absolute;inset:0;margin:auto;width:44px;height:31px;border-radius:9px;background:rgba(0,0,0,.7);color:#fff;font-style:normal;display:flex;align-items:center;justify-content:center;font-size:.85rem}
 .vmeta{grid-area:meta;display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px;font-size:.85rem;color:var(--sub)}
 .vmeta b{color:var(--accent)}
@@ -213,7 +227,7 @@ addEventListener("resize",hide)})();
 </script>"""
 
 
-def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_title=None, image=None):
+def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_title=None, image=None, extra_ld=None):
     canon = url(path)
     ld = ""
     if kind == "article":
@@ -221,7 +235,11 @@ def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_
                 "url": canon, "inLanguage": "ko", "publisher": {"@type": "Organization", "name": SITE_NAME}}
         if date:
             data["datePublished"] = date
+        if image:
+            data["image"] = image
         ld = '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + "</script>"
+    if extra_ld:
+        ld += '<script type="application/ld+json">' + json.dumps(extra_ld, ensure_ascii=False).replace("</", "<\\/") + "</script>"
     tabs = [("home", "홈", ""), ("brief", "브리핑", "brief/"), ("videos", "영상 요약", "#videos"), ("stocks", "종목", "stock/"),
             ("numbers", "숫자·지표", "#numbers"), ("community", "커뮤니티", "#community")]
     nav = "".join(f'<a href="{BASE}{h}" class="{"on" if k == nav_on else ""}">{t}</a>' for k, t, h in tabs)
@@ -594,7 +612,7 @@ def build_video_pages(V, man, briefs, stock_slug, mark):
         body = (f'<div class="brief vpage">'
                 + f'<div class="vtop"><div class="vmeta"><b>{e(v.get("channel"))}</b><span>{e(kdate(d))}</span>'
                 + (f'<a href="{href("brief/" + d + "/")}">이날 시장 브리핑 →</a>' if d in brief_dates else "") + f'</div><h1 class="vh1">{e(v.get("title"))}</h1>'
-                + f'<a class="vhero" href="{yt}" target="_blank" rel="noopener" aria-label="유튜브에서 원본 보기"><img src="https://img.youtube.com/vi/{e(vid)}/hqdefault.jpg" alt="" loading="lazy"><i>▶</i></a>'
+                + f'<div class="vhero"><iframe src="https://www.youtube.com/embed/{e(vid)}?rel=0" title="{e(v.get("title"))}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
                 + f'<a class="vyt" href="{yt}" target="_blank" rel="noopener">▶ 유튜브<span class="vyl">에서 원본</span> 보기</a></div>'
                 + f'<div class="digest"><div class="dh"><b>한 줄 결론</b>' + (f'<span class="md m{e(v.get("mood"))}">{e(mood)}</span>' if mood else "")
                 + (f'<span>출연 {e(v.get("people"))}</span>' if v.get("people") else "") + f'</div><p>{e(v.get("conclusion"))}</p></div>'
@@ -607,7 +625,7 @@ def build_video_pages(V, man, briefs, stock_slug, mark):
         items = [x for p_ in v.get("parts") or [] for _, x in p_.get("items") or []]
         desc = desc_of(v.get("conclusion"), *items[:3])
         title = f'{v.get("title")} 요약 | {v.get("channel")}'
-        c = write(f"v/{vid}", page(f"v/{vid}/", title, desc, body, date=d, nav_on="videos", tab_title=short_title(v.get("title")) + " 요약", image=f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg"))
+        c = write(f"v/{vid}", page(f"v/{vid}/", title, desc, body, date=d, nav_on="videos", tab_title=short_title(v.get("title")) + " 요약", image=f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg", extra_ld=video_ld(v, vid)))
         changed += c
         mark("video", vid, c, {"title": (v.get("title") or "")[:80], "date": d})
     return changed
