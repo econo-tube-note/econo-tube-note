@@ -53,7 +53,7 @@ jobs:
         env:
           PYTHONUNBUFFERED: "1"
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: gemini-3.8-flash
+          GEMINI_MODEL: gemini-3.6-flash   # 3.8-flash는 무료 한도가 없어 뺐다 (성공 0회)
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           YOUTUBE_COOKIES: ${{ secrets.YOUTUBE_COOKIES }}   # 자막 시험용 (유튜브 부계정 쿠키). 없어도 된다   # 없어도 된다 (유튜브 RSS가 계속 막힐 때만 사용)
           URLS: ${{ github.event.inputs.urls }}
