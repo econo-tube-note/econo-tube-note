@@ -25,7 +25,7 @@ try:
 except Exception:
     pass
 
-MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
+MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.6-flash")
 CALL_TIMEOUT = int(os.environ.get("GEMINI_TIMEOUT", "300"))  # 제미나이 응답을 기다리는 최대 시간(초)
 STATS = []   # (모델, 결과) 기록. 결과는 ok / busy / dead
 DEAD = set()  # 이번 실행에서 쓸 수 없다고 확인된 모델
@@ -232,7 +232,7 @@ def transcript_test(target=""):
     text = "\n".join(f"[{mmss(st)}] {t}" for st, t in lines)
     print(f"\n자막으로 요약해 본다: {vid} (자막 {len(text)}자)")
     t0 = time.time()
-    out = call_json(TRANSCRIPT_PROMPT + text, summary_schema, "TRANSCRIPT_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.8-flash,gemini-3.5-flash-lite", 180)
+    out = call_json(TRANSCRIPT_PROMPT + text, summary_schema, "TRANSCRIPT_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 180)
     print(f"  걸린 시간: {time.time() - t0:.0f}초")
     old = next((v for v in videos if video_id(v["url"]) == vid), None)
 
@@ -1034,7 +1034,7 @@ def build_brief(date, vids):
             "numbers": [[x[1], x[2]] for x in v.get("numbers", [])],
         })
     data = call_json(BRIEF_PROMPT + json.dumps(payload, ensure_ascii=False), brief_schema,
-                     "BRIEF_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.8-flash,gemini-3.5-flash-lite", 240)
+                     "BRIEF_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 240)
     ids = [video_id(v["url"]) for v in vids]
     chans = [v["channel"] for v in vids]
 
@@ -1233,7 +1233,7 @@ def build_weekly(ws, days, videos):
         "stocks": [{"name": t["name"], "videos": len(t["vids"]), "days": sorted(t["days"])} for t in ranked],
     }
     data = call_json(WEEK_PROMPT + json.dumps(payload, ensure_ascii=False), weekly_schema,
-                     "BRIEF_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.8-flash,gemini-3.5-flash-lite", 240)
+                     "BRIEF_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 240)
     dates = [b["date"] for b in days]
 
     def txt(x):
