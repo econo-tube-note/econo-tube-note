@@ -590,7 +590,7 @@ def build_video_pages(V, man, briefs, stock_slug, mark):
         yt = f"https://www.youtube.com/watch?v={vid}"
 
         def tlink(t):
-            return f'<a class="tm" href="{yt}&t={secs(t)}s" target="_blank" rel="noopener">▶ {e(t)}</a>' if t else ""
+            return f'<a class="tm" href="{yt}&t={secs(t)}s" data-s="{secs(t)}" target="_blank" rel="noopener">▶ {e(t)}</a>' if t else ""
 
         mood = MOOD_LABEL.get(v.get("mood"))
         parts = "".join(
@@ -609,6 +609,11 @@ def build_video_pages(V, man, briefs, stock_slug, mark):
         tags = "".join(f'<a class="vkw" href="{BASE}#videos/kw/{quote(t)}">#{e(t)}</a>' for t in v.get("tags") or [])
         rel = related_videos(v, V)
         d = v.get("date") or ""
+        # 시간 버튼을 누르면 새 창 대신 위쪽 플레이어가 그 시간부터 재생한다 (Ctrl·⌘ 클릭은 새 창)
+        seek_js = ('<script>document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest(".vpage a.tm[data-s]");'
+                   'if(!a||e.ctrlKey||e.metaKey||e.shiftKey||e.button)return;var f=document.querySelector(".vhero iframe");if(!f)return;e.preventDefault();'
+                   f'f.src="https://www.youtube.com/embed/{vid}?start="+a.dataset.s+"&autoplay=1&rel=0";'
+                   'var top=document.querySelector(".vtop");if(top)top.scrollIntoView({behavior:"smooth",block:"start"});});</script>')
         body = (f'<div class="brief vpage">'
                 + f'<div class="vtop"><div class="vmeta"><b>{e(v.get("channel"))}</b><span>{e(kdate(d))}</span>'
                 + (f'<a href="{href("brief/" + d + "/")}">이날 시장 브리핑 →</a>' if d in brief_dates else "") + f'</div><h1 class="vh1">{e(v.get("title"))}</h1>'
@@ -621,7 +626,7 @@ def build_video_pages(V, man, briefs, stock_slug, mark):
                 + sect("언급된 숫자", len(v.get("numbers") or []), nums and f'<div>{nums}</div><p class="vnote">영상 속 출연자가 말한 수치이며 실시간 시세가 아니다.</p>', "c2")
                 + (f'<div class="vtags">{tags}</div>' if tags else "")
                 + sect("이어서 볼 영상", len(rel), rel and '<div class="vgrid">' + "".join(F.vcard(w) for w in rel) + "</div>", "")
-                + "</div>" + F.templates())
+                + "</div>" + F.templates() + seek_js)
         items = [x for p_ in v.get("parts") or [] for _, x in p_.get("items") or []]
         desc = desc_of(v.get("conclusion"), *items[:3])
         title = f'{v.get("title")} 요약 | {v.get("channel")}'
