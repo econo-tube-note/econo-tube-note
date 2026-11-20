@@ -36,6 +36,14 @@ HEADER = "/* 영상 목록. 자동화(scripts/summarize.py)가 갱신하는 파�
 TIME_RE = re.compile(r"^\d{1,2}:\d{2}(:\d{2})?$")
 ID_RE = re.compile(r"(?:v=|youtu\.be/|shorts/)([A-Za-z0-9_-]{11})")
 
+# 숫자 지표 이름 목록 (프롬프트와 canon_label이 같이 쓴다)
+NUM_LABELS = ["코스피 지수", "코스닥 지수", "나스닥 지수", "S&P500 지수", "다우 지수", "닛케이 지수", "필라델피아 반도체 지수",
+              "원/달러 환율", "엔/달러 환율", "달러 인덱스", "미국 10년물 국채 금리", "미국 2년물 국채 금리", "미국 국채 금리",
+              "한국 국고채 금리", "미국 기준금리", "한국 기준금리", "외국인 순매도", "외국인 순매수", "기관 순매도", "기관 순매수",
+              "개인 순매도", "개인 순매수", "신용잔고",
+              "반대매매", "고객예탁금", "비트코인 가격", "금 가격", "국제유가", "물가", "고용 지표", "GDP 성장률",
+              "PER·PBR", "기업 실적", "목표 주가", "주가 등락률", "시가총액", "수출"]
+
 PROMPT = """너는 한국 경제·투자 유튜브 영상을 요약하는 편집자다. 영상을 보고 아래 규칙대로 JSON으로만 답해라.
 
 규칙
@@ -52,7 +60,7 @@ PROMPT = """너는 한국 경제·투자 유튜브 영상을 요약하는 편집
   '중요하다고 본다', '불확실성이 커졌다', '보수적으로 대응해야 한다'처럼 어느 영상에나 쓸 수 있는 말만으로 항목을 채우지 않는다. 그런 결론이면 왜 그렇게 보는지 근거를 함께 쓴다.
 - 항목마다 설명 끝맺음을 '~라고 본다'로만 반복하지 말고 '~라고 설명한다', '~라고 지적한다', '~라고 전망한다'처럼 내용에 맞게 쓴다.
 - stocks: 중요하게 다룬 종목 최대 7개. name에는 종목명만 쓰고 괄호로 다른 이름을 덧붙이지 않는다. 줄임말이나 영어 대신 한국에서 흔히 쓰는 정식 이름을 쓴다(예: 하이닉스→SK하이닉스, 삼전→삼성전자, NVIDIA→엔비디아, 증권사 앱에 표시되는 종목명 기준). note에는 출연자가 그 종목에 대해 어떤 평가를 했는지(긍정, 부정, 이유)를 한 줄로 쓴다. '언급됐다'만 쓰지 않는다.
-- numbers: 가장 중요한 숫자 4~5개만. label은 그 숫자가 가리키는 지표 이름을 짧은 명사구로 쓴다(예: 코스닥 지수, 미국 국채 금리, 원/달러 환율, 신용잔고). 지표라고 하기 어려우면 '기타'로 쓴다. value는 영상에서 말한 단위와 기준 그대로 적고, 단위나 기준이 분명하지 않으면 '(단위 불명확)'을 붙인다. note는 그 숫자가 '무엇의' 숫자인지 주어를 반드시 밝혀서 한 줄로 쓴다. 숫자 카드만 따로 떼어 봐도 이해되게 쓴다.
+- numbers: 가장 중요한 숫자 4~5개만. label은 그 숫자가 가리키는 지표 이름이다. 다음 목록에 맞는 게 있으면 반드시 그 이름을 글자 그대로 쓴다: {NUM_LABELS}. 목록에 없으면 짧은 명사구로 쓰고, 지표라고 하기 어려우면 '기타'로 쓴다. 숫자가 금액이면 그 금액의 주체 기준으로 고른다(예: 외국인이 판 금액은 코스피 지수가 아니라 외국인 순매도, 산 금액은 외국인 순매수). value는 영상에서 말한 단위와 기준 그대로 적고, 단위나 기준이 분명하지 않으면 '(단위 불명확)'을 붙인다. note는 그 숫자가 '무엇의' 숫자인지 주어를 반드시 밝혀서 한 줄로 쓴다. 숫자 카드만 따로 떼어 봐도 이해되게 쓴다.
   나쁜 예: value '2.894조 달러', note '10월 28일 기준 저점을 기록한 후 회복세로 전환되었다고 설명한다.' (무엇이 2.894조 달러인지 없다)
   좋은 예: label '미국 지급준비금', value '2.894조 달러', note '미국 은행들의 지급준비금이 10월 28일 이 수준에서 바닥을 찍고 회복 중이라고 설명한다.'
   label은 가능한 한 구체적인 지표 이름으로 쓰고, 정말 지표로 묶을 수 없을 때만 '기타'로 쓴다.
@@ -180,6 +188,7 @@ def mmss(sec):
     return f"{sec // 3600}:{sec % 3600 // 60:02d}:{sec % 60:02d}" if sec >= 3600 else f"{sec // 60:02d}:{sec % 60:02d}"
 
 
+PROMPT = PROMPT.replace("{NUM_LABELS}", ", ".join(NUM_LABELS))
 TRANSCRIPT_PROMPT = PROMPT.replace("영상을 보고 아래 규칙대로", "아래 자막(대본)을 읽고 아래 규칙대로") + """
 - 입력은 영상의 자동 자막이다. 각 줄 앞의 [분:초]가 그 말이 나온 시간이다. time에는 이 시간을 쓴다.
 - 자동 자막이라 종목명, 숫자, 사람 이름이 소리 나는 대로 잘못 적혀 있을 수 있다. 문맥으로 분명할 때만 바로잡고, 애매하면 그 항목을 쓰지 않는다.
@@ -447,7 +456,7 @@ def clean(s, vid_url, title, channel, date):
 
     stocks = [[tm(x.get("time")), canon_stock(x.get("name")), (x.get("note") or "").strip()]
               for x in (s.get("stocks") or [])[:7] if (x.get("name") or "").strip()]
-    numbers = [[tm(x.get("time")), (x.get("value") or "").strip(), (x.get("note") or "").strip(), (x.get("label") or "").strip()[:20] or "기타"]
+    numbers = [[tm(x.get("time")), (x.get("value") or "").strip(), (x.get("note") or "").strip(), canon_label((x.get("label") or "").strip()[:20] or "기타", x.get("value") or "", x.get("note") or "")]
                + ([x["kind"]] if x.get("kind") in ("현재", "전망", "과거") else [])
                for x in (s.get("numbers") or [])[:6] if (x.get("value") or "").strip()]
     tags = [t.strip() for t in (s.get("tags") or []) if t.strip()][:3]
@@ -744,6 +753,102 @@ _ALIAS_KEY = {}
 
 def _key(n):
     return re.sub(r"[\s·・\-_.()（）]", "", n or "").upper()
+
+
+# ---------- 숫자 지표 이름 통일 ----------
+# 같은 지표가 영상마다 다른 이름으로 붙는 걸 막는다. 프롬프트에도 이 목록을 준다.
+
+
+
+def canon_label(label, value="", note=""):
+    """지표 이름을 NUM_LABELS 기준으로 맞춘다. 맞출 수 없으면 원래 이름을 그대로 둔다."""
+    lab = re.sub(r"\s+", " ", (label or "").strip()) or "기타"
+    val = value or ""
+    t = lab + " " + (note or "")
+    money = bool(re.search(r"[조억만천]\s*원|억\s*달러|원$", val))
+    if re.fullmatch(r"\s*\d{4}\s*년(도)?\s*", val):
+        return "기타"
+    if lab in NUM_LABELS:
+        base = lab
+    else:
+        base = None
+    # 투자 주체별 매매: 이름에 들어 있거나, 금액 숫자인데 설명이 매도·매수 얘기면
+    if re.search(r"코드", lab):
+        return "기타"
+    def flow(who):
+        # 순매도와 순매수는 정반대 얘기라 따로 둔다. 이름 → 값의 부호 → 설명 순으로 판단
+        lb = lab.replace("매매", "")
+        if re.search(r"매수", lb) and not re.search(r"매도", lb):
+            return f"{who} 순매수"
+        if re.search(r"매도", lb) and not re.search(r"매수", lb):
+            return f"{who} 순매도"
+        if re.match(r"\s*-", val):
+            return f"{who} 순매도"
+        # 설명 문장에서 마지막에 나오는 매도/매수 표현을 본다 (한국어는 주된 동사가 문장 끝에 온다)
+        acts = re.findall(r"순매도|매도|팔았|팔고|순매수|매수|사들", note or "")
+        if acts:
+            return f"{who} 순매도" if acts[-1] in ("순매도", "매도", "팔았", "팔고") else f"{who} 순매수"
+        return f"{who} 매매"
+    for who in ("외국인", "기관", "개인"):
+        if who in lab and re.search(r"매도|매수|매매|순매", lab + (note or "")):
+            return flow(who)
+    if money and not re.search(r"외국인|기관|개인|신용|예탁|시가총액", lab):
+        for who in ("외국인", "기관", "개인"):
+            if re.search(who + r"[^.]{0,12}(순매도|순매수|매도한|매수한|매도 금액|매수 금액)", note or ""):
+                return flow(who)
+    if base == "미국 국채 금리":
+        if re.search(r"10\s*년", note or ""):
+            return "미국 10년물 국채 금리"
+        if re.search(r"2\s*년", note or ""):
+            return "미국 2년물 국채 금리"
+    if base:
+        if base.endswith("가격") and not re.search(r"달러|원|\$|불", val):
+            return "기타"
+        return base
+    rules = [
+        (r"신용\s*(잔고|융자)|신용잔고", "신용잔고"), (r"반대매매", "반대매매"), (r"예탁금", "고객예탁금"),
+        (r"(한국|국고채).*(금리|국채)|국고채", "한국 국고채 금리"),
+        (r"2년(물|만기)?.*(국채|금리|수익률)", "미국 2년물 국채 금리"),
+        (r"10년(물|만기)?.*(국채|금리|수익률)|(국채|금리|수익률).*10년", "미국 10년물 국채 금리"),
+        (r"^미국 국채 금리$", "미국 국채 금리"),
+        (r"국채.*(금리|수익률)|채권\s*금리", "미국 국채 금리"),
+        (r"(한국|한은).*기준\s*금리", "한국 기준금리"), (r"기준\s*금리|정책\s*금리|FOMC|연준.*금리", "미국 기준금리"),
+        (r"달러\s*인덱스", "달러 인덱스"), (r"엔.*(환율|달러)|달러.*엔", "엔/달러 환율"), (r"환율|원/달러|원·달러|원달러", "원/달러 환율"),
+        (r"필라델피아|SOX", "필라델피아 반도체 지수"), (r"코스피", "코스피 지수"), (r"코스닥", "코스닥 지수"),
+        (r"나스닥", "나스닥 지수"), (r"S&P|에스앤피", "S&P500 지수"), (r"다우", "다우 지수"), (r"닛케이", "닛케이 지수"),
+        (r"비트코인", "비트코인 가격"), (r"금\s*(가격|값|시세)|금값", "금 가격"), (r"유가|WTI|브렌트|원유", "국제유가"),
+        (r"CPI|PCE|PPI|소비자\s*물가|생산자\s*물가|물가|인플레", "물가"), (r"고용|비농업|실업", "고용 지표"), (r"GDP|성장률", "GDP 성장률"),
+        (r"PER|PBR|밸류에이션", "PER·PBR"), (r"목표\s*(주가|가)", "목표 주가"), (r"시가\s*총액|시총", "시가총액"),
+        (r"수출", "수출"),
+    ]
+    for pat, name in rules:
+        if re.search(pat, lab):
+            if name == "미국 국채 금리" and re.search(r"10\s*년", note or ""):
+                return "미국 10년물 국채 금리"
+            if name.endswith("가격") and not re.search(r"달러|원|\$|불", val):
+                return "기타"
+            if name.endswith("지수") and money:
+                break  # 지수 이름이 붙었지만 금액이면 지수 값이 아니다
+            return name
+    if re.search(r"실적|영업이익|매출|순이익|EPS", lab):
+        if re.search(r"%", val) and re.search(r"주가.*(급등|급락|상승|하락|등락)", note or ""):
+            return "주가 등락률"
+        return "기업 실적"
+    if re.search(r"등락률|상승률|하락률|급등|급락", lab):
+        return "주가 등락률"
+    return lab
+
+
+def canon_numbers(videos):
+    """저장된 영상들의 숫자 지표 이름을 통일한다. 바뀐 개수를 돌려준다."""
+    n = 0
+    for v in videos:
+        for row in v.get("numbers") or []:
+            if len(row) >= 4:
+                c = canon_label(row[3], row[1], row[2])
+                if c != row[3]:
+                    row[3], n = c, n + 1
+    return n
 
 
 def canon_stock(n):
@@ -1343,11 +1448,15 @@ def auto():
     arch = read_json(ARCHIVE, [])
     have = {video_id(v.get("url")) for v in videos + arch}
     fixed = canon_all(videos)
-    if fixed:
+    fixed_n = canon_numbers(videos)
+    if fixed or fixed_n:
         save(videos)
     fixed_a = canon_all(arch)
-    if fixed_a:
+    fixed_an = canon_numbers(arch)
+    if fixed_a or fixed_an:
         write_json(ARCHIVE, arch)
+    if fixed_n or fixed_an:
+        print(f"숫자 지표 이름을 통일했다: {fixed_n + fixed_an}곳 (예: 외국인 코스피 순매도액 -> 외국인 순매도)")
     if fixed or fixed_a:
         print(f"종목 이름을 정식 이름으로 맞췄다: {fixed + fixed_a}곳 (예: 하이닉스 -> SK하이닉스)")
 
