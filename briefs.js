@@ -1,6 +1,193 @@
 /* 종합 브리핑(일간 BRIEFS, 주간 WEEKLY). 자동화(scripts/summarize.py)가 갱신하는 파일이다. */
 const BRIEFS=[
  {
+  "date": "2026-11-20",
+  "count": 3,
+  "sources": [
+   "QwhGDJbSGvU",
+   "X1D0cQjwrkU",
+   "UlNBpokQfVk"
+  ],
+  "headline": "엔트로픽 상장과 중국 악재 속 반도체주 변동성이 커졌다.",
+  "keypoints": [
+   "엔트로픽 상장 후 차익 매물이 쏟아지며 글로벌 증시가 급락했다.",
+   "연준 위원들은 AI 인프라 투자 과열로 인한 인플레이션을 우려했다.",
+   "AMD와 엔비디아는 중국 우회 수출 논란과 공매도 리포트 악재를 겪었다.",
+   "일각에서는 반도체 실적 호조와 숏커버링에 따른 반등 가능성을 제기했다."
+  ],
+  "themes": [
+   {
+    "title": "엔트로픽 상장과 증시 충격",
+    "summary": "엔트로픽이 대규모 자금을 조달하며 상장했으나 직후 차익 실현 매물이 쏟아져 증시 급락을 유발했다고 본다.",
+    "refs": [
+     "QwhGDJbSGvU",
+     "X1D0cQjwrkU",
+     "UlNBpokQfVk"
+    ]
+   },
+   {
+    "title": "중국 규제와 반도체주 악재",
+    "summary": "AMD 공매도 리포트와 엔비디아 중국 수출 신청 공개 등 악재로 기술주 불확실성이 커졌다고 설명한다.",
+    "refs": [
+     "QwhGDJbSGvU",
+     "X1D0cQjwrkU",
+     "UlNBpokQfVk"
+    ]
+   },
+   {
+    "title": "국내 반도체 수급 및 반등 전망",
+    "summary": "반도체 하드웨어 종목의 악재 선반영과 엔트로픽의 데이터센터 구축에 따른 국내 반도체 수혜 가능성을 분석한다.",
+    "refs": [
+     "QwhGDJbSGvU",
+     "UlNBpokQfVk"
+    ]
+   }
+  ],
+  "agreements": [
+   {
+    "point": "엔트로픽 상장 이후 차익 매물이 출회되며 증시 변동성이 확대됐다.",
+    "refs": [
+     "QwhGDJbSGvU",
+     "X1D0cQjwrkU"
+    ]
+   },
+   {
+    "point": "AMD는 공매도 리포트 발표와 중국 관련 악재로 주가가 급락했다.",
+    "refs": [
+     "QwhGDJbSGvU",
+     "X1D0cQjwrkU",
+     "UlNBpokQfVk"
+    ]
+   },
+   {
+    "point": "AI 투자 급증이 인플레이션 상승 요인으로 지목되고 있다.",
+    "refs": [
+     "QwhGDJbSGvU",
+     "X1D0cQjwrkU"
+    ]
+   }
+  ],
+  "disagreements": [
+   {
+    "topic": "중국 수출 규제 및 악재가 반도체 기업에 미칠 영향",
+    "views": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "중국 우회 수출 의혹으로 주가 불확실성이 커졌다고 설명한다.",
+      "ref": "X1D0cQjwrkU"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "중국 관련 매출 비중이 작아 규제 타격이 제한적이라고 본다.",
+      "ref": "UlNBpokQfVk"
+     }
+    ]
+   }
+  ],
+  "stocks": [
+   {
+    "name": "AMD",
+    "count": 3,
+    "tone": "부정",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "공매도 리포트 발표와 이익 실현 매물 출회로 급락했다고 설명한다.",
+      "ref": "QwhGDJbSGvU"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "중국 우회 수출 의혹을 다룬 공매도 리포트로 불확실성이 커졌다고 본다.",
+      "ref": "X1D0cQjwrkU"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "공매도 리포트로 투심이 악화됐으나 과도한 우려라고 평가한다.",
+      "ref": "UlNBpokQfVk"
+     }
+    ]
+   },
+   {
+    "name": "엔비디아",
+    "count": 3,
+    "tone": "중립",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "악재와 견제 속에서도 상대적으로 잘 버텼다고 평가한다.",
+      "ref": "QwhGDJbSGvU"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "중국 수출 신청 악재에도 목표주가 상향 조정을 받았다고 설명한다.",
+      "ref": "X1D0cQjwrkU"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "중국 매출 비중이 낮아 규제 영향이 제한적이라고 평가한다.",
+      "ref": "UlNBpokQfVk"
+     }
+    ]
+   },
+   {
+    "name": "엔트로픽",
+    "count": 3,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "상장 직후 차익 매물 출회로 나스닥 급락의 원인이 됐다고 본다.",
+      "ref": "QwhGDJbSGvU"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "대규모 자금을 조달했으나 상장 직후 차익 매물이 쏟아졌다고 전한다.",
+      "ref": "X1D0cQjwrkU"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "사상 최대 IPO를 성공적으로 마쳐 시장 기대감을 입증했다고 본다.",
+      "ref": "UlNBpokQfVk"
+     }
+    ]
+   },
+   {
+    "name": "삼성전자",
+    "count": 2,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "미국 기술주 급락 여파로 4% 이상 하락했다고 설명한다.",
+      "ref": "QwhGDJbSGvU"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "엔트로픽의 데이터센터 구축에 따른 신규 주문 수혜를 전망한다.",
+      "ref": "UlNBpokQfVk"
+     }
+    ]
+   },
+   {
+    "name": "SK하이닉스",
+    "count": 2,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "반도체 섹터 매물 출회 영향으로 5% 넘게 하락했다고 지적한다.",
+      "ref": "QwhGDJbSGvU"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "엔트로픽 상장 후 데이터센터 투자 확대의 수혜를 기대한다.",
+      "ref": "UlNBpokQfVk"
+     }
+    ]
+   }
+  ]
+ },
+ {
   "date": "2026-11-19",
   "count": 45,
   "sources": [
