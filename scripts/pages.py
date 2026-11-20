@@ -213,7 +213,7 @@ addEventListener("resize",hide)})();
 </script>"""
 
 
-def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_title=None):
+def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_title=None, image=None):
     canon = url(path)
     ld = ""
     if kind == "article":
@@ -232,9 +232,11 @@ def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_
 <link rel="canonical" href="{e(canon)}">
 <meta property="og:type" content="{'article' if kind == 'article' else 'website'}"><meta property="og:site_name" content="{e(SITE_NAME)}">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{e(canon)}">
+<meta property="og:image" content="{e(image or url("og.png"))}"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>{main_css()}{EXTRA_CSS}</style>{ld}</head>
 <body><div class="wrap">
-<div class="logo brand"><a href="{BASE}">{e(SITE_NAME)}</a><small>{e(TAGLINE)}</small></div>
+<div class="logo brand"><a href="{BASE}"><img src="{BASE}logo.svg" alt="" width="54" height="43">{e(SITE_NAME)}</a><small>{e(TAGLINE)}</small></div>
 <nav class="nav">{nav}</nav>
 {body}
 
@@ -605,7 +607,7 @@ def build_video_pages(V, man, briefs, stock_slug, mark):
         items = [x for p_ in v.get("parts") or [] for _, x in p_.get("items") or []]
         desc = desc_of(v.get("conclusion"), *items[:3])
         title = f'{v.get("title")} 요약 | {v.get("channel")}'
-        c = write(f"v/{vid}", page(f"v/{vid}/", title, desc, body, date=d, nav_on="videos", tab_title=short_title(v.get("title")) + " 요약"))
+        c = write(f"v/{vid}", page(f"v/{vid}/", title, desc, body, date=d, nav_on="videos", tab_title=short_title(v.get("title")) + " 요약", image=f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg"))
         changed += c
         mark("video", vid, c, {"title": (v.get("title") or "")[:80], "date": d})
     return changed
