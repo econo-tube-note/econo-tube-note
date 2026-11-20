@@ -795,7 +795,25 @@ def build():
         desc = desc_of(d.get("summary"), *(d.get("points") or [])) if d else desc_of(f"{name}에 대해 경제 유튜브 채널 {len(chans)}곳이 한 말을 모았다.", *[r[2] for _, r in ms[:3]])
         c = write(f"stock/{s_}", page(f"stock/{quote(s_)}/", f"{name}: 경제 유튜브 채널들의 시각", desc, body, date=(d or {}).get("updated") or last, nav_on="stocks"))
         changed += c
-        mark("stock", s_, c, {"name": name, "tone": tone, "count": len(vids_), "channels": len(chans), "last": last})
+        # 종목 목록의 순위용: 이번 주·지난주 언급 영상 수, 14일 추이, 한 줄 요약
+        # 기간별 순위 데이터: 일간(최근 24시간 vs 그 전 24시간), 주간(7일 vs 7일), 월간(30일 vs 30일). [이번 기간 영상 수, 지난 기간 영상 수, 날짜별 막대]
+        now_ = datetime.datetime.now(KST)
+        t24, t48 = (now_ - datetime.timedelta(hours=24)).strftime("%Y-%m-%dT%H:%M"), (now_ - datetime.timedelta(hours=48)).strftime("%Y-%m-%dT%H:%M")
+
+        def dset(n):
+            return [(end_d - datetime.timedelta(days=i)).isoformat() for i in range(n - 1, -1, -1)]
+
+        def cnt(pred):
+            return len({vid_of(v.get("url")) for v, _ in ms if pred(v)})
+        tsof = lambda v: v.get("ts") or ((v.get("date") or "") + "T00:00")
+        dd7, dd30 = dset(14), dset(60)
+        per_ = {"day": [cnt(lambda v: tsof(v) >= t24), cnt(lambda v: t48 <= tsof(v) < t24), [len(per.get(x, ())) for x in dset(7)]],
+                "week": [cnt(lambda v: (v.get("date") or "") >= dd7[7]), cnt(lambda v: dd7[0] <= (v.get("date") or "") < dd7[7]), [len(per.get(x, ())) for x in dd7]],
+                "month": [cnt(lambda v: (v.get("date") or "") >= dd30[30]), cnt(lambda v: dd30[0] <= (v.get("date") or "") < dd30[30]), [len(per.get(x, ())) for x in dd30[30:]]]}
+        wk, pw = per_["week"][0], per_["week"][1]
+        one = re.split(r"(?<=다\.)\s", (d.get("summary") or "").strip())[0] if d and d.get("summary") else (ms[0][1][2] if ms and len(ms[0][1]) > 2 else "")
+        mark("stock", s_, c, {"name": name, "tone": tone, "count": len(vids_), "channels": len(chans), "last": last,
+                              "w": wk, "p": pw, "per": per_, "one": one})
 
     # 영상별 개별 페이지 (검색에 걸리게)
     changed += build_video_pages(V, man, briefs, stock_slug, mark)
@@ -837,24 +855,66 @@ def build():
     changed += listing("week", "주간 시장 브리핑", "경제 유튜브 채널들의 한 주 흐름을 종합한 주간 브리핑 목록이다.",
                        "".join(f'<li><a href="{href("week/" + w + "/")}"><b>{e(m.get("headline"))}</b><small>{e(sdate(w))} ~ {e(sdate(m.get("end")))} · 영상 {e(m.get("videos"))}편</small></a></li>'
                                for w, m in sorted(man["week"].items(), reverse=True)), nav_on="brief")
-    stock_bar = ('<div class="vbar"><input id="sq" type="search" placeholder="종목 이름 검색" aria-label="종목 검색">'
-                 '<div class="chips" id="sr"><button class="chip" data-r="7">7일</button><button class="chip" data-r="30" aria-pressed="true">30일</button><button class="chip" data-r="all">전체</button></div></div>')
+    # 종목 탭: 이번 주 언급 순위 (지난주 대비 순위 변동, 14일 추이, 한 줄 요약). 최근 2주 언급이 없는 종목은 아래 '그 밖의 종목'
+    stock_bar = '<div class="vbar"><input id="sq" type="search" placeholder="종목 이름 검색" aria-label="종목 검색"></div>'
     stock_js = """<script>
-(()=>{const q=document.getElementById("sq"),rows=[...document.querySelectorAll("#plist li")];let r="30";
+(()=>{const q=document.getElementById("sq"),rows=[...document.querySelectorAll("[data-name]")];
 const p=new URLSearchParams(location.search).get("q");if(p)q.value=p;
 const nk=s=>s.replace(/[\\s·・\\-_.()（）]/g,"").toUpperCase();
-function f(){const cut=r==="all"?"":new Date(Date.now()+9*36e5-(+r-1)*864e5).toISOString().slice(0,10),k=nk(q.value);let n=0;
-rows.forEach(li=>{const ok=(!cut||li.dataset.last>=cut)&&(!k||nk(li.dataset.name).includes(k));li.hidden=!ok;if(ok)n++});
-document.querySelectorAll("#sr .chip").forEach(b=>b.setAttribute("aria-pressed",b.dataset.r===r));
-let em=document.getElementById("sempty");if(!em){em=document.createElement("div");em.id="sempty";em.className="empty";em.textContent="조건에 맞는 종목이 없다.";document.getElementById("plist").after(em)}em.hidden=n>0}
-q.addEventListener("input",f);document.getElementById("sr").addEventListener("click",e=>{const b=e.target.closest(".chip");if(b){r=b.dataset.r;f()}});f()})();
+function f(){const k=nk(q.value);let n=0;rows.forEach(li=>{const ok=!k||nk(li.dataset.name).includes(k);li.hidden=!ok;if(ok)n++});
+let em=document.getElementById("sempty");if(!em){em=document.createElement("div");em.id="sempty";em.className="empty";em.textContent="조건에 맞는 종목이 없다.";q.parentNode.after(em)}em.hidden=n>0}
+q.addEventListener("input",f);f()})();
 </script>"""
-    changed += listing("stock", "종목", "여러 경제 유튜브 채널에서 언급된 종목을 종목별로 모아 채널들의 시각을 정리했다.",
-                       "".join(f'<li data-name="{e(m.get("name"))}" data-last="{e(m.get("last") or "")}"><a href="{href("stock/" + quote(s_) + "/")}"><b>{e(m.get("name"))}'
-                               + (f'<span class="tone t{e(m.get("tone"))}">{e(m.get("tone"))}</span>' if m.get("tone") else "")
-                               + f'</b><small>영상 {e(m.get("count"))}편{" · " + str(m.get("channels")) + "채널" if m.get("channels") else ""}{" · 마지막 언급 " + sdate(m.get("last")) if m.get("last") else ""}</small></a></li>'
-                               for s_, m in sorted(man["stock"].items(), key=lambda x: (-(x[1].get("count") or 0), x[1].get("name") or ""))),
-                       nav_on="stocks", extra=stock_bar, script=stock_js)
+    items_ = list(man["stock"].items())
+    PERS = {"day": ("일간", "최근 24시간", "전날 대비", 7), "week": ("주간", "이번 주", "지난주 대비", 14), "month": ("월간", "최근 30일", "지난달 대비", 30)}
+
+    def pv(m, mode):
+        x = (m.get("per") or {}).get(mode)
+        return x if x else [0, 0, [0] * PERS[mode][3]]
+
+    def ranked_of(mode):
+        return sorted([x for x in items_ if pv(x[1], mode)[0] + pv(x[1], mode)[1] > 0],
+                      key=lambda x: (-pv(x[1], mode)[0], -pv(x[1], mode)[1], -(x[1].get("count") or 0), x[1].get("name") or ""))
+
+    def rank_html(mode):
+        rk_ = ranked_of(mode)
+        prev = [s_ for s_, m in sorted([x for x in rk_ if pv(x[1], mode)[1] > 0], key=lambda x: -pv(x[1], mode)[1])]
+        mxb = max([max(pv(m, mode)[2] or [0]) for _, m in rk_] + [1])
+
+        def move(s_, j):
+            if s_ not in prev:
+                return '<span class="nkd new">NEW</span>'
+            k = prev.index(s_)
+            return f'<span class="nkd up">▲{k - j}</span>' if k > j else f'<span class="nkd dn">▼{j - k}</span>' if k < j else '<span class="nkd">–</span>'
+
+        def bars(b):
+            return f'<span class="nkt" title="최근 {len(b)}일 언급">' + "".join(f'<i style="height:{max(14, round(n / mxb * 100)) if n else 6}%"{"" if n else " class=z"}></i>' for n in b) + "</span>"
+
+        return "".join(
+            f'<div class="nk" data-name="{e(m.get("name"))}"><a class="nkh nkl" href="{href("stock/" + quote(s_) + "/")}"><span class="nkr">{j + 1}{move(s_, j)}</span>'
+            f'<span class="nkm"><b>{e(m.get("name"))}' + (f' <span class="tone t{e(m.get("tone"))}">{e(m.get("tone"))}</span>' if m.get("tone") else "")
+            + f'</b><small>{e(m.get("one") or "")}</small></span><span class="nkc"><b>{pv(m, mode)[0]}편</b></span>{bars(pv(m, mode)[2])}</a></div>'
+            for j, (s_, m) in enumerate(rk_))
+
+    def head(mode):
+        n, cur, prv, nb = PERS[mode]
+        chips = "".join(f'<button class="chip" data-per="{k}" aria-pressed="{str(k == mode).lower()}">{v[0]}</button>' for k, v in PERS.items())
+        return f'<div class="nkhd"><span>화제 종목</span><small>{cur} 언급 영상 수 순 · {prv} 순위 · 최근 {nb}일 추이</small><div class="chips nper">{chips}</div></div>'
+
+    # 기간 버튼: 세 기간의 순위를 미리 만들어 두고 버튼으로 바꿔 보여 준다 (검색엔진은 기본인 주간을 읽는다)
+    panels = "".join(f'<div class="sper" data-p="{k}"{"" if k == "week" else " hidden"}>{head(k)}' + (f'<div class="nks sks">{rank_html(k)}</div>' if rank_html(k) else f'<div class="empty">{PERS[k][1]} 동안 언급된 종목이 없다.</div>') + "</div>" for k in PERS)
+    in_any = {s_ for k in PERS for s_, _ in ranked_of(k)}
+    rest = sorted([x for x in items_ if x[0] not in in_any], key=lambda x: (x[1].get("last") or ""), reverse=True)
+    rs = "".join(f'<li data-name="{e(m.get("name"))}"><a href="{href("stock/" + quote(s_) + "/")}"><b>{e(m.get("name"))}</b>'
+                 f'<small>영상 {e(m.get("count"))}편{" · 마지막 언급 " + sdate(m.get("last")) if m.get("last") else ""}</small></a></li>' for s_, m in rest)
+    stock_js = stock_js.replace("q.addEventListener(\"input\",f);f()",
+                                "q.addEventListener(\"input\",f);document.addEventListener(\"click\",e=>{const b=e.target.closest&&e.target.closest(\"[data-per]\");if(!b)return;"
+                                "document.querySelectorAll(\".sper\").forEach(x=>x.hidden=x.dataset.p!==b.dataset.per);"
+                                "document.querySelectorAll(\"[data-per]\").forEach(x=>x.setAttribute(\"aria-pressed\",x.dataset.per===b.dataset.per))});f()")
+    sbody = ('<div class="brief"><h1 style="margin-top:0">종목</h1>' + stock_bar + panels
+             + (f'<h2 class="bt c4" style="margin-top:26px">그 밖의 종목<span class="cn">{len(rest)}</span></h2><ul class="plist">{rs}</ul>' if rs else "")
+             + "</div>" + stock_js)
+    changed += write("stock", page("stock/", "종목", "여러 경제 유튜브 채널에서 언급된 종목을 이번 주 언급 순위로 모으고, 채널들의 시각을 정리했다.", sbody, kind="list", nav_on="stocks"))
 
     # 홈 대시보드: index.html 의 <!--DASH:START--> ~ <!--DASH:END--> 사이를 미리 만든 화면으로 채운다 (검색에 잡히게)
     changed += build_dash(read_const(ROOT / "videos.js", "VIDEOS", []), briefs, weekly, digests, man)
