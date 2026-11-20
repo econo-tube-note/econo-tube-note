@@ -3,10 +3,11 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "현재 주가는 과도하게 저평가되어 있으나, 시장 수급과 변동성에 큰 영향을 받고 있다. 파운드리 역량과 실적 체력에 대한 긍정적 시각과 제한적인 반등 폭에 대한 우려가 공존한다.",
+  "summary": "주가가 과도하게 저평가되어 있으나 시장 수급과 변동성에 큰 영향을 받고 있다.",
   "points": [
-   "현재 주가는 과도하게 저평가된 상태이나 시장 수급과 변동성에 크게 흔들린다.",
-   "파운드리 역량 강화와 신규 주문 수혜가 기대되나 상단 반등 폭은 제한적이다."
+   "현재 주가는 밸류에이션상 과도하게 저평가된 상태다.",
+   "시장 수급과 외국계 창구의 매도세에 영향을 받는다.",
+   "파운드리 역량과 신규 주문 수혜가 기회 요인이다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -56,6 +57,7 @@ const STOCKSUM={
    "SnQAb8i2xO4",
    "TDGVrEKXU5M",
    "TV3diSFaZIU",
+   "Tzc0KuusVbI",
    "UhA5xmTjqJ4",
    "UlNBpokQfVk",
    "W3AvtA5OwVE",
@@ -68,6 +70,7 @@ const STOCKSUM={
    "bsmFdEtKWqM",
    "c6LAHhYBSDI",
    "cZKNKIAXEfY",
+   "cZn4q_KfdjY",
    "cpvUuHMLsgI",
    "d9rmKdDS43w",
    "dOy04iFw5_U",
@@ -105,7 +108,7 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 95,
+  "count": 97,
   "updated": "2026-11-20"
  },
  "엔비디아": {
@@ -195,11 +198,11 @@ const STOCKSUM={
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "혼재",
-  "summary": "외국인 매도세와 시장 하락으로 주가 변동성이 커졌으나 견고한 HBM 수요와 밸류에이션 매력에 대한 기대감도 공존한다.",
+  "summary": "악재가 반영된 저점 구간이라는 시각과 시장 하락 우려가 겹치며 추가 반등 여부에 촉각을 곤두세우고 있다.",
   "points": [
-   "외국인 매도세와 시장 약세 속에서 주가 하락과 전저점 방어 여부가 언급된다.",
-   "2029년까지 HBM 수요가 견고하고 장비 발주가 이어지고 있다.",
-   "엔비디아 이익률 변동에 따른 가격 협상력 약화 우려가 존재한다."
+   "악재가 반영되어 PER 2.7배 수준까지 조정을 받았다.",
+   "2029년까지 HBM 수요가 견고하고 HBM4 장비 발주를 본격화한다.",
+   "시장 약세와 외국인 매도세로 인해 전저점 방어 여부가 중요하다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -250,6 +253,7 @@ const STOCKSUM={
    "SnQAb8i2xO4",
    "TDGVrEKXU5M",
    "TV3diSFaZIU",
+   "Tzc0KuusVbI",
    "UhA5xmTjqJ4",
    "UlNBpokQfVk",
    "W3AvtA5OwVE",
@@ -263,6 +267,7 @@ const STOCKSUM={
    "c6LAHhYBSDI",
    "c7f9jtyq9yw",
    "cZKNKIAXEfY",
+   "cZn4q_KfdjY",
    "cpvUuHMLsgI",
    "d9rmKdDS43w",
    "dOy04iFw5_U",
@@ -298,7 +303,7 @@ const STOCKSUM={
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 95,
+  "count": 97,
   "updated": "2026-11-20"
  },
  "코어위브": {
