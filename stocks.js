@@ -114,11 +114,11 @@ const STOCKSUM={
  "엔비디아": {
   "name": "엔비디아",
   "tone": "혼재",
-  "summary": "견고한 실적과 수요에도 불구하고 장기 비전 불확실성과 정치적 규제 우려가 공존한다.",
+  "summary": "실적 호조와 목표가 상향에도 불구하고 AI 모멘텀 꺾임 우려와 경영진 관련 악재가 겹쳐 높은 변동성을 보인다.",
   "points": [
-   "강력한 수요와 신제품 출시로 실적은 견고하다.",
-   "중국의 수출 규제와 정치적 영향력 우려가 존재한다.",
-   "높은 기대감과 AI 투자 사이클에 대한 우려가 있다."
+   "순환 자본 문제와 공급단 이슈 및 중국 관련 악재로 AI 모멘텀 꺾임 우려가 제기된다.",
+   "주가 하락으로 가격 매력이 커졌다는 평가와 과거처럼 매수 기회가 될 수 있다는 의견이 있다.",
+   "호실적 발표에도 불구하고 불확실한 장기 비전과 경영진 부재로 주가 모멘텀이 약화되었다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -129,6 +129,7 @@ const STOCKSUM={
    "54G-uaVm_OA",
    "5k0zCfIFr8w",
    "7WVn5WmOlsA",
+   "7ctnlT1jlyQ",
    "8O7iSTMZ-84",
    "9MXwHlep8wQ",
    "AydkVh-c6GI",
@@ -148,22 +149,31 @@ const STOCKSUM={
    "LEYOVBYtp3Q",
    "LagAldYbD8M",
    "NCGhP2Vyods",
+   "ODiEz3dslcE",
    "P1m0QaKWzG0",
    "PREEBWeBwhs",
    "PZLLj9tHYlQ",
    "Q_Pgdi25lg0",
    "QoEfnBKO5zU",
+   "QwhGDJbSGvU",
    "TDGVrEKXU5M",
+   "TIWNv1fcSHs",
+   "TV3diSFaZIU",
+   "Tzc0KuusVbI",
    "UihZAstNiGU",
+   "UlNBpokQfVk",
    "VZv-QcnXCN4",
+   "X1D0cQjwrkU",
    "XPSgxVcev3E",
    "_0ePh1KmGdc",
    "axG8buIPalY",
    "c7f9jtyq9yw",
+   "cZn4q_KfdjY",
    "cpvUuHMLsgI",
    "dHmiFEuyjWw",
    "dra2apL7dEg",
    "eFnxFsUiMvs",
+   "fNFna6Mp5Dg",
    "fdk1qjtZYA0",
    "h40ZIc8mx-c",
    "igdgKOPRR_4",
@@ -184,6 +194,7 @@ const STOCKSUM={
    "t9R5tJ0zR34",
    "ue4sG-vBq7Y",
    "vC7v55f8sdo",
+   "vMcjzb9nK9s",
    "vVe3kbl0k44",
    "xZHld6KdReU",
    "xjVdgtREpc4",
@@ -192,7 +203,7 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 70,
+  "count": 81,
   "updated": "2026-11-20"
  },
  "SK하이닉스": {
@@ -799,22 +810,24 @@ const STOCKSUM={
  },
  "삼성전기": {
   "name": "삼성전기",
-  "tone": "긍정",
-  "summary": "엔비디아와의 기판 및 MLCC 공급 계약 기대감으로 실적 성장과 주가 강세가 이어지고 있다. 저평가 매력과 수급 개선이 더해져 시장 대비 우수한 성과를 보인다.",
+  "tone": "혼재",
+  "summary": "엔비디아 관련 기판과 MLCC 공급 기대감으로 강세를 보였으나, 최근 외국계 매도와 높은 밸류에이션으로 비중 축소 의견도 나온다.",
   "points": [
-   "엔비디아와의 기판 및 MLCC 공급 계약이 실적 성장의 핵심 동력으로 평가된다.",
-   "실적 성장세 대비 주가수익비율이 낮아 저평가 상태라는 분석이 지배적이다.",
-   "최근 외국인과 기관의 수급이 개선되며 강한 반등세를 주도하고 있다."
+   "엔비디아와의 기판 및 MLCC 공급 계약 기대감이 주가 상승을 이끌었다.",
+   "높은 밸류에이션과 외국계 매도 집중으로 일부 비중 축소 의견이 존재한다."
   ],
   "ids": [
+   "-HaqruPY5Rg",
    "09Ij_WyfeMs",
    "22mEZYyDpZA",
    "6g110iUWTVo",
+   "7ctnlT1jlyQ",
    "FeBExCVpt4U",
    "FlUs8YY8aAE",
    "KHKXu_kP8_Y",
    "RiLTQh6mqws",
    "RkpF-xeoalw",
+   "Tzc0KuusVbI",
    "UhA5xmTjqJ4",
    "VZv-QcnXCN4",
    "WiHMm0NkGEE",
@@ -827,7 +840,7 @@ const STOCKSUM={
    "xjVdgtREpc4",
    "yLhZiyCgAjY"
   ],
-  "count": 19,
+  "count": 22,
   "updated": "2026-11-20"
  },
  "지니언스": {

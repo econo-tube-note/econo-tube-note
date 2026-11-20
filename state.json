@@ -64,7 +64,10 @@
   "--bLyqi3ULE": "너무 짧음",
   "E3SX1XylsjA": "경제 무관: 증권사 채널이지만 경제나 투자가 아닌 개인의 이집트 여행 이야기를 다룬 영상이다.",
   "bQOYdqsuNQI": "너무 긴 영상(329분)",
-  "8ZS2VyTY9lk": "너무 긴 영상(379분)"
+  "8ZS2VyTY9lk": "너무 긴 영상(379분)",
+  "gKmdic7MN3A": "너무 짧음",
+  "-0nrVVagZNA": "너무 짧음",
+  "S5O9dLg4dZU": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -75,13 +78,13 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 16,
-   "busy": 23,
+   "ok": 8,
+   "busy": 13,
    "dead": 4
   },
   "gemini-3.7-flash": {
-   "ok": 4,
-   "busy": 36,
+   "ok": 2,
+   "busy": 18,
    "dead": 4
   },
   "gemini-3.8-flash": {
@@ -212,7 +215,21 @@
   "vhsLz4kwn4k": true,
   "AEDvqamCuQ0": true,
   "CNBjRDb6JGo": true,
-  "--bLyqi3ULE": true
+  "--bLyqi3ULE": true,
+  "gKmdic7MN3A": true,
+  "2gvPe2UYxNI": true,
+  "waz9eTAJIxU": true,
+  "_1luAl4h7rw": true,
+  "5JRbO5-Mtaw": true,
+  "bLg89ute0zQ": true,
+  "-vR1-SjKtXI": true,
+  "hjhrT8EtTjg": true,
+  "-TQxyxikegQ": true,
+  "qoCflgBmkpA": true,
+  "kXGnjB4FYIk": true,
+  "-0nrVVagZNA": true,
+  "S5O9dLg4dZU": true,
+  "JVtGCzfB7NA": true
  },
  "brief_final": {
   "2026-11-13": true,
