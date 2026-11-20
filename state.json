@@ -82,7 +82,7 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 13,
+   "ok": 15,
    "busy": 10,
    "dead": 4
   },
