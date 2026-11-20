@@ -80,13 +80,13 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 19,
-   "busy": 15,
+   "ok": 24,
+   "busy": 16,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 2,
-   "busy": 20,
+   "busy": 21,
    "dead": 4
   },
   "gemini-3.8-flash": {
@@ -95,7 +95,7 @@
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 15,
+   "ok": 16,
    "busy": 5,
    "dead": 4
   },
@@ -219,15 +219,10 @@
   "CNBjRDb6JGo": true,
   "--bLyqi3ULE": true,
   "gKmdic7MN3A": true,
-  "_1luAl4h7rw": true,
   "bLg89ute0zQ": true,
-  "hjhrT8EtTjg": true,
   "-TQxyxikegQ": true,
-  "qoCflgBmkpA": true,
-  "kXGnjB4FYIk": true,
   "-0nrVVagZNA": true,
   "S5O9dLg4dZU": true,
-  "JVtGCzfB7NA": true,
   "eFs9dqDWLyk": true,
   "wJnuW-qeUDs": true,
   "ByMmWIxsB4E": true
@@ -238,6 +233,7 @@
   "2026-11-16": true,
   "2026-11-17": true,
   "2026-11-18": true,
-  "2026-11-19": true
+  "2026-11-19": true,
+  "2026-11-20": true
  }
 }

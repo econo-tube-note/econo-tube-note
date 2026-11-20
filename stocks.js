@@ -3,11 +3,10 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "악재로 인한 주가 급락과 저평가 매력이 공존하며, 수급과 반등 시점에 대한 의견이 나뉜다.",
+  "summary": "글로벌 반도체 업황 악화와 규제 리스크로 주가가 급락했으나, 밸류에이션 매력과 실적 안정성을 근거로 반등 가능성을 기대하는 시각이 공존한다.",
   "points": [
-   "미 대중 수출 규제와 외국인 매도로 주가가 큰 폭으로 하락했다.",
-   "현재 주가는 밸류에이션상 저평가 구간이나 수급 영향으로 빠른 반등은 어렵다.",
-   "소부장 대비 안정성이 높고 향후 파운드리 역량이 기회 요인으로 꼽힌다."
+   "글로벌 반도체 업황 부진과 미·중 규제 리스크로 인해 외국인 매도세가 강하게 나타났다.",
+   "낮아진 밸류에이션과 실적 안정성을 바탕으로 한 저점 매수 의견과 개인 매수 과다로 인한 반등 지연 의견이 대립한다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -41,6 +40,7 @@ const STOCKSUM={
    "GzDMiPDUZr0",
    "IQPubZrMfH8",
    "IU-2OFhVB4I",
+   "JVtGCzfB7NA",
    "JYyoOyLbEdY",
    "Jn91NmZyGBg",
    "K101Dy3FU1w",
@@ -68,6 +68,7 @@ const STOCKSUM={
    "XrMcS9HJQQQ",
    "ZCzUlVm2jSg",
    "_0ePh1KmGdc",
+   "_1luAl4h7rw",
    "_JMuWDJzLJg",
    "bYGImu0Xhag",
    "bsmFdEtKWqM",
@@ -83,9 +84,11 @@ const STOCKSUM={
    "f_Pb9-42cUE",
    "fdk1qjtZYA0",
    "h40ZIc8mx-c",
+   "hjhrT8EtTjg",
    "igdgKOPRR_4",
    "j8RY_qFNvCk",
    "jSVzxKubRcQ",
+   "kXGnjB4FYIk",
    "kZAYyNhv5p4",
    "kyUbMfnczE0",
    "l6BRztXR5jo",
@@ -108,6 +111,7 @@ const STOCKSUM={
    "vCEYiChFcnA",
    "vVe3kbl0k44",
    "vqB7JpqjRy0",
+   "wZYpDi0Wdso",
    "waz9eTAJIxU",
    "xrqbovX16L8",
    "yrEcOVH79Pc",
@@ -115,8 +119,8 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 104,
-  "updated": "2026-11-20"
+  "count": 109,
+  "updated": "2026-11-21"
  },
  "엔비디아": {
   "name": "엔비디아",
@@ -216,11 +220,11 @@ const STOCKSUM={
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "혼재",
-  "summary": "기술주 투매와 목표가 하향 등 악재로 급락했으나, 실적 대비 지나친 저평가 상태라는 의견과 엔비디아 관련 우려가 혼재한다.",
+  "summary": "반도체 업황 우려와 투매로 주가가 급락했으나, 역사적 저평가 구간에 진입했다는 의견이 지배적이다. 수급 개선 시 단기 반등 가능성이 제기된다.",
   "points": [
-   "악재 반영으로 PER 2.7배 수준까지 조정을 받았다.",
-   "키옥시아 전환사채의 주식 전환을 검토하고 있다.",
-   "엔비디아 이익률이 꺾이면 가격 협상력이 약화될 수 있다."
+   "업황 우려와 투매로 주가가 급락했으나 실적 대비 과도한 저평가 상태라는 평가가 많다.",
+   "신용 매도 물량 소화와 숏커버링 유입 시 단기적으로 강한 반등이 나타날 수 있다.",
+   "시장 영향력이 큰 대형주로서 지수 하락을 주도하며 매물 부담을 안고 있다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -256,6 +260,7 @@ const STOCKSUM={
    "G_CPMSwOIP0",
    "IQPubZrMfH8",
    "IU-2OFhVB4I",
+   "JVtGCzfB7NA",
    "JYyoOyLbEdY",
    "Jn91NmZyGBg",
    "K101Dy3FU1w",
@@ -282,6 +287,7 @@ const STOCKSUM={
    "XrMcS9HJQQQ",
    "ZCzUlVm2jSg",
    "_0ePh1KmGdc",
+   "_1luAl4h7rw",
    "_JMuWDJzLJg",
    "bYGImu0Xhag",
    "bsmFdEtKWqM",
@@ -300,6 +306,7 @@ const STOCKSUM={
    "hEq902LKr3k",
    "hgo5J-kQ_Ck",
    "igdgKOPRR_4",
+   "kXGnjB4FYIk",
    "kZAYyNhv5p4",
    "l6BRztXR5jo",
    "lBlGFVbqgXE",
@@ -320,14 +327,15 @@ const STOCKSUM={
    "vCEYiChFcnA",
    "vVe3kbl0k44",
    "vqB7JpqjRy0",
+   "wZYpDi0Wdso",
    "waz9eTAJIxU",
    "xrqbovX16L8",
    "yrEcOVH79Pc",
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 102,
-  "updated": "2026-11-20"
+  "count": 106,
+  "updated": "2026-11-21"
  },
  "코어위브": {
   "name": "코어위브",
