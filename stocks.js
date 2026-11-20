@@ -859,10 +859,11 @@ const STOCKSUM={
  "삼성전기": {
   "name": "삼성전기",
   "tone": "혼재",
-  "summary": "엔비디아 관련 기판과 MLCC 공급 기대감으로 강세를 보였으나, 최근 외국계 매도와 높은 밸류에이션으로 비중 축소 의견도 나온다.",
+  "summary": "엔비디아 관련 수주 기대감과 실적 성장세로 강세를 보였으나, 최근 AI 밸류체인 급락과 높은 밸류에이션 부담으로 하락세도 나타났다.",
   "points": [
-   "엔비디아와의 기판 및 MLCC 공급 계약 기대감이 주가 상승을 이끌었다.",
-   "높은 밸류에이션과 외국계 매도 집중으로 일부 비중 축소 의견이 존재한다."
+   "엔비디아 공급 계약 및 기판 사업 확대로 실적 성장 기대감이 반영되었다.",
+   "AI 밸류체인 급락과 외국계 매도로 인해 큰 폭의 하락세를 겪었다.",
+   "높은 밸류에이션과 리스크 관리를 위해 비중 축소가 필요하다는 의견이 있다."
   ],
   "ids": [
    "-HaqruPY5Rg",
@@ -870,8 +871,10 @@ const STOCKSUM={
    "22mEZYyDpZA",
    "6g110iUWTVo",
    "7ctnlT1jlyQ",
+   "AWknNSPEM1g",
    "FeBExCVpt4U",
    "FlUs8YY8aAE",
+   "JVtGCzfB7NA",
    "KHKXu_kP8_Y",
    "RiLTQh6mqws",
    "RkpF-xeoalw",
@@ -888,8 +891,8 @@ const STOCKSUM={
    "xjVdgtREpc4",
    "yLhZiyCgAjY"
   ],
-  "count": 22,
-  "updated": "2026-11-20"
+  "count": 24,
+  "updated": "2026-11-21"
  },
  "지니언스": {
   "name": "지니언스",
@@ -1011,5 +1014,35 @@ const STOCKSUM={
   ],
   "count": 2,
   "updated": "2026-11-18"
+ },
+ "엔트로픽": {
+  "name": "엔트로픽",
+  "tone": "혼재",
+  "summary": "대규모 자금 조달로 AI 인프라 투자 기대감이 있으나, 적자 우려와 밸류에이션 부담, 높은 변동성으로 신중한 접근이 필요하다는 시각이 공존한다.",
+  "points": [
+   "대규모 자금 조달에 성공하며 AI 인프라 투자 확대와 국내 반도체 기업에 대한 호재로 작용한다.",
+   "막대한 인프라 비용으로 인한 2030년까지의 적자 누적 우려와 밸류에이션 부담이 제기된다.",
+   "상장 직후 차익 매물과 락업 해제 물량으로 인해 주가 변동성이 커질 수 있다."
+  ],
+  "ids": [
+   "-PVT3Gp45SE",
+   "6g110iUWTVo",
+   "ODiEz3dslcE",
+   "PREEBWeBwhs",
+   "X1D0cQjwrkU",
+   "_1luAl4h7rw",
+   "axG8buIPalY",
+   "axY9mi3lmok",
+   "bYGImu0Xhag",
+   "d9rmKdDS43w",
+   "igdgKOPRR_4",
+   "kXGnjB4FYIk",
+   "kgPvRNvkX0k",
+   "mW4Bp0uo0eQ",
+   "wZYpDi0Wdso",
+   "waz9eTAJIxU"
+  ],
+  "count": 16,
+  "updated": "2026-11-21"
  }
 };
