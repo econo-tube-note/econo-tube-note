@@ -273,7 +273,7 @@ def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_
 {body}
 
 <p class="note">AI가 경제 유튜브 영상과 그 요약을 종합한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
-<footer class="sitefoot"><a href="{BASE}about/">사이트 소개</a><a href="{BASE}privacy/">개인정보처리방침</a><a href="mailto:{e(CONTACT)}">문의 {e(CONTACT)}</a></footer>
+<footer class="sitefoot"><a href="https://t.me/marketraven" target="_blank" rel="noopener">텔레그램으로 브리핑 받기</a><a href="{BASE}about/">사이트 소개</a><a href="{BASE}privacy/">개인정보처리방침</a><a href="mailto:{e(CONTACT)}">문의 {e(CONTACT)}</a></footer>
 </div>{POP_JS}</body></html>
 """
 
@@ -805,6 +805,7 @@ def build():
                 + (f'<a class="link" href="{href("week/" + wk + "/")}">이 주의 주간 브리핑 →</a>' if wk in week_keys else "")
                 + f'<a class="link" href="{href("brief/")}">브리핑 모아보기</a>'
                 + '<button class="link shr" data-share type="button">공유하기</button>'
+                + '<a class="link" href="https://t.me/marketraven" target="_blank" rel="noopener">텔레그램으로 받기</a>'
                 + f'<span class="bdates">{dates}</span></div>'
                 f'<h1>{e(b.get("headline"))}</h1>{kp_list(b.get("keypoints"))}{note_box(notes, d)}'
                 + sect("핵심 주제", len(b.get("themes") or []), th and f'<div class="tgrid">{th}</div>', "c1", "themes")
