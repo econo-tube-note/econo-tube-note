@@ -143,11 +143,11 @@ const STOCKSUM={
  "엔비디아": {
   "name": "엔비디아",
   "tone": "혼재",
-  "summary": "우수한 실적과 낮은 밸류에이션으로 가격 매력이 부각되나, 회계 및 경영진 리스크와 순환 금융 우려가 공존한다.",
+  "summary": "우수한 실적과 가격 매력에도 불구하고 회계 조사와 AI 수익성 의구심 등으로 주가 변동성이 크다.",
   "points": [
-   "PER이 하락하며 가격 매력과 저평가 가치가 형성되었다.",
-   "CEO 스캔들 및 경영진 불확실성이 리스크로 지적된다.",
-   "순환 금융 구조와 매출채권 관련 우려가 존재한다."
+   "실적은 우수하나 AI 수익성과 미래 비전에 대한 의구심이 존재한다.",
+   "SEC 회계 조사와 스캔들 이슈 등 다양한 악재가 겹쳐 주가가 폭락했다.",
+   "고점 대비 하락으로 가격 매력이 생겼으나 리스크 요인도 함께 지적된다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -156,6 +156,7 @@ const STOCKSUM={
    "1PvkBMtMkyk",
    "2NXRZFCSWcs",
    "2gvPe2UYxNI",
+   "3LipybrcW5U",
    "3PTKmp5zdh8",
    "4-y8e6UGd88",
    "54G-uaVm_OA",
@@ -181,6 +182,7 @@ const STOCKSUM={
    "KopQpHNgc4k",
    "LEYOVBYtp3Q",
    "LagAldYbD8M",
+   "M0Ak8p29VyQ",
    "NCGhP2Vyods",
    "ODiEz3dslcE",
    "OMvVIVMcSWc",
@@ -198,10 +200,14 @@ const STOCKSUM={
    "UihZAstNiGU",
    "UlNBpokQfVk",
    "VZv-QcnXCN4",
+   "VwUvt3aGsLI",
    "X1D0cQjwrkU",
    "XPSgxVcev3E",
+   "Zt0LLfeAGEY",
    "_0ePh1KmGdc",
+   "_1kONGeso8M",
    "_1luAl4h7rw",
+   "aae79w527FQ",
    "axG8buIPalY",
    "bLg89ute0zQ",
    "c7f9jtyq9yw",
@@ -223,6 +229,7 @@ const STOCKSUM={
    "lBlGFVbqgXE",
    "lChAcS0iIaA",
    "mLfghqfrG1g",
+   "mVbORW1vjDY",
    "mW4Bp0uo0eQ",
    "maYCQ85ygu8",
    "n16GTXBi7e0",
@@ -245,8 +252,8 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 94,
-  "updated": "2026-11-21"
+  "count": 101,
+  "updated": "2026-11-22"
  },
  "SK하이닉스": {
   "name": "SK하이닉스",
@@ -405,15 +412,16 @@ const STOCKSUM={
  "AMD": {
   "name": "AMD",
   "tone": "부정",
-  "summary": "공매도 리포트와 수출 제약 등 여러 악재가 겹치며 주가가 하락 압력을 받았다.",
+  "summary": "미중 규제 우려와 공매도 리포트 여파로 주가가 급락하며 부정적 영향을 받고 있다.",
   "points": [
-   "공매도 리포트 발표와 중국 수출 제약 및 규제 위반 의혹으로 주가가 급락했다.",
-   "높은 중국 매출 의존도와 순환 금융 의혹이 주가 하락의 원인으로 지적됐다.",
-   "엔비디아 생태계가 흔들릴 경우 GPU 시장 점유율을 확대할 기회를 얻는다는 의견도 있다."
+   "공매도 리포트 발표와 규제 위반 의혹으로 주가가 급락했다.",
+   "미국의 대중국 수출 규제 강화와 높은 중국 의존도가 부담으로 작용한다.",
+   "엔비디아 생태계가 흔들릴 경우 GPU 시장 점유율 확대 기회가 있다."
   ],
   "ids": [
    "-HaqruPY5Rg",
    "1PvkBMtMkyk",
+   "3LipybrcW5U",
    "5k0zCfIFr8w",
    "BIhFDJtoK6k",
    "ByMmWIxsB4E",
@@ -423,6 +431,7 @@ const STOCKSUM={
    "KOho88gAhO4",
    "KopQpHNgc4k",
    "LagAldYbD8M",
+   "M0Ak8p29VyQ",
    "ODiEz3dslcE",
    "P1m0QaKWzG0",
    "PREEBWeBwhs",
@@ -432,6 +441,7 @@ const STOCKSUM={
    "UlNBpokQfVk",
    "X1D0cQjwrkU",
    "XrMcS9HJQQQ",
+   "Zt0LLfeAGEY",
    "_0ePh1KmGdc",
    "_1luAl4h7rw",
    "axY9mi3lmok",
@@ -445,8 +455,8 @@ const STOCKSUM={
    "uPfwN34xlpE",
    "waz9eTAJIxU"
   ],
-  "count": 32,
-  "updated": "2026-11-21"
+  "count": 35,
+  "updated": "2026-11-22"
  },
  "셀트리온": {
   "name": "셀트리온",
