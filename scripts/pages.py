@@ -165,6 +165,11 @@ a.vc{color:inherit;text-decoration:none}
 .vhero i{position:absolute;inset:0;margin:auto;width:44px;height:31px;border-radius:9px;background:rgba(0,0,0,.7);color:#fff;font-style:normal;display:flex;align-items:center;justify-content:center;font-size:.85rem}
 .vmeta{grid-area:meta;display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px;font-size:.85rem;color:var(--sub)}
 .vmeta b{color:var(--accent)}
+.vshr{all:unset;cursor:pointer;color:var(--sub);font-size:.8rem;border:1px solid var(--line);border-radius:99px;padding:1px 10px}.vshr:hover{color:var(--accent);border-color:var(--accent)}
+.vshr{margin-left:auto}.vmeta a+.vshr{margin-left:6px}
+#shtoast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:#14181f;color:#fff;font-size:.88rem;padding:10px 16px;border-radius:10px;opacity:0;pointer-events:none;transition:.2s;max-width:90vw;word-break:break-all;z-index:99}
+#shtoast.on{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+button.link.shr{font:inherit;cursor:pointer}
 .vmeta a{margin-left:auto;color:var(--sub);text-decoration:none;font-size:.8rem}
 .vmeta a:hover{color:var(--accent)}
 .brief .vh1{grid-area:title;font-size:1.1rem;line-height:1.5;margin:0;font-weight:800;letter-spacing:-.01em}
@@ -211,6 +216,13 @@ a.vc{color:inherit;text-decoration:none}
 """
 
 POP_JS = """<script>
+// 공유하기: 폰에서는 카톡·스레드 등으로 보내는 창, 안 되면 링크 복사
+document.addEventListener("click",async ev=>{const b=ev.target.closest&&ev.target.closest("[data-share]");if(!b)return;
+const u=location.href.split("#")[0],d={title:document.title,url:u};
+try{if(navigator.share){await navigator.share(d);return}}catch(x){if(x&&x.name==="AbortError")return}
+let ok=false;try{await navigator.clipboard.writeText(u);ok=true}catch(x){}
+let t=document.getElementById("shtoast");if(!t){t=document.createElement("div");t.id="shtoast";document.body.appendChild(t)}
+t.textContent=ok?"링크를 복사했다. 붙여넣어 공유하면 된다.":u;t.className="on";clearTimeout(t._h);t._h=setTimeout(()=>t.className="",ok?2200:6000)});
 (()=>{const m=/^#theme-([0-9]+)$/.exec(location.hash);if(!m)return;const go=()=>{const s=document.getElementById("themes"),c=document.getElementById("theme-"+m[1]);
 if(s)s.scrollIntoView({block:"start"});if(c){c.classList.add("flash");setTimeout(()=>c.classList.remove("flash"),2600)}};
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",()=>setTimeout(go,0));else setTimeout(go,0)})();
@@ -276,6 +288,18 @@ def write(path, text):
 
 
 # ---------- 조각 (메인 화면과 같은 모양) ----------
+VBYID = {}  # 영상 ID -> 영상 (build에서 채운다)
+
+
+def who(ref, channel):
+    """엇갈린 시각에 붙는 이름: 채널 · 출연자 (같은 채널 다른 출연자를 구분하려고)"""
+    v = VBYID.get(ref or "") or {}
+    ch = channel or v.get("channel") or ""
+    ppl = [x.strip() for x in str(v.get("people") or "").replace("·", ",").split(",") if x.strip()]
+    same = not channel or not v.get("channel") or channel.split()[0] == str(v.get("channel")).split()[0]  # 연결된 영상의 채널이 다르면 출연자를 붙이지 않는다
+    return ch + (" · " + ", ".join(ppl[:2]) if ppl and same else "")
+
+
 class Frag:
     def __init__(self, V):
         self.V, self.tpl, self.n = V, {}, 0
@@ -478,7 +502,7 @@ def build_dash(recent, briefs, weekly, digests, man):
     if b and b.get("disagreements"):
         d = b["disagreements"][0]
         boxes = '<span class="vs">vs</span>'.join(
-            f'<div class="dv"><span>{e(w.get("view"))}</span><a class="dvc" href="{BASE}#v/{e(w.get("ref"))}">{e(w.get("channel"))}</a></div>'
+            f'<div class="dv"><span>{e(w.get("view"))}</span><a class="dvc" href="{BASE}#v/{e(w.get("ref"))}">{e(who(w.get("ref"), w.get("channel")))}</a></div>'
             for w in (d.get("views") or [])[:2])
         parts.append(f'<div class="dj"><h3>주요 쟁점</h3><div class="dis"><b class="dq">{e(d["topic"])}</b><div class="dvs">{boxes}</div></div></div>')
     if parts:
@@ -704,7 +728,7 @@ def build_video_pages(V, man, briefs, stock_slug, mark):
                    'var top=document.querySelector(".vtop");if(top)top.scrollIntoView({behavior:"smooth",block:"start"});});</script>')
         body = (f'<div class="brief vpage">'
                 + f'<div class="vtop"><div class="vmeta"><b>{e(v.get("channel"))}</b><span>{e(kdate(d))}</span>'
-                + (f'<a href="{href("brief/" + d + "/")}">이날 시장 브리핑 →</a>' if d in brief_dates else "") + f'</div><h1 class="vh1">{e(v.get("title"))}</h1>'
+                + (f'<a href="{href("brief/" + d + "/")}">이날 시장 브리핑 →</a>' if d in brief_dates else "") + '<button class="vshr" data-share type="button">공유</button>' + f'</div><h1 class="vh1">{e(v.get("title"))}</h1>'
                 + f'<div class="vhero"><iframe src="https://www.youtube.com/embed/{e(vid)}?rel=0" title="{e(v.get("title"))}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
                 + f'<a class="vyt" href="{yt}" target="_blank" rel="noopener">▶ 유튜브<span class="vyl">에서 원본</span> 보기</a></div>'
                 + f'<div class="digest"><div class="dh"><b>한 줄 결론</b>' + (f'<span class="md m{e(v.get("mood"))}">{e(mood)}</span>' if mood else "")
@@ -732,6 +756,7 @@ def build():
     except Exception:
         pass
     V = {vid_of(v.get("url")): v for v in videos if vid_of(v.get("url"))}
+    VBYID.update(V)
     briefs = read_const(ROOT / "briefs.js", "BRIEFS", [])
     weekly = read_const(ROOT / "briefs.js", "WEEKLY", [])
     digests = read_const(ROOT / "stocks.js", "STOCKSUM", {})
@@ -770,7 +795,7 @@ def build():
         th = "".join(f'<div class="tcard" id="theme-{n + 1}"><b>{e(t["title"])}</b><p data-exp title="눌러서 펼치기">{e(t["summary"])}</p>{F.rel(t.get("refs"))}</div>' for n, t in enumerate(b.get("themes") or []))
         ag = "".join(f'<div class="mrow"><span>{e(a["point"])}</span>{F.rel(a.get("refs"))}</div>' for a in b.get("agreements") or [])
         dg = "".join(f'<div class="dis"><b class="dq">{e(x["topic"])}</b><div class="dvs">'  # 홈과 같은 모양: 테두리 상자 vs 테두리 상자
-                     + '<span class="vs">vs</span>'.join(f'<div class="dv"><span>{e(w["view"])}</span>{F.hv(w.get("ref"), w.get("channel"))}</div>' for w in x.get("views") or [])
+                     + '<span class="vs">vs</span>'.join(f'<div class="dv"><span>{e(w["view"])}</span>{F.hv(w.get("ref"), who(w.get("ref"), w.get("channel")))}</div>' for w in x.get("views") or [])
                      + "</div></div>" for x in b.get("disagreements") or [])
         sk = "".join(f'<div class="sk"><div class="skh"><b>{stock_name(s["name"])}</b><small>{s.get("count", "")}편에서 언급</small></div>'
                      + "".join(f'<div class="mrow"><span>{e(m["view"])}</span>{F.hv(m.get("ref"), m.get("channel"))}</div>' for m in (s.get("mentions") or [])[:4])
@@ -779,6 +804,7 @@ def build():
         body = (f'<div class="brief"><div class="bhead"><b>시장 브리핑</b><span>{e(kdate(d))} · 영상 {b.get("count", len(vids))}편 종합</span>'
                 + (f'<a class="link" href="{href("week/" + wk + "/")}">이 주의 주간 브리핑 →</a>' if wk in week_keys else "")
                 + f'<a class="link" href="{href("brief/")}">브리핑 모아보기</a>'
+                + '<button class="link shr" data-share type="button">공유하기</button>'
                 + f'<span class="bdates">{dates}</span></div>'
                 f'<h1>{e(b.get("headline"))}</h1>{kp_list(b.get("keypoints"))}{note_box(notes, d)}'
                 + sect("핵심 주제", len(b.get("themes") or []), th and f'<div class="tgrid">{th}</div>', "c1", "themes")
@@ -807,7 +833,7 @@ def build():
         sw = "".join(f'<div class="sk"><div class="skh"><b>{stock_name(s["name"])}</b><small>{s.get("videos")}편 · {len(s.get("days") or [])}일</small></div><p>{e(s["note"])}</p></div>'
                      for s in w.get("stocks") or [])
         body = (f'<div class="brief"><div class="bhead"><b>주간 브리핑</b><span>{e(kdate(ws))} ~ {e(kdate(w.get("end")))} · 영상 {w.get("videos", "")}편 종합</span>'
-                f'<a class="link" href="{href("brief/")}#weekly">브리핑 모아보기</a></div>'
+                f'<a class="link" href="{href("brief/")}#weekly">브리핑 모아보기</a><button class="link shr" data-share type="button">공유하기</button></div>'
                 f'<h1>{e(w.get("headline"))}</h1>{kp_list(w.get("keypoints"))}{note_box(notes, "week:" + ws)}'
                 + sect("하루하루의 흐름", len(w.get("flow") or []), fl and f'<dl class="tl">{fl}</dl>', "c1")
                 + sect("이번 주 반복된 주제", len(w.get("recurring") or []), rc and f'<div class="tgrid">{rc}</div>', "c2")
