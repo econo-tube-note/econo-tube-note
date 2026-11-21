@@ -165,10 +165,13 @@ jobs:
         if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.commit.outputs.videos == 'true' }}
         with:
           path: .
+          name: github-pages-${{ github.run_attempt }}   # 다시 실행(Re-run)해도 이름이 겹치지 않게
 
       - id: deployment
         uses: actions/deploy-pages@v4
         if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.commit.outputs.videos == 'true' }}
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}
 
       - name: 실패하면 텔레그램으로 알리기
         if: ${{ failure() }}
