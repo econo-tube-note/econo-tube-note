@@ -3,11 +3,11 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "실적 대비 저평가 상태이나 반도체 노이즈와 외국인 수급 이탈로 약세를 보이고 있다.",
+  "summary": "실적 대비 저평가와 기술력 및 과매도 진입 평가가 있으나, 규제 노이즈와 불확실성으로 주가는 조정을 겪는 중이다.",
   "points": [
-   "연간 80조 원 이익 전망에도 보수적 미래 가치 할인으로 과도하게 눌려 있다.",
-   "역사적 과매도 구간 진입과 자사주 매입에도 반도체 기간 조정을 겪는 중이다.",
-   "미국 규제와 반도체 가격 불확실성에 짓눌려 주가 하락세를 보이고 있다."
+   "실적 대비 주가가 저평가 상태이며 월봉 RSI 등 기준 바닥권을 형성하고 있다는 분석이다.",
+   "미국 및 중국 관련 규제 노이즈와 반도체 가격 불확실성이 주가 상방을 누르고 있다.",
+   "휴머노이드와 앤트로픽 등 AI 기술 및 스타트업 투자를 활발히 진행하고 있다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -70,11 +70,13 @@ const STOCKSUM={
    "UIzSvimZ2s0",
    "UhA5xmTjqJ4",
    "UlNBpokQfVk",
+   "VwUvt3aGsLI",
    "W3AvtA5OwVE",
    "WiHMm0NkGEE",
    "XrMcS9HJQQQ",
    "ZCzUlVm2jSg",
    "_0ePh1KmGdc",
+   "_1kONGeso8M",
    "_1luAl4h7rw",
    "_JMuWDJzLJg",
    "bYGImu0Xhag",
@@ -123,12 +125,13 @@ const STOCKSUM={
    "wZYpDi0Wdso",
    "waz9eTAJIxU",
    "xrqbovX16L8",
+   "xx_6qed6xCg",
    "yrEcOVH79Pc",
    "zYgSmH3Wl_s",
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 117,
+  "count": 120,
   "updated": "2026-11-21"
  },
  "엔비디아": {
@@ -242,11 +245,11 @@ const STOCKSUM={
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "혼재",
-  "summary": "반도체 업황 우려와 주가 하락세가 이어지고 있으나, 과거 사이클과 실적을 바탕으로 한 지지력과 반등 가능성도 함께 언급된다.",
+  "summary": "메모리 강자로서 AI 랠리를 이끌고 있으나 업황 우려와 하락세를 겪고 있다.",
   "points": [
-   "반도체 업황 우려와 기술주 투매세로 인해 주가가 큰 폭의 하락세를 겪었다.",
-   "과거 사이클과 선행 PER 하락 등을 근거로 90만 원 전후 등 주요 지지선에 대한 전망이 나온다.",
-   "메모리 반도체 수익성과 AI 산업 랠리의 주요 축 역할을 평가받고 있다."
+   "메모리 반도체 수익성과 에이전트 시대 대비를 긍정적으로 평가한다.",
+   "반도체 업황 우려와 다운사이클 가능성으로 주가 하락세를 겪고 있다.",
+   "과거 사이클과 지지선 전망을 바탕으로 보유 의견과 하락 가능성이 공존한다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -309,11 +312,13 @@ const STOCKSUM={
    "UIzSvimZ2s0",
    "UhA5xmTjqJ4",
    "UlNBpokQfVk",
+   "VwUvt3aGsLI",
    "W3AvtA5OwVE",
    "WiHMm0NkGEE",
    "XrMcS9HJQQQ",
    "ZCzUlVm2jSg",
    "_0ePh1KmGdc",
+   "_1kONGeso8M",
    "_1luAl4h7rw",
    "_JMuWDJzLJg",
    "bYGImu0Xhag",
@@ -358,11 +363,12 @@ const STOCKSUM={
    "wZYpDi0Wdso",
    "waz9eTAJIxU",
    "xrqbovX16L8",
+   "xx_6qed6xCg",
    "yrEcOVH79Pc",
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 112,
+  "count": 115,
   "updated": "2026-11-21"
  },
  "코어위브": {

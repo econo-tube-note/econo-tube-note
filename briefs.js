@@ -2,8 +2,13 @@
 const BRIEFS=[
  {
   "date": "2026-11-21",
-  "count": 9,
+  "count": 14,
   "sources": [
+   "VwUvt3aGsLI",
+   "xx_6qed6xCg",
+   "_1kONGeso8M",
+   "Z2BQV9OYynA",
+   "Cg3blW1uJ-I",
    "pevfIGVAFFs",
    "cJj2TjoiV10",
    "OMvVIVMcSWc",
@@ -14,205 +19,187 @@ const BRIEFS=[
    "hzSwk4NroTg",
    "g3yvNwq5Mo0"
   ],
-  "headline": "AI 서사 붕괴 우려와 고금리 압박 속에 증시 낙폭이 확대되며 신중한 대응이 강조된다.",
+  "headline": "나스닥 급락과 AI 수익성 우려 속에 시장 변동성이 확대되는 하루",
   "keypoints": [
-   "AI 우려와 공매도 증가로 글로벌 증시와 국내 지수가 동반 폭락했다.",
-   "반도체 업종은 가격 조정 마무리 후 기간 조정 국면에 진입했다는 평가다.",
-   "고금리 장기화 가능성에 대비해 현금 흐름 확보와 분할 매수를 권고한다.",
-   "연말 이벤트가 예정된 로봇과 ESS 등 일부 섹터에는 관심이 필요하다고 본다."
+   "AI 수익성 의구심과 회계 조사 여파로 나스닥이 5% 넘게 급락했다.",
+   "반도체 주가가 과매도 국면에 진입했으나 펀더멘털은 견고하다는 시각이 있다.",
+   "고금리 고착화 우려 속에서 쏠림 투자를 피하고 현금 흐름을 확보해야 한다."
   ],
   "themes": [
    {
-    "title": "AI 서사 붕괴 우려와 증시 폭락",
-    "summary": "AI 기업의 수익성 검증 압박과 레버리지 청산으로 주요 지수가 급락했다. 다만 실체 있는 IT 대형주의 밸류에이션 매력도 함께 언급된다.",
+    "title": "AI 서사 붕괴와 반도체 조정",
+    "summary": "AI 수익성 의구심과 SEC 회계 조사 악재로 나스닥과 필라델피아 반도체 지수가 큰 폭으로 하락했다.",
     "refs": [
+     "VwUvt3aGsLI",
      "pevfIGVAFFs",
-     "OMvVIVMcSWc",
-     "1PvkBMtMkyk",
-     "hzSwk4NroTg"
+     "OMvVIVMcSWc"
     ]
    },
    {
-    "title": "반도체 업종 조정과 대응 전략",
-    "summary": "반도체 지수의 낙폭이 확대되었으나 구조적 붕괴가 아닌 조정 국면으로 분석된다. 추가 매도보다는 버티거나 분할 매수로 대응하라고 조언한다.",
+    "title": "증시 바닥론과 수급 둔화",
+    "summary": "지수가 역사적 과매도 구간에 도달해 바닥을 다지고 있으나 매수 주도 부재로 변동성이 지속되고 있다.",
     "refs": [
-     "pevfIGVAFFs",
-     "OMvVIVMcSWc",
-     "UIzSvimZ2s0",
+     "Cg3blW1uJ-I",
      "FS9GYe_u58g",
      "TbCOzdqUfMw"
     ]
    },
    {
-    "title": "고금리 장기화 위험과 자산 배분",
-    "summary": "재정적자와 물가 상승 압력으로 고금리가 지속될 수 있다는 경고가 나온다. 레버리지 투자를 피하고 현금흐름 중심의 자산 배분을 강조한다.",
+    "title": "고금리 고착화와 자산 배분",
+    "summary": "재정적자와 AI 인프라 투자로 금리 상승 압력이 커져 현금 흐름과 안전 자산 중심의 대응이 강조된다.",
     "refs": [
-     "OMvVIVMcSWc",
-     "hzSwk4NroTg",
      "g3yvNwq5Mo0"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "반도체 업종의 급락은 구조적 붕괴가 아니며 과매도 구간에 도달했다고 본다.",
+    "point": "AI 수익성 의구심과 규제 악재가 겹치며 나스닥과 반도체 지수가 큰 조정을 겪었다.",
     "refs": [
+     "VwUvt3aGsLI",
      "pevfIGVAFFs",
-     "OMvVIVMcSWc",
-     "FS9GYe_u58g",
-     "TbCOzdqUfMw"
+     "1PvkBMtMkyk"
     ]
    },
    {
-    "point": "단기 손절이나 투매를 자제하고 주가 회복을 기다리며 버티는 전략을 추천한다.",
+    "point": "현재 반도체와 증시 주가는 과도한 낙폭을 기록한 과매도 구간이므로 섣부른 손절보다는 보유나 분할 매수로 대응해야 한다.",
     "refs": [
      "pevfIGVAFFs",
-     "FS9GYe_u58g",
-     "TbCOzdqUfMw"
-    ]
-   },
-   {
-    "point": "미국 10년물 국채 금리와 유가 동향이 자금 시장 안정의 주요 변수라고 본다.",
-    "refs": [
      "OMvVIVMcSWc",
-     "FS9GYe_u58g",
-     "hzSwk4NroTg"
+     "FS9GYe_u58g"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "증시 반등 시점 및 향후 시장 전망",
+    "topic": "반도체 하락장의 성격과 향후 전망",
     "views": [
      {
       "channel": "체슬리TV",
-      "view": "가격 조정이 마무리되어 과매도 해소와 함께 반등이 나타날 것으로 전망한다.",
+      "view": "과거 사이클상 조정 기간의 절반이 경과했으며 역사적 과매도 구간이므로 반등을 기대할 수 있다.",
       "ref": "FS9GYe_u58g"
      },
      {
-      "channel": "체슬리TV",
-      "view": "기간 조정이 5개월가량 더 이어지며 조롱의 단계를 견뎌야 한다고 설명한다.",
-      "ref": "UIzSvimZ2s0"
+      "channel": "연합뉴스경제TV",
+      "view": "빅테크의 메모리 가격 압박과 2028년 데이터센터 지연 우려로 투자 심리가 취약하다.",
+      "ref": "_1kONGeso8M"
+     }
+    ]
+   },
+   {
+    "topic": "AI 인프라 및 데이터센터 투자의 영향",
+    "views": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "실물 수요가 견조하며 캐파 증설이 유지되고 있어 AI 생산성 혁신은 지속될 것이다.",
+      "ref": "OMvVIVMcSWc"
      },
      {
-      "channel": "연합뉴스경제TV",
-      "view": "연준의 긴축 우려와 정치적 불확실성으로 연말까지 위험이 크다고 분석한다.",
-      "ref": "hzSwk4NroTg"
+      "channel": "머니인사이드",
+      "view": "AI 투자 확대가 자금 수요를 높여 인플레이션과 고금리를 고착화하는 원인이 된다.",
+      "ref": "g3yvNwq5Mo0"
      }
     ]
    }
   ],
   "stocks": [
    {
-    "name": "삼성전자",
-    "count": 6,
-    "tone": "혼재",
+    "name": "엔비디아",
+    "count": 3,
+    "tone": "부정",
     "mentions": [
      {
+      "channel": "815머니톡",
+      "view": "실적 발표에도 회계 조사 이슈와 AI 수익성 의구심이 겹치며 주가가 폭락했다.",
+      "ref": "VwUvt3aGsLI"
+     },
+     {
       "channel": "증시각도기TV",
-      "view": "보수적인 미래 가치 할인으로 주가가 과도하게 눌려 있다고 설명한다.",
+      "view": "회계 조사 악재로 주가가 폭락했으나 트레일링 PER 15배 수준으로 가격 매력이 생겼다.",
       "ref": "pevfIGVAFFs"
      },
      {
-      "channel": "체슬리TV",
-      "view": "자사주 매입으로 매물을 소각 중이나 기간 조정을 겪는 중이라고 본다.",
-      "ref": "UIzSvimZ2s0"
-     },
-     {
-      "channel": "체슬리TV",
-      "view": "월봉 RSI가 50 밑으로 빠지며 역사적 과매도 구간에 진입했다고 평가한다.",
-      "ref": "FS9GYe_u58g"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "중국향 규제 노이즈에도 AI 산업 흐름을 가늠할 핵심 종목이라고 평가한다.",
-      "ref": "TbCOzdqUfMw"
-     },
-     {
       "channel": "삼프로TV 3PROTV",
-      "view": "주가가 저평가 상태이나 미국 규제와 반도체 가격 불확실성에 눌려 있다고 본다.",
-      "ref": "1PvkBMtMkyk"
-     },
-     {
-      "channel": "연합뉴스경제TV",
-      "view": "코스피 하락세 속에서 하이닉스와 함께 시장 길들이기 영향권에 있다고 본다.",
-      "ref": "hzSwk4NroTg"
+      "view": "매출채권 회수 기간 연장과 보증 금액 증가는 자금 흐름 관점에서 주의해야 한다.",
+      "ref": "OMvVIVMcSWc"
      }
     ]
    },
    {
-    "name": "엔비디아",
-    "count": 5,
+    "name": "삼성전자",
+    "count": 3,
     "tone": "혼재",
     "mentions": [
      {
+      "channel": "815머니톡",
+      "view": "임원이 AI 버블론을 반박하고 주주환원을 예고했으나 레버리지 상품 폭락으로 피해가 컸다.",
+      "ref": "VwUvt3aGsLI"
+     },
+     {
       "channel": "증시각도기TV",
-      "view": "회계 조사 악재로 폭락했으나 PER 15배 수준으로 가격 매력이 생겼다고 본다.",
+      "view": "연간 80조 원 이익 전망에도 시장의 보수적인 미래 가치 할인으로 주가가 눌려있다.",
       "ref": "pevfIGVAFFs"
      },
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "실적은 우수하나 매출채권 회수 기간 연장은 유의해서 관찰해야 한다고 지적한다.",
-      "ref": "OMvVIVMcSWc"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "대중국 규제 비중이 미미해 시장의 실적 훼손 우려가 과도하다고 평가한다.",
-      "ref": "TbCOzdqUfMw"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "지분 투자 부담과 대중국 수출 제약으로 성장세가 주춤할 수 있다고 평가한다.",
-      "ref": "1PvkBMtMkyk"
-     },
-     {
-      "channel": "연합뉴스경제TV",
-      "view": "경영진 관련 스캔들 이슈로 숏 세력의 주요 공격 대상이 되었다고 지적한다.",
-      "ref": "hzSwk4NroTg"
+      "channel": "체슬리TV",
+      "view": "자사주 매입으로 외국인 매물을 소각하고 있으나 반도체 기간 조정을 겪는 중이다.",
+      "ref": "UIzSvimZ2s0"
      }
     ]
    },
    {
     "name": "SK하이닉스",
-    "count": 4,
-    "tone": "긍정",
+    "count": 3,
+    "tone": "혼재",
     "mentions": [
      {
-      "channel": "체슬리TV",
-      "view": "주가 조정 시 고점 대비 평가이익 감소에 집착하지 말아야 한다고 평가한다.",
-      "ref": "UIzSvimZ2s0"
-     },
-     {
-      "channel": "체슬리TV",
-      "view": "고점 대비 급락했으나 과거 사이클상 반등했으므로 보유해야 한다고 평가한다.",
-      "ref": "FS9GYe_u58g"
-     },
-     {
       "channel": "815머니톡",
-      "view": "메모리 반도체 수익성을 바탕으로 AI 산업 랠리의 주요 축 역할을 한다고 본다.",
-      "ref": "TbCOzdqUfMw"
+      "view": "메모리 마진율에도 파생 ETF 상품이 90% 가까이 하락하는 등 시장 하락 여파를 입었다.",
+      "ref": "VwUvt3aGsLI"
      },
      {
       "channel": "연합뉴스경제TV",
-      "view": "주가가 110만 원선에서 지지력을 시험받으며 버티고 있는 상태라고 평가한다.",
-      "ref": "hzSwk4NroTg"
+      "view": "내년 다운사이클 우려가 현실화될 경우 PBR 0.8배 수준인 90만 원까지 하락할 가능성이 있다.",
+      "ref": "_1kONGeso8M"
+     },
+     {
+      "channel": "체슬리TV",
+      "view": "고점 대비 63% 급락했으나 과거 사이클상 반등했던 사례를 볼 때 보유 전략이 최선이다.",
+      "ref": "FS9GYe_u58g"
      }
     ]
    },
    {
-    "name": "AMD",
+    "name": "네이버",
     "count": 2,
-    "tone": "부정",
+    "tone": "중립",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "공매도 리포트 발표와 수출 제약 영향으로 주가 하락 압력을 받는다고 평가한다.",
-      "ref": "1PvkBMtMkyk"
+      "channel": "815머니톡",
+      "view": "주가가 23% 이상 하락하여 진행자가 배당과 방어력이 있는 삼성전자로 전량 교체 매도했다.",
+      "ref": "VwUvt3aGsLI"
      },
      {
-      "channel": "연합뉴스경제TV",
-      "view": "경영진 관련 악재 소문이 돌며 AI 숏 포지션 타깃으로 거론된다고 설명한다.",
-      "ref": "hzSwk4NroTg"
+      "channel": "체슬리TV",
+      "view": "PBR 1배 미만의 저평가 상태이며 AI 데이터센터 사업의 성장성이 기대된다.",
+      "ref": "Z2BQV9OYynA"
+     }
+    ]
+   },
+   {
+    "name": "앤트로픽",
+    "count": 2,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "815머니톡",
+      "view": "공모가 83달러 상장 후 주가 흐름이 AI 관련 산업의 미래 수익성을 판단할 지표가 되고 있다.",
+      "ref": "VwUvt3aGsLI"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "자금 조달에는 성공했으나 매출 성장률 둔화와 보호예수 부재로 단기 주가 변동성이 크다.",
+      "ref": "1PvkBMtMkyk"
      }
     ]
    }
