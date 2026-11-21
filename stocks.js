@@ -132,16 +132,17 @@ const STOCKSUM={
  "엔비디아": {
   "name": "엔비디아",
   "tone": "혼재",
-  "summary": "AI 생태계의 핵심 역할과 저평가 매력이 부각되는 한편, 스캔들과 수장 부재 및 순환 금융 축소 우려로 변동성이 커졌다.",
+  "summary": "우수한 실적과 낮은 밸류에이션으로 저평가라는 시각과, CEO 스캔들 및 순환 금융 축소 우려로 변동성이 크다는 시각이 공존한다.",
   "points": [
-   "선행 PER 하락과 저평가 매력이 부각된다.",
-   "CEO 부재와 순환 금융 축소 우려가 존재한다.",
-   "중국 악재와 수급 변동성으로 불안감이 커졌다."
+   "선행 PER 하락으로 비이성적 저평가 상태라는 의견이 있다.",
+   "중국 수출 제약과 순환 금융 축소 가능성이 리스크로 지적된다.",
+   "CEO 스캔들 및 경영진 불확실성이 수급 변동성을 키우고 있다."
   ],
   "ids": [
    "-GrEZiF4e6k",
    "-PVT3Gp45SE",
    "0J5AXS2pqUg",
+   "1PvkBMtMkyk",
    "2NXRZFCSWcs",
    "2gvPe2UYxNI",
    "3PTKmp5zdh8",
@@ -171,6 +172,7 @@ const STOCKSUM={
    "LagAldYbD8M",
    "NCGhP2Vyods",
    "ODiEz3dslcE",
+   "OMvVIVMcSWc",
    "P1m0QaKWzG0",
    "PREEBWeBwhs",
    "PZLLj9tHYlQ",
@@ -180,6 +182,7 @@ const STOCKSUM={
    "TDGVrEKXU5M",
    "TIWNv1fcSHs",
    "TV3diSFaZIU",
+   "TbCOzdqUfMw",
    "Tzc0KuusVbI",
    "UihZAstNiGU",
    "UlNBpokQfVk",
@@ -199,6 +202,7 @@ const STOCKSUM={
    "fNFna6Mp5Dg",
    "fdk1qjtZYA0",
    "h40ZIc8mx-c",
+   "hzSwk4NroTg",
    "igdgKOPRR_4",
    "jSVzxKubRcQ",
    "kXGnjB4FYIk",
@@ -229,7 +233,7 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 89,
+  "count": 93,
   "updated": "2026-11-21"
  },
  "SK하이닉스": {
@@ -380,14 +384,15 @@ const STOCKSUM={
  "AMD": {
   "name": "AMD",
   "tone": "부정",
-  "summary": "공매도 리포트와 중국 규제 위반 의혹으로 주가가 급락했으나, 단기적 영향에 그칠 것이라는 시각도 존재한다.",
+  "summary": "공매도 리포트와 수출 제약 등 여러 악재가 겹치며 주가가 하락 압력을 받았다.",
   "points": [
-   "공매도 리포트와 중국 관련 악재로 주가가 7퍼센트 이상 하락했다.",
-   "중국 수출 통제 위반 의혹과 재무적 리스크가 집중적으로 지적되었다.",
-   "회사 측의 의혹 부인과 함께 수급 영향으로 다음 주 영향은 제한적일 것이다."
+   "공매도 리포트 발표와 중국 수출 제약 및 규제 위반 의혹으로 주가가 급락했다.",
+   "높은 중국 매출 의존도와 순환 금융 의혹이 주가 하락의 원인으로 지적됐다.",
+   "엔비디아 생태계가 흔들릴 경우 GPU 시장 점유율을 확대할 기회를 얻는다는 의견도 있다."
   ],
   "ids": [
    "-HaqruPY5Rg",
+   "1PvkBMtMkyk",
    "5k0zCfIFr8w",
    "BIhFDJtoK6k",
    "ByMmWIxsB4E",
@@ -414,11 +419,12 @@ const STOCKSUM={
    "cZn4q_KfdjY",
    "dra2apL7dEg",
    "h40ZIc8mx-c",
+   "hzSwk4NroTg",
    "kXGnjB4FYIk",
    "uPfwN34xlpE",
    "waz9eTAJIxU"
   ],
-  "count": 30,
+  "count": 32,
   "updated": "2026-11-21"
  },
  "셀트리온": {

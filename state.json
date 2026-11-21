@@ -73,7 +73,8 @@
   "wJnuW-qeUDs": "경제 무관(내용 확인)",
   "AEDvqamCuQ0": "너무 긴 영상(310분)",
   "PLBpTvjfio0": "너무 짧음",
-  "hWse-JfDpMU": "너무 짧음"
+  "hWse-JfDpMU": "너무 짧음",
+  "VgE10vbz-U4": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -84,13 +85,13 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 17,
-   "busy": 12,
+   "ok": 19,
+   "busy": 13,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 4,
-   "busy": 23,
+   "busy": 25,
    "dead": 4
   },
   "gemini-3.8-flash": {
@@ -227,7 +228,9 @@
   "S5O9dLg4dZU": true,
   "eFs9dqDWLyk": true,
   "PLBpTvjfio0": true,
-  "hWse-JfDpMU": true
+  "hWse-JfDpMU": true,
+  "VgE10vbz-U4": true,
+  "pevfIGVAFFs": true
  },
  "brief_final": {
   "2026-11-13": true,
