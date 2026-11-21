@@ -584,25 +584,30 @@ const STOCKSUM={
  },
  "구글": {
   "name": "구글",
-  "tone": "혼재",
-  "summary": "구글은 AI 인프라와 자체 칩 수요로 긍정적인 평가를 받으나 일부 투자자의 매도도 언급된다.",
+  "tone": "긍정",
+  "summary": "우수한 현금 흐름과 실질적 AI 수요를 바탕으로 긍정적인 평가를 받으나 일부에서는 대가들의 매도 의견도 존재한다.",
   "points": [
-   "AI 기술과 데이터센터 투자를 주도하며 기업 고객을 확보하고 있다.",
-   "자체 TPU 생산을 늘리며 AI 칩 시장에서 영향력을 확대하고 있다.",
-   "일부 투자자가 3분기 포트폴리오에서 지분을 전량 매도했다."
+   "자체 TPU 생산과 AI 수요 확대로 엔비디아의 대안으로 부상한다.",
+   "우수한 현금 흐름과 앤트로픽 지분 보유로 AI 생태계 핵심 주체로 꼽힌다.",
+   "포트폴리오 안전자산으로 평가받는 한편 전량 매도 사례도 존재한다."
   ],
   "ids": [
    "2NXRZFCSWcs",
+   "3PTKmp5zdh8",
+   "5ejfTU3cvac",
    "9MXwHlep8wQ",
    "BIhFDJtoK6k",
    "P1m0QaKWzG0",
    "PZLLj9tHYlQ",
+   "VwUvt3aGsLI",
+   "hjhrT8EtTjg",
    "kYLW8f4wzy8",
    "t9R5tJ0zR34",
-   "xZHld6KdReU"
+   "xZHld6KdReU",
+   "yrEcOVH79Pc"
   ],
-  "count": 8,
-  "updated": "2026-11-18"
+  "count": 13,
+  "updated": "2026-11-22"
  },
  "가온칩스": {
   "name": "가온칩스",
@@ -719,11 +724,11 @@ const STOCKSUM={
  "하이브": {
   "name": "하이브",
   "tone": "혼재",
-  "summary": "한한령 해제 기대감과 실적 개선 전망으로 급등하며 수급이 몰리나 차트 매물 부담과 실질 성과 확인 필요성도 제기된다.",
+  "summary": "한한령 해제 기대감으로 급등하며 실적 개선 기대가 있으나, 차트 매물 부담과 실질 성과 확인 필요성도 함께 언급된다.",
   "points": [
-   "한중 FTA 타결과 한한령 해제 기대감으로 주가가 급등했다.",
-   "BTS 완전체 활동 재개에 따른 실적 개선이 전망된다.",
-   "차트 매물이 많고 자리가 좋지 않아 성과 확인이 필요하다."
+   "한한령 해제와 한중 FTA 타결 기대감으로 주가가 급등했다.",
+   "BTS 활동 재개와 월드투어로 명확한 실적 개선이 전망된다.",
+   "차트 자리가 좋지 않고 매물 부담이 크다는 의견이 존재한다."
   ],
   "ids": [
    "09Ij_WyfeMs",
@@ -731,6 +736,7 @@ const STOCKSUM={
    "5ce3JngZSq0",
    "AydkVh-c6GI",
    "G5Kz41EjDmw",
+   "TV3diSFaZIU",
    "eFnxFsUiMvs",
    "egDZOq_zOPo",
    "kyUbMfnczE0",
@@ -738,8 +744,8 @@ const STOCKSUM={
    "ntk0jpMmJPU",
    "vqB7JpqjRy0"
   ],
-  "count": 11,
-  "updated": "2026-11-20"
+  "count": 12,
+  "updated": "2026-11-22"
  },
  "펌텍코리아": {
   "name": "펌텍코리아",
