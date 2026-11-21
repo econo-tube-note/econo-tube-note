@@ -1251,6 +1251,96 @@ def tg_send(text, chat=None, html=False):
         return json.loads(r.read().decode()).get("ok")
 
 
+def week_card(out_path, rng, head, days, stocks, nvid, nch):
+    """토요일 스레드용 세로 이미지(1080x1350): 요일별 유튜브 영상 분위기 막대 + 많이 나온 종목."""
+    from pathlib import Path as P_
+    from PIL import Image, ImageDraw, ImageFont
+    font, logo = ROOT / "scripts" / "og-font.otf", ROOT / "scripts" / "og-logo.png"
+    F = lambda n: ImageFont.truetype(str(font), n)
+    W, H, x0 = 1080, 1350, 64
+    im = Image.new("RGB", (W, H), "white")
+    d = ImageDraw.Draw(im)
+
+    def fit(t, f, w):  # 한 줄에 안 들어가면 말줄임
+        t = t or ""
+        if d.textlength(t, font=f) <= w:
+            return t
+        while t and d.textlength(t + "…", font=f) > w:
+            t = t[:-1]
+        return t + "…"
+
+    def wrap(t, f, w):
+        L, c = [], ""
+        for ch in t or "":
+            if d.textlength(c + ch, font=f) > w and c:
+                L.append(c)
+                c = ""
+            c += ch
+        return L + [c] if c else L
+    if logo.exists():
+        lg = Image.open(logo).convert("RGBA")
+        lg = lg.resize((int(lg.width * 56 / lg.height), 56))
+        im.paste(lg, (x0, 56), lg)
+        d.text((x0 + lg.width + 14, 62), "Market Raven", font=F(34), fill="#14181f")
+    pill, pf = f"경제 유튜브 {nvid}편 종합", F(28)
+    pw = d.textlength(pill, font=pf)
+    d.rounded_rectangle([W - x0 - pw - 40, 58, W - x0, 108], radius=25, fill="#14181f")
+    d.text((W - x0 - pw - 20, 64), pill, font=pf, fill="white")
+    d.text((x0, 160), f"{rng} 이번 주 시장 결산", font=F(36), fill="#e5383b")
+    y = 214
+    for size in (54, 48, 42):
+        L = wrap(head, F(size), W - 2 * x0)
+        if len(L) <= 2:
+            break
+    if len(L) > 2:
+        L = [L[0], fit("".join(L[1:]), F(size), W - 2 * x0)]
+    for ln in L:
+        d.text((x0, y), ln, font=F(size), fill="#14181f")
+        y += int(size * 1.3)
+    y += 26
+    d.text((x0, y), "요일별 유튜브 영상 분위기", font=F(32), fill="#14181f")
+    d.text((x0, y + 44), "그날 올라온 경제 유튜브 영상들이 시장을 어떻게 봤는지", font=F(24), fill="#6b7280")
+    y += 94
+    bx, bw = x0 + 70, W - 2 * x0 - 70 - 90
+    step = 96
+    for yo, p_, n_, g_, pt in days[:5]:
+        t = max(p_ + n_ + g_, 1)
+        d.text((x0, y + 2), yo, font=F(32), fill="#14181f")
+        cx = bx
+        for v, c in ((p_, "#16a34a"), (n_, "#cbd2dc"), (g_, "#e5383b")):
+            w = round(bw * v / t)
+            if w:
+                d.rectangle([cx, y + 6, min(cx + w, bx + bw), y + 34], fill=c)
+                cx += w
+        d.text((bx + bw + 14, y + 4), f"{p_ + n_ + g_}편", font=F(26), fill="#6b7280")
+        if pt:
+            d.text((bx, y + 44), fit(pt, F(27), W - x0 - bx), font=F(27), fill="#374151")
+        y += step
+    lx = bx
+    for lab, c in (("긍정", "#16a34a"), ("중립", "#cbd2dc"), ("부정", "#e5383b")):
+        d.rectangle([lx, y, lx + 20, y + 20], fill=c)
+        d.text((lx + 28, y - 6), lab, font=F(24), fill="#6b7280")
+        lx += 120
+    y += 44
+    d.line([x0, y, W - x0, y], fill="#e5e7eb", width=2)
+    y += 30
+    if stocks:
+        d.text((x0, y), "유튜브 영상에서 많이 나온 종목", font=F(32), fill="#14181f")
+        y += 58
+        cw = (W - 2 * x0) // 2
+        for i, (nm, cnt) in enumerate(stocks[:6]):
+            cx_, cy = x0 + (i % 2) * cw, y + (i // 2) * 58
+            d.text((cx_, cy), str(i + 1), font=F(32), fill="#e5383b")
+            tw = d.textlength(f"{cnt}편", font=F(26))
+            d.text((cx_ + 40, cy), fit(nm, F(32), cw - 90 - tw), font=F(32), fill="#14181f")
+            d.text((cx_ + cw - 36 - tw, cy + 4), f"{cnt}편", font=F(26), fill="#6b7280")
+    d.text((x0, H - 74), f"경제 유튜브 {nch}개 채널 영상을 요약해 모았다 · marketraven.kr", font=F(26), fill="#9aa3af")
+    out_path = P_(out_path)
+    out_path.parent.mkdir(exist_ok=True)
+    im.save(out_path)
+    return out_path
+
+
 def threads_draft(state, videos, force=""):
     if not tg_ok():
         return
@@ -1270,6 +1360,7 @@ def threads_draft(state, videos, force=""):
     vids = lambda days: [v for v in videos if (v.get("date") or "") >= (now.date() - datetime.timedelta(days=days)).isoformat()]
     slim = lambda vs: [{"채널": v.get("channel"), "제목": v.get("title"), "결론": v.get("conclusion"), "분위기": v.get("mood")} for v in vs[:14]]
     briefs = {b["date"]: b for b in load_briefs()}
+    card = None
     if slot == "am":
         src = [v for v in videos if v.get("date") == today]
         if len(src) < 2:
@@ -1312,6 +1403,15 @@ def threads_draft(state, videos, force=""):
                 "많이_나온_종목": [{"종목": s_.get("name"), "영상수": s_.get("videos"), "한줄": s_.get("note")} for s_ in (w.get("stocks") or [])[:5]],
                 "어제_올린_글_주제": (briefs.get(prev) or {}).get("headline", ""),
             }
+            fp = {f["date"]: f["point"] for f in w.get("flow") or []}
+            moods = {dd: m for dd, m in moods.items() if datetime.date.fromisoformat(dd).weekday() < 5}  # 이미지는 평일(월~금)만
+            wd_end = max(moods) if moods else today
+            card = {"rng": f"{int(ws[5:7])}.{int(ws[8:10])}~{int(wd_end[5:7])}.{int(wd_end[8:10])}",
+                    "days": [(YO[datetime.date.fromisoformat(dd).weekday()], m["긍정"], m["중립"], m["부정"], fix_names(fp.get(dd, ""))[0])
+                             for dd, m in sorted(moods.items()) if sum(m.values())],
+                    "stocks": [(fix_names(s_.get("name"))[0], s_.get("videos")) for s_ in (w.get("stocks") or [])[:6]],
+                    "nvid": w.get("videos") or sum(sum(m.values()) for m in moods.values()),
+                    "nch": len({v.get("channel") for v in videos if ws <= (v.get("date") or "") <= today})}
         else:
             days = sorted(d for d in briefs if d >= ws)
             if not days:
@@ -1351,6 +1451,12 @@ def threads_draft(state, videos, force=""):
             img = ROOT / "og" / f"tg-{slot}.png"
     except Exception as e:
         print(f"공유 이미지 만들기 실패(글만 보낸다): {str(e)[:100]}")
+    if card:
+        try:
+            img = week_card(ROOT / "og" / "tg-week.png", card["rng"], fix_names(out.get("image_title") or "")[0],
+                            card["days"], card["stocks"], card["nvid"], card["nch"])
+        except Exception as e:
+            print(f"주간 이미지 만들기 실패(기본 이미지로 보낸다): {str(e)[:100]}")
     msg = f"[스레드 초안 · {label} · {today}]\n\n{(out.get('post') or '').strip()}\n\n──── 첫 댓글 ────\n{(out.get('comment') or '').strip()}"
     if img and img.exists():
         try:
