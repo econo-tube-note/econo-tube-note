@@ -1143,6 +1143,53 @@ image_title은 공유 이미지에 크게 넣을 한 줄 요약이다. 40자 이
 """
 
 
+THREADS_SAT_PROMPT = """너는 스레드(Threads)에 올릴 짧은 글을 쓰는 개인 투자자다. 아래 자료는 이번 주 여러 경제 유튜브 영상을 요약·종합한 것이다.
+이 자료로 '한 주 결산' 스레드 본문 1개와 첫 댓글 1개를 JSON으로 써라.
+
+말투
+- 커뮤니티에 혼자 정리해서 올리는 듯한 편한 '~이다', '~했다' 체. 독백 느낌으로, 존댓말과 '~함/~임' 체는 쓰지 않는다.
+- '국장', '줍줍', '던지다', '버티다' 같은 커뮤니티 말은 자연스럽게, 과하지 않게.
+- 광고 문구, 과장, 이모지, 해시태그, 'ㅋㅋ' 금지. AI 티 나는 표현('주목할 만하다', '시사점', '~할 것으로 보인다') 금지.
+
+이 글은 하루짜리 글이 아니라 '일주일을 돌아보는 글'이다. 평일에 이미 그날그날 글을 올렸으니, 하루 얘기를 다시 하지 말고 한 주 전체를 꿰는 얘기를 한다.
+특히 '어제_올린_글_주제'는 이미 다룬 얘기다. 그 얘기를 중심에 두지 말고, 나오더라도 흐름의 한 지점으로 한 줄만 쓴다.
+
+구성(이 순서로, 짧은 줄로 끊고 문단 사이는 빈 줄 하나)
+1. 첫 줄: "이번 주 경제 유튜브 N편을 다 돌려봤다." (N은 자료의 영상수)
+2. 한 주를 한 줄로: 이번 주를 한마디로 하면 어떤 주였는지. 한줄요약을 참고하되 내 말로 짧게.
+3. 요일별 흐름 2~4줄: '요일별_흐름'과 '요일별_분위기'를 보고 "월요일엔 ~, 수요일엔 ~, 금요일엔 ~"처럼 분위기가 어떻게 바뀌었는지 쓴다. 긍정/부정 비율이 눈에 띄게 바뀐 날이 있으면 그걸 짚는다(예: "목요일엔 부정 쪽이 절반을 넘었다").
+4. 일주일 내내 반복된 얘기 1~2개: '반복된_주제'에서 골라 "일주일 내내 빠지지 않은 얘기는 ~였다."처럼 쓰고, 왜 계속 나왔는지 한 줄 붙인다. 며칠 동안 나왔는지 숫자를 써도 좋다.
+5. 끝에서 두 번째 줄: 한 주를 보낸 짧은 개인 소감 한 줄. 어느 편도 들지 않는다.
+6. 마지막 줄: 다음 주를 어떻게 볼지 다른 사람들 생각이 궁금하다는 한 줄.
+- 본문은 공백 포함 480자 이내. 숫자는 자료에 있는 것만 쓴다. 채널 이름은 쓰지 않는다.
+- 특정 종목을 사거나 팔라고 권하지 않는다. 유튜버들이 이렇게 봤다는 전달자 입장을 지킨다.
+
+예시(형식과 말투만 참고하고 내용은 자료대로 쓴다)
+이번 주 경제 유튜브 140편을 다 돌려봤다.
+
+한마디로 기대했다가 다시 꺾인 한 주였다.
+
+월요일엔 다들 반등 얘기를 했다.
+수요일엔 실적 발표 덕에 잠깐 살아나는가 싶었는데
+목요일부터 부정 쪽이 절반을 넘기 시작했다.
+
+일주일 내내 빠지지 않은 얘기는 외국인 수급이었다.
+5일 중 4일을 이 얘기로 시작했는데, 결국 다들 외국인이 돌아와야 반등이 된다고 봤다.
+
+AI 거품 얘기도 사흘 연속 나왔다.
+
+한 주 내내 롤러코스터 탄 기분이다.
+다들 다음 주는 들어가는 쪽인지, 쉬는 쪽인지 궁금하다.
+
+comment(첫 댓글)는 2~3줄:
+- 첫 줄: "이번 주 제일 많이 나온 종목은 A, B, C였다." ('많이_나온_종목' 앞에서 3개, 순서대로)
+- 둘째 줄: 요일별 흐름이랑 종목별 정리를 사이트에 해뒀다는 말과 함께 끝에 이 주소를 그대로 붙인다: {link}
+image_title은 공유 이미지에 크게 넣을 한 주 요약 한 줄이다. 40자 이내, '~했다' 체 한 문장. 하루 얘기가 아니라 한 주를 담는다.
+
+자료(JSON):
+"""
+
+
 def threads_schema():
     from pydantic import BaseModel
 
@@ -1210,11 +1257,14 @@ def threads_draft(state, videos, force=""):
     slot = force or ("am" if wd < 5 and 10 <= h < 14 else "pm" if wd < 5 and 16 <= h < 21 else
                      "sat" if wd == 5 and 18 <= h < 23 else "sun" if wd == 6 and 18 <= h < 23 else "")
     if not slot:
+        print(f"스레드 초안: 지금({h}시)은 보낼 시간대가 아니다")
         return
     sent = state.setdefault("threads", {})
     key = f"{today}-{slot}"
     if sent.get(key) and not force:
+        print(f"스레드 초안: 이 시간대({slot}) 초안은 이미 보냈다")
         return
+    print(f"스레드 초안 만드는 중 ({slot})")
     vids = lambda days: [v for v in videos if (v.get("date") or "") >= (now.date() - datetime.timedelta(days=days)).isoformat()]
     slim = lambda vs: [{"채널": v.get("channel"), "제목": v.get("title"), "결론": v.get("conclusion"), "분위기": v.get("mood")} for v in vs[:14]]
     briefs = {b["date"]: b for b in load_briefs()}
@@ -1236,21 +1286,46 @@ def threads_draft(state, videos, force=""):
         ws = week_start(today).isoformat()
         w = next((x for x in load_weekly() if x.get("week") == ws), None)
         if w:
-            goal, link = ("이번 주 경제 유튜브들이 반복해서 말한 주제와 많이 언급한 종목을 한 주 결산으로 전한다.", f"{SITE_URL_}/week/{ws}/")
-            data = {k: w.get(k) for k in ("headline", "keypoints", "recurring", "stocks", "videos")}
+            goal, link = ("", f"{SITE_URL_}/week/{ws}/")
+            YO = "월화수목금토일"
+            yo = lambda d: YO[datetime.date.fromisoformat(d).weekday()] + "요일"
+            moods = {}
+            for v in videos:
+                d = v.get("date") or ""
+                if ws <= d <= today and v.get("mood"):
+                    m = moods.setdefault(d, {"긍정": 0, "중립": 0, "부정": 0})
+                    k = {"낙관": "긍정", "중립": "중립", "비관": "부정"}.get(v["mood"])
+                    if k:
+                        m[k] += 1
+            prev = max((d for d in briefs if d < today), default="")
+            data = {
+                "영상수": w.get("videos"),
+                "한줄요약": w.get("headline"),
+                "핵심": w.get("keypoints"),
+                "요일별_흐름": [{"요일": yo(f["date"]), "내용": f["point"]} for f in w.get("flow") or []],
+                "요일별_분위기": [{"요일": yo(d), **moods[d]} for d in sorted(moods)],
+                "반복된_주제": [{"주제": r["title"], "내용": r["summary"], "나온_날수": len(r.get("dates") or []),
+                              "요일": [yo(d) for d in r.get("dates") or []]} for r in w.get("recurring") or []],
+                "엇갈린_쟁점": [d["topic"] for x in sorted(briefs) if x >= ws for d in (briefs[x].get("disagreements") or [])[:1]],
+                "많이_나온_종목": [{"종목": s_.get("name"), "영상수": s_.get("videos"), "한줄": s_.get("note")} for s_ in (w.get("stocks") or [])[:5]],
+                "어제_올린_글_주제": (briefs.get(prev) or {}).get("headline", ""),
+            }
         else:
             days = sorted(d for d in briefs if d >= ws)
             if not days:
+                print("스레드 초안: 이번 주 브리핑이 없어서 건너뛴다")
                 return
             goal, link = ("이번 주 경제 유튜브들이 반복해서 말한 주제를 한 주 결산으로 전한다.", f"{SITE_URL_}/brief/")
             data = [{k: briefs[d].get(k) for k in ("date", "headline", "keypoints")} for d in days]
     else:
         src = vids(1)
         if len(src) < 2:
+            print("스레드 초안: 주말 영상이 적어서 건너뛴다")
             return
         goal, link, data = ("주말에 올라온 경제 유튜브들이 꼽은 다음 주 관전 포인트(일정, 변수, 걱정거리)를 전한다.", SITE_URL_ + "/", slim(src))
     try:
-        out = call_json(THREADS_PROMPT.replace("{goal}", goal).replace("{link}", link) + json.dumps(data, ensure_ascii=False),
+        tpl = THREADS_SAT_PROMPT if slot == "sat" and not goal else THREADS_PROMPT.replace("{goal}", goal)
+        out = call_json(tpl.replace("{link}", link) + json.dumps(data, ensure_ascii=False),
                         threads_schema, "THREADS_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 90)
     except Exception as e:
         print(f"스레드 초안 만들기 실패: {str(e)[:120]}")
@@ -1275,9 +1350,12 @@ def threads_draft(state, videos, force=""):
     except Exception as e:
         print(f"공유 이미지 만들기 실패(글만 보낸다): {str(e)[:100]}")
     msg = f"[스레드 초안 · {label} · {today}]\n\n{(out.get('post') or '').strip()}\n\n──── 첫 댓글 ────\n{(out.get('comment') or '').strip()}"
-    try:
-        if img and img.exists():
+    if img and img.exists():
+        try:
             tg_photo(img, f"{label} 공유 이미지")
+        except Exception as e:
+            print(f"스레드 초안 이미지 보내기 실패(글은 계속 보낸다): {str(e)[:120]}")
+    try:
         if tg_send(msg):
             sent[key] = True
             for k in sorted(sent)[:-40]:
@@ -1360,6 +1438,7 @@ def channel_post(state, force="", videos=None):
     done_ = state.setdefault("channel", {})
     key = f"{today}-{slot}"
     if done_.get(key) and not force:
+        print(f"채널: 이 시간대({slot}) 글은 이미 올렸다")
         return
     E = lambda s: H.escape(str(s or ""))
     d_ = now.date()
