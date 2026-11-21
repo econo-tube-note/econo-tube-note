@@ -1137,6 +1137,7 @@ THREADS_PROMPT = """너는 스레드(Threads)에 올릴 짧은 글을 쓰는 개
 다들 지금 추매하는 쪽인지, 좀 더 지켜보는 쪽인지 궁금하다.
 
 comment(첫 댓글)는 한 줄: 누가 어떤 근거로 그렇게 봤는지 사이트에 정리해 뒀다는 말과 함께 끝에 이 주소를 그대로 붙인다: {link}
+image_title은 공유 이미지에 크게 넣을 한 줄 요약이다. 40자 이내, '~했다' 체 한 문장.
 
 자료(JSON):
 """
@@ -1148,7 +1149,45 @@ def threads_schema():
     class Post(BaseModel):
         post: str
         comment: str
+        image_title: str  # 공유 이미지에 크게 들어갈 한 줄 (40자 이내)
     return Post
+
+
+def tg_ok():
+    return bool(os.environ.get("TELEGRAM_BOT_TOKEN") and os.environ.get("TELEGRAM_CHAT_ID"))
+
+
+def tg_photo(path, caption=""):
+    """사진 파일을 텔레그램으로 보낸다 (multipart 업로드)."""
+    import urllib.request
+    import uuid
+    tok, chat = os.environ.get("TELEGRAM_BOT_TOKEN", ""), os.environ.get("TELEGRAM_CHAT_ID", "")
+    bd = uuid.uuid4().hex
+    parts = []
+    for k, v in (("chat_id", chat), ("caption", caption[:1000])):
+        parts.append(f"--{bd}\r\nContent-Disposition: form-data; name=\"{k}\"\r\n\r\n{v}\r\n".encode())
+    parts.append(f"--{bd}\r\nContent-Disposition: form-data; name=\"photo\"; filename=\"image.png\"\r\nContent-Type: image/png\r\n\r\n".encode()
+                 + Path(path).read_bytes() + f"\r\n--{bd}--\r\n".encode())
+    req = urllib.request.Request(f"https://api.telegram.org/bot{tok}/sendPhoto", data=b"".join(parts),
+                                 headers={"Content-Type": f"multipart/form-data; boundary={bd}"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return json.loads(r.read().decode()).get("ok")
+
+
+def tg_alert(state, key, text):
+    """운영 알림. 같은 key는 한 번만 보낸다."""
+    if not tg_ok():
+        return
+    al = state.setdefault("alerts", {})
+    if al.get(key):
+        return
+    try:
+        if tg_send("[Market Raven 알림]\n" + text):
+            al[key] = True
+            for k in sorted(al)[:-60]:
+                al.pop(k, None)
+    except Exception as e:
+        print(f"알림 보내기 실패: {str(e)[:100]}")
 
 
 def tg_send(text):
@@ -1161,7 +1200,7 @@ def tg_send(text):
 
 
 def threads_draft(state, videos, force=""):
-    if not (os.environ.get("TELEGRAM_BOT_TOKEN") and os.environ.get("TELEGRAM_CHAT_ID")):
+    if not tg_ok():
         return
     now = datetime.datetime.now(KST)
     today, wd, h = now.date().isoformat(), now.weekday(), now.hour
@@ -1213,9 +1252,29 @@ def threads_draft(state, videos, force=""):
     except Exception as e:
         print(f"스레드 초안 만들기 실패: {str(e)[:120]}")
         return
+    out, _ = fix_names(out)
     label = {"am": "평일 오전", "pm": "평일 저녁", "sat": "토요일", "sun": "일요일"}[slot]
+    # 공유 이미지: 사이트 브리핑 이미지와 같은 모양으로 만들어 사진으로 보낸다
+    img = None
+    try:
+        import importlib.util
+        sp = importlib.util.spec_from_file_location("pages_for_og", ROOT / "scripts" / "pages.py")
+        pg = importlib.util.module_from_spec(sp)
+        sp.loader.exec_module(pg)
+        d_ = now.date()
+        kick = {"am": f"{d_.month}.{d_.day:02d} ({'월화수목금토일'[d_.weekday()]}) 오전 시황", "pm": f"{d_.month}.{d_.day:02d} ({'월화수목금토일'[d_.weekday()]}) 시장 브리핑",
+                "sat": "이번 주 시장 결산", "sun": "다음 주 관전 포인트"}[slot]
+        head_ = (briefs.get(today) or {}).get("headline") if slot == "pm" else ""
+        head_ = fix_names(head_ or out.get("image_title") or "")[0]
+        n_ = (briefs.get(today) or {}).get("count") if slot == "pm" else (len(data) if isinstance(data, list) else "")
+        if pg.og_image(f"tg-{slot}", kick, head_, f"경제 유튜브 영상 {n_}편 종합" if n_ else "경제 유튜브 종합"):
+            img = ROOT / "og" / f"tg-{slot}.png"
+    except Exception as e:
+        print(f"공유 이미지 만들기 실패(글만 보낸다): {str(e)[:100]}")
     msg = f"[스레드 초안 · {label} · {today}]\n\n{(out.get('post') or '').strip()}\n\n──── 첫 댓글 ────\n{(out.get('comment') or '').strip()}"
     try:
+        if img and img.exists():
+            tg_photo(img, f"{label} 공유 이미지")
         if tg_send(msg):
             sent[key] = True
             for k in sorted(sent)[:-40]:
@@ -1223,6 +1282,63 @@ def threads_draft(state, videos, force=""):
             print(f"스레드 초안을 텔레그램으로 보냈다 ({label})")
     except Exception as e:
         print(f"텔레그램 보내기 실패: {str(e)[:120]}")
+
+
+# ---------- 표기 사전: AI가 자주 틀리게 쓰는 회사·인물 이름을 바로잡는다 ----------
+# 영상 제목과 채널 이름은 원본이라 건드리지 않고, 요약·브리핑·종목 종합 글만 고친다. 새로 틀리는 이름이 보이면 여기에 한 줄 추가하면 된다.
+NAME_FIX = [("엔트로픽", "앤트로픽"), ("앤비디아", "엔비디아"), ("엔비디어", "엔비디아"), ("팔란티아", "팔란티어"), ("팔란디어", "팔란티어"),
+            ("브로드캄", "브로드컴"), ("오픈 AI", "오픈AI"), ("오픈에이아이", "오픈AI"), ("SK 하이닉스", "SK하이닉스"), ("에스케이하이닉스", "SK하이닉스"),
+            ("코어 위브", "코어위브"), ("마이크로 소프트", "마이크로소프트"), ("테슬러", "테슬라"), ("슈퍼 마이크로", "슈퍼마이크로")]
+_FIX_SKIP = {"title", "channel", "url", "id", "ts", "date", "model", "src", "ref", "refs", "sources", "week", "end", "updated"}
+
+
+def fix_names(o):
+    """o 안의 글을 표기 사전대로 고친다. (고친 결과, 바뀐 곳 수)"""
+    if isinstance(o, str):
+        s = o
+        for a, b in NAME_FIX:
+            if a in s:
+                s = s.replace(a, b)
+        return s, int(s != o)
+    if isinstance(o, list):
+        n, out = 0, []
+        for x in o:
+            y, k = fix_names(x)
+            out.append(y)
+            n += k
+        return out, n
+    if isinstance(o, dict):
+        n, out = 0, {}
+        for key, x in o.items():
+            if key in _FIX_SKIP:
+                out[key] = x
+                continue
+            out[key], k = fix_names(x)
+            n += k
+        return out, n
+    return o, 0
+
+
+def fix_all(videos):
+    """저장된 요약·브리핑·종목 종합의 이름 표기를 고친다."""
+    total = 0
+    for i, v in enumerate(videos):
+        videos[i], k = fix_names(v)
+        total += k
+    if total:
+        save(videos)
+    b, w = _load_briefs_file()
+    (b2, w2), k = fix_names([b, w])
+    if k:
+        _save_briefs_file(b2, w2)
+        total += k
+    d, k = fix_names(load_stock_digests())
+    if k:
+        save_stock_digests(d)
+        total += k
+    if total:
+        print(f"이름 표기를 바로잡았다: {total}곳 (예: 엔트로픽 -> 앤트로픽)")
+    return total
 
 
 def load_briefs():
@@ -1818,6 +1934,19 @@ def auto():
         update_stock_digests(videos)
     except Exception as e:
         print(f"브리핑 단계에서 오류: {str(e)[:150]}")
+    try:
+        fix_all(videos)
+    except Exception as e:
+        print(f"이름 표기 정리 중 오류: {str(e)[:120]}")
+    # 운영 알림: 오래 요약이 없거나 자막이 계속 실패하면 텔레그램으로 알린다
+    now_k = datetime.datetime.now(KST)
+    if done:
+        state["last_ok"] = now_k.strftime("%Y-%m-%dT%H:%M")
+    lo = state.get("last_ok")
+    if lo and (now_k.replace(tzinfo=None) - datetime.datetime.fromisoformat(lo)).total_seconds() > 16 * 3600:  # 밤사이 새 영상이 없는 시간을 감안해 16시간
+        tg_alert(state, "noop-" + lo, f"마지막으로 요약에 성공한 지 16시간이 넘었다 (마지막 성공 {lo}). Actions 로그를 확인해 봐라.")
+    if tr_fail >= 5:
+        tg_alert(state, "cookie-" + now_k.date().isoformat(), "자막을 5번 연속 못 받았다. 유튜브 쿠키가 만료됐을 수 있다. 부계정으로 쿠키를 다시 내보내서 YOUTUBE_COOKIES 비밀값을 바꿔라.")
     threads_draft(state, videos)
     write_json(STATE, state)
     for m, c in state["models"].items():
