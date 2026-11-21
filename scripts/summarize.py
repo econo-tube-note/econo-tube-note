@@ -1097,6 +1097,134 @@ def _save_briefs_file(briefs, weekly):
                       json.dumps(weekly, ensure_ascii=False, indent=1) + ";\n", encoding="utf-8")
 
 
+# ---------- 스레드 글 초안을 텔레그램으로 받기 (운영자 전용) ----------
+# 정해진 시간대의 첫 실행에서 한 번만 보낸다. TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID 비밀값이 없으면 아무것도 하지 않는다.
+SITE_URL_ = os.environ.get("SITE_URL", "https://marketraven.kr").rstrip("/")
+
+THREADS_PROMPT = """너는 스레드(Threads)에 올릴 짧은 글을 쓰는 개인 투자자다. 아래 자료는 여러 경제 유튜브 영상을 요약·종합한 것이다.
+이 자료로 스레드 본문 1개와 첫 댓글 1개를 JSON으로 써라.
+
+목적: {goal}
+
+말투
+- 커뮤니티에 혼자 정리해서 올리는 듯한 편한 '~이다', '~했다' 체. 독백 느낌으로, 존댓말과 '~함/~임' 체는 쓰지 않는다.
+- '국장', '줍줍', '던지다', '버티다'처럼 투자 커뮤니티에서 흔히 쓰는 말은 자연스럽게 써도 된다. 다만 과하게 쓰지 않는다.
+- 광고 문구, 과장, 이모지, 해시태그, 'ㅋㅋ' 금지. AI가 쓴 티가 나는 표현(예: '주목할 만하다', '시사점', '~할 것으로 보인다') 금지.
+
+구성
+- 첫 줄: "오늘 경제 유튜브 N개를 다 돌려봤다."처럼 몇 개를 봤는지로 시작한다.
+- 이어서 다들 공통으로 꼽은 이유나 시각 1~2개, 숫자 하나(지수, 금액 등).
+- 엇갈린 시각이 있으면 "한쪽은 ~하라고 하고, 다른 쪽은 ~라고 한다." 식으로 하나 넣는다. 채널 이름은 쓰지 않는다.
+- 끝에서 두 번째 줄은 어느 편도 들지 않는 짧은 개인 소감 한 줄(예: "솔직히 둘 다 맞는 말 같다.").
+- 마지막 줄은 다른 사람들 생각이 궁금하다는 한 줄(예: "다들 지금 추매하는 쪽인지, 좀 더 지켜보는 쪽인지 궁금하다.").
+- 짧은 줄로 끊고 문단 사이는 빈 줄 하나. 본문은 공백 포함 350자 이내.
+- 특정 종목을 사거나 팔라고 권하는 말은 쓰지 않는다. 유튜버들이 이렇게 봤다는 전달자 입장을 지킨다.
+
+예시(말투만 참고하고 내용은 자료대로 쓴다)
+오늘 경제 유튜브 16개를 다 돌려봤다.
+
+다들 범인으로 앤트로픽 상장을 꼽았다.
+거기로 돈이 확 쏠리면서 기술주랑 국장에서 수급이 빠졌다는 얘기다.
+
+코스피는 외국인이 던지면서 4,800 근처까지 밀렸다.
+
+근데 그래서 지금 뭘 해야 하냐에서는 완전히 갈렸다.
+
+한쪽은 이 정도 빠졌으면 나눠서 줍줍하라고 하고,
+다른 쪽은 규제 이슈가 남아서 더 빠질 수 있으니 현금 들고 버티라고 한다.
+
+솔직히 둘 다 맞는 말 같다.
+다들 지금 추매하는 쪽인지, 좀 더 지켜보는 쪽인지 궁금하다.
+
+comment(첫 댓글)는 한 줄: 누가 어떤 근거로 그렇게 봤는지 사이트에 정리해 뒀다는 말과 함께 끝에 이 주소를 그대로 붙인다: {link}
+
+자료(JSON):
+"""
+
+
+def threads_schema():
+    from pydantic import BaseModel
+
+    class Post(BaseModel):
+        post: str
+        comment: str
+    return Post
+
+
+def tg_send(text):
+    import urllib.request
+    import urllib.parse
+    tok, chat = os.environ.get("TELEGRAM_BOT_TOKEN", ""), os.environ.get("TELEGRAM_CHAT_ID", "")
+    data = urllib.parse.urlencode({"chat_id": chat, "text": text[:4000], "disable_web_page_preview": "false"}).encode()
+    with urllib.request.urlopen(f"https://api.telegram.org/bot{tok}/sendMessage", data=data, timeout=20) as r:
+        return json.loads(r.read().decode()).get("ok")
+
+
+def threads_draft(state, videos, force=""):
+    if not (os.environ.get("TELEGRAM_BOT_TOKEN") and os.environ.get("TELEGRAM_CHAT_ID")):
+        return
+    now = datetime.datetime.now(KST)
+    today, wd, h = now.date().isoformat(), now.weekday(), now.hour
+    slot = force or ("am" if wd < 5 and 10 <= h < 14 else "pm" if wd < 5 and 16 <= h < 21 else
+                     "sat" if wd == 5 and 18 <= h < 23 else "sun" if wd == 6 and 18 <= h < 23 else "")
+    if not slot:
+        return
+    sent = state.setdefault("threads", {})
+    key = f"{today}-{slot}"
+    if sent.get(key) and not force:
+        return
+    vids = lambda days: [v for v in videos if (v.get("date") or "") >= (now.date() - datetime.timedelta(days=days)).isoformat()]
+    slim = lambda vs: [{"채널": v.get("channel"), "제목": v.get("title"), "결론": v.get("conclusion"), "분위기": v.get("mood")} for v in vs[:14]]
+    briefs = {b["date"]: b for b in load_briefs()}
+    if slot == "am":
+        src = [v for v in videos if v.get("date") == today]
+        if len(src) < 2:
+            print("스레드 초안: 오늘 오전 영상이 아직 적어서 이번엔 건너뛴다")
+            return
+        goal, link, data = (f"오늘 오전까지 올라온 경제 유튜브 {len(src)}편이 오늘 장을 어떻게 봤는지 전한다.", SITE_URL_ + "/", slim(src))
+    elif slot == "pm":
+        b = briefs.get(today)
+        if not b:
+            print("스레드 초안: 오늘 브리핑이 아직 없어서 이번엔 건너뛴다")
+            return
+        goal, link = (f"오늘 장 마감 후, 경제 유튜브 {b.get('count')}편을 종합한 오늘의 시장 브리핑을 전한다.", f"{SITE_URL_}/brief/{today}/")
+        data = {k: b.get(k) for k in ("headline", "keypoints", "agreements", "disagreements", "count")}
+        data["stocks"] = [{"name": s.get("name"), "count": s.get("count"), "tone": s.get("tone")} for s in (b.get("stocks") or [])[:5]]
+    elif slot == "sat":
+        ws = week_start(today).isoformat()
+        w = next((x for x in load_weekly() if x.get("week") == ws), None)
+        if w:
+            goal, link = ("이번 주 경제 유튜브들이 반복해서 말한 주제와 많이 언급한 종목을 한 주 결산으로 전한다.", f"{SITE_URL_}/week/{ws}/")
+            data = {k: w.get(k) for k in ("headline", "keypoints", "recurring", "stocks", "videos")}
+        else:
+            days = sorted(d for d in briefs if d >= ws)
+            if not days:
+                return
+            goal, link = ("이번 주 경제 유튜브들이 반복해서 말한 주제를 한 주 결산으로 전한다.", f"{SITE_URL_}/brief/")
+            data = [{k: briefs[d].get(k) for k in ("date", "headline", "keypoints")} for d in days]
+    else:
+        src = vids(1)
+        if len(src) < 2:
+            return
+        goal, link, data = ("주말에 올라온 경제 유튜브들이 꼽은 다음 주 관전 포인트(일정, 변수, 걱정거리)를 전한다.", SITE_URL_ + "/", slim(src))
+    try:
+        out = call_json(THREADS_PROMPT.replace("{goal}", goal).replace("{link}", link) + json.dumps(data, ensure_ascii=False),
+                        threads_schema, "THREADS_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 90)
+    except Exception as e:
+        print(f"스레드 초안 만들기 실패: {str(e)[:120]}")
+        return
+    label = {"am": "평일 오전", "pm": "평일 저녁", "sat": "토요일", "sun": "일요일"}[slot]
+    msg = f"[스레드 초안 · {label} · {today}]\n\n{(out.get('post') or '').strip()}\n\n──── 첫 댓글 ────\n{(out.get('comment') or '').strip()}"
+    try:
+        if tg_send(msg):
+            sent[key] = True
+            for k in sorted(sent)[:-40]:
+                sent.pop(k, None)
+            print(f"스레드 초안을 텔레그램으로 보냈다 ({label})")
+    except Exception as e:
+        print(f"텔레그램 보내기 실패: {str(e)[:120]}")
+
+
 def load_briefs():
     return _load_briefs_file()[0]
 
@@ -1690,6 +1818,7 @@ def auto():
         update_stock_digests(videos)
     except Exception as e:
         print(f"브리핑 단계에서 오류: {str(e)[:150]}")
+    threads_draft(state, videos)
     write_json(STATE, state)
     for m, c in state["models"].items():
         print(f"모델 누적 기록: {m} -> 성공 {c['ok']}, 바쁨 {c['busy']}, 사용불가 {c['dead']}")
@@ -1870,6 +1999,14 @@ def main(argv):
         return 0
     if any(t == "진단" for t in tokens) and len(tokens) == 1:
         return diagnose()
+    if tokens and tokens[0].split(":")[0] == "스레드":  # 스레드 초안을 지금 텔레그램으로 보내 본다. 예: 스레드:pm (am·pm·sat·sun)
+        slot = tokens[0].split(":", 1)[1] if ":" in tokens[0] else "pm"
+        if not (os.environ.get("TELEGRAM_BOT_TOKEN") and os.environ.get("TELEGRAM_CHAT_ID")):
+            print("TELEGRAM_BOT_TOKEN 또는 TELEGRAM_CHAT_ID 비밀값이 없다. GitHub 비밀 저장 공간에 넣었는지 확인해라.")
+            return 1
+        st = read_json(STATE, {})
+        threads_draft(st, load(), force=slot if slot in ("am", "pm", "sat", "sun") else "pm")
+        return 0
     if tokens and tokens[0].split(":")[0] == "자막테스트":
         return transcript_test(tokens[0].split(":", 1)[1] if ":" in tokens[0] else "")
     if tokens == ["복구"]:  # '경제 무관'으로 빠졌던 영상을 다시 후보로 돌리고 바로 수집을 돌린다
