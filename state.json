@@ -78,7 +78,8 @@
   "J-_r06cQt3Y": "경제 무관(내용 확인)",
   "ndizXKP1e1E": "너무 짧음",
   "9IBcf7-v68k": "너무 짧음",
-  "ojkP_kAHM-M": "너무 짧음"
+  "ojkP_kAHM-M": "너무 짧음",
+  "ZhWKlenk5c8": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -89,13 +90,13 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 20,
-   "busy": 14,
+   "ok": 21,
+   "busy": 15,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 4,
-   "busy": 28,
+   "busy": 31,
    "dead": 4
   },
   "gemini-3.8-flash": {
@@ -234,12 +235,14 @@
   "PLBpTvjfio0": true,
   "hWse-JfDpMU": true,
   "VgE10vbz-U4": true,
-  "pevfIGVAFFs": true,
   "VwUvt3aGsLI": true,
   "ndizXKP1e1E": true,
   "9IBcf7-v68k": true,
   "Z2BQV9OYynA": true,
-  "ojkP_kAHM-M": true
+  "ojkP_kAHM-M": true,
+  "ZhWKlenk5c8": true,
+  "xx_6qed6xCg": true,
+  "_1kONGeso8M": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -249,5 +252,6 @@
   "2026-11-18": true,
   "2026-11-19": true,
   "2026-11-20": true
- }
+ },
+ "last_ok": "2026-11-21T14:20"
 }
