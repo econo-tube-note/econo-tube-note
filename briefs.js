@@ -1,6 +1,209 @@
 /* 종합 브리핑(일간 BRIEFS, 주간 WEEKLY). 자동화(scripts/summarize.py)가 갱신하는 파일이다. */
 const BRIEFS=[
  {
+  "date": "2026-11-21",
+  "count": 6,
+  "sources": [
+   "UIzSvimZ2s0",
+   "FS9GYe_u58g",
+   "TbCOzdqUfMw",
+   "1PvkBMtMkyk",
+   "hzSwk4NroTg",
+   "g3yvNwq5Mo0"
+  ],
+  "headline": "증시 급락 속 반도체 바닥 다지기와 거시적 긴축 불확실성이 엇갈린다.",
+  "keypoints": [
+   "국내 증시와 반도체 주가는 과매도 구간에 진입했다는 의견이 나온다.",
+   "미국 연준의 긴축 기조와 고환율로 거시경제 불확실성이 이어지고 있다.",
+   "AI 산업의 자금 압박과 단기 변동성에 대한 주의가 요구된다."
+  ],
+  "themes": [
+   {
+    "title": "국내 증시 및 반도체 과매도 진단",
+    "summary": "코스피와 주요 반도체 종목이 큰 낙폭을 기록하며 매도 절정에 도달했다는 평가가 나온다. 추가 급락보다는 버티는 전략이 필요하다고 본다.",
+    "refs": [
+     "UIzSvimZ2s0",
+     "FS9GYe_u58g",
+     "TbCOzdqUfMw"
+    ]
+   },
+   {
+    "title": "거시 환경 및 긴축 장기화 부담",
+    "summary": "원/달러 환율 상승과 연준의 긴축 가능성이 자산시장에 부담을 주고 있다. 고금리 장기화에 대비해 현금 흐름을 확보해야 한다는 조언이 제시된다.",
+    "refs": [
+     "hzSwk4NroTg",
+     "g3yvNwq5Mo0"
+    ]
+   },
+   {
+    "title": "AI 생태계의 변동성과 규제 이슈",
+    "summary": "앤트로픽 상장과 미국 규제 노이즈 속에서 숏 세력의 공격이 이어지고 있다. AI 기업들의 자금 조달과 실적 지속성이 주목받고 있다.",
+    "refs": [
+     "TbCOzdqUfMw",
+     "1PvkBMtMkyk",
+     "hzSwk4NroTg"
+    ]
+   }
+  ],
+  "agreements": [
+   {
+    "point": "국내 증시와 반도체 주가가 낙폭 과대 구간에 도달해 투매를 자제해야 한다고 본다.",
+    "refs": [
+     "FS9GYe_u58g",
+     "TbCOzdqUfMw"
+    ]
+   },
+   {
+    "point": "미국의 대중국 반도체 규제와 수출 제약이 시장의 불안 요인으로 작용한다고 본다.",
+    "refs": [
+     "TbCOzdqUfMw",
+     "1PvkBMtMkyk"
+    ]
+   },
+   {
+    "point": "달러 강세와 환율 불안이 시장 전반에 지속적인 부담을 주고 있다고 본다.",
+    "refs": [
+     "hzSwk4NroTg",
+     "g3yvNwq5Mo0"
+    ]
+   }
+  ],
+  "disagreements": [
+   {
+    "topic": "미국 국채 금리 추가 상승 가능성",
+    "views": [
+     {
+      "channel": "체슬리TV",
+      "view": "유가 하락 등으로 미국 국채 금리의 추가 상승 우려는 낮다고 본다.",
+      "ref": "FS9GYe_u58g"
+     },
+     {
+      "channel": "연합뉴스경제TV",
+      "view": "연준의 기준금리 상향 조짐으로 국채 금리 하단이 막혀 부담이라고 본다.",
+      "ref": "hzSwk4NroTg"
+     }
+    ]
+   }
+  ],
+  "stocks": [
+   {
+    "name": "삼성전자",
+    "count": 5,
+    "tone": "중립",
+    "mentions": [
+     {
+      "channel": "체슬리TV",
+      "view": "자사주 매입으로 매물을 소각 중이나 기간 조정을 겪고 있다고 본다.",
+      "ref": "UIzSvimZ2s0"
+     },
+     {
+      "channel": "체슬리TV",
+      "view": "역사적 과매도 구간에 진입해 바닥권을 형성하고 있다고 평가한다.",
+      "ref": "FS9GYe_u58g"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "규제 노이즈가 있으나 AI 산업의 핵심 종목 위치를 지킨다고 평가한다.",
+      "ref": "TbCOzdqUfMw"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "실적 대비 저평가 상태이나 미국 규제 불확실성에 눌려 있다고 평가한다.",
+      "ref": "1PvkBMtMkyk"
+     },
+     {
+      "channel": "연합뉴스경제TV",
+      "view": "코스피 하락세 속에서 시장 길들이기 영향권에 놓여 있다고 분석한다.",
+      "ref": "hzSwk4NroTg"
+     }
+    ]
+   },
+   {
+    "name": "SK하이닉스",
+    "count": 4,
+    "tone": "중립",
+    "mentions": [
+     {
+      "channel": "체슬리TV",
+      "view": "주가 조정이 잦으므로 평가이익 감소에 집착하지 말아야 한다고 본다.",
+      "ref": "UIzSvimZ2s0"
+     },
+     {
+      "channel": "체슬리TV",
+      "view": "과거 사이클상 반등했던 사례를 고려해 보유해야 한다고 평가한다.",
+      "ref": "FS9GYe_u58g"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "수익성을 바탕으로 AI 산업 랠리의 주요 기준 역할을 한다고 평가한다.",
+      "ref": "TbCOzdqUfMw"
+     },
+     {
+      "channel": "연합뉴스경제TV",
+      "view": "주가가 110만 원선에서 지지력을 시험받으며 버티고 있다고 본다.",
+      "ref": "hzSwk4NroTg"
+     }
+    ]
+   },
+   {
+    "name": "엔비디아",
+    "count": 3,
+    "tone": "중립",
+    "mentions": [
+     {
+      "channel": "815머니톡",
+      "view": "규제 우려는 과도하며 AI 사이클의 핵심 기준 종목이라고 평가한다.",
+      "ref": "TbCOzdqUfMw"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "수출 제약과 지분 투자 부담으로 성장세가 주춤할 수 있다고 평가한다.",
+      "ref": "1PvkBMtMkyk"
+     },
+     {
+      "channel": "연합뉴스경제TV",
+      "view": "경영진 스캔들 이슈로 숏 세력의 주요 공격 대상이 되었다고 본다.",
+      "ref": "hzSwk4NroTg"
+     }
+    ]
+   },
+   {
+    "name": "앤트로픽",
+    "count": 2,
+    "tone": "중립",
+    "mentions": [
+     {
+      "channel": "815머니톡",
+      "view": "상장 직후 급락했으나 안착 여부는 매출 성장률에 달렸다고 본다.",
+      "ref": "TbCOzdqUfMw"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "자금 조달에는 성공했으나 성장 둔화와 물량 부담으로 흔들린다고 본다.",
+      "ref": "1PvkBMtMkyk"
+     }
+    ]
+   },
+   {
+    "name": "AMD",
+    "count": 2,
+    "tone": "부정",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "공매도 리포트와 수출 제약 영향으로 주가 하락 압력을 받는다고 본다.",
+      "ref": "1PvkBMtMkyk"
+     },
+     {
+      "channel": "연합뉴스경제TV",
+      "view": "경영진 악재 소문으로 AI 숏 포지션 타깃으로 거론된다고 설명한다.",
+      "ref": "hzSwk4NroTg"
+     }
+    ]
+   }
+  ]
+ },
+ {
   "date": "2026-11-20",
   "count": 39,
   "sources": [

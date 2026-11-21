@@ -3,11 +3,11 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "외국인 수급 이탈과 급락세 속에서도 가격 조정 마무리와 밸류에이션 매력을 강조하는 의견이 함께 나타난다.",
+  "summary": "역사적 과매도 구간과 저평가 상태라는 분석과 함께 규제 노이즈 및 외국인 수급 이탈로 인한 약세가 공존한다.",
   "points": [
-   "외국인 수급 이탈과 글로벌 반도체 비중 축소로 주가가 크게 하락했다.",
-   "가격 조주이 마무리되고 내년 실적 기준 강력한 지지선이 존재한다.",
-   "소부장 대비 안정성이 높아 밸류에이션 매력이 부각된다."
+   "월봉 RSI가 50 밑으로 빠지며 역사적 과매도 구간에서 바닥권을 형성 중이다.",
+   "미국 규제와 반도체 가격 불확실성에 짓눌려 주가가 저평가 상태에 놓여 있다.",
+   "외국인 수급 이탈과 글로벌 반도체 비중 축소 흐름 속에서 약세를 보인다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -15,6 +15,7 @@ const STOCKSUM={
    "-PVT3Gp45SE",
    "-TQxyxikegQ",
    "-vR1-SjKtXI",
+   "1PvkBMtMkyk",
    "4-y8e6UGd88",
    "5ejfTU3cvac",
    "6g110iUWTVo",
@@ -35,6 +36,7 @@ const STOCKSUM={
    "E2JBFfuhP_8",
    "E_hFDCS4SCo",
    "EnUsMp3IZu4",
+   "FS9GYe_u58g",
    "FeBExCVpt4U",
    "FlUs8YY8aAE",
    "G-DfszxECas",
@@ -62,7 +64,9 @@ const STOCKSUM={
    "SnQAb8i2xO4",
    "TDGVrEKXU5M",
    "TV3diSFaZIU",
+   "TbCOzdqUfMw",
    "Tzc0KuusVbI",
+   "UIzSvimZ2s0",
    "UhA5xmTjqJ4",
    "UlNBpokQfVk",
    "W3AvtA5OwVE",
@@ -122,7 +126,7 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 111,
+  "count": 115,
   "updated": "2026-11-21"
  },
  "엔비디아": {
@@ -231,11 +235,10 @@ const STOCKSUM={
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "혼재",
-  "summary": "업황 우려와 기술주 투매로 주가가 큰 폭으로 하락했으나 선행 PER 기준 저평가 상태라는 분석과 지지선 전망이 공존한다.",
+  "summary": "주가 급락과 업황 우려가 존재하나 선행 PER 저평가와 역사적 지지선에 대한 기대감도 함께 나타난다.",
   "points": [
-   "반도체 업황 우려와 투매세로 주가가 급락했다.",
-   "선행 PER이 낮아지며 밸류에이션 저평가 국면에 진입했다.",
-   "메모리 사이클상 90만 원 전후가 지지선이 될 것으로 본다."
+   "고점 대비 주가가 급락했으나 과거 사이클상 강력한 지지선에 대한 전망이 존재한다.",
+   "반도체 업황 우려와 매물 부담이 있는 반면 선행 PER 저평가와 반등 가능성도 제기된다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -264,6 +267,7 @@ const STOCKSUM={
    "E2JBFfuhP_8",
    "E_hFDCS4SCo",
    "EnUsMp3IZu4",
+   "FS9GYe_u58g",
    "FaYdu-Fa5_U",
    "FeBExCVpt4U",
    "FlUs8YY8aAE",
@@ -291,7 +295,9 @@ const STOCKSUM={
    "SnQAb8i2xO4",
    "TDGVrEKXU5M",
    "TV3diSFaZIU",
+   "TbCOzdqUfMw",
    "Tzc0KuusVbI",
+   "UIzSvimZ2s0",
    "UhA5xmTjqJ4",
    "UlNBpokQfVk",
    "W3AvtA5OwVE",
@@ -347,7 +353,7 @@ const STOCKSUM={
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 108,
+  "count": 111,
   "updated": "2026-11-21"
  },
  "코어위브": {
