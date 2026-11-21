@@ -57,6 +57,7 @@ jobs:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}   # 스레드 초안을 텔레그램으로 받기 (없어도 된다)
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_CHANNEL: "@marketraven"   # 공개 채널: 평일 오전 시황(11시대)·저녁 브리핑(17시대), 토요일 저녁 주간 브리핑
           YOUTUBE_COOKIES: ${{ secrets.YOUTUBE_COOKIES }}   # 자막 시험용 (유튜브 부계정 쿠키). 없어도 된다   # 없어도 된다 (유튜브 RSS가 계속 막힐 때만 사용)
           URLS: ${{ github.event.inputs.urls }}
           NOTE_KEY: ${{ github.event.inputs.note_key }}
