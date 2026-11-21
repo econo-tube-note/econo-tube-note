@@ -622,11 +622,11 @@ const STOCKSUM={
  "TSMC": {
   "name": "TSMC",
   "tone": "혼재",
-  "summary": "미국의 대중국 반도체 규제로 단기적인 주가 충격과 하락세를 겪고 있다. 그러나 AI 칩 생산의 핵심 기업으로서 견고한 펀더멘털과 장기적 성장성도 함께 평가받고 있다.",
+  "summary": "TSMC는 AI 칩 파운드리로서 장기 성장성과 이익 능력을 인정받으나, 미국의 대중국 규제와 단기 주가 하락 및 불안한 차트 흐름도 함께 언급된다.",
   "points": [
-   "미국의 대중국 반도체 규제와 수출 통제로 단기 악재와 주가 하락이 발생했다.",
-   "AI 칩 생산과 연동되어 실적이 좋고 주요 AI 칩을 독점적으로 파운드리한다.",
-   "과거 사이클을 거치며 우상향했고 꾸준한 이익 성장과 주주환원을 보여준다."
+   "미국의 대중국 규제와 수출 통제로 인해 일부 중국 고객사 출하 중단 및 단기 주가 충격을 겪었다.",
+   "AI 칩 생산과 연동된 실적 성장성 및 장기 우상향의 모범 사례로 평가받는다.",
+   "대만 증시 하락을 주도하며 차트상 매도 시그널과 불안한 흐름이 나타났다."
   ],
   "ids": [
    "-vR1-SjKtXI",
@@ -638,6 +638,7 @@ const STOCKSUM={
    "Q_Pgdi25lg0",
    "RkpF-xeoalw",
    "TbCOzdqUfMw",
+   "Zt0LLfeAGEY",
    "_JMuWDJzLJg",
    "hEq902LKr3k",
    "mW4Bp0uo0eQ",
@@ -645,8 +646,8 @@ const STOCKSUM={
    "waz9eTAJIxU",
    "zb7Lyp31Mvg"
   ],
-  "count": 15,
-  "updated": "2026-11-21"
+  "count": 16,
+  "updated": "2026-11-22"
  },
  "LIG넥스원": {
   "name": "LIG넥스원",
@@ -1101,5 +1102,39 @@ const STOCKSUM={
   ],
   "count": 17,
   "updated": "2026-11-21"
+ },
+ "앤트로픽": {
+  "name": "앤트로픽",
+  "tone": "혼재",
+  "summary": "대규모 자금 조달과 AI 산업의 지표라는 기대가 있으나, 보호예수 부재와 차익 매물로 단기 변동성과 적자 우려도 공존한다.",
+  "points": [
+   "성공적인 IPO로 대규모 자금을 조달해 AI 인프라 투자를 이어간다.",
+   "상장 직후 차익 매물과 임직원 매도 물량으로 단기 주가 변동성이 크다.",
+   "막대한 인프라 비용으로 인한 밸류에이션 부담과 적자 누적 우려가 제기된다."
+  ],
+  "ids": [
+   "-PVT3Gp45SE",
+   "1PvkBMtMkyk",
+   "6g110iUWTVo",
+   "ByMmWIxsB4E",
+   "ODiEz3dslcE",
+   "PREEBWeBwhs",
+   "TbCOzdqUfMw",
+   "VwUvt3aGsLI",
+   "X1D0cQjwrkU",
+   "_1luAl4h7rw",
+   "axG8buIPalY",
+   "axY9mi3lmok",
+   "bYGImu0Xhag",
+   "d9rmKdDS43w",
+   "igdgKOPRR_4",
+   "kXGnjB4FYIk",
+   "kgPvRNvkX0k",
+   "mW4Bp0uo0eQ",
+   "wZYpDi0Wdso",
+   "waz9eTAJIxU"
+  ],
+  "count": 20,
+  "updated": "2026-11-22"
  }
 };
