@@ -3,11 +3,11 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "역사적 저점과 과매도 구간이라는 평가가 있으나 추가 하락 우려도 함께 공존한다.",
+  "summary": "미 증시 하락과 AI 악재로 급락세가 나타났으나 현재 주가가 역사적 저점이라는 평가와 추가 하락 우려가 공존한다.",
   "points": [
-   "실적과 이익 전망에 비해 주가가 과도하게 저평가되어 있다.",
-   "미국 기술주 폭락 등 외부 영향으로 단기 추가 하락 우려가 있다.",
-   "자사주 매입과 AI 산업 흐름을 가늠할 핵심 종목으로 평가받는다."
+   "미국 기술주 폭락과 악재 여파로 추가 하락 우려와 7%대 급락세를 기록했다.",
+   "실적 선반영 조정이 마무리 단계에 접어들며 주가가 역사적 저점 수준이라는 의견이 있다.",
+   "자사주 매입과 주주환원 노력이 있으나 반도체 기간 조정을 함께 겪고 있다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -53,6 +53,7 @@ const STOCKSUM={
    "KopQpHNgc4k",
    "LEYOVBYtp3Q",
    "LagAldYbD8M",
+   "M0Ak8p29VyQ",
    "N_4n0mMwAWA",
    "OK2FJONMpGA",
    "P1m0QaKWzG0",
@@ -85,6 +86,7 @@ const STOCKSUM={
    "bYGImu0Xhag",
    "bsmFdEtKWqM",
    "c6LAHhYBSDI",
+   "cCe97LeFTMI",
    "cZKNKIAXEfY",
    "cZn4q_KfdjY",
    "cpvUuHMLsgI",
@@ -135,7 +137,7 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 124,
+  "count": 126,
   "updated": "2026-11-21"
  },
  "엔비디아": {
@@ -249,11 +251,11 @@ const STOCKSUM={
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "혼재",
-  "summary": "업황 호조와 실적 기대감 속에서도 미 반도체주 여파와 다운사이클 우려로 주가 조정과 의견이 엇갈린다.",
+  "summary": "업황 우려와 해외 악재로 주가가 급락했으나 실적 호조와 AI 랠리 기대감도 공존한다. 다운사이클 우려와 급반등 전망이 함께 나온다.",
   "points": [
-   "미국 반도체주 폭락과 업황 불확실성으로 주가가 큰 폭의 조정을 받았다.",
-   "실적 호조와 밸류에이션 매력이 부각되나 다운사이클 우려도 공존한다.",
-   "과거 사이클상 급반등 가능성을 보며 보유와 지지선 방어를 주목한다."
+   "미국 반도체주 폭락과 업황 우려로 주가가 급락하며 하락 압력을 받았다.",
+   "실적 호조와 메모리 높은 마진율을 바탕으로 밸류에이션 매력이 커졌다.",
+   "다운사이클 우려에 따른 추가 하락 가능성과 사이클상 급반등 전망이 대립한다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -299,6 +301,7 @@ const STOCKSUM={
    "K101Dy3FU1w",
    "KopQpHNgc4k",
    "LEYOVBYtp3Q",
+   "M0Ak8p29VyQ",
    "N_4n0mMwAWA",
    "OK2FJONMpGA",
    "Of8HJe9eNYw",
@@ -375,7 +378,7 @@ const STOCKSUM={
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 118,
+  "count": 119,
   "updated": "2026-11-21"
  },
  "코어위브": {

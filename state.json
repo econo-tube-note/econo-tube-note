@@ -85,7 +85,8 @@
   "zEwQftgwS_4": "경제 무관: 인도의 문화, 일상, 위생 관념 등을 다루는 여행 및 문화 중심의 영상으로 경제적 관점이 분명하지 않습니다.",
   "dZnAfhNbQPg": "너무 짧음",
   "l-qKdpMPEZI": "너무 짧음",
-  "1-zKfzOD6hw": "너무 긴 영상(253분)"
+  "1-zKfzOD6hw": "너무 긴 영상(253분)",
+  "bTovfsFSOWg": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -96,7 +97,7 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 16,
+   "ok": 18,
    "busy": 18,
    "dead": 4
   },
@@ -247,10 +248,9 @@
   "ZhWKlenk5c8": true,
   "RH5UoKZ9IHw": true,
   "1-zKfzOD6hw": true,
-  "cCe97LeFTMI": true,
-  "M0Ak8p29VyQ": true,
   "dZnAfhNbQPg": true,
-  "l-qKdpMPEZI": true
+  "l-qKdpMPEZI": true,
+  "bTovfsFSOWg": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -261,7 +261,7 @@
   "2026-11-19": true,
   "2026-11-20": true
  },
- "last_ok": "2026-11-21T22:07",
+ "last_ok": "2026-11-21T23:59",
  "threads": {
   "2026-11-21-sat": true
  },
