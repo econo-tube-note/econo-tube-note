@@ -2,8 +2,12 @@
 const BRIEFS=[
  {
   "date": "2026-11-21",
-  "count": 17,
+  "count": 21,
   "sources": [
+   "mVbORW1vjDY",
+   "4SCX-UhO0wc",
+   "aae79w527FQ",
+   "3LipybrcW5U",
    "aKPG-NTpgBs",
    "W0hUD7o5OuI",
    "Zt0LLfeAGEY",
@@ -22,61 +26,61 @@ const BRIEFS=[
    "hzSwk4NroTg",
    "g3yvNwq5Mo0"
   ],
-  "headline": "코스피 5천선 붕괴와 AI 서사 흔들림 속 패닉 장세 대응",
+  "headline": "미국 기술주 급락과 수급 불안으로 증시가 흔들리며 신중한 대응과 저점 매수가 대립한다.",
   "keypoints": [
-   "코스피와 코스닥 지수가 역대급 하락세를 보이며 심리적 지지선을 이탈했다.",
-   "앤트로픽 상장과 AI 수익성 우려로 나스닥과 반도체 관련 주식이 급락했다.",
-   "외국인 매도와 유동성 축소로 시장의 하방 수급이 크게 부족한 상태다.",
-   "전문가들은 무리한 손절을 자제하고 현금을 확보하며 보수적으로 대응할 것을 조언한다."
+   "미국 기술주와 반도체 섹터의 폭락 여파로 국내 증시가 주요 지지선을 하회했다.",
+   "연준의 긴축 우려와 AI 수익성 의구심이 시장의 투자 심리를 급격히 위축시켰다.",
+   "전문가들은 현금 비중 유지 등 보수적 대응과 역사적 저점 매수를 함께 제안한다."
   ],
   "themes": [
    {
-    "title": "국내 증시 폭락과 수급 공백",
-    "summary": "코스피와 코스닥이 심리적 지지선을 이탈하며 급락한 가운데, 외국인과 기관의 매도세 속에서 이를 받아줄 내부 수급이 부재해 변동성이 커졌다고 진단한다.",
+    "title": "AI 산업 수익성 논란과 기술주 폭락",
+    "summary": "미국 SEC 조사와 트럼프 관세 발언 등으로 AI 투자 수익성에 대한 의구심이 커지며 주요 반도체와 기술주 주가가 폭락했다고 분석한다.",
     "refs": [
+     "3LipybrcW5U",
+     "Zt0LLfeAGEY",
+     "VwUvt3aGsLI",
+     "pevfIGVAFFs",
+     "OMvVIVMcSWc",
+     "1PvkBMtMkyk",
+     "hzSwk4NroTg"
+    ]
+   },
+   {
+    "title": "국내 증시 급락과 수급 불안",
+    "summary": "외국인과 기관의 매도세 속에 지지선이 무너지며 비이성적 투매 장세가 연출되었고 내부 수급 부재로 변동성이 확대되었다고 지적한다.",
+    "refs": [
+     "3LipybrcW5U",
      "aKPG-NTpgBs",
      "W0hUD7o5OuI",
      "Cg3blW1uJ-I",
      "cJj2TjoiV10",
+     "UIzSvimZ2s0",
+     "FS9GYe_u58g",
      "TbCOzdqUfMw"
     ]
    },
    {
-    "title": "AI 생태계 수익성 의구심",
-    "summary": "앤트로픽 상장 이후 AI 투자 대비 수익성에 대한 의구심과 회계 조사 악재가 겹치며 미국 기술주와 반도체 섹터 전반에 투매가 일어났다고 분석한다.",
+    "title": "하락장 대응 및 투자의견",
+    "summary": "변동성이 안정될 때까지 관망하라는 조언과 함께 과도한 저평가 구간에 진입해 분할 매수나 보유로 대응해야 한다는 의견이 공존한다.",
     "refs": [
-     "Zt0LLfeAGEY",
-     "VwUvt3aGsLI",
-     "_1kONGeso8M",
-     "pevfIGVAFFs",
-     "1PvkBMtMkyk"
-    ]
-   },
-   {
-    "title": "금리 인상 공포와 긴축 장기화",
-    "summary": "연준의 추가 금리 인상 가능성과 인플레이션 고착화 위험이 자산 시장 전체의 유동성을 압박하고 있다고 지적한다.",
-    "refs": [
+     "mVbORW1vjDY",
+     "aae79w527FQ",
+     "3LipybrcW5U",
      "W0hUD7o5OuI",
-     "hzSwk4NroTg",
-     "g3yvNwq5Mo0"
-    ]
-   },
-   {
-    "title": "반도체 조정과 대응 전략",
-    "summary": "반도체 주가가 가격 조정 마무리에 근접했으나 추가적인 기간 조정과 심리적 인내가 필요하며, 현금 흐름 확보와 분할 매수로 대응해야 한다고 조언한다.",
-    "refs": [
      "_1kONGeso8M",
+     "Cg3blW1uJ-I",
+     "pevfIGVAFFs",
      "OMvVIVMcSWc",
-     "UIzSvimZ2s0",
      "FS9GYe_u58g"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "AI 산업의 성장성은 유효하나 단기 수익성 검증 압박과 시장 변동성을 겪고 있다.",
+    "point": "AI 자본 지출 대비 수익성에 관한 우려가 커지며 기술주 변동성이 확대되었다고 본다.",
     "refs": [
-     "Zt0LLfeAGEY",
+     "mVbORW1vjDY",
      "VwUvt3aGsLI",
      "pevfIGVAFFs",
      "OMvVIVMcSWc",
@@ -84,52 +88,53 @@ const BRIEFS=[
     ]
    },
    {
-    "point": "현재 반도체 주가는 과도한 하락을 겪었으나 펀더멘털이 붕괴된 것은 아니며 바닥권 형성 과정에 있다.",
+    "point": "미국 긴축 기조와 연준 관계자들의 매파적 발언이 시장 악재로 작용했다고 평가한다.",
     "refs": [
-     "Zt0LLfeAGEY",
-     "_1kONGeso8M",
+     "3LipybrcW5U",
+     "W0hUD7o5OuI",
      "Cg3blW1uJ-I",
-     "UIzSvimZ2s0",
-     "FS9GYe_u58g"
+     "hzSwk4NroTg",
+     "g3yvNwq5Mo0"
     ]
    },
    {
-    "point": "신용 레버리지를 활용한 투자를 자제하고 현금이나 안전 자산을 확보하며 보수적으로 대응해야 한다.",
+    "point": "로봇 산업은 CES 모멘텀과 기술 발전 기대감으로 관심이 필요한 섹터라고 본다.",
     "refs": [
-     "W0hUD7o5OuI",
-     "VwUvt3aGsLI",
-     "g3yvNwq5Mo0"
+     "mVbORW1vjDY",
+     "aae79w527FQ",
+     "xx_6qed6xCg",
+     "cJj2TjoiV10"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "반도체 주가 하락에 따른 현재 시점의 매매 전략",
+    "topic": "하락장 투자 대응 전략",
     "views": [
      {
       "channel": "815머니톡",
-      "view": "가격 조정이 마무리 단계이므로 섣부른 손절을 자제하고 매수 및 보유로 대응해야 한다.",
-      "ref": "Zt0LLfeAGEY"
+      "view": "지지선 이탈과 변동성 확대로 바닥이 확인될 때까지 매매를 자제해야 한다고 본다.",
+      "ref": "3LipybrcW5U"
      },
      {
-      "channel": "체슬리TV",
-      "view": "아직 기간 조정 기간이 남아 있고 심리적 조롱을 견뎌야 하므로 인내가 필요하다.",
-      "ref": "UIzSvimZ2s0"
+      "channel": "김작가 TV",
+      "view": "역사적 저점 수준으로 저평가되어 추가 매수나 보유로 대응해야 한다고 주장한다.",
+      "ref": "Cg3blW1uJ-I"
      }
     ]
    },
    {
-    "topic": "한한령 해제 및 중국 관련 모멘텀 종목의 전망",
+    "topic": "반도체 업황 및 주가 전망",
     "views": [
      {
-      "channel": "체슬리TV",
-      "view": "엔터, 레저, 미디어 관련주가 하락장 속에서 상대적으로 선방하고 있다.",
-      "ref": "aKPG-NTpgBs"
+      "channel": "삼프로TV 3PROTV",
+      "view": "AI 투자 지연과 규제 강화 우려로 단기적인 수급 충격과 변동성이 크다고 지적한다.",
+      "ref": "1PvkBMtMkyk"
      },
      {
       "channel": "815머니톡",
-      "view": "엔터주는 쉽게 풀리지 않을 것이며 트레이딩 관점으로만 접근해야 한다.",
-      "ref": "W0hUD7o5OuI"
+      "view": "공급 병목과 기초체력이 견고해 현재 주가 하락은 과도한 과매도 구간이라고 평가한다.",
+      "ref": "Zt0LLfeAGEY"
      }
     ]
    }
@@ -141,19 +146,19 @@ const BRIEFS=[
     "tone": "혼재",
     "mentions": [
      {
+      "channel": "김작가 TV",
+      "view": "역사적 저평가 구간으로 안전 마진이 확보되어 매수 관점이 유효하다고 본다.",
+      "ref": "mVbORW1vjDY"
+     },
+     {
       "channel": "815머니톡",
-      "view": "실적이 우수하고 공급 병목 호황 기조가 살아 있어 손절매하는 것은 부적절하다고 평가한다.",
+      "view": "미국 기술주 폭락 영향으로 추가 하락 위험이 존재한다고 경고한다.",
+      "ref": "3LipybrcW5U"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "펀더멘털 손상 없는 주가 급락이므로 손절매는 부적절하다고 평가한다.",
       "ref": "Zt0LLfeAGEY"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "임원이 직접 AI 버블론을 반박했으나 관련 레버리지 상품 폭락으로 주주 피해가 컸다고 설명한다.",
-      "ref": "VwUvt3aGsLI"
-     },
-     {
-      "channel": "체슬리TV",
-      "view": "자사주 매입으로 외국인 매물을 소각하고 있으나 반도체 기간 조정 흐름을 겪는 중이다.",
-      "ref": "UIzSvimZ2s0"
      }
     ]
    },
@@ -163,19 +168,19 @@ const BRIEFS=[
     "tone": "혼재",
     "mentions": [
      {
+      "channel": "머니인사이드",
+      "view": "호실적 반영 후 조정이나 투자 심리 저점으로 단기 매수가 유효하다고 본다.",
+      "ref": "aae79w527FQ"
+     },
+     {
       "channel": "815머니톡",
-      "view": "현장 실적이 여전히 호조를 보여 주가 하락으로 밸류에이션 매력이 커졌다고 평가한다.",
+      "view": "미 반도체 폭락 여파로 주가가 급락하며 하락 압력을 받았다고 설명한다.",
+      "ref": "3LipybrcW5U"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "과도한 낙폭으로 밸류에이션 매력이 높아졌다고 분석한다.",
       "ref": "Zt0LLfeAGEY"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "메모리 칩 마진율이 높음에도 파생 ETF 상품이 90배 가까이 하락하는 등 시장 하락 여파를 입었다.",
-      "ref": "VwUvt3aGsLI"
-     },
-     {
-      "channel": "체슬리TV",
-      "view": "고점 대비 63% 급락했으나 과거 사이클상 결국 급반등했으므로 매도하지 말고 보유해야 한다.",
-      "ref": "FS9GYe_u58g"
      }
     ]
    },
@@ -185,80 +190,104 @@ const BRIEFS=[
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "815머니톡",
-      "view": "수요 검증 시선이 앤트로픽으로 이동하며 주가 변동성을 겪는다고 평가한다.",
-      "ref": "Zt0LLfeAGEY"
+      "channel": "김작가 TV",
+      "view": "데이터센터 건설 지연 리스크가 주가에 부정적으로 작용했다고 지적한다.",
+      "ref": "mVbORW1vjDY"
+     },
+     {
+      "channel": "머니인사이드",
+      "view": "견조한 실적을 바탕으로 불확실성이 해소되면 단기 반등이 가능하다고 본다.",
+      "ref": "aae79w527FQ"
      },
      {
       "channel": "815머니톡",
-      "view": "회계 조사 악재와 AI 수익성 의구심이 겹치며 주가가 폭락했다고 평가한다.",
-      "ref": "VwUvt3aGsLI"
-     },
-     {
-      "channel": "증시각도기TV",
-      "view": "주가가 125달러까지 폭락했으나 트레일링 PER 15배 수준으로 내려와 가격 매력이 생겼다고 본다.",
-      "ref": "pevfIGVAFFs"
-     }
-    ]
-   },
-   {
-    "name": "앤트로픽",
-    "count": 3,
-    "tone": "중립",
-    "mentions": [
-     {
-      "channel": "815머니톡",
-      "view": "상장 후 주가 흐름이 AI 관련 산업의 미래 수익성 체감을 판단할 지표가 되고 있다고 평가한다.",
-      "ref": "VwUvt3aGsLI"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "상장 직후 차익 매물로 급락했으나 향후 주가 안착 여부는 매출 성장률 지속성에 달려 있다고 평가한다.",
-      "ref": "TbCOzdqUfMw"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "자금 조달에는 성공했으나 매출 성장률 둔화와 보호예수 부재로 단기 주가 변동성이 크다고 평가한다.",
-      "ref": "1PvkBMtMkyk"
+      "view": "SEC 회계 조사 악재와 함께 주가가 하루 만에 폭락했다고 설명한다.",
+      "ref": "3LipybrcW5U"
      }
     ]
    },
    {
     "name": "AMD",
-    "count": 3,
-    "tone": "중립",
+    "count": 2,
+    "tone": "부정",
     "mentions": [
      {
       "channel": "815머니톡",
-      "view": "중국용 가속기 공급 제재 논의 추이에 따라 영향을 받을 수 있다고 지적한다.",
+      "view": "중국 제재 회피 혐의 공매도 보고서 여파로 주가가 폭락했다고 지적한다.",
+      "ref": "3LipybrcW5U"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "대중 제재 논의 추이에 따라 영향을 받을 수 있다고 지적한다.",
       "ref": "Zt0LLfeAGEY"
+     }
+    ]
+   },
+   {
+    "name": "앤트로픽",
+    "count": 2,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "김작가 TV",
+      "view": "상장 후 수급 왜곡과 단기 불확실성이 크다고 평가한다.",
+      "ref": "mVbORW1vjDY"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "공매도 리포트 발표와 수출 제약 영향으로 주가 하락 압력을 받고 있다고 평가한다.",
+      "view": "매출 성장률 둔화와 보호예수 부재로 주가 변동성이 크다고 본다.",
       "ref": "1PvkBMtMkyk"
-     },
-     {
-      "channel": "연합뉴스경제TV",
-      "view": "경영진 관련 악재 소문이 돌며 AI 숏 포지션 타깃으로 함께 거론된다고 설명한다.",
-      "ref": "hzSwk4NroTg"
      }
     ]
    },
    {
     "name": "네이버",
     "count": 2,
-    "tone": "중립",
+    "tone": "혼재",
     "mentions": [
      {
-      "channel": "815머니톡",
-      "view": "최근 주가가 23% 이상 하락하여 진행자가 배당과 방어력이 있는 삼성전자로 전량 교체 매도했다고 언급한다.",
-      "ref": "VwUvt3aGsLI"
+      "channel": "머니인사이드",
+      "view": "합병 우려와 AI 수익성 부족이 있으나 초장기 투자는 유효하다고 본다.",
+      "ref": "aae79w527FQ"
      },
      {
       "channel": "체슬리TV",
-      "view": "PBR 1배 미만의 저평가 상태이며 AI 데이터센터 사업의 성장성이 기대된다.",
+      "view": "PBR 1배 미만의 저평가 상태로 성장성이 기대된다고 본다.",
       "ref": "Z2BQV9OYynA"
+     }
+    ]
+   },
+   {
+    "name": "레인보우로보틱스",
+    "count": 2,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "김작가 TV",
+      "view": "CES 기대감에 따른 변동성 속 로봇 테마주로 언급된다.",
+      "ref": "mVbORW1vjDY"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "시장 급락에도 지지선을 지켜내며 추세를 유지한다고 평가한다.",
+      "ref": "cJj2TjoiV10"
+     }
+    ]
+   },
+   {
+    "name": "로보티즈",
+    "count": 2,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "머니인사이드",
+      "view": "기관 수급 유입이 가능한 규격으로 장기 모아가기에 적합하다고 평가한다.",
+      "ref": "aae79w527FQ"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "시장 영향으로 단기 이탈했으나 반등 시 긍정적 흐름을 되찾을 것으로 본다.",
+      "ref": "cJj2TjoiV10"
      }
     ]
    }
