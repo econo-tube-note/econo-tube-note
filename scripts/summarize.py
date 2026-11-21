@@ -1432,6 +1432,96 @@ def channel_post(state, force="", videos=None):
         print(f"채널 올리기 실패: {str(e)[:150]}")
 
 
+# ---------- 블로그용 주간 결산 초안 (운영자 전용, 토요일 저녁 텔레그램) ----------
+BLOG_PROMPT = """너는 주식 블로그를 운영하는 개인 투자자다. 아래 자료는 이번 주 여러 경제 유튜브 영상을 종합한 주간 브리핑이다.
+이 자료로 네이버·티스토리 블로그에 올릴 '이번 주 경제 유튜브 결산' 글을 JSON으로 써라.
+
+말투
+- '~이다', '~했다' 체. 혼자 한 주를 돌아보며 정리하는 독백 느낌으로 쓴다. 존댓말 금지.
+- 사람이 쓴 듯한 자연스러운 표현을 쓴다('~같다', '~라고 생각한다', '~인 것 같다'). 쉬운 말로 쓰고, 문장은 짧게 끊는다.
+- AI가 쓴 티가 나는 표현(예: '주목할 만하다', '시사점', '~할 것으로 보인다', '결론적으로') 금지. 이모지, 해시태그 금지.
+- 자료의 문장을 그대로 베끼지 말고 자기 말로 풀어 쓴다(사이트 글과 같은 문장이 되면 안 된다).
+
+구성 (body는 빈 줄로 문단을 나누고, 소제목은 '■ '로 시작하는 한 줄로 쓴다)
+1. 도입 2~3문장: 이번 주 장이 어땠는지 한마디로, 경제 유튜브 몇 편을 봤는지.
+2. ■ 이번 주 다들 한 얘기: 반복해서 나온 주제 2~3개를 하나씩 짧은 문단으로.
+3. ■ 의견이 갈린 지점: 엇갈린 시각이 있으면 '한쪽은 ~, 다른 쪽은 ~' 식으로. 채널 이름은 써도 된다.
+4. ■ 많이 언급된 종목: 종목 3~5개와 왜 자주 나왔는지 한 줄씩.
+5. ■ 다음 주에 볼 것: 자료에 나온 일정이나 변수가 있으면 2~3개. 없으면 이 소제목은 빼라.
+6. ■ 내 생각: 이 소제목 아래에는 '(여기에 내 생각을 적는다)' 한 줄만 쓴다. 운영자가 직접 채운다.
+7. 마지막 문단: 채널별로 누가 뭐라고 했는지는 Market Raven에 정리해 뒀다는 한 문장과 이 주소: {link}
+
+- 특정 종목을 사거나 팔라고 권하지 않는다. 유튜버들이 이렇게 봤다는 전달자 입장을 지킨다.
+- body 길이는 공백 포함 1500~2200자.
+- title은 검색에 잘 걸리게 날짜와 핵심 키워드를 넣은 한 줄(예: '11월 셋째 주 경제 유튜브 결산 | 앤트로픽 상장, 외국인 매도').
+
+자료(JSON):
+"""
+
+
+def blog_schema():
+    from pydantic import BaseModel
+
+    class Blog(BaseModel):
+        title: str
+        body: str
+    return Blog
+
+
+def blog_draft(state, force=False):
+    if not tg_ok():
+        return
+    now = datetime.datetime.now(KST)
+    today = now.date().isoformat()
+    if not force and not (now.weekday() == 5 and 18 <= now.hour < 23):
+        return
+    ws = week_start(today).isoformat()
+    sent = state.setdefault("blog", {})
+    if sent.get(ws) and not force:
+        return
+    w = next((x for x in load_weekly() if x.get("week") == ws), None)
+    if w:
+        data = {k: w.get(k) for k in ("week", "end", "headline", "keypoints", "flow", "recurring", "stocks", "videos")}
+        # 주간 브리핑에는 엇갈린 시각이 없어서 이번 주 일간 브리핑에서 모아 붙인다
+        data["disagreements"] = [{"date": b.get("date"), "topic": d.get("topic"), "views": [{"channel": v.get("channel"), "view": v.get("view")} for v in d.get("views") or []]}
+                                 for b in load_briefs() if b.get("date", "") >= ws for d in (b.get("disagreements") or [])[:2]][:6]
+        link = f"{SITE_URL_}/week/{ws}/"
+    else:
+        days = [b for b in load_briefs() if b.get("date", "") >= ws]
+        if not days:
+            print("블로그 초안: 이번 주 브리핑이 아직 없다")
+            return
+        data = [{k: b.get(k) for k in ("date", "headline", "keypoints", "agreements", "disagreements", "count")} for b in days]
+        link = f"{SITE_URL_}/brief/"
+    data, _ = fix_names(data)
+    try:
+        out = call_json(BLOG_PROMPT.replace("{link}", link) + json.dumps(data, ensure_ascii=False), blog_schema,
+                        "BLOG_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 150)
+    except Exception as e:
+        print(f"블로그 초안 만들기 실패: {str(e)[:120]}")
+        return
+    out, _ = fix_names(out)
+    text = f"[블로그 초안 · 주간 결산 · {ws} 주]\n\n제목: {(out.get('title') or '').strip()}\n\n{(out.get('body') or '').strip()}"
+    try:
+        # 텔레그램 한 메시지는 4096자까지라 문단 단위로 나눠 보낸다
+        chunks, cur = [], ""
+        paras = [p_[i:i + 3500] for p_ in text.split("\n\n") for i in range(0, max(len(p_), 1), 3500)]
+        for para in paras:
+            if cur and len(cur) + len(para) + 2 > 3800:
+                chunks.append(cur)
+                cur = ""
+            cur += ("\n\n" if cur else "") + para
+        chunks.append(cur)
+        ok = all(tg_send(c) for c in chunks if c.strip())
+        if ok:
+            sent[ws] = True
+            for k in sorted(sent)[:-20]:
+                sent.pop(k, None)
+            print(f"블로그 초안을 텔레그램으로 보냈다 ({len(chunks)}개 메시지)")
+    except Exception as e:
+        print(f"블로그 초안 보내기 실패: {str(e)[:120]}")
+
+
 def load_briefs():
     return _load_briefs_file()[0]
 
@@ -2040,6 +2130,7 @@ def auto():
         tg_alert(state, "cookie-" + now_k.date().isoformat(), "자막을 5번 연속 못 받았다. 유튜브 쿠키가 만료됐을 수 있다. 부계정으로 쿠키를 다시 내보내서 YOUTUBE_COOKIES 비밀값을 바꿔라.")
     threads_draft(state, videos)
     channel_post(state, videos=videos)
+    blog_draft(state)
     write_json(STATE, state)
     for m, c in state["models"].items():
         print(f"모델 누적 기록: {m} -> 성공 {c['ok']}, 바쁨 {c['busy']}, 사용불가 {c['dead']}")
@@ -2220,6 +2311,12 @@ def main(argv):
         return 0
     if any(t == "진단" for t in tokens) and len(tokens) == 1:
         return diagnose()
+    if tokens and tokens[0] == "블로그":  # 블로그용 주간 결산 초안을 지금 텔레그램으로 받아 본다
+        if not tg_ok():
+            print("TELEGRAM_BOT_TOKEN 또는 TELEGRAM_CHAT_ID 비밀값이 없다.")
+            return 1
+        blog_draft(read_json(STATE, {}), force=True)
+        return 0
     if tokens and tokens[0].split(":")[0] == "채널":  # 텔레그램 채널에 지금 올려 본다. 예: 채널:am (오전 시황) / 채널:pm (오늘 브리핑) / 채널:sat (이번 주 주간)
         st = read_json(STATE, {})
         channel_post(st, force=tokens[0].split(":", 1)[1] if ":" in tokens[0] else "pm")
