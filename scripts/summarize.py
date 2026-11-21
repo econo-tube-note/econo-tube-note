@@ -1157,14 +1157,14 @@ def tg_ok():
     return bool(os.environ.get("TELEGRAM_BOT_TOKEN") and os.environ.get("TELEGRAM_CHAT_ID"))
 
 
-def tg_photo(path, caption=""):
-    """사진 파일을 텔레그램으로 보낸다 (multipart 업로드)."""
+def tg_photo(path, caption="", chat=None, html=False):
+    """사진 파일을 텔레그램으로 보낸다 (multipart 업로드). chat을 안 주면 운영자에게 보낸다."""
     import urllib.request
     import uuid
-    tok, chat = os.environ.get("TELEGRAM_BOT_TOKEN", ""), os.environ.get("TELEGRAM_CHAT_ID", "")
+    tok, chat = os.environ.get("TELEGRAM_BOT_TOKEN", ""), chat or os.environ.get("TELEGRAM_CHAT_ID", "")
     bd = uuid.uuid4().hex
     parts = []
-    for k, v in (("chat_id", chat), ("caption", caption[:1000])):
+    for k, v in (("chat_id", chat), ("caption", caption[:1024])) + ((("parse_mode", "HTML"),) if html else ()):
         parts.append(f"--{bd}\r\nContent-Disposition: form-data; name=\"{k}\"\r\n\r\n{v}\r\n".encode())
     parts.append(f"--{bd}\r\nContent-Disposition: form-data; name=\"photo\"; filename=\"image.png\"\r\nContent-Type: image/png\r\n\r\n".encode()
                  + Path(path).read_bytes() + f"\r\n--{bd}--\r\n".encode())
@@ -1190,11 +1190,14 @@ def tg_alert(state, key, text):
         print(f"알림 보내기 실패: {str(e)[:100]}")
 
 
-def tg_send(text):
+def tg_send(text, chat=None, html=False):
     import urllib.request
     import urllib.parse
-    tok, chat = os.environ.get("TELEGRAM_BOT_TOKEN", ""), os.environ.get("TELEGRAM_CHAT_ID", "")
-    data = urllib.parse.urlencode({"chat_id": chat, "text": text[:4000], "disable_web_page_preview": "false"}).encode()
+    tok, chat = os.environ.get("TELEGRAM_BOT_TOKEN", ""), chat or os.environ.get("TELEGRAM_CHAT_ID", "")
+    q = {"chat_id": chat, "text": text[:4000], "disable_web_page_preview": "false"}
+    if html:
+        q["parse_mode"] = "HTML"
+    data = urllib.parse.urlencode(q).encode()
     with urllib.request.urlopen(f"https://api.telegram.org/bot{tok}/sendMessage", data=data, timeout=20) as r:
         return json.loads(r.read().decode()).get("ok")
 
@@ -1339,6 +1342,94 @@ def fix_all(videos):
     if total:
         print(f"이름 표기를 바로잡았다: {total}곳 (예: 엔트로픽 -> 앤트로픽)")
     return total
+
+
+# ---------- 공개 텔레그램 채널에 브리핑 올리기 (구독자용) ----------
+# 평일 오전(11시대): 오전 영상들의 한 줄 결론 모음, 평일 저녁(17시대): 그날 일간 브리핑, 토요일 저녁: 주간 브리핑.
+# TELEGRAM_CHANNEL(예: @marketraven)이 없으면 하지 않는다.
+def channel_post(state, force="", videos=None):
+    ch = os.environ.get("TELEGRAM_CHANNEL", "").strip()
+    if not (ch and os.environ.get("TELEGRAM_BOT_TOKEN")):
+        return
+    import html as H
+    now = datetime.datetime.now(KST)
+    today, wd, h = now.date().isoformat(), now.weekday(), now.hour
+    slot = force or ("am" if wd < 5 and 10 <= h < 14 else "pm" if wd < 5 and 16 <= h < 23 else "sat" if wd == 5 and 18 <= h < 23 else "")
+    if not slot:
+        return
+    done_ = state.setdefault("channel", {})
+    key = f"{today}-{slot}"
+    if done_.get(key) and not force:
+        return
+    E = lambda s: H.escape(str(s or ""))
+    d_ = now.date()
+    if slot == "am":
+        vs = [v for v in (videos if videos is not None else load()) if v.get("date") == today and v.get("conclusion")]
+        if len(vs) < 3:
+            print("채널: 오늘 오전 영상이 아직 적어서 이번엔 올리지 않는다")
+            return
+        vs, _ = fix_names(vs)
+        mood = {"낙관": "긍정", "중립": "중립", "비관": "부정"}
+        cnt = {k: sum(1 for v in vs if v.get("mood") == k) for k in mood}
+        kick = f"{d_.month}.{d_.day:02d} ({'월화수목금토일'[d_.weekday()]}) 오전 시황"
+        head = f"오전 경제 유튜브 {len(vs)}편, 긍정 {cnt['낙관']} · 중립 {cnt['중립']} · 부정 {cnt['비관']}"
+        link, n = f"{SITE_URL_}/", len(vs)
+        lines = [f"<b>{E(kick)}</b>", f"<b>{E(head)}</b>", ""]
+        for v in vs[:6]:
+            lines += [f"<b>{E(v.get('channel'))}</b> · {E(mood.get(v.get('mood'), ''))}", f"{E(v.get('conclusion'))}", ""]
+        lines = lines[:-1]
+    elif slot == "pm":
+        b = next((x for x in load_briefs() if x.get("date") == today), None)
+        if not b:
+            print("채널: 오늘 브리핑이 아직 없어서 이번엔 올리지 않는다")
+            return
+        b, _ = fix_names(b)
+        kick = f"{d_.month}.{d_.day:02d} ({'월화수목금토일'[d_.weekday()]}) 시장 브리핑"
+        link, head, n = f"{SITE_URL_}/brief/{today}/", b.get("headline") or "", b.get("count") or ""
+        lines = [f"<b>{E(kick)}</b>", f"<b>{E(head)}</b>", ""] + [f"• {E(k)}" for k in (b.get("keypoints") or [])[:4]]
+        dis = (b.get("disagreements") or [])[:1]
+        if dis and len(dis[0].get("views") or []) >= 2:
+            v1, v2 = dis[0]["views"][:2]
+            lines += ["", f"<b>엇갈린 시각</b> · {E(dis[0].get('topic'))}", f"- {E(v1.get('view'))}", f"- {E(v2.get('view'))}"]
+        st = [s.get("name") for s in (b.get("stocks") or [])[:5] if s.get("name")]
+        if st:
+            lines += ["", f"<b>많이 언급된 종목</b> {E(', '.join(st))}"]
+    else:
+        ws = week_start(today).isoformat()
+        w = next((x for x in load_weekly() if x.get("week") == ws), None)
+        if not w:
+            print("채널: 이번 주 주간 브리핑이 아직 없어서 올리지 않는다")
+            return
+        w, _ = fix_names(w)
+        a_, z_ = datetime.date.fromisoformat(ws), datetime.date.fromisoformat(w.get("end") or today)
+        kick = f"{a_.month}.{a_.day:02d}~{z_.month}.{z_.day:02d} 주간 시장 브리핑"
+        link, head, n = f"{SITE_URL_}/week/{ws}/", w.get("headline") or "", w.get("videos") or ""
+        lines = [f"<b>{E(kick)}</b>", f"<b>{E(head)}</b>", ""] + [f"• {E(k)}" for k in (w.get("keypoints") or [])[:5]]
+    lines += ["", f"경제 유튜브 영상 {E(n)}편 종합", f'<a href="{E(link)}">{"오늘 영상 요약 전체 보기" if slot == "am" else "전체 브리핑 보기"} →</a>']
+    text = "\n".join(lines)
+    img = None
+    try:
+        import importlib.util
+        sp = importlib.util.spec_from_file_location("pages_for_og", ROOT / "scripts" / "pages.py")
+        pg = importlib.util.module_from_spec(sp)
+        sp.loader.exec_module(pg)
+        if pg.og_image(f"ch-{slot}", kick, head, f"경제 유튜브 영상 {n}편 종합"):
+            img = ROOT / "og" / f"ch-{slot}.png"
+    except Exception as e:
+        print(f"채널 이미지 만들기 실패(글만 올린다): {str(e)[:100]}")
+    try:
+        ok = tg_photo(img, text, chat=ch, html=True) if img and img.exists() and len(text) <= 1024 else None
+        if not ok:
+            if img and img.exists():
+                tg_photo(img, "", chat=ch)
+            ok = tg_send(text, chat=ch, html=True)
+        if ok:
+            done_[key] = True
+            for k in sorted(done_)[:-40]:
+                done_.pop(k, None)
+            print(f"텔레그램 채널({ch})에 올렸다: {kick}")
+    except Exception as e:
+        print(f"채널 올리기 실패: {str(e)[:150]}")
 
 
 def load_briefs():
@@ -1948,6 +2039,7 @@ def auto():
     if tr_fail >= 5:
         tg_alert(state, "cookie-" + now_k.date().isoformat(), "자막을 5번 연속 못 받았다. 유튜브 쿠키가 만료됐을 수 있다. 부계정으로 쿠키를 다시 내보내서 YOUTUBE_COOKIES 비밀값을 바꿔라.")
     threads_draft(state, videos)
+    channel_post(state, videos=videos)
     write_json(STATE, state)
     for m, c in state["models"].items():
         print(f"모델 누적 기록: {m} -> 성공 {c['ok']}, 바쁨 {c['busy']}, 사용불가 {c['dead']}")
@@ -2128,6 +2220,11 @@ def main(argv):
         return 0
     if any(t == "진단" for t in tokens) and len(tokens) == 1:
         return diagnose()
+    if tokens and tokens[0].split(":")[0] == "채널":  # 텔레그램 채널에 지금 올려 본다. 예: 채널:am (오전 시황) / 채널:pm (오늘 브리핑) / 채널:sat (이번 주 주간)
+        st = read_json(STATE, {})
+        channel_post(st, force=tokens[0].split(":", 1)[1] if ":" in tokens[0] else "pm")
+        write_json(STATE, st)
+        return 0
     if tokens and tokens[0].split(":")[0] == "스레드":  # 스레드 초안을 지금 텔레그램으로 보내 본다. 예: 스레드:pm (am·pm·sat·sun)
         slot = tokens[0].split(":", 1)[1] if ":" in tokens[0] else "pm"
         if not (os.environ.get("TELEGRAM_BOT_TOKEN") and os.environ.get("TELEGRAM_CHAT_ID")):
