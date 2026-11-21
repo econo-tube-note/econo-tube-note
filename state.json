@@ -81,7 +81,8 @@
   "ojkP_kAHM-M": "너무 짧음",
   "ZhWKlenk5c8": "너무 짧음",
   "8xsfQnUGgNg": "경제 무관(내용 확인)",
-  "RH5UoKZ9IHw": "너무 짧음"
+  "RH5UoKZ9IHw": "너무 짧음",
+  "zEwQftgwS_4": "경제 무관: 인도의 문화, 일상, 위생 관념 등을 다루는 여행 및 문화 중심의 영상으로 경제적 관점이 분명하지 않습니다."
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -92,13 +93,13 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 12,
-   "busy": 13,
+   "ok": 13,
+   "busy": 16,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 2,
-   "busy": 21,
+   "busy": 24,
    "dead": 4
   },
   "gemini-3.8-flash": {
@@ -107,7 +108,7 @@
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 20,
+   "ok": 22,
    "busy": 6,
    "dead": 4
   },
@@ -243,11 +244,10 @@
   "ZhWKlenk5c8": true,
   "RH5UoKZ9IHw": true,
   "1-zKfzOD6hw": true,
-  "aKPG-NTpgBs": true,
-  "W0hUD7o5OuI": true,
   "mVbORW1vjDY": true,
   "aae79w527FQ": true,
-  "4SCX-UhO0wc": true
+  "4SCX-UhO0wc": true,
+  "cCe97LeFTMI": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -258,11 +258,14 @@
   "2026-11-19": true,
   "2026-11-20": true
  },
- "last_ok": "2026-11-21T18:03",
+ "last_ok": "2026-11-21T20:05",
  "threads": {
   "2026-11-21-sat": true
  },
  "channel": {
   "2026-11-21-sat": true
+ },
+ "blog": {
+  "2026-11-16": true
  }
 }
