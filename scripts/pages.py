@@ -320,24 +320,42 @@ def _norm_code_name(n):
     return re.sub(r"[\s·()\-]", "", n or "").upper()
 
 
+def _parse_corplist(raw):
+    out = {}
+    for row in re.findall(r"<tr[^>]*>(.*?)</tr>", raw, re.S):
+        tds = [re.sub(r"<[^>]+>", "", t).strip() for t in re.findall(r"<td[^>]*>(.*?)</td>", row, re.S)]
+        code = next((t for t in tds[1:4] if re.fullmatch(r"[0-9A-Z]{6}", t)), None)
+        if tds and code:
+            out[_norm_code_name(tds[0])] = code
+    return out
+
+
 def stock_codes():
+    """종목 이름 → 코드. 1순위: 저장소에 올려둔 KIND 상장법인목록 파일(scripts/corplist.xls),
+    2순위: KIND에서 직접 받기(GitHub 서버에서는 막힐 수 있다). 둘 다 안 되면 직접 적어둔 몇 종목만 쓴다."""
     global _CODES
     if _CODES is not None:
         return _CODES
     _CODES = {}
-    try:
-        import urllib.request
-        req = urllib.request.Request("https://kind.krx.co.kr/corpgeneral/corpList.do?method=download&searchType=13",
-                                     headers={"User-Agent": "Mozilla/5.0"})
-        raw = urllib.request.urlopen(req, timeout=15).read().decode("euc-kr", "ignore")
-        for row in re.findall(r"<tr>(.*?)</tr>", raw, re.S):
-            tds = [re.sub(r"<[^>]+>", "", t).strip() for t in re.findall(r"<td[^>]*>(.*?)</td>", row, re.S)]
-            code = next((t for t in tds[1:4] if re.fullmatch(r"[0-9A-Z]{6}", t)), None)
-            if tds and code:
-                _CODES[_norm_code_name(tds[0])] = code
-        print(f"종목 코드 목록: {len(_CODES)}개")
-    except Exception as ex:
-        print(f"종목 코드 목록을 못 받았다(네이버 검색 링크로 대신한다): {str(ex)[:80]}")
+    f = ROOT / "scripts" / "corplist.xls"
+    if f.exists():
+        try:
+            b = f.read_bytes()
+            raw = b.decode("utf-8") if b[:3] == b"\xef\xbb\xbf" or b"charset=utf-8" in b[:500].lower() else b.decode("euc-kr", "ignore")
+            _CODES = _parse_corplist(raw)
+            print(f"종목 코드 목록: {len(_CODES)}개 (저장소 파일)")
+        except Exception as ex:
+            print(f"종목 코드 파일을 못 읽었다: {str(ex)[:80]}")
+    if not _CODES:
+        try:
+            import urllib.request
+            req = urllib.request.Request("https://kind.krx.co.kr/corpgeneral/corpList.do?method=download&searchType=13",
+                                         headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
+                                                  "Referer": "https://kind.krx.co.kr/corpgeneral/corpList.do?method=loadInitPage"})
+            _CODES = _parse_corplist(urllib.request.urlopen(req, timeout=15).read().decode("euc-kr", "ignore"))
+            print(f"종목 코드 목록: {len(_CODES)}개 (KIND에서 받음)")
+        except Exception as ex:
+            print(f"종목 코드 목록을 못 받았다(scripts/corplist.xls 파일을 올리면 해결된다): {str(ex)[:80]}")
     for k, v in CODE_ALIAS.items():
         _CODES.setdefault(_norm_code_name(k), v)
     return _CODES
