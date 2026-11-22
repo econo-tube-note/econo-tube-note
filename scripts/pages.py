@@ -241,11 +241,15 @@ a.card{color:inherit;text-decoration:none}
 /* 종목 탭: 숫자·지표 탭과 같은 모양 */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .sother a{padding:12px 16px}
+.sh1 .nvl{display:inline-block;margin-left:12px;vertical-align:6px;font-size:.78rem;font-weight:500;letter-spacing:0;color:var(--sub);border:1px solid var(--line);border-radius:99px;padding:2px 10px;text-decoration:none;white-space:nowrap}
+.sh1 .nvl:hover{color:var(--ink);border-color:var(--sub)}
 @media(max-width:600px){.logo{font-size:1.55rem}.nav a{padding:10px 12px}.brief h1{font-size:1.22rem}}
 """
 
 SHARE_ICON = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/></svg>'
 TG_ICON = '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.5 3.6 2.9 10.8c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.3-.5-1.9-1.4-1.5ZM9.6 14l8.7-5.5c.4-.3.8-.1.5.2l-7.4 6.7-.3 3.1L9.6 14Z"/></svg>'
+
+TAPE = '<div class="mtape" aria-label="해외 시세"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>{"symbols":[{"proName":"FOREXCOM:SPXUSD","title":"S&P500"},{"proName":"FOREXCOM:NSXUSD","title":"나스닥100"},{"proName":"FX_IDC:USDKRW","title":"원/달러"},{"proName":"FRED:DGS10","title":"미국10년물"},{"proName":"TVC:USOIL","title":"WTI"},{"proName":"OANDA:XAUUSD","title":"금"},{"proName":"BITSTAMP:BTCUSD","title":"비트코인"}],"showSymbolLogo":false,"isTransparent":true,"displayMode":"compact","colorTheme":"light","locale":"kr"}</script></div></div>'
 
 POP_JS = """<script>
 // 공유하기: 폰에서는 카톡·스레드 등으로 보내는 창, 안 되면 링크 복사
@@ -302,6 +306,7 @@ def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_
 <body><div class="wrap">
 <div class="logo brand"><a href="{BASE}"><img src="{BASE}logo.svg" alt="" width="54" height="43">{e(SITE_NAME)}</a><small>{e(TAGLINE)}</small></div>
 <nav class="nav">{nav}</nav>
+{TAPE}
 {body}
 
 <p class="note">AI가 경제 유튜브 영상과 그 요약을 종합한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
@@ -650,7 +655,7 @@ def build_dash(recent, briefs, weekly, digests, man):
 
 
 # ---------- 사이트 소개, 개인정보처리방침 ----------
-INFO_DATE = "2026-11-20"
+INFO_DATE = "2026-11-22"
 
 
 def build_info_pages():
@@ -685,8 +690,8 @@ def build_info_pages():
         ("1. 수집하는 개인정보", "<p>이 사이트는 회원가입이나 로그인 기능이 없고, 방문자의 이름·연락처 같은 개인정보를 직접 수집하지 않는다.</p>"),
         ("2. 자동으로 기록될 수 있는 정보", "<p>사이트는 GitHub Pages에서 운영된다. GitHub는 보안과 서비스 운영을 위해 방문자의 IP 주소 등 접속 기록을 남길 수 있으며, "
                                    "이는 GitHub의 개인정보 정책을 따른다. 운영자는 이 기록을 따로 받거나 보관하지 않는다.</p>"),
-        ("3. 외부에서 불러오는 콘텐츠", "<p>영상 썸네일은 YouTube(Google) 서버에서, 글꼴은 jsDelivr에서 불러온다. 영상 요약 페이지에는 YouTube 플레이어가 들어 있어, 페이지를 열거나 영상을 재생하면 YouTube가 쿠키를 쓰고 접속 정보를 받을 수 있다. "
-                                 "이 부분에는 YouTube(Google)의 개인정보 정책이 적용된다.</p>"),
+        ("3. 외부에서 불러오는 콘텐츠", "<p>영상 썸네일은 YouTube(Google) 서버에서, 글꼴은 jsDelivr에서, 화면 위쪽의 해외 시세 띠는 TradingView에서 불러온다. 영상 요약 페이지에는 YouTube 플레이어가 들어 있어, 페이지를 열거나 영상을 재생하면 YouTube가 쿠키를 쓰고 접속 정보를 받을 수 있다. "
+                                 "이 부분에는 YouTube(Google)의 개인정보 정책이, 시세 띠에는 TradingView의 개인정보 정책이 적용된다.</p>"),
         ("4. 쿠키와 브라우저 저장 공간", "<p>방문 통계를 위해 Google 애널리틱스 쿠키를 쓴다(5번 참고). 그 밖에 화면 설정 같은 편의 기능을 위해 브라우저 저장 공간을 쓸 수 있으나, 그 내용은 방문자의 브라우저에만 남고 운영자에게 전송되지 않는다. 쿠키는 브라우저 설정에서 거부하거나 지울 수 있다.</p>"),
         ("5. 방문 통계와 광고", "<p>이 사이트는 방문자 수와 많이 본 페이지를 파악하기 위해 Google 애널리틱스를 쓴다. Google 애널리틱스는 쿠키로 방문한 페이지, 머문 시간, 대략적인 지역, 기기와 브라우저 종류 같은 정보를 모으며, "
                              "운영자는 개인을 알아볼 수 없는 통계 형태로만 본다. 수집된 정보는 Google의 정책에 따라 처리된다. 수집을 원하지 않으면 "
@@ -953,7 +958,8 @@ def build():
                + ("<ul>" + "".join(f"<li>{e(p)}</li>" for p in d.get("points") or []) + "</ul>" if d.get("points") else "") + "</div>") if d else ""
         body = (f'<div class="brief"><div class="bhead"><b>종목</b><span>영상 {len(vids_)}편 · {len(chans)}채널 · 마지막 언급 {e(sdate(last))}</span>'
                 f'<a class="link" href="{href("stock/")}">전체 종목 →</a></div>'
-                f'<h1>{e(name)}{f" <span class=\"tone t{e(tone)}\" style=\"font-size:.8rem;vertical-align:5px\">{e(tone)}</span>" if tone else ""}</h1>{dig}'
+                f'<h1 class="sh1">{e(name)}{f" <span class=\"tone t{e(tone)}\" style=\"font-size:.8rem;vertical-align:5px\">{e(tone)}</span>" if tone else ""}'
+                f'<a class="nvl" href="https://search.naver.com/search.naver?query={quote(name + " 주가")}" target="_blank" rel="noopener">현재 시세 보러가기 ↗</a></h1>{dig}'
                 + sect("언급 추이", "", trend, "c2")
                 + sect("채널별 언급", len(ms[:40]), rows and f'<div class="skrb slist" style="padding:0">{rows}</div>', "c4")
                 + sect("이 종목이 나온 브리핑", len(bd), bd and '<div class="chips">' + "".join(f'<a href="{href("brief/" + x + "/")}">{e(sdate(x))}</a>' for x in bd) + "</div>", "c1")
