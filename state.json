@@ -92,7 +92,9 @@
   "M9ScgoqcwF0": "너무 짧음",
   "r3_W1ctdb_k": "너무 짧음",
   "XCmjEDTbswc": "너무 짧음",
-  "jk2iRBRQXTI": "너무 짧음"
+  "jk2iRBRQXTI": "너무 짧음",
+  "ERZs_gDIsQc": "경제 무관: 대학생의 해외 인턴 활동 경험 인터뷰로 경제 및 투자 주제와 직접 관련이 없습니다.",
+  "sfSDNOg4lR4": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -104,7 +106,7 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 13,
+   "ok": 14,
    "busy": 11,
    "dead": 4
   },
@@ -263,7 +265,8 @@
   "M9ScgoqcwF0": true,
   "r3_W1ctdb_k": true,
   "XCmjEDTbswc": true,
-  "jk2iRBRQXTI": true
+  "jk2iRBRQXTI": true,
+  "sfSDNOg4lR4": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -275,7 +278,7 @@
   "2026-11-20": true,
   "2026-11-21": true
  },
- "last_ok": "2026-11-22T12:06",
+ "last_ok": "2026-11-22T13:44",
  "threads": {
   "2026-11-21-sat": true
  },

@@ -154,7 +154,11 @@ a.tm:hover{color:var(--accent)}
 .tcard small{color:var(--sub);font-size:.8rem}
 .rel{border:1px solid var(--line);background:none;color:var(--sub);border-radius:99px;padding:2px 11px;font-size:.78rem;font-weight:600;cursor:pointer;white-space:nowrap}
 .rel:hover{color:var(--accent);border-color:var(--accent)}
-.tcard .rel{margin-top:2px}
+.tcard{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:12px;align-items:end}
+.tcard>b{grid-column:1/-1}
+.tcard>p{grid-column:1;margin-bottom:0}
+.tcard>.rel{grid-column:2;margin:0}
+.tcard>small{grid-column:1/-1;margin-top:8px}
 .hv{border:0;background:var(--chip);color:var(--sub);border-radius:99px;padding:2px 10px;font-size:.78rem;font-weight:600;cursor:pointer;white-space:nowrap}
 .hv:hover{color:var(--accent)}
 .sk .hv{background:var(--card);border:1px solid var(--line)}
@@ -390,10 +394,14 @@ a.tm:hover{color:var(--accent)}
 .sitefoot a{color:var(--sub);text-decoration:none}.sitefoot a:hover{color:var(--accent)}
 @media(max-width:600px){
  /* 모바일은 유튜브 검색 결과처럼: 왼쪽 썸네일, 오른쪽 채널·제목, 아래에 한 줄 요약 */
- .grid .card{display:grid;grid-template-columns:44% minmax(0,1fr);grid-template-areas:"th me" "th ti" "co co" "fo fo";column-gap:12px;row-gap:4px;padding:12px;align-items:start}
+ .grid .card{display:grid;grid-template-columns:50% minmax(0,1fr);grid-template-areas:"th me" "th ti" "co co" "fo fo";column-gap:12px;row-gap:4px;padding:12px;align-items:start}
  .grid .card .body{display:contents}
  .grid .card .thumb{grid-area:th;border-radius:8px;overflow:hidden}
- .grid .card .meta{grid-area:me;font-size:.76rem;gap:2px 6px;min-width:0}
+ .grid .card .meta{grid-area:me;font-size:.76rem;min-width:0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1px 6px;align-items:center}
+ /* 채널 이름이 잘리지 않게 날짜는 채널 아래 줄로 */
+ .grid .card .meta b{grid-column:1;grid-row:1}
+ .grid .card .meta .md{grid-column:2;grid-row:1;margin-left:0}
+ .grid .card .meta>span:not(.md){grid-column:1/-1;grid-row:2}
  .grid .card h2{grid-area:ti;font-size:.88rem;-webkit-line-clamp:3}
  .grid .card p{grid-area:co;font-size:.95rem;-webkit-line-clamp:3;margin-top:6px}
  .grid .card .cfoot{grid-area:fo}
@@ -408,7 +416,6 @@ a.tm:hover{color:var(--accent)}
  /* 모바일 홈의 최근 영상: 바깥 흰 박스 없이, 카드는 영상 요약 탭과 같은 모양에 썸네일만 조금 크게 */
  .dlatest.dblk{background:none;border:0;padding:0;box-shadow:none}
  .dlatest.dblk #hgrid .card{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px}
- #hgrid .card{grid-template-columns:50% minmax(0,1fr)}
 }
 
 .logo{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 16px;color:var(--ink)}
@@ -484,6 +491,35 @@ button.link.shr{font:inherit;cursor:pointer}
 .bli:hover .bld b{color:var(--accent)}
 @media(max-width:600px){.bli{gap:12px}.bld{width:62px}.bld b{font-size:1.2rem!important}.bld.wk b{font-size:1rem!important}}
 .srow .tm{text-decoration:none}
+/* 브리핑 머리: 흰 박스 밖에 페이지 제목처럼 */
+.bpre{margin:4px 0 14px}
+.bpt{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}
+.bpt b{color:var(--accent);font-weight:800;font-size:1.15rem}
+.bpt span{color:var(--sub);font-size:.88rem}
+.bpl{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:10px}
+.bpl .bdates{margin-left:0;display:flex;gap:6px;flex-wrap:wrap}
+.bpl .bdates a.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.bpl .bdates a.oth{border-style:dashed}
+.bpl .bact{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.bpl .link{border:1px solid var(--line);background:var(--card);color:var(--sub);border-radius:99px;padding:3px 11px;font-size:.8rem;text-decoration:none;cursor:pointer}
+.bpl .link:hover{color:var(--accent);border-color:var(--accent)}
+.brief h1.bh1{margin-top:0}
+/* 종합한 영상: 홈의 영상 카드와 같은 모양 */
+a.card{color:inherit;text-decoration:none}
+.brief .bvgrid .card h2{margin:0;font-size:.85rem;line-height:1.45;letter-spacing:0;-webkit-line-clamp:2}
+.bvgrid{grid-template-columns:repeat(auto-fill,minmax(min(210px,100%),1fr))}
+@media(min-width:601px){.bvgrid .card p{font-size:.95rem;-webkit-line-clamp:3}.brief .bvgrid .card h2{font-size:.85rem}.bvgrid .card .body{gap:6px}}
+@media(min-width:601px){.bvgrid .card{border:0;border-radius:0;background:none}.bvgrid .card .thumb{border-radius:10px}.bvgrid .card .body{padding:10px 2px 0}.bvgrid .card:hover p{color:var(--accent)}}
+.bpl .bact .link{font:inherit;font-size:.8rem;line-height:1.5}
+.bpl .bact .bsh,.bpl .bact .btg{display:inline-flex;align-items:center;gap:5px;font-weight:700;color:#fff;padding:5px 13px}
+.bpl .bact .bsh{background:var(--accent);border-color:var(--accent)}
+.bpl .bact .btg{background:#229ed9;border-color:#229ed9}
+.bpl .bact .bsh:hover,.bpl .bact .btg:hover{color:#fff;filter:brightness(1.08)}
+@media(max-width:600px){.bpl .bact{margin-left:0}.bpt b{font-size:1.05rem}
+ .tcard{display:block}.tcard>p{margin-bottom:6px}.tcard>.rel{display:block;margin:0 0 0 auto}}
+/* 종목 탭: 숫자·지표 탭과 같은 모양 */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sother a{padding:12px 16px}
 @media(max-width:600px){.logo{font-size:1.55rem}.nav a{padding:10px 12px}.brief h1{font-size:1.22rem}}
 </style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "LVMH: 경제 유튜브 채널들의 시각", "description": "LVMH에 대해 경제 유튜브 채널 1곳이 한 말을 모았다. 중국의 내수 침체와 부유층 사치 단속 여파로 주가가 3년 전 대비 반토막 나며 시가총액 순위가 82위로 밀려났다. 중국 내수 경기 악화와 부유층 사치 소비 단속 영향으로 주가가 3년 전 대비 절반 수준으로 폭…", "url": "https://marketraven.kr/stock/LVMH/", "inLanguage": "ko", "publisher": {"@type": "Organization", "name": "Market Raven"}, "datePublished": "2026-11-22"}</script></head>
 <body><div class="wrap">
