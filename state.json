@@ -95,7 +95,8 @@
   "jk2iRBRQXTI": "너무 짧음",
   "ERZs_gDIsQc": "경제 무관: 대학생의 해외 인턴 활동 경험 인터뷰로 경제 및 투자 주제와 직접 관련이 없습니다.",
   "sfSDNOg4lR4": "너무 짧음",
-  "b8HjQUH4OSs": "경제 무관: 컴퓨터공학 및 안경광학과 교수가 출연하여 교육, 기술, 학문의 방향을 다루는 내용으로 경제·투자 중심이 아님."
+  "b8HjQUH4OSs": "경제 무관: 컴퓨터공학 및 안경광학과 교수가 출연하여 교육, 기술, 학문의 방향을 다루는 내용으로 경제·투자 중심이 아님.",
+  "sKksHglQiiA": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -108,12 +109,12 @@
  "models": {
   "gemini-3.6-flash": {
    "ok": 15,
-   "busy": 11,
+   "busy": 12,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 4,
-   "busy": 32,
+   "busy": 33,
    "dead": 4
   },
   "gemini-3.8-flash": {
@@ -267,7 +268,9 @@
   "r3_W1ctdb_k": true,
   "XCmjEDTbswc": true,
   "jk2iRBRQXTI": true,
-  "sfSDNOg4lR4": true
+  "sfSDNOg4lR4": true,
+  "gKbynx6EnnU": true,
+  "sKksHglQiiA": true
  },
  "brief_final": {
   "2026-11-13": true,
