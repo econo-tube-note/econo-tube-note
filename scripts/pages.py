@@ -212,8 +212,40 @@ button.link.shr{font:inherit;cursor:pointer}
 .bli:hover .bld b{color:var(--accent)}
 @media(max-width:600px){.bli{gap:12px}.bld{width:62px}.bld b{font-size:1.2rem!important}.bld.wk b{font-size:1rem!important}}
 .srow .tm{text-decoration:none}
+/* 브리핑 머리: 흰 박스 밖에 페이지 제목처럼 */
+.bpre{margin:4px 0 14px}
+.bpt{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}
+.bpt b{color:var(--accent);font-weight:800;font-size:1.15rem}
+.bpt span{color:var(--sub);font-size:.88rem}
+.bpl{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:10px}
+.bpl .bdates{margin-left:0;display:flex;gap:6px;flex-wrap:wrap}
+.bpl .bdates a.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.bpl .bdates a.oth{border-style:dashed}
+.bpl .bact{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto}
+.bpl .link{border:1px solid var(--line);background:var(--card);color:var(--sub);border-radius:99px;padding:3px 11px;font-size:.8rem;text-decoration:none;cursor:pointer}
+.bpl .link:hover{color:var(--accent);border-color:var(--accent)}
+.brief h1.bh1{margin-top:0}
+/* 종합한 영상: 홈의 영상 카드와 같은 모양 */
+a.card{color:inherit;text-decoration:none}
+.brief .bvgrid .card h2{margin:0;font-size:.85rem;line-height:1.45;letter-spacing:0;-webkit-line-clamp:2}
+.bvgrid{grid-template-columns:repeat(auto-fill,minmax(min(210px,100%),1fr))}
+@media(min-width:601px){.bvgrid .card p{font-size:.95rem;-webkit-line-clamp:3}.brief .bvgrid .card h2{font-size:.85rem}.bvgrid .card .body{gap:6px}}
+@media(min-width:601px){.bvgrid .card{border:0;border-radius:0;background:none}.bvgrid .card .thumb{border-radius:10px}.bvgrid .card .body{padding:10px 2px 0}.bvgrid .card:hover p{color:var(--accent)}}
+.bpl .bact .link{font:inherit;font-size:.8rem;line-height:1.5}
+.bpl .bact .bsh,.bpl .bact .btg{display:inline-flex;align-items:center;gap:5px;font-weight:700;color:#fff;padding:5px 13px}
+.bpl .bact .bsh{background:var(--accent);border-color:var(--accent)}
+.bpl .bact .btg{background:#229ed9;border-color:#229ed9}
+.bpl .bact .bsh:hover,.bpl .bact .btg:hover{color:#fff;filter:brightness(1.08)}
+@media(max-width:600px){.bpl .bact{margin-left:0}.bpt b{font-size:1.05rem}
+ .tcard{display:block}.tcard>p{margin-bottom:6px}.tcard>.rel{display:block;margin:0 0 0 auto}}
+/* 종목 탭: 숫자·지표 탭과 같은 모양 */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.sother a{padding:12px 16px}
 @media(max-width:600px){.logo{font-size:1.55rem}.nav a{padding:10px 12px}.brief h1{font-size:1.22rem}}
 """
+
+SHARE_ICON = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/></svg>'
+TG_ICON = '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.5 3.6 2.9 10.8c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.3-.5-1.9-1.4-1.5ZM9.6 14l8.7-5.5c.4-.3.8-.1.5.2l-7.4 6.7-.3 3.1L9.6 14Z"/></svg>'
 
 POP_JS = """<script>
 // 공유하기: 폰에서는 카톡·스레드 등으로 보내는 창, 안 되면 링크 복사
@@ -309,6 +341,15 @@ class Frag:
         return (f'<a class="vc" href="{href("v/" + vid + "/")}"><div class="vl"><div class="vth"><img src="https://img.youtube.com/vi/{e(vid)}/hqdefault.jpg" alt="" loading="lazy"></div>'
                 f'<b>{e(v.get("channel"))}</b><small>{e((v.get("date") or "").replace("-", "."))}</small></div>'
                 f'<div class="vr"><div class="vt">{e(v.get("title"))}</div><p>{e(v.get("conclusion"))}</p></div></a>')
+
+    def card(self, v):
+        """홈·영상 요약 탭과 같은 영상 카드 (키워드와 '상세 요약'은 뺀 작은 판)."""
+        vid = vid_of(v.get("url"))
+        md = MOOD_LABEL.get(v.get("mood"))
+        return (f'<a class="card" href="{href("v/" + vid + "/")}"><div class="thumb"><img src="https://img.youtube.com/vi/{e(vid)}/hqdefault.jpg" alt="" loading="lazy"></div>'
+                f'<div class="body"><div class="meta"><b>{e(v.get("channel"))}</b><span>{e((v.get("date") or "").replace("-", "."))}</span>'
+                + (f'<span class="md m{e(v.get("mood"))}">{md}</span>' if md else "")
+                + f'</div><h2>{e(v.get("title"))}</h2><p>{e(v.get("conclusion"))}</p></div></a>')
 
     def rel(self, ids):
         vs = [self.V[i] for i in dict.fromkeys(ids or []) if i in self.V]
@@ -789,9 +830,12 @@ def build():
     for b in briefs:
         d, F = b["date"], Frag(V)
         i = all_dates.index(d)
-        near = all_dates[max(0, i - 3): i + 4]
-        dates = "".join(f'<a href="{href("brief/" + x + "/")}" class="{"on" if x == d else ""}" style="{"background:var(--accent);border-color:var(--accent);color:#fff" if x == d else ""}">{e(sdate(x))}</a>' for x in near)
+        # 날짜 칩은 3개: 최신 날이면 앞의 두 날 + 이날, 아니면 전날 + 이날 + 다음 날. 나머지는 '다른 날'(브리핑 모아보기)
+        near = all_dates[max(0, i - 2): i + 1] if i == len(all_dates) - 1 else all_dates[max(0, i - 1): i + 2]
+        dates = ("".join(f'<a href="{href("brief/" + x + "/")}" class="{"on" if x == d else ""}">{e(sdate(x))}</a>' for x in near)
+                 + f'<a class="oth" href="{href("brief/")}">다른 날 ›</a>')
         wk = (datetime.date.fromisoformat(d) - datetime.timedelta(days=datetime.date.fromisoformat(d).weekday())).isoformat()
+        wk = wk if wk in week_keys else max((x for x in week_keys if x < wk), default="")  # 이 주 주간 브리핑이 아직 없으면 가장 최근 주간 브리핑
         th = "".join(f'<div class="tcard" id="theme-{n + 1}"><b>{e(t["title"])}</b><p data-exp title="눌러서 펼치기">{e(t["summary"])}</p>{F.rel(t.get("refs"))}</div>' for n, t in enumerate(b.get("themes") or []))
         ag = "".join(f'<div class="mrow"><span>{e(a["point"])}</span>{F.rel(a.get("refs"))}</div>' for a in b.get("agreements") or [])
         dg = "".join(f'<div class="dis"><b class="dq">{e(x["topic"])}</b><div class="dvs">'  # 홈과 같은 모양: 테두리 상자 vs 테두리 상자
@@ -801,18 +845,17 @@ def build():
                      + "".join(f'<div class="mrow"><span>{e(m["view"])}</span>{F.hv(m.get("ref"), m.get("channel"))}</div>' for m in (s.get("mentions") or [])[:4])
                      + "</div>" for s in b.get("stocks") or [])
         vids = [V[x] for x in b.get("sources") or [] if x in V]
-        body = (f'<div class="brief"><div class="bhead"><b>시장 브리핑</b><span>{e(kdate(d))} · 영상 {b.get("count", len(vids))}편 종합</span>'
-                + (f'<a class="link" href="{href("week/" + wk + "/")}">이 주의 주간 브리핑 →</a>' if wk in week_keys else "")
-                + f'<a class="link" href="{href("brief/")}">브리핑 모아보기</a>'
-                + '<button class="link shr" data-share type="button">공유하기</button>'
-                + '<a class="link" href="https://t.me/marketraven" target="_blank" rel="noopener">텔레그램으로 받기</a>'
-                + f'<span class="bdates">{dates}</span></div>'
-                f'<h1>{e(b.get("headline"))}</h1>{kp_list(b.get("keypoints"))}{note_box(notes, d)}'
+        body = (f'<div class="bpre"><div class="bpt"><b>시장 브리핑</b><span>{e(kdate(d))} · 영상 {b.get("count", len(vids))}편 종합</span></div>'
+                f'<div class="bpl"><span class="bdates">{dates}</span><span class="bact">'
+                + (f'<a class="link" href="{href("week/" + wk + "/")}">주간 브리핑 →</a>' if wk else "")
+                + f'<button class="link shr bsh" data-share type="button">{SHARE_ICON}공유하기</button>'
+                + f'<a class="link btg" href="https://t.me/marketraven" target="_blank" rel="noopener">{TG_ICON}텔레그램으로 받기</a></span></div></div>'
+                f'<div class="brief"><h1 class="bh1">{e(b.get("headline"))}</h1>{kp_list(b.get("keypoints"))}{note_box(notes, d)}'
                 + sect("핵심 주제", len(b.get("themes") or []), th and f'<div class="tgrid">{th}</div>', "c1", "themes")
                 + sect("공통된 시각", len(b.get("agreements") or []), ag, "c2", "agree")
                 + sect("엇갈린 시각", len(b.get("disagreements") or []), dg, "c3", "disagree")
                 + sect("많이 언급된 종목", len(b.get("stocks") or []), sk and f'<div class="skg">{sk}</div>', "c4")
-                + sect("종합한 영상", len(vids), vids and '<div class="vgrid">' + "".join(F.vcard(v) for v in vids) + "</div>", "")
+                + sect("종합한 영상", len(vids), vids and '<div class="grid bvgrid">' + "".join(F.card(v) for v in vids) + "</div>", "")
                 + '<p class="bnote">AI가 이날의 영상 요약들을 종합한 내용이며 투자 권유가 아니다. \'관련 영상\'이나 채널 이름을 누르면 근거가 된 영상을 볼 수 있다.</p></div>'
                 + F.templates())
         dd_ = datetime.date.fromisoformat(d)
@@ -833,9 +876,11 @@ def build():
                      + "</small></div>" for r in w.get("recurring") or [])
         sw = "".join(f'<div class="sk"><div class="skh"><b>{stock_name(s["name"])}</b><small>{s.get("videos")}편 · {len(s.get("days") or [])}일</small></div><p>{e(s["note"])}</p></div>'
                      for s in w.get("stocks") or [])
-        body = (f'<div class="brief"><div class="bhead"><b>주간 브리핑</b><span>{e(kdate(ws))} ~ {e(kdate(w.get("end")))} · 영상 {w.get("videos", "")}편 종합</span>'
-                f'<a class="link" href="{href("brief/")}#weekly">브리핑 모아보기</a><button class="link shr" data-share type="button">공유하기</button></div>'
-                f'<h1>{e(w.get("headline"))}</h1>{kp_list(w.get("keypoints"))}{note_box(notes, "week:" + ws)}'
+        body = (f'<div class="bpre"><div class="bpt"><b>주간 브리핑</b><span>{e(kdate(ws))} ~ {e(kdate(w.get("end")))} · 영상 {w.get("videos", "")}편 종합</span></div>'
+                f'<div class="bpl"><span class="bdates"><a class="oth" href="{href("brief/")}#weekly">다른 주 ›</a></span><span class="bact">'
+                f'<button class="link shr bsh" data-share type="button">{SHARE_ICON}공유하기</button>'
+                f'<a class="link btg" href="https://t.me/marketraven" target="_blank" rel="noopener">{TG_ICON}텔레그램으로 받기</a></span></div></div>'
+                f'<div class="brief"><h1 class="bh1">{e(w.get("headline"))}</h1>{kp_list(w.get("keypoints"))}{note_box(notes, "week:" + ws)}'
                 + sect("하루하루의 흐름", len(w.get("flow") or []), fl and f'<dl class="tl">{fl}</dl>', "c1")
                 + sect("이번 주 반복된 주제", len(w.get("recurring") or []), rc and f'<div class="tgrid">{rc}</div>', "c2")
                 + sect("이번 주 많이 언급된 종목", len(w.get("stocks") or []), sw and f'<div class="skg">{sw}</div>', "c4")
@@ -1020,7 +1065,7 @@ q.addEventListener("input",f);f()})();
     def head(mode):
         n, cur, prv, nb = PERS[mode]
         chips = "".join(f'<button class="chip" data-per="{k}" aria-pressed="{str(k == mode).lower()}">{v[0]}</button>' for k, v in PERS.items())
-        return f'<div class="nkhd"><span>화제 종목</span><small>{cur} 언급 영상 수 순 · {prv} 순위 · 최근 {nb}일 추이</small><div class="chips nper">{chips}</div></div>'
+        return f'<div class="nkhd"><span>화제 종목</span><small>{cur} 언급 순 · {prv} 순위 · 최근 {nb}일 추이</small><div class="chips nper">{chips}</div></div>'
 
     # 기간 버튼: 세 기간의 순위를 미리 만들어 두고 버튼으로 바꿔 보여 준다 (검색엔진은 기본인 주간을 읽는다)
     panels = "".join(f'<div class="sper" data-p="{k}"{"" if k == "week" else " hidden"}>{head(k)}' + (f'<div class="nks sks">{rank_html(k)}</div>' if rank_html(k) else f'<div class="empty">{PERS[k][1]} 동안 언급된 종목이 없다.</div>') + "</div>" for k in PERS)
@@ -1032,9 +1077,12 @@ q.addEventListener("input",f);f()})();
                                 "q.addEventListener(\"input\",f);document.addEventListener(\"click\",e=>{const b=e.target.closest&&e.target.closest(\"[data-per]\");if(!b)return;"
                                 "document.querySelectorAll(\".sper\").forEach(x=>x.hidden=x.dataset.p!==b.dataset.per);"
                                 "document.querySelectorAll(\"[data-per]\").forEach(x=>x.setAttribute(\"aria-pressed\",x.dataset.per===b.dataset.per))});f()")
-    sbody = ('<div class="brief"><h1 style="margin-top:0">종목</h1>' + stock_bar + panels
-             + (f'<h2 class="bt c4" style="margin-top:26px">그 밖의 종목<span class="cn">{len(rest)}</span></h2><ul class="plist">{rs}</ul>' if rs else "")
-             + "</div>" + stock_js)
+    # 숫자·지표 탭과 같은 모양: 검색창, 안내 한 줄, 순위 카드 (큰 흰 박스로 감싸지 않는다)
+    sbody = ('<h1 class="sr">종목</h1>' + stock_bar
+             + '<p class="nhint">경제 유튜브 영상에서 언급된 종목을 모았다. 종목을 누르면 채널별 시각과 종합 정리를 볼 수 있다.</p>' + panels
+             + (f'<div class="netc"><div class="nkhd"><span>그 밖의 종목</span><small>최근 2주 동안 언급이 없는 종목 {len(rest)}개</small></div>'
+                f'<ul class="plist nks sother">{rs}</ul></div>' if rs else "")
+             + stock_js)
     changed += write("stock", page("stock/", "종목", "여러 경제 유튜브 채널에서 언급된 종목을 이번 주 언급 순위로 모으고, 채널들의 시각을 정리했다.", sbody, kind="list", nav_on="stocks"))
 
     # 홈 대시보드: index.html 의 <!--DASH:START--> ~ <!--DASH:END--> 사이를 미리 만든 화면으로 채운다 (검색에 잡히게)
