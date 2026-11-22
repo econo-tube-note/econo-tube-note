@@ -305,7 +305,7 @@ def price_link(name):
         return f"https://finance.naver.com/item/main.naver?code={code}"
     us = {_norm_code_name(k): v for k, v in US_CODES.items()}.get(_norm_code_name(name))
     if us:
-        return f"https://m.stock.naver.com/worldstock/stock/{us}/total"
+        return f"https://stock.naver.com/worldstock/stock/{us}/total"
     return "https://search.naver.com/search.naver?query=" + quote(name + " 주가")
 
 
