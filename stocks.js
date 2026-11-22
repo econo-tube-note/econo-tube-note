@@ -144,11 +144,11 @@ const STOCKSUM={
  "엔비디아": {
   "name": "엔비디아",
   "tone": "혼재",
-  "summary": "우수한 실적과 가격 매력에도 불구하고 회계 조사와 AI 수익성 의구심 등으로 주가 변동성이 크다.",
+  "summary": "우수한 실적과 가격 매력에도 불구하고 회계 조사와 AI 수익성 우려로 주가 변동성이 크다.",
   "points": [
-   "실적은 우수하나 AI 수익성과 미래 비전에 대한 의구심이 존재한다.",
-   "SEC 회계 조사와 스캔들 이슈 등 다양한 악재가 겹쳐 주가가 폭락했다.",
-   "고점 대비 하락으로 가격 매력이 생겼으나 리스크 요인도 함께 지적된다."
+   "탄탄한 실적과 낮은 PER로 단기 반등 및 가격 매력이 존재한다.",
+   "SEC 회계 조사와 AI 산업 전반의 고금리 부담으로 주가가 폭락했다.",
+   "중국 수출 제약과 데이터센터 지연 등 성장 둔화 리스크가 제기된다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -190,6 +190,7 @@ const STOCKSUM={
    "P1m0QaKWzG0",
    "PREEBWeBwhs",
    "PZLLj9tHYlQ",
+   "Ph0xtOGQ-Sc",
    "Q_Pgdi25lg0",
    "QoEfnBKO5zU",
    "QwhGDJbSGvU",
@@ -253,7 +254,7 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 101,
+  "count": 102,
   "updated": "2026-11-22"
  },
  "SK하이닉스": {
@@ -414,11 +415,11 @@ const STOCKSUM={
  "AMD": {
   "name": "AMD",
   "tone": "부정",
-  "summary": "미중 규제 우려와 공매도 리포트 여파로 주가가 급락하며 부정적 영향을 받고 있다.",
+  "summary": "공매도 리포트와 중국 수출 규제 우려 등 여러 악재가 겹치며 주가 하락 압력을 받았다.",
   "points": [
-   "공매도 리포트 발표와 규제 위반 의혹으로 주가가 급락했다.",
-   "미국의 대중국 수출 규제 강화와 높은 중국 의존도가 부담으로 작용한다.",
-   "엔비디아 생태계가 흔들릴 경우 GPU 시장 점유율 확대 기회가 있다."
+   "공매도 보고서와 규제 회피 혐의로 주가가 급락했다.",
+   "중국 수출 규제와 높은 중국 의존도가 악재로 작용했다.",
+   "엔비디아 생태계 변화에 따라 GPU 점유율 확대 기회가 있다."
   ],
   "ids": [
    "-HaqruPY5Rg",
@@ -437,6 +438,7 @@ const STOCKSUM={
    "ODiEz3dslcE",
    "P1m0QaKWzG0",
    "PREEBWeBwhs",
+   "Ph0xtOGQ-Sc",
    "QoEfnBKO5zU",
    "QwhGDJbSGvU",
    "Tzc0KuusVbI",
@@ -457,7 +459,7 @@ const STOCKSUM={
    "uPfwN34xlpE",
    "waz9eTAJIxU"
   ],
-  "count": 35,
+  "count": 36,
   "updated": "2026-11-22"
  },
  "셀트리온": {
