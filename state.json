@@ -97,7 +97,8 @@
   "sfSDNOg4lR4": "너무 짧음",
   "b8HjQUH4OSs": "경제 무관: 컴퓨터공학 및 안경광학과 교수가 출연하여 교육, 기술, 학문의 방향을 다루는 내용으로 경제·투자 중심이 아님.",
   "sKksHglQiiA": "너무 짧음",
-  "Sp9RihBxZqA": "너무 짧음"
+  "Sp9RihBxZqA": "너무 짧음",
+  "x7rlmaylAtA": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -109,7 +110,7 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 18,
+   "ok": 21,
    "busy": 12,
    "dead": 4
   },
@@ -271,7 +272,8 @@
   "jk2iRBRQXTI": true,
   "sfSDNOg4lR4": true,
   "sKksHglQiiA": true,
-  "Sp9RihBxZqA": true
+  "Sp9RihBxZqA": true,
+  "x7rlmaylAtA": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -283,9 +285,10 @@
   "2026-11-20": true,
   "2026-11-21": true
  },
- "last_ok": "2026-11-22T17:57",
+ "last_ok": "2026-11-22T19:54",
  "threads": {
-  "2026-11-21-sat": true
+  "2026-11-21-sat": true,
+  "2026-11-22-sun": true
  },
  "channel": {
   "2026-11-21-sat": true

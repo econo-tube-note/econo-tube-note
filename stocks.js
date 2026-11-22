@@ -3,11 +3,11 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "단기 급락과 외부 악재로 추가 하락 우려가 있으나, 펀더멘털 대비 과도한 저평가라는 시각도 공존한다.",
+  "summary": "AI 산업 악재와 미 증시 하락으로 단기 급락세를 겪었으나 펀더멘털 대비 싼 영역이라는 평가가 공존한다.",
   "points": [
-   "실적 선반영 조정과 밸류에이션 해소로 현재 주가가 싼 영역이라는 의견이 있다.",
-   "미국 기술주 폭락과 AI 관련 악재로 단기 급락과 추가 하락 우려가 제기된다.",
-   "손절매보다는 냉정한 재매수 판단과 펀더멘털 신뢰가 필요하다는 평가가 있다."
+   "AI 산업 신뢰 차질과 미국 기술주 폭락으로 큰 폭의 하락세를 기록했다.",
+   "실적 기대치에 따른 밸류에이션이 해소되었으며 현재 시가총액은 싼 영역이다.",
+   "중국향 매출 타격 가능성과 추가 하락에 대한 우려가 존재한다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -28,6 +28,7 @@ const STOCKSUM={
    "AjAzI1Uxh9c",
    "AydkVh-c6GI",
    "BIhFDJtoK6k",
+   "BWoc8K793Xo",
    "C1yE6FwQMCY",
    "Cfb0KSoFWz0",
    "Cg3blW1uJ-I",
@@ -55,6 +56,7 @@ const STOCKSUM={
    "LagAldYbD8M",
    "M0Ak8p29VyQ",
    "N_4n0mMwAWA",
+   "OG0IvvfJk5s",
    "OK2FJONMpGA",
    "Oe69L5Dv7w0",
    "P1m0QaKWzG0",
@@ -142,7 +144,7 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 131,
+  "count": 133,
   "updated": "2026-11-22"
  },
  "엔비디아": {
@@ -266,11 +268,11 @@ const STOCKSUM={
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "혼재",
-  "summary": "우수한 실적과 밸류에이션 매력이 부각되는 반면, 시장 하락 여파와 불확실성으로 인한 주가 급락 위험도 함께 제기된다.",
+  "summary": "SK하이닉스는 우수한 실적과 견조한 AI 반도체 수요에도 불구하고 시장 불확실성과 외국인 매도로 인해 큰 폭의 조정을 겪고 있다.",
   "points": [
-   "영업이익률이 75퍼센트에서 79퍼센트에 달할 만큼 실적은 우수하다.",
-   "미국 반도체주 폭락과 불확실성으로 인해 주가가 큰 폭으로 조정을 받았다.",
-   "사이클 업종 특성상 저PER 지표만 보고 맹신하는 것은 위험하다."
+   "데이터센터용 반도체 수요는 여전히 견조하다는 평가와 시장 악재에 노출되어 있다는 우려가 공존한다.",
+   "실적 대비 저평가 구간이라는 의견과 사이클 업종 특성상 저PER만 보고 매수하는 것은 위험하다는 지적이 있다.",
+   "주가 급락으로 인한 투자자 손실이 확대된 상황에서 반등 시 강한 상승을 기대하는 시각과 객관적 비교가 필요하다는 의견이 있다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -293,6 +295,7 @@ const STOCKSUM={
    "AjAzI1Uxh9c",
    "AydkVh-c6GI",
    "BIhFDJtoK6k",
+   "BWoc8K793Xo",
    "C1yE6FwQMCY",
    "Cg3blW1uJ-I",
    "Cgn7XPWef2A",
@@ -309,6 +312,7 @@ const STOCKSUM={
    "G-DfszxECas",
    "GS5nFhf6Nuk",
    "G_CPMSwOIP0",
+   "HMPPwxebak0",
    "IQPubZrMfH8",
    "IU-2OFhVB4I",
    "JVtGCzfB7NA",
@@ -319,6 +323,7 @@ const STOCKSUM={
    "LEYOVBYtp3Q",
    "M0Ak8p29VyQ",
    "N_4n0mMwAWA",
+   "OG0IvvfJk5s",
    "OK2FJONMpGA",
    "Oe69L5Dv7w0",
    "Of8HJe9eNYw",
@@ -399,7 +404,7 @@ const STOCKSUM={
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 125,
+  "count": 128,
   "updated": "2026-11-22"
  },
  "코어위브": {
