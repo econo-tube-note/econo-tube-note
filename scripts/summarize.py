@@ -1235,6 +1235,93 @@ image_title은 공유 이미지에 크게 넣을 한 주 요약 한 줄이다. 4
 """
 
 
+# ----- 다음 주 주요 일정 (일요일 '다음 주 관전 포인트'용) -----
+# 날짜가 정해진 것만 적는다. 해마다 새 일정이 나오면 아래 표에 추가한다.
+FOMC = ["2026-01-28", "2026-03-18", "2026-04-29", "2026-06-17", "2026-07-29", "2026-09-16", "2026-10-28", "2026-12-09",
+        "2027-01-27", "2027-03-17", "2027-04-28", "2027-06-09", "2027-07-28", "2027-09-15", "2027-10-27", "2027-11-17"]  # 결정 발표일(미국 날짜)
+BOK = ["2026-01-15", "2026-02-26", "2026-04-10", "2026-05-28", "2026-07-16", "2026-08-27", "2026-10-22", "2026-11-26"]  # 한국은행 기준금리 결정
+
+
+def _nth_weekday(y, m, wd, n):
+    d = datetime.date(y, m, 1)
+    d += datetime.timedelta(days=(wd - d.weekday()) % 7)
+    return d + datetime.timedelta(weeks=n - 1)
+
+
+def week_calendar(start):
+    """start(월요일)부터 7일 동안의 주요 일정 목록."""
+    YO = "월화수목금토일"
+    end = start + datetime.timedelta(days=6)
+    ev = []
+
+    def add(d, what):
+        if start <= d <= end:
+            ev.append((d, what))
+    for x in FOMC:
+        d = datetime.date.fromisoformat(x)
+        add(d, "미국 FOMC 금리 결정 (한국시간 다음 날 새벽 발표)")
+        add(d + datetime.timedelta(days=21), "미국 FOMC 의사록 공개 (한국시간 다음 날 새벽)")
+    for x in BOK:
+        add(datetime.date.fromisoformat(x), "한국은행 기준금리 결정")
+    for y in {start.year, end.year}:
+        for m in range(1, 13):
+            q = m in (3, 6, 9, 12)
+            add(_nth_weekday(y, m, 3, 2), "국내 " + ("선물·옵션 동시만기일" if q else "옵션 만기일"))
+            add(_nth_weekday(y, m, 4, 3), "미국 " + ("선물·옵션 동시만기일" if q else "옵션 만기일"))
+            add(_nth_weekday(y, m, 4, 1), "미국 고용보고서 (보통 이날 발표)")
+        tg = _nth_weekday(y, 11, 3, 4)
+        add(tg, "미국 추수감사절 휴장")
+        add(tg + datetime.timedelta(days=1), "미국 블랙프라이데이 (증시 조기 마감, 연말 쇼핑 시즌 시작)")
+        add(datetime.date(y, 12, 25), "크리스마스 휴장")
+    return [{"날짜": f"{d.month}월 {d.day}일({YO[d.weekday()]})", "일정": w} for d, w in sorted(ev)]
+
+
+THREADS_SUN_PROMPT = """너는 스레드(Threads)에 올릴 짧은 글을 쓰는 개인 투자자다. 아래 자료는 다음 주 주요 일정('다음주_일정', 날짜가 확정된 공식 일정)과, 주말(토·일)에 올라온 경제 유튜브 영상 요약에서 '다음 주'와 관련된 내용('다음주_단서')을 모은 것이다.
+이 자료로 일요일 저녁에 올릴 '다음 주 관전 포인트' 스레드 본문 1개와 첫 댓글 1개를 JSON으로 써라.
+
+말투
+- 커뮤니티에 혼자 정리해서 올리는 듯한 편한 '~이다', '~했다' 체. 독백 느낌으로, 존댓말과 '~함/~임' 체는 쓰지 않는다.
+- 광고 문구, 과장, 이모지, 해시태그, 'ㅋㅋ' 금지. AI 티 나는 표현('주목할 만하다', '시사점', '~할 것으로 보인다') 금지.
+
+이 글은 지난주를 돌아보는 글이 아니다. 금요일과 토요일에 지난주 얘기는 이미 올렸다('이미_올린_글_주제' 참고). 지난주 하락 원인이나 지난주 흐름은 쓰지 않는다. 오로지 '다음 주에 무엇을 봐야 하나'만 쓴다.
+
+구성(짧은 줄로 끊고 문단 사이는 빈 줄 하나)
+1. 첫 줄: "주말에 올라온 경제 유튜브 N편을 돌려봤다." (N은 자료의 영상수)
+2. 둘째 줄: "다음 주에 볼 건 이 정도다." 같은 한 줄.
+3. 일정 문단: "일정부터 보면" 같은 말로 시작해 '다음주_일정'과 '다음주_단서'에 나온 일정(실적 발표, 지표 발표, 회의, 만기 등)을 요일과 함께 2~4줄로 적는다. 한 줄에 하나씩 "목요일 한국은행 금리 결정"처럼 짧게. 유튜브가 그 일정에 대해 한 말이 있으면 한 일정에만 짧게 붙인다.
+4. 변수 문단: "변수는 ~ 정도다"로 시작해 유튜브들이 다음 주에 확인해야 한다고 꼽은 변수 2개를 "첫째, ~ 둘째, ~"로 쓴다. 외국인 수급이 돌아오는지, 특정 가격대를 지키는지, 특정 이슈가 풀리는지 같은 것이다. 무엇이(누가) 어떤지 주어를 분명히 쓴다.
+   - 일정과 변수는 둘 다 반드시 넣는다. 일정이 하나도 없을 때만 일정 문단을 빼고 변수를 3개로 쓴다.
+   - 자료에 없는 일정이나 날짜, 숫자는 절대 지어내지 않는다.
+5. 유튜브들 사이에 다음 주 방향(반등이냐 추가 하락이냐 등)이 갈리면 한 줄로 짚는다.
+6. 마지막 줄: 다음 주에 뭐가 제일 신경 쓰이는지 다른 사람들 생각을 묻는 한 줄.
+- 본문은 공백 포함 500자 이내. 줄이느라 주어(회사 이름, 지표 이름)를 빼지 않는다. 채널 이름은 쓰지 않는다.
+- 특정 종목을 사거나 팔라고 권하지 않는다. 유튜브들이 이렇게 봤다는 전달자 입장을 지킨다.
+
+예시(형식과 말투만 참고하고 내용은 자료대로 쓴다)
+주말에 올라온 경제 유튜브 11편을 돌려봤다.
+
+다음 주에 볼 건 이 정도다.
+
+일정부터 보면
+수요일 밤 미국 소비자물가 발표
+목요일 국내 옵션 만기일
+금요일 밤 미국 고용보고서
+
+물가 발표에서 금리 인하 기대가 살아날지 갈린다는 얘기가 많았다.
+
+변수는 두 가지 정도다.
+첫째, 외국인이 돌아오는지다. 2주 연속 팔았는데 원·달러 환율이 꺾여야 매도가 멈춘다고 봤다.
+둘째, 삼성전자 7만원선이다. 여기서 버티면 바닥 확인이라는 쪽과 한 번 더 깨진다는 쪽이 갈렸다.
+
+다들 다음 주는 뭐가 제일 신경 쓰이는지 궁금하다.
+
+comment(첫 댓글)는 1~2줄: 유튜브별로 다음 주를 어떻게 봤는지 사이트에 정리해 뒀다는 말과 함께 끝에 이 주소를 그대로 붙인다: {link}
+image_title은 공유 이미지에 크게 넣을 한 줄이다. 40자 이내, 다음 주 관전 포인트를 담은 '~다' 체 한 문장.
+
+자료(JSON):
+"""
+
+
 def threads_schema():
     from pydantic import BaseModel
 
@@ -1467,9 +1554,25 @@ def threads_draft(state, videos, force=""):
         if len(src) < 2:
             print("스레드 초안: 주말 영상이 적어서 건너뛴다")
             return
-        goal, link, data = ("주말에 올라온 경제 유튜브들이 꼽은 다음 주 관전 포인트(일정, 변수, 걱정거리)를 전한다.", SITE_URL_ + "/", slim(src))
+        # 주말 영상 요약에서 '다음 주'와 관련된 문장만 골라 넘긴다 (지난주 얘기를 되풀이하지 않게)
+        CUE = re.compile(r"다음\s?주|이번\s?주|예정|발표|회의|FOMC|CPI|PCE|고용|실적|만기|금통위|연준|파월|의장|지표|일정|변수|지켜|확인|관건|분수령|이벤트|선거|정상회담|상장|IPO")
+        clues = []
+        for v in src[:20]:
+            ss = [it[1] for pt in (v.get("parts") or []) for it in (pt.get("items") or []) if len(it) > 1 and CUE.search(it[1] or "")]
+            if ss or CUE.search(v.get("conclusion") or ""):
+                clues.append({"결론": v.get("conclusion"), "다음주_관련": ss[:4]})
+        if not clues:
+            clues = [{"결론": v.get("conclusion"), "다음주_관련": []} for v in src[:12]]
+        sat_w = next((x for x in load_weekly() if x.get("week") == week_start(today).isoformat()), None)
+        fri = max((d for d in briefs if d < today and datetime.date.fromisoformat(d).weekday() == 4), default="")
+        nmon = now.date() + datetime.timedelta(days=7 - now.weekday())
+        data = {"영상수": len(src), "다음주_일정": week_calendar(nmon), "다음주_단서": clues,
+                "이미_올린_글_주제": [x for x in ((briefs.get(fri) or {}).get("headline"), (sat_w or {}).get("headline")) if x]}
+        link = f"{SITE_URL_}/brief/{today}/" if today in briefs else SITE_URL_ + "/"
+        goal = ""
     try:
-        tpl = THREADS_SAT_PROMPT if slot == "sat" and not goal else THREADS_PROMPT.replace("{goal}", goal)
+        tpl = (THREADS_SAT_PROMPT if slot == "sat" and not goal else THREADS_SUN_PROMPT if slot == "sun"
+               else THREADS_PROMPT.replace("{goal}", goal))
         out = call_json(tpl.replace("{link}", link) + json.dumps(data, ensure_ascii=False),
                         threads_schema, "THREADS_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 90)
     except Exception as e:
