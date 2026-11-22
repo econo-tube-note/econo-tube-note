@@ -249,6 +249,66 @@ a.card{color:inherit;text-decoration:none}
 SHARE_ICON = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7"/><path d="M12 3v12"/><path d="M7 8l5-5 5 5"/></svg>'
 TG_ICON = '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.5 3.6 2.9 10.8c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.8 5.6c.2.6.4.8.9.8.4 0 .6-.2.9-.5l2.3-2.2 4.7 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.3-.5-1.9-1.4-1.5ZM9.6 14l8.7-5.5c.4-.3.8-.1.5.2l-7.4 6.7-.3 3.1L9.6 14Z"/></svg>'
 
+# ----- 종목 이름 → 국내 종목 코드 (네이버페이 증권 종목 페이지로 바로 보내기 위해) -----
+# 한국거래소 KIND의 상장법인 목록(회사 이름과 종목 코드만 있는 공개 목록)을 실행할 때마다 한 번 받아 쓴다.
+# 시세 데이터가 아니라 이름·코드 목록이다. 못 받으면 네이버 검색 링크로 대신한다.
+CODE_ALIAS = {"현대차": "005380", "현대자동차": "005380", "네이버": "035420", "NAVER": "035420", "LG엔솔": "373220",
+              "삼성바이오": "207940", "포스코홀딩스": "005490", "POSCO홀딩스": "005490", "한화에어로": "012450",
+              "SK하이닉스": "000660", "삼성전자": "005930", "카카오": "035720", "셀트리온": "068270"}
+_CODES = None
+# 해외 주요 종목: 네이버페이 증권 해외주식 페이지 코드 (나스닥은 .O, 뉴욕증권거래소는 뒤에 붙는 것 없음)
+US_CODES = {
+    "엔비디아": "NVDA.O", "AMD": "AMD.O", "애플": "AAPL.O", "마이크로소프트": "MSFT.O", "MS": "MSFT.O",
+    "구글": "GOOGL.O", "알파벳": "GOOGL.O", "아마존": "AMZN.O", "메타": "META.O", "테슬라": "TSLA.O",
+    "브로드컴": "AVGO.O", "마이크론": "MU.O", "인텔": "INTC.O", "퀄컴": "QCOM.O", "ASML": "ASML.O",
+    "넷플릭스": "NFLX.O", "팔란티어": "PLTR.O", "코어위브": "CRWV.O", "ARM": "ARM.O", "암": "ARM.O",
+    "AMAT": "AMAT.O", "어플라이드머티리얼즈": "AMAT.O", "램리서치": "LRCX.O", "마벨": "MRVL.O", "마벨테크놀로지": "MRVL.O",
+    "슈퍼마이크로": "SMCI.O", "코스트코": "COST.O", "페이팔": "PYPL.O", "코인베이스": "COIN.O", "마이크로스트래티지": "MSTR.O", "스트래티지": "MSTR.O",
+    "로빈후드": "HOOD.O", "아이온큐": "IONQ.O", "TSMC": "TSM", "오라클": "ORCL", "버크셔해서웨이": "BRK.B",
+    "일라이릴리": "LLY", "JP모건": "JPM", "비자": "V", "월마트": "WMT", "코카콜라": "KO", "엑슨모빌": "XOM",
+    "세일즈포스": "CRM", "IBM": "IBM", "디즈니": "DIS", "나이키": "NKE", "보잉": "BA", "캐터필러": "CAT",
+    "유나이티드헬스": "UNH", "노보노디스크": "NVO", "알리바바": "BABA", "버티브": "VRT", "GE버노바": "GEV",
+}
+
+
+def _norm_code_name(n):
+    return re.sub(r"[\s·()\-]", "", n or "").upper()
+
+
+def stock_codes():
+    global _CODES
+    if _CODES is not None:
+        return _CODES
+    _CODES = {}
+    try:
+        import urllib.request
+        req = urllib.request.Request("https://kind.krx.co.kr/corpgeneral/corpList.do?method=download&searchType=13",
+                                     headers={"User-Agent": "Mozilla/5.0"})
+        raw = urllib.request.urlopen(req, timeout=15).read().decode("euc-kr", "ignore")
+        for row in re.findall(r"<tr>(.*?)</tr>", raw, re.S):
+            tds = [re.sub(r"<[^>]+>", "", t).strip() for t in re.findall(r"<td[^>]*>(.*?)</td>", row, re.S)]
+            code = next((t for t in tds[1:4] if re.fullmatch(r"[0-9A-Z]{6}", t)), None)
+            if tds and code:
+                _CODES[_norm_code_name(tds[0])] = code
+        print(f"종목 코드 목록: {len(_CODES)}개")
+    except Exception as ex:
+        print(f"종목 코드 목록을 못 받았다(네이버 검색 링크로 대신한다): {str(ex)[:80]}")
+    for k, v in CODE_ALIAS.items():
+        _CODES.setdefault(_norm_code_name(k), v)
+    return _CODES
+
+
+def price_link(name):
+    """국내 종목·해외 주요 종목은 네이버페이 증권 종목 페이지, 목록에 없으면 네이버 '종목명 주가' 검색."""
+    code = stock_codes().get(_norm_code_name(name))
+    if code:
+        return f"https://finance.naver.com/item/main.naver?code={code}"
+    us = {_norm_code_name(k): v for k, v in US_CODES.items()}.get(_norm_code_name(name))
+    if us:
+        return f"https://m.stock.naver.com/worldstock/stock/{us}/total"
+    return "https://search.naver.com/search.naver?query=" + quote(name + " 주가")
+
+
 TAPE = '<div class="mtape" aria-label="해외 시세"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>{"symbols":[{"proName":"FOREXCOM:SPXUSD","title":"S&P500"},{"proName":"FOREXCOM:NSXUSD","title":"나스닥100"},{"proName":"FX_IDC:USDKRW","title":"원/달러"},{"proName":"FRED:DGS10","title":"미국10년물"},{"proName":"TVC:USOIL","title":"WTI"},{"proName":"OANDA:XAUUSD","title":"금"},{"proName":"BITSTAMP:BTCUSD","title":"비트코인"}],"showSymbolLogo":false,"isTransparent":true,"displayMode":"compact","colorTheme":"light","locale":"kr"}</script></div></div>'
 
 POP_JS = """<script>
@@ -959,7 +1019,7 @@ def build():
         body = (f'<div class="brief"><div class="bhead"><b>종목</b><span>영상 {len(vids_)}편 · {len(chans)}채널 · 마지막 언급 {e(sdate(last))}</span>'
                 f'<a class="link" href="{href("stock/")}">전체 종목 →</a></div>'
                 f'<h1 class="sh1">{e(name)}{f" <span class=\"tone t{e(tone)}\" style=\"font-size:.8rem;vertical-align:5px\">{e(tone)}</span>" if tone else ""}'
-                f'<a class="nvl" href="https://search.naver.com/search.naver?query={quote(name + " 주가")}" target="_blank" rel="noopener">현재 시세 보러가기 ↗</a></h1>{dig}'
+                f'<a class="nvl" href="{e(price_link(name))}" target="_blank" rel="noopener">현재 시세 보러가기 ↗</a></h1>{dig}'
                 + sect("언급 추이", "", trend, "c2")
                 + sect("채널별 언급", len(ms[:40]), rows and f'<div class="skrb slist" style="padding:0">{rows}</div>', "c4")
                 + sect("이 종목이 나온 브리핑", len(bd), bd and '<div class="chips">' + "".join(f'<a href="{href("brief/" + x + "/")}">{e(sdate(x))}</a>' for x in bd) + "</div>", "c1")
