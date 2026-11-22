@@ -1,26 +1,20 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex"><title>시세 위젯 시험</title>
-<style>body{font-family:system-ui,sans-serif;margin:16px;background:#f3f4f8;color:#14181f}h2{font-size:1rem;margin:22px 0 6px}p{font-size:.85rem;color:#555;margin:0 0 6px}</style>
+<meta name="robots" content="noindex"><title>시세 위젯 시험 2</title>
+<style>body{font-family:system-ui,sans-serif;margin:16px;background:#f3f4f8;color:#14181f}h2{font-size:1rem;margin:22px 0 6px}p{font-size:.85rem;color:#555;margin:0 0 6px}iframe{border:0;background:#fff;max-width:100%}</style>
 </head><body>
-<h1 style="font-size:1.2rem">시세 위젯 시험 페이지</h1>
-<p>각 줄에 숫자가 나오는지, "TradingView에서만 볼 수 있다" 같은 문구가 나오는지 캡처해서 보여주면 된다. 확인이 끝나면 이 파일은 지운다.</p>
+<h1 style="font-size:1.2rem">시세 위젯 시험 2</h1>
+<p>D·E는 인베스팅닷컴 차트 위젯이다. 어떤 종목 차트가 뜨는지(제목에 코스피/코스닥이라고 나오는지) 캡처해 주면 된다.</p>
 
-<h2>A. 국장 (KRX)</h2>
+<h2>D. 인베스팅닷컴 차트 (번호 37426)</h2>
+<iframe src="https://ssltvc.investing.com/init.php?family_prefix=tvc6&carrier=0&time=1&domain_ID=18&lang_ID=18&timezone_ID=88&pair_ID=37426&interval=300&refresh=4&session=session&client=1&user=0&width=650&height=300&init_page=instrument&style=1&hideSideToolbar=1&hideTopToolbar=0" width="650" height="300"></iframe>
+
+<h2>E. 인베스팅닷컴 차트 (번호 38016)</h2>
+<iframe src="https://ssltvc.investing.com/init.php?family_prefix=tvc6&carrier=0&time=1&domain_ID=18&lang_ID=18&timezone_ID=88&pair_ID=38016&interval=300&refresh=4&session=session&client=1&user=0&width=650&height=300&init_page=instrument&style=1&hideSideToolbar=1&hideTopToolbar=0" width="650" height="300"></iframe>
+
+<h2>F. 트레이딩뷰 금리·한국 대체 심볼</h2>
 <div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
 <script src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-{"symbols":[{"proName":"KRX:KOSPI","title":"A1 코스피(KRX)"},{"proName":"KRX:KOSDAQ","title":"A2 코스닥(KRX)"},{"proName":"KRX:005930","title":"A3 삼성전자"}],"showSymbolLogo":false,"isTransparent":false,"displayMode":"adaptive","colorTheme":"light","locale":"kr"}
-</script></div>
-
-<h2>B. 국장 (다른 출처)</h2>
-<div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
-<script src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-{"symbols":[{"proName":"TVC:KOSPI","title":"B1 코스피(TVC)"},{"proName":"TVC:KOSDAQ","title":"B2 코스닥(TVC)"},{"proName":"KRX:KOSPI200","title":"B3 코스피200"}],"showSymbolLogo":false,"isTransparent":false,"displayMode":"adaptive","colorTheme":"light","locale":"kr"}
-</script></div>
-
-<h2>C. 미국·환율·금리·원자재·코인</h2>
-<div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div>
-<script src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-{"symbols":[{"proName":"FOREXCOM:SPXUSD","title":"C1 S&P500"},{"proName":"FOREXCOM:NSXUSD","title":"C2 나스닥100"},{"proName":"FX_IDC:USDKRW","title":"C3 원/달러"},{"proName":"TVC:US10Y","title":"C4 미국10년물"},{"proName":"TVC:USOIL","title":"C5 WTI"},{"proName":"BITSTAMP:BTCUSD","title":"C6 비트코인"}],"showSymbolLogo":false,"isTransparent":false,"displayMode":"adaptive","colorTheme":"light","locale":"kr"}
+{"symbols":[{"proName":"TVC:TNX","title":"F1 미국10년물(TNX)"},{"proName":"CBOE:TNX","title":"F2 미국10년물(CBOE)"},{"proName":"FRED:DGS10","title":"F3 미국10년물(FRED)"},{"proName":"AMEX:EWY","title":"F4 한국 ETF(EWY)"}],"showSymbolLogo":false,"isTransparent":false,"displayMode":"adaptive","colorTheme":"light","locale":"kr"}
 </script></div>
 </body></html>
