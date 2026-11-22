@@ -88,6 +88,24 @@ def kdate(d):
         return d or ""
 
 
+def mdk(d):
+    """2026-11-22 → '11월 22일'"""
+    try:
+        x = datetime.date.fromisoformat(d)
+        return f"{x.month}월 {x.day}일"
+    except Exception:
+        return d or ""
+
+
+def wkk(d):
+    """주의 월요일 → '11월 넷째 주' (그 달의 몇 번째 월요일인지)"""
+    try:
+        x = datetime.date.fromisoformat(d)
+        return f"{x.month}월 {['첫째', '둘째', '셋째', '넷째', '다섯째'][min((x.day - 1) // 7, 4)]} 주"
+    except Exception:
+        return d or ""
+
+
 def sdate(d):
     return (d or "")[5:].replace("-", ".")
 
@@ -241,6 +259,21 @@ a.card{color:inherit;text-decoration:none}
 /* 종목 탭: 숫자·지표 탭과 같은 모양 */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .sother a{padding:12px 16px}
+/* 출연자 페이지 */
+.brief h1.ph1{margin-bottom:4px}.ph1 small{font-size:.95rem;font-weight:600;color:var(--sub);margin-left:6px;letter-spacing:0}
+.brief p.pmeta{display:block;margin:0 0 16px;font-size:.88rem}
+.pchips{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.pchips a,.pchips span{line-height:1.5;margin:0;display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:99px;padding:4px 12px;font-size:.88rem;color:var(--ink);text-decoration:none;background:var(--card)}
+.pchips a:hover{border-color:var(--accent);color:var(--accent)}.pchips small{color:var(--sub);font-size:.75rem}
+.plog .prow{display:block;padding:12px 0;border-top:1px solid var(--line);color:inherit;text-decoration:none}
+.plog .prow:first-child{border-top:0}.plog .prow:hover .prc{color:var(--accent)}
+.prm{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--sub)}.prm b{color:var(--ink);font-weight:700}.prm .md{margin-left:auto}
+.prm .md,.brief .digest .md{color:#fff;font-size:.72rem;font-weight:700;padding:0 8px;border-radius:99px;line-height:1.7}
+.brief .plog p.prt{margin:4px 0 2px;font-size:.84rem;color:var(--sub);line-height:1.45;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.brief .plog p.prc{margin:0;font-weight:700;font-size:1rem;line-height:1.5}
+.ppl a{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:baseline;gap:2px 10px;padding:12px 16px}
+.ppl a b{grid-column:1}.ppl .prl{grid-column:2;display:inline;margin:0}.ppl a span{grid-column:1/3;color:var(--ink);opacity:.8;font-size:.88rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ppl a em{grid-column:3;grid-row:1;font-style:normal;color:var(--sub);font-size:.8rem;white-space:nowrap}
+.vpage .dh a.plk{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .sh1 .nvl{display:inline-block;margin-left:12px;vertical-align:6px;font-size:.78rem;font-weight:500;letter-spacing:0;color:var(--sub);border:1px solid var(--line);border-radius:99px;padding:2px 10px;text-decoration:none;white-space:nowrap}
 .sh1 .nvl:hover{color:var(--ink);border-color:var(--sub)}
 @media(max-width:600px){.logo{font-size:1.55rem}.nav a{padding:10px 12px}.brief h1{font-size:1.22rem}}
@@ -349,7 +382,7 @@ def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_
         ld = '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False).replace("</", "<\\/") + "</script>"
     if extra_ld:
         ld += '<script type="application/ld+json">' + json.dumps(extra_ld, ensure_ascii=False).replace("</", "<\\/") + "</script>"
-    tabs = [("home", "홈", ""), ("brief", "브리핑", "brief/"), ("videos", "영상 요약", "#videos"), ("stocks", "종목", "stock/"),
+    tabs = [("home", "홈", ""), ("brief", "브리핑", "brief/"), ("videos", "영상 요약", "#videos"), ("stocks", "종목", "stock/"), ("people", "출연자", "people/"),
             ("numbers", "숫자·지표", "#numbers"), ("community", "커뮤니티", "#community")]
     nav = "".join(f'<a href="{BASE}{h}" class="{"on" if k == nav_on else ""}">{t}</a>' for k, t, h in tabs)
     return f"""<!doctype html>
@@ -800,7 +833,7 @@ def related_videos(v, pool, n=4):
     return [w for _, _, w in scored[:n]]
 
 
-def build_video_pages(V, man, briefs, stock_slug, mark):
+def build_video_pages(V, man, briefs, stock_slug, mark, people_set=()):
     brief_dates = {b["date"] for b in briefs} | set(man["brief"])
     changed = 0
     for vid, v in V.items():
@@ -827,6 +860,10 @@ def build_video_pages(V, man, briefs, stock_slug, mark):
         tags = "".join(f'<a class="vkw" href="{BASE}#videos/kw/{quote(t)}">#{e(t)}</a>' for t in v.get("tags") or [])
         rel = related_videos(v, V)
         d = v.get("date") or ""
+        gs = guests_of(v)
+        plinks = ", ".join(
+            (f'<a class="plk" href="{href("people/" + quote(nm) + "/")}">{e(p_.strip())}</a>' if nm in people_set else e(p_.strip()))
+            for p_ in (v.get("people") or "").split(",") if p_.strip() for nm in [(p_.strip().split() or [""])[0]])
         # 시간 버튼을 누르면 새 창 대신 위쪽 플레이어가 그 시간부터 재생한다 (Ctrl·⌘ 클릭은 새 창)
         seek_js = ('<script>document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest(".vpage a.tm[data-s]");'
                    'if(!a||e.ctrlKey||e.metaKey||e.shiftKey||e.button)return;var f=document.querySelector(".vhero iframe");if(!f)return;e.preventDefault();'
@@ -838,7 +875,7 @@ def build_video_pages(V, man, briefs, stock_slug, mark):
                 + f'<div class="vhero"><iframe src="https://www.youtube.com/embed/{e(vid)}?rel=0" title="{e(v.get("title"))}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
                 + f'<a class="vyt" href="{yt}" target="_blank" rel="noopener">▶ 유튜브<span class="vyl">에서 원본</span> 보기</a></div>'
                 + f'<div class="digest"><div class="dh"><b>한 줄 결론</b>' + (f'<span class="md m{e(v.get("mood"))}">{e(mood)}</span>' if mood else "")
-                + (f'<span>출연 {e(v.get("people"))}</span>' if v.get("people") else "") + f'</div><p>{e(v.get("conclusion"))}</p></div>'
+                + (f'<span>출연 {plinks}</span>' if v.get("people") else "") + f'</div><p>{e(v.get("conclusion"))}</p></div>'
                 + (f'<div class="bsec">{parts}</div>' if parts else "")
                 + sect("언급된 종목", len(v.get("stocks") or []), stocks and f'<div>{stocks}</div>', "c4")
                 + sect("언급된 숫자", len(v.get("numbers") or []), nums and f'<div>{nums}</div><p class="vnote">영상 속 출연자가 말한 수치이며 실시간 시세가 아니다.</p>', "c2")
@@ -847,11 +884,149 @@ def build_video_pages(V, man, briefs, stock_slug, mark):
                 + "</div>" + F.templates() + seek_js)
         items = [x for p_ in v.get("parts") or [] for _, x in p_.get("items") or []]
         desc = desc_of(v.get("conclusion"), *items[:3])
-        title = f'{v.get("title")} 요약 | {v.get("channel")}'
-        c = write(f"v/{vid}", page(f"v/{vid}/", title, desc, body, date=d, nav_on="videos", tab_title=short_title(v.get("title")) + " 요약", image=f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg", extra_ld=video_ld(v, vid)))
+        st_ = short_title(v.get("title"))
+        who_ = " ".join(nm for nm in gs[:2] if nm not in st_)
+        title = (f"{who_} - " if who_ else "") + f'{st_} 요약 | {v.get("channel")}'
+        c = write(f"v/{vid}", page(f"v/{vid}/", title, desc, body, date=d, nav_on="videos", tab_title=title, image=f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg", extra_ld=video_ld(v, vid)))
         changed += c
         mark("video", vid, c, {"title": (v.get("title") or "")[:80], "date": d, "ts": v.get("ts") or "", "ch": v.get("channel") or "", "desc": desc})
     return changed
+
+
+# ---------- 출연자 페이지 ----------
+# 영상 제목에 이름이 나온 사람만 출연자로 본다 (진행자·앵커는 보통 제목에 이름이 없다).
+# 제목에 이름이 나온 영상이 2편 이상이면 출연자 페이지를 만든다 (1편짜리는 내용이 얇아 만들지 않는다).
+PEOPLE_MIN = 2
+ROLE_RE = re.compile(r"(대표이사|대표|부사장|사장|회장|단장|교수|기자|센터장|본부장|연구위원|전문위원|위원장|위원|애널리스트|이코노미스트|팀장|부장|실장|소장|원장|이사|전무|상무|박사|작가|변호사|세무사|회계사|PD|CIO|CEO|파트너|매니저|수석|부대표|운용역|트레이더)")
+
+
+# 채널 대표 출연자: 제목에 이름이 없어도 그 채널 영상 대부분에 나오는 사람 (예: 체슬리TV의 박세익 대표)
+# 자동으로 찾지만, 꼭 넣거나 빼야 할 사람은 아래에 직접 적는다.
+CHANNEL_MAIN = {"체슬리TV": ["박세익"]}      # 채널 이름: [출연자] (항상 출연자로 본다)
+NOT_GUEST = {"진행자", "앵커", "기자"}        # 출연자로 보지 않을 이름 (진행자 등)
+MAIN_SHARE, MAIN_MIN = 0.5, 3                 # 채널 영상의 절반 이상, 3편 이상에 나오고 어느 제목에든 이름이 한 번은 나온 사람
+_MAIN = {}
+
+
+def _names(v):
+    return [n for n in ((p_.strip().split() or [""])[0] for p_ in (v.get("people") or "").split(",")) if re.fullmatch(r"[가-힣]{2,4}", n)]
+
+
+def find_channel_main(V):
+    """채널마다 대표 출연자를 찾는다. 결과는 guests_of 가 쓴다."""
+    from collections import Counter
+    by_ch, in_title = {}, set()
+    for v in V.values():
+        by_ch.setdefault(v.get("channel") or "", []).append(v)
+        for n in _names(v):
+            if n in (v.get("title") or ""):
+                in_title.add(n)
+    _MAIN.clear()
+    for ch, vs in by_ch.items():
+        c = Counter(n for v in vs for n in set(_names(v)))
+        main = [n for n, k in c.items() if k >= MAIN_MIN and k / len(vs) >= MAIN_SHARE and n in in_title and n not in NOT_GUEST]
+        main += [n for n in CHANNEL_MAIN.get(ch, []) if n not in main]
+        if main:
+            _MAIN[ch] = set(main)
+    if _MAIN:
+        print("채널 대표 출연자: " + ", ".join(f"{ch}({'·'.join(sorted(ns))})" for ch, ns in _MAIN.items()))
+
+
+def guests_of(v):
+    """출연자 목록: 영상 제목에 이름이 들어간 사람 + 그 채널의 대표 출연자."""
+    t = v.get("title") or ""
+    main = _MAIN.get(v.get("channel") or "", set())
+    out = []
+    for nm in _names(v):
+        if (nm in t or nm in main) and nm not in NOT_GUEST and nm not in out:
+            out.append(nm)
+    return out
+
+
+def role_of(name, vids):
+    """제목에서 '소속 이름 직함' 꼴을 찾아 가장 흔한 것을 고른다. 예: 체슬리투자자문 최일호 부사장 → '체슬리투자자문 부사장'"""
+    from collections import Counter
+    c = Counter()
+    for v in vids:
+        t = re.sub(r"[\[\]()|/·,\"'“”‘’]", " ", v.get("title") or "")
+        m = re.search(r"(\S+)?\s*" + re.escape(name) + r"\s*(\S+)?", t)
+        if not m:
+            continue
+        before, after = (m.group(1) or ""), (m.group(2) or "")
+        role = ROLE_RE.match(after).group(1) if after and ROLE_RE.match(after) else ""
+        org = before if before and re.fullmatch(r"[가-힣A-Za-z0-9&]{2,15}", before) and not before.endswith(("다", "요", "까", "의", "는", "가")) and role else ""
+        if role:
+            c[(org + " " + role).strip()] += 1
+    return c.most_common(1)[0][0] if c else ""
+
+
+def build_people_pages(V, man, stock_slug, mark, today):
+    by = {}
+    for vid, v in V.items():
+        for nm in guests_of(v):
+            by.setdefault(nm, []).append(v)
+    people = {nm: sorted(vs, key=lambda v: (v.get("date") or "", v.get("ts") or ""), reverse=True)
+              for nm, vs in by.items() if len(vs) >= PEOPLE_MIN}
+    changed = 0
+    rows = []
+    for nm, vs in people.items():
+        role = role_of(nm, vs)
+        last = vs[0]
+        chans = list(dict.fromkeys(v.get("channel") for v in vs if v.get("channel")))
+        moods = {}
+        for v in vs:
+            k = MOOD_LABEL.get(v.get("mood"))
+            if k:
+                moods[k] = moods.get(k, 0) + 1
+        # 이 사람이 나온 영상에서 많이 나온 종목
+        sc = {}
+        for v in vs:
+            for r in {norm(r[1]): r[1] for r in v.get("stocks") or [] if len(r) > 1}.values():
+                sc[r] = sc.get(r, 0) + 1
+        top = sorted(sc.items(), key=lambda x: -x[1])[:10]
+        chips = "".join(
+            (f'<a href="{href("stock/" + quote(stock_slug[norm(s)]) + "/")}">{e(s)} <small>{n}</small></a>' if norm(s) in stock_slug
+             else f'<span>{e(s)} <small>{n}</small></span>') for s, n in top)
+        recs = "".join(
+            f'<a class="prow" href="{href("v/" + vid_of(v.get("url")) + "/")}"><div class="prm"><b>{e(sdate(v.get("date")))}</b><span>{e(v.get("channel"))}</span>'
+            + (f'<span class="md m{e(v.get("mood"))}">{MOOD_LABEL.get(v.get("mood"))}</span>' if MOOD_LABEL.get(v.get("mood")) else "")
+            + f'</div><p class="prt">{e(short_title(v.get("title")))}</p><p class="prc">{e(v.get("conclusion"))}</p></a>'
+            for v in vs[:30])
+        mtxt = " · ".join(f"{k} {moods[k]}" for k in ("긍정", "중립", "부정") if moods.get(k))
+        lm = MOOD_LABEL.get(last.get("mood"))
+        body = (f'<div class="brief"><div class="bhead"><b>출연자</b><span>출연 영상 {len(vs)}편 · 마지막 출연 {e(sdate(last.get("date")))}</span>'
+                f'<a class="link" href="{href("people/")}">전체 출연자 →</a></div>'
+                f'<h1 class="ph1">{e(nm)}' + (f' <small>{e(role)}</small>' if role else "") + '</h1>'
+                f'<p class="pmeta">{e(", ".join(chans[:6]))}' + (f' · 영상 분위기 {e(mtxt)}' if mtxt else "") + '</p>'
+                f'<div class="digest"><div class="dh"><b>최근 시각</b><span>{e(sdate(last.get("date")))} · {e(last.get("channel"))}</span>'
+                + (f'<span class="md m{e(last.get("mood"))}">{lm}</span>' if lm else "") + f'</div><p>{e(last.get("conclusion"))}</p></div>'
+                + sect("자주 말한 종목", len(top), chips and f'<div class="chips pchips">{chips}</div>', "c4")
+                + sect("출연 기록", len(vs), f'<div class="plog">{recs}</div>', "c1")
+                + "</div>")
+        md = f"{int(last.get('date')[5:7])}월 {int(last.get('date')[8:10])}일" if last.get("date") else ""
+        title = f"{nm} 최근 전망 정리: 경제 유튜브 출연 {len(vs)}회 요약" + (f" ({md})" if md else "")
+        desc = desc_of(f"{nm}{(' ' + role) if role else ''}의 최근 경제 유튜브 출연({', '.join(chans[:3])}) {len(vs)}회를 날짜순으로 요약했다.",
+                       f"최근 시각: {last.get('conclusion') or ''}")
+        c = write(f"people/{nm}", page(f"people/{quote(nm)}/", title, desc, body, date=last.get("date"), nav_on="people"))
+        changed += c
+        mark("people", nm, c, {"name": nm, "role": role, "n": len(vs), "last": last.get("date") or "", "one": (last.get("conclusion") or "")[:90]})
+    for k in [k for k in man["people"] if k not in people]:
+        del man["people"][k]
+    # 전체 출연자 목록
+    items = sorted(man["people"].items(), key=lambda x: (x[1].get("last", ""), x[1].get("n", 0)), reverse=True)
+    lis = "".join(
+        f'<li data-name="{e(nm)}"><a href="{href("people/" + quote(nm) + "/")}"><b>{e(nm)}</b>'
+        + (f' <small class="prl">{e(m.get("role"))}</small>' if m.get("role") else "")
+        + f'<span>{e(m.get("one"))}</span><em>{m.get("n")}회 · {e(sdate(m.get("last")))}</em></a></li>' for nm, m in items)
+    pjs = """<script>
+(()=>{const q=document.getElementById("pq"),rows=[...document.querySelectorAll("li[data-name]")];if(!q)return;
+q.addEventListener("input",()=>{const k=q.value.replace(/\\s/g,"");rows.forEach(li=>{li.hidden=!!k&&!li.dataset.name.includes(k)})})})();
+</script>"""
+    pbody = ('<h1 class="sr">출연자</h1><div class="vbar"><input id="pq" type="search" placeholder="출연자 이름 검색" aria-label="출연자 검색"></div>'
+             f'<p class="nhint">경제 유튜브에 {PEOPLE_MIN}번 이상 출연한 전문가를 최근 출연 순으로 모았다. 이름을 누르면 그 사람이 최근 한 말을 날짜순으로 볼 수 있다.</p>'
+             f'<div class="nkhd"><span>출연자</span><small>{len(items)}명</small></div><ul class="plist nks ppl">{lis}</ul>' + pjs)
+    changed += write("people", page("people/", "경제 유튜브 출연자별 최근 전망 모아보기", "경제 유튜브에 자주 나오는 전문가들이 최근 어떤 말을 했는지 출연자별로 모았다.", pbody, kind="list", nav_on="people"))
+    return changed, people
 
 
 # ---------- 페이지 만들기 ----------
@@ -871,7 +1046,7 @@ def build():
         man = json.loads(MANIFEST.read_text(encoding="utf-8"))
     except Exception:
         man = {}
-    for k in ("brief", "week", "stock", "video"):
+    for k in ("brief", "week", "stock", "video", "people"):
         man.setdefault(k, {})
     today = datetime.datetime.now(KST).strftime("%Y-%m-%d")
     changed = 0
@@ -926,7 +1101,8 @@ def build():
         dd_ = datetime.date.fromisoformat(d)
         ogi = og_image(f"brief-{d}", f"{dd_.month}.{dd_.day:02d} ({WD[dd_.weekday()]}) 시장 브리핑", b.get("headline") or "", f"경제 유튜브 영상 {b.get('count') or ''}편 종합")
         bdesc = desc_of(*(b.get("keypoints") or []))
-        c = write(f"brief/{d}", page(f"brief/{d}/", f"{sdate(d)} 시장 브리핑: {b.get('headline', '')}", bdesc, body, date=d, nav_on="brief", image=ogi))
+        seo_d = desc_of(f"{mdk(d)} 경제 유튜브 {b.get('count', len(vids))}편으로 본 오늘 증시 흐름과 전망.", *(b.get("keypoints") or []))
+        c = write(f"brief/{d}", page(f"brief/{d}/", f"{mdk(d)} 오늘 증시 요약: {b.get('headline', '')}", seo_d, body, date=d, nav_on="brief", image=ogi))
         changed += c
         mark("brief", d, c, {"headline": b.get("headline"), "count": b.get("count"), "desc": bdesc})
 
@@ -953,8 +1129,9 @@ def build():
         a_, z_ = datetime.date.fromisoformat(ws), datetime.date.fromisoformat(w.get("end") or ws)
         ogi = og_image(f"week-{ws}", f"{a_.month}.{a_.day:02d}~{z_.month}.{z_.day:02d} 주간 시장 브리핑", w.get("headline") or "", f"경제 유튜브 영상 {w.get('videos') or ''}편 종합")
         wdesc = desc_of(*(w.get("keypoints") or []))
-        c = write(f"week/{ws}", page(f"week/{ws}/", f"{sdate(ws)}~{sdate(w.get('end'))} 주간 시장 브리핑: {w.get('headline', '')}",
-                                     wdesc, body, date=w.get("gen_date") or ws, nav_on="brief", image=ogi))
+        seo_w = desc_of(f"{wkk(ws)}({sdate(ws)}~{sdate(w.get('end'))}) 경제 유튜브 {w.get('videos', '')}편으로 정리한 이번 주 증시와 다음 주 전망.", *(w.get("keypoints") or []))
+        c = write(f"week/{ws}", page(f"week/{ws}/", f"{wkk(ws)} 증시 정리와 다음 주 전망: {w.get('headline', '')}",
+                                     seo_w, body, date=w.get("gen_date") or ws, nav_on="brief", image=ogi))
         changed += c
         mark("week", ws, c, {"headline": w.get("headline"), "end": w.get("end"), "videos": w.get("videos"), "desc": wdesc})
 
@@ -1024,8 +1201,8 @@ def build():
                 + sect("채널별 언급", len(ms[:40]), rows and f'<div class="skrb slist" style="padding:0">{rows}</div>', "c4")
                 + sect("이 종목이 나온 브리핑", len(bd), bd and '<div class="chips">' + "".join(f'<a href="{href("brief/" + x + "/")}">{e(sdate(x))}</a>' for x in bd) + "</div>", "c1")
                 + "</div>" + F.templates())
-        desc = desc_of(d.get("summary"), *(d.get("points") or [])) if d else desc_of(f"{name}에 대해 경제 유튜브 채널 {len(chans)}곳이 한 말을 모았다.", *[r[2] for _, r in ms[:3]])
-        c = write(f"stock/{s_}", page(f"stock/{quote(s_)}/", f"{name}: 경제 유튜브 채널들의 시각", desc, body, date=(d or {}).get("updated") or last, nav_on="stocks"))
+        desc = desc_of(f"경제 유튜브 {len(chans)}개 채널이 본 {name} 전망.", *([d.get("summary"), *(d.get("points") or [])] if d else [r[2] for _, r in ms[:3]]))
+        c = write(f"stock/{s_}", page(f"stock/{quote(s_)}/", f"{name} 주가 전망, 경제 유튜브 {len(chans)}곳 의견 정리 ({mdk((d or {}).get('updated') or last)})", desc, body, date=(d or {}).get("updated") or last, nav_on="stocks"))
         changed += c
         # 종목 목록의 순위용: 이번 주·지난주 언급 영상 수, 14일 추이, 한 줄 요약
         # 기간별 순위 데이터: 일간(최근 24시간 vs 그 전 24시간), 주간(7일 vs 7일), 월간(30일 vs 30일). [이번 기간 영상 수, 지난 기간 영상 수, 날짜별 막대]
@@ -1048,7 +1225,15 @@ def build():
                               "w": wk, "p": pw, "per": per_, "one": one})
 
     # 영상별 개별 페이지 (검색에 걸리게)
-    changed += build_video_pages(V, man, briefs, stock_slug, mark)
+    find_channel_main(V)
+    pc = {}
+    for v in V.values():
+        for nm in guests_of(v):
+            pc[nm] = pc.get(nm, 0) + 1
+    people_set = {nm for nm, n in pc.items() if n >= PEOPLE_MIN}
+    changed += build_video_pages(V, man, briefs, stock_slug, mark, people_set)
+    c_, _ = build_people_pages(V, man, stock_slug, mark, today)
+    changed += c_
 
     # 예전에 별칭 이름(예: 하이닉스)으로 만든 종목 페이지는 정식 이름 페이지로 넘기고 목록에서 뺀다
     for s_, m in list(man["stock"].items()):
@@ -1083,7 +1268,7 @@ def build():
             + (f'<ul class="plist blist">{dl}</ul>' if dl else '<div class="empty">아직 없다.</div>')
             + (f'<div class="bsec" id="weekly"><h2 class="bt c2">주간 브리핑<span class="cn">{len(man["week"])}</span></h2><ul class="plist blist">{wl}</ul></div>' if wl else "")
             + "</div>")
-    changed += write("brief", page("brief/", "시장 브리핑", "경제 유튜브 채널들의 영상을 하루, 한 주 단위로 종합한 시장 브리핑 목록이다.", body, kind="list", nav_on="brief"))
+    changed += write("brief", page("brief/", "오늘 증시 요약·주간 증시 전망 모아보기", "경제 유튜브 채널들의 영상을 하루, 한 주 단위로 종합한 증시 요약과 전망 브리핑 목록이다.", body, kind="list", nav_on="brief"))
     changed += listing("week", "주간 시장 브리핑", "경제 유튜브 채널들의 한 주 흐름을 종합한 주간 브리핑 목록이다.",
                        "".join(f'<li><a href="{href("week/" + w + "/")}"><b>{e(m.get("headline"))}</b><small>{e(sdate(w))} ~ {e(sdate(m.get("end")))} · 영상 {e(m.get("videos"))}편</small></a></li>'
                                for w, m in sorted(man["week"].items(), reverse=True)), nav_on="brief")
@@ -1149,7 +1334,7 @@ q.addEventListener("input",f);f()})();
              + (f'<div class="netc"><div class="nkhd"><span>그 밖의 종목</span><small>최근 2주 동안 언급이 없는 종목 {len(rest)}개</small></div>'
                 f'<ul class="plist nks sother">{rs}</ul></div>' if rs else "")
              + stock_js)
-    changed += write("stock", page("stock/", "종목", "여러 경제 유튜브 채널에서 언급된 종목을 이번 주 언급 순위로 모으고, 채널들의 시각을 정리했다.", sbody, kind="list", nav_on="stocks"))
+    changed += write("stock", page("stock/", "종목별 주가 전망: 경제 유튜브 의견 모아보기", "삼성전자, SK하이닉스, 엔비디아 등 경제 유튜브에서 많이 언급된 종목의 전망을 이번 주 언급 순위로 모으고, 채널들의 시각을 정리했다.", sbody, kind="list", nav_on="stocks"))
 
     # 홈 대시보드: index.html 의 <!--DASH:START--> ~ <!--DASH:END--> 사이를 미리 만든 화면으로 채운다 (검색에 잡히게)
     changed += build_dash(read_const(ROOT / "videos.js", "VIDEOS", []), briefs, weekly, digests, man)
@@ -1163,6 +1348,7 @@ q.addEventListener("input",f);f()})();
     urls += [(url(f"week/{w}/"), m.get("lastmod", today)) for w, m in man["week"].items()]
     urls += [(url(f"stock/{quote(s_)}/"), m.get("lastmod", today)) for s_, m in man["stock"].items()]
     urls += [(url(f"v/{k}/"), m.get("lastmod", today)) for k, m in man["video"].items()]
+    urls += [(url("people/"), today)] + [(url(f"people/{quote(k)}/"), m.get("lastmod", today)) for k, m in man["people"].items()]
     write_rss(man)
     (ROOT / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
                                       + "".join(f"<url><loc>{html.escape(u)}</loc><lastmod>{lm}</lastmod></url>\n" for u, lm in urls) + "</urlset>\n", encoding="utf-8")
