@@ -307,6 +307,48 @@ def summary_schema():
     return Summary
 
 
+def meta_note(title, channel):
+    """요약할 때 같이 넘기는 참고 정보. 제목·채널 표기는 정확하니 이름 표기는 이쪽을 따르게 한다."""
+    if not (title or channel):
+        return ""
+    return ("\n참고 정보 (영상 제목과 채널 이름은 정확한 표기다)\n"
+            f"- 채널: {channel}\n- 제목: {title}\n"
+            "- 사람 이름, 회사·종목 이름이 제목에 나오면 자막이나 소리보다 제목 표기를 따른다. people에는 제목에 나온 출연자 이름 표기를 그대로 쓴다.\n")
+
+
+_HANGUL_NAME = re.compile(r"[가-힣]{2,4}")
+
+
+def fix_people(people, title):
+    """출연자 이름을 영상 제목 표기에 맞춘다. 자동 자막 때문에 '최일호'가 '최로'처럼 잘못 들어가는 걸 바로잡는다.
+    제목에 같은 이름이 있으면 그대로, 성이 같은 이름이 제목에 하나뿐이면 그 이름으로 바꾼다."""
+    if not people or not title:
+        return people
+    cands = {w for w in re.split(r"[^가-힣]+", title) if len(w) == 3}  # 한국 이름은 대부분 세 글자
+    out = []
+    for p_ in [x.strip() for x in people.split(",") if x.strip()]:
+        nm = p_.split()[0]
+        if nm in title or not _HANGUL_NAME.fullmatch(nm):
+            out.append(p_)
+            continue
+        same = sorted(c for c in cands if c[0] == nm[0] and c != nm)
+        out.append(p_.replace(nm, same[0], 1) if len(same) == 1 else p_)
+    return ", ".join(dict.fromkeys(out))
+
+
+def fix_people_all(videos):
+    n = 0
+    for v in videos:
+        old = v.get("people") or ""
+        new = fix_people(old, v.get("title") or "")
+        if new and new != old:
+            v["people"] = new
+            n += 1
+    if n:
+        print(f"출연자 이름을 영상 제목 표기에 맞췄다: {n}편")
+    return n
+
+
 FPS_OK = [True]  # 영상 프레임 수 줄이기 설정이 받아들여지는지 (거절되면 이번 실행에서는 끈다)
 
 
@@ -321,13 +363,14 @@ def video_part(types, video_url):
     return types.Part(file_data=types.FileData(file_uri=video_url))
 
 
-def call_gemini(video_url, allow_lite=True, transcript=None):
+def call_gemini(video_url, allow_lite=True, transcript=None, title="", channel=""):
     """영상을 요약한다. transcript(자막 글)가 있으면 영상 대신 자막을 읽고 요약한다.
     allow_lite가 False면 품질이 낮은 lite 모델은 쓰지 않는다."""
     from google import genai
     from google.genai import types
 
     Summary = summary_schema()
+    meta = meta_note(title, channel)
     client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
     # 모델을 차례로 한 번씩 시도한다. 한 모델이 바쁘면 바로 다음 모델로 넘어가고, 전부 바쁘면 잠깐 쉬었다가 처음부터 다시 돌린다.
     fallbacks = os.environ.get("GEMINI_FALLBACKS", "gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash-lite,gemini-3.1-flash-lite")
@@ -347,10 +390,10 @@ def call_gemini(video_url, allow_lite=True, transcript=None):
             def ask(model=model):
                 return client.models.generate_content(
                     model=model,
-                    contents=(TRANSCRIPT_PROMPT + transcript) if transcript else types.Content(
+                    contents=(TRANSCRIPT_PROMPT.replace("\n자막:\n", meta + "\n자막:\n") + transcript) if transcript else types.Content(
                         parts=[
                             video_part(types, video_url),
-                            types.Part(text=PROMPT),
+                            types.Part(text=PROMPT + meta),
                         ]
                     ),
                     config=types.GenerateContentConfig(
@@ -463,7 +506,7 @@ def clean(s, vid_url, title, channel, date):
 
     entry = {"url": vid_url, "channel": channel, "date": date, "title": title}
     if (s.get("people") or "").strip():
-        entry["people"] = s["people"].strip()
+        entry["people"] = fix_people(s["people"].strip(), title)
     entry.update({"conclusion": conclusion, "tags": tags, "parts": parts,
                   "stocks": stocks, "numbers": numbers})
     mood = (s.get("mood") or "").strip()
@@ -2205,7 +2248,7 @@ def auto():
         src = "자막" if text else "영상"
         print(f"요약 시작({src}): {e['channel']} | {e['title']} ({est // 60}분)")
         try:
-            raw = call_gemini(url, allow_lite=lite_ok, transcript=text)
+            raw = call_gemini(url, allow_lite=lite_ok, transcript=text, title=e["title"], channel=e["channel"])
             if raw.get("economic") is False:
                 state["skipped"][vid] = "경제 무관(내용 확인)"
                 state["topic"].pop(vid, None)
@@ -2277,7 +2320,7 @@ def auto():
             break
         print(f"다시 요약(얕은 요약 보완, {'자막' if text else '영상'}): {v['channel']} | {v['title']}")
         try:
-            new = clean(call_gemini(v["url"], allow_lite=False, transcript=text), v["url"], v["title"], v["channel"], v["date"])
+            new = clean(call_gemini(v["url"], allow_lite=False, transcript=text, title=v["title"], channel=v["channel"]), v["url"], v["title"], v["channel"], v["date"])
             new["src"] = "자막" if text else "영상"
             new["model"] = next((m for m, o in reversed(STATS) if o == "ok"), "")
             for k in ("ts", "mood"):
@@ -2304,6 +2347,7 @@ def auto():
         print(f"브리핑 단계에서 오류: {str(e)[:150]}")
     try:
         fix_all(videos)
+        fix_people_all(videos)
     except Exception as e:
         print(f"이름 표기 정리 중 오류: {str(e)[:120]}")
     # 운영 알림: 오래 요약이 없거나 자막이 계속 실패하면 텔레그램으로 알린다
