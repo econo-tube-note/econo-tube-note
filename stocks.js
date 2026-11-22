@@ -400,23 +400,26 @@ const STOCKSUM={
  "코어위브": {
   "name": "코어위브",
   "tone": "혼재",
-  "summary": "AI 인프라 투자와 수요 확대에 대한 기대감이 있으나, 적자와 재무 부담에 대한 우려도 공존한다.",
+  "summary": "데이터센터와 AI 수요 측면에서 주목받고 있으나, 치솟는 금리와 자금 조달 리스크에 대한 우려가 엇갈린다.",
   "points": [
-   "AI 인프라 매출 급증과 데이터센터 수요를 확인했다.",
-   "대규모 투자와 감가상각으로 적자가 이어지고 있다.",
-   "조달 금리 하락과 수주 잔고로 신용 리스크가 해소됐다."
+   "AI 인프라 수요와 수주 잔고를 바탕으로 성장 기대를 받고 있다.",
+   "높은 금리로 인한 자금 조달 경색과 부채 리스크가 지적된다.",
+   "대규모 투자와 금융비용 부담으로 적자가 이어지고 있다."
   ],
   "ids": [
    "-GrEZiF4e6k",
    "BIhFDJtoK6k",
+   "OMvVIVMcSWc",
    "PZLLj9tHYlQ",
+   "hjhrT8EtTjg",
    "kyUbMfnczE0",
    "mW4Bp0uo0eQ",
+   "pnIq4HW1nRg",
    "r_mO3QY3fE4",
    "t9R5tJ0zR34"
   ],
-  "count": 7,
-  "updated": "2026-11-18"
+  "count": 10,
+  "updated": "2026-11-22"
  },
  "AMD": {
   "name": "AMD",
@@ -718,19 +721,26 @@ const STOCKSUM={
  "레인보우로보틱스": {
   "name": "레인보우로보틱스",
   "tone": "긍정",
-  "summary": "기관 매수세 유입과 AI 및 로봇 부품 국산화 모멘텀에 힘입어 시장 하락에도 강세를 보인 핵심 로봇주로 평가받는다.",
+  "summary": "삼성의 로봇 사업 추진과 CES 기대감 등에 힘입어 기관 수급이 유입되며 강한 흐름을 보이고 있다.",
   "points": [
-   "기관 수급 유입과 함께 시장 하락 속에서도 우수한 방어력을 나타냈다.",
-   "코스닥 시장에서 로봇주 매수세에 힘입어 주가가 5.7% 상승했다.",
-   "AI 및 로봇 부품 국산화 모멘텀이 상승세를 이끈 원인으로 꼽혔다."
+   "삼성의 로봇 사업 추진과 CES 기대감으로 주가가 강세를 보였다.",
+   "기관 수급이 좋으며 시장 하락에도 방어력을 보여주고 있다."
   ],
   "ids": [
+   "5ce3JngZSq0",
+   "AydkVh-c6GI",
    "LagAldYbD8M",
+   "NCGhP2Vyods",
    "Of8HJe9eNYw",
-   "jSVzxKubRcQ"
+   "RiLTQh6mqws",
+   "VEYoCnIz6XQ",
+   "cJj2TjoiV10",
+   "eFnxFsUiMvs",
+   "jSVzxKubRcQ",
+   "mVbORW1vjDY"
   ],
-  "count": 3,
-  "updated": "2026-11-17"
+  "count": 11,
+  "updated": "2026-11-22"
  },
  "하이닉스": {
   "name": "하이닉스",
