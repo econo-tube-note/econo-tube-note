@@ -88,6 +88,18 @@ def kdate(d):
         return d or ""
 
 
+def is_weekend(d):
+    try:
+        return datetime.date.fromisoformat(d).weekday() >= 5
+    except Exception:
+        return False
+
+
+def blabel(d):
+    """토·일 브리핑은 '주말 브리핑', 평일은 '시장 브리핑'"""
+    return "주말 브리핑" if is_weekend(d) else "시장 브리핑"
+
+
 def mdk(d):
     """2026-11-22 → '11월 22일'"""
     try:
@@ -564,7 +576,7 @@ def write_rss(man):
             return ""
     items = []
     for d, m in man["brief"].items():
-        items.append((d + "T23:00", f"{sdate(d)} 시장 브리핑: {m.get('headline') or ''}", url(f"brief/{d}/"), m.get("desc") or ""))
+        items.append((d + "T23:00", f"{sdate(d)} {blabel(d)}: {m.get('headline') or ''}", url(f"brief/{d}/"), m.get("desc") or ""))
     for w, m in man["week"].items():
         items.append(((m.get("end") or w) + "T23:30", f"{sdate(w)}~{sdate(m.get('end'))} 주간 시장 브리핑: {m.get('headline') or ''}", url(f"week/{w}/"), m.get("desc") or ""))
     for k, m in man["video"].items():
@@ -871,7 +883,7 @@ def build_video_pages(V, man, briefs, stock_slug, mark, people_set=()):
                    'var top=document.querySelector(".vtop");if(top)top.scrollIntoView({behavior:"smooth",block:"start"});});</script>')
         body = (f'<div class="brief vpage">'
                 + f'<div class="vtop"><div class="vmeta"><b>{e(v.get("channel"))}</b><span>{e(kdate(d))}</span>'
-                + (f'<a href="{href("brief/" + d + "/")}">이날 시장 브리핑 →</a>' if d in brief_dates else "") + '<button class="vshr" data-share type="button">공유</button>' + f'</div><h1 class="vh1">{e(v.get("title"))}</h1>'
+                + (f'<a href="{href("brief/" + d + "/")}">이날 {blabel(d)} →</a>' if d in brief_dates else "") + '<button class="vshr" data-share type="button">공유</button>' + f'</div><h1 class="vh1">{e(v.get("title"))}</h1>'
                 + f'<div class="vhero"><iframe src="https://www.youtube.com/embed/{e(vid)}?rel=0" title="{e(v.get("title"))}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
                 + f'<a class="vyt" href="{yt}" target="_blank" rel="noopener">▶ 유튜브<span class="vyl">에서 원본</span> 보기</a></div>'
                 + f'<div class="digest"><div class="dh"><b>한 줄 결론</b>' + (f'<span class="md m{e(v.get("mood"))}">{e(mood)}</span>' if mood else "")
@@ -1085,7 +1097,7 @@ def build():
                      + "".join(f'<div class="mrow"><span>{e(m["view"])}</span>{F.hv(m.get("ref"), m.get("channel"))}</div>' for m in (s.get("mentions") or [])[:4])
                      + "</div>" for s in b.get("stocks") or [])
         vids = [V[x] for x in b.get("sources") or [] if x in V]
-        body = (f'<div class="bpre"><div class="bpt"><b>시장 브리핑</b><span>{e(kdate(d))} · 영상 {b.get("count", len(vids))}편 종합</span></div>'
+        body = (f'<div class="bpre"><div class="bpt"><b>{blabel(d)}</b><span>{e(kdate(d))} · 영상 {b.get("count", len(vids))}편 종합</span></div>'
                 f'<div class="bpl"><span class="bdates">{dates}</span><span class="bact">'
                 + (f'<a class="link" href="{href("week/" + wk + "/")}">주간 브리핑 →</a>' if wk else "")
                 + f'<button class="link shr bsh" data-share type="button">{SHARE_ICON}공유하기</button>'
@@ -1099,10 +1111,15 @@ def build():
                 + '<p class="bnote">AI가 이날의 영상 요약들을 종합한 내용이며 투자 권유가 아니다. \'관련 영상\'이나 채널 이름을 누르면 근거가 된 영상을 볼 수 있다.</p></div>'
                 + F.templates())
         dd_ = datetime.date.fromisoformat(d)
-        ogi = og_image(f"brief-{d}", f"{dd_.month}.{dd_.day:02d} ({WD[dd_.weekday()]}) 시장 브리핑", b.get("headline") or "", f"경제 유튜브 영상 {b.get('count') or ''}편 종합")
+        ogi = og_image(f"brief-{d}", f"{dd_.month}.{dd_.day:02d} ({WD[dd_.weekday()]}) {blabel(d)}", b.get("headline") or "", f"경제 유튜브 영상 {b.get('count') or ''}편 종합")
         bdesc = desc_of(*(b.get("keypoints") or []))
-        seo_d = desc_of(f"{mdk(d)} 경제 유튜브 {b.get('count', len(vids))}편으로 본 오늘 증시 흐름과 전망.", *(b.get("keypoints") or []))
-        c = write(f"brief/{d}", page(f"brief/{d}/", f"{mdk(d)} 오늘 증시 요약: {b.get('headline', '')}", seo_d, body, date=d, nav_on="brief", image=ogi))
+        if is_weekend(d):
+            seo_t = f"{mdk(d)}({WD[datetime.date.fromisoformat(d).weekday()]}) 주말 증시 정리: {b.get('headline', '')}"
+            seo_d = desc_of(f"주말에 올라온 경제 유튜브 {b.get('count', len(vids))}편으로 지난주 증시를 정리하고 다음 주 전망을 모았다.", *(b.get("keypoints") or []))
+        else:
+            seo_t = f"{mdk(d)} 오늘 증시 요약: {b.get('headline', '')}"
+            seo_d = desc_of(f"{mdk(d)} 경제 유튜브 {b.get('count', len(vids))}편으로 본 오늘 증시 흐름과 전망.", *(b.get("keypoints") or []))
+        c = write(f"brief/{d}", page(f"brief/{d}/", seo_t, seo_d, body, date=d, nav_on="brief", image=ogi))
         changed += c
         mark("brief", d, c, {"headline": b.get("headline"), "count": b.get("count"), "desc": bdesc})
 
