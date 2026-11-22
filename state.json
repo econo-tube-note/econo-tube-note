@@ -106,12 +106,13 @@
  },
  "spent": {
   "17시~2026-11-19": 11959,
-  "17시~2026-11-21": 9810
+  "17시~2026-11-21": 9810,
+  "17시~2026-11-22": 3873
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 22,
-   "busy": 17,
+   "ok": 12,
+   "busy": 8,
    "dead": 4
   },
   "gemini-3.7-flash": {
@@ -274,7 +275,10 @@
   "sKksHglQiiA": true,
   "Sp9RihBxZqA": true,
   "x7rlmaylAtA": true,
-  "8H7hQU8EncU": true
+  "8H7hQU8EncU": true,
+  "fcAPj3NT8pY": true,
+  "UoO5-aM9W3Q": true,
+  "RzrQ4FbmqmQ": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -287,7 +291,7 @@
   "2026-11-21": true,
   "2026-11-22": true
  },
- "last_ok": "2026-11-22T23:59",
+ "last_ok": "2026-11-23T07:55",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true
