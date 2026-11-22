@@ -3,11 +3,11 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "AI 산업 악재와 미 증시 하락으로 단기 급락세를 겪었으나 펀더멘털 대비 싼 영역이라는 평가가 공존한다.",
+  "summary": "주가 하락 리스크가 선반영되었다는 평가와 함께 AI 산업 신뢰 차질 및 우회 중국향 매출 타격 우려가 엇갈린다.",
   "points": [
-   "AI 산업 신뢰 차질과 미국 기술주 폭락으로 큰 폭의 하락세를 기록했다.",
-   "실적 기대치에 따른 밸류에이션이 해소되었으며 현재 시가총액은 싼 영역이다.",
-   "중국향 매출 타격 가능성과 추가 하락에 대한 우려가 존재한다."
+   "범용 메모리 가격 하락과 AI 관련 악재로 주가가 큰 폭으로 하락했다.",
+   "펀더멘털 대비 과도하게 밀린 상태이며 밸류에이션이 해소되었다.",
+   "중국향 매출 타격 우려가 존재하면서도 사업 비중 분산으로 상대적 피해가 덜하다는 시각이 있다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -134,6 +134,7 @@ const STOCKSUM={
    "vC7v55f8sdo",
    "vCEYiChFcnA",
    "vVe3kbl0k44",
+   "vhAlRhO25CA",
    "vqB7JpqjRy0",
    "wZYpDi0Wdso",
    "waz9eTAJIxU",
@@ -144,17 +145,16 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 133,
+  "count": 134,
   "updated": "2026-11-22"
  },
  "엔비디아": {
   "name": "엔비디아",
   "tone": "혼재",
-  "summary": "우수한 실적에도 불구하고 SEC 회계 조사와 경영진 변화 등 악재가 겹쳐 주가 변동성이 커졌다. AI 인프라 핵심 기업이라는 평가와 성장성 의문이 공존한다.",
+  "summary": "탄탄한 실적과 AI 생태계 내 핵심 지위는 유지되나, SEC 조사와 경영진 교체 등 대내외 악재로 주가 변동성이 극대화된 상태다.",
   "points": [
-   "실적은 우수하지만 SEC 회계 조사와 데이터센터 지연 등 악재가 주가를 압박한다.",
-   "AI 생태계 핵심 기업이라는 평가와 수익성 및 성장성에 대한 의구심이 대립한다.",
-   "주가 폭락으로 인한 가격 매력 발생과 향후 변동성 확대 가능성이 동시에 제기된다."
+   "견조한 실적과 높은 매출 성장 전망에도 불구하고 SEC 회계 조사와 경영 불확실성이 주가 급락을 초래했다.",
+   "AI 인프라의 핵심 기업이라는 평가와 데이터센터 건설 지연 및 수요 검증에 대한 우려가 공존한다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -174,6 +174,7 @@ const STOCKSUM={
    "9MXwHlep8wQ",
    "AydkVh-c6GI",
    "BIhFDJtoK6k",
+   "BWoc8K793Xo",
    "Cfb0KSoFWz0",
    "Cgn7XPWef2A",
    "Codp7P9gH4U",
@@ -192,6 +193,7 @@ const STOCKSUM={
    "M0Ak8p29VyQ",
    "NCGhP2Vyods",
    "ODiEz3dslcE",
+   "OG0IvvfJk5s",
    "OMvVIVMcSWc",
    "Oe69L5Dv7w0",
    "P1m0QaKWzG0",
@@ -205,6 +207,7 @@ const STOCKSUM={
    "TIWNv1fcSHs",
    "TV3diSFaZIU",
    "TbCOzdqUfMw",
+   "TzNk7J6b94k",
    "Tzc0KuusVbI",
    "UihZAstNiGU",
    "UlNBpokQfVk",
@@ -254,6 +257,7 @@ const STOCKSUM={
    "vC7v55f8sdo",
    "vMcjzb9nK9s",
    "vVe3kbl0k44",
+   "vhAlRhO25CA",
    "waz9eTAJIxU",
    "xZHld6KdReU",
    "xjVdgtREpc4",
@@ -262,7 +266,7 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 104,
+  "count": 108,
   "updated": "2026-11-22"
  },
  "SK하이닉스": {
