@@ -34,6 +34,7 @@ h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
 .nkb{padding:0 16px 10px 56px;background:#fbfbfd}
 .nkb{border-top:1px solid var(--line)}
 .nkind{display:inline-block;font-size:.7rem;font-weight:700;color:var(--sub);border:1px solid var(--line);border-radius:99px;padding:0 6px;margin-top:3px}
+a.plk{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .nmore{display:block;margin:10px auto 0;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:7px 16px;font:inherit;font-size:.86rem;cursor:pointer;color:var(--sub)}
 .netc{margin-top:22px}.netc>.link{font-size:.9rem}
 .nsearch .nslab{font-size:.78rem;font-weight:700;color:var(--accent);margin-top:12px}
@@ -194,6 +195,13 @@ a.tm:hover{color:var(--accent)}
 .rel2 .vc .vt{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.45}
 .rel2 .vc .vr p{-webkit-line-clamp:2;font-size:.9rem}
 .pop .vc+.vc{border-top:1px solid var(--line);border-radius:0}
+/* 팝업·이어서 볼 영상: 채널과 날짜를 썸네일 오른쪽 한 줄에 (썸네일 아래 두 줄 대신) */
+.pop .vc,.rel2 .vc{grid-template-columns:160px auto minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:8px;row-gap:2px}
+.pop .vc .vl,.rel2 .vc .vl{display:contents}
+.pop .vc .vth,.rel2 .vc .vth{grid-column:1;grid-row:1/3;margin:0 6px 0 0}
+.pop .vc .vl b,.rel2 .vc .vl b{grid-column:2;grid-row:1;align-self:baseline;max-width:180px}
+.pop .vc .vl small,.rel2 .vc .vl small{grid-column:3;grid-row:1;align-self:baseline}
+.pop .vc .vr,.rel2 .vc .vr{grid-column:2/4;grid-row:2}
 @media(max-width:480px){.vc{grid-template-columns:112px minmax(0,1fr);gap:12px}
 /* 모바일 영상 목록(브리핑·이어서 볼 영상): 카드 테두리를 빼고 구분선만 둬서 여백이 겹치지 않게 */
 .vgrid,.rel2 .rlist{gap:0!important}
@@ -201,9 +209,10 @@ a.tm:hover{color:var(--accent)}
 .vgrid .vc:first-child,.rel2 .vc:first-child{border-top:0;padding-top:4px}
 .vgrid .vt{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.45}
 .vgrid .vr p{-webkit-line-clamp:3}
-/* 모바일 팝업: 썸네일을 폭 가득, 그 아래 채널·날짜, 제목, 요약을 세로로 */
-.pop .vc{grid-template-columns:1fr;gap:8px}
-.pop .vr p{-webkit-line-clamp:5}
+/* 모바일 팝업: 작은 썸네일 왼쪽, 오른쪽에 채널·날짜 한 줄과 제목, 요약 */
+.pop .vc,.rel2 .vc{grid-template-columns:112px auto minmax(0,1fr)}
+.pop .vc .vl b,.rel2 .vc .vl b{max-width:130px}
+.pop .vr p{-webkit-line-clamp:3;font-size:.9rem}
 /* 모바일 홈의 최근 영상은 4개만 */
 #hgrid .card:nth-child(n+5){display:none}}
 .skrb p{margin:0;padding:9px 0;border-top:1px solid var(--line);font-size:.93rem;line-height:1.6}
@@ -524,6 +533,23 @@ a.card{color:inherit;text-decoration:none}
 /* 종목 탭: 숫자·지표 탭과 같은 모양 */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .sother a{padding:12px 16px}
+/* 영상 페이지: 버튼 줄, 같은 날 다른 채널, 이어서 볼 영상 */
+.vbtns{grid-area:btn;align-self:end;display:flex;gap:8px}.vshr2{display:none}
+.vbtns .vyt{grid-area:auto;justify-self:stretch;align-self:auto}
+.sdc{display:flex;flex-direction:column;gap:8px;margin:6px 0 14px}.vpage .dq{display:block;margin-top:4px}
+.sdc .dv{display:flex;flex-direction:column;gap:8px;background:none;border:1.5px solid #c2410c;padding:12px 14px;border-radius:12px;font-size:.95rem;line-height:1.6}
+.sdc .dv>.hv,.sdc .dv>.rel{align-self:flex-end}
+.sdc .dv.agv{border-color:#2f9e6b}
+.vpage .vnote a{color:var(--sub)}
+@media(min-width:601px){.rvgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.vpage .rvgrid .card h2{margin:0;font-size:.85rem;line-height:1.45;-webkit-line-clamp:2}
+@media(max-width:600px){
+ .vtop{grid-template-columns:1fr;grid-template-areas:"meta" "title" "hero" "btn"}
+ .vhero{margin-top:6px}
+ .vbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;margin-top:2px}
+ .vbtns .vyt,.vbtns .vshr2{display:block;text-align:center;font-size:.85rem;padding:8px 0;border-radius:10px;font-weight:600}
+ .vmeta .vshr{display:none}.vbtns .vshr2{border:1px solid var(--line);color:var(--sub);background:var(--card);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;margin:0}
+ .ppl a span{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}}
 /* 출연자 페이지 */
 .brief h1.ph1{margin-bottom:4px}.ph1 small{font-size:.95rem;font-weight:600;color:var(--sub);margin-left:6px;letter-spacing:0}
 .brief p.pmeta{display:block;margin:0 0 16px;font-size:.88rem}
@@ -547,7 +573,7 @@ a.card{color:inherit;text-decoration:none}
 <div class="logo brand"><a href="/"><img src="/logo.svg" alt="" width="54" height="43">Market Raven</a><small>경제 유튜브, 대신 보고 핵심만 전한다</small></div>
 <nav class="nav"><a href="/" class="">홈</a><a href="/brief/" class="">브리핑</a><a href="/#videos" class="">영상 요약</a><a href="/stock/" class="on">종목</a><a href="/people/" class="">출연자</a><a href="/#numbers" class="">숫자·지표</a><a href="/#community" class="">커뮤니티</a></nav>
 <div class="mtape" aria-label="해외 시세"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div><script src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>{"symbols":[{"proName":"FOREXCOM:SPXUSD","title":"S&P500"},{"proName":"FOREXCOM:NSXUSD","title":"나스닥100"},{"proName":"FX_IDC:USDKRW","title":"원/달러"},{"proName":"FRED:DGS10","title":"미국10년물"},{"proName":"TVC:USOIL","title":"WTI"},{"proName":"OANDA:XAUUSD","title":"금"},{"proName":"BITSTAMP:BTCUSD","title":"비트코인"}],"showSymbolLogo":false,"isTransparent":true,"displayMode":"compact","colorTheme":"light","locale":"kr"}</script></div></div>
-<div class="brief"><div class="bhead"><b>종목</b><span>영상 2편 · 2채널 · 마지막 언급 11.17</span><a class="link" href="/stock/">전체 종목 →</a></div><h1 class="sh1">KT&amp;G<a class="nvl" href="https://search.naver.com/search.naver?query=KT%26G%20%EC%A3%BC%EA%B0%80" target="_blank" rel="noopener">현재 시세 보러가기 ↗</a></h1><div class="bsec"><h3 class="bt c2">언급 추이</h3><div class="strend"><span title="11.10 0편" style="height:4%" class="z"></span><span title="11.11 0편" style="height:4%" class="z"></span><span title="11.12 0편" style="height:4%" class="z"></span><span title="11.13 0편" style="height:4%" class="z"></span><span title="11.14 0편" style="height:4%" class="z"></span><span title="11.15 0편" style="height:4%" class="z"></span><span title="11.16 1편" style="height:100%" class=""></span><span title="11.17 1편" style="height:100%" class=""></span><span title="11.18 0편" style="height:4%" class="z"></span><span title="11.19 0편" style="height:4%" class="z"></span><span title="11.20 0편" style="height:4%" class="z"></span><span title="11.21 0편" style="height:4%" class="z"></span><span title="11.22 0편" style="height:4%" class="z"></span><span title="11.23 0편" style="height:4%" class="z"></span></div><div class="strl"><small>11.10</small><small>최근 14일 언급 영상 수</small><small>11.23</small></div></div><div class="bsec"><h3 class="bt c4">채널별 언급<span class="cn">2</span></h3><div class="skrb slist" style="padding:0"><div class="sgd">2026.11.17 (화) · 1편</div><p class="srow"><span>배당 성향이 높고 주가 흐름이 안정적인 장기 가치주로 평가한다.</span><span class="rt"><button class="hv" data-t="vZCzUlVm2jSg">채국장의 코스피2만행 머니버스</button><a class="tm" href="https://www.youtube.com/watch?v=ZCzUlVm2jSg&t=2517s" target="_blank" rel="noopener">▶ 41:57</a></span></p><div class="sgd">2026.11.16 (월) · 1편</div><p class="srow"><span>호실적과 주주환원 기대감으로 상승했다.</span><span class="rt"><button class="hv" data-t="vsaSLtHK3aJ0">815머니톡</button><a class="tm" href="https://www.youtube.com/watch?v=saSLtHK3aJ0&t=57s" target="_blank" rel="noopener">▶ 00:57</a></span></p></div></div></div><template id="vZCzUlVm2jSg"><a class="vc" href="/v/ZCzUlVm2jSg/"><div class="vl"><div class="vth"><img src="https://img.youtube.com/vi/ZCzUlVm2jSg/hqdefault.jpg" alt="" loading="lazy"></div><b>채국장의 코스피2만행 머니버스</b><small>2026.11.17</small></div><div class="vr"><div class="vt">모두가 팔아야 하냐고 물을 때, 저는 이렇게 생각합니다, 이권희 대표가 삼전·닉스 반등 신호를 기대하는 이유 (이권희 대표 풀버전)</div><p>국내 증시는 바닥을 잡아가는 과정에 있으며, AI 산업의 성장성과 반도체 기업의 실적을 고려할 때 장기적인 관점에서 긍정적으로 대응해야 한다.</p></div></a></template><template id="vsaSLtHK3aJ0"><a class="vc" href="/v/saSLtHK3aJ0/"><div class="vl"><div class="vth"><img src="https://img.youtube.com/vi/saSLtHK3aJ0/hqdefault.jpg" alt="" loading="lazy"></div><b>815머니톡</b><small>2026.11.16</small></div><div class="vr"><div class="vt">[#찐시황] “코스피 5,000 깨져도 덥석 사지 마라!” 지금은 짜증 단계… 진짜 공포장이 매수 기회인가? ㅣ이권희 대표</div><p>현재 시장은 외국인 매도세와 정치적 불확실성으로 인해 하락세를 보이고 있다. 투자자들은 보수적인 관점에서 시장 흐름을 지켜보며 대응해야 한다.</p></div></a></template>
+<div class="brief"><div class="bhead"><b>종목</b><span>영상 2편 · 2채널 · 마지막 언급 11.17</span><a class="link" href="/stock/">전체 종목 →</a></div><h1 class="sh1">KT&amp;G<a class="nvl" href="https://search.naver.com/search.naver?query=KT%26G%20%EC%A3%BC%EA%B0%80" target="_blank" rel="noopener">현재 시세 보러가기 ↗</a></h1><div class="bsec"><h3 class="bt c2">언급 추이</h3><div class="strend"><span title="11.10 0편" style="height:4%" class="z"></span><span title="11.11 0편" style="height:4%" class="z"></span><span title="11.12 0편" style="height:4%" class="z"></span><span title="11.13 0편" style="height:4%" class="z"></span><span title="11.14 0편" style="height:4%" class="z"></span><span title="11.15 0편" style="height:4%" class="z"></span><span title="11.16 1편" style="height:100%" class=""></span><span title="11.17 1편" style="height:100%" class=""></span><span title="11.18 0편" style="height:4%" class="z"></span><span title="11.19 0편" style="height:4%" class="z"></span><span title="11.20 0편" style="height:4%" class="z"></span><span title="11.21 0편" style="height:4%" class="z"></span><span title="11.22 0편" style="height:4%" class="z"></span><span title="11.23 0편" style="height:4%" class="z"></span></div><div class="strl"><small>11.10</small><small>최근 14일 언급 영상 수</small><small>11.23</small></div></div><div class="bsec"><h3 class="bt c4">채널별 언급<span class="cn">2</span></h3><div class="skrb slist" style="padding:0"><div class="sgd">2026.11.17 (화) · 1편</div><p class="srow"><span>배당 성향이 높고 주가 흐름이 안정적인 장기 가치주로 평가한다.</span><span class="rt"><button class="hv" data-t="vZCzUlVm2jSg">채국장의 코스피2만행 머니버스</button><a class="tm" href="/v/ZCzUlVm2jSg/?t=2517">▶ 41:57</a></span></p><div class="sgd">2026.11.16 (월) · 1편</div><p class="srow"><span>호실적과 주주환원 기대감으로 상승했다.</span><span class="rt"><button class="hv" data-t="vsaSLtHK3aJ0">815머니톡</button><a class="tm" href="/v/saSLtHK3aJ0/?t=57">▶ 00:57</a></span></p></div></div></div><template id="vZCzUlVm2jSg"><a class="vc" href="/v/ZCzUlVm2jSg/"><div class="vl"><div class="vth"><img src="https://img.youtube.com/vi/ZCzUlVm2jSg/hqdefault.jpg" alt="" loading="lazy"></div><b>채국장의 코스피2만행 머니버스</b><small>2026.11.17</small></div><div class="vr"><div class="vt">모두가 팔아야 하냐고 물을 때, 저는 이렇게 생각합니다, 이권희 대표가 삼전·닉스 반등 신호를 기대하는 이유 (이권희 대표 풀버전)</div><p>국내 증시는 바닥을 잡아가는 과정에 있으며, AI 산업의 성장성과 반도체 기업의 실적을 고려할 때 장기적인 관점에서 긍정적으로 대응해야 한다.</p></div></a></template><template id="vsaSLtHK3aJ0"><a class="vc" href="/v/saSLtHK3aJ0/"><div class="vl"><div class="vth"><img src="https://img.youtube.com/vi/saSLtHK3aJ0/hqdefault.jpg" alt="" loading="lazy"></div><b>815머니톡</b><small>2026.11.16</small></div><div class="vr"><div class="vt">[#찐시황] “코스피 5,000 깨져도 덥석 사지 마라!” 지금은 짜증 단계… 진짜 공포장이 매수 기회인가? ㅣ이권희 대표</div><p>현재 시장은 외국인 매도세와 정치적 불확실성으로 인해 하락세를 보이고 있다. 투자자들은 보수적인 관점에서 시장 흐름을 지켜보며 대응해야 한다.</p></div></a></template>
 
 <p class="note">AI가 경제 유튜브 영상과 그 요약을 종합한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
 <footer class="sitefoot"><a href="https://t.me/marketraven" target="_blank" rel="noopener">텔레그램으로 브리핑 받기</a><a href="/about/">사이트 소개</a><a href="/privacy/">개인정보처리방침</a><a href="mailto:gomajjy0@gmail.com">문의 gomajjy0@gmail.com</a></footer>

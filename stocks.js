@@ -157,10 +157,10 @@ const STOCKSUM={
  "엔비디아": {
   "name": "엔비디아",
   "tone": "혼재",
-  "summary": "탄탄한 실적과 높은 성장성이 기대되나, 회계 조사와 경영 불확실성으로 주가가 큰 폭으로 하락했다.",
+  "summary": "회계 조사와 경영 불확실성으로 주가가 폭락했으나 견조한 실적과 AI 인프라 핵심 역할로 장기 기회가 있다는 시각이 공존한다.",
   "points": [
-   "탄탄한 실적과 견조한 영업이익 전망으로 성장성이 높다.",
-   "SEC 회계 조사와 CEO 사임 등의 악재로 주가가 급락했다."
+   "SEC 회계 조사와 중국 관련 악재로 주가가 폭락하고 성장성 의문이 제기된다.",
+   "강력한 칩 수요와 견조한 실적 전망으로 장기 투자 기회가 될 수 있다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -175,6 +175,7 @@ const STOCKSUM={
    "54G-uaVm_OA",
    "5k0zCfIFr8w",
    "7WVn5WmOlsA",
+   "7ZLBGymBqeA",
    "7ctnlT1jlyQ",
    "8O7iSTMZ-84",
    "9MXwHlep8wQ",
@@ -198,6 +199,7 @@ const STOCKSUM={
    "LEYOVBYtp3Q",
    "LagAldYbD8M",
    "M0Ak8p29VyQ",
+   "ME_JkAGPmXI",
    "NCGhP2Vyods",
    "ODiEz3dslcE",
    "OG0IvvfJk5s",
@@ -218,10 +220,12 @@ const STOCKSUM={
    "Tzc0KuusVbI",
    "UihZAstNiGU",
    "UlNBpokQfVk",
+   "UoO5-aM9W3Q",
    "VZv-QcnXCN4",
    "VwUvt3aGsLI",
    "X1D0cQjwrkU",
    "XPSgxVcev3E",
+   "YQ5YCnAwbbY",
    "Zt0LLfeAGEY",
    "_0ePh1KmGdc",
    "_1kONGeso8M",
@@ -256,6 +260,7 @@ const STOCKSUM={
    "otI40DgSV8A",
    "p7m602W5tg4",
    "pevfIGVAFFs",
+   "qWBPcJiyKP4",
    "qrosihil7Ms",
    "r_mO3QY3fE4",
    "t9R5tJ0zR34",
@@ -273,7 +278,7 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 109,
+  "count": 114,
   "updated": "2026-11-23"
  },
  "SK하이닉스": {
@@ -1009,11 +1014,11 @@ const STOCKSUM={
  "삼성전기": {
   "name": "삼성전기",
   "tone": "혼재",
-  "summary": "엔비디아 관련 수주 기대감과 실적 성장세로 강세를 보였으나, 최근 AI 밸류체인 급락과 높은 밸류에이션 부담으로 하락세도 나타났다.",
+  "summary": "실적 성장과 엔비디아 수주 기대감이 있는 반면, 높은 밸류에이션과 급락에 따른 리스크 관리 필요성도 함께 제기된다.",
   "points": [
-   "엔비디아 공급 계약 및 기판 사업 확대로 실적 성장 기대감이 반영되었다.",
-   "AI 밸류체인 급락과 외국계 매도로 인해 큰 폭의 하락세를 겪었다.",
-   "높은 밸류에이션과 리스크 관리를 위해 비중 축소가 필요하다는 의견이 있다."
+   "엔비디아와의 계약 및 기판 사업 확대로 실적 성장이 기대된다.",
+   "실적 대비 높은 밸류에이션으로 인해 추가 리스크 관리가 필요하다.",
+   "시장 분위기에 동조하여 급락했으나 반등 시 강한 탄력을 보일 수 있다."
   ],
   "ids": [
    "-HaqruPY5Rg",
@@ -1026,6 +1031,7 @@ const STOCKSUM={
    "FlUs8YY8aAE",
    "JVtGCzfB7NA",
    "KHKXu_kP8_Y",
+   "ME_JkAGPmXI",
    "RiLTQh6mqws",
    "RkpF-xeoalw",
    "Tzc0KuusVbI",
@@ -1041,8 +1047,8 @@ const STOCKSUM={
    "xjVdgtREpc4",
    "yLhZiyCgAjY"
   ],
-  "count": 24,
-  "updated": "2026-11-21"
+  "count": 25,
+  "updated": "2026-11-23"
  },
  "지니언스": {
   "name": "지니언스",

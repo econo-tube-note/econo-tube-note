@@ -34,6 +34,7 @@ h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;margin:0 0 6px}
 .nkb{padding:0 16px 10px 56px;background:#fbfbfd}
 .nkb{border-top:1px solid var(--line)}
 .nkind{display:inline-block;font-size:.7rem;font-weight:700;color:var(--sub);border:1px solid var(--line);border-radius:99px;padding:0 6px;margin-top:3px}
+a.plk{color:inherit;text-decoration:underline;text-underline-offset:3px}
 .nmore{display:block;margin:10px auto 0;border:1px solid var(--line);background:var(--card);border-radius:99px;padding:7px 16px;font:inherit;font-size:.86rem;cursor:pointer;color:var(--sub)}
 .netc{margin-top:22px}.netc>.link{font-size:.9rem}
 .nsearch .nslab{font-size:.78rem;font-weight:700;color:var(--accent);margin-top:12px}
@@ -194,6 +195,13 @@ a.tm:hover{color:var(--accent)}
 .rel2 .vc .vt{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.45}
 .rel2 .vc .vr p{-webkit-line-clamp:2;font-size:.9rem}
 .pop .vc+.vc{border-top:1px solid var(--line);border-radius:0}
+/* 팝업·이어서 볼 영상: 채널과 날짜를 썸네일 오른쪽 한 줄에 (썸네일 아래 두 줄 대신) */
+.pop .vc,.rel2 .vc{grid-template-columns:160px auto minmax(0,1fr);grid-template-rows:auto 1fr;column-gap:8px;row-gap:2px}
+.pop .vc .vl,.rel2 .vc .vl{display:contents}
+.pop .vc .vth,.rel2 .vc .vth{grid-column:1;grid-row:1/3;margin:0 6px 0 0}
+.pop .vc .vl b,.rel2 .vc .vl b{grid-column:2;grid-row:1;align-self:baseline;max-width:180px}
+.pop .vc .vl small,.rel2 .vc .vl small{grid-column:3;grid-row:1;align-self:baseline}
+.pop .vc .vr,.rel2 .vc .vr{grid-column:2/4;grid-row:2}
 @media(max-width:480px){.vc{grid-template-columns:112px minmax(0,1fr);gap:12px}
 /* 모바일 영상 목록(브리핑·이어서 볼 영상): 카드 테두리를 빼고 구분선만 둬서 여백이 겹치지 않게 */
 .vgrid,.rel2 .rlist{gap:0!important}
@@ -201,9 +209,10 @@ a.tm:hover{color:var(--accent)}
 .vgrid .vc:first-child,.rel2 .vc:first-child{border-top:0;padding-top:4px}
 .vgrid .vt{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.45}
 .vgrid .vr p{-webkit-line-clamp:3}
-/* 모바일 팝업: 썸네일을 폭 가득, 그 아래 채널·날짜, 제목, 요약을 세로로 */
-.pop .vc{grid-template-columns:1fr;gap:8px}
-.pop .vr p{-webkit-line-clamp:5}
+/* 모바일 팝업: 작은 썸네일 왼쪽, 오른쪽에 채널·날짜 한 줄과 제목, 요약 */
+.pop .vc,.rel2 .vc{grid-template-columns:112px auto minmax(0,1fr)}
+.pop .vc .vl b,.rel2 .vc .vl b{max-width:130px}
+.pop .vr p{-webkit-line-clamp:3;font-size:.9rem}
 /* 모바일 홈의 최근 영상은 4개만 */
 #hgrid .card:nth-child(n+5){display:none}}
 .skrb p{margin:0;padding:9px 0;border-top:1px solid var(--line);font-size:.93rem;line-height:1.6}
@@ -524,6 +533,23 @@ a.card{color:inherit;text-decoration:none}
 /* 종목 탭: 숫자·지표 탭과 같은 모양 */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .sother a{padding:12px 16px}
+/* 영상 페이지: 버튼 줄, 같은 날 다른 채널, 이어서 볼 영상 */
+.vbtns{grid-area:btn;align-self:end;display:flex;gap:8px}.vshr2{display:none}
+.vbtns .vyt{grid-area:auto;justify-self:stretch;align-self:auto}
+.sdc{display:flex;flex-direction:column;gap:8px;margin:6px 0 14px}.vpage .dq{display:block;margin-top:4px}
+.sdc .dv{display:flex;flex-direction:column;gap:8px;background:none;border:1.5px solid #c2410c;padding:12px 14px;border-radius:12px;font-size:.95rem;line-height:1.6}
+.sdc .dv>.hv,.sdc .dv>.rel{align-self:flex-end}
+.sdc .dv.agv{border-color:#2f9e6b}
+.vpage .vnote a{color:var(--sub)}
+@media(min-width:601px){.rvgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.vpage .rvgrid .card h2{margin:0;font-size:.85rem;line-height:1.45;-webkit-line-clamp:2}
+@media(max-width:600px){
+ .vtop{grid-template-columns:1fr;grid-template-areas:"meta" "title" "hero" "btn"}
+ .vhero{margin-top:6px}
+ .vbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;margin-top:2px}
+ .vbtns .vyt,.vbtns .vshr2{display:block;text-align:center;font-size:.85rem;padding:8px 0;border-radius:10px;font-weight:600}
+ .vmeta .vshr{display:none}.vbtns .vshr2{border:1px solid var(--line);color:var(--sub);background:var(--card);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;margin:0}
+ .ppl a span{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}}
 /* 출연자 페이지 */
 .brief h1.ph1{margin-bottom:4px}.ph1 small{font-size:.95rem;font-weight:600;color:var(--sub);margin-left:6px;letter-spacing:0}
 .brief p.pmeta{display:block;margin:0 0 16px;font-size:.88rem}
