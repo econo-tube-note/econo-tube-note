@@ -3,11 +3,11 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "저평가 및 장기 회복 기대가 존재하나, 약세 흐름과 리스크로 인해 대응 방식에 의견이 갈린다.",
+  "summary": "역사적 저점 PBR과 자사주 매입 기대감으로 반등을 예상하는 시각과, 법적 리스크 및 단기적 상승 한계로 보수적 대응을 조언하는 시각이 엇갈린다.",
   "points": [
-   "펀더멘탈 대비 과도한 저평가 상태로 자사주 매입과 장기 투자 시 회복이 기대된다.",
-   "반등에 시간이 걸릴 수 있어 비중을 축소하거나 장기 보유로 대응하라는 조언이 나온다.",
-   "시장 하락 요인 및 상법 개정에 따른 이사회 법적 리스크 등 악재도 함께 지적된다."
+   "과거 사이클 저점 PBR에 근접해 하락 여력이 제한적이라는 의견이 있다.",
+   "자사주 매입 소각 재개 시 주가가 강력하게 급반등할 수 있다고 본다.",
+   "단기적으로 상승이 어려워 반등 시 비중을 축소하거나 장기 보유해야 한다고 본다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -28,6 +28,7 @@ const STOCKSUM={
    "AT8gm5K7xAY",
    "AWknNSPEM1g",
    "AjAzI1Uxh9c",
+   "Ay9v38EYHgA",
    "AydkVh-c6GI",
    "BPj-OYDX590",
    "BWoc8K793Xo",
@@ -56,7 +57,6 @@ const STOCKSUM={
    "KWXQCSu9ZGo",
    "KopQpHNgc4k",
    "LEYOVBYtp3Q",
-   "LagAldYbD8M",
    "M0Ak8p29VyQ",
    "ME_JkAGPmXI",
    "MzYP-A-MNaI",
@@ -73,6 +73,7 @@ const STOCKSUM={
    "REQiZoddA7M",
    "RiLTQh6mqws",
    "RkpF-xeoalw",
+   "RzrQ4FbmqmQ",
    "SnQAb8i2xO4",
    "TDGVrEKXU5M",
    "TV3diSFaZIU",
@@ -86,6 +87,7 @@ const STOCKSUM={
    "UoO5-aM9W3Q",
    "VVjaAdxhIic",
    "VwUvt3aGsLI",
+   "W2D_UiqlrMw",
    "W3AvtA5OwVE",
    "WiHMm0NkGEE",
    "XrMcS9HJQQQ",
@@ -128,12 +130,10 @@ const STOCKSUM={
    "mZ1tM9sflvg",
    "mcc0jFRgPuw",
    "n16GTXBi7e0",
-   "ntk0jpMmJPU",
    "pevfIGVAFFs",
    "pnIq4HW1nRg",
    "qrosihil7Ms",
    "sTGJtw_hGUU",
-   "saSLtHK3aJ0",
    "tMfYOFMSLTs",
    "tMwJY3ZyB84",
    "teuTyJ7CwFM",
@@ -287,11 +287,11 @@ const STOCKSUM={
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "혼재",
-  "summary": "AI 밸류체인 핵심주이자 저평가 분석이 나오지만 현물가 하락과 외인 매도로 시각이 엇갈린다.",
+  "summary": "단기 실적 우려와 목표가 하향으로 주가가 조정받았으나 AI 핵심주로서의 가치와 저평가 매력은 여전하다는 의견이 공존한다.",
   "points": [
-   "AI 밸류체인 핵심이자 저평가 상태로 주주환원과 자사주 매수 등 긍정적 요인이 있다.",
-   "현물가 하락에 따른 이익 조정과 외국인 매도세, 중복상장 논란 등 우려도 팽배하다.",
-   "과도한 비관론을 경계하며 손절보다는 관망이나 트레이딩 관점 대응이 언급된다."
+   "낸드 가격 하락과 이익 전망치 하향 조정으로 인한 단기 주가 압박이 존재한다.",
+   "AI 밸류체인 핵심주로서의 성장성과 주주 환원 정책을 고려한 저평가 매력이 있다.",
+   "외국인 수급 변화와 복잡한 계열 구조 등 리스크 요인에 대한 경계가 필요하다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -315,6 +315,7 @@ const STOCKSUM={
    "AT8gm5K7xAY",
    "AWknNSPEM1g",
    "AjAzI1Uxh9c",
+   "Ay9v38EYHgA",
    "AydkVh-c6GI",
    "BPj-OYDX590",
    "BWoc8K793Xo",
@@ -322,6 +323,7 @@ const STOCKSUM={
    "C1yE6FwQMCY",
    "Cg3blW1uJ-I",
    "Cgn7XPWef2A",
+   "Cn8zy7PWtMc",
    "Codp7P9gH4U",
    "DaHzmjAGfGQ",
    "Dan9ZSsy2uI",
@@ -361,6 +363,7 @@ const STOCKSUM={
    "REQiZoddA7M",
    "RiLTQh6mqws",
    "RkpF-xeoalw",
+   "RzrQ4FbmqmQ",
    "SnQAb8i2xO4",
    "TDGVrEKXU5M",
    "TV3diSFaZIU",
@@ -417,7 +420,6 @@ const STOCKSUM={
    "qrosihil7Ms",
    "qu5RoRs0beQ",
    "sTGJtw_hGUU",
-   "saSLtHK3aJ0",
    "t9R5tJ0zR34",
    "tMwJY3ZyB84",
    "teuTyJ7CwFM",
@@ -430,13 +432,14 @@ const STOCKSUM={
    "wZYpDi0Wdso",
    "waz9eTAJIxU",
    "xqJaSkWIQiM",
+   "xsTx1CQTO4c",
    "xx_6qed6xCg",
    "yOr5hocYe5g",
    "yrEcOVH79Pc",
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 141,
+  "count": 144,
   "updated": "2026-11-24"
  },
  "코어위브": {
