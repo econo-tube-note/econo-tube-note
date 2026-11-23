@@ -2,8 +2,14 @@
 const BRIEFS=[
  {
   "date": "2026-11-23",
-  "count": 18,
+  "count": 24,
   "sources": [
+   "ImmDYGasFbE",
+   "PnD6SlPIhKM",
+   "BPj-OYDX590",
+   "xqJaSkWIQiM",
+   "tMwJY3ZyB84",
+   "vyuznP_KIJE",
    "w7Eh9HBW7NM",
    "sTGJtw_hGUU",
    "sjHkohhR0xw",
@@ -23,91 +29,90 @@ const BRIEFS=[
    "qWBPcJiyKP4",
    "KWXQCSu9ZGo"
   ],
-  "headline": "엔비디아 악재와 AI 투자 우려로 증시가 급락한 가운데 정부의 증안펀드 가동 준비와 저가 매수세 유입으로 바닥 확인 기대감이 고개를 들고 있다.",
+  "headline": "AI 거품론과 수급 악화로 폭락한 한국 증시는 저평가 구간에 진입했다고 본다.",
   "keypoints": [
-   "미국 나스닥과 필라델피아 반도체 지수가 급락하며 국내 증시도 사이드카가 발동되는 등 극단적인 공포 국면에 진입했다.",
-   "엔비디아의 회계 조사 우려와 젠슨 황 사퇴 논란, 하이퍼스케일러의 부채 및 자금 조달 리스크가 AI 투자 심리를 위축시켰다.",
-   "코스피가 고점 대비 40% 이상 하락하며 밸류에이션 매력이 부각되었고 금융당국은 18년 만에 증안펀드 가동을 준비하고 있다.",
-   "급락장에서 투매에 동참하기보다는 12월 FOMC와 주요 경제 지표를 확인하며 보수적인 분할 매수나 현금 보유 전략이 필요하다."
+   "코스피가 공포 심리와 수급 악화로 장중 사이드카가 발동하며 급락했다.",
+   "반도체 업황의 실질 펀더멘탈은 견조하나 과도한 우려가 선반영되었다고 본다.",
+   "정부의 증시안정펀드 가동 준비 발표에도 적극적 개입 미비 지적이 나온다.",
+   "전문가들은 투매보다 현금을 유지하며 분할 매수로 대응할 것을 권유한다."
   ],
   "themes": [
    {
-    "title": "AI 반도체 생태계 리스크와 급락",
-    "summary": "엔비디아 회계 조사와 젠슨 황 관련 악재, 하이퍼스케일러의 자금 조달 및 부채 우려가 겹치며 글로벌 기술주와 국내 반도체 주가가 폭락했다.",
+    "title": "증시 폭락과 밸류에이션",
+    "summary": "코스피와 글로벌 지수가 AI 투자 수익성 의구심과 수급 꼬임으로 급락했다. 다만 핵심 반도체 주가는 악재를 선반영해 역사적 저평가 구간에 진입했다고 본다.",
     "refs": [
-     "sTGJtw_hGUU",
-     "z11QfkoEwns",
-     "YQ5YCnAwbbY",
-     "qWBPcJiyKP4"
+     "ImmDYGasFbE",
+     "PnD6SlPIhKM",
+     "tMwJY3ZyB84",
+     "yOr5hocYe5g",
+     "PVAvcqVLWxg",
+     "ME_JkAGPmXI"
     ]
    },
    {
-    "title": "정부의 증안펀드 가동 준비와 저가 매수",
-    "summary": "코스피가 과도하게 하락하자 금융당국이 18년 만에 증권시장안정펀드 가동 준비에 나섰으며, 밸류에이션 저평가 구간에서 반발 매수세 유입을 기대하고 있다.",
+    "title": "정부 대책과 증안펀드",
+    "summary": "금융당국이 증시안정펀드 가동 준비와 자사주 매입 한도 완화를 발표했다. 그러나 적극적 자금 투입 의지가 부족해 시장 안정 효과가 미흡하다는 지적이 나온다.",
     "refs": [
+     "ImmDYGasFbE",
+     "vyuznP_KIJE",
      "w7Eh9HBW7NM",
      "VVjaAdxhIic",
      "YQ5YCnAwbbY",
-     "UoO5-aM9W3Q"
+     "ME_JkAGPmXI"
     ]
    },
    {
-    "title": "수출 데이터 호조와 하방 지지선 전망",
-    "summary": "11월 수출 데이터와 반도체 실적이 호조를 보이는 가운데 주요 전문가들은 4,300~4,400선을 코스피의 주요 하방 지지선으로 분석하고 있다.",
+    "title": "AI 인프라 및 부채 리스크",
+    "summary": "미국 데이터센터 PF 자금 조달 난항과 부채 리스크가 부각되고 있다. 빅테크의 설비투자 지속 여부와 앤트로픽 상장 후 수급 변화를 주시해야 한다고 진단한다.",
     "refs": [
-     "w7Eh9HBW7NM",
+     "tMwJY3ZyB84",
      "sTGJtw_hGUU",
-     "3NCUIycZnYQ"
+     "z11QfkoEwns",
+     "TvZvSJnX1Sk",
+     "UoO5-aM9W3Q",
+     "qWBPcJiyKP4"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "최근의 증시 급락은 과도한 공포와 수급 꼬임에 기인한 것으로 이미 최악의 악재가 주가에 상당 부분 선반영되었다.",
+    "point": "11월 누적 반도체 수출액이 역대 최대를 기록하며 수출 실적 호조가 이어지고 있다.",
     "refs": [
-     "3NCUIycZnYQ",
-     "yOr5hocYe5g",
+     "ImmDYGasFbE",
+     "w7Eh9HBW7NM"
+    ]
+   },
+   {
+    "point": "최근 반도체주 폭락은 펀더멘털 훼손보다 수급과 과도한 공포 심리에 기인한 것으로 본다.",
+    "refs": [
+     "PnD6SlPIhKM",
+     "tMwJY3ZyB84",
      "VVjaAdxhIic"
     ]
    },
    {
-    "point": "무작정 매도하기보다 바닥 확인 신호와 12월 FOMC 및 주요 경제 지표 발표를 주시하며 신중하게 대응해야 한다.",
+    "point": "과매도 구간인 하락장에서는 투매에 동참하기보다 버티거나 분할 매수해야 한다고 권유한다.",
     "refs": [
-     "sTGJtw_hGUU",
-     "MzYP-A-MNaI",
-     "PVAvcqVLWxg",
-     "vgH3Yp5pj6M"
+     "ImmDYGasFbE",
+     "sjHkohhR0xw",
+     "3NCUIycZnYQ",
+     "PVAvcqVLWxg"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "현재 구간에서의 투자 대응 방법",
+    "topic": "하락장 대응 투자 전략",
     "views": [
      {
-      "channel": "815머니톡",
-      "view": "바닥을 완벽히 기다리기보다 밸류에이션 매력이 높으므로 지금부터 대형주 위주로 분할 매수에 나서야 한다.",
-      "ref": "sjHkohhR0xw"
+      "channel": "증시각도기TV",
+      "view": "지나친 공포로 급락한 구간에서는 투매보다 버티거나 매수로 대응해야 한다고 본다.",
+      "ref": "ImmDYGasFbE"
      },
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "수급 불안과 미국 리스크가 완전히 해소되지 않았으므로 무리한 매수보다는 현금을 유지하며 보수적으로 관망해야 한다.",
-      "ref": "z11QfkoEwns"
-     }
-    ]
-   },
-   {
-    "topic": "정부의 증안펀드 가동 발표에 대한 평가",
-    "views": [
-     {
       "channel": "815머니톡",
-      "view": "정부의 증안펀드 준비 발표는 과거처럼 시장의 심리적 하단을 잡고 숏커버링을 유도하는 긍정적 효과를 낸다.",
-      "ref": "VVjaAdxhIic"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "당국의 증안펀드 가동 준비 발표는 즉각적인 투입 의지가 부족해 오히려 시장에 실망감을 안겨주었다.",
-      "ref": "ME_JkAGPmXI"
+      "view": "수급 불안과 미국 리스크가 끝날 때까지 보수적으로 관망해야 한다고 지적한다.",
+      "ref": "MzYP-A-MNaI"
      }
     ]
    }
@@ -119,14 +124,14 @@ const BRIEFS=[
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "포워드 PER이 2.9배 및 PBR 0.76배 수준까지 하락해 청산가치에 도달했으나 신중한 접근이 필요하다.",
-      "ref": "w7Eh9HBW7NM"
+      "channel": "증시각도기TV",
+      "view": "자사주 완화 정책에도 주가 흐름이 약세를 보인다고 설명한다.",
+      "ref": "ImmDYGasFbE"
      },
      {
-      "channel": "815머니톡",
-      "view": "2029년까지 장기 공급 계약으로 선수금을 확보하는 등 펀더멘털은 견조하다.",
-      "ref": "VVjaAdxhIic"
+      "channel": "삼프로TV 3PROTV",
+      "view": "포워드 PER이 2.9배까지 내려와 저렴한 구간이라고 본다.",
+      "ref": "w7Eh9HBW7NM"
      }
     ]
    },
@@ -136,14 +141,14 @@ const BRIEFS=[
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "밸류에이션이 크게 낮아진 상태에서 초반 반발 매수가 유입되었으나 이익 전망치 일부가 하향 조정되고 있다.",
-      "ref": "sTGJtw_hGUU"
+      "channel": "머니인사이드",
+      "view": "PER이 3배 수준까지 하락해 과도하게 매도되었다고 평가한다.",
+      "ref": "PnD6SlPIhKM"
      },
      {
       "channel": "815머니톡",
-      "view": "AI 반도체 수요 초과 속에서 최근 주가 하락은 펀더멘털 훼손이 아닌 수급 꼬임에 따른 결과다.",
-      "ref": "VVjaAdxhIic"
+      "view": "HBM 경쟁력을 바탕으로 업황 펀더멘탈은 견조하다고 평가한다.",
+      "ref": "tMwJY3ZyB84"
      }
     ]
    },
@@ -153,65 +158,48 @@ const BRIEFS=[
     "tone": "부정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "수출 규제와 오더컷, 7~8가지 법적 혐의가 해소되기 전까지 복귀를 예단한 배팅은 피해야 한다.",
-      "ref": "sTGJtw_hGUU"
+      "channel": "머니인사이드",
+      "view": "SEC 조사와 회계 부정 가능성으로 시장 심리가 악화되었다고 본다.",
+      "ref": "PnD6SlPIhKM"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "회계 부정 조사와 중국 암시장 유통 악재가 겹치며 시가총액이 급감했다.",
-      "ref": "qWBPcJiyKP4"
+      "view": "사법 리스크가 있어 복귀를 예단한 배팅은 피해야 한다고 조언한다.",
+      "ref": "sTGJtw_hGUU"
      }
     ]
    },
    {
-    "name": "삼성SDS",
+    "name": "현대차",
     "count": 2,
     "tone": "부정",
     "mentions": [
      {
-      "channel": "815머니톡",
-      "view": "트럼프의 해외 데이터센터 고율 과세 발언과 12발행 여파로 주가가 급락했다.",
-      "ref": "sjHkohhR0xw"
+      "channel": "증시각도기TV",
+      "view": "유럽에서 전기차 라인업 부재로 중국 기업에 밀린다고 지적한다.",
+      "ref": "ImmDYGasFbE"
      },
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "고율 과세 발언의 법제화 현실성이 낮아 단기 노이즈에 그칠 것으로 판단한다.",
-      "ref": "3NCUIycZnYQ"
-     }
-    ]
-   },
-   {
-    "name": "셀트리온",
-    "count": 2,
-    "tone": "긍정",
-    "mentions": [
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "영업이익률 20% 이상을 내며 주가 상승이 정당화될 만큼 탄탄한 수익성을 갖추고 있다.",
+      "view": "본업 부진으로 시가총액 10위 밖 하락 우려가 크다고 평가한다.",
       "ref": "w7Eh9HBW7NM"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "외국인 순매수가 유입되고 차기 퍼스트무버 승인 호재와 안정적인 실적 흐름을 유지하고 있다.",
-      "ref": "ZCjikei_9XE"
      }
     ]
    },
    {
-    "name": "삼성SDI",
+    "name": "마이크론",
     "count": 2,
-    "tone": "긍정",
+    "tone": "중립",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "내년 실적 개선을 바탕으로 후발 반등 가능성이 높다고 본다.",
-      "ref": "3NCUIycZnYQ"
+      "channel": "머니인사이드",
+      "view": "PER이 3배 수준까지 떨어져 주가가 과도하게 하락했다고 지적한다.",
+      "ref": "PnD6SlPIhKM"
      },
      {
       "channel": "815머니톡",
-      "view": "미국 생산 본격화와 내년 실적 개선 기대감을 바탕으로 매수 기회로 평가한다.",
-      "ref": "ZCjikei_9XE"
+      "view": "수주 잔고와 선수금을 확보하여 계약 파기 위험이 적다고 본다.",
+      "ref": "tMwJY3ZyB84"
      }
     ]
    }
