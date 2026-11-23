@@ -1969,6 +1969,67 @@ def blog_schema():
     return Blog
 
 
+BLOG_DAY_PROMPT = """너는 주식 블로그를 운영하는 개인 투자자다. 아래 자료는 오늘 여러 경제 유튜브 영상을 종합한 일간 브리핑이다.
+이 자료로 네이버 블로그에 올릴 '오늘 경제 유튜브 정리' 글을 JSON으로 써라.
+
+말투
+- '~이다', '~했다' 체. 하루 장을 마치고 혼자 정리하는 독백 느낌으로 쓴다. 존댓말 금지.
+- 사람이 쓴 듯한 자연스러운 표현을 쓴다('~같다', '~라고 생각한다'). 쉬운 말로, 문장은 짧게 끊는다.
+- AI가 쓴 티가 나는 표현('주목할 만하다', '시사점', '~할 것으로 보인다', '결론적으로') 금지. 이모지, 해시태그 금지.
+- 자료의 문장을 그대로 베끼지 말고 자기 말로 풀어 쓴다. 무엇이(회사, 지표, 정책) 어떤지 주어를 분명히 쓴다.
+
+구성 (body는 빈 줄로 문단을 나누고, 소제목은 '■ '로 시작하는 한 줄로 쓴다)
+1. 도입 2~3문장: 오늘 장 분위기를 한마디로, 경제 유튜브 몇 편을 봤는지.
+2. ■ 오늘 다들 한 얘기: 공통된 시각이나 핵심 주제 2개를 짧은 문단으로.
+3. ■ 의견이 갈린 지점: 엇갈린 시각 1~2개를 '한쪽은 ~, 다른 쪽은 ~' 식으로. 채널 이름과 출연자는 써도 된다.
+4. ■ 오늘 많이 나온 종목: 종목 2~4개와 왜 나왔는지 한 줄씩. 자료에 없으면 이 소제목은 뺀다.
+5. ■ 내 생각: 이 소제목 아래에는 '(여기에 내 생각을 적는다)' 한 줄만 쓴다. 운영자가 직접 채운다.
+6. 마지막 문단: 영상별로 누가 뭐라고 했는지는 Market Raven에 정리해 뒀다는 한 문장과 이 주소: {link}
+
+- 특정 종목을 사거나 팔라고 권하지 않는다. 유튜버들이 이렇게 봤다는 전달자 입장을 지킨다.
+- body 길이는 공백 포함 800~1200자.
+- title은 검색에 잘 걸리게 날짜와 핵심 키워드를 넣은 한 줄(예: '11월 23일 증시 정리 | 블랙먼데이, 증안펀드 효과 두고 엇갈린 유튜브').
+
+자료(JSON):
+"""
+
+
+def blog_day_draft(state, force=False):
+    """평일 저녁(19~23시)에 그날 브리핑으로 짧은 블로그 초안을 보낸다. 올릴지는 운영자가 정한다."""
+    if not tg_ok():
+        return
+    now = datetime.datetime.now(KST)
+    today = now.date().isoformat()
+    if not force and not (now.weekday() < 5 and 19 <= now.hour < 23):
+        return
+    sent = state.setdefault("blog_day", {})
+    if sent.get(today) and not force:
+        return
+    b = next((x for x in load_briefs() if x.get("date") == today), None)
+    if not b or (b.get("count") or 0) < 4:
+        print("블로그 일간 초안: 오늘 브리핑이 아직 없거나 영상이 적어서 건너뛴다")
+        return
+    data = {k: b.get(k) for k in ("date", "count", "headline", "keypoints", "themes", "agreements", "disagreements", "stocks")}
+    data, _ = fix_names(data)
+    try:
+        out = call_json(BLOG_DAY_PROMPT.replace("{link}", f"{SITE_URL_}/brief/{today}/") + json.dumps(data, ensure_ascii=False), blog_schema,
+                        "BLOG_MODELS", "gemini-3.6-flash,gemini-3.5-flash,gemini-4-hydrogen,gemini-3.7-flash,gemini-3.5-flash-lite,gemini-3.1-flash-lite", 150)
+    except Exception as e:
+        print(f"블로그 일간 초안 만들기 실패: {str(e)[:120]}")
+        return
+    out, _ = fix_names(out)
+    text = f"[블로그 초안 · 일간 · {today}]\n\n제목: {(out.get('title') or '').strip()}\n\n{(out.get('body') or '').strip()}"
+    try:
+        ok = all(tg_send(text[i:i + 3800]) for i in range(0, len(text), 3800))
+        if ok:
+            sent[today] = True
+            for k in sorted(sent)[:-20]:
+                sent.pop(k, None)
+            print("블로그 일간 초안을 텔레그램으로 보냈다")
+    except Exception as e:
+        print(f"블로그 일간 초안 보내기 실패: {str(e)[:120]}")
+
+
 def blog_draft(state, force=False):
     if not tg_ok():
         return
@@ -2645,6 +2706,7 @@ def auto():
     threads_draft(state, videos)
     channel_post(state, videos=videos)
     blog_draft(state)
+    blog_day_draft(state)
     write_json(STATE, state)
     for m, c in state["models"].items():
         print(f"모델 누적 기록: {m} -> 성공 {c['ok']}, 바쁨 {c['busy']}, 사용불가 {c['dead']}")
@@ -2851,6 +2913,12 @@ def main(argv):
         return 0
     if any(t == "진단" for t in tokens) and len(tokens) == 1:
         return diagnose()
+    if tokens and tokens[0] == "블로그:일간":  # 오늘 브리핑으로 만든 일간 블로그 초안을 지금 받아 본다
+        if not tg_ok():
+            print("TELEGRAM_BOT_TOKEN 또는 TELEGRAM_CHAT_ID 비밀값이 없다.")
+            return 1
+        blog_day_draft(read_json(STATE, {}), force=True)
+        return 0
     if tokens and tokens[0] == "블로그":  # 블로그용 주간 결산 초안을 지금 텔레그램으로 받아 본다
         if not tg_ok():
             print("TELEGRAM_BOT_TOKEN 또는 TELEGRAM_CHAT_ID 비밀값이 없다.")
