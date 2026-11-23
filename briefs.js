@@ -2,8 +2,14 @@
 const BRIEFS=[
  {
   "date": "2026-11-23",
-  "count": 30,
+  "count": 36,
   "sources": [
+   "9jVNs0KssDk",
+   "IVlkZX6kxsI",
+   "jd1cmkNDriI",
+   "mZ1tM9sflvg",
+   "Jp5CEDSrKPE",
+   "YBPuplDBzU4",
    "6cfOynsnMdg",
    "HZFj4TqxRFk",
    "3tOsoBGoDCU",
@@ -35,54 +41,51 @@ const BRIEFS=[
    "qWBPcJiyKP4",
    "KWXQCSu9ZGo"
   ],
-  "headline": "미국 증시 급락과 AI 거품론 속에서 국내 증시의 기술적 반등 여부에 관심이 쏠린다.",
+  "headline": "AI 투자 불확실성과 수급 불안이 겹친 증시, 극단적 공포 속 바닥 다지기",
   "keypoints": [
-   "미국 증시 폭락과 AI 수익성 의문으로 국내 증시가 큰 폭의 조정을 받았다.",
-   "반도체 업황의 실질 펀더멘털은 견조하나 수급 악화로 주가가 하락했다고 본다.",
-   "정부의 증시안정펀드 준비 및 외국인 숏커버링으로 단기 반등 가능성이 제기된다.",
-   "전문가들은 투매를 자제하고 바닥 신호를 확인하며 보수적으로 대응할 것을 조언한다."
+   "AI 인프라 투자 속도 조절과 규제 우려로 미국 기술주와 국내 반도체 주가가 급락했다.",
+   "외국인 수급 이탈과 파생시장 왜곡으로 코스피가 큰 폭으로 하락하며 변동성이 확대됐다.",
+   "정부가 증시안정펀드 가동 준비에 나선 가운데 시장은 과매도 구간에서 반등을 모색하고 있다.",
+   "무리한 레버리지 투자를 자제하고 실적이 견조한 우량주 중심의 분할 대응이 필요하다."
   ],
   "themes": [
    {
-    "title": "미국 증시 급락과 AI 투자 회의론",
-    "summary": "미국 증시가 200일선을 위협받고 AI 설비투자 대비 수익성에 대한 의구심이 커졌다. 주요 IT 종목들의 회계 및 규제 리스크도 투심을 약화시켰다.",
+    "title": "AI 인프라 투자와 빅테크 리스크",
+    "summary": "하이퍼스케일러들의 투자 속도 조절과 데이터 센터 자금 조달 우려가 제기된다. 엔비디아 관련 사법 및 회계 리스크가 더해지며 AI 생태계 전반의 변동성이 커졌다.",
     "refs": [
-     "REQiZoddA7M",
+     "9jVNs0KssDk",
+     "Jp5CEDSrKPE",
      "PnD6SlPIhKM",
-     "z11QfkoEwns",
-     "YQ5YCnAwbbY",
+     "sTGJtw_hGUU",
      "qWBPcJiyKP4"
     ]
    },
    {
-    "title": "국내 증시 낙폭과대와 수급 불안",
-    "summary": "코스피 지수가 밸류에이션 저점 수준까지 밀렸다. 연말 기관 손절과 외국인 공매도 여파로 수급이 꼬였으나 숏커버링에 따른 기술적 반등 기대도 존재한다.",
+    "title": "반도체 펀더멘털과 밸류에이션",
+    "summary": "메모리 시황과 2028년 이익 전망치를 둘러싼 보수적 시각이 공존한다. 주가는 이미 과도한 악재를 선반영하여 청산가치 수준의 저평가 구간에 진입했다.",
     "refs": [
-     "6cfOynsnMdg",
-     "bvTGUl-ocCA",
-     "w7Eh9HBW7NM",
-     "sTGJtw_hGUU",
-     "MzYP-A-MNaI",
+     "IVlkZX6kxsI",
+     "tMwJY3ZyB84",
+     "3NCUIycZnYQ",
      "ZCjikei_9XE"
     ]
    },
    {
-    "title": "정부 정책 대응과 리스크 관리",
-    "summary": "금융당국이 증시안정펀드 즉시 가동 조치를 준비하며 대응에 나섰다. 출연자들은 추가 매수보다 현금 비중을 유지하며 바닥을 확인하라고 조언한다.",
+    "title": "정부 정책과 수급 안정화 대책",
+    "summary": "증권시장안정펀드 가동 준비와 자사주 매입 한도 완화 등 정책적 개편이 논의된다. 다만 실효성과 신속성에 대한 시장의 기대와 실망이 엇갈리고 있다.",
     "refs": [
+     "IVlkZX6kxsI",
+     "mZ1tM9sflvg",
      "ImmDYGasFbE",
-     "vyuznP_KIJE",
-     "3NCUIycZnYQ",
-     "YQ5YCnAwbbY",
-     "UoO5-aM9W3Q"
+     "w7Eh9HBW7NM",
+     "YQ5YCnAwbbY"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "반도체 주가 폭락은 펀더멘털 훼손이 아닌 수급 꼬임과 과도한 공포 탓이라고 본다.",
+    "point": "최근 증시 급락은 펀더멘털 파탄이 아닌 수급 꼬임과 과도한 공포에 기인한다.",
     "refs": [
-     "6cfOynsnMdg",
      "HZFj4TqxRFk",
      "PnD6SlPIhKM",
      "tMwJY3ZyB84",
@@ -90,53 +93,43 @@ const BRIEFS=[
     ]
    },
    {
-    "point": "정부의 증시안정펀드 가동 준비 조치가 수급 불안을 누그러뜨리는 계기가 된다고 본다.",
-    "refs": [
-     "bvTGUl-ocCA",
-     "PVAvcqVLWxg",
-     "VVjaAdxhIic",
-     "UoO5-aM9W3Q"
-    ]
-   },
-   {
-    "point": "하락장에서 감정적 투매나 신용 거래를 피하고 보수적으로 관망해야 한다고 조언한다.",
+    "point": "반도체 대형주와 핵심 펀더멘털은 견조하므로 투매보다 보유 및 관망이 유리하다.",
     "refs": [
      "6cfOynsnMdg",
-     "w7Eh9HBW7NM",
+     "tMwJY3ZyB84",
      "3NCUIycZnYQ",
-     "z11QfkoEwns",
-     "7ZLBGymBqeA"
+     "VVjaAdxhIic"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "지금 시점의 주식 매수 대응 전략",
+    "topic": "증시안정펀드 등 정부 정책의 실효성",
     "views": [
      {
       "channel": "815머니톡",
-      "view": "바닥을 완전히 확인하기 전 지금부터 분할 매수로 대응해야 한다고 주장한다.",
-      "ref": "sjHkohhR0xw"
+      "view": "정부의 증안펀드 가동 준비와 구두 개입은 시장 하단을 방어하는 심리적 방파제 역할을 한다.",
+      "ref": "VVjaAdxhIic"
      },
      {
-      "channel": "815머니톡",
-      "view": "신규 자금 분할 매수는 가능하나 보유자는 매수보다 외국인 수급 전환을 확인해야 한다고 본다.",
-      "ref": "6cfOynsnMdg"
+      "channel": "삼프로TV 3PROTV",
+      "view": "과거 사례를 볼 때 즉각적 집행이 드물고 규모가 부족해 시장 실망감만 키우고 있다.",
+      "ref": "IVlkZX6kxsI"
      }
     ]
    },
    {
-    "topic": "미국 연준의 금리 인하 가능성",
+    "topic": "반도체 주가 바닥 통과 시점과 대응",
     "views": [
      {
       "channel": "815머니톡",
-      "view": "물가 안정 시그널 부재로 올해 12월 미국 연준의 금리 인하는 어렵다고 전망한다.",
-      "ref": "6cfOynsnMdg"
+      "view": "최악의 시나리오가 이미 주가에 반영되었으므로 지금부터 분할 매수로 대응해야 한다.",
+      "ref": "sjHkohhR0xw"
      },
      {
       "channel": "815머니톡",
-      "view": "증시 급락 여파로 12월 연준의 금리 동결 및 긴축 완화 가능성이 높아졌다고 본다.",
-      "ref": "ZCjikei_9XE"
+      "view": "불확실성이 완전히 해소되기 전까지는 신규 매수를 자제하고 관망해야 한다.",
+      "ref": "6cfOynsnMdg"
      }
     ]
    }
@@ -144,157 +137,103 @@ const BRIEFS=[
   "stocks": [
    {
     "name": "삼성전자",
-    "count": 3,
+    "count": 2,
     "tone": "혼재",
     "mentions": [
      {
       "channel": "815머니톡",
-      "view": "선행 PBR 1배 수준에 위치해 보유 주식수를 지키며 장기 대응해야 한다고 본다.",
-      "ref": "6cfOynsnMdg"
+      "view": "2029년까지 장기 공급 계약과 선수금을 확보했으나 주가 변동성이 크다.",
+      "ref": "VVjaAdxhIic"
      },
      {
       "channel": "815머니톡",
-      "view": "2029년까지 완판과 선수금 확보 등 펀더멘털이 견조하므로 투매를 자제하라고 평가한다.",
-      "ref": "tMwJY3ZyB84"
-     },
-     {
-      "channel": "증시각도기TV",
-      "view": "자사주 매입 완화에도 주가 흐름이 약세를 보이고 있다고 지적한다.",
-      "ref": "ImmDYGasFbE"
+      "view": "내년 실적 기준 PBR이 청산가치 이하로 떨어져 밸류에이션 매력이 높다.",
+      "ref": "ZCjikei_9XE"
      }
     ]
    },
    {
     "name": "SK하이닉스",
-    "count": 3,
+    "count": 2,
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "815머니톡",
-      "view": "선행 PBR 1배 수준까지 주가가 내렸으나 손절보다 관망하며 버텨야 한다고 평가한다.",
-      "ref": "6cfOynsnMdg"
+      "channel": "삼프로TV 3PROTV",
+      "view": "이익 전망치 괴리가 크지만 주주 환원과 펀더멘털을 고려하면 저평가 상태다.",
+      "ref": "IVlkZX6kxsI"
      },
      {
-      "channel": "증시각도기TV",
-      "view": "중복상장 시도 사례로 지배구조 관련 지적을 받았으나 실적 믿음은 유지된다고 평가한다.",
-      "ref": "3tOsoBGoDCU"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "HBM 경쟁력을 바탕으로 내년 증설을 진행 중이며 업황 펀더멘털은 견조하다고 본다.",
-      "ref": "tMwJY3ZyB84"
+      "channel": "체슬리TV",
+      "view": "수출 규제와 메모리 시황 우려로 단기 이익 추정치가 하향 조정되고 있다.",
+      "ref": "yOr5hocYe5g"
      }
     ]
    },
    {
     "name": "엔비디아",
-    "count": 3,
+    "count": 2,
     "tone": "혼재",
     "mentions": [
-     {
-      "channel": "815머니톡",
-      "view": "미국 증시 급락 영향으로 폭락하며 글로벌 반도체 투자 심리를 악화시켰다고 설명한다.",
-      "ref": "6cfOynsnMdg"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "트럼프의 복귀 요청 등으로 규제 리스크가 완화되며 반등 가능성이 커졌다고 본다.",
-      "ref": "REQiZoddA7M"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "SEC 조사 및 회계 악재에도 불구하고 메모리 장기 계약 확대로 성장이 유효하다고 본다.",
-      "ref": "tMwJY3ZyB84"
-     }
-    ]
-   },
-   {
-    "name": "마이크론",
-    "count": 3,
-    "tone": "혼재",
-    "mentions": [
-     {
-      "channel": "815머니톡",
-      "view": "수주 잔고와 선수금을 확보해 장기 공급 계약 파기 위험이 매우 적다고 본다.",
-      "ref": "tMwJY3ZyB84"
-     },
      {
       "channel": "머니인사이드",
-      "view": "PER이 3배 수준까지 떨어져 과도하게 매도된 저평가 상태라고 진단한다.",
+      "view": "회계 조사 및 최고경영자 리스크로 단기 변동성이 확대되었다.",
       "ref": "PnD6SlPIhKM"
      },
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "연고점 대비 50% 이상 하락하며 미국 특수에도 약세를 보인다고 평가한다.",
-      "ref": "vgH3Yp5pj6M"
+      "channel": "815머니톡",
+      "view": "메모리 장기 공급 약정이 늘어나는 등 AI 반도체 수요는 여전히 탄탄하다.",
+      "ref": "tMwJY3ZyB84"
      }
     ]
    },
    {
-    "name": "에이피알",
+    "name": "애플",
     "count": 2,
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "815머니톡",
-      "view": "PER 12배 수준으로 성장세 대비 저평가되어 있어 반등을 시도했다고 설명한다.",
-      "ref": "bvTGUl-ocCA"
+      "channel": "연합뉴스경제TV",
+      "view": "풍부한 현금 흐름을 바탕으로 하락장에서 시장을 방어하는 대안으로 꼽힌다.",
+      "ref": "9jVNs0KssDk"
      },
      {
-      "channel": "815머니톡",
-      "view": "아마존 실적 호조 및 뷰티 기기 순위 상승으로 강한 주가 상승을 기록했다고 본다.",
-      "ref": "MzYP-A-MNaI"
+      "channel": "삼프로TV 3PROTV",
+      "view": "AI 노출도가 낮고 주가가 탄탄하게 유지되어 시스템 위기가 아님을 보여준다.",
+      "ref": "vyuznP_KIJE"
      }
     ]
    },
    {
-    "name": "현대차",
+    "name": "삼성SDS",
     "count": 2,
     "tone": "부정",
     "mentions": [
      {
-      "channel": "증시각도기TV",
-      "view": "유럽 시장에서 전기차 라인업 부재로 중국 기업에 밀려 실적 부진을 겪는다고 지적한다.",
-      "ref": "ImmDYGasFbE"
+      "channel": "삼프로TV 3PROTV",
+      "view": "트럼프의 해외 데이터센터 과세 경고 여파로 14% 이상 급락했다.",
+      "ref": "YBPuplDBzU4"
      },
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "본업 부진으로 시가총액 순위 하락 우려가 커졌다고 평가한다.",
-      "ref": "w7Eh9HBW7NM"
+      "channel": "815머니톡",
+      "view": "자사주 발행 여파와 함께 소프트웨어 및 데이터센터주 전반의 낙폭을 키웠다.",
+      "ref": "sjHkohhR0xw"
      }
     ]
    },
    {
-    "name": "메타",
-    "count": 2,
-    "tone": "중립",
-    "mentions": [
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "AI 인프라 투자 실적을 내며 주봉상 박스권을 안정적으로 유지한다고 본다.",
-      "ref": "vyuznP_KIJE"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "자체칩 및 CPU 비중을 늘려 비용을 낮추는 방향으로 전환하고 있다고 평가한다.",
-      "ref": "sTGJtw_hGUU"
-     }
-    ]
-   },
-   {
-    "name": "심텍",
+    "name": "셀트리온",
     "count": 2,
     "tone": "긍정",
     "mentions": [
      {
       "channel": "삼프로TV 3PROTV",
-      "view": "장 초반 빠르게 반등하며 코스닥 소부장 상승을 이끌었다고 본다.",
+      "view": "영업이익률 20%를 넘는 탄탄한 수익성을 바탕으로 시장에서 선방하고 있다.",
       "ref": "w7Eh9HBW7NM"
      },
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "시장 안정 시 지수 반등을 선도할 대표 소부장 종목으로 긍정 평가한다.",
-      "ref": "3NCUIycZnYQ"
+      "channel": "815머니톡",
+      "view": "외국인 순매수 유입과 안정적인 실적 흐름을 유지하고 있다.",
+      "ref": "ZCjikei_9XE"
      }
     ]
    }

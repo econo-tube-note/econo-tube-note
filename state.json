@@ -108,7 +108,9 @@
   "1aZpSljIw1E": "경제 무관: 북한 정권과 김정은 관련 안보 및 정치 이슈를 다루고 있어 경제적 관점이 뚜렷하지 않습니다.",
   "DQv9N_UeY0k": "너무 짧음",
   "E5ctJly0Bqo": "너무 짧음",
-  "622CR3IukM8": "너무 짧음"
+  "622CR3IukM8": "너무 짧음",
+  "WowCEsadKTI": "너무 짧음",
+  "5AKGdNLqxUw": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -122,12 +124,12 @@
  "models": {
   "gemini-3.6-flash": {
    "ok": 19,
-   "busy": 9,
+   "busy": 18,
    "dead": 4
   },
   "gemini-3.7-flash": {
-   "ok": 2,
-   "busy": 28,
+   "ok": 1,
+   "busy": 19,
    "dead": 4
   },
   "gemini-3.8-flash": {
@@ -136,23 +138,23 @@
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 27,
-   "busy": 10,
+   "ok": 16,
+   "busy": 12,
    "dead": 4
   },
   "gemini-3.5-flash-lite": {
-   "ok": 12,
-   "busy": 11,
+   "ok": 14,
+   "busy": 18,
    "dead": 4
   },
   "gemini-4-hydrogen": {
-   "ok": 3,
-   "busy": 4,
+   "ok": 4,
+   "busy": 19,
    "dead": 0
   },
   "gemini-3.5-flash": {
    "ok": 0,
-   "busy": 3,
+   "busy": 11,
    "dead": 0
   }
  },
@@ -308,11 +310,12 @@
   "Cn8zy7PWtMc": true,
   "E5ctJly0Bqo": true,
   "622CR3IukM8": true,
-  "jd1cmkNDriI": true,
   "5AKGdNLqxUw": true,
-  "Jp5CEDSrKPE": true,
-  "IVlkZX6kxsI": true,
-  "DQv9N_UeY0k": true
+  "DQv9N_UeY0k": true,
+  "WowCEsadKTI": true,
+  "xsTx1CQTO4c": true,
+  "Ay9v38EYHgA": true,
+  "Dan9ZSsy2uI": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -325,7 +328,7 @@
   "2026-11-21": true,
   "2026-11-22": true
  },
- "last_ok": "2026-11-23T20:19",
+ "last_ok": "2026-11-23T22:52",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true,

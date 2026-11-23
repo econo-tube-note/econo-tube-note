@@ -3,11 +3,11 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "혼재",
-  "summary": "실적 견조와 저평가 매력이 부각되나 약세 흐름과 법적 리스크도 함께 언급된다.",
+  "summary": "시장 하락과 법적 리스크 등 부정적 요인이 있는 반면, 펀더멘탈 대비 저평가와 자사주 매입에 따른 반등 기대를 함께 언급한다.",
   "points": [
-   "포워드 PER 하락 등으로 펀더멘탈 대비 저평가된 상태라는 의견이 있다.",
-   "반등 지연과 약세 흐름 속에 장기 투자 및 보유 전략이 제시된다.",
-   "법적 리스크와 주가 과도 하락에 대한 우려도 함께 존재한다."
+   "실적이 견조하고 PER이 낮아 펀더멘탈 대비 주가가 매우 싸다는 의견이 있다.",
+   "자사주 매입 소각이나 주주환원 발표가 주가 급반등의 계기가 될 수 있다고 본다.",
+   "이사회의 주주 충실 의무 관련 법적 리스크와 주가 약세가 지속된다는 시각이 있다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -50,10 +50,10 @@ const STOCKSUM={
    "HZFj4TqxRFk",
    "IQPubZrMfH8",
    "IU-2OFhVB4I",
+   "IVlkZX6kxsI",
    "ImmDYGasFbE",
    "JVtGCzfB7NA",
    "JYyoOyLbEdY",
-   "Jn91NmZyGBg",
    "K101Dy3FU1w",
    "KWXQCSu9ZGo",
    "KopQpHNgc4k",
@@ -91,6 +91,7 @@ const STOCKSUM={
    "W3AvtA5OwVE",
    "WiHMm0NkGEE",
    "XrMcS9HJQQQ",
+   "YBPuplDBzU4",
    "YQ5YCnAwbbY",
    "ZCjikei_9XE",
    "ZCzUlVm2jSg",
@@ -113,7 +114,6 @@ const STOCKSUM={
    "eFnxFsUiMvs",
    "fNFna6Mp5Dg",
    "f_Pb9-42cUE",
-   "fdk1qjtZYA0",
    "ffv19kOoCzc",
    "gEl4lMfwQTA",
    "h40ZIc8mx-c",
@@ -128,9 +128,9 @@ const STOCKSUM={
    "ld70Ck32c2I",
    "mVbORW1vjDY",
    "mW4Bp0uo0eQ",
+   "mZ1tM9sflvg",
    "mcc0jFRgPuw",
    "n16GTXBi7e0",
-   "n7IBLAd9K8U",
    "ntk0jpMmJPU",
    "pevfIGVAFFs",
    "pnIq4HW1nRg",
@@ -150,7 +150,6 @@ const STOCKSUM={
    "wZYpDi0Wdso",
    "waz9eTAJIxU",
    "xqJaSkWIQiM",
-   "xrqbovX16L8",
    "xx_6qed6xCg",
    "yOr5hocYe5g",
    "yrEcOVH79Pc",
@@ -158,7 +157,7 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 147,
+  "count": 146,
   "updated": "2026-11-23"
  },
  "엔비디아": {
@@ -291,11 +290,11 @@ const STOCKSUM={
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "혼재",
-  "summary": "밸류에이션 매력과 견조한 펀더멘탈을 강조하는 의견과 수출 규제 및 중복상장 논란 등 우려가 교차한다.",
+  "summary": "실적 하향 조정과 지배구조 이슈로 우려가 있으나, 저평가 상태라는 인식과 HBM 등 견조한 펀더멘탈에 대한 기대가 공존한다.",
   "points": [
-   "PBR과 PER이 하락하여 주가가 과도하게 저평가되었다는 평가가 나온다.",
-   "HBM 증설과 펀더멘탈은 견조하나 수출 규제와 영업이익 우려가 존재한다.",
-   "중복상장 시도 사례가 지적된 반면 경영진의 자사주 매수와 저점 매수세도 언급된다."
+   "PER과 PBR 등 지표상 현재 주가는 과도하게 저평가된 상태라는 의견이 많다.",
+   "4분기 이후 현물 가격 하락과 이익 전망치 하향 조정에 대한 우려가 존재한다.",
+   "HBM 경쟁력과 자사주 매입 등 긍정적 요소와 복잡한 계열 구조 이슈가 대립한다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -341,10 +340,10 @@ const STOCKSUM={
    "HMPPwxebak0",
    "IQPubZrMfH8",
    "IU-2OFhVB4I",
+   "IVlkZX6kxsI",
    "ImmDYGasFbE",
    "JVtGCzfB7NA",
    "JYyoOyLbEdY",
-   "Jn91NmZyGBg",
    "K101Dy3FU1w",
    "KWXQCSu9ZGo",
    "KopQpHNgc4k",
@@ -382,6 +381,7 @@ const STOCKSUM={
    "W3AvtA5OwVE",
    "WiHMm0NkGEE",
    "XrMcS9HJQQQ",
+   "YBPuplDBzU4",
    "YQ5YCnAwbbY",
    "ZCzUlVm2jSg",
    "Zt0LLfeAGEY",
@@ -402,7 +402,6 @@ const STOCKSUM={
    "e6AA2VHR3b0",
    "eFnxFsUiMvs",
    "fNFna6Mp5Dg",
-   "fdk1qjtZYA0",
    "ffv19kOoCzc",
    "gEl4lMfwQTA",
    "h40ZIc8mx-c",
@@ -416,9 +415,9 @@ const STOCKSUM={
    "l6BRztXR5jo",
    "lBlGFVbqgXE",
    "mW4Bp0uo0eQ",
+   "mZ1tM9sflvg",
    "mcc0jFRgPuw",
    "n16GTXBi7e0",
-   "n7IBLAd9K8U",
    "pnIq4HW1nRg",
    "qrosihil7Ms",
    "qu5RoRs0beQ",
@@ -436,14 +435,13 @@ const STOCKSUM={
    "wZYpDi0Wdso",
    "waz9eTAJIxU",
    "xqJaSkWIQiM",
-   "xrqbovX16L8",
    "xx_6qed6xCg",
    "yOr5hocYe5g",
    "yrEcOVH79Pc",
    "zYgSmH3Wl_s",
    "zwDALEtOzR8"
   ],
-  "count": 144,
+  "count": 143,
   "updated": "2026-11-23"
  },
  "코어위브": {
