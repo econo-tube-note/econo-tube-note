@@ -2773,6 +2773,18 @@ def main(argv):
             return 1
         update_stock_digests(load(), force=True)
         return 0
+    if tokens == ["모델목록"]:  # 이 API 키로 쓸 수 있는 제미나이 모델을 보여 준다
+        from google import genai
+        client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+        names = []
+        for m in client.models.list():
+            acts = getattr(m, "supported_actions", None) or []
+            if "generateContent" in acts and "gemini" in (m.name or ""):
+                names.append(m.name.replace("models/", ""))
+        print("쓸 수 있는 제미나이 모델 (글 만들기 가능):")
+        for n in sorted(names):
+            print("  " + n)
+        return 0
     if any(t == "진단" for t in tokens) and len(tokens) == 1:
         return diagnose()
     if tokens and tokens[0] == "블로그":  # 블로그용 주간 결산 초안을 지금 텔레그램으로 받아 본다
