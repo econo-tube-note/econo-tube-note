@@ -271,6 +271,23 @@ a.card{color:inherit;text-decoration:none}
 /* 종목 탭: 숫자·지표 탭과 같은 모양 */
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .sother a{padding:12px 16px}
+/* 영상 페이지: 버튼 줄, 같은 날 다른 채널, 이어서 볼 영상 */
+.vbtns{grid-area:btn;align-self:end;display:flex;gap:8px}.vshr2{display:none}
+.vbtns .vyt{grid-area:auto;justify-self:stretch;align-self:auto}
+.sdc{display:flex;flex-direction:column;gap:8px;margin:6px 0 14px}.vpage .dq{display:block;margin-top:4px}
+.sdc .dv{display:flex;flex-direction:column;gap:8px;background:none;border:1.5px solid #c2410c;padding:12px 14px;border-radius:12px;font-size:.95rem;line-height:1.6}
+.sdc .dv>.hv,.sdc .dv>.rel{align-self:flex-end}
+.sdc .dv.agv{border-color:#2f9e6b}
+.vpage .vnote a{color:var(--sub)}
+@media(min-width:601px){.rvgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.vpage .rvgrid .card h2{margin:0;font-size:.85rem;line-height:1.45;-webkit-line-clamp:2}
+@media(max-width:600px){
+ .vtop{grid-template-columns:1fr;grid-template-areas:"meta" "title" "hero" "btn"}
+ .vhero{margin-top:6px}
+ .vbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;margin-top:2px}
+ .vbtns .vyt,.vbtns .vshr2{display:block;text-align:center;font-size:.85rem;padding:8px 0;border-radius:10px;font-weight:600}
+ .vmeta .vshr{display:none}.vbtns .vshr2{border:1px solid var(--line);color:var(--sub);background:var(--card);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;margin:0}
+ .ppl a span{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}}
 /* 출연자 페이지 */
 .brief h1.ph1{margin-bottom:4px}.ph1 small{font-size:.95rem;font-weight:600;color:var(--sub);margin-left:6px;letter-spacing:0}
 .brief p.pmeta{display:block;margin:0 0 16px;font-size:.88rem}
@@ -761,6 +778,8 @@ def build_dash(recent, briefs, weekly, digests, man):
                   + '<div class="grid" id="hgrid">' + "".join(hcard(i, v) for i, v in enumerate(recent[:6])) + '</div></section>')
 
     blocks.append('<p class="bnote">AI가 경제 유튜브 영상들을 요약·종합한 내용이며 투자 권유가 아니다.</p>')
+    # 팝업에서 출연자 이름을 출연자 페이지로 잇기 위해, 페이지가 있는 출연자 목록을 넘겨 준다
+    blocks.append("<script>window.PEOPLE=" + json.dumps(sorted((man or {}).get("people", {})), ensure_ascii=False) + ";</script>")
     html_ = "<!--DASH:START-->\n" + "\n".join(blocks) + "\n<!--DASH:END-->"
     p = ROOT / "index.html"
     try:
@@ -872,7 +891,48 @@ def related_videos(v, pool, n=4):
     return [w for _, _, w in scored[:n]]
 
 
+# 언급된 종목·숫자가 많으면 앞에서 몇 개만 보이고 '더 보기'로 접는다 (PC 6개, 모바일 4개)
+MORE_JS = ('document.querySelectorAll("[data-more]").forEach(function(box){var lim=matchMedia("(max-width:600px)").matches?4:6,'
+           'it=[].slice.call(box.children);if(it.length<=lim)return;it.slice(lim).forEach(function(x){x.hidden=true});'
+           'var b=document.createElement("button");b.type="button";b.className="nmore";b.textContent="더 보기 (+"+(it.length-lim)+")";'
+           'b.onclick=function(){it.forEach(function(x){x.hidden=false});b.remove()};box.after(b)});')
+
+
+def kw_bold(x):
+    """'시총 증발: 설명…' 처럼 앞에 붙은 짧은 키워드는 굵게"""
+    x = x or ""
+    m = re.search(r"[:：]", x)
+    if m and 0 < m.start() < 40:
+        return f"<b>{e(x[:m.start() + 1])}</b> {e(x[m.start() + 1:].strip())}"
+    return e(x)
+
+
+def same_day_compare(vid, v, b, F):
+    """같은 날 다른 채널은: 이 영상 의견은 위에 요약돼 있으니 빼고, 다른 채널 의견만 상자로 짧게 보여 준다.
+    자세한 비교는 브리핑으로 넘긴다."""
+    if not b:
+        return ""
+    out = []
+    for x in b.get("disagreements") or []:
+        vs = x.get("views") or []
+        if any(w.get("ref") == vid for w in vs):
+            others = [w for w in vs if w.get("ref") != vid][:2]
+            if others:
+                out.append(f'<b class="dq">{e(x["topic"])}</b><div class="sdc">'
+                           + "".join(f'<div class="dv"><span>{e(w["view"])}</span>{F.hv(w.get("ref"), who(w.get("ref"), w.get("channel")))}</div>' for w in others)
+                           + "</div>")
+    for a in b.get("agreements") or []:
+        refs = list(dict.fromkeys(a.get("refs") or []))
+        if vid in refs and len(refs) > 1:
+            out.append(f'<b class="dq">공통된 시각</b><div class="sdc"><div class="dv agv"><span>{e(a["point"])}</span>{F.rel([r for r in refs if r != vid])}</div></div>')
+            break
+    if not out:
+        return ""
+    return sect("같은 날 다른 채널은", "", "".join(out[:3]) + f'<p class="vnote"><a href="{href("brief/" + b["date"] + "/")}">이날 브리핑에서 전체 비교 보기 →</a></p>', "c3")
+
+
 def build_video_pages(V, man, briefs, stock_slug, mark, people_set=()):
+    bmap = {b["date"]: b for b in briefs}
     brief_dates = {b["date"] for b in briefs} | set(man["brief"])
     changed = 0
     for vid, v in V.items():
@@ -885,7 +945,7 @@ def build_video_pages(V, man, briefs, stock_slug, mark, people_set=()):
         mood = MOOD_LABEL.get(v.get("mood"))
         parts = "".join(
             f'<h3 class="bt c1">{e(p_.get("t"))}</h3>'
-            + "".join(f'<p class="vrow"><span>{e(x)}</span><span class="rt">{tlink(t)}</span></p>' for t, x in p_.get("items") or [])
+            + "".join(f'<p class="vrow"><span>{kw_bold(x)}</span><span class="rt">{tlink(t)}</span></p>' for t, x in p_.get("items") or [])
             for p_ in v.get("parts") or [])
         stocks = "".join(
             f'<p class="vrow"><b class="vsn">'
@@ -897,7 +957,7 @@ def build_video_pages(V, man, briefs, stock_slug, mark, people_set=()):
             + f'</span><span class="rt">{tlink(r[0])}</span></p>'
             for r in v.get("numbers") or [] if len(r) > 2)
         tags = "".join(f'<a class="vkw" href="{BASE}#videos/kw/{quote(t)}">#{e(t)}</a>' for t in v.get("tags") or [])
-        rel = related_videos(v, V)
+        rel = related_videos(v, V)[:3]
         d = v.get("date") or ""
         gs = guests_of(v)
         plinks = ", ".join(
@@ -907,19 +967,25 @@ def build_video_pages(V, man, briefs, stock_slug, mark, people_set=()):
         seek_js = ('<script>document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest(".vpage a.tm[data-s]");'
                    'if(!a||e.ctrlKey||e.metaKey||e.shiftKey||e.button)return;var f=document.querySelector(".vhero iframe");if(!f)return;e.preventDefault();'
                    f'f.src="https://www.youtube.com/embed/{vid}?start="+a.dataset.s+"&autoplay=1&rel=0";'
-                   'var top=document.querySelector(".vtop");if(top)top.scrollIntoView({behavior:"smooth",block:"start"});});</script>')
+                   'var top=document.querySelector(".vtop");if(top)top.scrollIntoView({behavior:"smooth",block:"start"});});'
+                   # 다른 페이지의 시간 링크(…/v/영상/?t=초)로 들어오면 그 시간부터 재생할 준비를 하고 플레이어로 스크롤
+                   '(function(){var t=parseInt(new URLSearchParams(location.search).get("t")||"",10);if(!(t>0))return;var f=document.querySelector(".vhero iframe");'
+                   f'if(f){{f.removeAttribute("loading");f.src="https://www.youtube.com/embed/{vid}?start="+t+"&autoplay=1&rel=0";}}'
+                   'var top=document.querySelector(".vtop");if(top)setTimeout(function(){top.scrollIntoView({block:"start"})},50);})();'
+                   + MORE_JS + '</script>')
         body = (f'<div class="brief vpage">'
                 + f'<div class="vtop"><div class="vmeta"><b>{e(v.get("channel"))}</b><span>{e(kdate(d))}</span>'
                 + (f'<a href="{href("brief/" + d + "/")}">이날 {blabel(d)} →</a>' if d in brief_dates else "") + '<button class="vshr" data-share type="button">공유</button>' + f'</div><h1 class="vh1">{e(v.get("title"))}</h1>'
                 + f'<div class="vhero"><iframe src="https://www.youtube.com/embed/{e(vid)}?rel=0" title="{e(v.get("title"))}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>'
-                + f'<a class="vyt" href="{yt}" target="_blank" rel="noopener">▶ 유튜브<span class="vyl">에서 원본</span> 보기</a></div>'
+                + f'<div class="vbtns"><a class="vyt" href="{yt}" target="_blank" rel="noopener">▶ 유튜브에서 보기</a><button class="vshr2" data-share type="button">공유</button></div></div>'
                 + f'<div class="digest"><div class="dh"><b>한 줄 결론</b>' + (f'<span class="md m{e(v.get("mood"))}">{e(mood)}</span>' if mood else "")
                 + (f'<span>출연 {plinks}</span>' if v.get("people") else "") + f'</div><p>{e(v.get("conclusion"))}</p></div>'
                 + (f'<div class="bsec">{parts}</div>' if parts else "")
-                + sect("언급된 종목", len(v.get("stocks") or []), stocks and f'<div>{stocks}</div>', "c4")
-                + sect("언급된 숫자", len(v.get("numbers") or []), nums and f'<div>{nums}</div><p class="vnote">영상 속 출연자가 말한 수치이며 실시간 시세가 아니다.</p>', "c2")
+                + same_day_compare(vid, v, bmap.get(d), F)
+                + sect("언급된 종목", len(v.get("stocks") or []), stocks and f'<div data-more>{stocks}</div>', "c4")
+                + sect("언급된 숫자", len(v.get("numbers") or []), nums and f'<div data-more>{nums}</div><p class="vnote">영상 속 출연자가 말한 수치이며 실시간 시세가 아니다.</p>', "c2")
                 + (f'<div class="vtags">{tags}</div>' if tags else "")
-                + sect("이어서 볼 영상", len(rel), rel and '<div class="vgrid">' + "".join(F.vcard(w) for w in rel) + "</div>", "")
+                + sect("이어서 볼 영상", len(rel), rel and '<div class="grid bvgrid rvgrid">' + "".join(F.card(w) for w in rel) + "</div>", "")
                 + "</div>" + F.templates() + seek_js)
         items = [x for p_ in v.get("parts") or [] for _, x in p_.get("items") or []]
         desc = desc_of(v.get("conclusion"), *items[:3])
@@ -1203,7 +1269,7 @@ def build():
 
     def tm(v, t):
         vid = vid_of(v.get("url"))
-        return f'<a class="tm" href="https://www.youtube.com/watch?v={e(vid)}&t={secs(t)}s" target="_blank" rel="noopener">▶ {e(t)}</a>' if t and vid else ""
+        return f'<a class="tm" href="{href("v/" + vid + "/")}?t={secs(t)}">▶ {e(t)}</a>' if t and vid else ""
 
     for k, t in table.items():
         vids_ = {vid_of(v.get("url")) for v, _ in t["items"]}
