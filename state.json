@@ -101,7 +101,10 @@
   "x7rlmaylAtA": "너무 짧음",
   "DrhAL9oZuDo": "너무 짧음",
   "eFHatx7N1cY": "경제 무관: 중학생이 좋아하는 책을 주제로 한 일상 및 문화 관련 영상으로 경제적 관점이 없습니다.",
-  "YIg44cJknf0": "너무 짧음"
+  "YIg44cJknf0": "너무 짧음",
+  "axONzS8DKn8": "너무 짧음",
+  "eIK1qt4yJeI": "너무 짧음",
+  "uYpSpJ9J1Tc": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -114,13 +117,13 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 19,
-   "busy": 12,
+   "ok": 21,
+   "busy": 16,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 2,
-   "busy": 25,
+   "busy": 27,
    "dead": 4
   },
   "gemini-3.8-flash": {
@@ -130,13 +133,23 @@
   },
   "gemini-3.1-flash-lite": {
    "ok": 27,
-   "busy": 8,
+   "busy": 9,
    "dead": 4
   },
   "gemini-3.5-flash-lite": {
-   "ok": 10,
+   "ok": 11,
    "busy": 11,
    "dead": 4
+  },
+  "gemini-4-hydrogen": {
+   "ok": 3,
+   "busy": 2,
+   "dead": 0
+  },
+  "gemini-3.5-flash": {
+   "ok": 0,
+   "busy": 2,
+   "dead": 0
   }
  },
  "topic": {
@@ -283,9 +296,11 @@
   "RzrQ4FbmqmQ": true,
   "DrhAL9oZuDo": true,
   "W2D_UiqlrMw": true,
-  "w7Eh9HBW7NM": true,
   "xY5-S_n1SDo": true,
-  "YIg44cJknf0": true
+  "YIg44cJknf0": true,
+  "axONzS8DKn8": true,
+  "eIK1qt4yJeI": true,
+  "uYpSpJ9J1Tc": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -298,7 +313,7 @@
   "2026-11-21": true,
   "2026-11-22": true
  },
- "last_ok": "2026-11-23T14:35",
+ "last_ok": "2026-11-23T16:48",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true,
