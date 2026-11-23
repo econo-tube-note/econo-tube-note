@@ -441,7 +441,7 @@ def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_
 <meta property="og:type" content="{'article' if kind == 'article' else 'website'}"><meta property="og:site_name" content="{e(SITE_NAME)}">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{e(canon)}">
 <meta property="og:image" content="{e(image or url("og.png"))}"><link rel="alternate" type="application/rss+xml" title="{e(SITE_NAME)}" href="{e(url("rss.xml"))}"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" href="/favicon-96.png" sizes="96x96" type="image/png"><link rel="icon" href="/favicon-192.png" sizes="192x192" type="image/png"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <style>{main_css()}{EXTRA_CSS}</style>{ld}</head>
 <body><div class="wrap">
 <div class="logo brand"><a href="{BASE}"><img src="{BASE}logo.svg" alt="" width="54" height="43">{e(SITE_NAME)}</a><small>{e(TAGLINE)}</small></div>
@@ -449,8 +449,8 @@ def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_
 {TAPE}
 {body}
 
-<p class="note">AI가 경제 유튜브 영상과 그 요약을 종합한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
-<footer class="sitefoot"><a href="https://t.me/marketraven" target="_blank" rel="noopener">텔레그램으로 브리핑 받기</a><a href="{BASE}about/">사이트 소개</a><a href="{BASE}privacy/">개인정보처리방침</a><a href="mailto:{e(CONTACT)}">문의 {e(CONTACT)}</a></footer>
+<p class="note" data-nosnippet>AI가 경제 유튜브 영상과 그 요약을 종합한 내용이라 오류가 있을 수 있다. 투자 권유가 아니며, 정확한 내용은 원본 영상에서 확인해야 한다. 영상과 썸네일의 저작권은 각 채널에 있다.</p>
+<footer class="sitefoot" data-nosnippet><a href="https://t.me/marketraven" target="_blank" rel="noopener">텔레그램으로 브리핑 받기</a><a href="{BASE}about/">사이트 소개</a><a href="{BASE}privacy/">개인정보처리방침</a><a href="mailto:{e(CONTACT)}">문의 {e(CONTACT)}</a></footer>
 </div>{POP_JS}</body></html>
 """
 
@@ -777,7 +777,7 @@ def build_dash(recent, briefs, weekly, digests, man):
     blocks.append('<section class="dblk dlatest">' + hd("최근 영상", "", "", (BASE + "#videos", "영상 요약 전체 보기"))
                   + '<div class="grid" id="hgrid">' + "".join(hcard(i, v) for i, v in enumerate(recent[:6])) + '</div></section>')
 
-    blocks.append('<p class="bnote">AI가 경제 유튜브 영상들을 요약·종합한 내용이며 투자 권유가 아니다.</p>')
+    blocks.append('<p class="bnote" data-nosnippet>AI가 경제 유튜브 영상들을 요약·종합한 내용이며 투자 권유가 아니다.</p>')
     # 팝업에서 출연자 이름을 출연자 페이지로 잇기 위해, 페이지가 있는 출연자 목록을 넘겨 준다
     blocks.append("<script>window.PEOPLE=" + json.dumps(sorted((man or {}).get("people", {})), ensure_ascii=False) + ";</script>")
     html_ = "<!--DASH:START-->\n" + "\n".join(blocks) + "\n<!--DASH:END-->"
@@ -928,7 +928,7 @@ def same_day_compare(vid, v, b, F):
             break
     if not out:
         return ""
-    return sect("같은 날 다른 채널은", "", "".join(out[:3]) + f'<p class="vnote"><a href="{href("brief/" + b["date"] + "/")}">이날 브리핑에서 전체 비교 보기 →</a></p>', "c3")
+    return sect("같은 날 다른 채널은", "", "".join(out[:3]) + f'<p class="vnote" data-nosnippet><a href="{href("brief/" + b["date"] + "/")}">이날 브리핑에서 전체 비교 보기 →</a></p>', "c3")
 
 
 def build_video_pages(V, man, briefs, stock_slug, mark, people_set=()):
@@ -983,12 +983,13 @@ def build_video_pages(V, man, briefs, stock_slug, mark, people_set=()):
                 + (f'<div class="bsec">{parts}</div>' if parts else "")
                 + same_day_compare(vid, v, bmap.get(d), F)
                 + sect("언급된 종목", len(v.get("stocks") or []), stocks and f'<div data-more>{stocks}</div>', "c4")
-                + sect("언급된 숫자", len(v.get("numbers") or []), nums and f'<div data-more>{nums}</div><p class="vnote">영상 속 출연자가 말한 수치이며 실시간 시세가 아니다.</p>', "c2")
+                + sect("언급된 숫자", len(v.get("numbers") or []), nums and f'<div data-more>{nums}</div><p class="vnote" data-nosnippet>영상 속 출연자가 말한 수치이며 실시간 시세가 아니다.</p>', "c2")
                 + (f'<div class="vtags">{tags}</div>' if tags else "")
                 + sect("이어서 볼 영상", len(rel), rel and '<div class="grid bvgrid rvgrid">' + "".join(F.card(w) for w in rel) + "</div>", "")
                 + "</div>" + F.templates() + seek_js)
         items = [x for p_ in v.get("parts") or [] for _, x in p_.get("items") or []]
-        desc = desc_of(v.get("conclusion"), *items[:3])
+        # 검색 결과 설명: '채널 영상 요약'이 앞에 오게 해서 검색어와 맞추고, 결론과 핵심 내용을 잇는다
+        desc = desc_of(f"{v.get('channel')} 영상 요약." + (f" 출연 {', '.join(gs[:2])}." if gs else ""), v.get("conclusion"), *items[:2])
         st_ = short_title(v.get("title"))
         who_ = " ".join(nm for nm in gs[:2] if nm not in st_)
         title = (f"{who_} - " if who_ else "") + f'{st_} 요약 | {v.get("channel")}'
@@ -1204,7 +1205,7 @@ def build():
                 + sect("엇갈린 시각", len(b.get("disagreements") or []), dg, "c3", "disagree")
                 + sect("많이 언급된 종목", len(b.get("stocks") or []), sk and f'<div class="skg">{sk}</div>', "c4")
                 + sect("종합한 영상", len(vids), vids and '<div class="grid bvgrid">' + "".join(F.card(v) for v in vids) + "</div>", "")
-                + '<p class="bnote">AI가 이날의 영상 요약들을 종합한 내용이며 투자 권유가 아니다. \'관련 영상\'이나 채널 이름을 누르면 근거가 된 영상을 볼 수 있다.</p></div>'
+                + '<p class="bnote" data-nosnippet>AI가 이날의 영상 요약들을 종합한 내용이며 투자 권유가 아니다. \'관련 영상\'이나 채널 이름을 누르면 근거가 된 영상을 볼 수 있다.</p></div>'
                 + F.templates())
         dd_ = datetime.date.fromisoformat(d)
         ogi = og_image(f"brief-{d}", f"{dd_.month}.{dd_.day:02d} ({WD[dd_.weekday()]}) {blabel(d)}", b.get("headline") or "", f"경제 유튜브 영상 {b.get('count') or ''}편 종합")
@@ -1239,7 +1240,7 @@ def build():
                 + sect("하루하루의 흐름", len(w.get("flow") or []), fl and f'<dl class="tl">{fl}</dl>', "c1")
                 + sect("이번 주 반복된 주제", len(w.get("recurring") or []), rc and f'<div class="tgrid">{rc}</div>', "c2")
                 + sect("이번 주 많이 언급된 종목", len(w.get("stocks") or []), sw and f'<div class="skg">{sw}</div>', "c4")
-                + '<p class="bnote">AI가 이번 주의 일간 브리핑들을 종합한 내용이며 투자 권유가 아니다.</p></div>')
+                + '<p class="bnote" data-nosnippet>AI가 이번 주의 일간 브리핑들을 종합한 내용이며 투자 권유가 아니다.</p></div>')
         a_, z_ = datetime.date.fromisoformat(ws), datetime.date.fromisoformat(w.get("end") or ws)
         ogi = og_image(f"week-{ws}", f"{a_.month}.{a_.day:02d}~{z_.month}.{z_.day:02d} 주간 시장 브리핑", w.get("headline") or "", f"경제 유튜브 영상 {w.get('videos') or ''}편 종합")
         wdesc = desc_of(*(w.get("keypoints") or []))
