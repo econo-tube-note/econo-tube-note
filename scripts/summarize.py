@@ -232,7 +232,7 @@ def transcript_test(target=""):
     text = "\n".join(f"[{mmss(st)}] {t}" for st, t in lines)
     print(f"\n자막으로 요약해 본다: {vid} (자막 {len(text)}자)")
     t0 = time.time()
-    out = call_json(TRANSCRIPT_PROMPT + text, summary_schema, "TRANSCRIPT_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 180)
+    out = call_json(TRANSCRIPT_PROMPT + text, summary_schema, "TRANSCRIPT_MODELS", "gemini-3.6-flash,gemini-3.5-flash,gemini-2.5-flash,gemini-3.7-flash,gemini-3.5-flash-lite,gemini-2.5-flash-lite", 180)
     print(f"  걸린 시간: {time.time() - t0:.0f}초")
     old = next((v for v in videos if video_id(v["url"]) == vid), None)
 
@@ -379,7 +379,7 @@ def call_gemini(video_url, allow_lite=True, transcript=None, title="", channel="
     meta = meta_note(title, channel)
     client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
     # 모델을 차례로 한 번씩 시도한다. 한 모델이 바쁘면 바로 다음 모델로 넘어가고, 전부 바쁘면 잠깐 쉬었다가 처음부터 다시 돌린다.
-    fallbacks = os.environ.get("GEMINI_FALLBACKS", "gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash-lite,gemini-3.1-flash-lite")
+    fallbacks = os.environ.get("GEMINI_FALLBACKS", "gemini-3.5-flash,gemini-2.5-flash,gemini-3.7-flash,gemini-3.6-flash,gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-2.5-flash-lite")
     models = [MODEL] + [m.strip() for m in fallbacks.split(",") if m.strip() and m.strip() != MODEL]
     # 일반 flash 모델을 먼저(그 안에서는 성공률이 높은 순), lite 모델은 맨 뒤에 둔다. lite는 빠르지만 요약이 얕다.
     models.sort(key=lambda m: (is_lite(m), -model_rate(m)))
@@ -733,7 +733,7 @@ def call_gemini_text(prompt):
         items: list[Verdict]
 
     client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-    models = [m.strip() for m in os.environ.get("TOPIC_MODELS", "gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-3.6-flash").split(",") if m.strip()]
+    models = [m.strip() for m in os.environ.get("TOPIC_MODELS", "gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-2.5-flash-lite,gemini-3.6-flash").split(",") if m.strip()]
     last = None
     for rnd in range(2):
         for model in models:
@@ -1083,7 +1083,7 @@ def build_brief(date, vids):
             "numbers": [[x[1], x[2]] for x in v.get("numbers", [])],
         })
     data = call_json(BRIEF_PROMPT + json.dumps(payload, ensure_ascii=False), brief_schema,
-                     "BRIEF_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 240)
+                     "BRIEF_MODELS", "gemini-3.6-flash,gemini-3.5-flash,gemini-2.5-flash,gemini-3.7-flash,gemini-3.5-flash-lite,gemini-2.5-flash-lite", 240)
     ids = [video_id(v["url"]) for v in vids]
     chans = [v["channel"] for v in vids]
 
@@ -1643,7 +1643,7 @@ def threads_draft(state, videos, force=""):
         tpl = (THREADS_SAT_PROMPT if slot == "sat" and not goal else THREADS_SUN_PROMPT if slot == "sun"
                else THREADS_PROMPT.replace("{goal}", goal))
         out = call_json(tpl.replace("{link}", link) + json.dumps(data, ensure_ascii=False),
-                        threads_schema, "THREADS_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 90)
+                        threads_schema, "THREADS_MODELS", "gemini-3.6-flash,gemini-3.5-flash,gemini-2.5-flash,gemini-3.7-flash,gemini-3.5-flash-lite,gemini-2.5-flash-lite", 90)
     except Exception as e:
         print(f"스레드 초안 만들기 실패: {str(e)[:120]}")
         return
@@ -1787,7 +1787,7 @@ def morning_groups(vs):
     data = [{"채널": v.get("channel"), "출연자": v.get("people") or "", "결론": v.get("conclusion"), "분위기": v.get("mood")} for v in vs[:14]]
     try:
         out = call_json(MORNING_PROMPT + json.dumps(data, ensure_ascii=False), morning_schema, "THREADS_MODELS",
-                        "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 90)
+                        "gemini-3.6-flash,gemini-3.5-flash,gemini-2.5-flash,gemini-3.7-flash,gemini-3.5-flash-lite,gemini-2.5-flash-lite", 90)
         out, _ = fix_names(out)
         return out if out.get("groups") else None
     except Exception as e:
@@ -1948,7 +1948,7 @@ def blog_draft(state, force=False):
     data, _ = fix_names(data)
     try:
         out = call_json(BLOG_PROMPT.replace("{link}", link) + json.dumps(data, ensure_ascii=False), blog_schema,
-                        "BLOG_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 150)
+                        "BLOG_MODELS", "gemini-3.6-flash,gemini-3.5-flash,gemini-2.5-flash,gemini-3.7-flash,gemini-3.5-flash-lite,gemini-2.5-flash-lite", 150)
     except Exception as e:
         print(f"블로그 초안 만들기 실패: {str(e)[:120]}")
         return
@@ -2110,7 +2110,7 @@ def build_weekly(ws, days, videos):
         "stocks": [{"name": t["name"], "videos": len(t["vids"]), "days": sorted(t["days"])} for t in ranked],
     }
     data = call_json(WEEK_PROMPT + json.dumps(payload, ensure_ascii=False), weekly_schema,
-                     "BRIEF_MODELS", "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 240)
+                     "BRIEF_MODELS", "gemini-3.6-flash,gemini-3.5-flash,gemini-2.5-flash,gemini-3.7-flash,gemini-3.5-flash-lite,gemini-2.5-flash-lite", 240)
     dates = [b["date"] for b in days]
 
     def txt(x):
@@ -2266,7 +2266,7 @@ def update_stock_digests(videos, force=False):
         print(f"종목 종합 만드는 중: {name} (영상 {len(ids)}편)")
         try:
             out = call_json(STOCK_PROMPT + json.dumps({"name": name, "mentions": items}, ensure_ascii=False),
-                            stock_schema, "STOCK_MODELS", "gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-3.6-flash", 120)
+                            stock_schema, "STOCK_MODELS", "gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-2.5-flash-lite,gemini-3.6-flash", 120)
         except Exception as e:
             print(f"  종목 종합 실패: {str(e)[:120]}")
             break  # 혼잡하면 다음 실행으로 미룬다
@@ -2657,7 +2657,7 @@ def tidy():
     Cns, Lbs = tidy_schemas()
     videos = load()
     max_len = cfg("TIDY_MAX_LEN", 70)
-    models = ("TIDY_MODELS", "gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-3.6-flash")
+    models = ("TIDY_MODELS", "gemini-3.5-flash-lite,gemini-3.1-flash-lite,gemini-2.5-flash-lite,gemini-3.6-flash")
 
     # 1) 긴 결론 다시 쓰기
     longs = [v for v in videos if len(v.get("conclusion", "")) > max_len]
@@ -2772,6 +2772,20 @@ def main(argv):
             print("GEMINI_API_KEY가 없다.")
             return 1
         update_stock_digests(load(), force=True)
+        return 0
+    if tokens and tokens[0].split(":")[0] == "모델시험":  # 무료로 실제 호출이 되는지 짧게 시험한다 (저장 안 함)
+        from google import genai
+        client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+        arg = tokens[0].split(":", 1)[1] if ":" in tokens[0] else ""
+        cands = [m.strip() for m in (arg or "gemini-4-hydrogen,gemini-4-neon,gemini-4-carbon,gemini-4-argon,gemini-3.5-flash,gemini-2.5-flash").split(",") if m.strip()]
+        for m in cands:
+            t0 = time.time()
+            try:
+                r = client.models.generate_content(model=m, contents="한 단어로만 답해라: 맑은 날 하늘 색은?")
+                print(f"  {m}: 된다 ({time.time() - t0:.1f}초) -> {(r.text or '').strip()[:20]}")
+            except Exception as ex:
+                msg = str(ex).splitlines()[0][:160] if str(ex) else type(ex).__name__
+                print(f"  {m}: 안 된다 -> {msg}")
         return 0
     if tokens == ["모델목록"]:  # 이 API 키로 쓸 수 있는 제미나이 모델을 보여 준다
         from google import genai
