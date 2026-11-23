@@ -26,7 +26,7 @@ except Exception:
     pass
 
 MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.6-flash")
-CALL_TIMEOUT = int(os.environ.get("GEMINI_TIMEOUT", "300"))  # 제미나이 응답을 기다리는 최대 시간(초)
+CALL_TIMEOUT = int(os.environ.get("GEMINI_TIMEOUT", "200"))  # 제미나이 응답을 기다리는 최대 시간(초)
 STATS = []   # (모델, 결과) 기록. 결과는 ok / busy / dead
 DEAD = set()  # 이번 실행에서 쓸 수 없다고 확인된 모델
 MODEL_STATS = {}  # 모델별 누적 기록 (state.json의 models). 잘 되는 모델을 먼저 쓰는 데 쓴다
@@ -2292,6 +2292,11 @@ def auto():
     max_age, max_len = cfg("MAX_AGE_DAYS", 2), cfg("MAX_VIDEO_MIN", 90) * 60
     min_len = cfg("MIN_VIDEO_SEC", 180)
     per_run = cfg("MAX_PER_RUN", 6)
+    # 오전(6~12시)에는 그날 장 브리핑을 빨리 채우는 게 중요하다: 한 번에 더 많이, 좋은 모델이 막히면 바로 lite로 요약한다
+    # (lite 요약은 오후 3~5시에 한도가 남으면 좋은 모델로 다시 만든다)
+    morning = 6 <= datetime.datetime.now(KST).hour < 12
+    if morning:
+        per_run = max(per_run, cfg("MORNING_PER_RUN", 10))
     deadline = time.time() + cfg("RUN_DEADLINE_MIN", 60) * 60
 
     channels = read_json(CHANNELS, [])
@@ -2436,7 +2441,7 @@ def auto():
             continue
         est = length or 1800  # 길이를 모르면 30분으로 계산한다
         age_h = (now - e["published"]).total_seconds() / 3600
-        lite_ok = age_h >= cfg("LITE_AFTER_HOURS", 30)  # 곧 기간이 끝나는 영상만 lite 모델을 허용한다
+        lite_ok = age_h >= (cfg("MORNING_LITE_AFTER_HOURS", 0) if morning else cfg("LITE_AFTER_HOURS", 30))  # 좋은 모델이 막혔을 때 lite를 허용할지
         if flash_down and not lite_ok:
             continue  # 좋은 모델이 이번 실행에서 모두 막혔다. 급하지 않은 영상은 다음 실행에 좋은 모델로 요약한다
         url = f"https://www.youtube.com/watch?v={vid}"
@@ -2453,6 +2458,11 @@ def auto():
                 if tr_fail == 5:
                     print("  자막이 5번 연속 실패했다. 이번 실행은 영상 방식으로만 요약한다. (계속 이러면 쿠키가 만료됐을 수 있다)")
             time.sleep(4)  # 자막 요청 사이에 간격을 둔다 (부계정이 봇으로 찍히지 않게)
+        if text is None and age_h < cfg("WAIT_SUBS_HOURS", 2) and not (morning and age_h >= 1):
+            # 막 올라온 영상은 유튜브 자동 자막이 아직 안 만들어진 경우가 많다. 느리고 비싼 영상 방식 대신 다음 실행에서 자막으로 한다
+            # (오전에는 빨리 채우는 게 중요해서 1시간만 기다린다)
+            print(f"  자막이 아직 없어서 다음 실행에 자막으로 요약한다 (올라온 지 {age_h:.1f}시간): {e['title'][:40]}")
+            continue
         if text is None and length > max_len:  # 자막으로는 긴 영상도 요약하지만, 영상 방식은 너무 긴 영상을 하지 않는다
             print(f"자막이 없고 영상이 길어서({length // 60}분) 영상 방식으로는 하지 않는다: {e['title']}")
             continue
