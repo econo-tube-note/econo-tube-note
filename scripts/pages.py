@@ -473,6 +473,7 @@ def who(ref, channel):
     v = VBYID.get(ref or "") or {}
     ch = channel or v.get("channel") or ""
     ppl = [x.strip() for x in str(v.get("people") or "").replace("·", ",").split(",") if x.strip()]
+    ppl = [x for x in ppl if (x.split() or [""])[0] not in _MC.get(v.get("channel") or "", set())]  # 진행자는 빼고
     same = not channel or not v.get("channel") or channel.split()[0] == str(v.get("channel")).split()[0]  # 연결된 영상의 채널이 다르면 출연자를 붙이지 않는다
     return ch + (" · " + ", ".join(ppl[:2]) if ppl and same else "")
 
@@ -1015,6 +1016,7 @@ CHANNEL_MAIN = {"체슬리TV": ["박세익"], "증시각도기TV": ["곽상준"]
 NOT_GUEST = {"진행자", "앵커", "기자"}        # 출연자로 보지 않을 이름 (진행자 등)
 MAIN_SHARE, MAIN_MIN = 0.5, 3                 # 채널 영상의 절반 이상, 3편 이상에 나오고 어느 제목에든 이름이 한 번은 나온 사람
 _MAIN = {}
+_MC = {}   # 채널별 진행자 (summarize.py가 영상의 hosts 칸에 옮겨 둔 이름). 예전 영상에 남아 있어도 출연자로 치지 않는다
 
 
 def _names(v):
@@ -1031,9 +1033,16 @@ def find_channel_main(V):
             if n in (v.get("title") or ""):
                 in_title.add(n)
     _MAIN.clear()
+    _MC.clear()
+    for v in V.values():
+        for x in (v.get("hosts") or "").split(","):
+            n = (x.strip().split() or [""])[0]
+            if n:
+                _MC.setdefault(v.get("channel") or "", set()).add(n)
     for ch, vs in by_ch.items():
         c = Counter(n for v in vs for n in set(_names(v)))
-        main = [n for n, k in c.items() if k >= MAIN_MIN and k / len(vs) >= MAIN_SHARE and n in in_title and n not in NOT_GUEST]
+        main = [n for n, k in c.items() if k >= MAIN_MIN and k / len(vs) >= MAIN_SHARE and n in in_title and n not in NOT_GUEST
+                and n not in _MC.get(ch, set())]
         main += [n for n in CHANNEL_MAIN.get(ch, []) if n not in main]
         if main:
             _MAIN[ch] = set(main)
@@ -1045,9 +1054,10 @@ def guests_of(v):
     """출연자 목록: 영상 제목에 이름이 들어간 사람 + 그 채널의 대표 출연자."""
     t = v.get("title") or ""
     main = _MAIN.get(v.get("channel") or "", set())
+    mc = _MC.get(v.get("channel") or "", set())
     out = []
     for nm in _names(v):
-        if (nm in t or nm in main) and nm not in NOT_GUEST and nm not in out:
+        if (nm in t or nm in main) and nm not in NOT_GUEST and nm not in mc and nm not in out:
             out.append(nm)
     return out
 

@@ -309,6 +309,10 @@ def summary_schema():
 
 # 채널마다 거의 매번 나오는 고정 출연자. 제목에 이름이 없을 때 자막만 듣고 이름을 틀리게 적는 걸 막는다
 CHANNEL_HOSTS = {"증시각도기TV": "곽상준", "체슬리TV": "박세익"}
+# 진행자: 영상 제목에 이름이 나와도 출연자(의견을 말하는 사람)가 아니다. 출연자 목록에서 빼고 따로 둔다.
+# 직접 적은 이름 + 자동으로 찾은 이름(그 채널 영상 여러 편에 나오는데 제목에서 한 번도 직함 없이만 나온 사람)
+MC_NAMES = {"삼프로TV": ["김동환", "이진우", "정영진", "서동주"]}
+MC_ROLE = re.compile(r"(대표|부사장|사장|회장|단장|교수|기자|센터장|본부장|위원|애널리스트|이코노미스트|팀장|부장|실장|소장|원장|이사|전무|상무|박사|작가|변호사|세무사|회계사|PD|CIO|CEO|파트너|매니저|수석|과장|차장|연구원|편집장|운용역|트레이더|전문가|의원|장관|총재)")
 
 
 def meta_note(title, channel):
@@ -319,7 +323,9 @@ def meta_note(title, channel):
             f"- 채널: {channel}\n- 제목: {title}\n"
             "- 사람 이름, 회사·종목 이름이 제목에 나오면 자막이나 소리보다 제목 표기를 따른다. people에는 제목에 나온 출연자 이름 표기를 그대로 쓴다.\n"
             + next((f"- 이 채널의 고정 출연자는 {h}이다. 자막에서 비슷하게 들리는 이름이 나오면 {h}으로 적는다.\n"
-                    for k, h in CHANNEL_HOSTS.items() if k.lower() in (channel or "").lower().replace(" ", "")), ""))
+                    for k, h in CHANNEL_HOSTS.items() if k.lower() in (channel or "").lower().replace(" ", "")), "")
+            + next((f"- {', '.join(ns)}은(는) 이 채널의 진행자다. 진행자의 질문이나 맞장구는 출연자 의견으로 요약하지 말고, 출연자(게스트)가 한 말을 중심으로 요약한다.\n"
+                    for k, ns in MC_NAMES.items() if k.lower() in (channel or "").lower().replace(" ", "")), ""))
 
 
 _HANGUL_NAME = re.compile(r"[가-힣]{2,4}")
@@ -340,6 +346,49 @@ def fix_people(people, title):
         same = sorted(c for c in cands if c[0] == nm[0] and c != nm)
         out.append(p_.replace(nm, same[0], 1) if len(same) == 1 else p_)
     return ", ".join(dict.fromkeys(out))
+
+
+def find_mcs(videos):
+    """채널별 진행자 이름 모음. 직접 적은 이름 + 자동 판단."""
+    from collections import Counter
+    by = {}
+    for v in videos:
+        by.setdefault(v.get("channel") or "", []).append(v)
+    out = {}
+    for ch, vs in by.items():
+        mc = set(n for k, ns in MC_NAMES.items() if k.lower().replace(" ", "") in ch.lower().replace(" ", "") for n in ns)
+        c, role = Counter(), set()
+        for v in vs:
+            t = v.get("title") or ""
+            for n in {(x.strip().split() or [""])[0] for x in ((v.get("people") or "") + "," + (v.get("hosts") or "")).split(",")}:
+                if re.fullmatch(r"[가-힣]{2,4}", n) and n in t:
+                    c[n] += 1
+                    if re.search(re.escape(n) + r"\s*(\S+\s*)?" + MC_ROLE.pattern, t):
+                        role.add(n)
+        main = {h for k, h in CHANNEL_HOSTS.items() if k.lower() in ch.lower().replace(" ", "")}
+        mc |= {n for n, k in c.items() if k >= 5 and k / max(len(vs), 1) >= 0.25 and n not in role and n not in main}
+        if mc:
+            out[ch] = mc
+    return out
+
+
+def split_hosts(videos):
+    """출연자 목록에서 진행자를 빼서 hosts 칸으로 옮긴다 (이미 옮긴 건 그대로)."""
+    mcs, n = find_mcs(videos), 0
+    for v in videos:
+        mc = mcs.get(v.get("channel") or "", set())
+        if not mc or not v.get("people"):
+            continue
+        ps = [x.strip() for x in v["people"].split(",") if x.strip()]
+        keep = [x for x in ps if (x.split() or [""])[0] not in mc]
+        moved = [x for x in ps if x not in keep]
+        if moved:
+            v["people"] = ", ".join(keep)
+            v["hosts"] = ", ".join(dict.fromkeys([x.strip() for x in (v.get("hosts") or "").split(",") if x.strip()] + moved))
+            n += 1
+    if n:
+        print(f"진행자를 출연자에서 뺐다: {n}편 (" + ", ".join(f"{ch}: {'·'.join(sorted(ns))}" for ch, ns in mcs.items()) + ")")
+    return n
 
 
 def fix_people_all(videos):
@@ -2579,7 +2628,8 @@ def auto():
         print(f"브리핑 단계에서 오류: {str(e)[:150]}")
     try:
         fix_all(videos)
-        fix_people_all(videos)
+        if fix_people_all(videos) + split_hosts(videos):
+            save(videos)  # 출연자 이름 보정과 진행자 분리를 저장한다 (전에는 저장이 빠져 매번 다시 고치고 있었다)
     except Exception as e:
         print(f"이름 표기 정리 중 오류: {str(e)[:120]}")
     # 운영 알림: 오래 요약이 없거나 자막이 계속 실패하면 텔레그램으로 알린다
