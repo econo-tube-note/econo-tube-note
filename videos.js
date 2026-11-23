@@ -555,7 +555,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-23T17:35"
@@ -1292,7 +1292,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
   "ts": "2026-11-23T14:30"
@@ -1727,7 +1727,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-23T15:30"
@@ -1964,7 +1964,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
   "ts": "2026-11-23T11:25"
@@ -2064,7 +2064,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
   "ts": "2026-11-23T11:57",
@@ -2326,7 +2326,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-23T12:29",
@@ -2681,7 +2681,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-23T08:26",
@@ -2809,7 +2809,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-23T08:31"
@@ -3078,7 +3078,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "낙관",
   "src": "영상",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-23T07:12"
@@ -3323,7 +3323,7 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
   "ts": "2026-11-22T20:45"
@@ -3571,7 +3571,7 @@ const VIDEOS=[
     "과거"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-22T20:00"
@@ -4200,7 +4200,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-22T16:00"
@@ -4342,7 +4342,7 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-22T16:30"
@@ -4980,7 +4980,7 @@ const VIDEOS=[
     "과거"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "영상",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-22T08:30"
@@ -5235,7 +5235,7 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-22T08:00"
@@ -5647,7 +5647,7 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-22T07:00"
@@ -5775,7 +5775,7 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-21T21:15"
@@ -6032,7 +6032,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "영상",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-21T17:00"
@@ -6293,7 +6293,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-21T17:22"
@@ -6435,7 +6435,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-21T20:00"
@@ -6545,7 +6545,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
   "ts": "2026-11-21T15:02"
@@ -7524,7 +7524,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-21T11:32"
@@ -7667,7 +7667,7 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "비관",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-21T11:00"
@@ -8121,7 +8121,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.7-flash",
   "ts": "2026-11-21T08:30"
@@ -8265,7 +8265,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-21T08:00"
@@ -8500,7 +8500,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-21T07:00"
@@ -8766,7 +8766,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
   "ts": "2026-11-20T21:07"
@@ -8895,7 +8895,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-20T18:38"
@@ -9022,7 +9022,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
   "ts": "2026-11-20T17:03"
@@ -9398,7 +9398,7 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-20T17:00"
@@ -10973,7 +10973,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-20T17:10"
@@ -11112,7 +11112,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-20T20:00"
@@ -11374,7 +11374,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-20T15:13"
@@ -11762,7 +11762,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
   "ts": "2026-11-20T10:52"
@@ -12026,7 +12026,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "영상",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-20T11:15"
@@ -12362,7 +12362,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "영상",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-20T12:42"
@@ -12813,7 +12813,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-20T08:24"
@@ -12934,7 +12934,7 @@ const VIDEOS=[
     "과거"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-20T11:07"
@@ -13056,7 +13056,7 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.7-flash",
   "ts": "2026-11-20T11:38"
@@ -13310,7 +13310,7 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-20T07:03"
