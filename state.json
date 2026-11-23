@@ -111,7 +111,7 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 12,
+   "ok": 16,
    "busy": 8,
    "dead": 4
   },
@@ -277,7 +277,6 @@
   "x7rlmaylAtA": true,
   "8H7hQU8EncU": true,
   "fcAPj3NT8pY": true,
-  "UoO5-aM9W3Q": true,
   "RzrQ4FbmqmQ": true
  },
  "brief_final": {
@@ -291,13 +290,15 @@
   "2026-11-21": true,
   "2026-11-22": true
  },
- "last_ok": "2026-11-23T07:55",
+ "last_ok": "2026-11-23T10:19",
  "threads": {
   "2026-11-21-sat": true,
-  "2026-11-22-sun": true
+  "2026-11-22-sun": true,
+  "2026-11-23-am": true
  },
  "channel": {
-  "2026-11-21-sat": true
+  "2026-11-21-sat": true,
+  "2026-11-23-am": true
  },
  "blog": {
   "2026-11-16": true

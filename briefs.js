@@ -1,6 +1,201 @@
 /* 종합 브리핑(일간 BRIEFS, 주간 WEEKLY). 자동화(scripts/summarize.py)가 갱신하는 파일이다. */
 const BRIEFS=[
  {
+  "date": "2026-11-23",
+  "count": 6,
+  "sources": [
+   "7ZLBGymBqeA",
+   "YQ5YCnAwbbY",
+   "UoO5-aM9W3Q",
+   "ME_JkAGPmXI",
+   "qWBPcJiyKP4",
+   "KWXQCSu9ZGo"
+  ],
+  "headline": "미 증시 폭락과 AI 우려 속에도 저평가 인식과 대책 마련으로 반등 기대감이 나온다.",
+  "keypoints": [
+   "미 증시 급락과 엔비디아 폭락으로 시장 공포 지수가 급등했다.",
+   "정부는 증권시장안정펀드 가동 준비 등 대응책 마련에 나섰다.",
+   "전문가들은 패닉 매도보다 신중한 관망과 리밸런싱을 권한다.",
+   "반도체 기업의 펀더멘털 대비 주가 하락이 과도하다는 의견도 나온다."
+  ],
+  "themes": [
+   {
+    "title": "AI 신화 흔드는 악재와 변동성",
+    "summary": "엔비디아 폭락과 자금 조달 난항 우려로 기술주 변동성이 커졌으나 장기 성장성 및 과매도에 따른 반등 전망도 제시된다.",
+    "refs": [
+     "7ZLBGymBqeA",
+     "YQ5YCnAwbbY",
+     "UoO5-aM9W3Q",
+     "qWBPcJiyKP4"
+    ]
+   },
+   {
+    "title": "증안펀드 가동과 정부 대책",
+    "summary": "금융당국이 18년 만에 증시안정펀드 가동을 준비하며 대응에 나섰으나 실효성에 대해서는 시장 의견이 갈린다.",
+    "refs": [
+     "YQ5YCnAwbbY",
+     "UoO5-aM9W3Q",
+     "ME_JkAGPmXI"
+    ]
+   },
+   {
+    "title": "반도체 입지와 부동산 시장",
+    "summary": "경기 남부 반도체 벨트 확대로 직주근접과 학원가를 갖춘 지역 및 1기 신도시 재건축 입지가 주거지로 주목받는다.",
+    "refs": [
+     "KWXQCSu9ZGo"
+    ]
+   }
+  ],
+  "agreements": [
+   {
+    "point": "금융당국이 시장 변동성에 대응하여 증시안정펀드 가동 준비에 착수했다.",
+    "refs": [
+     "YQ5YCnAwbbY",
+     "UoO5-aM9W3Q",
+     "ME_JkAGPmXI"
+    ]
+   },
+   {
+    "point": "엔비디아 주가가 악재 겹악으로 하루 만에 14% 폭락했다.",
+    "refs": [
+     "YQ5YCnAwbbY",
+     "UoO5-aM9W3Q",
+     "ME_JkAGPmXI",
+     "qWBPcJiyKP4"
+    ]
+   },
+   {
+    "point": "폭락장에서 감정적으로 투매하기보다 신중하게 대응해야 한다고 본다.",
+    "refs": [
+     "7ZLBGymBqeA",
+     "ME_JkAGPmXI"
+    ]
+   }
+  ],
+  "disagreements": [
+   {
+    "topic": "증안펀드 가동 발표의 시장 영향",
+    "views": [
+     {
+      "channel": "증시각도기TV",
+      "view": "구두 개입 효과를 내며 실제 가동 전 증시 반등으로 이어질 수 있다고 본다.",
+      "ref": "UoO5-aM9W3Q"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "즉각적인 투입 의지가 부족해 오히려 시장에 실망감을 안겨주었다고 평가한다.",
+      "ref": "ME_JkAGPmXI"
+     }
+    ]
+   },
+   {
+    "topic": "AI 데이터센터 및 반도체 위기 가능성",
+    "views": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "데이터센터 투자 지연 시 테크노 달러 선순환 고리가 끊길 수 있다고 지적한다.",
+      "ref": "YQ5YCnAwbbY"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "데이터센터의 이익률이 높고 펀더멘털이 강해 시스템 위기 가능성은 낮다고 본다.",
+      "ref": "UoO5-aM9W3Q"
+     }
+    ]
+   }
+  ],
+  "stocks": [
+   {
+    "name": "엔비디아",
+    "count": 4,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "폭락세를 보였으나 장기 투자자에게는 기회가 될 수 있다고 전망한다.",
+      "ref": "7ZLBGymBqeA"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "회계 조사와 암시장 유통 등 악재로 주가가 14% 폭락했다고 지적한다.",
+      "ref": "YQ5YCnAwbbY"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "칩 수요와 높은 수익성 덕분에 자금 조달 문제로 무너질 가능성은 낮다고 본다.",
+      "ref": "UoO5-aM9W3Q"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "SEC 조사 등 악재로 주가가 급락해 시가총액 4위로 밀려났다고 설명한다.",
+      "ref": "qWBPcJiyKP4"
+     }
+    ]
+   },
+   {
+    "name": "SK하이닉스",
+    "count": 3,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "장기적 관점에서 주가가 매우 싸졌으며 실적에 대한 믿음이 강하다고 본다.",
+      "ref": "7ZLBGymBqeA"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "메모리 공급 부족 상황으로 레버리지 순매수 잔고가 유지되고 있다고 지적한다.",
+      "ref": "UoO5-aM9W3Q"
+     },
+     {
+      "channel": "전인구경제연구소",
+      "view": "청주와 용인 공장 증설로 주변 아파트 가치를 끌어올리는 핵심 기업이라고 평가한다.",
+      "ref": "KWXQCSu9ZGo"
+     }
+    ]
+   },
+   {
+    "name": "삼성전자",
+    "count": 3,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "빅테크의 투자 지연으로 장기 공급 계약 해지 우려가 제기된다고 설명한다.",
+      "ref": "YQ5YCnAwbbY"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "내년 1분기 실적을 고려할 때 현재 주가는 과도하게 저평가되었다고 주장한다.",
+      "ref": "UoO5-aM9W3Q"
+     },
+     {
+      "channel": "전인구경제연구소",
+      "view": "대규모 반도체 캠퍼스 투자로 경기 남부 부동산 상승세를 주도한다고 설명한다.",
+      "ref": "KWXQCSu9ZGo"
+     }
+    ]
+   },
+   {
+    "name": "마이크론",
+    "count": 2,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "빅테크의 데이터센터 투자 차질 시 장기 공급 계약 영향권에 들어선다.",
+      "ref": "YQ5YCnAwbbY"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "본장 폭락 후 애프터마켓 반등을 통해 기술주 반등 기류를 보여주었다고 본다.",
+      "ref": "ME_JkAGPmXI"
+     }
+    ]
+   }
+  ]
+ },
+ {
   "date": "2026-11-22",
   "count": 19,
   "sources": [
