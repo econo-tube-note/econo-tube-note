@@ -1158,13 +1158,16 @@ THREADS_PROMPT = """너는 스레드(Threads)에 올릴 짧은 글을 쓰는 개
 - 첫 줄: "오늘 경제 유튜브 N개를 다 돌려봤다."처럼 몇 개를 봤는지로 시작한다.
 - 이어서 다들 공통으로 꼽은 이유나 시각 1~2개, 숫자 하나(지수, 금액 등).
 - 엇갈린 시각이 있으면 "한쪽은 ~하라고 하고, 다른 쪽은 ~라고 한다." 식으로 하나 넣는다. 채널 이름은 쓰지 않는다.
-- 끝에서 두 번째 줄은 어느 편도 들지 않는 짧은 개인 소감 한 줄(예: "솔직히 둘 다 맞는 말 같다.").
-- 마지막 줄은 다른 사람들 생각이 궁금하다는 한 줄(예: "다들 지금 추매하는 쪽인지, 좀 더 지켜보는 쪽인지 궁금하다.").
+- 끝에서 두 번째 줄은 어느 편도 들지 않는 짧은 개인 소감 한 줄. 그날 쟁점에 맞는 말로 쓴다.
+- 마지막 줄은 그날 엇갈린 쟁점을 직접 꺼내 다른 사람들 생각을 묻는 한 줄이다. 쟁점의 고유명사(정책 이름, 종목, 지표)를 넣어 구체적으로 묻는다.
+  좋은 예: "증안펀드가 진짜 바닥을 만들어줄 거라고 보는지 궁금하다." / "엔비디아 실적 전에 들어가는 쪽인지, 보고 들어가는 쪽인지 궁금하다."
+  나쁜 예(뭉뚱그린 질문): "다들 어떻게 생각하는지 궁금하다."
+- '최근_마무리'에 있는 문장과 같거나 비슷한 마무리(소감·질문)는 쓰지 않는다. 아래 예시의 마무리 문장도 그대로 쓰지 않는다.
 - 짧은 줄로 끊고 문단 사이는 빈 줄 하나. 본문은 공백 포함 400자 이내.
 - 줄이느라 뜻이 흐려지면 안 된다. 무엇이/누가 그랬는지 주어(회사 이름, 지표 이름)를 꼭 쓴다. 처음 읽는 사람도 무슨 일인지 알 수 있게 쓴다.
 - 특정 종목을 사거나 팔라고 권하는 말은 쓰지 않는다. 유튜버들이 이렇게 봤다는 전달자 입장을 지킨다.
 
-예시(말투만 참고하고 내용은 자료대로 쓴다)
+예시(말투와 줄 나눔만 참고한다. 내용, 구성 순서, 마무리 문장은 따라 하지 않는다)
 오늘 경제 유튜브 16개를 다 돌려봤다.
 
 다들 범인으로 앤트로픽 상장을 꼽았다.
@@ -1180,7 +1183,9 @@ THREADS_PROMPT = """너는 스레드(Threads)에 올릴 짧은 글을 쓰는 개
 솔직히 둘 다 맞는 말 같다.
 다들 지금 추매하는 쪽인지, 좀 더 지켜보는 쪽인지 궁금하다.
 
-comment(첫 댓글)는 한 줄: 누가 어떤 근거로 그렇게 봤는지 사이트에 정리해 뒀다는 말과 함께 끝에 이 주소를 그대로 붙인다: {link}
+comment(첫 댓글)는 1~2줄: 본문에서 다 말하지 않은 것을 사이트에서 볼 수 있다는 걸 구체적으로 알려 줘서 눌러 보고 싶게 쓴다.
+  예: "증안펀드 효과를 두고 누가 어느 쪽이었는지, 근거까지 영상별로 정리해 뒀다." / "오늘 많이 나온 종목 5개랑 유튜버별 의견은 여기 있다."
+  광고처럼 보이는 말('꼭 보세요', '대박')은 쓰지 않는다. 끝에 이 주소를 그대로 붙인다: {link}
 image_title은 공유 이미지에 크게 넣을 한 줄 요약이다. 40자 이내, '~했다' 체 한 문장.
 
 자료(JSON):
@@ -1529,7 +1534,7 @@ def threads_draft(state, videos, force=""):
         return
     now = datetime.datetime.now(KST)
     today, wd, h = now.date().isoformat(), now.weekday(), now.hour
-    slot = force or ("am" if wd < 5 and 10 <= h < 14 else "pm" if wd < 5 and 16 <= h < 21 else
+    slot = force or ("am" if wd < 5 and 10 <= h < 14 else "pm" if wd < 5 and 19 <= h < 23 else
                      "sat" if wd == 5 and 18 <= h < 23 else "sun" if wd == 6 and 18 <= h < 23 else "")
     if not slot:
         print(f"스레드 초안: 지금({h}시)은 보낼 시간대가 아니다")
@@ -1623,6 +1628,11 @@ def threads_draft(state, videos, force=""):
                 "이미_올린_글_주제": [x for x in ((briefs.get(fri) or {}).get("headline"), (sat_w or {}).get("headline")) if x]}
         link = f"{SITE_URL_}/brief/{today}/" if today in briefs else SITE_URL_ + "/"
         goal = ""
+    recent_end = state.get("threads_endings") or []
+    if isinstance(data, dict):
+        data["최근_마무리"] = recent_end
+    else:
+        data = {"자료": data, "최근_마무리": recent_end}
     try:
         tpl = (THREADS_SAT_PROMPT if slot == "sat" and not goal else THREADS_SUN_PROMPT if slot == "sun"
                else THREADS_PROMPT.replace("{goal}", goal))
@@ -1632,6 +1642,8 @@ def threads_draft(state, videos, force=""):
         print(f"스레드 초안 만들기 실패: {str(e)[:120]}")
         return
     out, _ = fix_names(out)
+    tail = [x.strip() for x in (out.get("post") or "").strip().split("\n") if x.strip()][-2:]
+    state["threads_endings"] = (recent_end + [" ".join(tail)])[-5:]
     label = {"am": "평일 오전", "pm": "평일 저녁", "sat": "토요일", "sun": "일요일"}[slot]
     # 공유 이미지: 사이트 브리핑 이미지와 같은 모양으로 만들어 사진으로 보낸다
     img = None
@@ -1732,6 +1744,49 @@ def fix_all(videos):
 # ---------- 공개 텔레그램 채널에 브리핑 올리기 (구독자용) ----------
 # 평일 오전(11시대): 오전 영상들의 한 줄 결론 모음, 평일 저녁(17시대): 그날 일간 브리핑, 토요일 저녁: 주간 브리핑.
 # TELEGRAM_CHANNEL(예: @marketraven)이 없으면 하지 않는다.
+MORNING_PROMPT = """아래는 오늘 오전에 올라온 경제 유튜브 영상들의 요약이다. 텔레그램 채널에 올릴 '오전 시황'을 만들려고 한다.
+영상을 채널별로 나누지 말고, 오늘 장을 보는 '입장'별로 묶어 JSON으로 정리해라.
+
+- headline: 오전 영상들의 큰 흐름을 한 줄로. 40자 이내, '~다' 체. 예: "급락 뒤 '공포에 팔지 말라'가 대세, 반등 시점은 갈렸다"
+- groups: 입장 2~3개. 예: "반등 기대 쪽", "신중론 쪽", "관망 쪽". 입장 이름은 내용에 맞게 짧게 붙인다.
+  - stance: 입장 이름 (10자 이내)
+  - reason: 그 입장의 근거를 한두 문장으로 합쳐서. 무엇이(지표, 정책, 회사) 어떤지 주어를 분명히 쓴다. 70자 이내.
+  - who: 그 입장에 해당하는 영상마다 "채널 이름 · 출연자" 한 개씩. 출연자를 모르면 채널 이름만. 같은 영상을 두 입장에 넣지 않는다.
+- watch: 오전 영상들에서 '오늘 지켜볼 것'으로 꼽은 일정이나 변수 1~2개를 한 줄로. 없으면 빈 문자열.
+- 경제·투자와 관련 없는 영상(부동산 입지 추천, 생활 정보 등)은 groups에 넣지 않는다. 다만 부동산 시장 전망처럼 경제 얘기면 넣어도 된다.
+- 자료에 없는 숫자나 일정은 지어내지 않는다. 존댓말 대신 '~다' 체로 쓴다.
+
+자료(JSON):
+"""
+
+
+def morning_schema():
+    from pydantic import BaseModel
+
+    class Group(BaseModel):
+        stance: str
+        reason: str
+        who: list[str]
+
+    class Morning(BaseModel):
+        headline: str
+        groups: list[Group]
+        watch: str
+    return Morning
+
+
+def morning_groups(vs):
+    data = [{"채널": v.get("channel"), "출연자": v.get("people") or "", "결론": v.get("conclusion"), "분위기": v.get("mood")} for v in vs[:14]]
+    try:
+        out = call_json(MORNING_PROMPT + json.dumps(data, ensure_ascii=False), morning_schema, "THREADS_MODELS",
+                        "gemini-3.6-flash,gemini-3.7-flash,gemini-3.5-flash-lite", 90)
+        out, _ = fix_names(out)
+        return out if out.get("groups") else None
+    except Exception as e:
+        print(f"채널 오전 시황 만들기 실패: {str(e)[:120]}")
+        return None
+
+
 def channel_post(state, force="", videos=None):
     ch = os.environ.get("TELEGRAM_CHANNEL", "").strip()
     if not (ch and os.environ.get("TELEGRAM_BOT_TOKEN")):
@@ -1739,7 +1794,7 @@ def channel_post(state, force="", videos=None):
     import html as H
     now = datetime.datetime.now(KST)
     today, wd, h = now.date().isoformat(), now.weekday(), now.hour
-    slot = force or ("am" if wd < 5 and 10 <= h < 14 else "pm" if wd < 5 and 16 <= h < 23 else "sat" if wd == 5 and 18 <= h < 23 else "")
+    slot = force or ("am" if wd < 5 and 10 <= h < 14 else "pm" if wd < 5 and 19 <= h < 23 else "sat" if wd == 5 and 18 <= h < 23 else "")
     if not slot:
         return
     done_ = state.setdefault("channel", {})
@@ -1755,15 +1810,18 @@ def channel_post(state, force="", videos=None):
             print("채널: 오늘 오전 영상이 아직 적어서 이번엔 올리지 않는다")
             return
         vs, _ = fix_names(vs)
-        mood = {"낙관": "긍정", "중립": "중립", "비관": "부정"}
-        cnt = {k: sum(1 for v in vs if v.get("mood") == k) for k in mood}
         kick = f"{d_.month}.{d_.day:02d} ({'월화수목금토일'[d_.weekday()]}) 오전 시황"
-        head = f"오전 경제 유튜브 {len(vs)}편, 긍정 {cnt['낙관']} · 중립 {cnt['중립']} · 부정 {cnt['비관']}"
         link, n = f"{SITE_URL_}/", len(vs)
-        lines = [f"<b>{E(kick)}</b>", f"<b>{E(head)}</b>", ""]
-        for v in vs[:6]:
-            lines += [f"<b>{E(v.get('channel'))}</b> · {E(mood.get(v.get('mood'), ''))}", f"{E(v.get('conclusion'))}", ""]
-        lines = lines[:-1]
+        g = morning_groups(vs)
+        if not g:
+            return
+        head = g.get("headline") or ""
+        lines = [f"<b>{E(kick)}</b>", f"오전 경제 유튜브 {n}편이 본 오늘 장", "", f"<b>한 줄</b> {E(head)}"]
+        for grp in (g.get("groups") or [])[:3]:
+            lines += ["", f"<b>{E(grp.get('stance'))}</b> ({len(grp.get('who') or [])}편)", E(grp.get("reason")),
+                      "— " + E(" / ".join(grp.get("who") or []))]
+        if g.get("watch"):
+            lines += ["", f"<b>오늘 볼 것</b>", E(g.get("watch"))]
     elif slot == "pm":
         b = next((x for x in load_briefs() if x.get("date") == today), None)
         if not b:
