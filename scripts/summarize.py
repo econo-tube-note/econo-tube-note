@@ -1353,6 +1353,59 @@ def tg_photo(path, caption="", chat=None, html=False):
         return json.loads(r.read().decode()).get("ok")
 
 
+NOTE_RE = re.compile(r"^\s*(주간|오늘|일간|어제)\s*[:：]\s*(.*)$", re.S)
+
+
+def tg_notes(state):
+    """운영자가 봇에 보낸 '주간: …' / '오늘: …' 메시지를 편집자 한마디로 저장한다.
+    날짜는 메시지를 보낸 시각(한국 시간) 기준이다. 내용에 '삭제'만 쓰면 지운다."""
+    if not tg_ok():
+        return
+    import urllib.request
+    tok, me = os.environ["TELEGRAM_BOT_TOKEN"], str(os.environ["TELEGRAM_CHAT_ID"])
+    off = int(state.get("tg_offset") or 0)
+    try:
+        with urllib.request.urlopen(f"https://api.telegram.org/bot{tok}/getUpdates?offset={off + 1}&timeout=0&allowed_updates=%5B%22message%22%5D", timeout=20) as r:
+            ups = json.loads(r.read().decode()).get("result") or []
+    except Exception as ex:
+        print(f"텔레그램 메시지 확인 실패: {str(ex)[:80]}")
+        return
+    if not ups:
+        return
+    notes, saved = load_notes(), []
+    for u in ups:
+        state["tg_offset"] = max(off, int(u.get("update_id") or 0))
+        off = state["tg_offset"]
+        m = u.get("message") or {}
+        if str((m.get("chat") or {}).get("id")) != me:
+            continue  # 운영자가 아닌 사람이 보낸 메시지는 무시한다
+        g = NOTE_RE.match(m.get("text") or "")
+        if not g:
+            continue
+        kind, text = g.group(1), g.group(2).strip()
+        sent = datetime.datetime.fromtimestamp(int(m.get("date") or 0), KST).date()
+        if kind == "주간":
+            ws = week_start(sent.isoformat()).isoformat()
+            done = sorted(w["week"] for w in load_weekly() if w.get("week", "") <= ws)
+            key, label = "week:" + (ws if ws in done or not done else done[-1]), "주간 브리핑"
+        else:
+            day = sent - datetime.timedelta(days=1) if kind == "어제" else sent
+            key, label = day.isoformat(), f"{day.month}월 {day.day}일 브리핑"
+        if text in ("삭제", "지우기", "지워"):
+            notes.pop(key, None)
+            saved.append(f"{label}의 한마디를 지웠다.")
+        elif text:
+            notes[key] = text
+            saved.append(f"{label}에 한마디를 저장했다. 다음 배포 때 사이트에 붙는다.")
+    if saved:
+        save_notes(notes)
+        print("편집자 한마디: " + " / ".join(saved))
+        try:
+            tg_send("\n".join(saved))
+        except Exception:
+            pass
+
+
 def tg_alert(state, key, text):
     """운영 알림. 같은 key는 한 번만 보낸다."""
     if not tg_ok():
@@ -2462,6 +2515,7 @@ def auto():
         tg_alert(state, "noop-" + lo, f"마지막으로 요약에 성공한 지 16시간이 넘었다 (마지막 성공 {lo}). Actions 로그를 확인해 봐라.")
     if tr_fail >= 5:
         tg_alert(state, "cookie-" + now_k.date().isoformat(), "자막을 5번 연속 못 받았다. 유튜브 쿠키가 만료됐을 수 있다. 부계정으로 쿠키를 다시 내보내서 YOUTUBE_COOKIES 비밀값을 바꿔라.")
+    tg_notes(state)
     threads_draft(state, videos)
     channel_post(state, videos=videos)
     blog_draft(state)

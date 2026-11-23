@@ -399,7 +399,7 @@ addEventListener("resize",hide)})();
 </script>"""
 
 
-def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_title=None, image=None, extra_ld=None):
+def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_title=None, image=None, extra_ld=None, noindex=False):
     canon = url(path)
     ld = ""
     if kind == "article":
@@ -420,7 +420,7 @@ def page(path, title, desc, body, kind="article", date=None, nav_on="home", tab_
 {(f'<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag("js",new Date());gtag("config","{GA_ID}");</script>' if GA_ID else "")}
 <title>{e(tab_title or (title + " | " + SITE_NAME))}</title>
 <meta name="description" content="{e(desc)}">
-<link rel="canonical" href="{e(canon)}">
+<link rel="canonical" href="{e(canon)}">{'<meta name="robots" content="noindex,follow">' if noindex else ''}
 <meta property="og:type" content="{'article' if kind == 'article' else 'website'}"><meta property="og:site_name" content="{e(SITE_NAME)}">
 <meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}"><meta property="og:url" content="{e(canon)}">
 <meta property="og:image" content="{e(image or url("og.png"))}"><link rel="alternate" type="application/rss+xml" title="{e(SITE_NAME)}" href="{e(url("rss.xml"))}"><meta name="twitter:card" content="summary_large_image">
@@ -778,7 +778,7 @@ def build_dash(recent, briefs, weekly, digests, man):
 
 
 # ---------- 사이트 소개, 개인정보처리방침 ----------
-INFO_DATE = "2026-11-22"
+INFO_DATE = "2026-11-23"
 
 
 def build_info_pages():
@@ -794,20 +794,29 @@ def build_info_pages():
                 + "".join(f'<h2 class="bt c1">{h}</h2>{b}' for h, b in sections) + "</div>")
 
     about = doc("사이트 소개", [
-        ("어떤 곳인가", f"<p>{e(SITE_NAME)}은 인기 경제 유튜브 채널의 영상을 AI가 요약하고, 여러 채널의 이야기를 하루와 한 주 단위로 종합해 보여 주는 곳이다. "
-                    "영상을 다 볼 시간이 없을 때, 오늘 경제 유튜브에서 무슨 이야기가 오갔는지 몇 분 안에 파악할 수 있게 만드는 게 목표다.</p>"),
-        ("다루는 채널", f"<ul class=\"kp\">{ch_list}</ul><p>채널은 앞으로 늘어날 수 있다.</p>"),
+        ("어떤 곳인가", f"<p>{e(SITE_NAME)}은 인기 경제 유튜브 채널의 영상을 요약하고, 여러 채널의 이야기를 하루와 한 주 단위로 모아 비교해 보여 주는 곳이다. "
+                    "경제 유튜브는 하루에도 수십 편이 올라와 다 볼 수가 없다. 그래서 오늘 여러 채널이 무엇에 같은 말을 했고 무엇에서 의견이 갈렸는지, 몇 분 안에 파악할 수 있게 만드는 게 목표다.</p>"),
+        ("운영자", "<p>경제 유튜브를 매일 챙겨 보는 개인 투자자가 운영한다. 영상 하나하나보다 '여러 사람이 같은 날 어떻게 다르게 보는지'가 더 궁금해서 이 사이트를 만들었다. "
+                 "주간 브리핑과 일부 일간 브리핑에는 운영자가 직접 쓴 '편집자 한마디'가 붙는다.</p>"),
+        ("여기서만 볼 수 있는 것", "<ul class=\"kp\"><li><b>공통된 시각과 엇갈린 시각</b>: 같은 날 여러 채널이 한 말을 나란히 놓고, 어디서 같고 어디서 갈렸는지 정리한다.</li>"
+                             "<li><b>종목별 의견 비교</b>: 한 종목을 두고 채널마다 어떻게 봤는지, 언급이 언제 늘고 줄었는지 보여 준다.</li>"
+                             "<li><b>출연자별 발언 기록</b>: 자주 나오는 전문가가 최근 어떤 말을 해 왔는지 날짜순으로 모은다.</li>"
+                             "<li><b>숫자·지표 모음</b>: 방송에서 나온 지수, 금리, 환율 같은 숫자를 지표별로 모아 추이를 본다.</li></ul>"),
+        ("다루는 채널", f"<ul class=\"kp\">{ch_list}</ul><p>구독자가 많고 꾸준히 영상을 올리는 경제·투자 채널을 고른다. 3분이 안 되는 짧은 영상과 경제·투자와 관련 없는 영상은 제외한다. 채널은 앞으로 늘어날 수 있다.</p>"),
         ("볼 수 있는 것", "<ul class=\"kp\"><li><b>홈</b>: 지금 시장 요약, 채널들의 분위기와 쟁점, 많이 언급된 종목과 숫자를 한눈에 본다.</li>"
                      "<li><b>브리핑</b>: 하루와 한 주의 영상을 종합한 시장 브리핑이다.</li>"
                      "<li><b>영상 요약</b>: 영상마다 한 줄 결론, 장면별 핵심 내용, 언급된 종목과 숫자를 정리하고, 해당 장면으로 바로 가는 시간 링크를 단다.</li>"
                      "<li><b>종목</b>: 여러 영상에서 언급된 종목을 모아 채널들의 시각을 비교한다.</li>"
+                     "<li><b>출연자</b>: 여러 번 출연한 전문가의 최근 발언을 모아 본다.</li>"
                      "<li><b>숫자·지표</b>: 영상에서 언급된 지표와 수치를 모아 본다.</li></ul>"),
-        ("어떻게 만드나", "<p>2시간마다 자동으로 새 영상을 찾아 Google의 AI(Gemini)로 요약한다. 경제·투자와 관련 없는 영상은 제외한다. "
-                     "브리핑과 종목 정리도 같은 방식으로 자동으로 만들고, 필요할 때 운영자가 한마디를 덧붙인다.</p>"),
+        ("AI와 운영자가 하는 일", "<p>새 영상은 2시간마다 자동으로 찾아 Google의 AI(Gemini)로 요약하고, 브리핑과 종목 정리도 AI가 영상 요약들을 모아 만든다. "
+                           "운영자는 다룰 채널과 요약 기준을 정하고, 잘못된 요약이나 이름 표기를 바로잡고, 브리핑에 직접 쓴 의견을 덧붙인다.</p>"),
+        ("원본 존중과 저작권", "<ul class=\"kp\"><li>영상의 자막이나 대사를 그대로 옮기지 않고, 내용을 짧게 요약한다.</li>"
+                           "<li>모든 요약에는 채널 이름과 원본 영상 링크를 달고, 영상은 YouTube 공식 플레이어로 보여 준다.</li>"
+                           "<li>영상과 썸네일의 저작권은 각 채널에 있다. 채널이 삭제를 요청하면 바로 내린다.</li></ul>"),
         ("꼭 알아 둘 점", "<ul class=\"kp\"><li>AI가 만든 요약이라 내용이 틀리거나 빠질 수 있다. 중요한 내용은 원본 영상에서 확인해야 한다.</li>"
-                      "<li>이 사이트의 내용은 투자 권유가 아니다. 숫자는 영상 속 출연자가 말한 것이며 실시간 시세가 아니다.</li>"
-                      "<li>영상과 썸네일의 저작권은 각 채널에 있다. 모든 요약에는 원본 영상 링크를 단다.</li></ul>"),
-        ("문의", f"<p>잘못된 요약, 삭제 요청, 제안은 {mail}로 보내 주면 확인한다.</p>"),
+                      "<li>이 사이트의 내용은 투자 권유가 아니다. 숫자는 영상 속 출연자가 말한 것이며 실시간 시세가 아니다.</li></ul>"),
+        ("문의와 오류 신고", f"<p>잘못된 요약, 삭제 요청, 제안은 {mail}로 보내 주면 확인하고 고친다.</p>"),
     ])
     privacy = doc("개인정보처리방침", [
         ("1. 수집하는 개인정보", "<p>이 사이트는 회원가입이나 로그인 기능이 없고, 방문자의 이름·연락처 같은 개인정보를 직접 수집하지 않는다.</p>"),
@@ -927,6 +936,9 @@ def build_video_pages(V, man, briefs, stock_slug, mark, people_set=()):
 # 영상 제목에 이름이 나온 사람만 출연자로 본다 (진행자·앵커는 보통 제목에 이름이 없다).
 # 제목에 이름이 나온 영상이 2편 이상이면 출연자 페이지를 만든다 (1편짜리는 내용이 얇아 만들지 않는다).
 PEOPLE_MIN = 2
+# 내용이 얇은 페이지는 사이트에는 두되 검색엔진에는 색인하지 말라고 표시한다 (사이트맵에서도 뺀다)
+THIN_STOCK = 3   # 언급 영상이 이보다 적은 종목 페이지
+THIN_BRIEF = 4   # 종합한 영상이 이보다 적은 일간 브리핑
 ROLE_RE = re.compile(r"(대표이사|대표|부사장|사장|회장|단장|교수|기자|센터장|본부장|연구위원|전문위원|위원장|위원|애널리스트|이코노미스트|팀장|부장|실장|소장|원장|이사|전무|상무|박사|작가|변호사|세무사|회계사|PD|CIO|CEO|파트너|매니저|수석|부대표|운용역|트레이더)")
 
 
@@ -1137,9 +1149,10 @@ def build():
         else:
             seo_t = f"{mdk(d)} 오늘 증시 요약: {b.get('headline', '')}"
             seo_d = desc_of(f"{mdk(d)} 경제 유튜브 {b.get('count', len(vids))}편으로 본 오늘 증시 흐름과 전망.", *(b.get("keypoints") or []))
-        c = write(f"brief/{d}", page(f"brief/{d}/", seo_t, seo_d, body, date=d, nav_on="brief", image=ogi))
+        thin = (b.get("count") or len(vids)) < THIN_BRIEF
+        c = write(f"brief/{d}", page(f"brief/{d}/", seo_t, seo_d, body, date=d, nav_on="brief", image=ogi, noindex=thin))
         changed += c
-        mark("brief", d, c, {"headline": b.get("headline"), "count": b.get("count"), "desc": bdesc})
+        mark("brief", d, c, {"headline": b.get("headline"), "count": b.get("count"), "desc": bdesc, "thin": thin})
 
     # 주간 브리핑
     for w in weekly:
@@ -1237,7 +1250,8 @@ def build():
                 + sect("이 종목이 나온 브리핑", len(bd), bd and '<div class="chips">' + "".join(f'<a href="{href("brief/" + x + "/")}">{e(sdate(x))}</a>' for x in bd) + "</div>", "c1")
                 + "</div>" + F.templates())
         desc = desc_of(f"경제 유튜브 {len(chans)}개 채널이 본 {name} 전망.", *([d.get("summary"), *(d.get("points") or [])] if d else [r[2] for _, r in ms[:3]]))
-        c = write(f"stock/{s_}", page(f"stock/{quote(s_)}/", f"{name} 주가 전망, 경제 유튜브 {len(chans)}곳 의견 정리 ({mdk((d or {}).get('updated') or last)})", desc, body, date=(d or {}).get("updated") or last, nav_on="stocks"))
+        thin = len(vids_) < THIN_STOCK
+        c = write(f"stock/{s_}", page(f"stock/{quote(s_)}/", f"{name} 주가 전망, 경제 유튜브 {len(chans)}곳 의견 정리 ({mdk((d or {}).get('updated') or last)})", desc, body, date=(d or {}).get("updated") or last, nav_on="stocks", noindex=thin))
         changed += c
         # 종목 목록의 순위용: 이번 주·지난주 언급 영상 수, 14일 추이, 한 줄 요약
         # 기간별 순위 데이터: 일간(최근 24시간 vs 그 전 24시간), 주간(7일 vs 7일), 월간(30일 vs 30일). [이번 기간 영상 수, 지난 기간 영상 수, 날짜별 막대]
@@ -1257,7 +1271,7 @@ def build():
         wk, pw = per_["week"][0], per_["week"][1]
         one = re.split(r"(?<=다\.)\s", (d.get("summary") or "").strip())[0] if d and d.get("summary") else (ms[0][1][2] if ms and len(ms[0][1]) > 2 else "")
         mark("stock", s_, c, {"name": name, "tone": tone, "count": len(vids_), "channels": len(chans), "last": last,
-                              "w": wk, "p": pw, "per": per_, "one": one})
+                              "w": wk, "p": pw, "per": per_, "one": one, "thin": thin})
 
     # 영상별 개별 페이지 (검색에 걸리게)
     find_channel_main(V)
@@ -1379,9 +1393,9 @@ q.addEventListener("input",f);f()})();
 
     # 사이트맵
     urls = [(url(""), today), (url("brief/"), today), (url("week/"), today), (url("stock/"), today), (url("about/"), INFO_DATE), (url("privacy/"), INFO_DATE)]
-    urls += [(url(f"brief/{d}/"), m.get("lastmod", today)) for d, m in man["brief"].items()]
+    urls += [(url(f"brief/{d}/"), m.get("lastmod", today)) for d, m in man["brief"].items() if not m.get("thin")]
     urls += [(url(f"week/{w}/"), m.get("lastmod", today)) for w, m in man["week"].items()]
-    urls += [(url(f"stock/{quote(s_)}/"), m.get("lastmod", today)) for s_, m in man["stock"].items()]
+    urls += [(url(f"stock/{quote(s_)}/"), m.get("lastmod", today)) for s_, m in man["stock"].items() if not m.get("thin")]
     urls += [(url(f"v/{k}/"), m.get("lastmod", today)) for k, m in man["video"].items()]
     urls += [(url("people/"), today)] + [(url(f"people/{quote(k)}/"), m.get("lastmod", today)) for k, m in man["people"].items()]
     write_rss(man)
