@@ -4,6 +4,8 @@ on:
   schedule:
     # 2시간마다 한 번 (하루 12번). 구글이 혼잡해서 실패한 영상을 다음 실행에서 다시 시도하기 위해 자주 돌린다.
     - cron: "15 */2 * * *"
+    # 평일 오전 10시 15분(한국 시간) 한 번 더: 오전 시황·스레드 초안을 12시 전에 받으려고
+    - cron: "15 1 * * 1-5"
   workflow_dispatch:
     inputs:
       urls:
@@ -169,7 +171,18 @@ jobs:
 
       - id: deployment
         uses: actions/deploy-pages@v4
+        continue-on-error: true   # GitHub 쪽 일시 오류("Found 0 artifacts")면 아래에서 한 번 더 시도한다
         if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' || steps.commit.outputs.videos == 'true' }}
+        with:
+          artifact_name: github-pages-${{ github.run_attempt }}
+
+      - name: 배포 다시 시도 전에 잠깐 기다리기
+        if: ${{ steps.deployment.outcome == 'failure' }}
+        run: sleep 30
+
+      - id: deployment2
+        uses: actions/deploy-pages@v4
+        if: ${{ steps.deployment.outcome == 'failure' }}
         with:
           artifact_name: github-pages-${{ github.run_attempt }}
 
