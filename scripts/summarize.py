@@ -51,7 +51,10 @@ PROMPT = """너는 한국 경제·투자 유튜브 영상을 요약하는 편집
 - people: 출연자 이름을 쉼표로 적는다. 모르면 빈 문자열.
 - conclusion: 영상의 핵심 결론. 짧게 쓴다. 공백 포함 55자 안팎으로, 최대 두 문장까지 허용한다. 한 문장에 정보를 여러 개 쉼표로 이어 붙이지 말고 핵심 하나만 담는다.
 - economic: 이 영상의 중심 내용이 경제·주식·투자·산업·부동산·재테크이면 true, 아니면 false다. 경제 채널 영상이어도 교육, 사회 사건, 건강, 재난, 경제 얘기가 거의 없는 정치·안보 등이 중심이면 false다.
-- mood: 이 영상 출연자들이 시장(주식시장 전반)을 보는 분위기를 '낙관', '중립', '비관' 중 하나로 쓴다. 상승·매수 기회를 강조하면 낙관, 하락·위험·매도를 강조하면 비관, 관망을 권하거나 출연자끼리 의견이 갈리거나 시장 전망이 아닌 내용이면 중립이다.
+- mood: 출연자가 '앞으로' 시장을 어떻게 보고, 지금 어떻게 대응하라고 권하는지를 '낙관', '중립', '비관' 중 하나로 쓴다. 지금 장이 폭락 중이라는 '현재 상황'은 기준이 아니다.
+  - 낙관: 반등·상승을 전망하거나, 지금을 매수·분할매수·보유 기회로 본다. (예: "급락했지만 지금 손절하지 말고 분할 매수할 때다" → 낙관)
+  - 비관: 추가 하락을 전망하거나, 매도·비중 축소·현금 확보를 권한다. (예: "바닥은 아직 멀었으니 현금을 늘려라" → 비관)
+  - 중립: 관망·확인 후 대응을 권하거나, 출연자끼리 의견이 갈리거나, 시장 전망이 아닌 내용이다. (예: "1월까지 기다리며 반등 신호를 확인하라" → 중립)
 - tags: 키워드 3개. '하락장', '외국인수급', '반도체', '금리', '환율'처럼 짧고 흔한 말을 우선 쓴다.
 - parts: 영상 내용을 주제별로 2~4개 파트로 나눈다. 파트 제목(title)은 네가 정한다. 각 파트에 핵심 항목을 3~4개 넣는다. 항목 text는 '소제목: 설명' 형식으로 쓴다. 출연자의 전망이나 의견은 '~라고 본다', '~라고 주장한다'처럼 출연자의 말이라는 것이 드러나게 쓴다.
 - 항목 설명은 영상을 안 본 사람이 읽고 '무엇이, 왜, 얼마나'를 알 수 있게 구체적으로 쓴다. 영상에 나온 숫자, 종목·기업·인물 이름, 근거를 넣는다.
@@ -1817,6 +1820,55 @@ MORNING_PROMPT = """아래는 오늘 오전에 올라온 경제 유튜브 영상
 """
 
 
+MOOD_PROMPT = """아래는 경제 유튜브 영상들의 요약이다. 영상마다 출연자가 '앞으로' 시장을 어떻게 보고 어떻게 대응하라고 권하는지 보고 mood를 다시 매겨라.
+지금 장이 폭락 중이라는 '현재 상황'은 기준이 아니다.
+- 낙관: 반등·상승을 전망하거나, 지금을 매수·분할매수·보유 기회로 본다.
+- 비관: 추가 하락을 전망하거나, 매도·비중 축소·현금 확보를 권한다.
+- 중립: 관망·확인 후 대응을 권하거나, 출연자끼리 의견이 갈리거나, 시장 전망이 아닌 내용이다.
+items에 영상마다 id와 mood('낙관', '중립', '비관' 중 하나)를 담아라.
+
+영상(JSON):
+"""
+
+
+def mood_schema():
+    from pydantic import BaseModel
+
+    class Item(BaseModel):
+        id: str
+        mood: str
+
+    class Moods(BaseModel):
+        items: list[Item]
+    return Moods
+
+
+def rejudge_moods(vs):
+    """요약(결론과 핵심 내용)만 보고 분위기를 다시 매긴다. 영상을 다시 요약하지 않아 한도를 거의 안 쓴다."""
+    changed = 0
+    for i in range(0, len(vs), 15):
+        part = vs[i:i + 15]
+        data = [{"id": str(k), "결론": v.get("conclusion"),
+                 "핵심": [it[1] for pt in (v.get("parts") or [])[:3] for it in (pt.get("items") or [])[:2] if len(it) > 1]} for k, v in enumerate(part)]
+        try:
+            out = call_json(MOOD_PROMPT + json.dumps(data, ensure_ascii=False), mood_schema, "THREADS_MODELS",
+                            "gemini-3.6-flash,gemini-3.5-flash,gemini-4-hydrogen,gemini-3.7-flash,gemini-3.5-flash-lite,gemini-3.1-flash-lite", 120)
+        except Exception as e:
+            print(f"분위기 다시 매기기 실패: {str(e)[:120]}")
+            continue
+        for it in out.get("items") or []:
+            try:
+                v = part[int(it.get("id"))]
+            except Exception:
+                continue
+            m = (it.get("mood") or "").strip()
+            if m in ("낙관", "중립", "비관") and m != v.get("mood"):
+                print(f"  {v.get('mood')} → {m} | {v.get('channel')} | {(v.get('conclusion') or '')[:40]}")
+                v["mood"] = m
+                changed += 1
+    return changed
+
+
 def morning_schema():
     from pydantic import BaseModel
 
@@ -2898,6 +2950,16 @@ def main(argv):
             except Exception as ex:
                 msg = str(ex).splitlines()[0][:160] if str(ex) else type(ex).__name__
                 print(f"  {m}: 안 된다 -> {msg}")
+        return 0
+    if tokens and tokens[0].split(":")[0] == "분위기재판정":  # 최근 영상의 긍정·중립·부정을 새 기준으로 다시 매긴다. 예: 분위기재판정:3 (최근 3일)
+        days = int(tokens[0].split(":")[1]) if ":" in tokens[0] else 3
+        videos = load()
+        since = (datetime.datetime.now(KST).date() - datetime.timedelta(days=days)).isoformat()
+        tgt = [v for v in videos if (v.get("date") or "") >= since]
+        changed = rejudge_moods(tgt)
+        if changed:
+            save(videos)
+        print(f"분위기 다시 매기기: 최근 {days}일 영상 {len(tgt)}편 중 {changed}편 바뀌었다")
         return 0
     if tokens == ["모델목록"]:  # 이 API 키로 쓸 수 있는 제미나이 모델을 보여 준다
         from google import genai
