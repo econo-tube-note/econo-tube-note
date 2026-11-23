@@ -104,7 +104,11 @@
   "YIg44cJknf0": "너무 짧음",
   "axONzS8DKn8": "너무 짧음",
   "eIK1qt4yJeI": "너무 짧음",
-  "uYpSpJ9J1Tc": "너무 짧음"
+  "uYpSpJ9J1Tc": "너무 짧음",
+  "1aZpSljIw1E": "경제 무관: 북한 정권과 김정은 관련 안보 및 정치 이슈를 다루고 있어 경제적 관점이 뚜렷하지 않습니다.",
+  "DQv9N_UeY0k": "너무 짧음",
+  "E5ctJly0Bqo": "너무 짧음",
+  "622CR3IukM8": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -117,13 +121,13 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 14,
-   "busy": 8,
+   "ok": 19,
+   "busy": 9,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 2,
-   "busy": 27,
+   "busy": 28,
    "dead": 4
   },
   "gemini-3.8-flash": {
@@ -133,22 +137,22 @@
   },
   "gemini-3.1-flash-lite": {
    "ok": 27,
-   "busy": 9,
+   "busy": 10,
    "dead": 4
   },
   "gemini-3.5-flash-lite": {
-   "ok": 11,
+   "ok": 12,
    "busy": 11,
    "dead": 4
   },
   "gemini-4-hydrogen": {
    "ok": 3,
-   "busy": 3,
+   "busy": 4,
    "dead": 0
   },
   "gemini-3.5-flash": {
    "ok": 0,
-   "busy": 2,
+   "busy": 3,
    "dead": 0
   }
  },
@@ -307,7 +311,8 @@
   "jd1cmkNDriI": true,
   "5AKGdNLqxUw": true,
   "Jp5CEDSrKPE": true,
-  "IVlkZX6kxsI": true
+  "IVlkZX6kxsI": true,
+  "DQv9N_UeY0k": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -320,18 +325,26 @@
   "2026-11-21": true,
   "2026-11-22": true
  },
- "last_ok": "2026-11-23T18:34",
+ "last_ok": "2026-11-23T20:19",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true,
-  "2026-11-23-am": true
+  "2026-11-23-am": true,
+  "2026-11-23-pm": true
  },
  "channel": {
   "2026-11-21-sat": true,
-  "2026-11-23-am": true
+  "2026-11-23-am": true,
+  "2026-11-23-pm": true
  },
  "blog": {
   "2026-11-16": true
  },
- "tg_offset": 777760488
+ "tg_offset": 777760488,
+ "threads_endings": [
+  "펀더멘털은 멀쩡해도 수급과 금리 변수가 얽혀 있어 머리가 아프다. 정부의 증시안정펀드가 투입되면 반도체주 수급이 실제로 돌아올 거라고 보는지 궁금하다."
+ ],
+ "blog_day": {
+  "2026-11-23": true
+ }
 }
