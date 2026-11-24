@@ -3,11 +3,10 @@ const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
   "tone": "긍정",
-  "summary": "삼성전자는 현재 저평가 국면에 있으나 AI 시대 필수재로서 장기 회복 체력을 지니고 있다.",
+  "summary": "아프리카 시장 1위와 저평가 매력을 바탕으로 긍정적으로 평가한다. 자사주 매입과 주주환원 기대감이 존재한다.",
   "points": [
-   "과거 사이클 저점과 유사한 수준으로 저평가되어 있다.",
-   "자사주 매입과 소각 등 주주환원 정책 재개 기대감이 있다.",
-   "외국인 매수세 유입과 함께 시장 반등을 주도할 종목이다."
+   "과거 사이클 저점 PBR에 근접해 하락 여력이 제한적이고 저평가되었다.",
+   "자사주 매입과 소각 재개 시 주가가 강하게 반등할 수 있다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -28,6 +27,7 @@ const STOCKSUM={
    "7ctnlT1jlyQ",
    "AT8gm5K7xAY",
    "AWknNSPEM1g",
+   "Ai_9nqUhRNo",
    "AjAzI1Uxh9c",
    "Ay9v38EYHgA",
    "AydkVh-c6GI",
@@ -52,6 +52,7 @@ const STOCKSUM={
    "IQPubZrMfH8",
    "IVlkZX6kxsI",
    "ImmDYGasFbE",
+   "JDRsZE771wA",
    "JVtGCzfB7NA",
    "JYyoOyLbEdY",
    "K101Dy3FU1w",
@@ -63,7 +64,6 @@ const STOCKSUM={
    "MzYP-A-MNaI",
    "N_4n0mMwAWA",
    "OG0IvvfJk5s",
-   "OK2FJONMpGA",
    "Oe69L5Dv7w0",
    "PREEBWeBwhs",
    "PVAvcqVLWxg",
@@ -158,7 +158,7 @@ const STOCKSUM={
    "zrfU-fyCP04",
    "zwDALEtOzR8"
   ],
-  "count": 147,
+  "count": 148,
   "updated": "2026-11-24"
  },
  "엔비디아": {
@@ -293,11 +293,11 @@ const STOCKSUM={
  "SK하이닉스": {
   "name": "SK하이닉스",
   "tone": "긍정",
-  "summary": "공급 부족 지속과 고객사 다변화로 저평가 매력이 부각되며, 반도체 회복세 속에서 반등 가능성이 높다고 평가한다.",
+  "summary": "다수의 채널은 저평가 매력과 공급 부족에 따른 실적 기대를 높게 평가한다. 외국인의 매도 제한 요인도 있으나 반도체 업황 회복과 함께 반등 기대감이 크다.",
   "points": [
-   "2027년까지 공급 부족이 이어지며 고객사 다변화로 가격 결정력이 높아진다.",
+   "2027년까지 공급 부족이 이어지고 고객사 다변화로 가격 결정력이 높아진다.",
    "이익 대비 시가총액이 낮아져 가격 매력과 저평가 국면에 있다.",
-   "엔비디아 급등과 기술주 훈풍으로 ADR이 급등하며 강한 반등세를 보였다."
+   "엔비디아 급등과 기술주 훈풍에 힘입어 ADR이 폭등하는 등 강한 반등세를 보인다."
   ],
   "ids": [
    "-GrEZiF4e6k",
@@ -321,6 +321,7 @@ const STOCKSUM={
    "7ctnlT1jlyQ",
    "AT8gm5K7xAY",
    "AWknNSPEM1g",
+   "Ai_9nqUhRNo",
    "AjAzI1Uxh9c",
    "Ay9v38EYHgA",
    "AydkVh-c6GI",
@@ -357,7 +358,6 @@ const STOCKSUM={
    "MzYP-A-MNaI",
    "N_4n0mMwAWA",
    "OG0IvvfJk5s",
-   "OK2FJONMpGA",
    "Oe69L5Dv7w0",
    "PREEBWeBwhs",
    "PVAvcqVLWxg",
@@ -443,11 +443,12 @@ const STOCKSUM={
    "xqJaSkWIQiM",
    "xsTx1CQTO4c",
    "xx_6qed6xCg",
+   "yGpzZbCZ0eU",
    "yOr5hocYe5g",
    "yrEcOVH79Pc",
    "zwDALEtOzR8"
   ],
-  "count": 146,
+  "count": 147,
   "updated": "2026-11-24"
  },
  "코어위브": {
