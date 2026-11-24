@@ -2,8 +2,12 @@
 const BRIEFS=[
  {
   "date": "2026-11-24",
-  "count": 7,
+  "count": 11,
   "sources": [
+   "jzQJCFw1Qmk",
+   "CTZ8-6dNW4Y",
+   "lEK_6li3T0U",
+   "3qmWCkORZts",
    "yo24thbKD4A",
    "4ef5Us1PLUU",
    "YUMN-SLIJAk",
@@ -12,249 +16,198 @@ const BRIEFS=[
    "uBEYE0bjlNY",
    "vcHvXcQw7e0"
   ],
-  "headline": "젠슨 황 복귀로 증시가 급반등했으나 금리 등 거시 불확실성이 남았다고 본다.",
+  "headline": "젠슨 황의 엔비디아 복귀와 호재에 힘입어 글로벌 증시가 급반등했다.",
   "keypoints": [
-   "젠슨 황 복귀 소식에 엔비디아가 30%대 급등했다고 전한다.",
-   "국내 반도체 대형주도 프리마켓에서 두 자릿수 상승세를 보였다고 전한다.",
-   "고물가와 금리 불확실성으로 보수적 대응이 필요하다는 시각이 나온다.",
-   "변동성 장세에서 저항선 확인과 현금 비중 조절이 필요하다고 조언한다."
+   "젠슨 황 엔비디아 CEO의 복귀로 엔비디아가 30%대 폭등하고 필라델피아 반도체 지수가 급등했다.",
+   "외생적 악재 해소와 저평가 매력 부각으로 코스피가 매수 사이드카와 함께 급반등을 기록했다.",
+   "금리 인상 우려와 유동성 축소 리스크가 여전히 남아있어 보수적 관점과 신중한 대응이 필요하다.",
+   "하락장 끝자락에서 과도한 공포로 인한 매도보다는 현금 비중을 조절하며 보유하는 전략이 권장된다."
   ],
   "themes": [
    {
-    "title": "젠슨 황 복귀와 기술주 급반등",
-    "summary": "젠슨 황 CEO 복귀로 엔비디아가 30%대 급등하며 나스닥과 반도체 지수가 반등했다고 전한다. 국내 반도체주도 프리마켓에서 동반 강세를 보였다고 설명한다.",
+    "title": "엔비디아 젠슨 황 복귀와 반도체 급등",
+    "summary": "젠슨 황의 전격 복귀로 엔비디아가 30% 넘게 폭등하고 필라델피아 반도체 지수와 관련 밸류에이션이 동반 급등하며 시장 안도감을 이끌었다.",
     "refs": [
+     "jzQJCFw1Qmk",
+     "CTZ8-6dNW4Y",
      "yo24thbKD4A",
-     "pssXKLyr05c",
      "uBEYE0bjlNY",
      "vcHvXcQw7e0"
     ]
    },
    {
-    "title": "금리와 물가 등 거시 불확실성",
-    "summary": "물가 상승 우려와 연준의 금리 이슈가 시장 변동성의 핵심이라고 짚는다. 단기 반등에도 금리 불확실성과 정치적 노이즈가 여전하다고 분석한다.",
+    "title": "국내 증시 바닥 확인과 반등 전망",
+    "summary": "외생적 이벤트로 급락했던 국내 증시는 외국인 수급 유입과 저평가 매력을 바탕으로 바닥을 확인하고 반등 흐름에 진입했다.",
     "refs": [
+     "jzQJCFw1Qmk",
+     "lEK_6li3T0U",
+     "3qmWCkORZts",
+     "4ef5Us1PLUU",
+     "vcHvXcQw7e0"
+    ]
+   },
+   {
+    "title": "금리 및 유동성 거시경제 리스크",
+    "summary": "CEO 복귀에도 불구하고 추가 금리 인상 논란과 긴축적 자금 조달 여건 등 거시경제적 불확실성은 여전히 시장을 압박하는 요인이다.",
+    "refs": [
+     "CTZ8-6dNW4Y",
      "yo24thbKD4A",
      "4ef5Us1PLUU",
-     "uBEYE0bjlNY",
-     "vcHvXcQw7e0"
-    ]
-   },
-   {
-    "title": "반등 장세 속 투자 대응 전략",
-    "summary": "저평가 구간이므로 분할 매수와 주도주 보유가 유효하다는 의견이 나온다. 반면 저항선 확인 후 현금을 확보하며 보수적으로 대응하라는 조언도 있다.",
-    "refs": [
-     "yo24thbKD4A",
-     "4ef5Us1PLUU",
-     "hZqsRcqmhPQ",
-     "vcHvXcQw7e0"
-    ]
-   },
-   {
-    "title": "국내 기업 현안과 당국 역할",
-    "summary": "최태원 회장의 9,440억 원 현금 화해권고 신청으로 SK 오너 리스크 해소가 기대된다고 전한다. 한편 한국 증시안정기금의 실효성에는 비판이 나온다.",
-    "refs": [
-     "pssXKLyr05c",
-     "uBEYE0bjlNY",
      "vcHvXcQw7e0"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "젠슨 황 복귀 소식에 엔비디아 주가가 30% 이상 급등했다고 전한다.",
+    "point": "젠슨 황 엔비디아 CEO의 복귀가 증시의 급등과 반등을 이끌었다.",
     "refs": [
-     "yo24thbKD4A",
-     "pssXKLyr05c",
-     "uBEYE0bjlNY"
-    ]
-   },
-   {
-    "point": "금리와 물가 등 거시경제 불확실성이 여전히 남아 있다고 지적한다.",
-    "refs": [
+     "jzQJCFw1Qmk",
+     "CTZ8-6dNW4Y",
      "yo24thbKD4A",
      "uBEYE0bjlNY",
      "vcHvXcQw7e0"
     ]
    },
    {
-    "point": "주요 반도체 기업들이 실적 대비 저평가된 상태라고 평가한다.",
+    "point": "현재 증시는 밸류에이션상 저평가 구간이며 패닉에 따른 매도보다는 보유가 유효하다.",
     "refs": [
-     "4ef5Us1PLUU",
-     "hZqsRcqmhPQ"
-    ]
-   },
-   {
-    "point": "한국 증시안정기금과 당국의 시장 방어 의지가 미흡하다고 비판한다.",
-    "refs": [
-     "uBEYE0bjlNY",
-     "vcHvXcQw7e0"
+     "jzQJCFw1Qmk",
+     "lEK_6li3T0U",
+     "3qmWCkORZts",
+     "4ef5Us1PLUU"
     ]
    }
   ],
-  "disagreements": [
-   {
-    "topic": "반등 장세 속 매매 전략",
-    "views": [
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "금리 불확실성이 여전해 단기 반등에도 보수적 관점을 유지해야 한다고 본다.",
-      "ref": "yo24thbKD4A"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "5,100~5,150포인트 저항선에서 현금 확보를 고민해야 한다고 지적한다.",
-      "ref": "hZqsRcqmhPQ"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "밸류에이션 저점 구간이므로 현금 비중 조절과 분할 매수가 유효하다고 주장한다.",
-      "ref": "4ef5Us1PLUU"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "단기 매매 시 반등을 놓치므로 주도주 보유 전략이 맞았다고 지적한다.",
-      "ref": "vcHvXcQw7e0"
-     }
-    ]
-   },
-   {
-    "topic": "물가 둔화 및 금리 전망",
-    "views": [
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "내년 3월부터 유가 기저 효과로 물가가 둔화돼 유동성 우려가 해소된다고 본다.",
-      "ref": "4ef5Us1PLUU"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "올해 12월 금리 인상 후 내년에는 금리를 동결할 가능성이 높다고 전망한다.",
-      "ref": "vcHvXcQw7e0"
-     },
-     {
-      "channel": "증시각도기TV",
-      "view": "물가가 약 3.5%로 높아 2028년에야 목표치 2%에 도달한다고 전한다.",
-      "ref": "uBEYE0bjlNY"
-     }
-    ]
-   },
-   {
-    "topic": "엔비디아 복귀 이후 주가 전망",
-    "views": [
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "월가 주요 기관들이 엔비디아 목표 주가를 상향하며 긍정적으로 평가한다고 전한다.",
-      "ref": "yo24thbKD4A"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "젠슨 황 복귀로 국가 안보 리스크가 걷히며 강한 긍정 요인이 됐다고 평가한다.",
-      "ref": "pssXKLyr05c"
-     },
-     {
-      "channel": "삼프로TV 3PROTV",
-      "view": "사임 전부터 하락 추세였고 정치적 노이즈가 남아 과거와 다를 수 있다고 본다.",
-      "ref": "vcHvXcQw7e0"
-     }
-    ]
-   }
-  ],
+  "disagreements": [],
   "stocks": [
    {
     "name": "엔비디아",
-    "count": 6,
-    "tone": "혼재",
+    "count": 10,
+    "tone": "긍정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "젠슨 황 복귀로 30%대 급등하며 월가 목표가 상향이 이어졌다고 전한다.",
+      "channel": "체슬리TV",
+      "view": "젠슨 황 CEO의 복귀로 경영 연속성 우려가 해소되며 주가가 31% 폭등했다.",
+      "ref": "jzQJCFw1Qmk"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "CEO 복귀로 불확실성이 해소되었고 주가 하락에 따른 저평가 매력이 부각된다.",
+      "ref": "CTZ8-6dNW4Y"
+     },
+     {
+      "channel": "체슬리TV",
+      "view": "젠슨 황의 복귀와 함께 악재가 해소되며 반도체 장세 급반등의 발판을 마련해준 핵심 종목으로 평가함.",
+      "ref": "lEK_6li3T0U"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "CEO 젠슨 황의 활동 재개 등이 시장의 반등 계기를 마련했으나 매크로 불확실성 해소가 병행되어야 지속 상승할 것으로 본다.",
+      "ref": "3qmWCkORZts"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "젠슨 황 복귀 소식으로 30%대 급등하며 시장의 반등을 주도함.",
       "ref": "yo24thbKD4A"
      },
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "주가 반등으로 밸류에이션이 10배 수준으로 조정돼 평가가 가능해졌다고 본다.",
+      "channel": "삼프로TV",
+      "view": "최근 주가 급락 후 반등하며 밸류에이션이 다시 10배 수준으로 조정되어 평가가 가능해졌다고 본다.",
       "ref": "4ef5Us1PLUU"
      },
      {
       "channel": "815머니톡",
-      "view": "PER 13배 수준으로 저평가됐으나 시장에서 외면받고 있다고 설명한다.",
+      "view": "높은 성장률에도 불구하고 PER 13배 수준으로 저평가되어 있다.",
       "ref": "hZqsRcqmhPQ"
      },
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "젠슨 황 복귀로 국가 안보 리스크가 해소돼 증시 긍정 요인이 됐다고 평가한다.",
+      "channel": "삼프로TV",
+      "view": "젠슨 황 CEO 복귀로 국가 안보 리스크가 걷히며 증시에 강한 긍정적 요인으로 작용했다고 평가한다.",
       "ref": "pssXKLyr05c"
      },
      {
       "channel": "증시각도기TV",
-      "view": "주가가 31% 폭등해 하루 만에 시총이 약 1조 달러 늘었다고 지적한다.",
+      "view": "젠슨 황 복귀 소식에 주가가 31% 폭등하며 하루 만에 시가총액이 약 1조 달러 증가했다.",
       "ref": "uBEYE0bjlNY"
      },
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "급반등했으나 이미 하락 추세였고 정치적 노이즈가 남을 것이라 평가한다.",
+      "channel": "삼프로TV",
+      "view": "젠슨 황 CEO 복귀로 급반등했으나 사임 전부터 이미 하락 추세였고 정치적 노이즈가 남아 과거와 다른 행보를 보일 수 있다고 평가한다.",
       "ref": "vcHvXcQw7e0"
      }
     ]
    },
    {
     "name": "삼성전자",
-    "count": 3,
+    "count": 6,
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "올해와 내년 예상 이익 합계가 시총과 비슷할 정도로 저평가됐다고 언급한다.",
+      "channel": "체슬리TV",
+      "view": "반도체 지수 반등 및 저평가 매력으로 외국인의 공격적인 매수세가 유입될 것으로 평가되었다.",
+      "ref": "jzQJCFw1Qmk"
+     },
+     {
+      "channel": "체슬리TV",
+      "view": "금산분리 예외 적용 시 70조 원의 재원을 바탕으로 적극적인 자사주 매입과 소각을 진행해 주가를 회복할 수 있다고 평가함.",
+      "ref": "lEK_6li3T0U"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "SK하이닉스와 함께 반등세를 이어갈 경우 국내 증시 지수가 안정적으로 안착하는 데 기여할 주요 종목으로 평가한다.",
+      "ref": "3qmWCkORZts"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "올해와 내년 예상 이익 합계가 시가총액과 비슷해질 정도로 저평가된 상태라고 언급한다.",
       "ref": "4ef5Us1PLUU"
      },
      {
       "channel": "815머니톡",
-      "view": "주주 환원 정책 심의 이슈로 단기 반등 기대감이 존재한다고 설명한다.",
+      "view": "주주 환원 정책 심의 이슈가 있어 단기 반등 기대감이 존재한다.",
       "ref": "hZqsRcqmhPQ"
      },
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "프리마켓에서 10% 오르며 반등을 주도하고 소부장 M&A에 나설 것이라 본다.",
+      "channel": "삼프로TV",
+      "view": "프리마켓에서 10% 상승하며 반등을 주도하고 있으며, 기술 종속을 막기 위해 막대한 현금으로 핵심 소부장 M&A에 나설 가능성이 높다고 본다.",
       "ref": "vcHvXcQw7e0"
      }
     ]
    },
    {
     "name": "SK하이닉스",
-    "count": 3,
+    "count": 6,
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "이익 대비 시가총액이 낮아져 가격 매력이 있다고 평가한다.",
+      "channel": "체슬리TV",
+      "view": "엔비디아 급등에 힘입어 ADR이 20% 폭등하며 강력한 반등세를 보였다.",
+      "ref": "jzQJCFw1Qmk"
+     },
+     {
+      "channel": "체슬리TV",
+      "view": "외국인이 이전 매도를 수정하고 미국 반도체 회복세에 발맞추어 공격적으로 저가 매수할 종목으로 평가함.",
+      "ref": "lEK_6li3T0U"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "삼성전자와 함께 지수 상방 안착을 이끌 핵심 반도체 종목으로 언급한다.",
+      "ref": "3qmWCkORZts"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "삼성전자와 함께 이익 대비 시가총액이 낮아져 가격 매력이 있다고 평가한다.",
       "ref": "4ef5Us1PLUU"
      },
      {
       "channel": "증시각도기TV",
-      "view": "엔비디아 급등과 기술주 훈풍으로 ADR 가격이 20% 상승했다고 전한다.",
+      "view": "엔비디아 급등과 기술주 훈풍에 힘입어 ADR 가격이 20% 상승했다.",
       "ref": "uBEYE0bjlNY"
      },
      {
-      "channel": "삼프로TV 3PROTV",
-      "view": "프리마켓에서 13% 급등했고 정상 회복에 두 자릿수 상승이 필요하다고 본다.",
+      "channel": "삼프로TV",
+      "view": "프리마켓 13% 급등으로 상승 3대장에 올랐으며, 선물·롱숏 거래 영향이 있으나 정상적인 흐름을 위해 두 자릿수 상승이 필요하다고 평가한다.",
       "ref": "vcHvXcQw7e0"
-     }
-    ]
-   },
-   {
-    "name": "마이크론",
-    "count": 2,
-    "tone": "긍정",
-    "mentions": [
-     {
-      "channel": "815머니톡",
-      "view": "PER 8배 수준으로 반도체 업종 내 저평가 상태라고 설명한다.",
-      "ref": "hZqsRcqmhPQ"
-     },
-     {
-      "channel": "증시각도기TV",
-      "view": "반도체 지수 폭등과 함께 주가가 19% 대폭 상승했다고 전한다.",
-      "ref": "uBEYE0bjlNY"
      }
     ]
    }
@@ -372,7 +325,7 @@ const BRIEFS=[
       "ref": "VVjaAdxhIic"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "과거 사례를 볼 때 즉각적 집행이 드물고 규모가 부족해 시장 실망감만 키우고 있다.",
       "ref": "IVlkZX6kxsI"
      }
@@ -418,7 +371,7 @@ const BRIEFS=[
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "이익 전망치 괴리가 크지만 주주 환원과 펀더멘털을 고려하면 저평가 상태다.",
       "ref": "IVlkZX6kxsI"
      },
@@ -457,7 +410,7 @@ const BRIEFS=[
       "ref": "9jVNs0KssDk"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "AI 노출도가 낮고 주가가 탄탄하게 유지되어 시스템 위기가 아님을 보여준다.",
       "ref": "vyuznP_KIJE"
      }
@@ -469,7 +422,7 @@ const BRIEFS=[
     "tone": "부정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "트럼프의 해외 데이터센터 과세 경고 여파로 14% 이상 급락했다.",
       "ref": "YBPuplDBzU4"
      },
@@ -486,7 +439,7 @@ const BRIEFS=[
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "영업이익률 20%를 넘는 탄탄한 수익성을 바탕으로 시장에서 선방하고 있다.",
       "ref": "w7Eh9HBW7NM"
      },
@@ -1263,12 +1216,12 @@ const BRIEFS=[
     "topic": "반도체 주가 바닥 및 반등 가능성",
     "views": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "반등 트리거가 없으므로 기술적 반등보다 바닥 확인 과정이 필요하다고 본다.",
       "ref": "JVtGCzfB7NA"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "외국인 수급 개선과 숏커버링 유입 시 반도체 업종이 강한 연말 반등을 보일 것으로 본다.",
       "ref": "UlNBpokQfVk"
      }
@@ -1299,12 +1252,12 @@ const BRIEFS=[
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "실적 지속성과 숏커버링 가능성이 높아 저평가 구간이라고 본다.",
       "ref": "kXGnjB4FYIk"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "반도체 업황 우려와 수급 악화로 주가가 6% 가까이 급락했다.",
       "ref": "JVtGCzfB7NA"
      }
@@ -1316,12 +1269,12 @@ const BRIEFS=[
     "tone": "부정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "공매도 리포트와 중국 관련 악재가 불거지며 주가가 급락했다.",
       "ref": "JVtGCzfB7NA"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "미중 기술 갈등과 공매도 공격으로 주가 불확실성이 커졌다고 본다.",
       "ref": "kXGnjB4FYIk"
      }
@@ -1355,7 +1308,7 @@ const BRIEFS=[
       "ref": "ByMmWIxsB4E"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "성공적으로 상장하여 대규모 자금을 조달해 AI 인프라 투자를 이어갈 것이다.",
       "ref": "kXGnjB4FYIk"
      }
@@ -1372,7 +1325,7 @@ const BRIEFS=[
       "ref": "bLg89ute0zQ"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "실적 가시성이 높아 증시 약세 속에서도 견조한 상승 흐름을 나타낸다.",
       "ref": "Tzc0KuusVbI"
      }
@@ -1384,12 +1337,12 @@ const BRIEFS=[
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "앤트로픽 상장 후 직접 투자가 가능해지면서 기존 수급이 이탈해 급락했다.",
       "ref": "fNFna6Mp5Dg"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "앤트로픽 초기 투자를 통해 약 4조 3,000억 원의 투자 수익을 올렸다.",
       "ref": "qu5RoRs0beQ"
      }
@@ -1589,12 +1542,12 @@ const BRIEFS=[
     "topic": "한중 관계 개선 및 엔터·중국 관련주 상승의 지속성",
     "views": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "중국 내 애국소비 경향과 현지 경쟁 심화를 고려할 때 장기 추세 상승보다는 단기 트레이딩 관점으로 접근해야 한다.",
       "ref": "22mEZYyDpZA"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "공동 제작 범위 확대와 서비스 협상 타결로 확실한 실적 모멘텀이 확보되어 지속적인 수혜가 기대된다.",
       "ref": "G5Kz41EjDmw"
      }
@@ -1679,7 +1632,7 @@ const BRIEFS=[
       "ref": "FlUs8YY8aAE"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "실적 성장세에 비해 PER이 낮아 강한 반등이 나왔다고 평가한다.",
       "ref": "22mEZYyDpZA"
      },
@@ -1696,7 +1649,7 @@ const BRIEFS=[
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "거래량이 수반되며 수급이 집중되어 반도체 주도주가 쉬어갈 때 대안이 될 수 있다.",
       "ref": "22mEZYyDpZA"
      },
@@ -1718,12 +1671,12 @@ const BRIEFS=[
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "한한령 완화 및 한중 관계 개선 기대감에 힘입어 급등세를 보였다.",
       "ref": "22mEZYyDpZA"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "한령 해제 기대감으로 수급이 집중되며 강세를 기록했다.",
       "ref": "bsmFdEtKWqM"
      },
@@ -1740,7 +1693,7 @@ const BRIEFS=[
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "중국 관련 대장주로 인식되어 기타 법인의 지속적인 매집이 확인됐다.",
       "ref": "bsmFdEtKWqM"
      },
@@ -1750,7 +1703,7 @@ const BRIEFS=[
       "ref": "5ce3JngZSq0"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "중국 콘텐츠 시장 개방 기대감으로 주가가 큰 폭의 상승세를 보였다.",
       "ref": "G5Kz41EjDmw"
      }
@@ -1767,12 +1720,12 @@ const BRIEFS=[
       "ref": "VEYoCnIz6XQ"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "화장품 섹터 내에서 에스트라 등 실적을 확인해야 할 기업이다.",
       "ref": "d9rmKdDS43w"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "엔터·콘텐츠 대신 기초 화장품 비중이 높아 실적 기반으로 유리하다.",
       "ref": "G_CPMSwOIP0"
      }
@@ -1926,7 +1879,7 @@ const BRIEFS=[
       "ref": "NCGhP2Vyods"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "로봇주는 매물 부담이 크고 정배열 종목이 드물어 엔터주보다 투자 매력이 낮다고 평가한다.",
       "ref": "egDZOq_zOPo"
      }
@@ -1970,7 +1923,7 @@ const BRIEFS=[
       "ref": "Cgn7XPWef2A"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "저점 마진율이 25% 이상 유지된다면 구조적 성장주로 보며 매수하기 좋은 구간이라고 판단한다.",
       "ref": "TDGVrEKXU5M"
      },
@@ -1995,7 +1948,7 @@ const BRIEFS=[
       "ref": "6g110iUWTVo"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "엔비디아 구매 약정 증가 및 데이터센터용 낸드 수요 호조 수혜를 받으며 주도주 역할을 할 것으로 평가한다.",
       "ref": "eFnxFsUiMvs"
      },
@@ -2062,7 +2015,7 @@ const BRIEFS=[
       "ref": "Cgn7XPWef2A"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "AI 네러티브에 노출된 기업이나 분석 난이도가 높아 삼성전자와 같은 방향성으로 이해할 것을 권한다.",
       "ref": "TDGVrEKXU5M"
      },
@@ -2087,7 +2040,7 @@ const BRIEFS=[
       "ref": "6g110iUWTVo"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "HBM 수요 증대와 핵심 펀더멘털의 훼손이 없어 이익 창출력이 공고하다고 평가한다.",
       "ref": "eFnxFsUiMvs"
      },
@@ -2154,7 +2107,7 @@ const BRIEFS=[
       "ref": "Cgn7XPWef2A"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "실적 가이던스가 긍정적으로 발표되어 시장의 우려를 상당 부분 해소했다고 평가한다.",
       "ref": "TDGVrEKXU5M"
      },
@@ -2169,7 +2122,7 @@ const BRIEFS=[
       "ref": "-PVT3Gp45SE"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "고점 대비 시가총액이 빠져 주가수익비율 10배 수준으로 저평가되어 매수 관점이 유효하다고 평가한다.",
       "ref": "eFnxFsUiMvs"
      },
@@ -2184,7 +2137,7 @@ const BRIEFS=[
       "ref": "Codp7P9gH4U"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "견고한 실적과 차세대 칩 수요 덕분에 성장세가 이어지며, 밸류에이션 부담 완화로 섣부른 손절은 비유익하다고 평가한다.",
       "ref": "E2-V6z2WQzo"
      }
@@ -2260,7 +2213,7 @@ const BRIEFS=[
       "ref": "NCGhP2Vyods"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "로봇주 중 그나마 차트가 나은 편이나 매물 부담이 존재한다.",
       "ref": "egDZOq_zOPo"
      }
@@ -2277,7 +2230,7 @@ const BRIEFS=[
       "ref": "NCGhP2Vyods"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "CES 로봇 기술 진전 기대감 및 삼성의 로봇 사업 추진 모멘텀으로 주가가 강세를 보였다고 언급한다.",
       "ref": "eFnxFsUiMvs"
      },
@@ -2294,7 +2247,7 @@ const BRIEFS=[
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "드러켄밀러가 3분기 포트폴리오에서 전량 매도하며 비중을 축소했다.",
       "ref": "2NXRZFCSWcs"
      },
@@ -2412,7 +2365,7 @@ const BRIEFS=[
       "ref": "n16GTXBi7e0"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "SK하이닉스는 반도체 업황 반등 시 삼성전자보다 단기 주가 반등 폭이 더 클 것이다.",
       "ref": "GS5nFhf6Nuk"
      }
@@ -2422,7 +2375,7 @@ const BRIEFS=[
     "topic": "하락장 속 방어주 및 배당주 투자 전략",
     "views": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "국내 시장은 유동성이 얇아 하락장 시 방어주도 동반 하락하므로 편입을 지양해야 한다.",
       "ref": "G-DfszxECas"
      },
@@ -2446,7 +2399,7 @@ const BRIEFS=[
       "ref": "f_Pb9-42cUE"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "외국인 매도세로 하락했으나 장기적 기술 세대교체 관점에서 안정적이다.",
       "ref": "GS5nFhf6Nuk"
      },
@@ -2468,7 +2421,7 @@ const BRIEFS=[
       "ref": "ZCzUlVm2jSg"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "고점 대비 과도하게 하락했으나 반도체 반등 시 탄력적인 상승이 기대된다.",
       "ref": "GS5nFhf6Nuk"
      },
@@ -2652,7 +2605,7 @@ const BRIEFS=[
       "ref": "zYgSmH3Wl_s"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "PBR 1배 수준인 110만 원 이하에서는 저가 매수 유입이 기대된다고 본다.",
       "ref": "Of8HJe9eNYw"
      }
@@ -2669,7 +2622,7 @@ const BRIEFS=[
       "ref": "9MXwHlep8wQ"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "CEO 부재 우려로 악재 작용 중이나 실적 자체는 탄탄하다고 평가한다.",
       "ref": "lChAcS0iIaA"
      }
@@ -2681,7 +2634,7 @@ const BRIEFS=[
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "베트남 공장 투자 발표 후 대피성 자금이 쏠리며 5%대 상승했다고 본다.",
       "ref": "W3AvtA5OwVE"
      },
@@ -2698,7 +2651,7 @@ const BRIEFS=[
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "화장품 용기 공급 부족 수혜와 실적 기대감으로 신고가를 경신했다고 평가한다.",
       "ref": "W3AvtA5OwVE"
      },
@@ -2715,7 +2668,7 @@ const BRIEFS=[
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "견조한 ODM 실적 흐름을 바탕으로 대형주 약세 속에서도 반등했다고 본다.",
       "ref": "W3AvtA5OwVE"
      },
@@ -2732,12 +2685,12 @@ const BRIEFS=[
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "기관 수급이 유입되고 하락장에서도 방어력을 보여준 핵심 로봇주로 평가한다.",
       "ref": "Of8HJe9eNYw"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "로봇 관련주 매수세 유입으로 5.7% 상승했다고 지적한다.",
       "ref": "LagAldYbD8M"
      }
@@ -2754,7 +2707,7 @@ const BRIEFS=[
       "ref": "OK2FJONMpGA"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "변동성이 크지만 업황 회복 시 빠르게 돌아설 수 있다고 평가한다.",
       "ref": "lChAcS0iIaA"
      }
@@ -2862,7 +2815,7 @@ const BRIEFS=[
       "ref": "GzDMiPDUZr0"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "CEO 리스크로 단기 심리적 충격은 있으나 대체 불가능한 칩 성능 덕분에 기업 경쟁력은 유지된다고 본다.",
       "ref": "fdk1qjtZYA0"
      }
@@ -2880,7 +2833,7 @@ const BRIEFS=[
       "ref": "mW4Bp0uo0eQ"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "PER 2.78배, PBR 1.1배 수준의 저평가 구간에서 외국인 중장기 자금이 유입되고 있다고 본다.",
       "ref": "fdk1qjtZYA0"
      },
@@ -2906,7 +2859,7 @@ const BRIEFS=[
       "ref": "mW4Bp0uo0eQ"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "가격 논란이 있을 수 있으나 반도체 업황 펀더멘털 관점에서 투자가치가 존재한다고 본다.",
       "ref": "fdk1qjtZYA0"
      },
@@ -2932,7 +2885,7 @@ const BRIEFS=[
       "ref": "mW4Bp0uo0eQ"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "단기 심리적 충격에도 불구하고 대체 불가능한 칩 성능으로 경쟁력이 유지된다고 본다.",
       "ref": "fdk1qjtZYA0"
      },
@@ -2958,7 +2911,7 @@ const BRIEFS=[
       "ref": "mW4Bp0uo0eQ"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "실적 발표 후 주가가 25% 급등하며 대출 및 수급 리스크 우려를 완화했다고 평가한다.",
       "ref": "fdk1qjtZYA0"
      }
@@ -3070,7 +3023,7 @@ const BRIEFS=[
     "topic": "젠슨 황 사임이 엔비디아의 단기 경쟁력 및 실적에 미치는 영향",
     "views": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "조직 재정비 시간이 필요하고 성장 속도가 조절되어 단기 불확실성이 클 것으로 본다.",
       "ref": "p7m602W5tg4"
      },
@@ -3108,7 +3061,7 @@ const BRIEFS=[
       "ref": "r_mO3QY3fE4"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "PBR 0.9배 수준으로 극심한 저평가 구간에 위치해 있다고 평가한다.",
       "ref": "BIhFDJtoK6k"
      }
@@ -3139,7 +3092,7 @@ const BRIEFS=[
       "ref": "PZLLj9tHYlQ"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "장기 공급 계약 완료로 하단 지지력이 유지된다고 본다.",
       "ref": "BIhFDJtoK6k"
      }
@@ -3165,7 +3118,7 @@ const BRIEFS=[
       "ref": "r_mO3QY3fE4"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "젠슨 황 사임 이슈와 실적 발표를 앞두고 단기 불확실성과 성장 속도 조절 가능성이 높다고 본다.",
       "ref": "p7m602W5tg4"
      },
@@ -3191,7 +3144,7 @@ const BRIEFS=[
       "ref": "PZLLj9tHYlQ"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "조달 금리 하락과 대규모 사전 수주 확인으로 신용 리스크 우려를 해소했다고 평가한다.",
       "ref": "BIhFDJtoK6k"
      }
@@ -3207,7 +3160,7 @@ const BRIEFS=[
       "ref": "_0ePh1KmGdc"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "엔비디아 독점력이 흔들리는 상황에서 대안 칩으로 수혜를 입을 것으로 본다.",
       "ref": "BIhFDJtoK6k"
      }
@@ -3223,7 +3176,7 @@ const BRIEFS=[
       "ref": "_0ePh1KmGdc"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "빅테크 기업들의 자체 AI 칩 개발 확대 흐름 속에서 수혜를 얻고 있다고 본다.",
       "ref": "BIhFDJtoK6k"
      }
@@ -3305,7 +3258,7 @@ const BRIEFS=[
     "topic": "삼성전자와 SK하이닉스의 하반기 모멘텀 및 경쟁력 우위",
     "views": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "삼성전자가 파운드리 부문의 레퍼런스 축적과 부활 기대감으로 하반기 모멘텀 측면에서 하이닉스보다 유리할 수 있다고 평가한다.",
       "ref": "DNHHB8jEuSM"
      },
@@ -3323,7 +3276,7 @@ const BRIEFS=[
     "count": 3,
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "파운드리 부문 부활 기대감으로 하반기 모멘텀이 상대적으로 우수할 수 있다고 평가한다.",
       "ref": "DNHHB8jEuSM"
      },
@@ -3344,7 +3297,7 @@ const BRIEFS=[
     "count": 2,
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "단기 반등 시 130만~150만 원선 매물 소화가 필요하며 전고점 돌파는 모멘텀이 더 필요하다고 본다.",
       "ref": "DNHHB8jEuSM"
      },
@@ -3360,7 +3313,7 @@ const BRIEFS=[
     "count": 2,
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "하락장 속에서도 우하향하지 않고 견조하게 추세를 유지하는 대형주로 평가한다.",
       "ref": "DNHHB8jEuSM"
      },
@@ -3381,7 +3334,7 @@ const BRIEFS=[
       "ref": "jSVzxKubRcQ"
      },
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "CEO 관련 정치적 노이즈에도 불구하고 실적은 견조할 것으로 본다.",
       "ref": "zb7Lyp31Mvg"
      }
@@ -3392,7 +3345,7 @@ const BRIEFS=[
     "count": 2,
     "mentions": [
      {
-      "channel": "삼프로TV 3PROTV",
+      "channel": "삼프로TV",
       "view": "옵티머스 부품 원가 절감 및 정치적 리스크로 주가 변동성이 커질 수 있다고 본다.",
       "ref": "zb7Lyp31Mvg"
      },
