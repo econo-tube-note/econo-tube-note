@@ -237,6 +237,11 @@ button.link.shr{font:inherit;cursor:pointer}
 .infodoc h2.bt{margin:26px 0 8px}.infodoc p,.infodoc li{line-height:1.75}
 #themes,#agree,#disagree{scroll-margin-top:12px}
 .dis .dv .hv{align-self:flex-end}
+.dis .dv{justify-content:flex-start}
+.dvi{display:flex;flex-direction:column;gap:8px;flex:1}.dvi>span{flex:1}
+.dvi+.dvi{border-top:1px dashed var(--line);padding-top:10px;margin-top:2px}
+.dvi .hv,.dvi .dvc{align-self:flex-end}
+.brief .tcard>p{display:block;-webkit-line-clamp:unset;overflow:visible;cursor:default}
 .tcard.flash{outline:2px solid var(--accent);outline-offset:2px;transition:outline-color .4s}
 .blt{min-width:0}
 .bli:hover .bld b{color:var(--accent)}
@@ -478,6 +483,23 @@ def who(ref, channel):
     return ch + (" · " + ", ".join(ppl[:2]) if ppl and same else "")
 
 
+def dis_sides(d, per=3, nsides=None):
+    """엇갈린 시각의 의견을 입장(side)별로 묶는다. 같은 쪽 의견은 한 상자에 들어간다.
+    side 표시가 없는 예전 브리핑은 의견마다 상자 하나."""
+    groups = {}
+    for i, w in enumerate(d.get("views") or []):
+        groups.setdefault(w.get("side", "x%d" % i), []).append(w)
+    out = [g[:per] for g in groups.values()]
+    return out[:nsides] if nsides else out
+
+
+def dis_html(d, pill, per=3, nsides=None):
+    """입장별 상자를 vs로 잇는다. pill(w)는 의견 밑에 붙는 채널·출연자 링크."""
+    return '<span class="vs">vs</span>'.join(
+        '<div class="dv">' + "".join(f'<div class="dvi"><span>{e(w.get("view"))}</span>{pill(w)}</div>' for w in g) + "</div>"
+        for g in dis_sides(d, per, nsides))
+
+
 class Frag:
     def __init__(self, V):
         self.V, self.tpl, self.n = V, {}, 0
@@ -688,9 +710,7 @@ def build_dash(recent, briefs, weekly, digests, man):
         parts.append(f'<div class="dj"><h3>최근 24시간 영상 {tot}편의 분위기 <small>막대를 누르면 해당 영상만 본다</small></h3><div class="mbar">{segs}</div>{trend}</div>')
     if b and b.get("disagreements"):
         d = b["disagreements"][0]
-        boxes = '<span class="vs">vs</span>'.join(
-            f'<div class="dv"><span>{e(w.get("view"))}</span><a class="dvc" href="{BASE}#v/{e(w.get("ref"))}">{e(who(w.get("ref"), w.get("channel")))}</a></div>'
-            for w in (d.get("views") or [])[:2])
+        boxes = dis_html(d, lambda w: f'<a class="dvc" href="{BASE}#v/{e(w.get("ref"))}">{e(who(w.get("ref"), w.get("channel")))}</a>', per=2, nsides=2)
         parts.append(f'<div class="dj"><h3>주요 쟁점</h3><div class="dis"><b class="dq">{e(d["topic"])}</b><div class="dvs">{boxes}</div></div></div>')
     if parts:
         more = (href("brief/" + b["date"] + "/") + ("#agree" if b.get("agreements") else "#disagree"), "채널 의견 전체 보기") if b else ""
@@ -1012,7 +1032,7 @@ ROLE_RE = re.compile(r"(대표이사|대표|부사장|사장|회장|단장|교�
 
 # 채널 대표 출연자: 제목에 이름이 없어도 그 채널 영상 대부분에 나오는 사람 (예: 체슬리TV의 박세익 대표)
 # 자동으로 찾지만, 꼭 넣거나 빼야 할 사람은 아래에 직접 적는다.
-CHANNEL_MAIN = {"체슬리TV": ["박세익"], "증시각도기TV": ["곽상준"]}      # 채널 이름: [출연자] (항상 출연자로 본다)
+CHANNEL_MAIN = {"체슬리TV": ["박세익"], "증시각도기TV": ["곽상준"], "채국장": ["채국장"]}      # 채널 이름(일부만 맞아도 된다): [출연자] (항상 출연자로 본다)
 NOT_GUEST = {"진행자", "앵커", "기자"}        # 출연자로 보지 않을 이름 (진행자 등)
 MAIN_SHARE, MAIN_MIN = 0.5, 3                 # 채널 영상의 절반 이상, 3편 이상에 나오고 어느 제목에든 이름이 한 번은 나온 사람
 _MAIN = {}
@@ -1043,7 +1063,7 @@ def find_channel_main(V):
         c = Counter(n for v in vs for n in set(_names(v)))
         main = [n for n, k in c.items() if k >= MAIN_MIN and k / len(vs) >= MAIN_SHARE and n in in_title and n not in NOT_GUEST
                 and n not in _MC.get(ch, set())]
-        main += [n for n in CHANNEL_MAIN.get(ch, []) if n not in main]
+        main += [n for k, ns in CHANNEL_MAIN.items() if k.lower() in ch.lower().replace(" ", "") for n in ns if n not in main]
         if main:
             _MAIN[ch] = set(main)
     if _MAIN:
@@ -1195,15 +1215,20 @@ def build():
                  + f'<a class="oth" href="{href("brief/")}">다른 날 ›</a>')
         wk = (datetime.date.fromisoformat(d) - datetime.timedelta(days=datetime.date.fromisoformat(d).weekday())).isoformat()
         wk = wk if wk in week_keys else max((x for x in week_keys if x < wk), default="")  # 이 주 주간 브리핑이 아직 없으면 가장 최근 주간 브리핑
-        th = "".join(f'<div class="tcard" id="theme-{n + 1}"><b>{e(t["title"])}</b><p data-exp title="눌러서 펼치기">{e(t["summary"])}</p>{F.rel(t.get("refs"))}</div>' for n, t in enumerate(b.get("themes") or []))
+        vids = [V[x] for x in b.get("sources") or [] if x in V]
+
+        def scount(s, vids=vids):  # 이날 종합한 영상 중 실제로 그 종목을 언급한 영상 수
+            k = norm(s.get("name"))
+            n = sum(1 for v in vids if any(len(r) > 1 and norm(r[1]) == k for r in v.get("stocks") or []))
+            return max(n, len({m.get("ref") for m in s.get("mentions") or []})) if vids else s.get("count", "")
+        th = "".join(f'<div class="tcard" id="theme-{n + 1}"><b>{e(t["title"])}</b><p>{e(t["summary"])}</p>{F.rel(t.get("refs"))}</div>' for n, t in enumerate(b.get("themes") or []))
         ag = "".join(f'<div class="mrow"><span>{e(a["point"])}</span>{F.rel(a.get("refs"))}</div>' for a in b.get("agreements") or [])
         dg = "".join(f'<div class="dis"><b class="dq">{e(x["topic"])}</b><div class="dvs">'  # 홈과 같은 모양: 테두리 상자 vs 테두리 상자
-                     + '<span class="vs">vs</span>'.join(f'<div class="dv"><span>{e(w["view"])}</span>{F.hv(w.get("ref"), who(w.get("ref"), w.get("channel")))}</div>' for w in x.get("views") or [])
+                     + dis_html(x, lambda w: F.hv(w.get("ref"), who(w.get("ref"), w.get("channel"))))
                      + "</div></div>" for x in b.get("disagreements") or [])
-        sk = "".join(f'<div class="sk"><div class="skh"><b>{stock_name(s["name"])}</b><small>{s.get("count", "")}편에서 언급</small></div>'
+        sk = "".join(f'<div class="sk"><div class="skh"><b>{stock_name(s["name"])}</b><small>{scount(s)}편에서 언급</small></div>'
                      + "".join(f'<div class="mrow"><span>{e(m["view"])}</span>{F.hv(m.get("ref"), m.get("channel"))}</div>' for m in (s.get("mentions") or [])[:4])
                      + "</div>" for s in b.get("stocks") or [])
-        vids = [V[x] for x in b.get("sources") or [] if x in V]
         body = (f'<div class="bpre"><div class="bpt"><b>{blabel(d)}</b><span>{e(kdate(d))} · 영상 {b.get("count", len(vids))}편 종합</span></div>'
                 f'<div class="bpl"><span class="bdates">{dates}</span><span class="bact">'
                 + (f'<a class="link" href="{href("week/" + wk + "/")}">주간 브리핑 →</a>' if wk else "")
@@ -1237,7 +1262,7 @@ def build():
         fl = "".join(f'<dt>{e(sdate(f["date"]))}({WD[datetime.date.fromisoformat(f["date"]).weekday()]})</dt><dd>{e(f["point"])}'
                      + (f' <a class="link" href="{href("brief/" + f["date"] + "/")}">브리핑 →</a>' if f["date"] in man["brief"] else "") + "</dd>"
                      for f in w.get("flow") or [])
-        rc = "".join(f'<div class="tcard"><b>{e(r["title"])}</b><p data-exp title="눌러서 펼치기">{e(r["summary"])}</p><small>{len(r.get("dates") or [])}일 등장 · '
+        rc = "".join(f'<div class="tcard"><b>{e(r["title"])}</b><p>{e(r["summary"])}</p><small>{len(r.get("dates") or [])}일 등장 · '
                      + ", ".join(f'<a href="{href("brief/" + x + "/")}">{e(sdate(x))}</a>' if x in man["brief"] else e(sdate(x)) for x in r.get("dates") or [])
                      + "</small></div>" for r in w.get("recurring") or [])
         sw = "".join(f'<div class="sk"><div class="skh"><b>{stock_name(s["name"])}</b><small>{s.get("videos")}편 · {len(s.get("days") or [])}일</small></div><p>{e(s["note"])}</p></div>'

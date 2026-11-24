@@ -311,10 +311,10 @@ def summary_schema():
 
 
 # 채널마다 거의 매번 나오는 고정 출연자. 제목에 이름이 없을 때 자막만 듣고 이름을 틀리게 적는 걸 막는다
-CHANNEL_HOSTS = {"증시각도기TV": "곽상준", "체슬리TV": "박세익"}
+CHANNEL_HOSTS = {"증시각도기TV": "곽상준", "체슬리TV": "박세익", "채국장": "채국장"}
 # 진행자: 영상 제목에 이름이 나와도 출연자(의견을 말하는 사람)가 아니다. 출연자 목록에서 빼고 따로 둔다.
 # 직접 적은 이름 + 자동으로 찾은 이름(그 채널 영상 여러 편에 나오는데 제목에서 한 번도 직함 없이만 나온 사람)
-MC_NAMES = {"삼프로TV": ["김동환", "이진우", "정영진", "서동주"]}
+MC_NAMES = {"삼프로TV": ["김동환", "이진우", "정영진", "서동주", "여도은", "홍선애"]}
 MC_ROLE = re.compile(r"(대표|부사장|사장|회장|단장|교수|기자|센터장|본부장|위원|애널리스트|이코노미스트|팀장|부장|실장|소장|원장|이사|전무|상무|박사|작가|변호사|세무사|회계사|PD|CIO|CEO|파트너|매니저|수석|과장|차장|연구원|편집장|운용역|트레이더|전문가|의원|장관|총재)")
 
 
@@ -399,6 +399,8 @@ def fix_people_all(videos):
     for v in videos:
         old = v.get("people") or ""
         new = fix_people(old, v.get("title") or "")
+        if not new.strip():  # 출연자를 못 찾았으면 그 채널의 고정 출연자로 (예: 채국장 채널은 채국장)
+            new = next((h for k, h in CHANNEL_HOSTS.items() if k.lower() in (v.get("channel") or "").lower().replace(" ", "")), "")
         if new and new != old:
             v["people"] = new
             n += 1
@@ -562,7 +564,7 @@ def clean(s, vid_url, title, channel, date):
                for x in (s.get("numbers") or [])[:6] if (x.get("value") or "").strip()]
     tags = [t.strip() for t in (s.get("tags") or []) if t.strip()][:3]
 
-    entry = {"url": vid_url, "channel": channel, "date": date, "title": title}
+    entry = {"url": vid_url, "channel": ch_name(channel), "date": date, "title": title}
     if (s.get("people") or "").strip():
         entry["people"] = fix_people(s["people"].strip(), title)
     entry.update({"conclusion": conclusion, "tags": tags, "parts": parts,
@@ -1053,7 +1055,10 @@ BRIEF_PROMPT = """너는 한국 경제 유튜브 영상들의 요약을 종합�
 - keypoints: 오늘의 핵심 3~4줄. 각 줄은 공백 포함 40자 안팎의 짧은 문장 하나이고, 정보를 하나씩만 담는다.
 - themes: 핵심 주제 2~4개. title은 공백 포함 25자 이내로 짧게, summary는 공백 포함 90자 이내의 한두 문장으로 쓴다.
 - agreements: 둘 이상의 영상이 공통으로 말한 것 2~4개. point는 공백 포함 45자 안팎의 한 문장, refs는 2개 이상.
-- disagreements: 영상마다 의견이 엇갈린 주제 0~3개. 없으면 빈 목록. 가장 크게 엇갈리고 투자 판단에 중요한 주제를 맨 앞에 둔다. topic은 짧게, views의 각 view는 공백 포함 45자 안팎의 한 문장(각각 view, ref).
+- disagreements: 영상들이 서로 반대되는 결론을 낸 주제 0~2개. 없으면 빈 목록. 가장 크게 엇갈리고 투자 판단에 중요한 주제를 맨 앞에 둔다.
+  - 진짜로 맞서는 것만 넣는다: 같은 질문(예: 지금 사야 하나, 금리가 내려가나)에 한쪽은 A, 다른 쪽은 반대인 B라고 답한 경우. 관점만 조금 다르거나 서로 보완하는 의견, 같은 방향인데 말만 다른 의견은 넣지 않는다.
+  - sides는 정확히 2개(서로 반대되는 입장). 같은 방향의 의견은 같은 side의 views에 모은다. 각 side에 views 1~3개.
+  - topic은 무엇을 두고 갈렸는지 짧게(예: '반등 지속 여부', '연내 금리 인하'). 각 view는 공백 포함 45자 안팎의 한 문장(view, ref).
 - stocks: 둘 이상의 영상에서 언급된 종목 최대 8개. name과 mentions(각각 view: 그 영상에서의 평가나 맥락을 공백 포함 45자 안팎의 한 문장으로, ref). 한 영상에서만 나온 종목은 넣지 않는다. tone에는 이날 영상들의 전반적인 시각을 긍정, 부정, 혼재, 중립 중 하나로 쓴다.
 
 영상 요약(JSON):
@@ -1105,9 +1110,12 @@ def brief_schema():
         view: str
         ref: int
 
+    class Side(BaseModel):
+        views: list[View]
+
     class Disagree(BaseModel):
         topic: str
-        views: list[View]
+        sides: list[Side]
 
     class StockB(BaseModel):
         name: str
@@ -1154,9 +1162,10 @@ def build_brief(date, vids):
                   for a in data.get("agreements") or [] if txt(a.get("point")) and len(refs(a.get("refs"))) >= 2]
     disagreements = []
     for d in data.get("disagreements") or []:
-        views = [{"channel": chans[v["ref"]], "view": txt(v.get("view")), "ref": ids[v["ref"]]}
-                 for v in d.get("views") or [] if ok(v.get("ref")) and txt(v.get("view"))]
-        if txt(d.get("topic")) and len({v["ref"] for v in views}) >= 2:
+        # views는 예전처럼 한 줄로 두고, 각 의견이 어느 쪽(side 0/1)인지 붙인다. 같은 쪽 의견은 화면에서 한 상자에 모인다
+        views = [{"channel": chans[v["ref"]], "view": txt(v.get("view")), "ref": ids[v["ref"]], "side": si}
+                 for si, sd in enumerate((d.get("sides") or [])[:2]) for v in sd.get("views") or [] if ok(v.get("ref")) and txt(v.get("view"))]
+        if txt(d.get("topic")) and len({v["side"] for v in views}) == 2 and len({v["ref"] for v in views}) >= 2:
             disagreements.append({"topic": txt(d["topic"]), "views": views})
     stocks = []
     for s_ in data.get("stocks") or []:
@@ -1164,7 +1173,9 @@ def build_brief(date, vids):
               for m in s_.get("mentions") or [] if ok(m.get("ref")) and txt(m.get("view"))]
         if txt(s_.get("name")) and len({m["ref"] for m in ms}) >= 2:
             tone = s_.get("tone") if s_.get("tone") in ("긍정", "부정", "혼재", "중립") else ""
-            stocks.append({"name": canon_stock(txt(s_["name"])), "count": len({m["ref"] for m in ms}), "tone": tone, "mentions": ms})
+            nm = canon_stock(txt(s_["name"]))
+            cnt = sum(1 for v in vids if any(len(r) > 1 and norm_name(str(r[1])) == norm_name(nm) for r in v.get("stocks") or []))  # 실제로 그 종목을 언급한 영상 수
+            stocks.append({"name": nm, "count": max(cnt, len({m["ref"] for m in ms})), "tone": tone, "mentions": ms})
     stocks.sort(key=lambda x: -x["count"])
     kp = [txt(x) for x in data.get("keypoints") or [] if txt(x)][:4]
     if not txt(data.get("headline")) or not kp or not themes:
@@ -1779,20 +1790,49 @@ def fix_names(o):
     return o, 0
 
 
+# 채널 이름을 짧게 통일한다 (유튜브에 표시되는 이름 -> 사이트에서 쓰는 이름)
+CHANNEL_ALIAS = {"삼프로TV 3PROTV": "삼프로TV", "삼프로TV_3PROTV": "삼프로TV"}
+
+
+def ch_name(c):
+    return CHANNEL_ALIAS.get((c or "").strip(), c)
+
+
+def rename_channels(o):
+    """o 안의 channel 칸을 CHANNEL_ALIAS대로 바꾼다. 바뀐 곳 수를 돌려준다."""
+    n = 0
+    if isinstance(o, list):
+        for x in o:
+            n += rename_channels(x)
+    elif isinstance(o, dict):
+        for k, x in o.items():
+            if k == "channel" and isinstance(x, str) and ch_name(x) != x:
+                o[k] = ch_name(x)
+                n += 1
+            elif isinstance(x, (list, dict)):
+                n += rename_channels(x)
+    return n
+
+
 def fix_all(videos):
     """저장된 요약·브리핑·종목 종합의 이름 표기를 고친다."""
-    total = 0
+    total = rename_channels(videos)
     for i, v in enumerate(videos):
         videos[i], k = fix_names(v)
         total += k
     if total:
         save(videos)
     b, w = _load_briefs_file()
+    kc = rename_channels([b, w])
     (b2, w2), k = fix_names([b, w])
+    k += kc
     if k:
         _save_briefs_file(b2, w2)
         total += k
-    d, k = fix_names(load_stock_digests())
+    d0 = load_stock_digests()
+    kc = rename_channels(d0)
+    d, k = fix_names(d0)
+    k += kc
     if k:
         save_stock_digests(d)
         total += k
@@ -1942,7 +1982,9 @@ def channel_post(state, force="", videos=None):
         lines = [f"<b>{E(kick)}</b>", f"<b>{E(head)}</b>", ""] + [f"• {E(k)}" for k in (b.get("keypoints") or [])[:4]]
         dis = (b.get("disagreements") or [])[:1]
         if dis and len(dis[0].get("views") or []) >= 2:
-            v1, v2 = dis[0]["views"][:2]
+            vs_ = dis[0]["views"]
+            v1 = vs_[0]
+            v2 = next((w for w in vs_ if w.get("side", 1) != v1.get("side", 0)), vs_[1])  # 반대쪽 의견
             lines += ["", f"<b>엇갈린 시각</b> · {E(dis[0].get('topic'))}", f"- {E(v1.get('view'))}", f"- {E(v2.get('view'))}"]
         st = [s.get("name") for s in (b.get("stocks") or [])[:5] if s.get("name")]
         if st:
