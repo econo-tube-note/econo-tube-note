@@ -1598,12 +1598,32 @@ def week_card(out_path, rng, head, days, stocks, nvid, nch):
     return out_path
 
 
+def fresh_brief_before_post(state, videos):
+    """스레드 초안·채널 글을 보낼 차례면, 오늘 브리핑에 아직 안 들어간 영상이 있을 때 브리핑부터 다시 만든다.
+    (브리핑은 새 영상이 3편 늘어야 다시 만들어서, 초안과 홈의 영상 수가 어긋날 수 있었다)"""
+    now = datetime.datetime.now(KST)
+    today, wd, h = now.date().isoformat(), now.weekday(), now.hour
+    slot = "am" if wd < 5 and 11 <= h < 14 else "pm" if wd < 5 and 19 <= h < 23 else ""
+    key = f"{today}-{slot}"
+    if not slot or (state.get("threads", {}).get(key) and state.get("channel", {}).get(key)):
+        return
+    vids = [v for v in videos if v.get("date") == today]
+    b = next((x for x in load_briefs() if x.get("date") == today), None)
+    if len(vids) < cfg("BRIEF_MIN_VIDEOS", 3) or (b and b.get("count", 0) >= len(vids)):
+        return
+    print(f"보내기 전에 오늘 브리핑을 새로 만든다 (영상 {b.get('count', 0) if b else 0}편 -> {len(vids)}편)")
+    try:
+        put_brief(build_brief(today, vids))
+    except Exception as e:
+        print(f"  브리핑 실패, 있는 브리핑으로 보낸다: {str(e)[:150]}")
+
+
 def threads_draft(state, videos, force=""):
     if not tg_ok():
         return
     now = datetime.datetime.now(KST)
     today, wd, h = now.date().isoformat(), now.weekday(), now.hour
-    slot = force or ("am" if wd < 5 and 10 <= h < 14 else "pm" if wd < 5 and 19 <= h < 23 else
+    slot = force or ("am" if wd < 5 and 11 <= h < 14 else "pm" if wd < 5 and 19 <= h < 23 else
                      "sat" if wd == 5 and 18 <= h < 23 else "sun" if wd == 6 and 18 <= h < 23 else "")
     if not slot:
         print(f"스레드 초안: 지금({h}시)은 보낼 시간대가 아니다")
@@ -1943,7 +1963,7 @@ def channel_post(state, force="", videos=None):
     import html as H
     now = datetime.datetime.now(KST)
     today, wd, h = now.date().isoformat(), now.weekday(), now.hour
-    slot = force or ("am" if wd < 5 and 10 <= h < 14 else "pm" if wd < 5 and 19 <= h < 23 else "sat" if wd == 5 and 18 <= h < 23 else "")
+    slot = force or ("am" if wd < 5 and 11 <= h < 14 else "pm" if wd < 5 and 19 <= h < 23 else "sat" if wd == 5 and 18 <= h < 23 else "")
     if not slot:
         return
     done_ = state.setdefault("channel", {})
@@ -2797,6 +2817,7 @@ def auto():
     if tr_fail >= 5:
         tg_alert(state, "cookie-" + now_k.date().isoformat(), "자막을 5번 연속 못 받았다. 유튜브 쿠키가 만료됐을 수 있다. 부계정으로 쿠키를 다시 내보내서 YOUTUBE_COOKIES 비밀값을 바꿔라.")
     tg_notes(state)
+    fresh_brief_before_post(state, videos)
     threads_draft(state, videos)
     channel_post(state, videos=videos)
     blog_draft(state)
