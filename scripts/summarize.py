@@ -2500,7 +2500,9 @@ def update_stock_digests(videos, force=False):
     """최근 30일 동안 2편 이상에서 언급된 종목을 정리한다. 새 언급이 생긴 종목만 다시 만든다."""
     if not force and not cfg("STOCK_DIGEST", 1):
         return
-    days, per_run = cfg("STOCK_DAYS", 30), cfg("STOCK_PER_RUN", 2)
+    days, per_run = cfg("STOCK_DAYS", 30), cfg("STOCK_PER_RUN", 4)
+    now_s = datetime.datetime.now(KST).strftime("%Y-%m-%dT%H:%M")
+    gap_s = (datetime.datetime.now(KST) - datetime.timedelta(hours=cfg("STOCK_REFRESH_HOURS", 6))).strftime("%Y-%m-%dT%H:%M")
     cut = (datetime.datetime.now(KST) - datetime.timedelta(days=days)).strftime("%Y-%m-%d")
     table = {}
     for v in videos:
@@ -2520,12 +2522,20 @@ def update_stock_digests(videos, force=False):
         if len(t["items"]) < 2:
             continue
         ids = sorted(t["items"])
-        if not force and digests.get(k, {}).get("ids") == ids:
+        old = digests.get(k)
+        if not force and old and old.get("ids") == ids:
             continue
-        todo.append((len(ids), k, t, ids))
-    todo.sort(reverse=True)  # 많이 언급된 종목부터
+        # 이미 종합이 있는 종목은 6시간에 한 번만 다시 만든다.
+        # (전에는 삼성전자처럼 매번 새 언급이 생기는 종목이 자리를 다 차지해서, 현대차 같은 종목은 종합이 영영 안 만들어졌다)
+        if not force and old and (old.get("at") or old.get("updated") or "") > gap_s:
+            continue
+        new_n = len(set(ids) - set(old.get("ids") or [])) if old else len(ids)
+        todo.append((0 if old else 1, new_n, len(ids), k, t, ids))
+    todo.sort(reverse=True)  # 종합이 없는 종목 먼저, 그다음 새 언급이 많은 종목
     made = 0
-    for _, k, t, ids in todo[:per_run if not force else 30]:
+    if todo:
+        print(f"종목 종합 대기: {len(todo)}개 (종합이 없는 종목 {sum(1 for x in todo if x[0])}개)")
+    for _, _, _, k, t, ids in todo[:per_run if not force else 30]:
         name = max(t["names"], key=t["names"].get)
         items = sorted(t["items"].values(), key=lambda x: x["date"], reverse=True)[:12]
         print(f"종목 종합 만드는 중: {name} (영상 {len(ids)}편)")
@@ -2541,7 +2551,7 @@ def update_stock_digests(videos, force=False):
         tone = out.get("tone") if out.get("tone") in ("긍정", "부정", "혼재", "중립") else "중립"
         digests[k] = {"name": name, "tone": tone, "summary": summary,
                       "points": [p.strip() for p in out.get("points") or [] if p.strip()][:3],
-                      "ids": ids, "count": len(ids), "updated": datetime.datetime.now(KST).strftime("%Y-%m-%d")}
+                      "ids": ids, "count": len(ids), "updated": datetime.datetime.now(KST).strftime("%Y-%m-%d"), "at": now_s}
         save_stock_digests(digests)
         made += 1
     if made:
