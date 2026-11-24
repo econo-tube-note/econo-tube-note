@@ -1424,5 +1424,53 @@ const STOCKSUM={
   "count": 9,
   "updated": "2026-11-24",
   "at": "2026-11-24T20:06"
+ },
+ "네이버": {
+  "name": "네이버",
+  "tone": "혼재",
+  "summary": "데이터센터 악재와 낙폭 과대 우려가 있으나, 저평가 매력과 방산 및 AI 사업의 성장성 기대감도 공존한다.",
+  "points": [
+   "해외 데이터센터 관련 악재와 투자 축소 우려로 주가 하락과 약세를 겪었다.",
+   "실적 악화 및 합병에 따른 가치 희석 우려가 있으나 초장기 투자는 유효하다.",
+   "저평가 상태이며 네이버클라우드의 방산 및 AI 데이터센터 사업 진출 기대감이 있다."
+  ],
+  "ids": [
+   "8xImYsugx8A",
+   "VwUvt3aGsLI",
+   "YBPuplDBzU4",
+   "Z2BQV9OYynA",
+   "aFgYKMrLYTs",
+   "aae79w527FQ",
+   "bYGImu0Xhag",
+   "ld70Ck32c2I",
+   "sjHkohhR0xw"
+  ],
+  "count": 9,
+  "updated": "2026-11-24",
+  "at": "2026-11-24T22:24"
+ },
+ "SK텔레콤": {
+  "name": "SK텔레콤",
+  "tone": "혼재",
+  "summary": "앤트로픽 투자 이익과 AI 데이터센터 등 성장 모멘텀이 있으나, 주가 급락과 수급 이탈 우려도 함께 공존한다.",
+  "points": [
+   "앤트로픽 지분 투자로 대규모 평가 차익을 거두었다.",
+   "상장 이후 수급 이탈 등으로 주가가 급락하기도 했다.",
+   "이익 안정성과 배당 매력을 갖추고 방산에도 진출한다."
+  ],
+  "ids": [
+   "3tOsoBGoDCU",
+   "FlUs8YY8aAE",
+   "TV3diSFaZIU",
+   "aFgYKMrLYTs",
+   "cpvUuHMLsgI",
+   "fNFna6Mp5Dg",
+   "f_Pb9-42cUE",
+   "qu5RoRs0beQ",
+   "uPfwN34xlpE"
+  ],
+  "count": 9,
+  "updated": "2026-11-24",
+  "at": "2026-11-24T22:24"
  }
 };
