@@ -2,8 +2,11 @@
 const BRIEFS=[
  {
   "date": "2026-11-24",
-  "count": 11,
+  "count": 14,
   "sources": [
+   "poT4VA9HIWY",
+   "XS3qcV8ubMM",
+   "8xImYsugx8A",
    "jzQJCFw1Qmk",
    "CTZ8-6dNW4Y",
    "lEK_6li3T0U",
@@ -16,198 +19,212 @@ const BRIEFS=[
    "uBEYE0bjlNY",
    "vcHvXcQw7e0"
   ],
-  "headline": "젠슨 황의 엔비디아 복귀와 호재에 힘입어 글로벌 증시가 급반등했다.",
+  "headline": "젠슨 황 복귀로 시장 공포 진정, 반도체 중심의 기술적 반등 시작",
   "keypoints": [
-   "젠슨 황 엔비디아 CEO의 복귀로 엔비디아가 30%대 폭등하고 필라델피아 반도체 지수가 급등했다.",
-   "외생적 악재 해소와 저평가 매력 부각으로 코스피가 매수 사이드카와 함께 급반등을 기록했다.",
-   "금리 인상 우려와 유동성 축소 리스크가 여전히 남아있어 보수적 관점과 신중한 대응이 필요하다.",
-   "하락장 끝자락에서 과도한 공포로 인한 매도보다는 현금 비중을 조절하며 보유하는 전략이 권장된다."
+   "엔비디아 젠슨 황 CEO의 복귀로 AI 산업 위축 우려가 일부 해소되었다.",
+   "코스피와 코스닥은 기술적 반등 구간에 진입하며 급락세를 멈췄다.",
+   "금리 인상과 물가 등 거시경제적 불확실성은 여전히 남아있다.",
+   "현금 비중을 유지하며 우량주를 분할 매수하는 전략이 유효하다."
   ],
   "themes": [
    {
-    "title": "엔비디아 젠슨 황 복귀와 반도체 급등",
-    "summary": "젠슨 황의 전격 복귀로 엔비디아가 30% 넘게 폭등하고 필라델피아 반도체 지수와 관련 밸류에이션이 동반 급등하며 시장 안도감을 이끌었다.",
+    "title": "엔비디아 CEO 복귀와 시장 영향",
+    "summary": "젠슨 황의 복귀로 경영 공백과 AI 산업 위축 우려가 해소되며 글로벌 증시가 급반등했다. 다만 정치적 노이즈와 순환 금융 리스크는 지속적인 검증이 필요하다.",
     "refs": [
+     "poT4VA9HIWY",
+     "XS3qcV8ubMM",
      "jzQJCFw1Qmk",
      "CTZ8-6dNW4Y",
      "yo24thbKD4A",
-     "uBEYE0bjlNY",
+     "pssXKLyr05c",
      "vcHvXcQw7e0"
     ]
    },
    {
-    "title": "국내 증시 바닥 확인과 반등 전망",
-    "summary": "외생적 이벤트로 급락했던 국내 증시는 외국인 수급 유입과 저평가 매력을 바탕으로 바닥을 확인하고 반등 흐름에 진입했다.",
+    "title": "국내 증시 반등과 정책 대응",
+    "summary": "증시안정펀드 조성 논의와 삼성전자의 주주환원 기대감이 지수 하단을 지지한다. 전문가들은 1월 말까지 지수 회복을 전망하며 분할 매수를 권고한다.",
     "refs": [
+     "XS3qcV8ubMM",
      "jzQJCFw1Qmk",
      "lEK_6li3T0U",
      "3qmWCkORZts",
-     "4ef5Us1PLUU",
+     "hZqsRcqmhPQ",
      "vcHvXcQw7e0"
     ]
    },
    {
-    "title": "금리 및 유동성 거시경제 리스크",
-    "summary": "CEO 복귀에도 불구하고 추가 금리 인상 논란과 긴축적 자금 조달 여건 등 거시경제적 불확실성은 여전히 시장을 압박하는 요인이다.",
+    "title": "금리 및 거시경제 리스크",
+    "summary": "고금리 기조와 물가 상승 압력이 여전해 추세 전환을 단정하기 어렵다. 내년 상반기 금리 인하 논의가 시작되어야 시장이 안정될 것으로 본다.",
     "refs": [
+     "XS3qcV8ubMM",
      "CTZ8-6dNW4Y",
+     "lEK_6li3T0U",
      "yo24thbKD4A",
-     "4ef5Us1PLUU",
+     "hZqsRcqmhPQ",
      "vcHvXcQw7e0"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "젠슨 황 엔비디아 CEO의 복귀가 증시의 급등과 반등을 이끌었다.",
+    "point": "젠슨 황의 복귀는 시장의 공포 심리를 진정시키고 반등의 계기를 마련했다.",
     "refs": [
+     "poT4VA9HIWY",
+     "XS3qcV8ubMM",
      "jzQJCFw1Qmk",
      "CTZ8-6dNW4Y",
      "yo24thbKD4A",
+     "pssXKLyr05c",
      "uBEYE0bjlNY",
      "vcHvXcQw7e0"
     ]
    },
    {
-    "point": "현재 증시는 밸류에이션상 저평가 구간이며 패닉에 따른 매도보다는 보유가 유효하다.",
+    "point": "금리 인상과 물가 등 거시경제적 불확실성이 남아있어 보수적 대응이 필요하다.",
     "refs": [
+     "XS3qcV8ubMM",
+     "CTZ8-6dNW4Y",
+     "yo24thbKD4A",
+     "hZqsRcqmhPQ",
+     "vcHvXcQw7e0"
+    ]
+   },
+   {
+    "point": "삼성전자와 SK하이닉스는 현재 주가 수준에서 저평가 매력이 높다.",
+    "refs": [
+     "poT4VA9HIWY",
+     "XS3qcV8ubMM",
      "jzQJCFw1Qmk",
-     "lEK_6li3T0U",
-     "3qmWCkORZts",
-     "4ef5Us1PLUU"
+     "4ef5Us1PLUU",
+     "hZqsRcqmhPQ"
     ]
    }
   ],
-  "disagreements": [],
+  "disagreements": [
+   {
+    "topic": "증시안정펀드의 실효성",
+    "views": [
+     {
+      "channel": "815머니톡",
+      "view": "10조 원 규모의 펀드는 하방 지지 역할에 그칠 뿐 상방을 열어주기엔 부족하다.",
+      "ref": "8xImYsugx8A",
+      "side": 0
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "외국인의 대규모 매도세에 비해 10조 원은 부족하며 실질적인 효과가 미미하다.",
+      "ref": "3qmWCkORZts",
+      "side": 0
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "가동 발표만으로도 심리적 안전판 역할을 하며 증시 반등에 기여할 수 있다.",
+      "ref": "3qmWCkORZts",
+      "side": 1
+     }
+    ]
+   }
+  ],
   "stocks": [
    {
     "name": "엔비디아",
-    "count": 10,
+    "count": 12,
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "체슬리TV",
-      "view": "젠슨 황 CEO의 복귀로 경영 연속성 우려가 해소되며 주가가 31% 폭등했다.",
-      "ref": "jzQJCFw1Qmk"
+      "channel": "삼프로TV",
+      "view": "젠슨 황 복귀로 경영 공백 우려가 해소되며 주가가 급등했다.",
+      "ref": "poT4VA9HIWY"
      },
      {
       "channel": "삼프로TV",
-      "view": "CEO 복귀로 불확실성이 해소되었고 주가 하락에 따른 저평가 매력이 부각된다.",
+      "view": "CEO 복귀로 불확실성이 해소되었고 저평가 매력이 부각된다.",
       "ref": "CTZ8-6dNW4Y"
-     },
-     {
-      "channel": "체슬리TV",
-      "view": "젠슨 황의 복귀와 함께 악재가 해소되며 반도체 장세 급반등의 발판을 마련해준 핵심 종목으로 평가함.",
-      "ref": "lEK_6li3T0U"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "CEO 젠슨 황의 활동 재개 등이 시장의 반등 계기를 마련했으나 매크로 불확실성 해소가 병행되어야 지속 상승할 것으로 본다.",
-      "ref": "3qmWCkORZts"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "젠슨 황 복귀 소식으로 30%대 급등하며 시장의 반등을 주도함.",
-      "ref": "yo24thbKD4A"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "최근 주가 급락 후 반등하며 밸류에이션이 다시 10배 수준으로 조정되어 평가가 가능해졌다고 본다.",
-      "ref": "4ef5Us1PLUU"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "높은 성장률에도 불구하고 PER 13배 수준으로 저평가되어 있다.",
-      "ref": "hZqsRcqmhPQ"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "젠슨 황 CEO 복귀로 국가 안보 리스크가 걷히며 증시에 강한 긍정적 요인으로 작용했다고 평가한다.",
-      "ref": "pssXKLyr05c"
-     },
-     {
-      "channel": "증시각도기TV",
-      "view": "젠슨 황 복귀 소식에 주가가 31% 폭등하며 하루 만에 시가총액이 약 1조 달러 증가했다.",
-      "ref": "uBEYE0bjlNY"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "젠슨 황 CEO 복귀로 급반등했으나 사임 전부터 이미 하락 추세였고 정치적 노이즈가 남아 과거와 다른 행보를 보일 수 있다고 평가한다.",
-      "ref": "vcHvXcQw7e0"
      }
     ]
    },
    {
     "name": "삼성전자",
-    "count": 6,
+    "count": 8,
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "체슬리TV",
-      "view": "반도체 지수 반등 및 저평가 매력으로 외국인의 공격적인 매수세가 유입될 것으로 평가되었다.",
-      "ref": "jzQJCFw1Qmk"
-     },
-     {
-      "channel": "체슬리TV",
-      "view": "금산분리 예외 적용 시 70조 원의 재원을 바탕으로 적극적인 자사주 매입과 소각을 진행해 주가를 회복할 수 있다고 평가함.",
-      "ref": "lEK_6li3T0U"
-     },
-     {
       "channel": "삼프로TV",
-      "view": "SK하이닉스와 함께 반등세를 이어갈 경우 국내 증시 지수가 안정적으로 안착하는 데 기여할 주요 종목으로 평가한다.",
-      "ref": "3qmWCkORZts"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "올해와 내년 예상 이익 합계가 시가총액과 비슷해질 정도로 저평가된 상태라고 언급한다.",
-      "ref": "4ef5Us1PLUU"
+      "view": "영업이익이 반토막 나는 상황에서도 PER 4~5배 수준으로 저평가되어 있다.",
+      "ref": "poT4VA9HIWY"
      },
      {
       "channel": "815머니톡",
-      "view": "주주 환원 정책 심의 이슈가 있어 단기 반등 기대감이 존재한다.",
+      "view": "주주환원 정책 심의 이슈가 있어 단기 반등 기대감이 존재한다.",
       "ref": "hZqsRcqmhPQ"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "프리마켓에서 10% 상승하며 반등을 주도하고 있으며, 기술 종속을 막기 위해 막대한 현금으로 핵심 소부장 M&A에 나설 가능성이 높다고 본다.",
-      "ref": "vcHvXcQw7e0"
      }
     ]
    },
    {
     "name": "SK하이닉스",
-    "count": 6,
+    "count": 8,
     "tone": "긍정",
     "mentions": [
      {
+      "channel": "삼프로TV",
+      "view": "고객사 다변화로 가격 결정력이 높아졌으며 저평가 상태이다.",
+      "ref": "poT4VA9HIWY"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "배당 발표로 낙폭을 방어했으며 외국인의 저가 매수세가 유입될 것이다.",
+      "ref": "XS3qcV8ubMM"
+     }
+    ]
+   },
+   {
+    "name": "테슬라",
+    "count": 2,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "삼프로TV",
+      "view": "자율주행 버전 15 출시 등으로 로보택시 확산이 가속화될 것이다.",
+      "ref": "poT4VA9HIWY"
+     },
+     {
       "channel": "체슬리TV",
-      "view": "엔비디아 급등에 힘입어 ADR이 20% 폭등하며 강력한 반등세를 보였다.",
+      "view": "AI 투자심리 회복 및 FSD 기대감으로 급등했다.",
+      "ref": "jzQJCFw1Qmk"
+     }
+    ]
+   },
+   {
+    "name": "구글",
+    "count": 2,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "삼프로TV",
+      "view": "TPU 출하량 성장으로 메모리 수요 다변화에 긍정적이다.",
+      "ref": "poT4VA9HIWY"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "조정장에서도 버틸 만한 우량 기업으로 평가된다.",
+      "ref": "XS3qcV8ubMM"
+     }
+    ]
+   },
+   {
+    "name": "크라우드스트라이크",
+    "count": 2,
+    "tone": "부정",
+    "mentions": [
+     {
+      "channel": "체슬리TV",
+      "view": "지스케일러 인수 소식에 지분 희석 우려로 하락했다.",
       "ref": "jzQJCFw1Qmk"
      },
      {
-      "channel": "체슬리TV",
-      "view": "외국인이 이전 매도를 수정하고 미국 반도체 회복세에 발맞추어 공격적으로 저가 매수할 종목으로 평가함.",
-      "ref": "lEK_6li3T0U"
-     },
-     {
       "channel": "삼프로TV",
-      "view": "삼성전자와 함께 지수 상방 안착을 이끌 핵심 반도체 종목으로 언급한다.",
-      "ref": "3qmWCkORZts"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "삼성전자와 함께 이익 대비 시가총액이 낮아져 가격 매력이 있다고 평가한다.",
-      "ref": "4ef5Us1PLUU"
-     },
-     {
-      "channel": "증시각도기TV",
-      "view": "엔비디아 급등과 기술주 훈풍에 힘입어 ADR 가격이 20% 상승했다.",
-      "ref": "uBEYE0bjlNY"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "프리마켓 13% 급등으로 상승 3대장에 올랐으며, 선물·롱숏 거래 영향이 있으나 정상적인 흐름을 위해 두 자릿수 상승이 필요하다고 평가한다.",
-      "ref": "vcHvXcQw7e0"
+      "view": "인수 발표 후 시장의 우려를 반영하며 주가가 급락했다.",
+      "ref": "yo24thbKD4A"
      }
     ]
    }
