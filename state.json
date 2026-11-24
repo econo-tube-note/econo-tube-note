@@ -116,7 +116,8 @@
   "bbr45vca4C4": "너무 짧음",
   "xY5-S_n1SDo": "너무 긴 영상(310분)",
   "fcAPj3NT8pY": "너무 긴 영상(332분)",
-  "8H7hQU8EncU": "너무 긴 영상(371분)"
+  "8H7hQU8EncU": "너무 긴 영상(371분)",
+  "NMQDBukHyKA": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -130,12 +131,12 @@
  "models": {
   "gemini-3.6-flash": {
    "ok": 11,
-   "busy": 14,
+   "busy": 21,
    "dead": 4
   },
   "gemini-3.7-flash": {
-   "ok": 1,
-   "busy": 29,
+   "ok": 2,
+   "busy": 33,
    "dead": 4
   },
   "gemini-3.8-flash": {
@@ -144,8 +145,8 @@
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 16,
-   "busy": 21,
+   "ok": 10,
+   "busy": 10,
    "dead": 4
   },
   "gemini-3.5-flash-lite": {
@@ -154,13 +155,13 @@
    "dead": 4
   },
   "gemini-4-hydrogen": {
-   "ok": 4,
-   "busy": 26,
+   "ok": 6,
+   "busy": 31,
    "dead": 0
   },
   "gemini-3.5-flash": {
    "ok": 4,
-   "busy": 14,
+   "busy": 21,
    "dead": 0
   }
  },
@@ -319,7 +320,10 @@
   "fYcdlQrgJFI": true,
   "8PcfNB5C-GI": true,
   "bbr45vca4C4": true,
-  "D-fg9WglsRw": true
+  "D-fg9WglsRw": true,
+  "DjsXQYfPnqk": true,
+  "NMQDBukHyKA": true,
+  "jzQJCFw1Qmk": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -332,24 +336,27 @@
   "2026-11-21": true,
   "2026-11-22": true
  },
- "last_ok": "2026-11-24T02:15",
+ "last_ok": "2026-11-24T10:19",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true,
   "2026-11-23-am": true,
-  "2026-11-23-pm": true
+  "2026-11-23-pm": true,
+  "2026-11-24-am": true
  },
  "channel": {
   "2026-11-21-sat": true,
   "2026-11-23-am": true,
-  "2026-11-23-pm": true
+  "2026-11-23-pm": true,
+  "2026-11-24-am": true
  },
  "blog": {
   "2026-11-16": true
  },
  "tg_offset": 777760488,
  "threads_endings": [
-  "펀더멘털은 멀쩡해도 수급과 금리 변수가 얽혀 있어 머리가 아프다. 정부의 증시안정펀드가 투입되면 반도체주 수급이 실제로 돌아올 거라고 보는지 궁금하다."
+  "펀더멘털은 멀쩡해도 수급과 금리 변수가 얽혀 있어 머리가 아프다. 정부의 증시안정펀드가 투입되면 반도체주 수급이 실제로 돌아올 거라고 보는지 궁금하다.",
+  "급반등이 나왔어도 금리나 AI 투자 속도 조절 변수가 얽혀 있어 쉽게 손이 안 간다. 다들 이번 엔비디아 급등을 보고 추매에 나서는 쪽인지, 거시경제 불확실성이 해소될 때까지 기다리는 쪽인지 궁금하다."
  ],
  "blog_day": {
   "2026-11-23": true

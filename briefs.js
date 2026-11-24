@@ -1,6 +1,266 @@
 /* 종합 브리핑(일간 BRIEFS, 주간 WEEKLY). 자동화(scripts/summarize.py)가 갱신하는 파일이다. */
 const BRIEFS=[
  {
+  "date": "2026-11-24",
+  "count": 7,
+  "sources": [
+   "yo24thbKD4A",
+   "4ef5Us1PLUU",
+   "YUMN-SLIJAk",
+   "hZqsRcqmhPQ",
+   "pssXKLyr05c",
+   "uBEYE0bjlNY",
+   "vcHvXcQw7e0"
+  ],
+  "headline": "젠슨 황 복귀로 증시가 급반등했으나 금리 등 거시 불확실성이 남았다고 본다.",
+  "keypoints": [
+   "젠슨 황 복귀 소식에 엔비디아가 30%대 급등했다고 전한다.",
+   "국내 반도체 대형주도 프리마켓에서 두 자릿수 상승세를 보였다고 전한다.",
+   "고물가와 금리 불확실성으로 보수적 대응이 필요하다는 시각이 나온다.",
+   "변동성 장세에서 저항선 확인과 현금 비중 조절이 필요하다고 조언한다."
+  ],
+  "themes": [
+   {
+    "title": "젠슨 황 복귀와 기술주 급반등",
+    "summary": "젠슨 황 CEO 복귀로 엔비디아가 30%대 급등하며 나스닥과 반도체 지수가 반등했다고 전한다. 국내 반도체주도 프리마켓에서 동반 강세를 보였다고 설명한다.",
+    "refs": [
+     "yo24thbKD4A",
+     "pssXKLyr05c",
+     "uBEYE0bjlNY",
+     "vcHvXcQw7e0"
+    ]
+   },
+   {
+    "title": "금리와 물가 등 거시 불확실성",
+    "summary": "물가 상승 우려와 연준의 금리 이슈가 시장 변동성의 핵심이라고 짚는다. 단기 반등에도 금리 불확실성과 정치적 노이즈가 여전하다고 분석한다.",
+    "refs": [
+     "yo24thbKD4A",
+     "4ef5Us1PLUU",
+     "uBEYE0bjlNY",
+     "vcHvXcQw7e0"
+    ]
+   },
+   {
+    "title": "반등 장세 속 투자 대응 전략",
+    "summary": "저평가 구간이므로 분할 매수와 주도주 보유가 유효하다는 의견이 나온다. 반면 저항선 확인 후 현금을 확보하며 보수적으로 대응하라는 조언도 있다.",
+    "refs": [
+     "yo24thbKD4A",
+     "4ef5Us1PLUU",
+     "hZqsRcqmhPQ",
+     "vcHvXcQw7e0"
+    ]
+   },
+   {
+    "title": "국내 기업 현안과 당국 역할",
+    "summary": "최태원 회장의 9,440억 원 현금 화해권고 신청으로 SK 오너 리스크 해소가 기대된다고 전한다. 한편 한국 증시안정기금의 실효성에는 비판이 나온다.",
+    "refs": [
+     "pssXKLyr05c",
+     "uBEYE0bjlNY",
+     "vcHvXcQw7e0"
+    ]
+   }
+  ],
+  "agreements": [
+   {
+    "point": "젠슨 황 복귀 소식에 엔비디아 주가가 30% 이상 급등했다고 전한다.",
+    "refs": [
+     "yo24thbKD4A",
+     "pssXKLyr05c",
+     "uBEYE0bjlNY"
+    ]
+   },
+   {
+    "point": "금리와 물가 등 거시경제 불확실성이 여전히 남아 있다고 지적한다.",
+    "refs": [
+     "yo24thbKD4A",
+     "uBEYE0bjlNY",
+     "vcHvXcQw7e0"
+    ]
+   },
+   {
+    "point": "주요 반도체 기업들이 실적 대비 저평가된 상태라고 평가한다.",
+    "refs": [
+     "4ef5Us1PLUU",
+     "hZqsRcqmhPQ"
+    ]
+   },
+   {
+    "point": "한국 증시안정기금과 당국의 시장 방어 의지가 미흡하다고 비판한다.",
+    "refs": [
+     "uBEYE0bjlNY",
+     "vcHvXcQw7e0"
+    ]
+   }
+  ],
+  "disagreements": [
+   {
+    "topic": "반등 장세 속 매매 전략",
+    "views": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "금리 불확실성이 여전해 단기 반등에도 보수적 관점을 유지해야 한다고 본다.",
+      "ref": "yo24thbKD4A"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "5,100~5,150포인트 저항선에서 현금 확보를 고민해야 한다고 지적한다.",
+      "ref": "hZqsRcqmhPQ"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "밸류에이션 저점 구간이므로 현금 비중 조절과 분할 매수가 유효하다고 주장한다.",
+      "ref": "4ef5Us1PLUU"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "단기 매매 시 반등을 놓치므로 주도주 보유 전략이 맞았다고 지적한다.",
+      "ref": "vcHvXcQw7e0"
+     }
+    ]
+   },
+   {
+    "topic": "물가 둔화 및 금리 전망",
+    "views": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "내년 3월부터 유가 기저 효과로 물가가 둔화돼 유동성 우려가 해소된다고 본다.",
+      "ref": "4ef5Us1PLUU"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "올해 12월 금리 인상 후 내년에는 금리를 동결할 가능성이 높다고 전망한다.",
+      "ref": "vcHvXcQw7e0"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "물가가 약 3.5%로 높아 2028년에야 목표치 2%에 도달한다고 전한다.",
+      "ref": "uBEYE0bjlNY"
+     }
+    ]
+   },
+   {
+    "topic": "엔비디아 복귀 이후 주가 전망",
+    "views": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "월가 주요 기관들이 엔비디아 목표 주가를 상향하며 긍정적으로 평가한다고 전한다.",
+      "ref": "yo24thbKD4A"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "젠슨 황 복귀로 국가 안보 리스크가 걷히며 강한 긍정 요인이 됐다고 평가한다.",
+      "ref": "pssXKLyr05c"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "사임 전부터 하락 추세였고 정치적 노이즈가 남아 과거와 다를 수 있다고 본다.",
+      "ref": "vcHvXcQw7e0"
+     }
+    ]
+   }
+  ],
+  "stocks": [
+   {
+    "name": "엔비디아",
+    "count": 6,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "젠슨 황 복귀로 30%대 급등하며 월가 목표가 상향이 이어졌다고 전한다.",
+      "ref": "yo24thbKD4A"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "주가 반등으로 밸류에이션이 10배 수준으로 조정돼 평가가 가능해졌다고 본다.",
+      "ref": "4ef5Us1PLUU"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "PER 13배 수준으로 저평가됐으나 시장에서 외면받고 있다고 설명한다.",
+      "ref": "hZqsRcqmhPQ"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "젠슨 황 복귀로 국가 안보 리스크가 해소돼 증시 긍정 요인이 됐다고 평가한다.",
+      "ref": "pssXKLyr05c"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "주가가 31% 폭등해 하루 만에 시총이 약 1조 달러 늘었다고 지적한다.",
+      "ref": "uBEYE0bjlNY"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "급반등했으나 이미 하락 추세였고 정치적 노이즈가 남을 것이라 평가한다.",
+      "ref": "vcHvXcQw7e0"
+     }
+    ]
+   },
+   {
+    "name": "삼성전자",
+    "count": 3,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "올해와 내년 예상 이익 합계가 시총과 비슷할 정도로 저평가됐다고 언급한다.",
+      "ref": "4ef5Us1PLUU"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "주주 환원 정책 심의 이슈로 단기 반등 기대감이 존재한다고 설명한다.",
+      "ref": "hZqsRcqmhPQ"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "프리마켓에서 10% 오르며 반등을 주도하고 소부장 M&A에 나설 것이라 본다.",
+      "ref": "vcHvXcQw7e0"
+     }
+    ]
+   },
+   {
+    "name": "SK하이닉스",
+    "count": 3,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "이익 대비 시가총액이 낮아져 가격 매력이 있다고 평가한다.",
+      "ref": "4ef5Us1PLUU"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "엔비디아 급등과 기술주 훈풍으로 ADR 가격이 20% 상승했다고 전한다.",
+      "ref": "uBEYE0bjlNY"
+     },
+     {
+      "channel": "삼프로TV 3PROTV",
+      "view": "프리마켓에서 13% 급등했고 정상 회복에 두 자릿수 상승이 필요하다고 본다.",
+      "ref": "vcHvXcQw7e0"
+     }
+    ]
+   },
+   {
+    "name": "마이크론",
+    "count": 2,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "815머니톡",
+      "view": "PER 8배 수준으로 반도체 업종 내 저평가 상태라고 설명한다.",
+      "ref": "hZqsRcqmhPQ"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "반도체 지수 폭등과 함께 주가가 19% 대폭 상승했다고 전한다.",
+      "ref": "uBEYE0bjlNY"
+     }
+    ]
+   }
+  ]
+ },
+ {
   "date": "2026-11-23",
   "count": 36,
   "sources": [
