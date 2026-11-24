@@ -1322,5 +1322,58 @@ const STOCKSUM={
   "count": 14,
   "updated": "2026-11-24",
   "at": "2026-11-24T16:34"
+ },
+ "로보티즈": {
+  "name": "로보티즈",
+  "tone": "긍정",
+  "summary": "일시적 적자와 공급 병목에도 불구하고 수주 잔고와 휴먼노이드 사업 확장을 바탕으로 성장성이 기대된다.",
+  "points": [
+   "다이나믹셀 수주 잔고를 바탕으로 장기 고성장 전망이 나온다.",
+   "시가총액 증가와 기관 매수세 속에서 긍정적 흐름을 보인다.",
+   "단기 실적 적자와 공급 병목 현상에 대한 우려가 존재한다."
+  ],
+  "ids": [
+   "3NCUIycZnYQ",
+   "Cfb0KSoFWz0",
+   "IVlkZX6kxsI",
+   "NCGhP2Vyods",
+   "PVAvcqVLWxg",
+   "VEYoCnIz6XQ",
+   "VZv-QcnXCN4",
+   "YUMN-SLIJAk",
+   "aae79w527FQ",
+   "cJj2TjoiV10",
+   "egDZOq_zOPo",
+   "q1r4OqBIaFk",
+   "yGpzZbCZ0eU"
+  ],
+  "count": 13,
+  "updated": "2026-11-24",
+  "at": "2026-11-24T18:24"
+ },
+ "에스엠": {
+  "name": "에스엠",
+  "tone": "긍정",
+  "summary": "한한령 해제와 중국 시장 개방 기대감으로 주가가 큰 폭으로 상승하며 긍정적인 평가를 받고 있다.",
+  "points": [
+   "한한령 해제 및 중국 콘텐츠 시장 개방 기대감으로 수혜가 예상된다.",
+   "중국 관련 대장주로 인식되며 기관과 기타 법인의 매수세가 유입되었다.",
+   "텐센트와의 시너지 및 안정적인 콘서트 개최 능력이 긍정적이다."
+  ],
+  "ids": [
+   "7WVn5WmOlsA",
+   "Cfb0KSoFWz0",
+   "F3o0QUHU62E",
+   "G5Kz41EjDmw",
+   "JDRsZE771wA",
+   "RiLTQh6mqws",
+   "TV3diSFaZIU",
+   "aKPG-NTpgBs",
+   "bsmFdEtKWqM",
+   "egDZOq_zOPo"
+  ],
+  "count": 10,
+  "updated": "2026-11-24",
+  "at": "2026-11-24T18:24"
  }
 };
