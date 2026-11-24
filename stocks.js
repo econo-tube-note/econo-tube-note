@@ -1264,5 +1264,63 @@ const STOCKSUM={
   ],
   "count": 23,
   "updated": "2026-11-24"
+ },
+ "애플": {
+  "name": "애플",
+  "tone": "혼재",
+  "summary": "풍부한 현금 흐름과 방어적 성격으로 시장 하락기 대안으로 평가받으나, 높은 밸류에이션과 메모리 원가 상승에 따른 출하량 둔화 우려도 공존한다.",
+  "points": [
+   "풍부한 현금 보유력과 소비재 성격으로 시장 하락장에서 상대적으로 강한 방어력을 보인다.",
+   "높은 PER과 AI 투자 부족으로 인해 시장 전반이 무너질 경우 추가 조정 위험이 존재한다.",
+   "메모리 원가 비중 급등이 출하량 둔화의 원인으로 지적되나 메모리 수급 시장 진입도 시도 중이다."
+  ],
+  "ids": [
+   "3LipybrcW5U",
+   "9jVNs0KssDk",
+   "Cn8zy7PWtMc",
+   "DaHzmjAGfGQ",
+   "Jp5CEDSrKPE",
+   "OG0IvvfJk5s",
+   "Q_Pgdi25lg0",
+   "TvZvSJnX1Sk",
+   "he-PbOpm-b8",
+   "kZAYyNhv5p4",
+   "pevfIGVAFFs",
+   "qWBPcJiyKP4",
+   "tMwJY3ZyB84",
+   "vyuznP_KIJE",
+   "yOr5hocYe5g"
+  ],
+  "count": 15,
+  "updated": "2026-11-24",
+  "at": "2026-11-24T16:34"
+ },
+ "현대차": {
+  "name": "현대차",
+  "tone": "혼재",
+  "summary": "본업의 부진과 유럽 시장에서의 경쟁 심화로 우려가 있으나 로봇과 AI 모멘텀에 대한 기대로 의견이 엇갈린다.",
+  "points": [
+   "유럽 전기차 시장에서 중국 기업에 밀려 실적 부진을 겪고 있다.",
+   "보스턴 다이내믹스와 로봇 모멘텀이 유효하다는 평가를 받는다."
+  ],
+  "ids": [
+   "4o_7XUjmZVM",
+   "AWknNSPEM1g",
+   "HMPPwxebak0",
+   "ImmDYGasFbE",
+   "MZXa-6vrUUg",
+   "YUMN-SLIJAk",
+   "aae79w527FQ",
+   "hjhrT8EtTjg",
+   "jd1cmkNDriI",
+   "poT4VA9HIWY",
+   "q1r4OqBIaFk",
+   "qoCflgBmkpA",
+   "slZsjoZ98VU",
+   "w7Eh9HBW7NM"
+  ],
+  "count": 14,
+  "updated": "2026-11-24",
+  "at": "2026-11-24T16:34"
  }
 };

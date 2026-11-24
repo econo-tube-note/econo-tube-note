@@ -2,8 +2,12 @@
 const BRIEFS=[
  {
   "date": "2026-11-24",
-  "count": 19,
+  "count": 23,
   "sources": [
+   "_mHatEOkD_Q",
+   "q1r4OqBIaFk",
+   "slZsjoZ98VU",
+   "fmdJk4Xhl3Y",
    "BKt64C39U4M",
    "yGpzZbCZ0eU",
    "yqsjMBiOQiQ",
@@ -24,27 +28,74 @@ const BRIEFS=[
    "uBEYE0bjlNY",
    "vcHvXcQw7e0"
   ],
-  "headline": "젠슨 황 복귀에 증시가 급반등했으나 고금리 부담과 정치적 불확실성이 남았다.",
+  "headline": "젠슨 황 복귀에 AI 반도체 급반등, 시장은 기술적 반등과 불확실성 사이",
   "keypoints": [
-   "젠슨 황 CEO 복귀로 엔비디아 등 반도체주가 일제히 급반등했다.",
-   "금리 인상 압박과 미국 정치권 조사 등 불확실성이 남았다고 본다.",
-   "10조 원 규모 증안펀드는 증시 견인에 부족하다는 지적이 나온다.",
-   "비트코인은 금리 우려와 전력 경쟁 속에 약세를 보였다고 분석한다."
+   "엔비디아 젠슨 황 CEO 복귀로 AI 산업 위축 우려가 일부 해소되었다.",
+   "미국 증시 급등과 외국인 수급 개선으로 국내 증시도 반등을 시도한다.",
+   "금리 인상과 정치적 리스크 등 거시경제 불확실성은 여전히 남아 있다.",
+   "현재 시장은 과도한 하락에 따른 기술적 반등 구간으로 분할 대응이 필요하다."
   ],
   "themes": [
    {
-    "title": "젠슨 황 복귀와 반도체 반등",
-    "summary": "젠슨 황 CEO 복귀로 엔비디아와 한미 반도체주가 급반등했다. 다만 순환금융과 미 정치권 조사 등 잔여 리스크 확인이 필요하다고 본다.",
+    "title": "엔비디아 리스크 완화",
+    "summary": "젠슨 황 CEO의 이사회 만장일치 복귀로 경영 공백과 AI 산업 위축 우려가 해소되었다. 다만 미 의회의 조사 등 정치적 노이즈는 지속될 전망이다.",
     "refs": [
-     "BKt64C39U4M",
+     "_mHatEOkD_Q",
+     "q1r4OqBIaFk",
+     "fmdJk4Xhl3Y",
      "yGpzZbCZ0eU",
      "Ai_9nqUhRNo",
      "poT4VA9HIWY",
      "XS3qcV8ubMM",
      "jzQJCFw1Qmk",
      "CTZ8-6dNW4Y",
+     "yo24thbKD4A",
+     "pssXKLyr05c",
+     "vcHvXcQw7e0"
+    ]
+   },
+   {
+    "title": "국내 증시 반등 전략",
+    "summary": "역대급 낙폭으로 바닥권에 진입했다는 분석이 우세하다. 성급한 매도보다는 현금 비중을 관리하며 우량주를 분할 매수하는 전략이 권고된다.",
+    "refs": [
+     "_mHatEOkD_Q",
+     "fmdJk4Xhl3Y",
+     "yGpzZbCZ0eU",
+     "XS3qcV8ubMM",
+     "8xImYsugx8A",
+     "jzQJCFw1Qmk",
      "lEK_6li3T0U",
      "3qmWCkORZts",
+     "4ef5Us1PLUU",
+     "hZqsRcqmhPQ",
+     "vcHvXcQw7e0"
+    ]
+   },
+   {
+    "title": "AI 인프라와 금리 변수",
+    "summary": "AI 데이터센터 투자가 물가와 금리를 자극하고 있다. 내년 3~4월 물가 둔화와 금리 동결 여부가 시장의 추세 전환을 결정할 핵심 변수다.",
+    "refs": [
+     "slZsjoZ98VU",
+     "BKt64C39U4M",
+     "yqsjMBiOQiQ",
+     "poT4VA9HIWY",
+     "XS3qcV8ubMM",
+     "yo24thbKD4A",
+     "4ef5Us1PLUU",
+     "vcHvXcQw7e0"
+    ]
+   }
+  ],
+  "agreements": [
+   {
+    "point": "젠슨 황 복귀는 시장의 공포를 진정시키는 긍정적 트리거가 되었다.",
+    "refs": [
+     "fmdJk4Xhl3Y",
+     "yGpzZbCZ0eU",
+     "Ai_9nqUhRNo",
+     "XS3qcV8ubMM",
+     "jzQJCFw1Qmk",
+     "CTZ8-6dNW4Y",
      "yo24thbKD4A",
      "pssXKLyr05c",
      "uBEYE0bjlNY",
@@ -52,133 +103,52 @@ const BRIEFS=[
     ]
    },
    {
-    "title": "고금리 부담과 시장 대응 전략",
-    "summary": "12월 금리 인상 우려와 높은 국채 금리가 증시 부담으로 꼽힌다. 출연자들은 현금 비중을 조절하며 우량주 분할 매수로 대응하라고 조언한다.",
+    "point": "현재 시장은 과도한 하락에 따른 기술적 반등 구간이며 추세 전환 확인이 필요하다.",
     "refs": [
-     "BKt64C39U4M",
-     "yqsjMBiOQiQ",
-     "Ai_9nqUhRNo",
-     "poT4VA9HIWY",
-     "XS3qcV8ubMM",
-     "CTZ8-6dNW4Y",
-     "lEK_6li3T0U",
-     "yo24thbKD4A",
-     "4ef5Us1PLUU",
-     "vcHvXcQw7e0"
-    ]
-   },
-   {
-    "title": "외국인 수급과 증안펀드 한계",
-    "summary": "급반등 이후 외국인 현·선물 수급 전환 여부가 관건으로 꼽힌다. 10조 원 규모 증안펀드는 안전판 역할에 그쳐 아쉽다는 평가가 나온다.",
-    "refs": [
+     "_mHatEOkD_Q",
      "yGpzZbCZ0eU",
      "Ai_9nqUhRNo",
      "XS3qcV8ubMM",
      "8xImYsugx8A",
-     "jzQJCFw1Qmk",
-     "lEK_6li3T0U",
-     "3qmWCkORZts",
-     "uBEYE0bjlNY",
+     "CTZ8-6dNW4Y",
+     "hZqsRcqmhPQ",
      "vcHvXcQw7e0"
     ]
    },
    {
-    "title": "가상자산 약세와 로봇·콘텐츠",
-    "summary": "비트코인이 금리 우려로 약세를 보인 가운데 스카이는 출금 위기를 맞았다. 한편 로봇 관련주와 한한령 해제 기대 콘텐츠주가 강세를 보였다.",
+    "point": "금리 인상과 정치적 리스크 등 거시적 불확실성은 여전히 시장을 압박하고 있다.",
     "refs": [
+     "q1r4OqBIaFk",
+     "fmdJk4Xhl3Y",
      "BKt64C39U4M",
-     "yGpzZbCZ0eU",
-     "yqsjMBiOQiQ",
-     "JDRsZE771wA",
-     "Ai_9nqUhRNo",
-     "poT4VA9HIWY",
-     "CTZ8-6dNW4Y",
-     "YUMN-SLIJAk"
-    ]
-   }
-  ],
-  "agreements": [
-   {
-    "point": "젠슨 황 복귀에도 금리 부담과 미국 정치권 조사 리스크가 남았다고 본다.",
-    "refs": [
-     "BKt64C39U4M",
-     "Ai_9nqUhRNo",
      "XS3qcV8ubMM",
      "CTZ8-6dNW4Y",
      "yo24thbKD4A",
+     "pssXKLyr05c",
      "vcHvXcQw7e0"
-    ]
-   },
-   {
-    "point": "10조 원 규모 증시안정펀드는 증시 상승을 이끌기에 부족하다고 지적한다.",
-    "refs": [
-     "XS3qcV8ubMM",
-     "8xImYsugx8A",
-     "3qmWCkORZts",
-     "uBEYE0bjlNY",
-     "vcHvXcQw7e0"
-    ]
-   },
-   {
-    "point": "반도체 대형주는 저평가 구간이므로 성급한 매도보다 보유·분할 매수가 낫다고 본다.",
-    "refs": [
-     "poT4VA9HIWY",
-     "XS3qcV8ubMM",
-     "jzQJCFw1Qmk",
-     "lEK_6li3T0U",
-     "3qmWCkORZts",
-     "4ef5Us1PLUU"
-    ]
-   },
-   {
-    "point": "휴머노이드 기술과 CES 일정으로 로봇 관련주 모멘텀이 부각된다고 본다.",
-    "refs": [
-     "yGpzZbCZ0eU",
-     "Ai_9nqUhRNo",
-     "poT4VA9HIWY",
-     "CTZ8-6dNW4Y",
-     "YUMN-SLIJAk"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "바닥 확인 및 추세 반등 여부",
+    "topic": "증시안정펀드 실효성",
     "views": [
      {
       "channel": "체슬리TV",
-      "view": "외생적 악재가 해소돼 내년 1월 말까지 5,500선 위로 반등할 것으로 본다.",
+      "view": "10조 원 규모의 증안펀드는 시장 하방을 지지하는 안전판 역할을 할 것이다.",
       "ref": "jzQJCFw1Qmk",
       "side": 0
      },
      {
-      "channel": "체슬리TV",
-      "view": "반대매매 저점을 지나 반등세가 시작돼 5,500선까지 보유가 유리하다고 본다.",
-      "ref": "lEK_6li3T0U",
-      "side": 0
-     },
-     {
       "channel": "삼프로TV",
-      "view": "하락 조정 파동이 끝무렵에 도달해 곧 상승 국면이 시작될 것으로 전망한다.",
-      "ref": "3qmWCkORZts",
-      "side": 0
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "고금리 리스크가 남아 현 시점에서 바닥을 단정 짓기 어렵다고 경고한다.",
+      "view": "현재 시총 대비 규모가 작고 선언적 의미에 그쳐 실질적인 상승 견인은 어렵다.",
       "ref": "XS3qcV8ubMM",
       "side": 1
      },
      {
-      "channel": "815머니톡",
-      "view": "강한 저항선 탓에 반등 시 현금을 확보하고 바닥 다지기에 수개월이 걸린다고 본다.",
-      "ref": "hZqsRcqmhPQ",
-      "side": 1
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "현금흐름과 금리 우려가 걷히는 내년 3~4월 이후에야 반등이 기대된다고 본다.",
-      "ref": "poT4VA9HIWY",
+      "channel": "증시각도기TV",
+      "view": "준비만 하다가 실제 투입되지 못하고 끝날 가능성이 높다.",
+      "ref": "uBEYE0bjlNY",
       "side": 1
      }
     ]
@@ -187,192 +157,137 @@ const BRIEFS=[
   "stocks": [
    {
     "name": "엔비디아",
-    "count": 16,
-    "tone": "혼재",
-    "mentions": [
-     {
-      "channel": "삼프로TV",
-      "view": "장중 36% 급등했으나 미국 민주당의 반발과 조사 예고가 부담이라고 본다.",
-      "ref": "BKt64C39U4M"
-     },
-     {
-      "channel": "머니인사이드",
-      "view": "3분기 매출 호조에도 경영 공백과 회계 조사로 7주간 폭락했다고 전한다.",
-      "ref": "JDRsZE771wA"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "젠슨 황 복귀로 심리가 개선됐으나 1,180억 달러 순환금융 검증이 필요하다.",
-      "ref": "poT4VA9HIWY"
-     },
-     {
-      "channel": "증시각도기TV",
-      "view": "젠슨 황 복귀로 31% 폭등해 하루 만에 시총이 약 1조 달러 늘었다고 전한다.",
-      "ref": "uBEYE0bjlNY"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "사임 전부터 하락 추세였고 정치적 노이즈가 남아 신중해야 한다고 평가한다.",
-      "ref": "vcHvXcQw7e0"
-     }
-    ]
-   },
-   {
-    "name": "삼성전자",
-    "count": 10,
+    "count": 19,
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "머니인사이드",
-      "view": "아프리카 진출 31년 만에 스마트폰 매출과 판매량 1위를 기록했다고 전한다.",
-      "ref": "JDRsZE771wA"
+      "channel": "체슬리TV",
+      "view": "젠슨 황 복귀로 경영 리스크가 해소되며 주가가 폭등했다.",
+      "ref": "jzQJCFw1Qmk"
      },
      {
       "channel": "815머니톡",
-      "view": "외국인 순매수 상위이자 휴머노이드 로봇 기대감으로 긍정적으로 평가한다.",
-      "ref": "Ai_9nqUhRNo"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "영업이익 반토막 가정에서도 PER 4~5배 수준으로 저평가됐다고 강조한다.",
-      "ref": "poT4VA9HIWY"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "주주환원 발표 연기는 아쉽지만 내년도 배당이 기대되는 1등 기업으로 본다.",
-      "ref": "XS3qcV8ubMM"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "프리마켓 10% 상승과 함께 막대한 현금으로 소부장 M&A에 나설 것으로 본다.",
-      "ref": "vcHvXcQw7e0"
+      "view": "정치적 노이즈와 회계 이슈가 남아 있어 신중한 접근이 필요하다.",
+      "ref": "fmdJk4Xhl3Y"
      }
     ]
    },
    {
     "name": "SK하이닉스",
-    "count": 10,
-    "tone": "혼재",
-    "mentions": [
-     {
-      "channel": "815머니톡",
-      "view": "반등 시 상승폭이 클 것으로 기대되는 종목으로 꼽으며 긍정적으로 본다.",
-      "ref": "yGpzZbCZ0eU"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "자사주 매입에도 외국인 순매도 1위를 기록해 상승이 제한적이라고 본다.",
-      "ref": "Ai_9nqUhRNo"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "고객사 다변화로 가격 결정력이 높아지고 PER 4~5배로 저평가됐다고 본다.",
-      "ref": "poT4VA9HIWY"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "주당 2만 원 배당 발표로 최근 하락장에서 양호한 방어력을 보였다고 본다.",
-      "ref": "XS3qcV8ubMM"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "프리마켓에서 13% 급등했으나 수급 구조상 두 자릿수 상승이 필요하다고 본다.",
-      "ref": "vcHvXcQw7e0"
-     }
-    ]
-   },
-   {
-    "name": "코스트코",
-    "count": 3,
-    "tone": "중립",
-    "mentions": [
-     {
-      "channel": "삼프로TV",
-      "view": "안정 자산 선호 현상으로 주가가 오르며 높은 밸류에이션을 기록 중이라고 본다.",
-      "ref": "yqsjMBiOQiQ"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "성장률 대비 PER 54배를 받아 기술주 저평가의 대비 사례로 언급한다.",
-      "ref": "3qmWCkORZts"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "필수소비재 중 PER 53배의 높은 밸류에이션을 기록하고 있다고 설명한다.",
-      "ref": "hZqsRcqmhPQ"
-     }
-    ]
-   },
-   {
-    "name": "현대오토에버",
-    "count": 3,
+    "count": 14,
     "tone": "긍정",
     "mentions": [
      {
       "channel": "815머니톡",
-      "view": "현대차그룹의 엔비디아 GPU 구매 대행 기대감에 급등했다고 분석한다.",
-      "ref": "Ai_9nqUhRNo"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "엔비디아 관련 사업 지연 우려가 해소되면서 급등했다고 설명한다.",
-      "ref": "poT4VA9HIWY"
+      "view": "HBM 고성장과 고객사 다변화로 내년까지 실적 개선이 기대된다.",
+      "ref": "fmdJk4Xhl3Y"
      },
      {
       "channel": "815머니톡",
-      "view": "시장에서 상승률이 도드라지는 대장주 역할을 하고 있다고 설명한다.",
+      "view": "외국인 순매도 등으로 본주 탄력은 제한적이나 저평가 구간이다.",
+      "ref": "Ai_9nqUhRNo"
+     }
+    ]
+   },
+   {
+    "name": "삼성전자",
+    "count": 13,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "삼프로TV",
+      "view": "주주환원 정책과 AI 메모리 필수재로서의 가치로 저평가 매력이 크다.",
+      "ref": "XS3qcV8ubMM"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "외국인 매수세가 유입되며 지수 안착을 이끌 핵심 종목이다.",
+      "ref": "3qmWCkORZts"
+     }
+    ]
+   },
+   {
+    "name": "삼성SDI",
+    "count": 4,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "삼프로TV",
+      "view": "ESS 수주 확대와 LFP 배터리 매출로 반도체 다음 주도주가 될 수 있다.",
+      "ref": "q1r4OqBIaFk"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "2차전지 섹터 내에서 펀더멘털 개선 흐름이 뚜렷하다.",
       "ref": "8xImYsugx8A"
      }
     ]
    },
    {
-    "name": "크라우드스트라이크",
-    "count": 2,
-    "tone": "부정",
+    "name": "현대차",
+    "count": 4,
+    "tone": "긍정",
     "mentions": [
      {
-      "channel": "체슬리TV",
-      "view": "지스케일러 전액 주식 인수 소식에 지분 희석 우려로 9% 가까이 내렸다고 전한다.",
-      "ref": "jzQJCFw1Qmk"
+      "channel": "삼프로TV",
+      "view": "로봇 모멘텀과 자율주행 수익 창출 기대감으로 보유 전략이 유효하다.",
+      "ref": "q1r4OqBIaFk"
      },
      {
       "channel": "삼프로TV",
-      "view": "지스케일러 인수 발표 이후 시장의 우려를 반영하며 주가가 급락했다고 전한다.",
-      "ref": "yo24thbKD4A"
+      "view": "젠슨 황 복귀로 협력 지연 우려가 해소되며 주가가 급등했다.",
+      "ref": "poT4VA9HIWY"
+     }
+    ]
+   },
+   {
+    "name": "로보티즈",
+    "count": 3,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "삼프로TV",
+      "view": "수주 잔고를 바탕으로 향후 고성장이 기대되는 로봇 기업이다.",
+      "ref": "q1r4OqBIaFk"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "휴머노이드 로봇 사업 확장으로 긍정적 평가를 받는다.",
+      "ref": "yGpzZbCZ0eU"
      }
     ]
    },
    {
     "name": "삼성전기",
-    "count": 2,
+    "count": 3,
     "tone": "긍정",
     "mentions": [
      {
       "channel": "815머니톡",
-      "view": "회복기 변동성을 활용하기 좋은 중간 위치의 종목으로 긍정 평가한다.",
-      "ref": "8xImYsugx8A"
+      "view": "기판 단가 인상과 고부가가치 제품 비중 확대로 실적 개선이 기대된다.",
+      "ref": "Ai_9nqUhRNo"
      },
      {
       "channel": "삼프로TV",
-      "view": "하락장에서도 유일하게 오른 뒤 프리마켓에서 13% 급등했다고 평가한다.",
+      "view": "하락장에서도 강한 탄력을 보이며 대장주 역할을 하고 있다.",
       "ref": "vcHvXcQw7e0"
      }
     ]
    },
    {
-    "name": "심텍",
+    "name": "현대오토에버",
     "count": 2,
     "tone": "긍정",
     "mentions": [
      {
       "channel": "815머니톡",
-      "view": "고부가 소켓 비중 확대와 판가 인상으로 내년 실적 개선이 크다고 기대한다.",
+      "view": "현대차그룹의 엔비디아 GPU 구매 대행 수혜로 급등했다.",
       "ref": "Ai_9nqUhRNo"
      },
      {
-      "channel": "삼프로TV",
-      "view": "코스닥 반도체 소부장 중 가장 강한 16%대 상승세를 보였다고 평가한다.",
-      "ref": "vcHvXcQw7e0"
+      "channel": "815머니톡",
+      "view": "현재 시장에서 상승률이 도드라지는 대장주 역할을 한다.",
+      "ref": "8xImYsugx8A"
      }
     ]
    }
