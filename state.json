@@ -156,7 +156,13 @@
   "hjoG_BxP5zY": "너무 짧음",
   "p7VzsJTeqmw": "너무 긴 영상(306분)",
   "OM-I_y8L2-I": "너무 짧음",
-  "jL3Zo_g7Eo8": "너무 짧음"
+  "jL3Zo_g7Eo8": "너무 짧음",
+  "Am6mE_TF0uM": "너무 짧음",
+  "zMkQ2rrNaBU": "너무 짧음",
+  "nYjCX5ak8A4": "너무 짧음",
+  "cCBgb9c1494": "너무 짧음",
+  "5VGao67PksE": "너무 짧음",
+  "MBcHiWT8rHM": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -172,12 +178,12 @@
  "models": {
   "gemini-3.6-flash": {
    "ok": 14,
-   "busy": 10,
+   "busy": 12,
    "dead": 5
   },
   "gemini-3.7-flash": {
    "ok": 0,
-   "busy": 28,
+   "busy": 31,
    "dead": 5
   },
   "gemini-3.8-flash": {
@@ -187,22 +193,22 @@
   },
   "gemini-3.1-flash-lite": {
    "ok": 15,
-   "busy": 15,
+   "busy": 18,
    "dead": 5
   },
   "gemini-3.5-flash-lite": {
    "ok": 7,
-   "busy": 28,
+   "busy": 31,
    "dead": 5
   },
   "gemini-4-hydrogen": {
-   "ok": 5,
-   "busy": 35,
+   "ok": 2,
+   "busy": 20,
    "dead": 1
   },
   "gemini-3.5-flash": {
    "ok": 5,
-   "busy": 32,
+   "busy": 34,
    "dead": 1
   }
  },
@@ -476,6 +482,7 @@
   "소프트뱅크 위기설과 미 기술주 차익 실현에 외인이 던지면서 국장이 크게 흔들렸다."
  ],
  "alerts": {
-  "cookie-2026-11-25": true
+  "cookie-2026-11-25": true,
+  "cookie-2026-11-26": true
  }
 }
