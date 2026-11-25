@@ -178,12 +178,12 @@
  "models": {
   "gemini-3.6-flash": {
    "ok": 18,
-   "busy": 15,
+   "busy": 20,
    "dead": 5
   },
   "gemini-3.7-flash": {
    "ok": 0,
-   "busy": 37,
+   "busy": 20,
    "dead": 5
   },
   "gemini-3.8-flash": {
@@ -192,23 +192,23 @@
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 15,
-   "busy": 25,
+   "ok": 10,
+   "busy": 13,
    "dead": 5
   },
   "gemini-3.5-flash-lite": {
-   "ok": 3,
+   "ok": 4,
    "busy": 21,
    "dead": 5
   },
   "gemini-4-hydrogen": {
-   "ok": 3,
-   "busy": 25,
+   "ok": 4,
+   "busy": 29,
    "dead": 1
   },
   "gemini-3.5-flash": {
    "ok": 2,
-   "busy": 19,
+   "busy": 23,
    "dead": 1
   }
  },
@@ -402,25 +402,21 @@
   "qDoveyLsKyk": true,
   "1MmdN-GXbGI": true,
   "p7VzsJTeqmw": true,
-  "R1vGAD4cQPE": true,
   "5_YLp_WgdDg": true,
   "_npClkKKRrM": true,
-  "oSMHjlE4oAY": true,
   "MSMWufMKHs4": true,
-  "xLCKUuIIvnk": true,
   "zm-2HLLAhlo": true,
   "qKrE3moexi4": true,
   "hjoG_BxP5zY": true,
-  "COtb358Fg68": true,
   "OM-I_y8L2-I": true,
-  "7V7C2yxwXdg": true,
   "jL3Zo_g7Eo8": true,
   "Am6mE_TF0uM": true,
   "zMkQ2rrNaBU": true,
   "nYjCX5ak8A4": true,
   "cCBgb9c1494": true,
   "5VGao67PksE": true,
-  "MBcHiWT8rHM": true
+  "MBcHiWT8rHM": true,
+  "KtnvpzjdIjg": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -436,7 +432,7 @@
   "2026-11-24": true,
   "2026-11-25": true
  },
- "last_ok": "2026-11-26T04:10",
+ "last_ok": "2026-11-26T06:05",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true,

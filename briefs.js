@@ -2,8 +2,12 @@
 const BRIEFS=[
  {
   "date": "2026-11-25",
-  "count": 38,
+  "count": 42,
   "sources": [
+   "oSMHjlE4oAY",
+   "COtb358Fg68",
+   "7V7C2yxwXdg",
+   "xLCKUuIIvnk",
    "4oglGRSJgzU",
    "cog-IUIlRMs",
    "3rVJujtM4HE",
@@ -43,122 +47,101 @@ const BRIEFS=[
    "xY0FR3VjO98",
    "8qJm0N09I-g"
   ],
-  "headline": "반도체주 급락에 따른 수급 불안 지속, 기술적 반등 시 비중 조절 및 보수적 대응 필요",
+  "headline": "극심한 증시 변동성과 외국인 매도 속에 반도체주 향방을 둘러싼 공방이 이어지고 있다",
   "keypoints": [
-   "반도체주는 수급 악화와 업황 우려로 급락했으나 펀더멘털 대비 과도한 낙폭이라는 의견이 많다.",
-   "시장 변동성이 극심한 상황에서 무리한 추격 매수보다는 20일 이동평균선 등을 활용한 분할 대응이 권장된다.",
-   "AI 인프라 수요는 여전히 견조하므로 장기적 관점에서는 우상향하는 기업에 주목해야 한다.",
-   "화장품, 보안, 제약·바이오 등 실적이 뒷받침되는 방어주와 성장주로 포트폴리오를 다변화해야 한다."
+   "코스피가 급락하며 사이드카가 연일 발동되는 등 변정성이 확대되었다",
+   "외국인의 대규모 순매도가 출회되며 국내 증시의 수급 취약성이 노출되었다",
+   "반도체 업황의 둔화 우려와 긍정적 수요 전망이 엇갈리며 주가 등락이 반복되고 있다",
+   "전문가들은 무리한 투매를 자제하고 실적이 탄탄한 업종 위주로 대응할 것을 권고한다"
   ],
   "themes": [
    {
-    "title": "반도체 업황 및 수급 불안",
-    "summary": "반도체주는 수급 악재와 2028년 이익 급감 우려로 급락했으나, 장기 수주 물량과 이익 체력을 고려할 때 과도한 하락이라는 평가가 지배적이다.",
+    "title": "반도체주 급락과 수급 불안",
+    "summary": "외국인의 대규모 매도와 마이크론 목표가 하향 등 악재가 겹치며 삼성전자와 SK하이닉스 등 반도체 대형주가 큰 폭으로 하락했다.",
     "refs": [
+     "oSMHjlE4oAY",
+     "xLCKUuIIvnk",
      "cog-IUIlRMs",
-     "7vmVkQ6U4yA",
      "67w1HDjQsbw",
-     "i8ZbqPhfALg",
-     "Dt4mIitXwtA",
+     "i8ZbqPhfALg"
+    ]
+   },
+   {
+    "title": "화장품 및 경기소비재 강세",
+    "summary": "반도체주가 부진한 흐름을 보이는 동안 수출 지표 호조와 방어주 성격에 힘입어 화장품과 미디어 등 소비재 섹터가 상승세를 나타냈다.",
+    "refs": [
+     "xLCKUuIIvnk",
      "ONjSzAO4jJw",
-     "C6ApP7Rw_Wk",
      "w8G6n9uTjlY",
-     "-mD3Z9_vN6k",
-     "J-uyy4n4664",
-     "Iaa__vuffDQ",
-     "7l_I4CNxyIc"
+     "1fBlONhdXu8"
     ]
    },
    {
-    "title": "AI 인프라와 수익성 검증",
-    "summary": "AI 투자가 모델 개발에서 수익성 검증 단계로 전환되면서 단기 불확실성이 커졌으나, 데이터센터 수요는 2027년까지 견조할 것으로 전망된다.",
+    "title": "금리 및 거시경제 불확실성",
+    "summary": "금통위의 금리 인상 우려와 글로벌 유동성 축소 기조가 맞물려 투자 심리가 위축되고 시장의 변동성을 키우고 있다.",
     "refs": [
-     "3rVJujtM4HE",
-     "Dt4mIitXwtA",
-     "CGSZmpNwxb8",
-     "LheK78BQkEU",
-     "6-R_UOTHdT4",
-     "xY0FR3VjO98",
-     "8qJm0N09I-g"
-    ]
-   },
-   {
-    "title": "시장 대응 전략",
-    "summary": "지수 급락장에서 무리한 물타기보다는 현금 비중을 확보하고, 실적이 확인되는 소비재 및 방어주로 순환매 대응하는 전략이 유효하다.",
-    "refs": [
-     "3rVJujtM4HE",
-     "J59BlFTiHEc",
-     "C6ApP7Rw_Wk",
-     "1fBlONhdXu8",
-     "wIPqelOmsEA",
-     "aoNPLI-O9QY",
-     "OFIo70Vhg8k",
-     "kRYj5zUJzRc",
-     "YUzwVL3oZIc"
+     "COtb358Fg68",
+     "cog-IUIlRMs",
+     "wcnQXFLs93g",
+     "i8ZbqPhfALg"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "반도체주의 현재 주가는 펀더멘털 대비 과도하게 하락한 언더슈팅 구간이다.",
+    "point": "외국인의 대규모 순매도가 국내 증시의 급락과 수급 불안을 이끌었다",
     "refs": [
+     "xLCKUuIIvnk",
      "67w1HDjQsbw",
      "i8ZbqPhfALg",
-     "ONjSzAO4jJw",
-     "w8G6n9uTjlY",
-     "aoNPLI-O9QY"
+     "w8G6n9uTjlY"
     ]
    },
    {
-    "point": "시장 변동성이 큰 시기이므로 무리한 추격 매수보다는 분할 매수와 비중 조절이 필요하다.",
+    "point": "반도체 업황을 둘러싼 단기 불확실성이 크므로 섣부른 추격 매수보다는 보수적 대응이 필요하다",
     "refs": [
-     "3rVJujtM4HE",
-     "Dt4mIitXwtA",
-     "1fBlONhdXu8",
-     "aoNPLI-O9QY",
-     "-mD3Z9_vN6k"
+     "oSMHjlE4oAY",
+     "xLCKUuIIvnk",
+     "i8ZbqPhfALg",
+     "wIPqelOmsEA"
     ]
    },
    {
-    "point": "화장품 및 보안 관련주는 하락장에서 방어주 역할을 하며 순환매가 나타나고 있다.",
+    "point": "화장품 등 수출 중심의 소비재 업종이 하락장에서 방어주 역할을 하고 있다",
     "refs": [
-     "cog-IUIlRMs",
-     "67w1HDjQsbw",
-     "J59BlFTiHEc",
+     "xLCKUuIIvnk",
      "ONjSzAO4jJw",
      "w8G6n9uTjlY",
-     "1fBlONhdXu8",
-     "wIPqelOmsEA",
-     "gmodBGqiDLQ"
+     "1fBlONhdXu8"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "반도체주 대응 전략",
+    "topic": "반도체 대형주 대응 전략",
     "views": [
      {
       "channel": "삼프로TV",
-      "view": "반도체는 장기 성장성이 유효하므로 저점 매수 후 보유해야 한다.",
-      "ref": "ndChrW-zsdE",
-      "side": 0
-     },
-     {
-      "channel": "체슬리TV",
-      "view": "딥밸류 구간이므로 트레이딩보다 사서 기다리는 전략이 유효하다.",
-      "ref": "LheK78BQkEU",
+      "view": "펀더멘털 대비 과도한 하락이므로 장기 보유하며 반등을 기다려야 한다",
+      "ref": "67w1HDjQsbw",
       "side": 0
      },
      {
       "channel": "삼프로TV",
-      "view": "주도주 지위를 잃었으므로 반등 시 비중을 축소하고 종목을 교체해야 한다.",
-      "ref": "C6ApP7Rw_Wk",
+      "view": "AI 반도체 수요가 견조하므로 반도체 주식을 끝까지 지켜야 한다",
+      "ref": "aoNPLI-O9QY",
+      "side": 0
+     },
+     {
+      "channel": "김작가 TV",
+      "view": "추세적 반등이 어려우므로 반등 시 비중을 축소하고 현금을 확보해야 한다",
+      "ref": "3rVJujtM4HE",
       "side": 1
      },
      {
       "channel": "삼프로TV",
-      "view": "이전 고점 회복이 어려우므로 반등 시 비중을 줄여야 한다.",
-      "ref": "7l_I4CNxyIc",
+      "view": "주도주 지위가 약화되었으므로 보유 비중을 절반 이상 매도하고 종목을 교체해야 한다",
+      "ref": "C6ApP7Rw_Wk",
       "side": 1
      }
     ]
@@ -166,70 +149,73 @@ const BRIEFS=[
   ],
   "stocks": [
    {
-    "name": "SK하이닉스",
-    "count": 24,
+    "name": "삼성전자",
+    "count": 25,
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "김작가 TV",
-      "view": "장기 수주가 확보되어 펀더멘털 이상으로 급락했으나 반등 시 비중 축소가 권장된다.",
-      "ref": "3rVJujtM4HE"
+      "channel": "815머니톡",
+      "view": "외국인의 대규모 매도가 집중되며 지수 하락을 주도했다고 설명한다.",
+      "ref": "xLCKUuIIvnk"
      },
      {
       "channel": "삼프로TV",
-      "view": "지정학 리스크 완화 시 외국인이 가장 먼저 매수할 주도주이다.",
-      "ref": "ndChrW-zsdE"
+      "view": "시가총액 1,000조 원이 붕괴되었으나 내년 실적 대비 과도한 낙폭이라고 평가한다.",
+      "ref": "67w1HDjQsbw"
+     },
+     {
+      "channel": "김작가 TV",
+      "view": "추가 반등 시 보유 비중을 줄이고 현금을 확보하는 기회로 삼아야 한다고 조언한다.",
+      "ref": "3rVJujtM4HE"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "장기 주문이 확보되어 있으나 단기 주가 변동성 대응과 비중 관리가 필요하다고 본다.",
+      "ref": "-mD3Z9_vN6k"
      }
     ]
    },
    {
-    "name": "삼성전자",
-    "count": 23,
+    "name": "SK하이닉스",
+    "count": 25,
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "삼프로TV",
-      "view": "시총 1,000조 붕괴는 과도한 낙폭이며 장기 투자 시 최우선 압축 종목이다.",
-      "ref": "67w1HDjQsbw"
+      "channel": "815머니톡",
+      "view": "외국인 매도세가 출회되었으나 공정 전환 및 장비 발주 모멘텀은 유효하다고 본다.",
+      "ref": "xLCKUuIIvnk"
      },
      {
       "channel": "삼프로TV",
-      "view": "추세적 하락이 심화되어 비중 절반을 손절하고 교체해야 한다.",
+      "view": "실적과 주주환원 매력이 높으나 주가 하락세가 과도해 종목 교체를 위한 매도를 고민해야 한다고 평가한다.",
       "ref": "C6ApP7Rw_Wk"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "주문이 대부분 채워진 상태로 과거 불황기와 다른 탄탄한 실적 체력을 유지 중이라고 본다.",
+      "ref": "-mD3Z9_vN6k"
      }
     ]
    },
    {
     "name": "엔비디아",
-    "count": 13,
+    "count": 15,
     "tone": "혼재",
     "mentions": [
      {
+      "channel": "연합뉴스경제TV",
+      "view": "CEO 복귀에도 불구하고 AI 현상에 대한 의구심이 커지며 시장의 로직이 약해졌음을 보여주는 사례로 든다.",
+      "ref": "COtb358Fg68"
+     },
+     {
       "channel": "815머니톡",
-      "view": "AI 시장 주도력이 유지되므로 주가 조정 시 분할 매수를 추천한다.",
+      "view": "젠슨 황 복귀 이후 급등락을 거쳤으나 AI 시장 주도력이 유지되므로 조정 시 분할 매수를 추천한다.",
       "ref": "7vmVkQ6U4yA"
      },
      {
-      "channel": "체슬리TV",
-      "view": "CEO 관련 리스크와 시장 불안으로 변동성이 크다.",
-      "ref": "OLnVi7EChB4"
-     }
-    ]
-   },
-   {
-    "name": "마이크론",
-    "count": 6,
-    "tone": "부정",
-    "mentions": [
-     {
-      "channel": "연합뉴스경제TV",
-      "view": "목표주가 하향 리포트로 반도체 업황 심리를 위축시키고 있다.",
-      "ref": "cog-IUIlRMs"
-     },
-     {
-      "channel": "체슬리TV",
-      "view": "증권사들의 무책임한 목표가 하향으로 시장 혼란이 가중되고 있다.",
-      "ref": "LheK78BQkEU"
+      "channel": "815머니톡",
+      "view": "급등에 따른 차익 실현과 하방 물량 청산으로 대발락을 겪었다고 평가한다.",
+      "ref": "ONjSzAO4jJw"
      }
     ]
    },
@@ -239,31 +225,36 @@ const BRIEFS=[
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "연합뉴스경제TV",
-      "view": "보안 중요성 부각으로 상한가를 기록했으나 단기 변동성이 크다.",
-      "ref": "cog-IUIlRMs"
+      "channel": "삼프로TV",
+      "view": "미국 보안 이슈와 사이버 보안 중요성이 부각되며 강한 상승세를 기록했다고 지적한다.",
+      "ref": "67w1HDjQsbw"
      },
      {
       "channel": "김작가 TV",
-      "view": "폭락장 속에서도 견조하며 조정 시 매수 대상이다.",
+      "view": "폭락장 속에서도 지속 상승했으며 해킹 이슈에 따라 조정 시 매수하기 좋다고 평가한다.",
       "ref": "J59BlFTiHEc"
      }
     ]
    },
    {
     "name": "현대차",
-    "count": 4,
+    "count": 5,
     "tone": "혼재",
     "mentions": [
      {
+      "channel": "연합뉴스경제TV",
+      "view": "외국인과 기관의 매수가 유입되는 유의미한 종목으로 언급한다.",
+      "ref": "oSMHjlE4oAY"
+     },
+     {
       "channel": "김작가 TV",
-      "view": "실적 둔화와 역배열 흐름으로 즉시 매도 후 관망해야 한다.",
+      "view": "역배열로 흘러내리는 대형주는 데드크로스 발생 시 즉시 매도 후 관망해야 한다고 강조한다.",
       "ref": "J59BlFTiHEc"
      },
      {
       "channel": "삼프로TV",
-      "view": "로봇 사업 등 미래 성장 동력 확보로 저점 매수 구간이다.",
-      "ref": "OFIo70Vhg8k"
+      "view": "자율주행 및 로보틱스 호재로 급등했으나 유럽의 하이브리드차 쿼터 제한 악재를 맞았다.",
+      "ref": "-zCxk8cTefE"
      }
     ]
    },
@@ -274,30 +265,13 @@ const BRIEFS=[
     "mentions": [
      {
       "channel": "연합뉴스경제TV",
-      "view": "해외 호응으로 외국인 선호도가 높으며 하락장 속 방어력이 양호하다.",
+      "view": "해외 인지도가 높아지면서 외국인 투자자들의 선호도가 높아지고 있다고 평가한다.",
       "ref": "cog-IUIlRMs"
      },
      {
       "channel": "815머니톡",
-      "view": "경기 소비재 순환매 속에 주가가 강세를 보이고 있다.",
+      "view": "하락장 속에서도 경기 소비재 순환매 흐름 속에 양호한 주가 방어력을 보여주었다고 언급한다.",
       "ref": "ONjSzAO4jJw"
-     }
-    ]
-   },
-   {
-    "name": "델",
-    "count": 3,
-    "tone": "긍정",
-    "mentions": [
-     {
-      "channel": "815머니톡",
-      "view": "호실적과 강력한 가이던스로 주가가 상승했다.",
-      "ref": "7vmVkQ6U4yA"
-     },
-     {
-      "channel": "체슬리TV",
-      "view": "AI 서버 수요가 공급을 초과하여 2027년까지 성장이 지속될 것이다.",
-      "ref": "LheK78BQkEU"
      }
     ]
    }
