@@ -154,7 +154,8 @@
   "zm-2HLLAhlo": "너무 짧음",
   "YWDcICo4EMs": "경제 무관: 탈북민의 북한 군 생활 및 경험담을 다루어 경제·투자 관점이 드러나지 않는 영상입니다.",
   "hjoG_BxP5zY": "너무 짧음",
-  "p7VzsJTeqmw": "너무 긴 영상(306분)"
+  "p7VzsJTeqmw": "너무 긴 영상(306분)",
+  "OM-I_y8L2-I": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -169,7 +170,7 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 15,
+   "ok": 21,
    "busy": 17,
    "dead": 5
   },
@@ -408,15 +409,14 @@
   "zm-2HLLAhlo": true,
   "67w1HDjQsbw": true,
   "qKrE3moexi4": true,
-  "Dt4mIitXwtA": true,
-  "ONjSzAO4jJw": true,
-  "J59BlFTiHEc": true,
   "hjoG_BxP5zY": true,
   "wcnQXFLs93g": true,
-  "u4GuUAdynkE": true,
   "i8ZbqPhfALg": true,
   "xaHg9Y5yVa8": true,
-  "COtb358Fg68": true
+  "COtb358Fg68": true,
+  "OM-I_y8L2-I": true,
+  "cog-IUIlRMs": true,
+  "7V7C2yxwXdg": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -431,7 +431,7 @@
   "2026-11-23": true,
   "2026-11-24": true
  },
- "last_ok": "2026-11-25T20:10",
+ "last_ok": "2026-11-25T22:32",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true,
