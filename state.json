@@ -148,7 +148,10 @@
   "1MmdN-GXbGI": "너무 짧음",
   "5_YLp_WgdDg": "너무 짧음",
   "6eBfMjQ1lBM": "너무 긴 영상(328분)",
-  "lH9LC1sf2Ps": "너무 긴 영상(377분)"
+  "lH9LC1sf2Ps": "너무 긴 영상(377분)",
+  "_npClkKKRrM": "너무 짧음",
+  "MSMWufMKHs4": "너무 짧음",
+  "zm-2HLLAhlo": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -158,18 +161,19 @@
   "17시~2026-11-19": 11959,
   "17시~2026-11-21": 9810,
   "17시~2026-11-22": 3873,
-  "17시~2026-11-24": 5268
+  "17시~2026-11-24": 5268,
+  "17시~2026-11-25": 6762
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 10,
+   "ok": 13,
    "busy": 17,
-   "dead": 4
+   "dead": 5
   },
   "gemini-3.7-flash": {
    "ok": 0,
    "busy": 22,
-   "dead": 4
+   "dead": 5
   },
   "gemini-3.8-flash": {
    "ok": 0,
@@ -179,22 +183,22 @@
   "gemini-3.1-flash-lite": {
    "ok": 15,
    "busy": 9,
-   "dead": 4
+   "dead": 5
   },
   "gemini-3.5-flash-lite": {
    "ok": 7,
    "busy": 22,
-   "dead": 4
+   "dead": 5
   },
   "gemini-4-hydrogen": {
    "ok": 5,
    "busy": 29,
-   "dead": 0
+   "dead": 1
   },
   "gemini-3.5-flash": {
    "ok": 5,
    "busy": 30,
-   "dead": 0
+   "dead": 1
   }
  },
  "topic": {
@@ -387,11 +391,22 @@
   "qDoveyLsKyk": true,
   "1MmdN-GXbGI": true,
   "p7VzsJTeqmw": true,
-  "wIPqelOmsEA": true,
-  "CGSZmpNwxb8": true,
   "R1vGAD4cQPE": true,
   "5_YLp_WgdDg": true,
-  "1fBlONhdXu8": true
+  "_npClkKKRrM": true,
+  "7vmVkQ6U4yA": true,
+  "3rVJujtM4HE": true,
+  "oSMHjlE4oAY": true,
+  "w8G6n9uTjlY": true,
+  "MSMWufMKHs4": true,
+  "4oglGRSJgzU": true,
+  "wk-JESr_6eM": true,
+  "ndChrW-zsdE": true,
+  "xLCKUuIIvnk": true,
+  "9eS9ZypwKzw": true,
+  "zm-2HLLAhlo": true,
+  "67w1HDjQsbw": true,
+  "qKrE3moexi4": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -406,7 +421,7 @@
   "2026-11-23": true,
   "2026-11-24": true
  },
- "last_ok": "2026-11-25T16:28",
+ "last_ok": "2026-11-25T18:21",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true,
@@ -441,5 +456,8 @@
  "threads_hooks": [
   "젠슨 황 복귀에 반도체는 웃었지만 연준 매파 발언에 장은 멈칫했다.",
   "반도체 주도주 시대를 두고 유튜브 안에서도 완전히 다른 말이 나왔다."
- ]
+ ],
+ "alerts": {
+  "cookie-2026-11-25": true
+ }
 }
