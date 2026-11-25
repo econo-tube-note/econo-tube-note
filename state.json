@@ -144,7 +144,8 @@
   "FTX4STWDkbo": "너무 짧음",
   "d0IBZTAfV2g": "너무 짧음",
   "ISCgJ_ftC5w": "너무 짧음",
-  "qDoveyLsKyk": "너무 짧음"
+  "qDoveyLsKyk": "너무 짧음",
+  "1MmdN-GXbGI": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -159,12 +160,12 @@
  "models": {
   "gemini-3.6-flash": {
    "ok": 15,
-   "busy": 23,
+   "busy": 24,
    "dead": 4
   },
   "gemini-3.7-flash": {
    "ok": 1,
-   "busy": 38,
+   "busy": 39,
    "dead": 4
   },
   "gemini-3.8-flash": {
@@ -184,12 +185,12 @@
   },
   "gemini-4-hydrogen": {
    "ok": 4,
-   "busy": 23,
+   "busy": 25,
    "dead": 0
   },
   "gemini-3.5-flash": {
    "ok": 3,
-   "busy": 25,
+   "busy": 26,
    "dead": 0
   }
  },
@@ -380,7 +381,10 @@
   "6eBfMjQ1lBM": true,
   "rHZT9K7XKWI": true,
   "ISCgJ_ftC5w": true,
-  "qDoveyLsKyk": true
+  "qDoveyLsKyk": true,
+  "OFIo70Vhg8k": true,
+  "1MmdN-GXbGI": true,
+  "gmodBGqiDLQ": true
  },
  "brief_final": {
   "2026-11-13": true,
