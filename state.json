@@ -184,7 +184,8 @@
   "SE6QoRcpCyU": "너무 짧음",
   "jSStjPAybpc": "너무 짧음",
   "oCaUmDZmkts": "너무 짧음",
-  "VzvtFMbVxi4": "너무 긴 영상(308분)"
+  "VzvtFMbVxi4": "너무 긴 영상(308분)",
+  "lsfECKn5Q6E": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -458,7 +459,9 @@
   "2FCpKVKSDxg": true,
   "mkf-Aa63V2s": true,
   "SE6QoRcpCyU": true,
-  "oCaUmDZmkts": true
+  "oCaUmDZmkts": true,
+  "eXAueXZo6dM": true,
+  "lsfECKn5Q6E": true
  },
  "brief_final": {
   "2026-11-13": true,
