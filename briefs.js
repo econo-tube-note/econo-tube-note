@@ -1,6 +1,234 @@
 /* 종합 브리핑(일간 BRIEFS, 주간 WEEKLY). 자동화(scripts/summarize.py)가 갱신하는 파일이다. */
 const BRIEFS=[
  {
+  "date": "2026-11-26",
+  "count": 7,
+  "sources": [
+   "sFTQUgOZk80",
+   "5MDpoUsRt0g",
+   "elji86PkSgs",
+   "i698EnzIvhw",
+   "kLLgdkWNy3Q",
+   "XoqCYEsrgro",
+   "R1vGAD4cQPE"
+  ],
+  "headline": "미국 증시 반등과 굳건한 펀더멘털에도 국내 증시는 변동성과 공포 심리가 확대됐다",
+  "keypoints": [
+   "미국 증시는 장중 급락했으나 저가 매수세가 유입되며 낙폭을 크게 만회했다.",
+   "한국은 반도체 수출 호조와 거시 지표가 양호하나 체감 경기와 주가는 하락했다.",
+   "전문가들은 반도체 하락 우려가 과도하며 주가가 이미 상당 부분 선반영됐다고 본다.",
+   "시장 불안에 대응해 핵심 우량주 중심의 분할 매수와 포트폴리오 다변화가 필요하다."
+  ],
+  "themes": [
+   {
+    "title": "미국 증시와 AI 신용 리스크",
+    "summary": "코어위브의 대출 성공과 저가 매수 유입으로 최악의 위기는 넘겼으나 AI 자금 조달과 벤더 파이낸싱에 대한 우려는 잔존한다.",
+    "refs": [
+     "sFTQUgOZk80",
+     "i698EnzIvhw",
+     "XoqCYEsrgro"
+    ]
+   },
+   {
+    "title": "국내 메모리 과매도와 실적 괴리",
+    "summary": "실적 대비 주가 하락이 과도하며 마이크론 등 글로벌 동종 업계와 비교할 때 국내 메모리주는 바닥권에 근접했다.",
+    "refs": [
+     "5MDpoUsRt0g",
+     "elji86PkSgs",
+     "kLLgdkWNy3Q"
+    ]
+   }
+  ],
+  "agreements": [
+   {
+    "point": "삼성전자와 SK하이닉스는 실적 대비 과도하게 하락한 과매도 구간이다",
+    "refs": [
+     "5MDpoUsRt0g",
+     "i698EnzIvhw",
+     "kLLgdkWNy3Q"
+    ]
+   },
+   {
+    "point": "미국 물가 상승 압력으로 12월 기준금리 인상이 유력하다",
+    "refs": [
+     "sFTQUgOZk80",
+     "elji86PkSgs",
+     "i698EnzIvhw"
+    ]
+   },
+   {
+    "point": "엔비디아 블랙웰 등 고효율 GPU와 인프라 수요는 당분간 견조하다",
+    "refs": [
+     "5MDpoUsRt0g",
+     "i698EnzIvhw"
+    ]
+   }
+  ],
+  "disagreements": [
+   {
+    "topic": "반도체 고점 우려 및 주가 향방",
+    "views": [
+     {
+      "channel": "증시각도기TV",
+      "view": "D램 현물가 하락과 공급 과잉 우려는 이미 주가에 반토막 이상 선반영된 상태다",
+      "ref": "i698EnzIvhw",
+      "side": 0
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "낸드 가격 하락과 GPU 임대료 인하 소식으로 반도체 사이클 하강 우려가 커지고 있다",
+      "ref": "XoqCYEsrgro",
+      "side": 1
+     }
+    ]
+   }
+  ],
+  "stocks": [
+   {
+    "name": "SK하이닉스",
+    "count": 5,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "삼프로TV",
+      "view": "이익 급증과 자사주 소각 효과를 고려하면 저평가 상태여서 하락 시 분할 매수를 시작했다",
+      "ref": "5MDpoUsRt0g"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "용인 공장 증설 계획은 연초부터 알려진 사안이고 메모리 공급 부족이 여전해 고점 우장이 과장됐다",
+      "ref": "elji86PkSgs"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "D램 현물가 하락이 이제 막 시작된 반면 주가는 이미 반토막 이상 하락해 우려를 선반영했다",
+      "ref": "i698EnzIvhw"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "삼성전자와 함께 지수 영업이익의 70% 이상을 차지하나 마이크론 대비 과도하게 하락했다",
+      "ref": "kLLgdkWNy3Q"
+     }
+    ]
+   },
+   {
+    "name": "엔비디아",
+    "count": 5,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "체슬리TV",
+      "view": "수출 통제 불확실성과 신용 등급 관찰 대상 지정으로 경영 지배 구조 의문이 제기됐다",
+      "ref": "sFTQUgOZk80"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "관련 이슈로 주가가 조정받았으나 AI 리더십 펀더멘털은 훼손되지 않았다",
+      "ref": "5MDpoUsRt0g"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "블랙웰과 베라 루빈 등 고효율 GPU 수요가 여전하며 HBM4 수요를 견인할 핵심 기업이다",
+      "ref": "i698EnzIvhw"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "벤더 파이낸싱으로 속도전을 주도했으나 메모리 가격 상승분을 반영하면 전방 수익성을 압박할 수 있다",
+      "ref": "kLLgdkWNy3Q"
+     }
+    ]
+   },
+   {
+    "name": "삼성전자",
+    "count": 4,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "삼프로TV",
+      "view": "4월 중순 대비 영업이익 규모가 크게 늘었음에도 주가가 19% 하락해 과매도 구간에 진입했다",
+      "ref": "5MDpoUsRt0g"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "중국 낸드 시장 점유율을 YMTC에 내줬으나 중장기 증설에 따른 고점 우려는 과도하다",
+      "ref": "elji86PkSgs"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "영업이익이 80조 원 수준으로 줄어든다고 가정해도 현재 주가는 비싸지 않다",
+      "ref": "i698EnzIvhw"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "3월 대비 주가가 크게 빠져 수익률 측면에서도 과도하게 하락한 측면이 있다",
+      "ref": "kLLgdkWNy3Q"
+     }
+    ]
+   },
+   {
+    "name": "마이크론",
+    "count": 4,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "체슬리TV",
+      "view": "투자 의견 하향 조정과 데이터 센터 금융 조달 불안으로 주가가 급락했다",
+      "ref": "sFTQUgOZk80"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "낮은 밸류에이션을 바탕으로 주가가 상승하며 국내 메모리주와 차별화됐다",
+      "ref": "5MDpoUsRt0g"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "반도체 업황 우려로 급락했으나 장중 낙폭을 일부 축소했다",
+      "ref": "XoqCYEsrgro"
+     }
+    ]
+   },
+   {
+    "name": "코어위브",
+    "count": 3,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "삼프로TV",
+      "view": "부채 부담과 오픈AI 의존 등 구조적 취약성 때문에 AI 우려가 커지며 급락한 대표적 약한 고리다",
+      "ref": "5MDpoUsRt0g"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "보유 GPU 담보 대출로 금리를 낮춰 AI 자금 조달 위기 우려를 덜고 장중 반등에 성공했다",
+      "ref": "i698EnzIvhw"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "채권 수익률 급등과 신용 리스크 부각으로 주가가 급락했다",
+      "ref": "XoqCYEsrgro"
+     }
+    ]
+   },
+   {
+    "name": "샤오미",
+    "count": 2,
+    "tone": "부정",
+    "mentions": [
+     {
+      "channel": "체슬리TV",
+      "view": "3분기 매출은 컨센서스에 부합했으나 전기차 사업부 영업 손실이 확대됐다",
+      "ref": "sFTQUgOZk80"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "중국 내수 경기 부진으로 스마트폰 판매가 둔화하자 연간 출하 계획을 축소했다",
+      "ref": "elji86PkSgs"
+     }
+    ]
+   }
+  ]
+ },
+ {
   "date": "2026-11-25",
   "count": 42,
   "sources": [
