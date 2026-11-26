@@ -175,14 +175,20 @@
   "D6-_TkOVi3o": "너무 짧음",
   "L-a9SwCOfpg": "너무 짧음",
   "7NpPEwyqnj8": "경제 무관: 한반도 안보와 군사적 긴장 상황을 다루는 영상으로 경제적 관점이 주가 아닙니다.",
-  "fqFaOIoP0uE": "너무 짧음"
+  "fqFaOIoP0uE": "너무 짧음",
+  "DtBasvX0BlA": "너무 짧음",
+  "8RNxWxFcA1k": "너무 짧음",
+  "ywrZyMGlCDE": "너무 짧음",
+  "2FCpKVKSDxg": "너무 짧음",
+  "mkf-Aa63V2s": "너무 짧음",
+  "SE6QoRcpCyU": "너무 짧음",
+  "jSStjPAybpc": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
   "0QL9B_8Ju9M": 3
  },
  "spent": {
-  "17시~2026-11-19": 11959,
   "17시~2026-11-21": 9810,
   "17시~2026-11-22": 3873,
   "17시~2026-11-24": 5268,
@@ -191,12 +197,12 @@
  "models": {
   "gemini-3.6-flash": {
    "ok": 6,
-   "busy": 27,
+   "busy": 33,
    "dead": 5
   },
   "gemini-3.7-flash": {
    "ok": 0,
-   "busy": 28,
+   "busy": 34,
    "dead": 5
   },
   "gemini-3.8-flash": {
@@ -205,23 +211,23 @@
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 13,
-   "busy": 13,
+   "ok": 14,
+   "busy": 18,
    "dead": 5
   },
   "gemini-3.5-flash-lite": {
-   "ok": 9,
+   "ok": 14,
    "busy": 25,
    "dead": 5
   },
   "gemini-4-hydrogen": {
    "ok": 6,
-   "busy": 24,
+   "busy": 30,
    "dead": 1
   },
   "gemini-3.5-flash": {
    "ok": 1,
-   "busy": 27,
+   "busy": 33,
    "dead": 1
   }
  },
@@ -444,15 +450,15 @@
   "L-a9SwCOfpg": true,
   "D6-_TkOVi3o": true,
   "fqFaOIoP0uE": true,
-  "FlqwGnwIBME": true,
-  "YYynHIiVjYY": true,
-  "MoV5BIAHwMw": true,
-  "JDhGdGwsppE": true,
   "jSStjPAybpc": true,
-  "cX8NAxq84Tw": true,
-  "cy1dNn-JtCE": true,
   "zIdUTuj4V1g": true,
-  "yg8U9A1S2Og": true
+  "yg8U9A1S2Og": true,
+  "DtBasvX0BlA": true,
+  "8RNxWxFcA1k": true,
+  "ywrZyMGlCDE": true,
+  "2FCpKVKSDxg": true,
+  "mkf-Aa63V2s": true,
+  "SE6QoRcpCyU": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -466,9 +472,10 @@
   "2026-11-22": true,
   "2026-11-23": true,
   "2026-11-24": true,
-  "2026-11-25": true
+  "2026-11-25": true,
+  "2026-11-26": true
  },
- "last_ok": "2026-11-26T22:33",
+ "last_ok": "2026-11-27T00:16",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true,
