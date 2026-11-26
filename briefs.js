@@ -2,8 +2,14 @@
 const BRIEFS=[
  {
   "date": "2026-11-26",
-  "count": 29,
+  "count": 35,
   "sources": [
+   "hCkGcQu1K_o",
+   "3cJ4yYQpEB8",
+   "Jm8OLVCvJI4",
+   "44WCzqM6tHM",
+   "-0SRNa1-YmA",
+   "KjGSl6-7Ww8",
    "Zd05cvqhhJg",
    "3sqFJKGfVx4",
    "7WFDTIPC4X0",
@@ -34,115 +40,101 @@ const BRIEFS=[
    "XoqCYEsrgro",
    "R1vGAD4cQPE"
   ],
-  "headline": "반도체 수급 불안과 순환매 장세 속, 과매도 구간 진입에 따른 분할 매수 대응 필요",
+  "headline": "증시 급락 속 반발 매수와 외국인 숏커버링이 유입되며 바닥 다지기가 진행되는 분위기다.",
   "keypoints": [
-   "반도체 대형주가 수급 문제로 급락했으나 펀더멘털은 견조하다는 분석이 지배적이다.",
-   "외국인 매도세가 이어지며 시장 변동성이 커졌으나 역사적 저평가 구간에 진입했다.",
-   "AI 인프라 수요는 유효하며 화장품, 로봇 등 비AI 섹터로 순환매가 빠르게 돌고 있다.",
-   "금리 인상과 FOMC 등 불확실성이 남아 있어 보수적 관망과 분할 매수가 권장된다."
+   "코스피와 주요 반도체주는 과도한 하락으로 역사적 저평가 구간에 진입했다.",
+   "한국은행은 반도체 수출 호조를 근거로 내년 경제성장률을 상향 조정했다.",
+   "외국인의 숏커버링과 증안펀드 가동 준비로 단기 반등 기대감이 커졌다.",
+   "반도체 변동성에 대응해 화장품과 로봇 등 비AI 업종으로 순환매가 돌고 있다."
   ],
   "themes": [
    {
-    "title": "반도체 수급 위기와 펀더멘털",
-    "summary": "반도체 대형주는 수급 문제로 과도하게 하락했으나 AI 수요와 장기공급계약 등으로 실적은 견조하다.",
+    "title": "반도체 밸류에이션과 숏커버링",
+    "summary": "반도체 주가는 AI 수요 둔화 우려로 급락했으나 펀더멘털 대비 과도하게 낮아졌으며, 최근 월가와 외국인의 숏커버링 유입으로 반등 조짐을 보이고 있다.",
     "refs": [
-     "Zd05cvqhhJg",
+     "hCkGcQu1K_o",
+     "44WCzqM6tHM",
      "3sqFJKGfVx4",
-     "aWJEl-v-C6E",
-     "f1OEhbNqxSk",
      "Wz8_pZ8lpWg",
-     "t276Uigurdw",
      "jBYGIhqpzlc",
-     "5MDpoUsRt0g",
-     "i698EnzIvhw",
-     "R1vGAD4cQPE"
+     "0pxDHrYRgas"
     ]
    },
    {
-    "title": "시장 순환매와 유망 섹터",
-    "summary": "반도체 변동성 확대로 화장품, 로봇, 제약·바이오 등 비AI 업종으로 수급이 이동하며 순환매가 나타나고 있다.",
+    "title": "거시 경제 지표와 금리 인상",
+    "summary": "한국은행이 기준금리를 인상하고 내년 고성장을 전망한 가운데, 미국의 PCE 물가 지표와 12월 FOMC의 금리 방향성이 시장의 핵심 변수로 작용하고 있다.",
     "refs": [
      "Zd05cvqhhJg",
-     "3sqFJKGfVx4",
-     "nnHrCAo4gg0",
-     "f1OEhbNqxSk",
-     "LB4G3JHPqF8",
-     "WidcNUel08U",
-     "6eJY6NckxXo",
-     "R1vGAD4cQPE"
-    ]
-   },
-   {
-    "title": "금리 인상과 거시 경제 변수",
-    "summary": "한국은행의 금리 인상과 미국의 긴축 경계감이 시장 상단을 누르고 있어 FOMC 전후까지 변동성이 예상된다.",
-    "refs": [
-     "Zd05cvqhhJg",
-     "aWJEl-v-C6E",
      "-yDZMeInkD8",
-     "OMsT972ED3E",
      "IcnAog-gRmQ",
      "elji86PkSgs",
      "i698EnzIvhw"
+    ]
+   },
+   {
+    "title": "비AI 업종 순환매와 테마",
+    "summary": "반도체 중심의 포트폴리오 변동성이 커진 가운데 수출이 견조한 화장품주와 로봇, 통신부품, 우주항공 등 개별 모멘텀이 있는 섹터로 자금이 유입되고 있다.",
+    "refs": [
+     "-0SRNa1-YmA",
+     "Zd05cvqhhJg",
+     "7WFDTIPC4X0",
+     "WidcNUel08U",
+     "6eJY6NckxXo"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "반도체 대형주의 현재 주가는 실적 대비 과도하게 하락한 저평가 구간이다.",
+    "point": "삼성전자와 SK하이닉스 등 반도체 대형주는 실적 대비 과도한 하락을 겪어 밸류에이션 매력이 높다.",
     "refs": [
+     "Jm8OLVCvJI4",
      "aWJEl-v-C6E",
      "Wz8_pZ8lpWg",
-     "jBYGIhqpzlc",
-     "5MDpoUsRt0g",
-     "i698EnzIvhw"
+     "5MDpoUsRt0g"
     ]
    },
    {
-    "point": "시장 불확실성이 해소되기 전까지는 섣부른 추격 매수보다 분할 매수 대응이 유리하다.",
+    "point": "한국은행의 금리 인상과 물가 상승 압력에도 불구하고 반도체 수출 등 펀더멘털은 양호하다.",
     "refs": [
-     "Zd05cvqhhJg",
-     "OMsT972ED3E",
-     "WidcNUel08U",
-     "5MDpoUsRt0g",
-     "R1vGAD4cQPE"
+     "-yDZMeInkD8",
+     "elji86PkSgs"
     ]
    },
    {
-    "point": "AI 인프라 수요는 일시적 노이즈가 있으나 장기적으로는 여전히 견조하다.",
+    "point": "화장품 섹터는 미국과 유럽 등 글로벌 수출이 견조하며 반도체 대안주로 주목받고 있다.",
     "refs": [
-     "Zd05cvqhhJg",
-     "aWJEl-v-C6E",
-     "t276Uigurdw",
-     "i698EnzIvhw"
+     "Jm8OLVCvJI4",
+     "7WFDTIPC4X0",
+     "WidcNUel08U"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "지금이 바닥인가",
+    "topic": "반도체 다운사이클 및 가격 전망",
     "views": [
      {
-      "channel": "815머니톡",
-      "view": "역사적 저평가 구간에 진입했으므로 지금은 적극적으로 매수할 시점이다.",
-      "ref": "Wz8_pZ8lpWg",
-      "side": 0
-     },
-     {
-      "channel": "증시각도기TV",
-      "view": "과매도 국면이므로 용기를 내어 보유하거나 장기 대응하면 회복할 것이다.",
-      "ref": "i698EnzIvhw",
+      "channel": "삼프로TV",
+      "view": "메모리 반도체는 장기공급계약과 AI 추론 수요로 가격 하락 우려를 방어할 수 있다고 본다.",
+      "ref": "t276Uigurdw",
       "side": 0
      },
      {
       "channel": "삼프로TV",
-      "view": "하락 추세가 꺾이지 않아 섣부른 바닥 판단은 이르며 확인이 필요하다.",
-      "ref": "22RNv0HPDZo",
+      "view": "메모리 공급 부족이 지속되어 고점 우려는 과장되었으며 실적이 탄탄하다고 주장한다.",
+      "ref": "elji86PkSgs",
+      "side": 0
+     },
+     {
+      "channel": "체슬리TV",
+      "view": "랜드 전 제품군이 가격 하락 사이클에 진입하며 서버 수요 둔화 우려가 있다고 전망한다.",
+      "ref": "hCkGcQu1K_o",
       "side": 1
      },
      {
       "channel": "삼프로TV",
-      "view": "금리 불확실성이 진정되고 외국인 순매수가 유입되는 것을 확인해야 한다.",
-      "ref": "OMsT972ED3E",
+      "view": "D램과 낸드 현물가가 꺾이면서 내년 하반기 가격 둔화와 공급 과잉 우려가 커지고 있다고 지적한다.",
+      "ref": "5MDpoUsRt0g",
       "side": 1
      }
     ]
@@ -151,120 +143,202 @@ const BRIEFS=[
   "stocks": [
    {
     "name": "삼성전자",
-    "count": 17,
+    "count": 21,
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "815머니톡",
-      "view": "실적 대비 과도하게 하락한 저평가 상태로 장기 보유 및 분할 매수가 유효하다.",
-      "ref": "Wz8_pZ8lpWg"
+      "channel": "체슬리TV",
+      "view": "외국인 지분율이 낮아지고 있으나 주주 환원과 1등 기업의 가치를 지켜봐야 한다고 평가한다.",
+      "ref": "hCkGcQu1K_o"
      },
      {
       "channel": "삼프로TV",
-      "view": "하락 추세가 전환되지 않아 직전 고점 돌파 전까지 추세적 상승은 어렵다.",
-      "ref": "22RNv0HPDZo"
+      "view": "외국인 매수세가 유입되며 반등을 주도했으나 이후 수급이 멈췄다고 언급한다.",
+      "ref": "KjGSl6-7Ww8"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "외국인 순매수가 유입된 가운데 시총 대비 주주환원 비율이 높아 추가 하락이 제한적이라고 본다.",
+      "ref": "3sqFJKGfVx4"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "선행 PER이 극단적으로 낮아 추가 하락보다 안정화 가능성이 높다고 평가한다.",
+      "ref": "aWJEl-v-C6E"
+     },
+     {
+      "channel": "증시각도기TV",
+      "view": "영업이익이 감소하더라도 배당 등 주주환원을 감안하면 현재 주가는 비싸지 않다고 평가한다.",
+      "ref": "i698EnzIvhw"
      }
     ]
    },
    {
     "name": "SK하이닉스",
-    "count": 17,
-    "tone": "긍정",
+    "count": 20,
+    "tone": "혼재",
     "mentions": [
      {
-      "channel": "삼프로TV",
-      "view": "이익 급증과 자사주 소각 효과를 고려하면 저평가 상태로 분할 매수 대상이다.",
-      "ref": "5MDpoUsRt0g"
+      "channel": "김작가 TV",
+      "view": "영업이익 감소 우려가 존재하지만 AI 수요를 고려할 때 과도한 하락이라고 본다.",
+      "ref": "Jm8OLVCvJI4"
+     },
+     {
+      "channel": "전인구경제연구소",
+      "view": "자사주 소각 효과를 감안하면 PER이 낮아졌으나 실적 신뢰 회복이 필요하다고 본다.",
+      "ref": "44WCzqM6tHM"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "선행 PER이 낮고 주주환원 여력을 감안할 때 과도한 저평가 구간이라고 지적한다.",
+      "ref": "Wz8_pZ8lpWg"
      },
      {
       "channel": "삼프로TV",
-      "view": "공매도 환매 시 급반등 가능성이 높은 핵심 종목이다.",
-      "ref": "0pxDHrYRgas"
+      "view": "안 사도 돈을 내는 장기공급계약 구조로 업황 변동 리스크를 방어하고 있다고 평가한다.",
+      "ref": "t276Uigurdw"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "이익 급증과 자사주 소각 효과를 고려하면 저평가 상태라고 판단해 분할 매수를 진행한다고 밝힌다.",
+      "ref": "5MDpoUsRt0g"
      }
     ]
    },
    {
     "name": "엔비디아",
-    "count": 10,
-    "tone": "긍정",
-    "mentions": [
-     {
-      "channel": "삼프로TV",
-      "view": "AI 리더십 펀더멘털은 훼손되지 않았으며 분할 매수 대상으로 적합하다.",
-      "ref": "5MDpoUsRt0g"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "단기 CEO 이슈보다 펀더멘털과 밸류에이션이 주가 결정의 핵심이다.",
-      "ref": "aWJEl-v-C6E"
-     }
-    ]
-   },
-   {
-    "name": "코어위브",
-    "count": 5,
+    "count": 13,
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "삼프로TV",
-      "view": "GPU 담보 대출로 자금 조달 위기 우려를 덜며 시장 반등의 계기가 되었다.",
-      "ref": "IcnAog-gRmQ"
+      "channel": "김작가 TV",
+      "view": "PER 8~9배 수준은 과도하게 빠진 구간이라고 판단한다.",
+      "ref": "Jm8OLVCvJI4"
      },
      {
       "channel": "삼프로TV",
-      "view": "부채 부담과 오픈AI 의존 등 구조적 취약성으로 주가가 급락했다.",
+      "view": "최근 이슈로 투심에 타격을 입었으나 에이전틱 AI 추론 수요로 HBM 수요가 지속될 것이라고 본다.",
+      "ref": "t276Uigurdw"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "AI 리더십 펀더멘털이 훼손되지 않았다고 보고 분할 매수 대상으로 삼는다.",
       "ref": "5MDpoUsRt0g"
      }
     ]
    },
    {
-    "name": "레인보우로보틱스",
-    "count": 4,
-    "tone": "긍정",
+    "name": "마이크론",
+    "count": 9,
+    "tone": "혼재",
     "mentions": [
      {
-      "channel": "815머니톡",
-      "view": "피지컬 AI 기대감으로 로봇 섹터 주도주로 부상할 가능성이 높다.",
-      "ref": "3sqFJKGfVx4"
+      "channel": "체슬리TV",
+      "view": "증권가의 목표가 대폭 하향과 전일 급락이 있었다고 설명한다.",
+      "ref": "hCkGcQu1K_o"
+     },
+     {
+      "channel": "전인구경제연구소",
+      "view": "반도체 섹터 전반의 하락 속에서도 상대적으로 양호한 흐름을 보이며 해지 역할을 한다고 설명한다.",
+      "ref": "44WCzqM6tHM"
      },
      {
       "channel": "삼프로TV",
-      "view": "기관 매수세가 지속되어 조정 시 매수 관점으로 접근할 필요가 있다.",
-      "ref": "f1OEhbNqxSk"
+      "view": "구속력 있는 계약과 정부 보조금을 활용해 리스크를 낮추며 수익성이 견조할 것이라고 본다.",
+      "ref": "t276Uigurdw"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "낮은 밸류에이션을 바탕으로 국내 메모리주와 차별화된 주가 상승을 보였다고 설명한다.",
+      "ref": "5MDpoUsRt0g"
      }
     ]
    },
    {
     "name": "코스맥스",
-    "count": 4,
+    "count": 5,
     "tone": "긍정",
     "mentions": [
      {
+      "channel": "815머니톡",
+      "view": "단기간에 추세를 빠르게 되돌리며 신고가를 기록 중이라고 평가한다.",
+      "ref": "-0SRNa1-YmA"
+     },
+     {
       "channel": "삼프로TV",
-      "view": "화장품 대장주로 신고가를 경신하며 섹터 내 자금 에너지를 보여준다.",
+      "view": "52주 신고가를 경신하며 화장품 섹터로 자금이 모이고 있음을 보여주는 신호라고 평가한다.",
       "ref": "Zd05cvqhhJg"
      },
      {
       "channel": "체슬리TV",
-      "view": "다른 화장품 기업과 달리 3분기 실적이 견조하며 강한 흐름을 보인다.",
-      "ref": "v-lAkGvb1qc"
+      "view": "화장품 업종 내에서 실적 성장이 돋보이며 신고가를 기록하는 등 강한 흐름을 보이고 있다.",
+      "ref": "sFTQUgOZk80"
+     }
+    ]
+   },
+   {
+    "name": "레인보우로보틱스",
+    "count": 5,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "815머니톡",
+      "view": "로봇 섹터 내에서 괜찮은 흐름을 보였다고 언급한다.",
+      "ref": "-0SRNa1-YmA"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "완성형 로봇 대표주이자 삼성전자 관계사로 기관 매수세가 유입됐을 가능성이 높다고 분석한다.",
+      "ref": "Zd05cvqhhJg"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "피지컬 AI 기대감 속에 코스닥 시가총액 2위에 오르며 로봇 섹터의 주도주 부상 가능성을 보여주었다.",
+      "ref": "3sqFJKGfVx4"
+     }
+    ]
+   },
+   {
+    "name": "삼성전기",
+    "count": 4,
+    "tone": "긍정",
+    "mentions": [
+     {
+      "channel": "815머니톡",
+      "view": "대규모 자사주 소각 발표로 5.8% 상승했다고 전한다.",
+      "ref": "3sqFJKGfVx4"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "자사주 소각과 외국인 순매수 유입에 힘입어 장중 의미 있게 급등했다고 평가한다.",
+      "ref": "3sqFJKGfVx4"
+     },
+     {
+      "channel": "삼프로TV",
+      "view": "장중 6.5% 수준의 반등세를 보인 종목으로 언급된다.",
+      "ref": "OMsT972ED3E"
      }
     ]
    },
    {
     "name": "에이피알",
     "count": 3,
-    "tone": "혼재",
+    "tone": "긍정",
     "mentions": [
      {
       "channel": "전인구경제연구소",
-      "view": "밸류에이션 매력이 높으나 대규모 인수 자금 조달 부담이 존재한다.",
+      "view": "미국과 유럽 수출 호조로 중국 영향과 무관하게 두드러진 상승세를 보였다고 설명한다.",
       "ref": "WidcNUel08U"
      },
      {
       "channel": "815머니톡",
-      "view": "단기 급락은 매수 기회이며 4분기 최대 실적 달성이 예상된다.",
+      "view": "단기 급락했으나 4분기 최대 실적과 2027년 고성장이 예상되어 매수 기회라고 본다.",
       "ref": "jBYGIhqpzlc"
+     },
+     {
+      "channel": "체슬리TV",
+      "view": "수출 비중이 높으나 최근 실적에서 영업이익률이 다소 아쉽게 나타났다고 분석한다.",
+      "ref": "v-lAkGvb1qc"
      }
     ]
    }
