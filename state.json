@@ -185,7 +185,8 @@
   "jSStjPAybpc": "너무 짧음",
   "oCaUmDZmkts": "너무 짧음",
   "VzvtFMbVxi4": "너무 긴 영상(308분)",
-  "lsfECKn5Q6E": "너무 짧음"
+  "lsfECKn5Q6E": "너무 짧음",
+  "JwXPJzRXOtM": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -224,7 +225,7 @@
    "dead": 5
   },
   "gemini-4-hydrogen": {
-   "ok": 8,
+   "ok": 9,
    "busy": 31,
    "dead": 1
   },
@@ -461,7 +462,12 @@
   "SE6QoRcpCyU": true,
   "oCaUmDZmkts": true,
   "eXAueXZo6dM": true,
-  "lsfECKn5Q6E": true
+  "lsfECKn5Q6E": true,
+  "SNI0kyCiHhc": true,
+  "osAG7OqjHV0": true,
+  "JwXPJzRXOtM": true,
+  "xhHvP0ogJfU": true,
+  "JV2na5AGZBw": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -478,7 +484,7 @@
   "2026-11-25": true,
   "2026-11-26": true
  },
- "last_ok": "2026-11-27T02:18",
+ "last_ok": "2026-11-27T08:04",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true,
