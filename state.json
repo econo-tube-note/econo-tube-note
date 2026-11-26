@@ -183,12 +183,12 @@
  "models": {
   "gemini-3.6-flash": {
    "ok": 9,
-   "busy": 18,
+   "busy": 19,
    "dead": 5
   },
   "gemini-3.7-flash": {
    "ok": 0,
-   "busy": 24,
+   "busy": 25,
    "dead": 5
   },
   "gemini-3.8-flash": {
@@ -208,12 +208,12 @@
   },
   "gemini-4-hydrogen": {
    "ok": 5,
-   "busy": 17,
+   "busy": 18,
    "dead": 1
   },
   "gemini-3.5-flash": {
    "ok": 2,
-   "busy": 27,
+   "busy": 28,
    "dead": 1
   }
  },
@@ -428,7 +428,9 @@
   "5y169UFoPyw": true,
   "kB6fLj60I9s": true,
   "3ldbNocz4Vg": true,
-  "46fmgSYNR-M": true
+  "46fmgSYNR-M": true,
+  "LB4G3JHPqF8": true,
+  "OMsT972ED3E": true
  },
  "brief_final": {
   "2026-11-13": true,
