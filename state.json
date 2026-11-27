@@ -190,7 +190,8 @@
   "EeTiLfBNzkg": "너무 짧음",
   "eXAueXZo6dM": "너무 긴 영상(372분)",
   "SNI0kyCiHhc": "너무 긴 영상(334분)",
-  "h-G7QeUZinI": "너무 짧음"
+  "h-G7QeUZinI": "너무 짧음",
+  "JaMc266kpbg": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -472,7 +473,15 @@
   "JwXPJzRXOtM": true,
   "EeTiLfBNzkg": true,
   "XKLl70T41Bc": true,
-  "h-G7QeUZinI": true
+  "h-G7QeUZinI": true,
+  "zg_iJPyzooE": true,
+  "FTsg8koGDyU": true,
+  "XRDkW8oWCZ8": true,
+  "vU9Cso6ksag": true,
+  "JaMc266kpbg": true,
+  "QcZ8qQMhahc": true,
+  "1MPrVFxgHyA": true,
+  "59oBAsQqs7o": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -518,7 +527,7 @@
  "blog": {
   "2026-11-16": true
  },
- "tg_offset": 777760488,
+ "tg_offset": 777760489,
  "threads_endings": [
   "솔직히 어느 장단에 맞춰야 할지 감이 안 잡힌다. 다들 지금 반등할 때 삼성전자를 더 사는 쪽인지, 아니면 비중을 줄이고 다음 주도주를 기다리는 쪽인지 궁금하다.",
   "수급이 뒤엉켜 있어서 단기 방향을 예측하기가 쉽지 않다. 다들 이번 반등 때 SK하이닉스 비중을 줄이는 쪽인지, 주도주로 믿고 계속 가져가는 쪽인지 궁금하다.",
@@ -542,6 +551,7 @@
  ],
  "alerts": {
   "cookie-2026-11-25": true,
-  "cookie-2026-11-26": true
+  "cookie-2026-11-26": true,
+  "cookie-2026-11-27": true
  }
 }
