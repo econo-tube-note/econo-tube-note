@@ -189,7 +189,8 @@
   "JwXPJzRXOtM": "너무 짧음",
   "EeTiLfBNzkg": "너무 짧음",
   "eXAueXZo6dM": "너무 긴 영상(372분)",
-  "SNI0kyCiHhc": "너무 긴 영상(334분)"
+  "SNI0kyCiHhc": "너무 긴 영상(334분)",
+  "h-G7QeUZinI": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -203,13 +204,13 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 6,
-   "busy": 25,
+   "ok": 8,
+   "busy": 27,
    "dead": 5
   },
   "gemini-3.7-flash": {
    "ok": 1,
-   "busy": 21,
+   "busy": 22,
    "dead": 5
   },
   "gemini-3.8-flash": {
@@ -218,7 +219,7 @@
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 20,
+   "ok": 21,
    "busy": 18,
    "dead": 5
   },
@@ -228,13 +229,13 @@
    "dead": 5
   },
   "gemini-4-hydrogen": {
-   "ok": 5,
-   "busy": 26,
+   "ok": 6,
+   "busy": 27,
    "dead": 1
   },
   "gemini-3.5-flash": {
    "ok": 0,
-   "busy": 22,
+   "busy": 23,
    "dead": 1
   }
  },
@@ -469,7 +470,9 @@
   "SNI0kyCiHhc": true,
   "osAG7OqjHV0": true,
   "JwXPJzRXOtM": true,
-  "EeTiLfBNzkg": true
+  "EeTiLfBNzkg": true,
+  "XKLl70T41Bc": true,
+  "h-G7QeUZinI": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -486,7 +489,7 @@
   "2026-11-25": true,
   "2026-11-26": true
  },
- "last_ok": "2026-11-27T12:07",
+ "last_ok": "2026-11-27T14:22",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true,
