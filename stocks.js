@@ -531,26 +531,30 @@ const STOCKSUM={
  },
  "셀트리온": {
   "name": "셀트리온",
-  "tone": "긍정",
-  "summary": "하락장 속에서도 기관 순매수와 짐펜트라 호재, 탄탄한 실적을 바탕으로 견조한 주가 방어력과 펀더멘털을 보여주고 있다는 평가다.",
+  "tone": "혼재",
+  "summary": "하락장 속에서도 신고가를 기록하며 강한 상승세와 안정적 실적을 보여준다는 의견이 있으나, 굳이 살 필요는 없다는 시각도 공존한다.",
   "points": [
-   "약세장 속에서도 하락하지 않고 주가를 잘 방어하고 있다.",
-   "기관의 순매수가 유입되며 실적 가시성이 높게 평가된다.",
-   "포트폴리오 다변화를 위한 대형 제약바이오 종목으로 꼽힌다."
+   "하락장에서도 신고가를 기록하며 강한 상승세를 보이는 주도주 후보로 평가한다.",
+   "남미 신규 매출 반영과 자사주 소각 등으로 분기 최대 실적 경신이 기대된다.",
+   "주가 방어력이 좋고 견조하지만 굳이 살 필요는 없다는 의견도 존재한다."
   ],
   "ids": [
-   "AWknNSPEM1g",
-   "DNHHB8jEuSM",
-   "EnUsMp3IZu4",
-   "G-DfszxECas",
-   "Tzc0KuusVbI",
-   "bLg89ute0zQ",
-   "cZKNKIAXEfY",
-   "dOy04iFw5_U",
-   "wZYpDi0Wdso"
+   "-0SRNa1-YmA",
+   "1fBlONhdXu8",
+   "JDhGdGwsppE",
+   "MGYulj2uJWc",
+   "QcZ8qQMhahc",
+   "ThO0XUP-MiY",
+   "W2D_UiqlrMw",
+   "ZCjikei_9XE",
+   "gbV6JrXviQ4",
+   "kRYj5zUJzRc",
+   "tx-pbWaIoTc",
+   "w7Eh9HBW7NM"
   ],
-  "count": 9,
-  "updated": "2026-11-22"
+  "count": 12,
+  "updated": "2026-11-28",
+  "at": "2026-11-28T08:03"
  },
  "한화에어로스페이스": {
   "name": "한화에어로스페이스",
@@ -1083,43 +1087,36 @@ const STOCKSUM={
  },
  "삼성전기": {
   "name": "삼성전기",
-  "tone": "혼재",
-  "summary": "시장 하락과 높은 밸류에이션에 대한 우려가 존재하나, 강한 반등 탄력과 실적 성장에 대한 기대로 시각이 엇갈린다.",
+  "tone": "긍정",
+  "summary": "대규모 자사주 소각과 실적 개선 기대감으로 긍정적인 평가가 많으나, 단기 차익 실현을 위한 매도 의견도 존재한다.",
   "points": [
-   "하락 폭이 컸던 만큼 지수 안정 시 빠른 반등과 높은 복구력을 보일 종목으로 평가한다.",
-   "실적 성장세에 비해 PER이 낮아 저평가되었다는 긍정적 시각과 밸류에이션이 높아 리스크 관리가 필요하다는 의견이 공존한다.",
-   "AI 밸류체인 급락과 외국계 매도로 폭락세를 겪었으나 엔비디아와의 기판 공급 계약 확대로 실적 성장이 기대된다."
+   "대규모 자사주 소각과 주주 환원 정책이 시행되었다.",
+   "MLCC 및 기판 사업의 회복과 실적 개선 기대감이 있다.",
+   "단기 상승에 따른 매도와 현금 확보 의견이 존재한다."
   ],
   "ids": [
-   "-HaqruPY5Rg",
-   "09Ij_WyfeMs",
-   "22mEZYyDpZA",
-   "6g110iUWTVo",
-   "7ctnlT1jlyQ",
-   "AWknNSPEM1g",
-   "FeBExCVpt4U",
-   "FlUs8YY8aAE",
-   "JVtGCzfB7NA",
-   "KHKXu_kP8_Y",
+   "-mD3Z9_vN6k",
+   "22RNv0HPDZo",
+   "3rVJujtM4HE",
+   "3sqFJKGfVx4",
+   "8xImYsugx8A",
+   "JDhGdGwsppE",
+   "M7ysDoIv65Q",
    "ME_JkAGPmXI",
-   "RiLTQh6mqws",
-   "RkpF-xeoalw",
-   "Tzc0KuusVbI",
-   "UhA5xmTjqJ4",
-   "VZv-QcnXCN4",
+   "OMsT972ED3E",
+   "SUGWGoo0Adk",
    "W2D_UiqlrMw",
-   "WiHMm0NkGEE",
-   "cpvUuHMLsgI",
-   "d9rmKdDS43w",
-   "dHmiFEuyjWw",
-   "l6BRztXR5jo",
-   "u1ndn512x0w",
+   "WAoIctrdK78",
+   "jBYGIhqpzlc",
+   "oSMHjlE4oAY",
+   "slZsjoZ98VU",
+   "vcHvXcQw7e0",
    "vyuznP_KIJE",
-   "xjVdgtREpc4",
-   "yLhZiyCgAjY"
+   "yg8U9A1S2Og"
   ],
-  "count": 26,
-  "updated": "2026-11-24"
+  "count": 18,
+  "updated": "2026-11-28",
+  "at": "2026-11-28T08:03"
  },
  "지니언스": {
   "name": "지니언스",
