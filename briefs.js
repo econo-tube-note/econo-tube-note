@@ -2,8 +2,14 @@
 const BRIEFS=[
  {
   "date": "2026-11-27",
-  "count": 23,
+  "count": 29,
   "sources": [
+   "vU9Cso6ksag",
+   "ljGtLKxA7Tk",
+   "muZdP0wHPgU",
+   "s616_igCIqs",
+   "tA42vZWzq14",
+   "SUGWGoo0Adk",
    "vRRvvOWewzA",
    "Q3Uu8kVGxrk",
    "FTsg8koGDyU",
@@ -28,27 +34,29 @@ const BRIEFS=[
    "QTFrrMnYprQ",
    "9KEKhFUKnAM"
   ],
-  "headline": "자본시장 개혁 기대와 고금리 우려 속 반도체·로봇 중심의 바닥 탐색전이 이어진다.",
+  "headline": "국내 증시 폭락 후 외국인 숏커버링과 자본시장 개혁 기대감에 반등이 전개됐다.",
   "keypoints": [
-   "자본시장 개혁 기구 출범 소식에 따라 증시 구조 개선 기대감이 높아졌다.",
-   "한국은행은 반도체 호황을 바탕으로 내년 경제성장률 전망치를 4.1%로 올렸다.",
-   "반도체주 과매도 논란 속에 12월 연준 통화정책과 수급 변화가 핵심 변수로 꼽힌다.",
-   "AI 테마 확산과 CES 모멘텀에 힘입어 로봇 관련 종목으로 수급 쏠림이 나타났다."
+   "한국은행이 내년 성장률을 상향하며 기준금리를 인상해 고금리 부담이 이어졌다.",
+   "외국인 숏커버링과 자본시장 대전환 개혁 기대감으로 증시가 강하게 급등했다.",
+   "반도체주 과매도 논란 속에 실적 기반 대형주 중심의 분할 매수가 제언되었다.",
+   "증시안정펀드는 규모 한계로 하락 방어 효과가 제한적이라는 평가가 이어졌다."
   ],
   "themes": [
    {
-    "title": "자본시장 대전환과 개혁 기대",
-    "summary": "민간 위원장 선임으로 주주가치 제고와 지배구조 개혁에 대한 기대감이 커지며 증시 하방 경직성을 지지할 것으로 본다.",
+    "title": "자본시장 대전환과 거버넌스 개혁",
+    "summary": "김용범 위원장 선임과 주주가치 제고 개혁안 발표로 자본시장 선진화 기대감이 높아졌으며 증권주와 대형주 수급에 호재로 작용했다고 분석한다.",
     "refs": [
+     "ljGtLKxA7Tk",
      "Q3Uu8kVGxrk",
      "Kc6Nssp8c88",
+     "ThO0XUP-MiY",
      "WAoIctrdK78",
      "xhHvP0ogJfU"
     ]
    },
    {
-    "title": "한국은행 금리인상과 성장의 괴리",
-    "summary": "한국은행이 내년 성장률 전망을 4.1%로 상향하며 기준금리를 인상했으나 가계 이자 부담과 소비 둔화 우려가 공존한다.",
+    "title": "한국은행 금리 인상과 성장률 전망",
+    "summary": "한국은행이 반도체 호황을 반영해 내년 경제성장률을 4.1%로 올렸으나 기준금리를 인상하며 가계와 실물경제의 이자 부담이 커졌다고 지적한다.",
     "refs": [
      "Q3Uu8kVGxrk",
      "lPkkq_9haQo",
@@ -58,78 +66,75 @@ const BRIEFS=[
     ]
    },
    {
-    "title": "AI 테마 확장과 로봇주의 부상",
-    "summary": "AI 기술 적용 분야가 인프라에서 로봇으로 확장되며 CES 이벤트를 앞두고 부품 대장주로 수급 유입이 집중된다.",
+    "title": "반도체 펀더멘털과 과매도 논란",
+    "summary": "메모리 반도체 주가가 수급 꼬임으로 급락했으나 견조한 실적을 감안하면 과도한 하락이므로 대형주 분할 매수 대응이 유효하다고 본다.",
     "refs": [
-     "SJpL7ljeLoo",
-     "e7SEu2rDKfE",
+     "SUGWGoo0Adk",
+     "vRRvvOWewzA",
+     "XXCvO11ZCno",
      "0o8_GyK2XM4",
-     "p2JP9eF77C8",
-     "WAoIctrdK78"
+     "BX525z-Iho0",
+     "TjX-NU2soQ4"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "한국은행이 내년 한국 GDP 성장률 전망치를 4.1%로 대폭 상향 조정했다고 설명한다.",
+    "point": "증시안정펀드는 규모의 한계로 인해 지수 방어 효과가 미흡하다고 평가한다.",
     "refs": [
-     "Q3Uu8kVGxrk",
-     "lPkkq_9haQo",
-     "WAoIctrdK78",
-     "Fd-vqZM1pMA",
-     "QTFrrMnYprQ"
+     "ljGtLKxA7Tk",
+     "vRRvvOWewzA",
+     "lPkkq_9haQo"
     ]
    },
    {
-    "point": "김용범 위원장 선임을 계기로 자본시장 개혁과 주주가치 제고 기대감이 커졌다고 평가한다.",
+    "point": "삼성전자와 SK하이닉스 주가는 과매도 구간에 있어 분할 매수 대응이 유효하다고 본다.",
     "refs": [
-     "Q3Uu8kVGxrk",
-     "Kc6Nssp8c88",
-     "ThO0XUP-MiY",
-     "WAoIctrdK78",
-     "xhHvP0ogJfU"
+     "XXCvO11ZCno",
+     "BX525z-Iho0",
+     "TjX-NU2soQ4"
     ]
    },
    {
-    "point": "외국인 순매수와 공매도 숏커버링 유입이 단기 지수 급등을 이끌었다고 진단한다.",
+    "point": "한국은행의 기준금리 인상은 가계의 이자 상환 부담을 가중시킨다고 우려한다.",
     "refs": [
-     "Kc6Nssp8c88",
-     "TjX-NU2soQ4",
-     "QTFrrMnYprQ"
+     "ljGtLKxA7Tk",
+     "Q3Uu8kVGxrk",
+     "SlqI4tj_l8A"
     ]
    }
   ],
   "disagreements": [
    {
-    "topic": "증시안정펀드의 지수 방어 효과",
+    "topic": "증시안정펀드의 코스닥 수급 영향",
     "views": [
      {
-      "channel": "체슬리TV",
-      "view": "시장 변동성을 완화하고 투매 심리를 방어하는 버팀목이 될 수 있다고 지적한다.",
-      "ref": "Q3Uu8kVGxrk",
+      "channel": "815머니톡",
+      "view": "10조 원대 증안펀드가 코스닥 수급 여건을 크게 개선할 것이라고 본다.",
+      "ref": "SJpL7ljeLoo",
       "side": 0
      },
      {
       "channel": "삼프로TV",
-      "view": "시가총액 대비 비중이 낮아 지수 하락을 완전히 막기에는 부족하다고 분석한다.",
-      "ref": "lPkkq_9haQo",
+      "view": "코스닥 반등은 증안펀드보다 바이오 등 낙폭 과대주의 수익률 게임 때문으로 본다.",
+      "ref": "Kc6Nssp8c88",
       "side": 1
      }
     ]
    },
    {
-    "topic": "반도체주 저가 매수 대응 전략",
+    "topic": "한국은행 기준금리 인상에 대한 평가",
     "views": [
      {
-      "channel": "전인구경제연구소",
-      "view": "현재 구간은 비정상적 과매도 상태이므로 적극적인 분할 매수가 필요하다고 본다.",
-      "ref": "TjX-NU2soQ4",
+      "channel": "체슬리TV",
+      "view": "반도체 호황에 따른 성장률 상승을 근거로 금리를 인상한 것으로 본다.",
+      "ref": "Q3Uu8kVGxrk",
       "side": 0
      },
      {
-      "channel": "815머니톡",
-      "view": "이동평균선 역배열 상태이므로 확실한 추세 반등 전까지 관망해야 한다고 본다.",
-      "ref": "ryULRFhf2Cw",
+      "channel": "삼프로TV",
+      "view": "경기 낙관론에 치우쳐 금리를 올려 민간 소비와 실물 경제 부담을 키웠다고 우려한다.",
+      "ref": "SlqI4tj_l8A",
       "side": 1
      }
     ]
@@ -138,34 +143,34 @@ const BRIEFS=[
   "stocks": [
    {
     "name": "삼성전자",
-    "count": 15,
+    "count": 17,
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "채국장의 코스피2만행 머니버스",
-      "view": "높은 신용잔고로 수급 노이즈를 겪고 있으나 실적 펀더멘털은 견조하다고 평가한다.",
-      "ref": "vRRvvOWewzA"
+      "channel": "증시각도기TV",
+      "view": "M&A 전담 조직을 격상하며 공조 및 홈 AI 기업 인수를 추진 중으로 본다.",
+      "ref": "ljGtLKxA7Tk"
      },
      {
-      "channel": "삼프로TV",
-      "view": "반도체 가격 폭락 등 극단적 악재를 가정한 주가 수준으로 저평가 영역이라고 본다.",
-      "ref": "Kc6Nssp8c88"
+      "channel": "김작가 TV",
+      "view": "지수 반토막 시점부터 분할 매수로 사모아가기 좋은 대표 대형주로 본다.",
+      "ref": "XXCvO11ZCno"
      }
     ]
    },
    {
     "name": "SK하이닉스",
-    "count": 13,
-    "tone": "혼재",
+    "count": 14,
+    "tone": "긍정",
     "mentions": [
      {
-      "channel": "채국장의 코스피2만행 머니버스",
-      "view": "실적 기반이 유지되고 있어 연말 북클로징 이후 주가 반등이 가능하다고 본다.",
-      "ref": "vRRvvOWewzA"
+      "channel": "815머니톡",
+      "view": "낙폭 과대로 인해 신규 트레이딩 매수가 유효한 구간으로 평가한다.",
+      "ref": "SUGWGoo0Adk"
      },
      {
       "channel": "삼프로TV",
-      "view": "고점 대비 과도하게 하락했으나 펀더멘털 대비 바닥권이므로 매수를 권한다.",
+      "view": "고점 대비 낙폭이 과도하나 펀더멘털은 견조하여 보유와 분할 매수를 조언한다.",
       "ref": "BX525z-Iho0"
      }
     ]
@@ -176,14 +181,31 @@ const BRIEFS=[
     "tone": "혼재",
     "mentions": [
      {
-      "channel": "삼프로TV",
-      "view": "젠슨 황 복귀 후 주가 상승은 공매도 숏커버링에 그쳐 실적 확인이 필요하다고 본다.",
-      "ref": "lPkkq_9haQo"
+      "channel": "815머니톡",
+      "view": "12월 CEO 청문회가 우회 수출 리스크 해소와 수급 전환점이 될 것으로 본다.",
+      "ref": "SJpL7ljeLoo"
      },
      {
       "channel": "삼프로TV",
-      "view": "밸류에이션 배수가 낮아졌으나 지급보증과 데이터센터 준공 여부를 봐야 한다고 본다.",
-      "ref": "9KEKhFUKnAM"
+      "view": "젠슨 황 복귀 상승은 숏커버링에 그쳤으며 실체적 실적 확인이 필요하다고 본다.",
+      "ref": "lPkkq_9haQo"
+     }
+    ]
+   },
+   {
+    "name": "현대차",
+    "count": 6,
+    "tone": "중립",
+    "mentions": [
+     {
+      "channel": "815머니톡",
+      "view": "실적 하향 우려가 주가에 반영되었으며 CES를 앞두고 반등이 가능하다고 본다.",
+      "ref": "SUGWGoo0Adk"
+     },
+     {
+      "channel": "전인구경제연구소",
+      "view": "보스턴 다이내믹스 기대감은 있으나 소량 생산만으로는 큰 실적을 내기 어렵다고 본다.",
+      "ref": "e7SEu2rDKfE"
      }
     ]
    },
@@ -194,12 +216,12 @@ const BRIEFS=[
     "mentions": [
      {
       "channel": "삼프로TV",
-      "view": "코스닥 시가총액 2위에 오르며 로봇 섹터 상승세를 주도하고 있다고 본다.",
-      "ref": "p2JP9eF77C8"
+      "view": "시가총액 2위를 유지하며 로봇 섹터 전반의 위험 선호 심리를 반영했다고 본다.",
+      "ref": "Kc6Nssp8c88"
      },
      {
       "channel": "815머니톡",
-      "view": "CES 2025 모멘텀과 삼성전자 협력 기대감으로 시가총액 상향이 기대된다고 본다.",
+      "view": "CES 모멘텀과 삼성전자 협력 가능성으로 시가총액이 급성장할 것으로 본다.",
       "ref": "WAoIctrdK78"
      }
     ]
@@ -211,30 +233,13 @@ const BRIEFS=[
     "mentions": [
      {
       "channel": "815머니톡",
-      "view": "M&A를 통한 브랜드 다변화 소식으로 북미 시장 경쟁력이 기대된다고 본다.",
+      "view": "M&A를 통한 브랜드 다변화와 북미 경쟁력으로 상승세를 이어갈 것으로 본다.",
       "ref": "SJpL7ljeLoo"
      },
      {
       "channel": "815머니톡",
-      "view": "브랜드 인수 및 해외 채널 확장으로 4분기 실적 개선 기대를 모은다고 평가한다.",
+      "view": "닥터 멜라신 인수 및 해외 채널 확대로 실적 개선이 기대된다고 본다.",
       "ref": "ryULRFhf2Cw"
-     }
-    ]
-   },
-   {
-    "name": "현대차",
-    "count": 4,
-    "tone": "혼재",
-    "mentions": [
-     {
-      "channel": "815머니톡",
-      "view": "PBR 1배 이하 저평가 구간에서 기업 밸류업 정책의 수혜주로 주목받는다고 본다.",
-      "ref": "WAoIctrdK78"
-     },
-     {
-      "channel": "전인구경제연구소",
-      "view": "로봇 생산량이 3만 대 수준에 그치면 의미 있는 이익을 내기 어렵다고 본다.",
-      "ref": "e7SEu2rDKfE"
      }
     ]
    },
@@ -244,31 +249,31 @@ const BRIEFS=[
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "증시각도기TV",
-      "view": "자회사 합병과 투명한 주주환원 정책을 통해 거버넌스 개혁을 이루었다고 본다.",
-      "ref": "xhHvP0ogJfU"
+      "channel": "체슬리TV",
+      "view": "선진적 주주환원과 경영 모델을 갖춘 자본시장 개혁 모범 기업으로 평가한다.",
+      "ref": "Q3Uu8kVGxrk"
      },
      {
-      "channel": "체슬리TV",
-      "view": "선진적 주주환원과 경영 모델을 갖춘 자본시장 개혁의 적임자로 평가한다.",
-      "ref": "Q3Uu8kVGxrk"
+      "channel": "증시각도기TV",
+      "view": "자회사 합병과 투명한 주주환원 정책으로 거버넌스 개혁 성과를 냈다고 본다.",
+      "ref": "xhHvP0ogJfU"
      }
     ]
    },
    {
-    "name": "로보티즈",
+    "name": "스페이스X",
     "count": 2,
     "tone": "긍정",
     "mentions": [
      {
-      "channel": "815머니톡",
-      "view": "액추에이터 기술을 보유한 부품 대장주로 CES 및 양산 모멘텀 수혜를 예상한다.",
-      "ref": "SJpL7ljeLoo"
+      "channel": "김작가 TV",
+      "view": "스타링크와 데이터센터 확장으로 독보적 기술 해자를 가졌다고 본다.",
+      "ref": "s616_igCIqs"
      },
      {
-      "channel": "전인구경제연구소",
-      "view": "내년 흑자 전환 전망과 함께 수급이 유입되며 차트가 안정적이라고 평가한다.",
-      "ref": "e7SEu2rDKfE"
+      "channel": "815머니톡",
+      "view": "위성 배치 허가 이슈와 테슬라 합병 기대감으로 모멘텀을 형성 중이라고 본다.",
+      "ref": "SUGWGoo0Adk"
      }
     ]
    }
