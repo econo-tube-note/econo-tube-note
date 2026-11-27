@@ -209,8 +209,8 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 15,
-   "busy": 25,
+   "ok": 8,
+   "busy": 12,
    "dead": 5
   },
   "gemini-3.7-flash": {
@@ -499,7 +499,7 @@
   "2026-11-26": true,
   "2026-11-27": true
  },
- "last_ok": "2026-11-28T02:17",
+ "last_ok": "2026-11-28T06:02",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true,
