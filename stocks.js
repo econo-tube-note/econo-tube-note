@@ -720,35 +720,31 @@ const STOCKSUM={
  "TSMC": {
   "name": "TSMC",
   "tone": "혼재",
-  "summary": "TSMC는 우수한 실적과 장기 성장성을 갖춘 핵심 기업이나, 최근 미국의 대중국 반도체 규제와 시장 경쟁 심화로 인해 주가 조정과 단기적인 하락 압력을 받고 있다.",
+  "summary": "대체로 독점적 지위와 압도적 실장을 긍정적으로 보나, 일부 우려와 하락세도 언급된다.",
   "points": [
-   "미국의 대중국 반도체 수출 규제 강화와 고객사 출하 중단이 주가에 단기 악재로 작용했다.",
-   "실적은 견조하나 AI 투자 기대감 후퇴와 패키징 경쟁 심화로 주가 변동성이 커졌다.",
-   "장기적으로는 꾸준한 이익 성장과 주주환원을 보여주는 반도체 산업의 모범 사례로 평가받는다."
+   "경쟁자가 없는 독점적 지위로 높은 평가를 받는다.",
+   "대규모 증설과 압도적인 매출 성장세를 기록하고 있다.",
+   "일부 채널에서는 파운드리 패키징 우려와 외국인 매도세를 언급했다."
   ],
   "ids": [
-   "-vR1-SjKtXI",
-   "09Ij_WyfeMs",
-   "2gvPe2UYxNI",
+   "-zCxk8cTefE",
+   "9KEKhFUKnAM",
    "BWoc8K793Xo",
-   "E2-V6z2WQzo",
-   "FaYdu-Fa5_U",
-   "LEYOVBYtp3Q",
+   "MzYP-A-MNaI",
    "OG0IvvfJk5s",
-   "Q_Pgdi25lg0",
-   "RkpF-xeoalw",
-   "TbCOzdqUfMw",
-   "Zt0LLfeAGEY",
-   "_JMuWDJzLJg",
-   "hEq902LKr3k",
-   "mW4Bp0uo0eQ",
-   "uPfwN34xlpE",
+   "Wz8_pZ8lpWg",
+   "XRDkW8oWCZ8",
+   "XS3qcV8ubMM",
+   "YFhKPs_gm9Q",
+   "ZnoKp47sfpA",
+   "kLLgdkWNy3Q",
+   "uH71E_9TT0o",
    "vhAlRhO25CA",
-   "waz9eTAJIxU",
-   "zb7Lyp31Mvg"
+   "yOr5hocYe5g"
   ],
-  "count": 19,
-  "updated": "2026-11-23"
+  "count": 14,
+  "updated": "2026-11-28",
+  "at": "2026-11-28T11:58"
  },
  "LIG넥스원": {
   "name": "LIG넥스원",
@@ -2895,5 +2891,21 @@ const STOCKSUM={
   "count": 2,
   "updated": "2026-11-28",
   "at": "2026-11-28T02:17"
+ },
+ "ASML": {
+  "name": "ASML",
+  "tone": "중립",
+  "summary": "ASML은 유럽 유일의 글로벌 50위 내 테크 기업이며, 네덜란드가 미국의 대중국 장비 제한에 반발하는 흐름을 보인다.",
+  "points": [
+   "네덜란드 당국이 미국의 대중국 장비 공급 제한 조치에 반발하고 있다.",
+   "글로벌 시가총액 50위 이내에 포함된 유일한 유럽 테크 기업이다."
+  ],
+  "ids": [
+   "ZZrURfo-Kqc",
+   "cjiORUEsSkI"
+  ],
+  "count": 2,
+  "updated": "2026-11-28",
+  "at": "2026-11-28T11:58"
  }
 };
