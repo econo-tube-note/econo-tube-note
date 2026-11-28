@@ -589,25 +589,27 @@ const STOCKSUM={
  "테슬라": {
   "name": "테슬라",
   "tone": "긍정",
-  "summary": "테슬라는 피지컬 AI와 자율주행 부문에서 독점적 지위를 지향하며 기대를 모으고 있으나 정치적 리스크와 장기 투자 필요성이 함께 제기된다.",
+  "summary": "로보택시와 옵티머스를 통한 피지컬 AI와 서비스 기업 재평가로 긍정적 평가가 주를 이룬다.",
   "points": [
-   "피지컬 AI 생태계 구축과 로보택시 생산 확대로 높은 기대를 받는다.",
-   "어려운 시장 속에서 주가가 견조하게 버텼으나 높은 멀티플을 유지해 왔다.",
-   "부품 원가 절감 과정에서 정치적 리스크로 주가 변동성이 커질 수 있다."
+   "로보택시 상용화와 FSD V15 완성으로 AI 기술을 실제 수익으로 연결한다.",
+   "12월 옵티머스 3세대 로봇 실물 공개와 양산 준비로 로봇 모멘텀이 기대된다.",
+   "스페이스X 합병 이슈와 주주총회 일정 등이 투자 심리를 자극하고 있다."
   ],
   "ids": [
-   "033hjf_nIC8",
-   "09Ij_WyfeMs",
-   "0J5AXS2pqUg",
-   "3PTKmp5zdh8",
-   "QoEfnBKO5zU",
-   "cZKNKIAXEfY",
-   "qoCflgBmkpA",
-   "xx_6qed6xCg",
-   "zb7Lyp31Mvg"
+   "CGSZmpNwxb8",
+   "SJpL7ljeLoo",
+   "SUGWGoo0Adk",
+   "UoO5-aM9W3Q",
+   "jd1cmkNDriI",
+   "jzQJCFw1Qmk",
+   "ndChrW-zsdE",
+   "poT4VA9HIWY",
+   "s616_igCIqs",
+   "yg8U9A1S2Og"
   ],
-  "count": 9,
-  "updated": "2026-11-22"
+  "count": 10,
+  "updated": "2026-11-28",
+  "at": "2026-11-28T22:06"
  },
  "주성엔지니어링": {
   "name": "주성엔지니어링",
@@ -1179,19 +1181,28 @@ const STOCKSUM={
  },
  "오라클": {
   "name": "오라클",
-  "tone": "긍정",
-  "summary": "오라클은 대규모 데이터센터를 구축하며 엔비디아 가속기 수요를 견인하고 데이터센터 매출 성장세가 뚜렷하다.",
+  "tone": "부정",
+  "summary": "오라클은 AI 데이터센터 투자 부담과 자금 조달 어려움으로 CDS 프리미엄이 상승하며 부정적 평가를 받는다.",
   "points": [
-   "텍사스 등에 대규모 데이터센터를 구축해 엔비디아 가속기 수요를 견인한다.",
-   "데이터센터 매출 성장세가 뚜렷하여 장기적으로 긍정적인 흐름을 보인다."
+   "AI 데이터센터 투자 부담으로 CDS 프리미엄이 상승했다.",
+   "오픈AI 의존도가 높고 자금 조달에 어려움을 겪고 있다.",
+   "AI 부채 구조의 약한 고리로 지목되어 모니터링이 필요하다."
   ],
   "ids": [
-   "E2-V6z2WQzo",
-   "kYLW8f4wzy8",
-   "t9R5tJ0zR34"
+   "3sqFJKGfVx4",
+   "5MDpoUsRt0g",
+   "9KEKhFUKnAM",
+   "Cn8zy7PWtMc",
+   "Dt4mIitXwtA",
+   "Jp5CEDSrKPE",
+   "KAb8GB1MlJY",
+   "gEl4lMfwQTA",
+   "vzzM6xLK8B8",
+   "z11QfkoEwns"
   ],
-  "count": 3,
-  "updated": "2026-11-18"
+  "count": 10,
+  "updated": "2026-11-28",
+  "at": "2026-11-28T22:06"
  },
  "아모레퍼시픽": {
   "name": "아모레퍼시픽",

@@ -207,7 +207,9 @@
   "WVRnpw3LQhg": "너무 짧음",
   "DUCKMSnzdDU": "경제 무관(내용 확인)",
   "2vRemkeI6uI": "경제 무관: 북한 체제와 남북 군사력 격차 등 안보·정치 이슈를 다루어 경제적 관점이 분명하지 않다.",
-  "wBGYNh_Kipw": "너무 짧음"
+  "wBGYNh_Kipw": "너무 짧음",
+  "vbqvQIcUVSU": "너무 짧음",
+  "2_OgpWJ3CV4": "너무 긴 영상(208분)"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -221,7 +223,7 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 19,
+   "ok": 21,
    "busy": 17,
    "dead": 5
   },
@@ -498,7 +500,8 @@
   "TTlwoNEpPYo": true,
   "2_OgpWJ3CV4": true,
   "WVRnpw3LQhg": true,
-  "wBGYNh_Kipw": true
+  "wBGYNh_Kipw": true,
+  "vbqvQIcUVSU": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -516,7 +519,7 @@
   "2026-11-26": true,
   "2026-11-27": true
  },
- "last_ok": "2026-11-28T19:59",
+ "last_ok": "2026-11-28T22:06",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true,
