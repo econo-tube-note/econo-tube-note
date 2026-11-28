@@ -199,7 +199,9 @@
   "CGtjVM8JIHo": "너무 짧음",
   "TrXsNzm1wBA": "경제 무관: 역사 및 국제 정치 중심의 내용으로 경제적 관점이나 투자와 직접적인 연관성이 부족함",
   "TTlwoNEpPYo": "너무 짧음",
-  "pdyZTHt7SEA": "경제 무관: 안보 및 전쟁 시나리오 중심의 내용으로 경제적 관점이 뚜렷하지 않다."
+  "pdyZTHt7SEA": "경제 무관: 안보 및 전쟁 시나리오 중심의 내용으로 경제적 관점이 뚜렷하지 않다.",
+  "aZIj1k9Sdrs": "경제 무관: 고대 신들과 성경에 관한 인문학 내용으로 경제 및 투자와 무관함",
+  "WyuLjizsUt0": "경제 무관: 중국 문명에 대한 역사·문화적 내용으로 경제적 관점이 분명하지 않음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -213,13 +215,13 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 11,
-   "busy": 15,
+   "ok": 13,
+   "busy": 16,
    "dead": 5
   },
   "gemini-3.7-flash": {
    "ok": 1,
-   "busy": 29,
+   "busy": 30,
    "dead": 5
   },
   "gemini-3.8-flash": {
@@ -228,7 +230,7 @@
    "dead": 3
   },
   "gemini-3.1-flash-lite": {
-   "ok": 13,
+   "ok": 14,
    "busy": 11,
    "dead": 5
   },
@@ -239,12 +241,12 @@
   },
   "gemini-4-hydrogen": {
    "ok": 4,
-   "busy": 21,
+   "busy": 22,
    "dead": 1
   },
   "gemini-3.5-flash": {
    "ok": 8,
-   "busy": 30,
+   "busy": 31,
    "dead": 1
   }
  },
@@ -488,7 +490,7 @@
   "_G4z5Tw8hRs": true,
   "CGtjVM8JIHo": true,
   "TTlwoNEpPYo": true,
-  "LefPvUHCSKs": true
+  "2_OgpWJ3CV4": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -506,7 +508,7 @@
   "2026-11-26": true,
   "2026-11-27": true
  },
- "last_ok": "2026-11-28T14:07",
+ "last_ok": "2026-11-28T16:31",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true,
