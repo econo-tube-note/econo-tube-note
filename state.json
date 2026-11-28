@@ -198,7 +198,8 @@
   "XKLl70T41Bc": "너무 긴 영상(310분)",
   "CGtjVM8JIHo": "너무 짧음",
   "TrXsNzm1wBA": "경제 무관: 역사 및 국제 정치 중심의 내용으로 경제적 관점이나 투자와 직접적인 연관성이 부족함",
-  "TTlwoNEpPYo": "너무 짧음"
+  "TTlwoNEpPYo": "너무 짧음",
+  "pdyZTHt7SEA": "경제 무관: 안보 및 전쟁 시나리오 중심의 내용으로 경제적 관점이 뚜렷하지 않다."
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -213,7 +214,7 @@
  "models": {
   "gemini-3.6-flash": {
    "ok": 11,
-   "busy": 14,
+   "busy": 15,
    "dead": 5
   },
   "gemini-3.7-flash": {
@@ -237,13 +238,13 @@
    "dead": 5
   },
   "gemini-4-hydrogen": {
-   "ok": 3,
+   "ok": 4,
    "busy": 21,
    "dead": 1
   },
   "gemini-3.5-flash": {
    "ok": 8,
-   "busy": 29,
+   "busy": 30,
    "dead": 1
   }
  },
@@ -486,7 +487,8 @@
   "tSVfRb9IZ-M": true,
   "_G4z5Tw8hRs": true,
   "CGtjVM8JIHo": true,
-  "TTlwoNEpPYo": true
+  "TTlwoNEpPYo": true,
+  "LefPvUHCSKs": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -504,7 +506,7 @@
   "2026-11-26": true,
   "2026-11-27": true
  },
- "last_ok": "2026-11-28T11:58",
+ "last_ok": "2026-11-28T14:07",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true,

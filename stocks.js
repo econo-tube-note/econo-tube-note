@@ -677,30 +677,28 @@ const STOCKSUM={
  "구글": {
   "name": "구글",
   "tone": "긍정",
-  "summary": "구글은 우수한 현금 흐름과 AI 기술 경쟁력을 바탕으로 빅테크 생태계의 핵심 기업으로 평가받는다. 전반적으로 실적 안정성과 투자 가치를 높게 보지만 일부 매도 움직임도 존재한다.",
+  "summary": "구글은 강력한 데이터와 TPU 경쟁력을 바탕으로 AI 시장의 핵심 기업으로 평가받으나 설비투자 증가에 따른 변동성 우려도 공존한다.",
   "points": [
-   "AI 가속기 및 TPU 기술력을 통해 엔비디아 대안이자 핵심 AI 투자처로 주목받는다.",
-   "앤트로픽 지분 보유와 대규모 기업 고객 확보를 통해 실질적인 AI 생태계를 구축했다.",
-   "드러켄밀러의 포트폴리오 매도 사례가 있으나 전반적으로는 하락 방어력이 뛰어난 자산으로 평가된다."
+   "TPU 반도체 외부 판매와 AI 모델 경쟁력이 높게 평가된다.",
+   "설비투자 비용 증가와 검색 광고 감소로 주가 변동성이 커졌다.",
+   "풍부한 현금 자산과 데이터 센터 장악력으로 주목받는다."
   ],
   "ids": [
-   "2NXRZFCSWcs",
-   "3PTKmp5zdh8",
-   "5ejfTU3cvac",
-   "9MXwHlep8wQ",
-   "BIhFDJtoK6k",
+   "44WCzqM6tHM",
+   "7l_I4CNxyIc",
    "BWoc8K793Xo",
-   "P1m0QaKWzG0",
-   "PZLLj9tHYlQ",
-   "VwUvt3aGsLI",
-   "hjhrT8EtTjg",
-   "kYLW8f4wzy8",
-   "t9R5tJ0zR34",
-   "xZHld6KdReU",
-   "yrEcOVH79Pc"
+   "CGSZmpNwxb8",
+   "Jm8OLVCvJI4",
+   "Jp5CEDSrKPE",
+   "PnD6SlPIhKM",
+   "RJKDGZvu57g",
+   "XS3qcV8ubMM",
+   "poT4VA9HIWY",
+   "s616_igCIqs"
   ],
-  "count": 14,
-  "updated": "2026-11-23"
+  "count": 11,
+  "updated": "2026-11-28",
+  "at": "2026-11-28T14:07"
  },
  "가온칩스": {
   "name": "가온칩스",
@@ -1285,39 +1283,29 @@ const STOCKSUM={
  "앤트로픽": {
   "name": "앤트로픽",
   "tone": "혼재",
-  "summary": "대규모 상장으로 자금 조달에 성공하며 기대감을 모았으나, 상장 후 매도 물량 우려와 적자 및 밸류에이션 부담으로 시각이 엇갈린다.",
+  "summary": "상장 초기 주가 약세와 수급 부담 우려가 존재하지만 AI 리더십과 성장 잠재력에 대한 기대감도 공존한다.",
   "points": [
-   "대규모 IPO 성공으로 자금을 조달하고 인프라 투자와 부채 완화에 기여한다는 평가가 있다.",
-   "상장 직후 대규모 현금화 물량과 보호예수 부재로 단기 주가 변동성이 크다는 우려가 존재한다.",
-   "막대한 인프라 비용으로 인한 적자 우려와 매출 성장성 지속 여부가 쟁점으로 꼽힌다."
+   "상장 초기 공모가 하회와 매도 물량 우려로 주가 약세를 보였다.",
+   "막대한 약정 계약과 AI 리더십으로 성장 잠재력을 높게 평가한다."
   ],
   "ids": [
-   "-PVT3Gp45SE",
-   "1PvkBMtMkyk",
-   "6g110iUWTVo",
-   "ByMmWIxsB4E",
-   "ODiEz3dslcE",
-   "PREEBWeBwhs",
-   "TbCOzdqUfMw",
-   "VwUvt3aGsLI",
-   "X1D0cQjwrkU",
-   "_1luAl4h7rw",
-   "axG8buIPalY",
-   "axY9mi3lmok",
-   "bYGImu0Xhag",
-   "d9rmKdDS43w",
+   "5MDpoUsRt0g",
+   "6-R_UOTHdT4",
+   "7vmVkQ6U4yA",
+   "8qJm0N09I-g",
+   "IcnAog-gRmQ",
+   "KAb8GB1MlJY",
+   "ONjSzAO4jJw",
+   "ZZrURfo-Kqc",
    "ffv19kOoCzc",
-   "igdgKOPRR_4",
-   "kXGnjB4FYIk",
-   "kgPvRNvkX0k",
-   "mVbORW1vjDY",
+   "fmdJk4Xhl3Y",
    "qWBPcJiyKP4",
-   "wZYpDi0Wdso",
-   "waz9eTAJIxU",
+   "slZsjoZ98VU",
    "z11QfkoEwns"
   ],
-  "count": 23,
-  "updated": "2026-11-24"
+  "count": 13,
+  "updated": "2026-11-28",
+  "at": "2026-11-28T14:07"
  },
  "애플": {
   "name": "애플",
