@@ -129,7 +129,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-28T20:00"
+  "ts": "2026-11-28T20:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=C6Sb4H7Yw_8",
@@ -273,7 +274,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-28T20:00"
+  "ts": "2026-11-28T20:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=YwWsyTR8wqA",
@@ -387,7 +389,8 @@ const VIDEOS=[
   "mood": "비관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-28T19:36"
+  "ts": "2026-11-28T19:36",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=OY30RNuWcPA",
@@ -531,7 +534,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-28T18:00"
+  "ts": "2026-11-28T18:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=fSGFo0xS1Ss",
@@ -656,7 +660,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-28T18:30"
+  "ts": "2026-11-28T18:30",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=nW6aYMX3uQE",
@@ -784,10 +789,11 @@ const VIDEOS=[
     "과거"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-28T19:01"
+  "ts": "2026-11-28T19:01",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=Zx1NE38ZbOE",
@@ -908,7 +914,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-28T18:00"
+  "ts": "2026-11-28T18:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=Wjnh3WwA3wA",
@@ -1019,7 +1026,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-28T17:00"
+  "ts": "2026-11-28T17:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=LzjY4Nio5e8",
@@ -1153,7 +1161,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-28T16:30"
+  "ts": "2026-11-28T16:30",
+  "mood5": "강한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=_5pc0_Q3ARo",
@@ -1276,7 +1285,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-28T15:00"
+  "ts": "2026-11-28T15:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=sKFEF5HpMPI",
@@ -1398,7 +1408,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-28T16:15"
+  "ts": "2026-11-28T16:15",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=LefPvUHCSKs",
@@ -1546,7 +1557,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-28T13:30"
+  "ts": "2026-11-28T13:30",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=P4_wLfgHsT0",
@@ -1691,10 +1703,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-28T12:00"
+  "ts": "2026-11-28T12:00",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=ZZrURfo-Kqc",
@@ -1817,7 +1830,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-28T10:48"
+  "ts": "2026-11-28T10:48",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=7EknSm4X1tE",
@@ -1950,7 +1964,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-28T08:30"
+  "ts": "2026-11-28T08:30",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=96-Yigkga_8",
@@ -2055,7 +2070,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-28T09:47"
+  "ts": "2026-11-28T09:47",
+  "mood5": "강한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=1k_FAaTxSTg",
@@ -2192,7 +2208,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-28T10:15"
+  "ts": "2026-11-28T10:15",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=uH71E_9TT0o",
@@ -2323,7 +2340,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-28T08:00"
+  "ts": "2026-11-28T08:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=4MaJfiJRa0w",
@@ -2447,7 +2465,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-28T06:00"
+  "ts": "2026-11-28T06:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=0pDq8Fsu8hE",
@@ -2581,7 +2600,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-27T21:15"
+  "ts": "2026-11-27T21:15",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=59oBAsQqs7o",
@@ -2715,7 +2735,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T15:07"
+  "ts": "2026-11-27T15:07",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=QcZ8qQMhahc",
@@ -2867,7 +2888,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-27T15:42"
+  "ts": "2026-11-27T15:42",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=vzzM6xLK8B8",
@@ -3006,11 +3028,12 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-4-hydrogen",
   "ts": "2026-11-27T18:22",
-  "hosts": "홍선애"
+  "hosts": "홍선애",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=1MPrVFxgHyA",
@@ -3137,7 +3160,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-27T14:30"
+  "ts": "2026-11-27T14:30",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=XRDkW8oWCZ8",
@@ -3260,7 +3284,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-27T14:29"
+  "ts": "2026-11-27T14:29",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=zg_iJPyzooE",
@@ -3375,7 +3400,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-27T15:30"
+  "ts": "2026-11-27T15:30",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=tx-pbWaIoTc",
@@ -3502,7 +3528,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-27T20:00"
+  "ts": "2026-11-27T20:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=IvfOqgIcItQ",
@@ -3641,7 +3668,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-27T19:00"
+  "ts": "2026-11-27T19:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=bA8iYXxeP4I",
@@ -3750,7 +3778,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-27T20:31"
+  "ts": "2026-11-27T20:31",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=yjDD2ryC2o0",
@@ -3894,7 +3923,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T21:39"
+  "ts": "2026-11-27T21:39",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=ZGd-TfKGhxE",
@@ -4013,7 +4043,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-27T20:00"
+  "ts": "2026-11-27T20:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=gbV6JrXviQ4",
@@ -4130,7 +4161,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T20:00"
+  "ts": "2026-11-27T20:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=IKlg03x1dMw",
@@ -4225,7 +4257,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T21:00"
+  "ts": "2026-11-27T21:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=vU9Cso6ksag",
@@ -4341,10 +4374,11 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T16:00"
+  "ts": "2026-11-27T16:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=ljGtLKxA7Tk",
@@ -4481,7 +4515,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T17:57"
+  "ts": "2026-11-27T17:57",
+  "mood5": "강한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=muZdP0wHPgU",
@@ -4593,7 +4628,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T19:00"
+  "ts": "2026-11-27T19:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=s616_igCIqs",
@@ -4722,7 +4758,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T18:30"
+  "ts": "2026-11-27T18:30",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=tA42vZWzq14",
@@ -4848,10 +4885,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T18:45"
+  "ts": "2026-11-27T18:45",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=SUGWGoo0Adk",
@@ -4996,7 +5034,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T16:30"
+  "ts": "2026-11-27T16:30",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=vRRvvOWewzA",
@@ -5096,7 +5135,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-27T17:00"
+  "ts": "2026-11-27T17:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=Q3Uu8kVGxrk",
@@ -5235,7 +5275,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T17:13"
+  "ts": "2026-11-27T17:13",
+  "mood5": "강한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=FTsg8koGDyU",
@@ -5389,10 +5430,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T16:00"
+  "ts": "2026-11-27T16:00",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=XXCvO11ZCno",
@@ -5514,7 +5556,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T17:07"
+  "ts": "2026-11-27T17:07",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=SJpL7ljeLoo",
@@ -5651,7 +5694,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-27T18:00"
+  "ts": "2026-11-27T18:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=Kc6Nssp8c88",
@@ -5775,7 +5819,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-3.5-flash",
   "ts": "2026-11-27T17:18",
-  "hosts": "홍선애"
+  "hosts": "홍선애",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=qxsi-fM3tBk",
@@ -5867,7 +5912,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
   "ts": "2026-11-27T12:15",
-  "hosts": "서동주, 김동환"
+  "hosts": "서동주, 김동환",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=TXwz6gJW6_M",
@@ -5990,7 +6036,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-4-hydrogen",
   "ts": "2026-11-27T12:34",
-  "hosts": "서동주, 김동환"
+  "hosts": "서동주, 김동환",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=e7SEu2rDKfE",
@@ -6113,7 +6160,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T13:23"
+  "ts": "2026-11-27T13:23",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=ryULRFhf2Cw",
@@ -6265,7 +6313,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T13:00"
+  "ts": "2026-11-27T13:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=0o8_GyK2XM4",
@@ -6408,7 +6457,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T11:30"
+  "ts": "2026-11-27T11:30",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=lPkkq_9haQo",
@@ -6532,10 +6582,11 @@ const VIDEOS=[
     "과거"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T11:47"
+  "ts": "2026-11-27T11:47",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=p2JP9eF77C8",
@@ -6645,7 +6696,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-27T10:53"
+  "ts": "2026-11-27T10:53",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=ThO0XUP-MiY",
@@ -6772,7 +6824,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-27T10:38"
+  "ts": "2026-11-27T10:38",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=WAoIctrdK78",
@@ -6904,7 +6957,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-27T10:41"
+  "ts": "2026-11-27T10:41",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=BX525z-Iho0",
@@ -7017,7 +7071,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-27T11:13"
+  "ts": "2026-11-27T11:13",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=JV2na5AGZBw",
@@ -7144,7 +7199,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-27T09:29"
+  "ts": "2026-11-27T09:29",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=SlqI4tj_l8A",
@@ -7266,7 +7322,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.7-flash",
-  "ts": "2026-11-27T08:11"
+  "ts": "2026-11-27T08:11",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=Fd-vqZM1pMA",
@@ -7389,7 +7446,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.7-flash",
-  "ts": "2026-11-27T08:28"
+  "ts": "2026-11-27T08:28",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=xhHvP0ogJfU",
@@ -7533,7 +7591,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T08:23"
+  "ts": "2026-11-27T08:23",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=TjX-NU2soQ4",
@@ -7697,7 +7756,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-27T09:19"
+  "ts": "2026-11-27T09:19",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=QTFrrMnYprQ",
@@ -7824,7 +7884,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-27T09:09"
+  "ts": "2026-11-27T09:09",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=9KEKhFUKnAM",
@@ -7977,7 +8038,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-4-hydrogen",
   "ts": "2026-11-27T07:07",
-  "hosts": "여도은"
+  "hosts": "여도은",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=yg8U9A1S2Og",
@@ -8121,7 +8183,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-26T21:03"
+  "ts": "2026-11-26T21:03",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=rDlDu0s0b9Y",
@@ -8235,7 +8298,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-26T17:59"
+  "ts": "2026-11-26T17:59",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=zIdUTuj4V1g",
@@ -8355,7 +8419,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-26T21:34"
+  "ts": "2026-11-26T21:34",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=cy1dNn-JtCE",
@@ -8467,7 +8532,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-26T21:46"
+  "ts": "2026-11-26T21:46",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=cX8NAxq84Tw",
@@ -8569,7 +8635,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-26T18:19"
+  "ts": "2026-11-26T18:19",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=FlqwGnwIBME",
@@ -8650,10 +8717,11 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-26T19:00"
+  "ts": "2026-11-26T19:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=JDhGdGwsppE",
@@ -8797,7 +8865,8 @@ const VIDEOS=[
   "mood": "비관",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-26T19:30"
+  "ts": "2026-11-26T19:30",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=MoV5BIAHwMw",
@@ -8914,10 +8983,11 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-26T18:30"
+  "ts": "2026-11-26T18:30",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=YYynHIiVjYY",
@@ -9048,10 +9118,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-26T20:00"
+  "ts": "2026-11-26T20:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=hCkGcQu1K_o",
@@ -9180,7 +9251,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-26T19:00"
+  "ts": "2026-11-26T19:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=3cJ4yYQpEB8",
@@ -9307,10 +9379,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-26T19:30"
+  "ts": "2026-11-26T19:30",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=Jm8OLVCvJI4",
@@ -9440,7 +9513,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-26T21:00"
+  "ts": "2026-11-26T21:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=44WCzqM6tHM",
@@ -9577,7 +9651,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-26T19:07"
+  "ts": "2026-11-26T19:07",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=-0SRNa1-YmA",
@@ -9697,7 +9772,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-26T20:00"
+  "ts": "2026-11-26T20:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=KjGSl6-7Ww8",
@@ -9792,7 +9868,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-26T21:00"
+  "ts": "2026-11-26T21:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=Zd05cvqhhJg",
@@ -9943,7 +10020,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-26T15:00"
+  "ts": "2026-11-26T15:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=3sqFJKGfVx4",
@@ -10112,7 +10190,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-26T14:30"
+  "ts": "2026-11-26T14:30",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=7WFDTIPC4X0",
@@ -10226,7 +10305,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-26T15:52"
+  "ts": "2026-11-26T15:52",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=aWJEl-v-C6E",
@@ -10345,7 +10425,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-26T16:00"
+  "ts": "2026-11-26T16:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=RJKDGZvu57g",
@@ -10429,10 +10510,11 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-26T17:06"
+  "ts": "2026-11-26T17:06",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=nnHrCAo4gg0",
@@ -10541,7 +10623,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-26T17:30"
+  "ts": "2026-11-26T17:30",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=f1OEhbNqxSk",
@@ -10652,7 +10735,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
   "ts": "2026-11-26T16:59",
-  "hosts": "홍선애"
+  "hosts": "홍선애",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=A26WC9fSSoc",
@@ -10755,10 +10839,11 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-26T17:00"
+  "ts": "2026-11-26T17:00",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=-yDZMeInkD8",
@@ -10899,7 +10984,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-26T17:59"
+  "ts": "2026-11-26T17:59",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=rOE1sJItKFs",
@@ -11011,7 +11097,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-26T17:00"
+  "ts": "2026-11-26T17:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=Wz8_pZ8lpWg",
@@ -11155,7 +11242,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-26T17:00"
+  "ts": "2026-11-26T17:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=t276Uigurdw",
@@ -11281,7 +11369,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-4-hydrogen",
   "ts": "2026-11-26T18:06",
-  "hosts": "홍선애"
+  "hosts": "홍선애",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=OMsT972ED3E",
@@ -11405,7 +11494,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.7-flash",
-  "ts": "2026-11-26T11:26"
+  "ts": "2026-11-26T11:26",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=LB4G3JHPqF8",
@@ -11532,7 +11622,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-26T11:40"
+  "ts": "2026-11-26T11:40",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=IcnAog-gRmQ",
@@ -11636,7 +11727,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
   "ts": "2026-11-26T12:12",
-  "hosts": "서동주, 김동환"
+  "hosts": "서동주, 김동환",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=yIBY1iAQW1I",
@@ -11718,11 +11810,12 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
   "ts": "2026-11-26T12:32",
-  "hosts": "김동환, 서동주"
+  "hosts": "김동환, 서동주",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=WidcNUel08U",
@@ -11878,7 +11971,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-26T13:50"
+  "ts": "2026-11-26T13:50",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=jBYGIhqpzlc",
@@ -12015,7 +12109,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-26T13:00"
+  "ts": "2026-11-26T13:00",
+  "mood5": "강한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=22RNv0HPDZo",
@@ -12167,7 +12262,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-26T10:29"
+  "ts": "2026-11-26T10:29",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=v-lAkGvb1qc",
@@ -12295,7 +12391,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-26T10:50"
+  "ts": "2026-11-26T10:50",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=6eJY6NckxXo",
@@ -12451,7 +12548,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-26T11:03"
+  "ts": "2026-11-26T11:03",
+  "mood5": "강한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=0pxDHrYRgas",
@@ -12541,7 +12639,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-26T10:53"
+  "ts": "2026-11-26T10:53",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=sFTQUgOZk80",
@@ -12673,7 +12772,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-26T09:43"
+  "ts": "2026-11-26T09:43",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=5MDpoUsRt0g",
@@ -12822,7 +12922,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-4-hydrogen",
   "ts": "2026-11-26T08:04",
-  "hosts": "여도은"
+  "hosts": "여도은",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=elji86PkSgs",
@@ -12968,7 +13069,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-26T08:31"
+  "ts": "2026-11-26T08:31",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=i698EnzIvhw",
@@ -13127,7 +13229,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-26T08:20"
+  "ts": "2026-11-26T08:20",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=kLLgdkWNy3Q",
@@ -13304,7 +13407,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-26T09:13"
+  "ts": "2026-11-26T09:13",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=XoqCYEsrgro",
@@ -13433,11 +13537,12 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
   "ts": "2026-11-26T07:17",
-  "hosts": "여도은"
+  "hosts": "여도은",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=oSMHjlE4oAY",
@@ -13561,10 +13666,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-25T21:05"
+  "ts": "2026-11-25T21:05",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=COtb358Fg68",
@@ -13664,7 +13770,8 @@ const VIDEOS=[
   "mood": "비관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-25T19:58"
+  "ts": "2026-11-25T19:58",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=7V7C2yxwXdg",
@@ -13808,7 +13915,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-25T21:00"
+  "ts": "2026-11-25T21:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=R1vGAD4cQPE",
@@ -13935,7 +14043,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-26T04:51"
+  "ts": "2026-11-26T04:51",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=xLCKUuIIvnk",
@@ -14096,7 +14205,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-25T16:30"
+  "ts": "2026-11-25T16:30",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=4oglGRSJgzU",
@@ -14198,7 +14308,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T18:04"
+  "ts": "2026-11-25T18:04",
+  "mood5": "강한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=cog-IUIlRMs",
@@ -14351,10 +14462,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-25T21:37"
+  "ts": "2026-11-25T21:37",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=3rVJujtM4HE",
@@ -14488,7 +14600,8 @@ const VIDEOS=[
   "mood": "비관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T17:45"
+  "ts": "2026-11-25T17:45",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=7vmVkQ6U4yA",
@@ -14622,10 +14735,11 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T17:30"
+  "ts": "2026-11-25T17:30",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=67w1HDjQsbw",
@@ -14770,7 +14884,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-25T17:02",
-  "hosts": "홍선애"
+  "hosts": "홍선애",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=wk-JESr_6eM",
@@ -14875,7 +14990,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T17:00"
+  "ts": "2026-11-25T17:00",
+  "mood5": "강한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=wcnQXFLs93g",
@@ -15014,7 +15130,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T18:28"
+  "ts": "2026-11-25T18:28",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=xaHg9Y5yVa8",
@@ -15126,7 +15243,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T19:00"
+  "ts": "2026-11-25T19:00",
+  "mood5": "강한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=i8ZbqPhfALg",
@@ -15262,7 +15380,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T18:30"
+  "ts": "2026-11-25T18:30",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=ndChrW-zsdE",
@@ -15396,7 +15515,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T18:00"
+  "ts": "2026-11-25T18:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=Dt4mIitXwtA",
@@ -15530,7 +15650,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T20:00"
+  "ts": "2026-11-25T20:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=u4GuUAdynkE",
@@ -15653,7 +15774,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T19:00"
+  "ts": "2026-11-25T19:00",
+  "mood5": "강한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=8ll6Y4bUImU",
@@ -15787,7 +15909,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T21:01"
+  "ts": "2026-11-25T21:01",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=J59BlFTiHEc",
@@ -15893,10 +16016,11 @@ const VIDEOS=[
     "과거"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T20:00"
+  "ts": "2026-11-25T20:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=ONjSzAO4jJw",
@@ -16028,10 +16152,11 @@ const VIDEOS=[
     "과거"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T20:00"
+  "ts": "2026-11-25T20:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=C6ApP7Rw_Wk",
@@ -16151,7 +16276,8 @@ const VIDEOS=[
   "mood": "비관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T21:00"
+  "ts": "2026-11-25T21:00",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=9eS9ZypwKzw",
@@ -16269,7 +16395,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "영상",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T17:30"
+  "ts": "2026-11-25T17:30",
+  "mood5": "강한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=w8G6n9uTjlY",
@@ -16398,10 +16525,11 @@ const VIDEOS=[
     "과거"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "영상",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T17:55"
+  "ts": "2026-11-25T17:55",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=1fBlONhdXu8",
@@ -16529,7 +16657,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "영상",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T15:40"
+  "ts": "2026-11-25T15:40",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=wIPqelOmsEA",
@@ -16656,7 +16785,8 @@ const VIDEOS=[
   "mood": "비관",
   "src": "영상",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T15:30"
+  "ts": "2026-11-25T15:30",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=CGSZmpNwxb8",
@@ -16810,7 +16940,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "영상",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T16:00"
+  "ts": "2026-11-25T16:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=aoNPLI-O9QY",
@@ -16944,7 +17075,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T14:57"
+  "ts": "2026-11-25T14:57",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=-mD3Z9_vN6k",
@@ -17076,7 +17208,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T14:30"
+  "ts": "2026-11-25T14:30",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=gmodBGqiDLQ",
@@ -17167,10 +17300,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-25T11:24"
+  "ts": "2026-11-25T11:24",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=OFIo70Vhg8k",
@@ -17292,7 +17426,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-25T11:35"
+  "ts": "2026-11-25T11:35",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=CJslrxQHNbE",
@@ -17441,7 +17576,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-4-hydrogen",
   "ts": "2026-11-25T12:19",
-  "hosts": "서동주, 김동환"
+  "hosts": "서동주, 김동환",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=Zhlpe49FL5M",
@@ -17549,7 +17685,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-25T12:37"
+  "ts": "2026-11-25T12:37",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=LheK78BQkEU",
@@ -17656,7 +17793,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-25T13:41"
+  "ts": "2026-11-25T13:41",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=J-uyy4n4664",
@@ -17813,7 +17951,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T13:00"
+  "ts": "2026-11-25T13:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=OLnVi7EChB4",
@@ -17941,7 +18080,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-25T09:53"
+  "ts": "2026-11-25T09:53",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=Iaa__vuffDQ",
@@ -18048,7 +18188,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T10:23"
+  "ts": "2026-11-25T10:23",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=kRYj5zUJzRc",
@@ -18150,10 +18291,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-25T11:00"
+  "ts": "2026-11-25T11:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=7l_I4CNxyIc",
@@ -18258,7 +18400,8 @@ const VIDEOS=[
   "mood": "비관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-25T10:33"
+  "ts": "2026-11-25T10:33",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=YUzwVL3oZIc",
@@ -18366,7 +18509,8 @@ const VIDEOS=[
   "mood": "비관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-25T08:01"
+  "ts": "2026-11-25T08:01",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=-zCxk8cTefE",
@@ -18509,7 +18653,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-25T08:29"
+  "ts": "2026-11-25T08:29",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=6-R_UOTHdT4",
@@ -18616,7 +18761,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-25T08:25"
+  "ts": "2026-11-25T08:25",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=xY0FR3VjO98",
@@ -18713,10 +18859,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-25T09:12"
+  "ts": "2026-11-25T09:12",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=8qJm0N09I-g",
@@ -18832,7 +18979,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
   "ts": "2026-11-25T07:09",
-  "hosts": "여도은"
+  "hosts": "여도은",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=Lp8kJW7G0eI",
@@ -18961,7 +19109,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T20:31"
+  "ts": "2026-11-24T20:31",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=KAb8GB1MlJY",
@@ -19090,10 +19239,11 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-24T21:15"
+  "ts": "2026-11-24T21:15",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=MGYulj2uJWc",
@@ -19227,7 +19377,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T20:00"
+  "ts": "2026-11-24T20:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=mSTEAMbHed8",
@@ -19349,7 +19500,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T21:00"
+  "ts": "2026-11-24T21:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=5qgFLSTN-ys",
@@ -19466,10 +19618,11 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T20:15"
+  "ts": "2026-11-24T20:15",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=YFhKPs_gm9Q",
@@ -19613,7 +19766,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-24T20:00"
+  "ts": "2026-11-24T20:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=TBAXEXvB_1g",
@@ -19735,7 +19889,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "영상",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-24T16:47"
+  "ts": "2026-11-24T16:47",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=7pDDUZ7dQ-g",
@@ -19843,7 +19998,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-24T18:13",
-  "hosts": "홍선애"
+  "hosts": "홍선애",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=6z0niqkrA4E",
@@ -19968,7 +20124,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T19:30"
+  "ts": "2026-11-24T19:30",
+  "mood5": "강한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=dyiW91ks54o",
@@ -20089,7 +20246,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T19:00"
+  "ts": "2026-11-24T19:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=C1B0WN3k8Lc",
@@ -20211,7 +20369,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T19:30"
+  "ts": "2026-11-24T19:30",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=VPTcD6oEgsw",
@@ -20344,7 +20503,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-24T19:00"
+  "ts": "2026-11-24T19:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=_as5avhckoM",
@@ -20479,7 +20639,8 @@ const VIDEOS=[
   "mood": "비관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T18:30"
+  "ts": "2026-11-24T18:30",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=j83uwY0C_-c",
@@ -20594,7 +20755,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T17:00"
+  "ts": "2026-11-24T17:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=M7ysDoIv65Q",
@@ -20739,7 +20901,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-24T16:59",
-  "hosts": "홍선애"
+  "hosts": "홍선애",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=KZsFJ9nMJQk",
@@ -20861,7 +21024,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T17:00"
+  "ts": "2026-11-24T17:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=ZnoKp47sfpA",
@@ -20995,7 +21159,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-24T17:51"
+  "ts": "2026-11-24T17:51",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=F3o0QUHU62E",
@@ -21108,7 +21273,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T18:09"
+  "ts": "2026-11-24T18:09",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=lIqcJgyStS8",
@@ -21234,10 +21400,11 @@ const VIDEOS=[
     "과거"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T17:00"
+  "ts": "2026-11-24T17:00",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=_mHatEOkD_Q",
@@ -21361,10 +21528,11 @@ const VIDEOS=[
     "과거"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-24T15:02"
+  "ts": "2026-11-24T15:02",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=q1r4OqBIaFk",
@@ -21529,7 +21697,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-24T15:43"
+  "ts": "2026-11-24T15:43",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=slZsjoZ98VU",
@@ -21667,7 +21836,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T15:00"
+  "ts": "2026-11-24T15:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=fmdJk4Xhl3Y",
@@ -21808,7 +21978,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-24T16:00"
+  "ts": "2026-11-24T16:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=BKt64C39U4M",
@@ -21948,11 +22119,12 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-4-hydrogen",
   "ts": "2026-11-24T11:55",
-  "hosts": "서동주, 김동환"
+  "hosts": "서동주, 김동환",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=yGpzZbCZ0eU",
@@ -22083,7 +22255,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-24T12:47"
+  "ts": "2026-11-24T12:47",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=yqsjMBiOQiQ",
@@ -22197,11 +22370,12 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
   "ts": "2026-11-24T12:22",
-  "hosts": "김동환, 서동주"
+  "hosts": "김동환, 서동주",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=JDRsZE771wA",
@@ -22351,7 +22525,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T12:00"
+  "ts": "2026-11-24T12:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=Ai_9nqUhRNo",
@@ -22492,10 +22667,11 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T14:01"
+  "ts": "2026-11-24T14:01",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=poT4VA9HIWY",
@@ -22647,7 +22823,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-24T11:31"
+  "ts": "2026-11-24T11:31",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=XS3qcV8ubMM",
@@ -22803,10 +22980,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-24T11:40"
+  "ts": "2026-11-24T11:40",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=8xImYsugx8A",
@@ -22916,7 +23094,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-24T11:26"
+  "ts": "2026-11-24T11:26",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=jzQJCFw1Qmk",
@@ -23060,7 +23239,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.7-flash",
-  "ts": "2026-11-24T09:38"
+  "ts": "2026-11-24T09:38",
+  "mood5": "강한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=CTZ8-6dNW4Y",
@@ -23175,10 +23355,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-24T10:42"
+  "ts": "2026-11-24T10:42",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=lEK_6li3T0U",
@@ -23312,7 +23493,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-24T11:14"
+  "ts": "2026-11-24T11:14",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=3qmWCkORZts",
@@ -23421,7 +23603,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-24T11:09"
+  "ts": "2026-11-24T11:09",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=yo24thbKD4A",
@@ -23532,7 +23715,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
   "ts": "2026-11-24T07:17",
-  "hosts": "여도은"
+  "hosts": "여도은",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=4ef5Us1PLUU",
@@ -23632,7 +23816,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-24T08:03"
+  "ts": "2026-11-24T08:03",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=YUMN-SLIJAk",
@@ -23750,7 +23935,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-24T09:35"
+  "ts": "2026-11-24T09:35",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=hZqsRcqmhPQ",
@@ -23877,7 +24063,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-24T06:00"
+  "ts": "2026-11-24T06:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=pssXKLyr05c",
@@ -23996,7 +24183,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-24T08:24"
+  "ts": "2026-11-24T08:24",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=uBEYE0bjlNY",
@@ -24122,7 +24310,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.7-flash",
-  "ts": "2026-11-24T08:24"
+  "ts": "2026-11-24T08:24",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=vcHvXcQw7e0",
@@ -24278,7 +24467,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-24T09:09"
+  "ts": "2026-11-24T09:09",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=RzrQ4FbmqmQ",
@@ -24434,7 +24624,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-23T09:49"
+  "ts": "2026-11-23T09:49",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=Cn8zy7PWtMc",
@@ -24576,7 +24767,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-23T21:14"
+  "ts": "2026-11-23T21:14",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=Ay9v38EYHgA",
@@ -24693,7 +24885,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-23T20:18"
+  "ts": "2026-11-23T20:18",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=W2D_UiqlrMw",
@@ -24837,7 +25030,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T13:28"
+  "ts": "2026-11-23T13:28",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=xsTx1CQTO4c",
@@ -24964,7 +25158,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T21:30"
+  "ts": "2026-11-23T21:30",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=Dan9ZSsy2uI",
@@ -25068,7 +25263,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash",
-  "ts": "2026-11-23T20:30"
+  "ts": "2026-11-23T20:30",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=9jVNs0KssDk",
@@ -25170,10 +25366,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-23T21:03"
+  "ts": "2026-11-23T21:03",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=IVlkZX6kxsI",
@@ -25309,7 +25506,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
   "ts": "2026-11-23T16:59",
-  "hosts": "홍선애"
+  "hosts": "홍선애",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=jd1cmkNDriI",
@@ -25409,7 +25607,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-23T17:00"
+  "ts": "2026-11-23T17:00",
+  "mood5": "강한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=mZ1tM9sflvg",
@@ -25517,7 +25716,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-23T20:43"
+  "ts": "2026-11-23T20:43",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=Jp5CEDSrKPE",
@@ -25651,7 +25851,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-23T17:05"
+  "ts": "2026-11-23T17:05",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=YBPuplDBzU4",
@@ -25800,10 +26001,11 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-23T21:00"
+  "ts": "2026-11-23T21:00",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=6cfOynsnMdg",
@@ -25918,7 +26120,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T18:30"
+  "ts": "2026-11-23T18:30",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=HZFj4TqxRFk",
@@ -26030,7 +26233,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-23T19:00"
+  "ts": "2026-11-23T19:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=3tOsoBGoDCU",
@@ -26149,10 +26353,11 @@ const VIDEOS=[
     "과거"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T19:30"
+  "ts": "2026-11-23T19:30",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=ffv19kOoCzc",
@@ -26281,7 +26486,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T19:00"
+  "ts": "2026-11-23T19:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=bvTGUl-ocCA",
@@ -26429,7 +26635,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T20:00"
+  "ts": "2026-11-23T20:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=REQiZoddA7M",
@@ -26563,7 +26770,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T20:00"
+  "ts": "2026-11-23T20:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=ImmDYGasFbE",
@@ -26708,10 +26916,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T17:58"
+  "ts": "2026-11-23T17:58",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=PnD6SlPIhKM",
@@ -26872,7 +27081,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T16:45"
+  "ts": "2026-11-23T16:45",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=BPj-OYDX590",
@@ -26984,7 +27194,8 @@ const VIDEOS=[
   "mood": "비관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T17:45"
+  "ts": "2026-11-23T17:45",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=xqJaSkWIQiM",
@@ -27120,10 +27331,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T17:35"
+  "ts": "2026-11-23T17:35",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=tMwJY3ZyB84",
@@ -27257,7 +27469,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T17:00"
+  "ts": "2026-11-23T17:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=vyuznP_KIJE",
@@ -27393,7 +27606,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-23T18:15",
-  "hosts": "홍선애"
+  "hosts": "홍선애",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=w7Eh9HBW7NM",
@@ -27570,7 +27784,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-23T10:54"
+  "ts": "2026-11-23T10:54",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=sTGJtw_hGUU",
@@ -27738,7 +27953,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-23T15:08"
+  "ts": "2026-11-23T15:08",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=sjHkohhR0xw",
@@ -27861,7 +28077,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-23T14:30"
+  "ts": "2026-11-23T14:30",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=3NCUIycZnYQ",
@@ -28013,7 +28230,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-4-hydrogen",
-  "ts": "2026-11-23T15:41"
+  "ts": "2026-11-23T15:41",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=yOr5hocYe5g",
@@ -28152,7 +28370,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T15:15"
+  "ts": "2026-11-23T15:15",
+  "mood5": "강한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=MzYP-A-MNaI",
@@ -28296,7 +28515,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T15:30"
+  "ts": "2026-11-23T15:30",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=z11QfkoEwns",
@@ -28423,7 +28643,8 @@ const VIDEOS=[
   "mood": "비관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-23T11:09"
+  "ts": "2026-11-23T11:09",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=PVAvcqVLWxg",
@@ -28533,7 +28754,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-23T11:25"
+  "ts": "2026-11-23T11:25",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=vgH3Yp5pj6M",
@@ -28634,7 +28856,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
   "ts": "2026-11-23T11:57",
-  "hosts": "서동주, 김동환"
+  "hosts": "서동주, 김동환",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=VVjaAdxhIic",
@@ -28753,10 +28976,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T11:38"
+  "ts": "2026-11-23T11:38",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=TvZvSJnX1Sk",
@@ -28896,7 +29120,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-23T12:29",
-  "hosts": "서동주, 김동환"
+  "hosts": "서동주, 김동환",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=ZCjikei_9XE",
@@ -29026,7 +29251,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T13:00"
+  "ts": "2026-11-23T13:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=7ZLBGymBqeA",
@@ -29122,7 +29348,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-23T07:57",
-  "hosts": "여도은"
+  "hosts": "여도은",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=YQ5YCnAwbbY",
@@ -29252,7 +29479,8 @@ const VIDEOS=[
   "src": "자막",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-23T08:26",
-  "hosts": "정영진"
+  "hosts": "정영진",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=UoO5-aM9W3Q",
@@ -29379,7 +29607,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T08:31"
+  "ts": "2026-11-23T08:31",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=ME_JkAGPmXI",
@@ -29500,7 +29729,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T09:21"
+  "ts": "2026-11-23T09:21",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=qWBPcJiyKP4",
@@ -29645,11 +29875,12 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "영상",
   "model": "gemini-3.6-flash",
   "ts": "2026-11-23T07:12",
-  "hosts": "여도은"
+  "hosts": "여도은",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=KWXQCSu9ZGo",
@@ -29757,7 +29988,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "영상",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-23T07:49"
+  "ts": "2026-11-23T07:49",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=gEl4lMfwQTA",
@@ -29891,10 +30123,11 @@ const VIDEOS=[
     "전망"
    ]
   ],
-  "mood": "낙관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.5-flash-lite",
-  "ts": "2026-11-22T20:45"
+  "ts": "2026-11-22T20:45",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=BgTV0Hy4y7o",
@@ -29991,10 +30224,11 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "중립",
+  "mood": "비관",
   "src": "자막",
   "model": "gemini-3.1-flash-lite",
-  "ts": "2026-11-22T20:03"
+  "ts": "2026-11-22T20:03",
+  "mood5": "약한부정"
  },
  {
   "url": "https://www.youtube.com/watch?v=vhAlRhO25CA",
@@ -30142,7 +30376,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-22T20:00"
+  "ts": "2026-11-22T20:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=BWoc8K793Xo",
@@ -30290,7 +30525,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-22T18:15"
+  "ts": "2026-11-22T18:15",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=HMPPwxebak0",
@@ -30423,7 +30659,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-22T19:45"
+  "ts": "2026-11-22T19:45",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=OG0IvvfJk5s",
@@ -30559,7 +30796,8 @@ const VIDEOS=[
   "mood": "낙관",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-22T18:00"
+  "ts": "2026-11-22T18:00",
+  "mood5": "약한긍정"
  },
  {
   "url": "https://www.youtube.com/watch?v=aFgYKMrLYTs",
@@ -30687,7 +30925,8 @@ const VIDEOS=[
   "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-22T17:00"
+  "ts": "2026-11-22T17:00",
+  "mood5": "중립"
  },
  {
   "url": "https://www.youtube.com/watch?v=gKbynx6EnnU",
@@ -30768,9 +31007,10 @@ const VIDEOS=[
     "현재"
    ]
   ],
-  "mood": "비관",
+  "mood": "중립",
   "src": "자막",
   "model": "gemini-3.6-flash",
-  "ts": "2026-11-22T16:00"
+  "ts": "2026-11-22T16:00",
+  "mood5": "중립"
  }
 ];
