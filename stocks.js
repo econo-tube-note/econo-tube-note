@@ -2,12 +2,12 @@
 const STOCKSUM={
  "삼성전자": {
   "name": "삼성전자",
-  "tone": "긍정",
-  "summary": "삼성전자는 과매도 구간의 가치 메리트와 AI 및 데이터 센터 수혜로 반등세를 보인다. 주주환원과 신사업 기대감이 있으나 안정권 확인이 필요하다.",
+  "tone": "혼재",
+  "summary": "반대매매 부담과 매수 신중론이 있는 한편, AI 수요 증가와 과매도 구간의 밸류에이션 매력을 바탕으로 한 중장기 반등 기대감도 공존한다.",
   "points": [
-   "자사주 매입과 저점 매수세로 반등하며 과매도 구간의 가치 메리트가 부각된다.",
-   "머스크의 AI 칩 공급 요청과 M&A 추진 등 장기 성장 동력이 긍정적으로 평가된다.",
-   "전저점과의 거리가 가까워 본격적인 안정권을 확인하려면 추가 상승이 필요하다."
+   "신용 잔고 몰림과 적은 거래량으로 인한 반대매매 및 수급 부담이 존재한다.",
+   "AI 데이터센터 확장과 공급 완판으로 메모리 수요 증가 혜택을 전망한다.",
+   "과매도 구간 및 BPS 지지선을 바탕으로 한 주주환원 정책과 저평가 매력을 평가한다."
   ],
   "ids": [
    "-mD3Z9_vN6k",
@@ -15,14 +15,15 @@ const STOCKSUM={
    "0o8_GyK2XM4",
    "0pDq8Fsu8hE",
    "1MPrVFxgHyA",
+   "1k_FAaTxSTg",
    "22RNv0HPDZo",
-   "3LipybrcW5U",
    "3NCUIycZnYQ",
    "3qmWCkORZts",
    "3rVJujtM4HE",
    "3sqFJKGfVx4",
    "3tOsoBGoDCU",
    "44WCzqM6tHM",
+   "4MaJfiJRa0w",
    "4ef5Us1PLUU",
    "4oglGRSJgzU",
    "59oBAsQqs7o",
@@ -32,8 +33,10 @@ const STOCKSUM={
    "6cfOynsnMdg",
    "6eJY6NckxXo",
    "6z0niqkrA4E",
+   "7EknSm4X1tE",
    "7l_I4CNxyIc",
    "7vmVkQ6U4yA",
+   "96-Yigkga_8",
    "A26WC9fSSoc",
    "Ai_9nqUhRNo",
    "Ay9v38EYHgA",
@@ -61,8 +64,9 @@ const STOCKSUM={
    "Kc6Nssp8c88",
    "KjGSl6-7Ww8",
    "LB4G3JHPqF8",
+   "LefPvUHCSKs",
    "Lp8kJW7G0eI",
-   "M0Ak8p29VyQ",
+   "LzjY4Nio5e8",
    "M7ysDoIv65Q",
    "ME_JkAGPmXI",
    "MGYulj2uJWc",
@@ -73,6 +77,7 @@ const STOCKSUM={
    "OMsT972ED3E",
    "ONjSzAO4jJw",
    "Oe69L5Dv7w0",
+   "P4_wLfgHsT0",
    "PVAvcqVLWxg",
    "PnD6SlPIhKM",
    "Q3Uu8kVGxrk",
@@ -90,6 +95,7 @@ const STOCKSUM={
    "UoO5-aM9W3Q",
    "VVjaAdxhIic",
    "W2D_UiqlrMw",
+   "Wjnh3WwA3wA",
    "Wz8_pZ8lpWg",
    "XRDkW8oWCZ8",
    "XS3qcV8ubMM",
@@ -104,9 +110,7 @@ const STOCKSUM={
    "_as5avhckoM",
    "_mHatEOkD_Q",
    "aWJEl-v-C6E",
-   "aae79w527FQ",
    "aoNPLI-O9QY",
-   "cCe97LeFTMI",
    "cX8NAxq84Tw",
    "cog-IUIlRMs",
    "cy1dNn-JtCE",
@@ -133,22 +137,24 @@ const STOCKSUM={
    "lPkkq_9haQo",
    "ljGtLKxA7Tk",
    "mSTEAMbHed8",
-   "mVbORW1vjDY",
    "mZ1tM9sflvg",
    "ndChrW-zsdE",
    "poT4VA9HIWY",
    "q1r4OqBIaFk",
    "rDlDu0s0b9Y",
    "ryULRFhf2Cw",
+   "sKFEF5HpMPI",
    "sTGJtw_hGUU",
    "tMwJY3ZyB84",
    "tx-pbWaIoTc",
    "u4GuUAdynkE",
+   "uH71E_9TT0o",
    "v-lAkGvb1qc",
    "vRRvvOWewzA",
    "vcHvXcQw7e0",
    "vhAlRhO25CA",
    "vyuznP_KIJE",
+   "vzzM6xLK8B8",
    "w7Eh9HBW7NM",
    "w8G6n9uTjlY",
    "wIPqelOmsEA",
@@ -161,9 +167,9 @@ const STOCKSUM={
    "yjDD2ryC2o0",
    "zg_iJPyzooE"
   ],
-  "count": 150,
+  "count": 156,
   "updated": "2026-11-28",
-  "at": "2026-11-28T04:02"
+  "at": "2026-11-28T18:00"
  },
  "엔비디아": {
   "name": "엔비디아",
@@ -2927,5 +2933,22 @@ const STOCKSUM={
   "count": 2,
   "updated": "2026-11-28",
   "at": "2026-11-28T16:31"
+ },
+ "OCI홀딩스": {
+  "name": "OCI홀딩스",
+  "tone": "긍정",
+  "summary": "OCI홀딩스는 국내 1등 태양광 기업이자 신재생 에너지 관련 기업으로 유망한 평가를 받는다.",
+  "points": [
+   "국내 1등 태양광 기업으로 꼽힌다.",
+   "대체 에너지 섹터 중 거래대금 폭증 시 매수를 검토할 종목이다.",
+   "화학 및 신재생 에너지 관련 기업으로 언급된다."
+  ],
+  "ids": [
+   "7V7C2yxwXdg",
+   "sKFEF5HpMPI"
+  ],
+  "count": 2,
+  "updated": "2026-11-28",
+  "at": "2026-11-28T18:00"
  }
 };
