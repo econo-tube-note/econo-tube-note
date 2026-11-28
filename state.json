@@ -205,7 +205,9 @@
   "Yk7MleVYEvw": "경제 무관: 대만 해협의 안보 및 군사적 상황을 다루는 영상으로 경제적 관점이 분명하지 않다.",
   "sbUYnAFl8N0": "경제 무관: 중국 정치 및 문명 후퇴를 다루는 시사·역사 내용으로 경제적 관점이 분명하지 않다.",
   "WVRnpw3LQhg": "너무 짧음",
-  "DUCKMSnzdDU": "경제 무관(내용 확인)"
+  "DUCKMSnzdDU": "경제 무관(내용 확인)",
+  "2vRemkeI6uI": "경제 무관: 북한 체제와 남북 군사력 격차 등 안보·정치 이슈를 다루어 경제적 관점이 분명하지 않다.",
+  "wBGYNh_Kipw": "너무 짧음"
  },
  "failed": {
   "IDmdeUEObck": 3,
@@ -219,7 +221,7 @@
  },
  "models": {
   "gemini-3.6-flash": {
-   "ok": 14,
+   "ok": 19,
    "busy": 17,
    "dead": 5
   },
@@ -495,7 +497,8 @@
   "CGtjVM8JIHo": true,
   "TTlwoNEpPYo": true,
   "2_OgpWJ3CV4": true,
-  "WVRnpw3LQhg": true
+  "WVRnpw3LQhg": true,
+  "wBGYNh_Kipw": true
  },
  "brief_final": {
   "2026-11-13": true,
@@ -513,7 +516,7 @@
   "2026-11-26": true,
   "2026-11-27": true
  },
- "last_ok": "2026-11-28T18:00",
+ "last_ok": "2026-11-28T19:59",
  "threads": {
   "2026-11-21-sat": true,
   "2026-11-22-sun": true,

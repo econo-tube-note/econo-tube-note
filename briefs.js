@@ -2,8 +2,15 @@
 const BRIEFS=[
  {
   "date": "2026-11-28",
-  "count": 10,
+  "count": 17,
   "sources": [
+   "YwWsyTR8wqA",
+   "OY30RNuWcPA",
+   "fSGFo0xS1Ss",
+   "nW6aYMX3uQE",
+   "Zx1NE38ZbOE",
+   "Wjnh3WwA3wA",
+   "LzjY4Nio5e8",
    "_5pc0_Q3ARo",
    "sKFEF5HpMPI",
    "LefPvUHCSKs",
@@ -15,134 +22,89 @@ const BRIEFS=[
    "uH71E_9TT0o",
    "4MaJfiJRa0w"
   ],
-  "headline": "증시 급등 속에 바닥 통과 기대와 수급 신중론이 맞선다.",
+  "headline": "외국인 순매수 유입 속에 증시 반등 기대감이 높아졌다.",
   "keypoints": [
-   "코스피 지수가 외국인 순매수로 4% 급등했다.",
-   "미국 필라델피아 반도체 지수가 4.69% 급등했다.",
-   "미국 10년물 국채 금리가 4.94%로 상승했다.",
-   "김용범 자본시장 대전환위원장이 입장문을 발표했다."
+   "외국인 투자자가 코스피에서 1조 5000억 원을 순매수했다.",
+   "미국 코어 PCE 물가지수가 3.3%를 기록했다.",
+   "필라델피아 반도체 지수가 4.69% 급등했다.",
+   "증시안정펀드 출자 약정 규모는 10조 7600억 원이다."
   ],
   "themes": [
    {
-    "title": "반도체",
-    "summary": "주가 조정이 과도한 저평가 구간이라 보면서도 단기 수급과 공급 변수 확인이 필요하다고 본다.",
+    "title": "반도체 업황",
+    "summary": "AI 수요와 PBR 바닥권 진입을 바탕으로 가격 조정이 마무리 단계에 다다랐다고 본다.",
     "refs": [
-     "sKFEF5HpMPI",
-     "LefPvUHCSKs",
+     "OY30RNuWcPA",
+     "LzjY4Nio5e8",
      "P4_wLfgHsT0",
      "ZZrURfo-Kqc",
-     "7EknSm4X1tE",
      "1k_FAaTxSTg",
      "uH71E_9TT0o",
      "4MaJfiJRa0w"
     ]
    },
    {
-    "title": "국내 증시 수급",
-    "summary": "증시 바닥 통과 기대감이 커졌으나 외국인 매수의 연속성과 정부 대책 효과를 놓고 시각이 갈린다.",
+    "title": "증시 수급",
+    "summary": "외국인 매수세 유입에도 불구하고 공매도 환매 성격이 강해 수급 확인이 필요하다고 본다.",
     "refs": [
-     "sKFEF5HpMPI",
-     "LefPvUHCSKs",
+     "fSGFo0xS1Ss",
+     "Zx1NE38ZbOE",
      "P4_wLfgHsT0",
+     "7EknSm4X1tE"
+    ]
+   },
+   {
+    "title": "통화정책",
+    "summary": "연준의 금리 인상이 마무리 국면에 들어서며 시장 회복을 끌어올릴 것으로 전망한다.",
+    "refs": [
+     "YwWsyTR8wqA",
+     "Wjnh3WwA3wA",
      "7EknSm4X1tE",
-     "uH71E_9TT0o",
      "4MaJfiJRa0w"
-    ]
-   },
-   {
-    "title": "로봇",
-    "summary": "제조업 자동화와 피지컬 AI 확대로 주도 섹터로 꼽히며 대장주 중심 압축 대응이 강조된다.",
-    "refs": [
-     "sKFEF5HpMPI",
-     "LefPvUHCSKs",
-     "P4_wLfgHsT0",
-     "1k_FAaTxSTg",
-     "uH71E_9TT0o"
-    ]
-   },
-   {
-    "title": "자본시장 개혁",
-    "summary": "주주 평등 원칙과 불합리한 증시 제도가 개선되면 한국 증시의 재평가가 가능하다고 본다.",
-    "refs": [
-     "LefPvUHCSKs",
-     "ZZrURfo-Kqc",
-     "96-Yigkga_8"
     ]
    }
   ],
   "agreements": [
    {
-    "point": "삼성전자와 SK하이닉스는 저평가 구간으로 현재 손절을 피해야 한다고 본다.",
+    "point": "반도체 주가가 PBR 바닥권에 도달해 하방 지지력이 강하다고 본다.",
     "refs": [
-     "LefPvUHCSKs",
+     "OY30RNuWcPA",
      "P4_wLfgHsT0",
-     "1k_FAaTxSTg",
-     "uH71E_9TT0o",
      "4MaJfiJRa0w"
     ],
     "theme": 0
    },
    {
-    "point": "AI 투자와 대형주 실적이 견조해 반도체 업황 수요가 이어진다고 본다.",
+    "point": "외국인 순매수가 공매도 환매 성격이 강해 수급 연속성을 확인해야 한다고 본다.",
     "refs": [
-     "ZZrURfo-Kqc",
-     "1k_FAaTxSTg",
-     "4MaJfiJRa0w"
-    ],
-    "theme": 0
-   },
-   {
-    "point": "로봇 섹터가 향후 증시 반등을 이끌 유망 주도주가 될 것이라고 본다.",
-    "refs": [
-     "sKFEF5HpMPI",
-     "LefPvUHCSKs",
-     "1k_FAaTxSTg"
-    ],
-    "theme": 2
-   },
-   {
-    "point": "정부 증안펀드만으로는 증시 추세 반전이나 하방 방어에 한계가 있다고 본다.",
-    "refs": [
-     "LefPvUHCSKs",
-     "P4_wLfgHsT0"
+     "Zx1NE38ZbOE",
+     "7EknSm4X1tE"
     ],
     "theme": 1
    },
    {
-    "point": "주주 평등 원칙이 정착되면 한국 증시가 재평가받을 것이라고 본다.",
+    "point": "12월 연준 FOMC에서 기준금리 25bp 인상이 이뤄질 것으로 전망한다.",
     "refs": [
-     "ZZrURfo-Kqc",
-     "96-Yigkga_8"
+     "YwWsyTR8wqA",
+     "7EknSm4X1tE"
     ],
-    "theme": 3
+    "theme": 2
    }
   ],
   "disagreements": [
    {
-    "topic": "증시 반등 지속 여부",
+    "topic": "증시 반등의 추세 전환 여부",
     "views": [
      {
       "channel": "연합뉴스경제TV",
-      "view": "외국인이 매수 포지션을 유지해 내년 5월까지 대규모 매도는 없을 것이라 본다.",
+      "view": "반도체 가격 조정이 끝나며 지수가 반등 국면에 진입했다고 본다.",
       "ref": "4MaJfiJRa0w",
       "side": 0
      },
      {
-      "channel": "삼프로TV",
-      "view": "코스피 가격 조정이 8분능선에 도달해 연말연초 산타랠리가 기대된다고 본다.",
-      "ref": "uH71E_9TT0o",
-      "side": 0
-     },
-     {
       "channel": "815머니톡",
-      "view": "외국인 매수는 거래량이 적은 공매도 환매 성격이 강해 안심할 수 없다고 본다.",
+      "view": "거래량 부족과 숏커버링 착시로 추세 전환을 확신하기 어렵다고 본다.",
       "ref": "7EknSm4X1tE",
-      "side": 1
-     },
-     {
-      "channel": "815머니톡",
-      "view": "청문회 확인 전까지 현금 비중을 지키는 보수적 대응이 유효하다고 본다.",
-      "ref": "P4_wLfgHsT0",
       "side": 1
      }
     ],
@@ -152,122 +114,84 @@ const BRIEFS=[
   "stocks": [
    {
     "name": "삼성전자",
-    "count": 8,
-    "tone": "혼재",
+    "count": 14,
+    "tone": "긍정",
     "mentions": [
      {
-      "channel": "김작가 TV",
-      "view": "SK하이닉스와 함께 번갈아 상승할 반도체 포트폴리오 종목으로 언급한다.",
-      "ref": "sKFEF5HpMPI"
+      "channel": "체슬리TV",
+      "view": "외국인 지분율 하한선 도달로 추가 매도세가 정체되었다고 평가한다.",
+      "ref": "OY30RNuWcPA"
      },
      {
       "channel": "815머니톡",
-      "view": "1월 말 주주환원 발표를 앞두고 12월 저가 매수 전략이 유효하다고 본다.",
-      "ref": "LefPvUHCSKs"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "저평가 상태이므로 비중 확대보다 반등 구간을 기다려야 한다고 평가한다.",
+      "view": "PBR 저평가 상태로 보유하며 반등을 기다려야 한다고 평가한다.",
       "ref": "P4_wLfgHsT0"
      },
      {
       "channel": "815머니톡",
-      "view": "주가 상승에도 거래량이 적어 외국인 매수가 공매도 환매 성격이라 본다.",
-      "ref": "7EknSm4X1tE"
-     },
-     {
-      "channel": "체슬리TV",
-      "view": "메리츠금융지주 회장의 지분 가치 상승 폭을 비교하는 예시로 언급한다.",
-      "ref": "96-Yigkga_8"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "M&A 확대와 높은 주주환원율 대비 주가 하락이 과도하다고 평가한다.",
+      "view": "높은 주주환원 수익률을 감안할 때 현재 주가 하락은 과도하다고 본다.",
       "ref": "1k_FAaTxSTg"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "내년 2분기 10만 장 증설과 로봇 조직 강화를 추진 중이라고 설명한다.",
-      "ref": "uH71E_9TT0o"
-     },
-     {
-      "channel": "연합뉴스경제TV",
-      "view": "내년 BPS 18만 원 선이 지지선 역할을 해 조정이 막바지라 분석한다.",
-      "ref": "4MaJfiJRa0w"
      }
     ]
    },
    {
     "name": "SK하이닉스",
-    "count": 8,
-    "tone": "혼재",
+    "count": 14,
+    "tone": "긍정",
     "mentions": [
      {
-      "channel": "김작가 TV",
-      "view": "삼성전자와 함께 반도체 포트폴리오를 구성할 주요 종목으로 언급한다.",
-      "ref": "sKFEF5HpMPI"
+      "channel": "체슬리TV",
+      "view": "PBR 1배 수준까지 내려와 외국인 순매수가 들어오는 상태로 본다.",
+      "ref": "OY30RNuWcPA"
      },
      {
       "channel": "815머니톡",
-      "view": "배당 확대와 저평가 매력이 높아 상반기 반등을 기대할 수 있다고 본다.",
-      "ref": "LefPvUHCSKs"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "마이크론 대비 저평가되어 매도보다 수급 정상화를 지켜봐야 한다고 본다.",
+      "view": "마이크론 대비 저평가되어 있어 수급 정상화를 지켜봐야 한다고 본다.",
       "ref": "P4_wLfgHsT0"
      },
      {
-      "channel": "증시각도기TV",
-      "view": "ADR 주가가 7% 급등하며 반도체 업황 반등의 수혜를 입었다고 평가한다.",
-      "ref": "ZZrURfo-Kqc"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "거래량 없는 상승은 연속성이 부족해 추가 수급 확인이 필요하다고 본다.",
-      "ref": "7EknSm4X1tE"
-     },
-     {
-      "channel": "815머니톡",
-      "view": "주가가 바닥권에 근접해 매도보다 보유가 바람직하다고 판단한다.",
-      "ref": "1k_FAaTxSTg"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "내년 1분기 10만 장 증설 우려가 있으나 손절은 피해야 한다고 평가한다.",
-      "ref": "uH71E_9TT0o"
-     },
-     {
       "channel": "연합뉴스경제TV",
-      "view": "내년 BPS 100만 원 기준 PBR 1배 안팎에서 바닥을 형성했다고 본다.",
+      "view": "과거 적자 시기에도 악재 선반영 후 주가가 반등했다고 평가한다.",
       "ref": "4MaJfiJRa0w"
      }
     ]
    },
    {
     "name": "엔비디아",
-    "count": 4,
+    "count": 7,
     "tone": "긍정",
     "mentions": [
      {
       "channel": "815머니톡",
-      "view": "악재가 선반영되는 가운데 파생상품 수급 구조가 상방으로 개선된다고 본다.",
+      "view": "오픈AI 데이터센터에 대규모 지급보증을 서며 확장을 주도한다고 본다.",
+      "ref": "LzjY4Nio5e8"
+     },
+     {
+      "channel": "815머니톡",
+      "view": "악재 선반영 속에 파생상품 수급 구조가 상방으로 개선되었다고 본다.",
       "ref": "7EknSm4X1tE"
      },
      {
       "channel": "815머니톡",
-      "view": "수출 규제에도 중국 매출 비중이 한 자릿수라 주가가 저평가 구간이라 본다.",
+      "view": "중국 향 매출 비중이 낮아 이익 대비 저평가 구간이라고 평가한다.",
       "ref": "1k_FAaTxSTg"
+     }
+    ]
+   },
+   {
+    "name": "안랩",
+    "count": 2,
+    "tone": "혼재",
+    "mentions": [
+     {
+      "channel": "김작가 TV",
+      "view": "신고가를 경신하며 단기 반등을 보여준 보안 대표주로 평가한다.",
+      "ref": "fSGFo0xS1Ss"
      },
      {
-      "channel": "삼프로TV",
-      "view": "회계와 청문회 불확실성이 있으나 4분기 베라루빈 출하 기여가 기대된다고 본다.",
-      "ref": "uH71E_9TT0o"
-     },
-     {
-      "channel": "연합뉴스경제TV",
-      "view": "강력한 실적 창출 능력을 보유해 과거 다컴버블 대기업과 다르다고 지적한다.",
-      "ref": "4MaJfiJRa0w"
+      "channel": "815머니톡",
+      "view": "단기 급등으로 추격 매수가 부담스러워 비중 축소가 필요하다고 본다.",
+      "ref": "P4_wLfgHsT0"
      }
     ]
    },
@@ -278,30 +202,13 @@ const BRIEFS=[
     "mentions": [
      {
       "channel": "815머니톡",
-      "view": "수급 강도가 강한 로봇 대장주로 보유를 이어갈 만하다고 평가한다.",
+      "view": "수급 강도가 강한 로봇 대장주로 지속 보유가 유효하다고 평가한다.",
       "ref": "P4_wLfgHsT0"
      },
      {
       "channel": "815머니톡",
-      "view": "삼성전자 로봇 사업 진입 호재로 당분간 순환매 모멘텀이 이어진다고 본다.",
+      "view": "삼성전자의 로봇 진출 호재로 주가 순환매 모멘텀을 본다.",
       "ref": "1k_FAaTxSTg"
-     }
-    ]
-   },
-   {
-    "name": "현대차",
-    "count": 2,
-    "tone": "혼재",
-    "mentions": [
-     {
-      "channel": "김작가 TV",
-      "view": "서브프라임 위기 후 세 배 이상 오른 대표 주도주 사례로 제시한다.",
-      "ref": "sKFEF5HpMPI"
-     },
-     {
-      "channel": "삼프로TV",
-      "view": "보스턴 다이나믹스 지분 가치는 높으나 완성차 본업 부진에 눌렸다고 본다.",
-      "ref": "uH71E_9TT0o"
      }
     ]
    }

@@ -301,12 +301,12 @@ const STOCKSUM={
  },
  "SK하이닉스": {
   "name": "SK하이닉스",
-  "tone": "긍정",
-  "summary": "현재 주가는 낙폭 과대 구간이며 강력한 가격 지지선이 형성되어 반등 여력이 남아있다고 평가한다.",
+  "tone": "혼재",
+  "summary": "저평가 매력과 외국인 수급 유입으로 반등 기대감이 있으나, 매수세 부족과 수급 변동성 우려도 함께 공존한다.",
   "points": [
-   "PBR 1배 수준이 강력한 가격 지지선이 된다.",
-   "메모리 업황 우려는 과도하며 주가가 반등하고 있다.",
-   "데이터 센터 투자 확대 수혜와 견조한 수요가 예상된다."
+   "저평가 매력과 외국인 순매수가 유입되며 상반기 반등을 기대한다.",
+   "대형주 전반의 매수세 부족과 과도한 신용 물량으로 수급 변동성이 크다.",
+   "거래량이 수반되지 않은 상승은 연속성이 부족해 추가 수급 확인이 필요하다."
   ],
   "ids": [
    "-mD3Z9_vN6k",
@@ -315,8 +315,8 @@ const STOCKSUM={
    "0pDq8Fsu8hE",
    "0pxDHrYRgas",
    "1MPrVFxgHyA",
+   "1k_FAaTxSTg",
    "22RNv0HPDZo",
-   "3LipybrcW5U",
    "3NCUIycZnYQ",
    "3qmWCkORZts",
    "3rVJujtM4HE",
@@ -333,6 +333,7 @@ const STOCKSUM={
    "67w1HDjQsbw",
    "6cfOynsnMdg",
    "6eJY6NckxXo",
+   "7EknSm4X1tE",
    "7ZLBGymBqeA",
    "7l_I4CNxyIc",
    "7vmVkQ6U4yA",
@@ -359,8 +360,9 @@ const STOCKSUM={
    "Jm8OLVCvJI4",
    "KWXQCSu9ZGo",
    "Kc6Nssp8c88",
+   "LefPvUHCSKs",
    "Lp8kJW7G0eI",
-   "M0Ak8p29VyQ",
+   "LzjY4Nio5e8",
    "M7ysDoIv65Q",
    "ME_JkAGPmXI",
    "MGYulj2uJWc",
@@ -370,7 +372,9 @@ const STOCKSUM={
    "OG0IvvfJk5s",
    "OMsT972ED3E",
    "ONjSzAO4jJw",
+   "OY30RNuWcPA",
    "Oe69L5Dv7w0",
+   "P4_wLfgHsT0",
    "PVAvcqVLWxg",
    "PnD6SlPIhKM",
    "QTFrrMnYprQ",
@@ -386,6 +390,7 @@ const STOCKSUM={
    "TzNk7J6b94k",
    "UoO5-aM9W3Q",
    "VVjaAdxhIic",
+   "Wjnh3WwA3wA",
    "Wz8_pZ8lpWg",
    "XRDkW8oWCZ8",
    "XS3qcV8ubMM",
@@ -394,18 +399,19 @@ const STOCKSUM={
    "YFhKPs_gm9Q",
    "YQ5YCnAwbbY",
    "ZGd-TfKGhxE",
+   "ZZrURfo-Kqc",
+   "Zx1NE38ZbOE",
    "_as5avhckoM",
    "_mHatEOkD_Q",
    "aWJEl-v-C6E",
-   "aae79w527FQ",
    "aoNPLI-O9QY",
    "cX8NAxq84Tw",
    "cog-IUIlRMs",
    "cy1dNn-JtCE",
-   "ddNL-xlTrsQ",
    "dyiW91ks54o",
    "e5Ua1Riajvw",
    "elji86PkSgs",
+   "fSGFo0xS1Ss",
    "ffv19kOoCzc",
    "fmdJk4Xhl3Y",
    "gEl4lMfwQTA",
@@ -424,11 +430,13 @@ const STOCKSUM={
    "lPkkq_9haQo",
    "mSTEAMbHed8",
    "mZ1tM9sflvg",
+   "nW6aYMX3uQE",
    "ndChrW-zsdE",
    "poT4VA9HIWY",
    "q1r4OqBIaFk",
    "rDlDu0s0b9Y",
    "ryULRFhf2Cw",
+   "sKFEF5HpMPI",
    "sTGJtw_hGUU",
    "slZsjoZ98VU",
    "t276Uigurdw",
@@ -436,10 +444,12 @@ const STOCKSUM={
    "tx-pbWaIoTc",
    "u4GuUAdynkE",
    "uBEYE0bjlNY",
+   "uH71E_9TT0o",
    "v-lAkGvb1qc",
    "vRRvvOWewzA",
    "vcHvXcQw7e0",
    "vgH3Yp5pj6M",
+   "vzzM6xLK8B8",
    "w7Eh9HBW7NM",
    "w8G6n9uTjlY",
    "wIPqelOmsEA",
@@ -455,9 +465,9 @@ const STOCKSUM={
    "yjDD2ryC2o0",
    "zg_iJPyzooE"
   ],
-  "count": 145,
+  "count": 155,
   "updated": "2026-11-28",
-  "at": "2026-11-28T06:02"
+  "at": "2026-11-28T19:59"
  },
  "코어위브": {
   "name": "코어위브",
@@ -2950,5 +2960,21 @@ const STOCKSUM={
   "count": 2,
   "updated": "2026-11-28",
   "at": "2026-11-28T18:00"
+ },
+ "키움증권": {
+  "name": "키움증권",
+  "tone": "혼재",
+  "summary": "키움증권은 저평가와 높은 배당 수익률로 반등 기대감이 있으나, 거래대금 감소로 내년 실적 감익 가능성도 있다.",
+  "points": [
+   "PBR 0.8배와 PER 4배의 저평가 상태에서 기관의 매수가 들어오고 있다.",
+   "예상 배당 수익률이 8%로 높아졌으나 거래대금 감소로 내년 실적 감익 우려가 있다."
+  ],
+  "ids": [
+   "OY30RNuWcPA",
+   "wcnQXFLs93g"
+  ],
+  "count": 2,
+  "updated": "2026-11-28",
+  "at": "2026-11-28T19:59"
  }
 };
