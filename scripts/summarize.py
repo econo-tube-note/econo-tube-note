@@ -1051,14 +1051,20 @@ BRIEF_PROMPT = """너는 한국 경제 유튜브 영상들의 요약을 종합�
 - 전망이나 의견은 '~라고 본다', '~라고 주장한다'처럼 출연자의 말이라는 것이 드러나게 쓴다. 특정 종목을 사거나 팔라고 권하는 표현은 쓰지 않는다.
 - 문체는 모두 '~다'로 통일한다. 숫자는 영상에서 말한 단위와 기준 그대로 쓰고, 단위가 불명확하면 '(단위 불명확)'을 붙인다.
 - refs와 ref에는 근거가 된 영상 번호(입력의 n)를 넣는다. 입력에 있는 번호만 쓴다.
-- headline: 오늘 영상들을 관통하는 시장 분위기를 공백 포함 45자 안팎의 짧은 한 문장으로 쓴다.
-- keypoints: 오늘의 핵심 3~4줄. 각 줄은 공백 포함 40자 안팎의 짧은 문장 하나이고, 정보를 하나씩만 담는다.
-- themes: 핵심 주제 2~4개. title은 공백 포함 25자 이내로 짧게, summary는 공백 포함 90자 이내의 한두 문장으로 쓴다.
-- agreements: 둘 이상의 영상이 공통으로 말한 것 2~4개. point는 공백 포함 45자 안팎의 한 문장, refs는 2개 이상.
+- headline: 오늘 영상들을 관통하는 시장 분위기를 공백 포함 40자 이내의 짧은 한 문장으로 쓴다. '~했으나 ~했다'처럼 두 문장을 이어 붙이지 말고 핵심 하나만 담는다.
+- 칸마다 역할이 다르다. 같은 내용을 여러 칸에 되풀이하지 않는다.
+  - keypoints는 '오늘 무슨 일이 있었나'(사실), themes·agreements·disagreements는 '유튜브들이 그걸 어떻게 봤나'(판단과 전망)다.
+- keypoints: 오늘 있었던 사실 3~4줄. 지수·수급·발표·사건·숫자처럼 일어난 일만 쓴다. 평가, 전망, 권유는 넣지 않는다. 각 줄은 공백 포함 30자 안팎의 짧은 문장 하나이고 정보를 하나씩만 담는다(예: '한국은행 기준금리 25bp 인상', '외국인 선물 대량 매도에 반도체 대형주 조정').
+- themes: 영상들이 의견을 낸 주제 2~4개. title은 주제 이름만 짧게(공백 포함 15자 이내, 예: '반도체', '금리', '비AI 순환매', '환율'). summary는 이 주제를 유튜브들이 어떻게 봤는지 공백 포함 60자 안팎 한 문장. keypoints의 사실을 다시 쓰지 않는다. refs는 이 주제를 다룬 영상 번호 전부.
+  - 각 theme에는 아래 agreements나 disagreements가 최소 하나 붙어야 한다. 붙일 의견이 없는 주제는 만들지 않는다.
+- agreements: 둘 이상의 영상이 공통으로 내린 판단이나 전망 2~5개. point는 공백 포함 40자 안팎의 한 문장, refs는 2개 이상(그 판단을 한 영상 전부).
+  - 사실은 넣지 않는다. '외국인 순매도가 급락을 이끌었다'는 사실이라 keypoints로 가고, '실적 대비 과매도 구간이다', '충격은 제한적이다'처럼 평가·전망만 넣는다.
+  - theme에는 이 의견이 속한 themes의 번호(0부터)를 쓴다.
 - disagreements: 영상들이 서로 반대되는 결론을 낸 주제 0~2개. 없으면 빈 목록. 가장 크게 엇갈리고 투자 판단에 중요한 주제를 맨 앞에 둔다.
   - 진짜로 맞서는 것만 넣는다: 같은 질문(예: 지금 사야 하나, 금리가 내려가나)에 한쪽은 A, 다른 쪽은 반대인 B라고 답한 경우. 관점만 조금 다르거나 서로 보완하는 의견, 같은 방향인데 말만 다른 의견은 넣지 않는다.
   - sides는 정확히 2개(서로 반대되는 입장). 같은 방향의 의견은 같은 side의 views에 모은다. 각 side에 views 1~3개.
   - topic은 무엇을 두고 갈렸는지 짧게(예: '반등 지속 여부', '연내 금리 인하'). 각 view는 공백 포함 45자 안팎의 한 문장(view, ref).
+  - theme에는 이 쟁점이 속한 themes의 번호(0부터)를 쓴다.
 - stocks: 둘 이상의 영상에서 언급된 종목 최대 8개. name과 mentions(각각 view: 그 영상에서의 평가나 맥락을 공백 포함 45자 안팎의 한 문장으로, ref). 한 영상에서만 나온 종목은 넣지 않는다. tone에는 이날 영상들의 전반적인 시각을 긍정, 부정, 혼재, 중립 중 하나로 쓴다.
 
 영상 요약(JSON):
@@ -1105,6 +1111,7 @@ def brief_schema():
     class Agree(BaseModel):
         point: str
         refs: list[int]
+        theme: int
 
     class View(BaseModel):
         view: str
@@ -1116,6 +1123,7 @@ def brief_schema():
     class Disagree(BaseModel):
         topic: str
         sides: list[Side]
+        theme: int
 
     class StockB(BaseModel):
         name: str
@@ -1156,17 +1164,24 @@ def build_brief(date, vids):
     def txt(x):
         return (x or "").strip()
 
-    themes = [{"title": txt(t.get("title")), "summary": txt(t.get("summary")), "refs": refs(t.get("refs"))}
-              for t in data.get("themes") or [] if txt(t.get("title")) and txt(t.get("summary"))]
-    agreements = [{"point": txt(a.get("point")), "refs": refs(a.get("refs"))}
+    themes, tmap = [], {}  # tmap: AI가 준 주제 번호 -> 실제로 남은 주제 번호
+    for i, t in enumerate(data.get("themes") or []):
+        if txt(t.get("title")) and txt(t.get("summary")):
+            tmap[i] = len(themes)
+            themes.append({"title": txt(t.get("title")), "summary": txt(t.get("summary")), "refs": refs(t.get("refs"))})
+    def th(x):  # 의견이 속한 주제 번호 (맞지 않으면 -1: 화면에서 '그 밖의 의견'으로 간다)
+        return tmap.get(x, -1) if isinstance(x, int) else -1
+
+    agreements = [{"point": txt(a.get("point")), "refs": refs(a.get("refs")), "theme": th(a.get("theme"))}
                   for a in data.get("agreements") or [] if txt(a.get("point")) and len(refs(a.get("refs"))) >= 2]
+    agreements.sort(key=lambda a: -len(a["refs"]))
     disagreements = []
     for d in data.get("disagreements") or []:
         # views는 예전처럼 한 줄로 두고, 각 의견이 어느 쪽(side 0/1)인지 붙인다. 같은 쪽 의견은 화면에서 한 상자에 모인다
         views = [{"channel": chans[v["ref"]], "view": txt(v.get("view")), "ref": ids[v["ref"]], "side": si}
                  for si, sd in enumerate((d.get("sides") or [])[:2]) for v in sd.get("views") or [] if ok(v.get("ref")) and txt(v.get("view"))]
         if txt(d.get("topic")) and len({v["side"] for v in views}) == 2 and len({v["ref"] for v in views}) >= 2:
-            disagreements.append({"topic": txt(d["topic"]), "views": views})
+            disagreements.append({"topic": txt(d["topic"]), "views": views, "theme": th(d.get("theme"))})
     stocks = []
     for s_ in data.get("stocks") or []:
         ms = [{"channel": chans[m["ref"]], "view": txt(m.get("view")), "ref": ids[m["ref"]]}

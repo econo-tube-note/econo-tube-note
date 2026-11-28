@@ -137,10 +137,35 @@ def video_ld(v, vid):
             "description": v.get("conclusion") or v.get("title") or "",
             "thumbnailUrl": [f"https://i.ytimg.com/vi/{vid}/hqdefault.jpg"],
             "embedUrl": f"https://www.youtube.com/embed/{vid}", "url": f"https://www.youtube.com/watch?v={vid}",
-            "inLanguage": "ko", "author": {"@type": "Organization", "name": v.get("channel") or ""}}
+            "inLanguage": "ko"}
+    curl = channel_url(v.get("channel"))
+    if curl:  # 채널 주소를 알 때만 author를 넣는다 (주소 없이 넣으면 서치콘솔이 'url 누락' 경고를 보낸다)
+        data["author"] = {"@type": "Organization", "name": v.get("channel") or "", "url": curl}
     if re.match(r"\d{4}-\d{2}-\d{2}$", d):
         data["uploadDate"] = d + "T00:00:00+09:00"
     return data
+
+
+_CH_URLS = None
+
+
+def channel_url(name):
+    """channels.json에서 채널 유튜브 주소를 찾는다 (이름이 조금 달라도 앞부분이 같으면 같은 채널로 본다)"""
+    global _CH_URLS
+    if _CH_URLS is None:
+        _CH_URLS = {}
+        try:
+            for c in json.loads((ROOT / "channels.json").read_text(encoding="utf-8")):
+                h, i = (c.get("handle") or "").strip(), (c.get("id") or "").strip()
+                u = f"https://www.youtube.com/{h}" if h.startswith("@") else (f"https://www.youtube.com/channel/{i}" if i else "")
+                if c.get("name") and u:
+                    _CH_URLS[c["name"].replace(" ", "").lower()] = u
+        except Exception:
+            pass
+    k = (name or "").replace(" ", "").lower()
+    if not k:
+        return ""
+    return _CH_URLS.get(k) or next((u for n, u in _CH_URLS.items() if k.startswith(n) or n.startswith(k)), "")
 
 
 def short_title(t):
@@ -242,6 +267,17 @@ button.link.shr{font:inherit;cursor:pointer}
 .dvi+.dvi{border-top:1px dashed var(--line);padding-top:10px;margin-top:2px}
 .dvi .hv,.dvi .dvc{align-self:flex-end}
 .brief .tcard>p{display:block;-webkit-line-clamp:unset;overflow:visible;cursor:default}
+.btm{font-size:.8rem;font-weight:500;color:var(--sub);margin-left:4px}
+.thc{border:1px solid var(--line);border-radius:14px;padding:14px 18px 6px;margin-bottom:12px;background:var(--card)}
+.thh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:2px}.thh b{font-size:1.05rem}
+.thr{display:flex;gap:14px;align-items:flex-start;padding:12px 0}.thr+.thr{border-top:1px dashed var(--line)}
+.thl{flex:none;width:72px;text-align:center;font-size:.76rem;font-weight:800;border-radius:8px;padding:3px 0;margin-top:2px}
+.thl.ag{color:#1d8a55;background:#e7f5ee}.thl.dg{color:#c4563b;background:#fdeee9}
+.thb{flex:1;min-width:0;line-height:1.6;word-break:keep-all}.thag{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.thb .dis{margin:0}.thb .dis .dq{display:block;font-size:.98rem;font-weight:700;color:var(--ink);margin:1px 0 10px;line-height:1.6}
+.bh1,.dhl{text-wrap:balance;word-break:keep-all}
+@media (prefers-color-scheme:dark){.thl.ag{color:#4cc38a;background:rgba(76,195,138,.12)}.thl.dg{color:var(--hot);background:rgba(242,154,130,.12)}}
+@media (max-width:700px){.thag{flex-direction:column;gap:6px}.thag .rel{align-self:flex-end}.thr{flex-direction:column;gap:6px}.thl{width:auto;padding:2px 10px}.thc{padding:12px 14px 4px}}
 .tcard.flash{outline:2px solid var(--accent);outline-offset:2px;transition:outline-color .4s}
 .blt{min-width:0}
 .bli:hover .bld b{color:var(--accent)}
@@ -280,7 +316,7 @@ a.card{color:inherit;text-decoration:none}
 .vbtns{grid-area:btn;align-self:end;display:flex;gap:8px}.vshr2{display:none}
 .vbtns .vyt{grid-area:auto;justify-self:stretch;align-self:auto}
 .sdc{display:flex;flex-direction:column;gap:8px;margin:6px 0 14px}.vpage .dq{display:block;margin-top:4px}
-.sdc .dv{display:flex;flex-direction:column;gap:8px;background:none;border:1.5px solid #c2410c;padding:12px 14px;border-radius:12px;font-size:.95rem;line-height:1.6}
+.sdc .dv{display:flex;flex-direction:column;gap:8px;background:none;border:1.5px solid var(--hot);padding:12px 14px;border-radius:12px;font-size:.95rem;line-height:1.6}
 .sdc .dv>.hv,.sdc .dv>.rel{align-self:flex-end}
 .sdc .dv.agv{border-color:#2f9e6b}
 .vpage .vnote a{color:var(--sub)}
@@ -500,6 +536,36 @@ def dis_html(d, pill, per=3, nsides=None):
         for g in dis_sides(d, per, nsides))
 
 
+def new_brief(b):
+    """주제별로 의견이 묶인 새 브리핑인지 (11월 28일 이후 만든 브리핑)"""
+    return any("theme" in x for x in (b.get("agreements") or []) + (b.get("disagreements") or []))
+
+
+def theme_cards(b, F):
+    """'유튜브는 어떻게 봤나': 주제 카드마다 모인 의견(공통)과 갈린 의견(vs)을 같이 보여준다."""
+    ths = b.get("themes") or []
+    groups = [([], []) for _ in ths] + [([], [])]  # 마지막 칸: 주제가 없는 의견
+
+    def gi(x):
+        t = x.get("theme", -1)
+        return t if isinstance(t, int) and 0 <= t < len(ths) else len(ths)
+    for a in b.get("agreements") or []:
+        groups[gi(a)][0].append(a)
+    for d in b.get("disagreements") or []:
+        groups[gi(d)][1].append(d)
+    out = ""
+    for n, (ags, dgs) in enumerate(groups):
+        t = ths[n] if n < len(ths) else {"title": "그 밖의 의견", "refs": []}
+        rows = "".join(f'<div class="thr"><span class="thl ag">모인 의견</span><div class="thb thag"><span>{e(a["point"])}</span>{F.rel(a.get("refs"))}</div></div>' for a in ags)
+        rows += "".join(f'<div class="thr"><span class="thl dg">갈린 의견</span><div class="thb"><div class="dis"><b class="dq">{e(d["topic"])}</b><div class="dvs">'
+                        + dis_html(d, lambda w: F.hv(w.get("ref"), who(w.get("ref"), w.get("channel")))) + "</div></div></div></div>" for d in dgs)
+        if not rows and n < len(ths) and t.get("summary"):
+            rows = f'<div class="thr"><div class="thb"><span>{e(t["summary"])}</span></div></div>'
+        if rows:
+            out += (f'<div class="thc" id="theme-{n + 1}"><div class="thh"><b>{e(t["title"])}</b></div>{rows}</div>')
+    return out
+
+
 class Frag:
     def __init__(self, V):
         self.V, self.tpl, self.n = V, {}, 0
@@ -708,12 +774,21 @@ def build_dash(recent, briefs, weekly, digests, man):
             arrow = "▲" if d >= 0.15 else "▼" if d <= -0.15 else "―"
             trend = f'<p class="mtrend"><span class="ma">{arrow}</span>{trend} <small>어제 긍정 {pc["낙관"]} · 중립 {pc["중립"]} · 부정 {pc["비관"]}</small></p>'
         parts.append(f'<div class="dj"><h3>최근 24시간 영상 {tot}편의 분위기 <small>막대를 누르면 해당 영상만 본다</small></h3><div class="mbar">{segs}</div>{trend}</div>')
-    if b and b.get("disagreements"):
-        d = b["disagreements"][0]
-        boxes = dis_html(d, lambda w: f'<a class="dvc" href="{BASE}#v/{e(w.get("ref"))}">{e(who(w.get("ref"), w.get("channel")))}</a>', per=2, nsides=2)
-        parts.append(f'<div class="dj"><h3>주요 쟁점</h3><div class="dis"><b class="dq">{e(d["topic"])}</b><div class="dvs">{boxes}</div></div></div>')
+    # 쟁점이 많은 날은 쟁점 위주, 적은 날은 공통된 의견을 더 띄운다 (쟁점 2 -> 공통 1, 쟁점 1 -> 공통 3, 쟁점 0 -> 공통 4)
+    dgs = (b.get("disagreements") or [])[:2] if b else []
+    ags = sorted((b.get("agreements") or []) if b else [], key=lambda a: -len(a.get("refs") or []))[:{2: 1, 1: 3, 0: 4}[len(dgs)]]
+    if dgs:
+        dhtml = ""
+        for d in dgs:
+            boxes = dis_html(d, lambda w: f'<a class="dvc" href="{BASE}#v/{e(w.get("ref"))}">{e(who(w.get("ref"), w.get("channel")))}</a>', per=2, nsides=2)
+            dhtml += f'<div class="dis"><b class="dq">{e(d["topic"])}</b><div class="dvs">{boxes}</div></div>'
+        parts.append(f'<div class="dj"><h3>주요 쟁점</h3>{dhtml}</div>')
+    if ags:
+        bl_ = href("brief/" + b["date"] + "/")
+        rows = "".join(f'<a class="dag" href="{bl_}#{"views" if new_brief(b) else "agree"}"><span>{e(a["point"])}</span><small>{len(a.get("refs") or [])}편</small></a>' for a in ags)
+        parts.append(f'<div class="dj"><h3>공통된 의견</h3><div class="dags">{rows}</div></div>')
     if parts:
-        more = (href("brief/" + b["date"] + "/") + ("#agree" if b.get("agreements") else "#disagree"), "채널 의견 전체 보기") if b else ""
+        more = (href("brief/" + b["date"] + "/") + ("#views" if new_brief(b) else "#agree" if b.get("agreements") else "#disagree"), "채널 의견 전체 보기") if b else ""
         blocks.append('<section class="dblk">' + hd("채널들의 시장 판단", "c3", "유튜브는 지금 시장을 이렇게 본다", more) + "".join(parts) + "</section>")
 
     # 3) 많이 언급된 종목 TOP6
@@ -1234,10 +1309,14 @@ def build():
                 + (f'<a class="link" href="{href("week/" + wk + "/")}">주간 브리핑 →</a>' if wk else "")
                 + f'<button class="link shr bsh" data-share type="button">{SHARE_ICON}공유하기</button>'
                 + f'<a class="link btg" href="https://t.me/marketraven" target="_blank" rel="noopener">{TG_ICON}텔레그램으로 받기</a></span></div></div>'
-                f'<div class="brief"><h1 class="bh1">{e(b.get("headline"))}</h1>{kp_list(b.get("keypoints"))}{note_box(notes, d)}'
-                + sect("핵심 주제", len(b.get("themes") or []), th and f'<div class="tgrid">{th}</div>', "c1", "themes")
-                + sect("공통된 시각", len(b.get("agreements") or []), ag, "c2", "agree")
-                + sect("엇갈린 시각", len(b.get("disagreements") or []), dg, "c3", "disagree")
+                f'<div class="brief"><h1 class="bh1">{e(b.get("headline"))}</h1>'
+                + ((sect("오늘 있었던 일", "", kp_list(b.get("keypoints")), "c1", "facts") + note_box(notes, d)
+                    + sect("유튜브는 어떻게 봤나", "", theme_cards(b, F), "c1", "views").replace("</h3>", f'<small class="btm">영상 {b.get("count", len(vids))}편 · 주제별 판단과 전망</small></h3>', 1))
+                   if new_brief(b) else
+                   (kp_list(b.get("keypoints")) + note_box(notes, d)
+                    + sect("핵심 주제", len(b.get("themes") or []), th and f'<div class="tgrid">{th}</div>', "c1", "themes")
+                    + sect("공통된 시각", len(b.get("agreements") or []), ag, "c2", "agree")
+                    + sect("엇갈린 시각", len(b.get("disagreements") or []), dg, "c3", "disagree")))
                 + sect("많이 언급된 종목", len(b.get("stocks") or []), sk and f'<div class="skg">{sk}</div>', "c4")
                 + sect("종합한 영상", len(vids), vids and '<div class="grid bvgrid">' + "".join(F.card(v) for v in vids) + "</div>", "")
                 + '<p class="bnote" data-nosnippet>AI가 이날의 영상 요약들을 종합한 내용이며 투자 권유가 아니다. \'관련 영상\'이나 채널 이름을 누르면 근거가 된 영상을 볼 수 있다.</p></div>'
