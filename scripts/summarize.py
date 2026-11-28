@@ -51,10 +51,13 @@ PROMPT = """너는 한국 경제·투자 유튜브 영상을 요약하는 편집
 - people: 출연자 이름을 쉼표로 적는다. 모르면 빈 문자열.
 - conclusion: 영상의 핵심 결론. 짧게 쓴다. 공백 포함 55자 안팎으로, 최대 두 문장까지 허용한다. 한 문장에 정보를 여러 개 쉼표로 이어 붙이지 말고 핵심 하나만 담는다.
 - economic: 이 영상의 중심 내용이 경제·주식·투자·산업·부동산·재테크이면 true, 아니면 false다. 경제 채널 영상이어도 교육, 사회 사건, 건강, 재난, 경제 얘기가 거의 없는 정치·안보 등이 중심이면 false다.
-- mood: 출연자가 '앞으로' 시장을 어떻게 보고, 지금 어떻게 대응하라고 권하는지를 '낙관', '중립', '비관' 중 하나로 쓴다. 지금 장이 폭락 중이라는 '현재 상황'은 기준이 아니다.
-  - 낙관: 반등·상승을 전망하거나, 지금을 매수·분할매수·보유 기회로 본다. (예: "급락했지만 지금 손절하지 말고 분할 매수할 때다" → 낙관)
-  - 비관: 추가 하락을 전망하거나, 매도·비중 축소·현금 확보를 권한다. (예: "바닥은 아직 멀었으니 현금을 늘려라" → 비관)
-  - 중립: 관망·확인 후 대응을 권하거나, 출연자끼리 의견이 갈리거나, 시장 전망이 아닌 내용이다. (예: "1월까지 기다리며 반등 신호를 확인하라" → 중립)
+- mood: 출연자가 '앞으로' 시장을 어떻게 보고, 지금 어떻게 대응하라고 권하는지를 '강한긍정', '약한긍정', '중립', '약한부정', '강한부정' 중 하나로 쓴다. 지금 장이 폭락 중이라는 '현재 상황'은 기준이 아니다.
+  - 강한긍정: 상승을 확신하고 적극 매수·비중 확대를 권한다. 조건이나 경계가 거의 없다.
+  - 약한긍정: 반등·상승을 기대하지만 조건을 붙이거나 분할 매수·보유 정도를 권한다. (예: "급락했지만 손절하지 말고 분할 매수할 때다")
+  - 중립: 관망·확인 후 대응을 권하거나, 긍정과 부정 근거를 비슷하게 말하거나, 출연자끼리 의견이 갈리거나, 시장 전망이 아닌 내용이다. (예: "1월까지 기다리며 반등 신호를 확인하라")
+  - 약한부정: 추가 하락을 경계하고 비중 축소·현금 확보를 권하지만, 큰 폭락까지 말하지는 않는다. (예: "반등이 와도 현금 비중을 늘려 둬라")
+  - 강한부정: 큰 하락·위기를 경고하고 적극 매도나 대피를 권한다.
+  - 긍정 쪽으로 쏠리지 않게 주의한다. '분할 매수하되 조심하라'처럼 긍정과 경계가 섞이면 강한긍정이 아니라 약한긍정, 경계가 더 크면 중립이나 약한부정이다.
 - tags: 키워드 3개. '하락장', '외국인수급', '반도체', '금리', '환율'처럼 짧고 흔한 말을 우선 쓴다.
 - parts: 영상 내용을 주제별로 2~4개 파트로 나눈다. 파트 제목(title)은 네가 정한다. 각 파트에 핵심 항목을 3~4개 넣는다. 항목 text는 '소제목: 설명' 형식으로 쓴다. 출연자의 전망이나 의견은 '~라고 본다', '~라고 주장한다'처럼 출연자의 말이라는 것이 드러나게 쓴다.
 - 항목 설명은 영상을 안 본 사람이 읽고 '무엇이, 왜, 얼마나'를 알 수 있게 구체적으로 쓴다. 영상에 나온 숫자, 종목·기업·인물 이름, 근거를 넣는다.
@@ -569,10 +572,26 @@ def clean(s, vid_url, title, channel, date):
         entry["people"] = fix_people(s["people"].strip(), title)
     entry.update({"conclusion": conclusion, "tags": tags, "parts": parts,
                   "stocks": stocks, "numbers": numbers})
-    mood = (s.get("mood") or "").strip()
-    if mood in ("낙관", "중립", "비관"):
-        entry["mood"] = mood
+    set_mood(entry, s.get("mood"))
     return entry
+
+
+# 분위기 5단계. 화면의 긍정·중립·부정 딱지는 3단계(mood)를 쓰고, 유튜브 온도는 5단계(mood5)로 계산한다
+MOOD5 = {"강한긍정": "낙관", "약한긍정": "낙관", "중립": "중립", "약한부정": "비관", "강한부정": "비관"}
+
+
+def set_mood(v, m):
+    """AI가 준 분위기를 저장한다. 5단계면 mood5와 mood(3단계)를 같이, 예전 3단계면 mood만. 바뀌면 True."""
+    m = (m or "").replace(" ", "").strip()
+    m = {"낙관": "낙관", "비관": "비관"}.get(m, m)
+    if m in MOOD5:
+        old = (v.get("mood5"), v.get("mood"))
+        v["mood5"], v["mood"] = m, MOOD5[m]
+        return old != (v["mood5"], v["mood"])
+    if m in ("낙관", "중립", "비관") and m != v.get("mood"):
+        v["mood"] = m
+        return True
+    return False
 
 
 # ---------- videos.js 읽기/쓰기 ----------
@@ -1503,6 +1522,17 @@ def tg_notes(state):
         m = u.get("message") or {}
         if str((m.get("chat") or {}).get("id")) != me:
             continue  # 운영자가 아닌 사람이 보낸 메시지는 무시한다
+        # 출연자 소속 보정: '소속: 박세익 = 체슬리투자자문 전무' (지우려면 '= 삭제')
+        r_ = re.match(r"^\s*소속\s*[:：]\s*([가-힣]{2,4})\s*[=＝]\s*(.+?)\s*$", m.get("text") or "")
+        if r_:
+            nm_, rl_ = r_.group(1), r_.group(2).strip()
+            if rl_ in ("삭제", "지우기", "지워"):
+                notes.pop("role:" + nm_, None)
+                saved.append(f"{nm_}의 소속 보정을 지웠다. 제목에서 찾은 소속으로 돌아간다.")
+            else:
+                notes["role:" + nm_] = rl_[:30]
+                saved.append(f"{nm_}의 소속을 '{rl_[:30]}'(으)로 저장했다. 다음 배포 때 출연자 페이지에 붙는다.")
+            continue
         g = NOTE_RE.match(m.get("text") or "")
         if not g:
             continue
@@ -1938,10 +1968,13 @@ MORNING_PROMPT = """아래는 오늘 오전에 올라온 경제 유튜브 영상
 
 MOOD_PROMPT = """아래는 경제 유튜브 영상들의 요약이다. 영상마다 출연자가 '앞으로' 시장을 어떻게 보고 어떻게 대응하라고 권하는지 보고 mood를 다시 매겨라.
 지금 장이 폭락 중이라는 '현재 상황'은 기준이 아니다.
-- 낙관: 반등·상승을 전망하거나, 지금을 매수·분할매수·보유 기회로 본다.
-- 비관: 추가 하락을 전망하거나, 매도·비중 축소·현금 확보를 권한다.
-- 중립: 관망·확인 후 대응을 권하거나, 출연자끼리 의견이 갈리거나, 시장 전망이 아닌 내용이다.
-items에 영상마다 id와 mood('낙관', '중립', '비관' 중 하나)를 담아라.
+- 강한긍정: 상승을 확신하고 적극 매수·비중 확대를 권한다. 조건이나 경계가 거의 없다.
+- 약한긍정: 반등·상승을 기대하지만 조건을 붙이거나 분할 매수·보유 정도를 권한다. (예: "급락했지만 손절하지 말고 분할 매수할 때다")
+- 중립: 관망·확인 후 대응을 권하거나, 긍정과 부정 근거를 비슷하게 말하거나, 출연자끼리 의견이 갈리거나, 시장 전망이 아닌 내용이다. (예: "1월까지 기다리며 반등 신호를 확인하라")
+- 약한부정: 추가 하락을 경계하고 비중 축소·현금 확보를 권하지만, 큰 폭락까지 말하지는 않는다. (예: "반등이 와도 현금 비중을 늘려 둬라")
+- 강한부정: 큰 하락·위기를 경고하고 적극 매도나 대피를 권한다.
+- 긍정 쪽으로 쏠리지 않게 주의한다. '분할 매수하되 조심하라'처럼 긍정과 경계가 섞이면 강한긍정이 아니라 약한긍정, 경계가 더 크면 중립이나 약한부정이다.
+items에 영상마다 id와 mood('강한긍정', '약한긍정', '중립', '약한부정', '강한부정' 중 하나)를 담아라.
 
 영상(JSON):
 """
@@ -1977,10 +2010,9 @@ def rejudge_moods(vs):
                 v = part[int(it.get("id"))]
             except Exception:
                 continue
-            m = (it.get("mood") or "").strip()
-            if m in ("낙관", "중립", "비관") and m != v.get("mood"):
-                print(f"  {v.get('mood')} → {m} | {v.get('channel')} | {(v.get('conclusion') or '')[:40]}")
-                v["mood"] = m
+            before = v.get("mood5") or v.get("mood")
+            if set_mood(v, it.get("mood")):
+                print(f"  {before} → {v.get('mood5') or v.get('mood')} | {v.get('channel')} | {(v.get('conclusion') or '')[:40]}")
                 changed += 1
     return changed
 
@@ -3083,12 +3115,17 @@ def main(argv):
     if tokens and tokens[0].split(":")[0] == "분위기재판정":  # 최근 영상의 긍정·중립·부정을 새 기준으로 다시 매긴다. 예: 분위기재판정:3 (최근 3일)
         days = int(tokens[0].split(":")[1]) if ":" in tokens[0] else 3
         videos = load()
+        arch = read_json(ARCHIVE, [])
         since = (datetime.datetime.now(KST).date() - datetime.timedelta(days=days)).isoformat()
         tgt = [v for v in videos if (v.get("date") or "") >= since]
+        tga = [v for v in arch if (v.get("date") or "") >= since and v.get("conclusion")]  # 온도 그래프용 지난 기록도 같이
         changed = rejudge_moods(tgt)
+        ca = rejudge_moods(tga) if tga else 0
         if changed:
             save(videos)
-        print(f"분위기 다시 매기기: 최근 {days}일 영상 {len(tgt)}편 중 {changed}편 바뀌었다")
+        if ca:
+            write_json(ARCHIVE, arch)
+        print(f"분위기 다시 매기기: 최근 {days}일 영상 {len(tgt)}편 중 {changed}편, 보관 영상 {len(tga)}편 중 {ca}편 바뀌었다")
         return 0
     if tokens == ["모델목록"]:  # 이 API 키로 쓸 수 있는 제미나이 모델을 보여 준다
         from google import genai

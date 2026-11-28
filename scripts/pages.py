@@ -714,6 +714,63 @@ def write_rss(man):
     (ROOT / "rss.xml").write_text(xml, encoding="utf-8")
 
 
+def temp_of(vs):
+    """유튜브 온도: 긍정 100, 중립 50, 부정 0으로 놓고 평균을 낸다 (0~100). 영상이 5편 미만이면 None."""
+    # 5단계(mood5)가 있으면 100/75/50/25/0, 예전 3단계만 있으면 긍정 75 · 중립 50 · 부정 25로 본다
+    S5 = {"강한긍정": 100, "약한긍정": 75, "중립": 50, "약한부정": 25, "강한부정": 0}
+    S3 = {"낙관": 75, "중립": 50, "비관": 25}
+    c = [S5[v["mood5"]] if v.get("mood5") in S5 else S3[v["mood"]] for v in vs if v.get("mood5") in S5 or v.get("mood") in S3]
+    if len(c) < 5:
+        return None
+    return round(sum(c) / len(c))
+
+
+def temp_word(t):
+    return "매우 차가움" if t < 20 else "차가움" if t < 40 else "미지근함" if t < 60 else "따뜻함" if t < 80 else "뜨거움"
+
+
+def temp_color(t):
+    """온도에 따라 파랑 -> 회색 -> 주황 -> 빨강으로 부드럽게 바뀌는 색"""
+    stops = [(0, (47, 95, 208)), (35, (110, 140, 205)), (50, (150, 146, 138)), (65, (230, 150, 85)), (100, (214, 51, 79))]
+    t = max(0, min(100, t))
+    for (a, ca), (b, cb) in zip(stops, stops[1:]):
+        if t <= b:
+            k = (t - a) / (b - a)
+            return "#%02x%02x%02x" % tuple(round(x + (y - x) * k) for x, y in zip(ca, cb))
+    return "#d6334f"
+
+
+def temp_history(videos):
+    """날짜별 온도 (videos.js + archive.json). {날짜: (온도, 영상 수)}"""
+    allv = list(videos)
+    try:
+        seen = {vid_of(v.get("url")) for v in allv}
+        allv += [v for v in json.loads((ROOT / "archive.json").read_text(encoding="utf-8")) if vid_of(v.get("url")) not in seen]
+    except Exception:
+        pass
+    by = {}
+    for v in allv:
+        if v.get("date"):
+            by.setdefault(v["date"], []).append(v)
+    out = {}
+    for d, vs in by.items():
+        t = temp_of(vs)
+        if t is not None:
+            out[d] = (t, len(vs))
+    return out
+
+
+def temp_chart(points):
+    """최근 30일 온도 꺾은선 (SVG). points: [(날짜, 온도)]"""
+    """날짜별 막대. 막대마다 그날 온도에 맞는 색이다 (HTML 막대라 화면 폭에 맞춰 늘고 준다)"""
+    if len(points) < 2:
+        return ""
+    bars = "".join(f'<i style="height:{max(4, t)}%;background:{temp_color(t)}" class="{"now" if i == len(points) - 1 else ""}" title="{e(sdate(d)) if i < len(points) - 1 else "지금"} {t}도"></i>'
+                   for i, (d, t) in enumerate(points))
+    return (f'<div class="tchart"><div class="tbars" role="img" aria-label="최근 유튜브 온도 추이"><b class="tmid"></b>{bars}</div>'
+            f'<div class="tcl"><small>{e(sdate(points[0][0]))}</small><small>점선 50도</small><small>지금</small></div></div>')
+
+
 def build_dash(recent, briefs, weekly, digests, man):
     now = datetime.datetime.now(KST)
     since = (now - datetime.timedelta(hours=24)).strftime("%Y-%m-%dT%H:%M")
@@ -728,6 +785,47 @@ def build_dash(recent, briefs, weekly, digests, man):
     def hd(title, color, meta="", more=""):
         return (f'<div class="dhd"><h2 class="bt {color}">{title}</h2>' + (f'<span class="dmeta">{meta}</span>' if meta else "")
                 + (f'<a class="dmore" href="{more[0]}">{more[1]} →</a>' if more else "") + "</div>")
+
+    # 0) 유튜브 온도: 최근 24시간 영상 분위기를 숫자 하나로 (긍정 100 · 중립 50 · 부정 0의 평균)
+    prev_since0 = (now - datetime.timedelta(hours=48)).strftime("%Y-%m-%dT%H:%M")
+    yday20 = (now - datetime.timedelta(days=2)).strftime("%Y-%m-%d")
+    prev0 = [v for v in recent if v not in day and ((v.get("ts") or "") >= prev_since0 or (not v.get("ts") and yday20 <= (v.get("date") or "") < yday))]
+    tnow, tprev = temp_of(day), temp_of(prev0)
+    temp_block = ""
+    if tnow is not None:
+        hist = temp_history(recent)
+        today_s = now.strftime("%Y-%m-%d")
+        past = sorted((d, t) for d, (t, n) in hist.items() if d < today_s and n >= 5)[-60:]
+        chg = ""
+        if tprev is not None:
+            dd = tnow - tprev
+            chg = (f'<p class="tchg up">▲ 어제보다 {dd}도 올랐다</p>' if dd >= 3 else f'<p class="tchg dn">▼ 어제보다 {-dd}도 내렸다</p>' if dd <= -3
+                   else '<p class="tchg">― 어제와 비슷하다</p>')
+        rec = ""
+        if len(past) >= 3:
+            hi = next((d for d, t in reversed(past) if t >= tnow), None)
+            lo = next((d for d, t in reversed(past) if t <= tnow), None)
+            if hi is None and len(past) >= 7:
+                rec = f"최근 {len(past)}일 중 가장 뜨겁다"
+            elif lo is None and len(past) >= 7:
+                rec = f"최근 {len(past)}일 중 가장 차갑다"
+            elif hi and (now.date() - datetime.date.fromisoformat(hi)).days >= 4 and (past[-1][1] < tnow):
+                rec = f"{int(hi[5:7])}월 {int(hi[8:10])}일 이후 가장 뜨겁다"
+            elif lo and (now.date() - datetime.date.fromisoformat(lo)).days >= 4 and (past[-1][1] > tnow):
+                rec = f"{int(lo[5:7])}월 {int(lo[8:10])}일 이후 가장 차갑다"
+        mc0 = {"낙관": 0, "중립": 0, "비관": 0}
+        for v in day:
+            if v.get("mood") in mc0:
+                mc0[v["mood"]] += 1
+        ML0 = {"낙관": "긍정", "중립": "중립·관망", "비관": "부정"}
+        segs0 = "".join(f'<a class="mseg m{k}" style="flex:{n}" href="{BASE}#videos/mood/{quote(k)}" title="{ML0[k]} {n}편"><b>{ML0[k]}</b><span>{n}</span></a>'
+                        for k, n in mc0.items() if n)
+        pts = [(d, t) for d, t in past[-13:]] + [(today_s, tnow)]  # 최근 2주
+        temp_block = ('<section class="dblk dtemp">' + hd("유튜브 온도", "c1", f"최근 24시간 경제 유튜브 {sum(mc0.values())}편의 분위기", (href("about/") + "#temp", "온도는 이렇게 잰다"))
+                      + f'<div class="tmain"><div class="tnum" style="--tc:{temp_color(tnow)}"><b>{tnow}<span>도</span></b><em>{temp_word(tnow)}</em></div>'
+                      + f'<div class="tdesc">{chg}' + (f'<p class="trec">{rec}</p>' if rec else "") + '</div>'
+                      + temp_chart(pts) + '</div></section>')
+        blocks.append(temp_block)
 
     # 1) 지금 시장은
     if b:
@@ -763,7 +861,9 @@ def build_dash(recent, briefs, weekly, digests, man):
     mc, pc = moods(day), moods(prev)
     tot, ptot = sum(mc.values()), sum(pc.values())
     if tot >= 5:
-        segs = "".join(f'<a class="mseg m{k}" style="flex:{n}" href="{BASE}#videos/mood/{quote(k)}" title="{ML[k]} {n}편"><b>{ML[k]}</b><span>{n}</span></a>'
+        # 칸이 너무 좁으면(전체의 15% 미만) 이름은 빼고 숫자만 (모바일에서 '부/정'처럼 세로로 깨지지 않게)
+        segs = "".join(f'<a class="mseg m{k}{" sm" if n / tot < .15 else ""}" style="flex:{n}" href="{BASE}#videos/mood/{quote(k)}" title="{ML[k]} {n}편">'
+                       + ("" if n / tot < .15 else f"<b>{ML[k]}</b>") + f'<span>{n}</span></a>'
                        for k, n in mc.items() if n)
         trend = ""
         if ptot >= 5:
@@ -849,6 +949,7 @@ def build_dash(recent, briefs, weekly, digests, man):
             g["vals"].setdefault(num_key(n[1]), []).append((n, v))
     groups = sorted(nb.items(), key=lambda kv: -kv[1]["n"])
     keep = 6 if len(groups) >= 6 else (3 if len(groups) >= 3 else 0)
+    num_block = ""
     if keep:
         cards = ""
         for label, g in groups[:keep]:
@@ -860,6 +961,35 @@ def build_dash(recent, briefs, weekly, digests, man):
         blocks.append('<section class="dblk">' + hd("숫자로 본 시장", "c2", "최근 24시간 · 영상에서 언급된 수치 · 실시간 시세 아님", (BASE + "#numbers", "숫자·지표로"))
                       + f'<div class="dgrid">{cards}</div></section>')
 
+    # 4-1) 요즘 자주 나온 출연자: 최근 7일, 출연자 페이지가 있는 사람만
+    wk_cut = (now - datetime.timedelta(days=7)).strftime("%Y-%m-%d")
+    pp = {}
+    for v in recent:
+        if (v.get("date") or "") < wk_cut:
+            continue
+        for nm in guests_of(v):
+            if nm in (man or {}).get("people", {}):
+                x = pp.setdefault(nm, {"n": 0, "vs": []})
+                x["n"] += 1
+                x["vs"].append(v)
+    for x in pp.values():
+        x["vs"].sort(key=lambda v: (v.get("ts") or v.get("date") or ""), reverse=True)
+        x["last"] = x["vs"][0]
+    top_p = sorted(pp.items(), key=lambda kv: (-kv[1]["n"], -(int((kv[1]["last"].get("date") or "0").replace("-", "") or 0))))[:6]
+    if len(top_p) >= 3:
+        cards = ""
+        for nm, x in top_p:
+            lv, role = x["last"], man["people"][nm].get("role") or ""
+            md = MOOD_LABEL.get(lv.get("mood"))
+            cards += (f'<a class="dpp" href="{href("people/" + quote(nm) + "/")}"><div class="dpph"><b>{e(nm)}</b>'
+                      + (f'<small>{e(role)}</small>' if role else "") + f'<span class="dppn">{x["n"]}편</span></div>'
+                      + f'<p>{e(lv.get("conclusion"))}</p>'
+                      + "".join(f'<div class="dppf"><span>{e(sdate(w.get("date")))} · {e(w.get("channel"))}</span>'
+                                + (f'<span class="md m{e(w.get("mood"))}">{MOOD_LABEL.get(w.get("mood"))}</span>' if MOOD_LABEL.get(w.get("mood")) else "") + '</div>'
+                                for w in x["vs"][:2]) + '</a>')
+        blocks.append('<section class="dblk">' + hd("요즘 자주 나온 출연자", "c1", "최근 7일 · 가장 최근 출연 영상의 결론", (href("people/"), "출연자 전체 보기"))
+                      + f'<div class="dppg">{cards}</div></section>')
+
     # 5) 최신 영상: 카드 모양은 영상 요약 탭과 같다 (화면에서 채운다)
     # 화면에서 다시 그리지만, 자바스크립트를 못 읽는 검색엔진도 영상 페이지 링크를 따라가게 미리 채워 둔다
     def hcard(i, v):
@@ -870,7 +1000,7 @@ def build_dash(recent, briefs, weekly, digests, man):
                 + f'</div><div class="body"><div class="meta"><b>{e(v.get("channel"))}</b><span>{e((v.get("date") or "").replace("-", "."))}</span>'
                 + (f'<span class="md m{e(v.get("mood"))}">{md}</span>' if md else "")
                 + f'</div><h2>{tit}</h2><p>{e(v.get("conclusion"))}</p></div></article>')
-    blocks.append('<section class="dblk dlatest">' + hd("최근 영상", "", "", (BASE + "#videos", "영상 요약 전체 보기"))
+    blocks.append('<section class="dblk dlatest">' + hd("최근 영상", "c1", "", (BASE + "#videos", "영상 요약 전체 보기"))
                   + '<div class="grid" id="hgrid">' + "".join(hcard(i, v) for i, v in enumerate(recent[:6])) + '</div></section>')
 
     blocks.append('<p class="bnote" data-nosnippet>AI가 경제 유튜브 영상들을 요약·종합한 내용이며 투자 권유가 아니다.</p>')
@@ -893,7 +1023,7 @@ def build_dash(recent, briefs, weekly, digests, man):
 
 
 # ---------- 사이트 소개, 개인정보처리방침 ----------
-INFO_DATE = "2026-11-23"
+INFO_DATE = "2026-11-28"
 
 
 def build_info_pages():
@@ -917,6 +1047,10 @@ def build_info_pages():
                              "<li><b>종목별 의견 비교</b>: 한 종목을 두고 채널마다 어떻게 봤는지, 언급이 언제 늘고 줄었는지 보여 준다.</li>"
                              "<li><b>출연자별 발언 기록</b>: 자주 나오는 전문가가 최근 어떤 말을 해 왔는지 날짜순으로 모은다.</li>"
                              "<li><b>숫자·지표 모음</b>: 방송에서 나온 지수, 금리, 환율 같은 숫자를 지표별로 모아 추이를 본다.</li></ul>"),
+        ("유튜브 온도란", "<p id=\"temp\">경제 유튜브들이 지금 시장을 얼마나 낙관하는지를 0~100도로 나타낸 숫자다. 최근 24시간에 올라온 영상마다 앞으로의 전망과 권하는 행동을 보고 강한 긍정·약한 긍정·중립·약한 부정·강한 부정 다섯 단계로 나눈 뒤, "
+                    "100·75·50·25·0점으로 놓고 평균을 낸다. 화면의 긍정·중립·부정 표시는 이 다섯 단계를 세 단계로 묶은 것이다. 50도보다 높으면 낙관하는 영상이 더 많다는 뜻이다.</p>"
+                    "<ul class=\"kp\"><li>영상 수만 세며, 채널 크기나 조회수로 가중치를 주지 않는다.</li><li>영상이 5편 미만이면 온도를 내지 않는다.</li>"
+                    "<li>유튜브의 분위기일 뿐 시장 예측이 아니다. 유튜브가 한쪽으로 크게 쏠렸을 때를 알아차리는 참고 지표로 보면 된다.</li></ul>"),
         ("다루는 채널", f"<ul class=\"kp\">{ch_list}</ul><p>구독자가 많고 꾸준히 영상을 올리는 경제·투자 채널을 고른다. 3분이 안 되는 짧은 영상과 경제·투자와 관련 없는 영상은 제외한다. 채널은 앞으로 늘어날 수 있다.</p>"),
         ("볼 수 있는 것", "<ul class=\"kp\"><li><b>홈</b>: 지금 시장 요약, 채널들의 분위기와 쟁점, 많이 언급된 종목과 숫자를 한눈에 본다.</li>"
                      "<li><b>브리핑</b>: 하루와 한 주의 영상을 종합한 시장 브리핑이다.</li>"
@@ -1157,10 +1291,13 @@ def guests_of(v):
     return out
 
 
+ORG_END = r"(자산운용|운용|투자자문|자문|증권|은행|금융|연구소|연구원|리서치|파트너스|캐피탈|그룹|대학교|대학|자산|투자|인베스트먼트|컨설팅|홀딩스|코리아|경제|TV|tv|아카데미|랩|Lab|LAB|센터|협회|재단|회계법인|법인|경제연구소|어드바이저스|에셋|에쿼티|매니지먼트)$"
+
+
 def role_of(name, vids):
     """제목에서 '소속 이름 직함' 꼴을 찾아 가장 흔한 것을 고른다. 예: 체슬리투자자문 최일호 부사장 → '체슬리투자자문 부사장'"""
     from collections import Counter
-    c = Counter()
+    c, orgs = Counter(), {}
     for v in vids:
         t = re.sub(r"[\[\]()|/·,\"'“”‘’]", " ", v.get("title") or "")
         m = re.search(r"(\S+)?\s*" + re.escape(name) + r"\s*(\S+)?", t)
@@ -1169,12 +1306,25 @@ def role_of(name, vids):
         before, after = (m.group(1) or ""), (m.group(2) or "")
         role = ROLE_RE.match(after).group(1) if after and ROLE_RE.match(after) else ""
         org = before if before and re.fullmatch(r"[가-힣A-Za-z0-9&]{2,15}", before) and not before.endswith(("다", "요", "까", "의", "는", "가")) and role else ""
+        if org and not re.search(ORG_END, org):  # '라이브', '특집' 같은 말이 소속으로 잡히지 않게, 회사·기관 이름처럼 끝나는 것만
+            org = ""
         if role:
-            c[(org + " " + role).strip()] += 1
-    return c.most_common(1)[0][0] if c else ""
+            c[role] += 1
+            if org:
+                orgs.setdefault(role, Counter())[org] += 1
+    if not c:
+        return ""
+    role = c.most_common(1)[0][0]
+    # 직함만 나온 제목이 더 많아도, 소속이 한 번이라도 나왔으면 소속을 붙인다 (예: '전무' -> '체슬리투자자문 전무')
+    org = orgs[role].most_common(1)[0][0] if role in orgs else ""
+    return (org + " " + role).strip()
+
+
+_ROLE_FIX = {}  # 운영자가 텔레그램 '소속: 이름 = 소속 직함'으로 보정한 것 (notes.js의 role:이름)
 
 
 def build_people_pages(V, man, stock_slug, mark, today):
+    _ROLE_FIX.update({k[5:]: v for k, v in read_const(ROOT / "notes.js", "NOTES", {}).items() if k.startswith("role:") and v})
     by = {}
     for vid, v in V.items():
         for nm in guests_of(v):
@@ -1184,7 +1334,7 @@ def build_people_pages(V, man, stock_slug, mark, today):
     changed = 0
     rows = []
     for nm, vs in people.items():
-        role = role_of(nm, vs)
+        role = _ROLE_FIX.get(nm) or role_of(nm, vs)  # 텔레그램 '소속:'으로 보정한 게 있으면 그걸 쓴다
         last = vs[0]
         chans = list(dict.fromkeys(v.get("channel") for v in vs if v.get("channel")))
         moods = {}
